@@ -1,0 +1,2012 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bright Future Institute | Education Website Demo by BizWeb KH</title>
+  <meta name="description" content="A complete education institution website demo for Cambodian schools, colleges, universities, and training centers by BizWeb KH." />
+  <style>
+    :root {
+      --navy: #071b3a;
+      --navy-2: #0e2b57;
+      --red: #e23d2f;
+      --orange: #f59b22;
+      --yellow: #ffd057;
+      --ink: #102033;
+      --muted: #5b6676;
+      --soft: #f3f6fb;
+      --line: #dbe3ef;
+      --white: #ffffff;
+      --shadow: 0 24px 70px rgba(7, 27, 58, 0.14);
+      --radius: 24px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    body.menu-open,
+    body.lightbox-open {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 96px 0;
+      position: relative;
+    }
+
+    .section.alt {
+      background: var(--soft);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--red);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 780px;
+      margin-bottom: 22px;
+      color: var(--white);
+      font-size: clamp(3.1rem, 7vw, 6.5rem);
+      line-height: 0.92;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(2.05rem, 4vw, 3.8rem);
+      line-height: 1.02;
+      letter-spacing: 0;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    .lead {
+      max-width: 700px;
+      font-size: 1.12rem;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 36px;
+    }
+
+    .section-head p {
+      max-width: 460px;
+      margin-bottom: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 22px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease, color 180ms ease;
+    }
+
+    .btn svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: var(--white);
+      background: linear-gradient(135deg, var(--red), #f1722f);
+      box-shadow: 0 18px 40px rgba(226, 61, 47, 0.28);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 22px 46px rgba(226, 61, 47, 0.36);
+    }
+
+    .btn-secondary {
+      color: var(--navy);
+      background: var(--white);
+      border-color: rgba(255, 255, 255, 0.55);
+    }
+
+    .btn-outline {
+      color: var(--navy);
+      background: transparent;
+      border-color: var(--line);
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(226, 61, 47, 0.45);
+      box-shadow: 0 14px 34px rgba(7, 27, 58, 0.08);
+    }
+
+    .icon-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--red);
+      font-weight: 800;
+    }
+
+    .icon-link svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 180ms ease;
+    }
+
+    .icon-link:hover svg {
+      transform: translateX(4px);
+    }
+
+    .audience-bar {
+      background: var(--navy);
+      color: rgba(255, 255, 255, 0.82);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.88rem;
+    }
+
+    .audience-inner {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .audience-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .audience-label {
+      color: var(--yellow);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .audience-links {
+      display: flex;
+      gap: 6px;
+      min-width: max-content;
+    }
+
+    .audience-links a {
+      padding: 7px 12px;
+      border-radius: 999px;
+      transition: background 180ms ease, color 180ms ease;
+    }
+
+    .audience-links a:hover {
+      background: rgba(255, 255, 255, 0.11);
+      color: var(--white);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid rgba(219, 227, 239, 0.75);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 220px;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--navy), var(--red));
+      border-radius: 16px;
+      box-shadow: 0 12px 26px rgba(7, 27, 58, 0.2);
+    }
+
+    .brand-mark svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .brand small {
+      display: block;
+      margin-top: -2px;
+      color: var(--muted);
+      font-size: 0.73rem;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      padding: 10px 12px;
+      color: #26364a;
+      font-size: 0.95rem;
+      font-weight: 800;
+      border-radius: 999px;
+      transition: background 180ms ease, color 180ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--navy);
+      background: var(--soft);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    .menu-toggle svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      background: rgba(7, 27, 58, 0.98);
+      color: var(--white);
+      transform: translateY(-100%);
+      visibility: hidden;
+      transition: transform 280ms ease, visibility 280ms ease;
+    }
+
+    .mobile-menu.active {
+      transform: translateY(0);
+      visibility: visible;
+    }
+
+    .mobile-menu-head {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .mobile-menu .brand,
+    .mobile-menu .brand small {
+      color: var(--white);
+    }
+
+    .close-menu {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+    }
+
+    .close-menu svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .mobile-menu-body {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 22px;
+      padding-bottom: 70px;
+    }
+
+    .mobile-menu-body a:not(.btn) {
+      color: var(--white);
+      font-size: clamp(2rem, 9vw, 4.2rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 760px;
+      display: grid;
+      align-items: stretch;
+      overflow: hidden;
+      color: var(--white);
+      background: var(--navy);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(90deg, rgba(7, 27, 58, 0.88), rgba(7, 27, 58, 0.54) 48%, rgba(7, 27, 58, 0.18)), url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=2200&q=86");
+      background-position: center;
+      background-size: cover;
+      transform: scale(1.04);
+      animation: heroZoom 9s ease forwards;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 170px;
+      background: linear-gradient(0deg, rgba(7, 27, 58, 0.84), transparent);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 42px;
+      align-items: end;
+      padding: 130px 0 70px;
+    }
+
+    .hero-copy {
+      animation: fadeUp 700ms ease both;
+    }
+
+    .hero-copy .eyebrow {
+      color: var(--yellow);
+    }
+
+    .hero-copy p {
+      max-width: 640px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 1.16rem;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      max-width: 680px;
+    }
+
+    .hero-stat {
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.17);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-stat strong {
+      display: block;
+      color: var(--white);
+      font-size: 1.6rem;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .hero-stat span {
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 0.9rem;
+    }
+
+    .hero-card {
+      align-self: end;
+      padding: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.28);
+      animation: fadeUp 900ms 120ms ease both;
+    }
+
+    .hero-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 22px;
+    }
+
+    .hero-card-body {
+      padding-top: 18px;
+    }
+
+    .hero-card-body h3 {
+      color: var(--white);
+      font-size: 1.35rem;
+    }
+
+    .hero-card-body p {
+      color: rgba(255, 255, 255, 0.74);
+      margin-bottom: 0;
+    }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .program-card {
+      position: relative;
+      min-height: 430px;
+      display: flex;
+      align-items: end;
+      overflow: hidden;
+      border-radius: 28px;
+      background: var(--navy);
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .program-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.92;
+      transition: transform 450ms ease, opacity 450ms ease;
+      z-index: -2;
+    }
+
+    .program-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7, 27, 58, 0.08), rgba(7, 27, 58, 0.86));
+      z-index: -1;
+    }
+
+    .program-card:hover img {
+      transform: scale(1.06);
+      opacity: 1;
+    }
+
+    .program-content {
+      padding: 24px;
+      color: var(--white);
+    }
+
+    .program-tag {
+      display: inline-flex;
+      margin-bottom: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: var(--navy);
+      background: var(--yellow);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .program-content h3 {
+      color: var(--white);
+      font-size: 1.55rem;
+    }
+
+    .program-content p {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 54px;
+      align-items: center;
+    }
+
+    .image-stack {
+      position: relative;
+    }
+
+    .image-stack img {
+      width: 100%;
+      aspect-ratio: 5 / 4;
+      object-fit: cover;
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .image-badge {
+      position: absolute;
+      right: 22px;
+      bottom: 22px;
+      max-width: 250px;
+      padding: 18px;
+      border-radius: 20px;
+      background: var(--white);
+      box-shadow: 0 18px 46px rgba(7, 27, 58, 0.2);
+    }
+
+    .image-badge strong {
+      display: block;
+      color: var(--navy);
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .image-badge span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .story-card,
+    .support-card,
+    .news-card,
+    .event-card,
+    .audience-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--white);
+      box-shadow: 0 16px 46px rgba(7, 27, 58, 0.07);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    .story-card:hover,
+    .support-card:hover,
+    .news-card:hover,
+    .event-card:hover,
+    .audience-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(226, 61, 47, 0.28);
+      box-shadow: 0 24px 60px rgba(7, 27, 58, 0.12);
+    }
+
+    .story-card {
+      padding: 22px;
+    }
+
+    .student-row {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 18px;
+    }
+
+    .student-row img {
+      width: 62px;
+      height: 62px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+
+    .student-row strong {
+      display: block;
+      color: var(--navy);
+    }
+
+    .student-row span,
+    .meta {
+      color: var(--red);
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    .story-card h3 {
+      font-size: 1.15rem;
+    }
+
+    .community-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 44px;
+      align-items: center;
+      padding: 42px;
+      border-radius: 36px;
+      color: var(--white);
+      background: var(--navy);
+      overflow: hidden;
+    }
+
+    .community-wrap h2,
+    .community-wrap h3 {
+      color: var(--white);
+    }
+
+    .community-wrap p {
+      color: rgba(255, 255, 255, 0.76);
+    }
+
+    .community-image img {
+      width: 100%;
+      aspect-ratio: 6 / 5;
+      object-fit: cover;
+      border-radius: 28px;
+    }
+
+    .mini-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .mini-card {
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .mini-card svg,
+    .support-icon,
+    .audience-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--red), var(--orange));
+    }
+
+    .mini-card svg {
+      padding: 9px;
+      margin-bottom: 12px;
+    }
+
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .support-card {
+      padding: 26px;
+    }
+
+    .support-icon,
+    .audience-icon {
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .news-card {
+      overflow: hidden;
+    }
+
+    .news-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .news-body {
+      padding: 22px;
+    }
+
+    .news-date {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .news-date span:last-child {
+      color: var(--red);
+    }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .event-card {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 20px;
+      padding: 22px;
+    }
+
+    .event-date {
+      display: grid;
+      place-items: center;
+      min-height: 92px;
+      border-radius: 20px;
+      color: var(--navy);
+      background: linear-gradient(135deg, var(--yellow), #fff2bd);
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .event-date span {
+      display: block;
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .audience-card {
+      padding: 24px;
+    }
+
+    .request-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: 44px;
+      align-items: start;
+      padding: 42px;
+      border-radius: 36px;
+      background: var(--navy);
+      box-shadow: var(--shadow);
+    }
+
+    .request-panel h2 {
+      color: var(--white);
+    }
+
+    .request-panel p,
+    .request-list li {
+      color: rgba(255, 255, 255, 0.76);
+    }
+
+    .request-list {
+      display: grid;
+      gap: 12px;
+      padding: 0;
+      margin: 26px 0 0;
+      list-style: none;
+    }
+
+    .request-list li {
+      display: flex;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .request-list svg {
+      width: 19px;
+      height: 19px;
+      flex: 0 0 auto;
+      color: var(--yellow);
+      margin-top: 3px;
+    }
+
+    .inquiry-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      padding: 24px;
+      border-radius: 26px;
+      background: var(--white);
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: var(--navy);
+      font-size: 0.83rem;
+      font-weight: 900;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfcff;
+      color: var(--ink);
+      padding: 13px 14px;
+      outline: none;
+      transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    textarea {
+      min-height: 128px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(226, 61, 47, 0.58);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(226, 61, 47, 0.1);
+    }
+
+    .form-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .form-note {
+      margin: 0;
+      font-size: 0.86rem;
+    }
+
+    .site-footer {
+      color: rgba(255, 255, 255, 0.78);
+      background: #061327;
+      padding: 86px 0 28px;
+    }
+
+    .footer-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 30px;
+      margin-bottom: 54px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(226, 61, 47, 0.18), rgba(245, 155, 34, 0.1));
+    }
+
+    .footer-cta h2 {
+      color: var(--white);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      margin-bottom: 10px;
+    }
+
+    .footer-cta p {
+      max-width: 670px;
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(4, minmax(0, 1fr));
+      gap: 34px;
+    }
+
+    .site-footer h3,
+    .site-footer h4 {
+      color: var(--white);
+    }
+
+    .site-footer p,
+    .site-footer a {
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .site-footer a:hover {
+      color: var(--white);
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .social-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .social-row a {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      color: var(--white);
+    }
+
+    .social-row svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 30px;
+      margin-top: 44px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.88rem;
+    }
+
+    .floating-cta {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 45;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--navy), var(--red));
+      box-shadow: 0 18px 46px rgba(7, 27, 58, 0.22);
+    }
+
+    .floating-cta.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(14px);
+    }
+
+    .toast {
+      position: fixed;
+      right: 22px;
+      bottom: 92px;
+      z-index: 120;
+      max-width: 360px;
+      display: flex;
+      gap: 12px;
+      align-items: start;
+      padding: 16px 18px;
+      border-radius: 18px;
+      color: var(--white);
+      background: var(--navy);
+      box-shadow: 0 22px 60px rgba(7, 27, 58, 0.28);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(18px);
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast svg {
+      width: 22px;
+      height: 22px;
+      flex: 0 0 auto;
+      color: var(--yellow);
+    }
+
+    .toast strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .toast span {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.9rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 640ms ease, transform 640ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes heroZoom {
+      to {
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .nav-links,
+      .header-actions .btn {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: grid;
+      }
+
+      .hero-inner,
+      .split,
+      .community-wrap,
+      .request-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-inner {
+        align-items: center;
+      }
+
+      .hero-card {
+        max-width: 520px;
+      }
+
+      .program-grid,
+      .story-grid,
+      .audience-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding-bottom: 82px;
+      }
+
+      .container {
+        width: min(100% - 28px, var(--max));
+      }
+
+      .section {
+        padding: 68px 0;
+      }
+
+      .section-head,
+      .footer-cta,
+      .footer-bottom,
+      .form-actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .brand small {
+        display: none;
+      }
+
+      .audience-inner {
+        min-height: 50px;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-bg {
+        background-image: linear-gradient(180deg, rgba(7, 27, 58, 0.9), rgba(7, 27, 58, 0.62)), url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1300&q=84");
+      }
+
+      .hero-inner {
+        padding: 86px 0 48px;
+      }
+
+      h1 {
+        font-size: clamp(3rem, 17vw, 4.8rem);
+      }
+
+      .hero-actions,
+      .hero-actions .btn,
+      .form-actions .btn {
+        width: 100%;
+      }
+
+      .hero-stats,
+      .program-grid,
+      .story-grid,
+      .mini-card-grid,
+      .support-grid,
+      .news-grid,
+      .event-grid,
+      .audience-grid,
+      .inquiry-form {
+        grid-template-columns: 1fr;
+      }
+
+      .program-card {
+        min-height: 360px;
+      }
+
+      .image-badge {
+        position: static;
+        max-width: none;
+        margin-top: -30px;
+        margin-inline: 16px;
+      }
+
+      .community-wrap,
+      .request-panel {
+        padding: 24px;
+        border-radius: 28px;
+      }
+
+      .event-card {
+        grid-template-columns: 76px 1fr;
+        gap: 16px;
+      }
+
+      .event-date {
+        min-height: 76px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-cta {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        width: auto;
+      }
+
+      .toast {
+        left: 14px;
+        right: 14px;
+        bottom: 92px;
+        max-width: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="audience-bar" aria-label="Audience links">
+    <div class="container audience-inner">
+      <div class="audience-label">Info for:</div>
+      <nav class="audience-links" aria-label="Audience selector">
+        <a href="#get-started">Future Students</a>
+        <a href="#support">Current Students</a>
+        <a href="#get-started">Parents</a>
+        <a href="#get-started">International Students</a>
+        <a href="#news">Alumni</a>
+        <a href="#events">Employers</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="Bright Future Institute home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 7.5 12 4l8 3.5-8 3.5-8-3.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M7 10v5.2c0 1.7 2.2 3.1 5 3.1s5-1.4 5-3.1V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span>Bright Future Institute<small>Skills for tomorrow, confidence for life.</small></span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#programs">Programs</a>
+        <a href="#admissions">Admissions</a>
+        <a href="#student-life">Student Life</a>
+        <a href="#support">Support</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-primary" href="index.html#request">
+          Request this website style
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu-head">
+      <a class="brand" href="#home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M4 7.5 12 4l8 3.5-8 3.5-8-3.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M7 10v5.2c0 1.7 2.2 3.1 5 3.1s5-1.4 5-3.1V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span>Bright Future Institute<small>Skills for tomorrow, confidence for life.</small></span>
+      </a>
+      <button class="close-menu" type="button" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-menu-body" aria-label="Mobile navigation">
+      <a href="#programs">Programs</a>
+      <a href="#admissions">Admissions</a>
+      <a href="#student-life">Student Life</a>
+      <a href="#support">Support</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-primary" href="index.html#request">Request this website style</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3v18M5 8h14M7 16h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Modern college website demo
+          </div>
+          <h1>Small classes. Big futures.</h1>
+          <p>With practical learning, supportive teachers, and career-focused programs, students build the confidence and skills to choose their next path.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#programs">Explore programs</a>
+            <a class="btn btn-secondary" href="#admissions">How to apply</a>
+            <a class="btn btn-outline" href="index.html#request">Request this website style</a>
+          </div>
+          <div class="hero-stats" aria-label="Institute highlights">
+            <div class="hero-stat"><strong>4</strong><span>Career-focused schools</span></div>
+            <div class="hero-stat"><strong>18+</strong><span>Flexible study pathways</span></div>
+            <div class="hero-stat"><strong>1:1</strong><span>Student guidance support</span></div>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Admissions highlight">
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=84" alt="Students walking together on campus" />
+          <div class="hero-card-body">
+            <h3>Applications are open</h3>
+            <p>Students can ask about programs, fees, schedules, and scholarship options in one clear website flow.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="programs">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 5h7v14H4zM13 5h7v14h-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              Program exploration
+            </div>
+            <h2>Explore programs built for real careers.</h2>
+          </div>
+          <p>Clear program cards help students and parents quickly understand what your school offers and where each pathway can lead.</p>
+        </div>
+
+        <div class="program-grid">
+          <article class="program-card reveal">
+            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=84" alt="Business students in a workshop" />
+            <div class="program-content">
+              <span class="program-tag">Business</span>
+              <h3>Business & Entrepreneurship</h3>
+              <p>Practical courses in management, customer experience, finance basics, and small business planning.</p>
+              <a class="icon-link" href="#contact">Explore programs <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </article>
+
+          <article class="program-card reveal">
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=84" alt="Students learning digital skills" />
+            <div class="program-content">
+              <span class="program-tag">Technology</span>
+              <h3>Digital Technology</h3>
+              <p>Career-ready training in websites, coding basics, office tools, digital marketing, and AI-assisted work.</p>
+              <a class="icon-link" href="#contact">Explore programs <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </article>
+
+          <article class="program-card reveal">
+            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=84" alt="Teacher supporting students in class" />
+            <div class="program-content">
+              <span class="program-tag">Care</span>
+              <h3>Health & Community Care</h3>
+              <p>Foundation learning for service-minded students preparing for community, hospitality, or care roles.</p>
+              <a class="icon-link" href="#contact">Explore programs <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </article>
+
+          <article class="program-card reveal">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=900&q=84" alt="Creative students working together" />
+            <div class="program-content">
+              <span class="program-tag">Creative</span>
+              <h3>Creative Media & Design</h3>
+              <p>Hands-on projects in visual design, content creation, photography, branding, and social media production.</p>
+              <a class="icon-link" href="#contact">Explore programs <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="admissions">
+      <div class="container split">
+        <div class="reveal">
+          <div class="eyebrow">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Student fit
+          </div>
+          <h2>You belong at Bright Future Institute.</h2>
+          <p class="lead">Whether students are starting after high school, upgrading their skills, studying part-time, or preparing for an international pathway, there is a place to grow here.</p>
+          <a class="btn btn-primary" href="#get-started">Find your place</a>
+        </div>
+        <div class="image-stack reveal">
+          <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1100&q=84" alt="Students in a bright classroom" />
+          <div class="image-badge">
+            <strong>Friendly entry paths</strong>
+            <span>Simple admissions information for students, parents, and working learners.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="student-life">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M10 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM21 21v-2a4 4 0 0 0-3-3.87M17 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Student stories
+            </div>
+            <h2>Student voices</h2>
+          </div>
+          <p>Realistic story cards help a school website feel human, trusted, and easier for parents and students to believe.</p>
+        </div>
+
+        <div class="story-grid">
+          <article class="story-card reveal">
+            <div class="student-row">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=260&q=84" alt="Student portrait" />
+              <div><strong>Sophea</strong><span>Digital Technology</span></div>
+            </div>
+            <h3>How did Bright Future support your success?</h3>
+            <p>"My teacher helped me plan a learning schedule and practice skills I can use at work."</p>
+          </article>
+
+          <article class="story-card reveal">
+            <div class="student-row">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=260&q=84" alt="Student portrait" />
+              <div><strong>Dara</strong><span>Business</span></div>
+            </div>
+            <h3>What changed after joining the program?</h3>
+            <p>"I became more confident speaking with customers and presenting my business ideas."</p>
+          </article>
+
+          <article class="story-card reveal">
+            <div class="student-row">
+              <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=260&q=84" alt="Student portrait" />
+              <div><strong>Vannak</strong><span>Creative Media</span></div>
+            </div>
+            <h3>What do you enjoy about campus life?</h3>
+            <p>"There are projects, clubs, and events where I can meet students from other programs."</p>
+          </article>
+
+          <article class="story-card reveal">
+            <div class="student-row">
+              <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=260&q=84" alt="Student portrait" />
+              <div><strong>Leakena</strong><span>Community Care</span></div>
+            </div>
+            <h3>How would you describe the community?</h3>
+            <p>"It feels supportive. Students can ask questions and teachers know our goals."</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="container">
+        <div class="community-wrap reveal">
+          <div>
+            <div class="eyebrow">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 21s7-4.35 7-11a7 7 0 1 0-14 0c0 6.65 7 11 7 11Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 10.5h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+              Campus community
+            </div>
+            <h2>A community to call your own.</h2>
+            <p class="lead">Students learn best when they feel supported. This demo gives schools space to show clubs, events, mentorship, guidance, and the everyday learning environment that makes a campus feel active and welcoming.</p>
+            <div class="mini-card-grid">
+              <div class="mini-card">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 21h8M12 17v4M6 3h12v5a6 6 0 0 1-12 0V3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <h3>Clubs and events</h3>
+                <p>Showcase student activities, competitions, workshops, and school celebrations.</p>
+              </div>
+              <div class="mini-card">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19.5V6.5A2.5 2.5 0 0 1 6.5 4H20v15H6.5A2.5 2.5 0 0 0 4 21.5M8 8h8M8 12h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <h3>Mentorship</h3>
+                <p>Explain how teachers and advisors guide students from inquiry to graduation.</p>
+              </div>
+              <div class="mini-card">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 7h-7M20 12h-7M20 17h-7M4 7l2 2 4-4M4 12l2 2 4-4M4 17l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <h3>Student support</h3>
+                <p>Make it easy for learners and parents to find help, services, and next steps.</p>
+              </div>
+            </div>
+          </div>
+          <div class="community-image">
+            <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1100&q=84" alt="Students on campus steps" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="support">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              Support services
+            </div>
+            <h2>Support that helps students go further.</h2>
+          </div>
+          <p>Parents and students need to see the practical support behind the programs, not just a list of classes.</p>
+        </div>
+
+        <div class="support-grid">
+          <article class="support-card reveal">
+            <svg class="support-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2.5ZM8 7h7M8 11h7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Academic support</h3>
+            <p>Tutoring, study planning, assignment guidance, and teacher office hours for students who need extra help.</p>
+            <a class="icon-link" href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="support-card reveal">
+            <svg class="support-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2v20M5 7h14M7 17h10M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <h3>Career guidance</h3>
+            <p>Portfolio support, interview preparation, internship advice, employer talks, and career pathway planning.</p>
+            <a class="icon-link" href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="support-card reveal">
+            <svg class="support-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+            <h3>Health and wellbeing</h3>
+            <p>Clear information about student care, safety, counseling, and practical help for balanced study life.</p>
+            <a class="icon-link" href="#contact">Learn more <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="news">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 5h16v14H4zM8 9h8M8 13h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              News and highlights
+            </div>
+            <h2>Stories and highlights</h2>
+          </div>
+          <p>Keep your school website active with updates that show quality, student progress, and connection with employers.</p>
+        </div>
+
+        <div class="news-grid">
+          <article class="news-card reveal">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=84" alt="Digital skills learning lab" />
+            <div class="news-body">
+              <div class="news-date"><span>June 12, 2026</span><span>Campus</span></div>
+              <h3>New digital skills lab opens</h3>
+              <p>A brighter learning space gives students more time with modern tools, teamwork stations, and guided practice.</p>
+            </div>
+          </article>
+
+          <article class="news-card reveal">
+            <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=84" alt="Students meeting employers" />
+            <div class="news-body">
+              <div class="news-date"><span>June 18, 2026</span><span>Careers</span></div>
+              <h3>Career fair connects students with employers</h3>
+              <p>Local businesses met students from business, technology, and creative programs during a practical career event.</p>
+            </div>
+          </article>
+
+          <article class="news-card reveal">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=84" alt="Student creative design showcase" />
+            <div class="news-body">
+              <div class="news-date"><span>June 25, 2026</span><span>Showcase</span></div>
+              <h3>Student design showcase celebrates creativity</h3>
+              <p>Creative media learners presented brand concepts, campaign visuals, and portfolio work to classmates and guests.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="events">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14H3V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Events
+            </div>
+            <h2>What's happening</h2>
+          </div>
+          <p>Simple event cards make admissions dates, parent sessions, and open campus activities easy to find.</p>
+        </div>
+
+        <div class="event-grid">
+          <article class="event-card reveal">
+            <div class="event-date">Jul <span>04</span></div>
+            <div>
+              <div class="meta">9:00 AM - Open Day</div>
+              <h3>Open Campus Day</h3>
+              <p>Tour classrooms, meet teachers, and ask about programs for the next intake.</p>
+              <a class="icon-link" href="#contact">View event <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </article>
+
+          <article class="event-card reveal">
+            <div class="event-date">Jul <span>11</span></div>
+            <div>
+              <div class="meta">2:00 PM - Admissions</div>
+              <h3>Scholarship Information Session</h3>
+              <p>Learn about available support, documents needed, and the application timeline.</p>
+              <a class="icon-link" href="#contact">View event <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </article>
+
+          <article class="event-card reveal">
+            <div class="event-date">Jul <span>19</span></div>
+            <div>
+              <div class="meta">6:00 PM - Parents</div>
+              <h3>Parent Orientation Evening</h3>
+              <p>A friendly session covering study schedules, support services, fees, and communication.</p>
+              <a class="icon-link" href="#contact">View event <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="get-started">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Get started
+            </div>
+            <h2>Get started on your journey.</h2>
+          </div>
+          <p>Audience cards route different visitors to the information they care about first.</p>
+        </div>
+
+        <div class="audience-grid">
+          <article class="audience-card reveal">
+            <svg class="audience-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 14 4 10l8-4 8 4-8 4ZM6 12v4c0 1.5 2.7 3 6 3s6-1.5 6-3v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Future Students</h3>
+            <p>Compare programs, ask about schedules, and find the right entry path.</p>
+            <a class="icon-link" href="#contact">Start here <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="audience-card reveal">
+            <svg class="audience-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3ZM8 11c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3ZM3 20c0-2.2 2.2-4 5-4s5 1.8 5 4M11 20c0-2.2 2.2-4 5-4s5 1.8 5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <h3>Parents</h3>
+            <p>Understand fees, safety, student support, progress updates, and admissions.</p>
+            <a class="icon-link" href="#contact">Ask admissions <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="audience-card reveal">
+            <svg class="audience-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM3.6 9h16.8M3.6 15h16.8M12 3c2.2 2.4 3.4 5.4 3.4 9s-1.2 6.6-3.4 9M12 3C9.8 5.4 8.6 8.4 8.6 12s1.2 6.6 3.4 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <h3>International Students</h3>
+            <p>Show pathways, documents, language support, and arrival information clearly.</p>
+            <a class="icon-link" href="#contact">View pathway <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+
+          <article class="audience-card reveal">
+            <svg class="audience-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3M9 9h1M9 13h1M9 17h1M15 13h1M15 17h1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>Employers</h3>
+            <p>Invite partners to internships, hiring events, guest talks, and student projects.</p>
+            <a class="icon-link" href="#contact">Partner with us <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container request-panel reveal">
+        <div>
+          <div class="eyebrow">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+            Request information
+          </div>
+          <h2>Ask about programs, admissions, or this website style.</h2>
+          <p class="lead">This form is front-end only for the demo. BizWeb KH can connect it to Telegram, Messenger, email, or a simple CRM flow for real schools.</p>
+          <ul class="request-list">
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Clear inquiry fields for parents and students.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Ready to customize for schools, colleges, universities, and training centers.</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none"><path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>BizWeb KH request link stays connected to your demo showroom.</span></li>
+          </ul>
+        </div>
+
+        <form class="inquiry-form" id="inquiryForm">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label for="phone">Phone / Telegram</label>
+            <input id="phone" name="phone" type="text" placeholder="+855..." required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="name@example.com" />
+          </div>
+          <div class="field">
+            <label for="program">Interested program</label>
+            <select id="program" name="program" required>
+              <option value="">Select a program</option>
+              <option>Business & Entrepreneurship</option>
+              <option>Digital Technology</option>
+              <option>Health & Community Care</option>
+              <option>Creative Media & Design</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="studentType">Student type</label>
+            <select id="studentType" name="studentType" required>
+              <option value="">Select student type</option>
+              <option>Future student</option>
+              <option>Parent or guardian</option>
+              <option>Current student</option>
+              <option>International student</option>
+              <option>Employer or partner</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="source">Preferred contact</label>
+            <select id="source" name="source">
+              <option>Telegram</option>
+              <option>Messenger</option>
+              <option>Phone call</option>
+              <option>Email</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell us what you would like to know."></textarea>
+          </div>
+          <div class="form-actions">
+            <p class="form-note">No backend is connected in this demo.</p>
+            <button class="btn btn-primary" type="submit">Send inquiry</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-cta reveal">
+        <div>
+          <h2>Ready to make your own school website?</h2>
+          <p>We can customize this design with your school name, programs, admissions process, student stories, news, events, map, and inquiry form.</p>
+        </div>
+        <a class="btn btn-primary" href="index.html#request">Start my education website</a>
+      </div>
+
+      <div class="footer-grid">
+        <div>
+          <h3>Bright Future Institute</h3>
+          <p>A modern education institution website demo for Cambodian private schools, international schools, universities, training centers, language schools, and career institutes.</p>
+          <div class="social-row" aria-label="Social links">
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none"><path d="M14 8h2V4h-2c-3 0-5 2-5 5v2H7v4h2v5h4v-5h3l1-4h-4V9c0-.6.4-1 1-1Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></a>
+            <a href="#" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none"><path d="m21 4-4 16-5-5-4 4 1-6-6-3 18-6Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none"><path d="M22 12s0-4-1-5c-1-1-4-1-9-1s-8 0-9 1-1 5-1 5 0 4 1 5 4 1 9 1 8 0 9-1 1-5 1-5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m10 9 5 3-5 3V9Z" fill="currentColor"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4>Programs</h4>
+          <div class="footer-links">
+            <a href="#programs">Business</a>
+            <a href="#programs">Technology</a>
+            <a href="#programs">Health and care</a>
+            <a href="#programs">Creative media</a>
+          </div>
+        </div>
+        <div>
+          <h4>Admissions</h4>
+          <div class="footer-links">
+            <a href="#admissions">How to apply</a>
+            <a href="#get-started">Future students</a>
+            <a href="#get-started">Parents</a>
+            <a href="#contact">Request info</a>
+          </div>
+        </div>
+        <div>
+          <h4>Student life</h4>
+          <div class="footer-links">
+            <a href="#student-life">Student voices</a>
+            <a href="#support">Support services</a>
+            <a href="#events">Events</a>
+            <a href="#news">Highlights</a>
+          </div>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <div class="footer-links">
+            <a href="#contact">Inquiry form</a>
+            <a href="index.html#request">Request this style</a>
+            <a href="#">Phnom Penh campus</a>
+            <a href="#">hello@example-school.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Copyright 2026 Bright Future Institute. Demo content only.</span>
+        <span>Demo website style by BizWeb KH</span>
+      </div>
+    </div>
+  </footer>
+
+  <a class="btn floating-cta" href="index.html#request" id="floatingCta">
+    Request this website style
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div>
+      <strong>Inquiry prepared</strong>
+      <span>Thank you. Your inquiry has been prepared for follow-up.</span>
+    </div>
+  </div>
+
+  <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const closeMenu = document.querySelector(".close-menu");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const mobileLinks = document.querySelectorAll(".mobile-menu a");
+    const inquiryForm = document.getElementById("inquiryForm");
+    const toast = document.getElementById("toast");
+    const floatingCta = document.getElementById("floatingCta");
+
+    function openMenu() {
+      mobileMenu.classList.add("active");
+      mobileMenu.setAttribute("aria-hidden", "false");
+      menuToggle.setAttribute("aria-expanded", "true");
+      document.body.classList.add("menu-open");
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove("active");
+      mobileMenu.setAttribute("aria-hidden", "true");
+      menuToggle.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("menu-open");
+    }
+
+    menuToggle.addEventListener("click", openMenu);
+    closeMenu.addEventListener("click", closeMobileMenu);
+    mobileLinks.forEach((link) => link.addEventListener("click", closeMobileMenu));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && mobileMenu.classList.contains("active")) {
+        closeMobileMenu();
+      }
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", (event) => {
+        const targetId = anchor.getAttribute("href");
+        if (targetId.length <= 1) return;
+        const target = document.querySelector(targetId);
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll(".reveal").forEach((element) => {
+      revealObserver.observe(element);
+    });
+
+    let toastTimer;
+    function showToast() {
+      clearTimeout(toastTimer);
+      toast.classList.add("show");
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 4200);
+    }
+
+    inquiryForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      showToast();
+      inquiryForm.reset();
+    });
+
+    const stickyGuard = new IntersectionObserver((entries) => {
+      const shouldHide = entries.some((entry) => entry.isIntersecting);
+      floatingCta.classList.toggle("hidden", shouldHide && window.innerWidth <= 760);
+    }, { threshold: 0.08 });
+
+    const contactSection = document.getElementById("contact");
+    const footer = document.querySelector(".site-footer");
+    if (contactSection) stickyGuard.observe(contactSection);
+    if (footer) stickyGuard.observe(footer);
+  </script>
+</body>
+</html>

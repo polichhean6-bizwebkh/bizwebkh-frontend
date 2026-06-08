@@ -1,0 +1,1197 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luna Bliss Spa | Relax deeply. Glow naturally.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kantumruy+Pro:wght@400;500;600;700&family=Noto+Sans+Khmer:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blush:#fff4f5;
+  --blush-2:#fdeced;
+  --blush-3:#f9dddf;
+  --cream:#fffaf6;
+  --card:#ffffff;
+  --ink:#3c3435;
+  --muted:#817273;
+  --soft:#aa8f91;
+  --pink:#f4a9b5;
+  --pink-2:#f8c4cc;
+  --gold:#ffd000;
+  --gold-dark:#d1a700;
+  --line:#f0dadd;
+  --shadow:0 22px 55px rgba(122,74,79,.13);
+  --shadow-sm:0 12px 32px rgba(122,74,79,.1);
+  --radius:28px;
+  --radius-sm:18px;
+  --nav-h:74px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:var(--blush);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+body.lang-km{
+  font-family:"Kantumruy Pro","Noto Sans Khmer",Arial,sans-serif;
+  line-height:1.78;
+}
+body.lang-km .serif,
+body.lang-km .brand,
+body.lang-km .section-title,
+body.lang-km .hero-title,
+body.lang-km .service-body h3,
+body.lang-km .package-card h3,
+body.lang-km .footer-cta h2{
+  font-family:"Kantumruy Pro","Noto Sans Khmer",Arial,sans-serif;
+  letter-spacing:0;
+}
+body.lang-km .hero-title{line-height:1.18;font-size:clamp(42px,5.6vw,72px)}
+body.lang-km .section-title{line-height:1.28}
+body.lang-km .eyebrow{letter-spacing:.02em}
+body.lang-km .btn{font-size:13px;line-height:1.35}
+body.lang-km .service-body p,
+body.lang-km .package-card p,
+body.lang-km .testimonial-card blockquote,
+body.lang-km .section-copy,
+body.lang-km .hero-text{line-height:1.85}
+body.menu-open{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+svg{display:block;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.container{width:min(1120px,calc(100% - 48px));margin:0 auto}
+.serif{font-family:"Playfair Display",Georgia,serif}
+.icon{width:18px;height:18px;stroke-width:1.8}
+.pill-label{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#a8757a;
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(244,169,181,.38);
+  border-radius:999px;
+  padding:8px 13px;
+  font-size:12px;
+  font-weight:700;
+  box-shadow:0 10px 28px rgba(122,74,79,.08);
+}
+.pill-label svg{width:14px;height:14px;color:var(--gold-dark);stroke-width:2}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  border:0;
+  border-radius:999px;
+  padding:14px 24px;
+  min-height:48px;
+  font-size:14px;
+  font-weight:800;
+  cursor:pointer;
+  transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease,border-color .25s ease;
+}
+.btn svg{width:16px;height:16px;stroke-width:2}
+.btn-primary{
+  background:var(--gold);
+  color:#3b3000;
+  box-shadow:0 14px 30px rgba(255,208,0,.25);
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 20px 38px rgba(255,208,0,.31);background:#ffdc2f}
+.btn-secondary{
+  color:#7c5258;
+  background:rgba(255,255,255,.68);
+  border:1px solid rgba(244,169,181,.56);
+}
+.btn-secondary:hover{transform:translateY(-3px);border-color:#f2aab5;box-shadow:0 18px 38px rgba(122,74,79,.1)}
+.section{padding:104px 0}
+.section-soft{background:linear-gradient(180deg,var(--blush) 0%,var(--blush-2) 100%)}
+.section-white{background:linear-gradient(180deg,#fff 0%,#fff9f6 100%)}
+.section-head{text-align:center;margin-bottom:48px}
+.eyebrow{
+  color:var(--pink);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.11em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.section-title{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(34px,4vw,48px);
+  line-height:1.1;
+  color:var(--ink);
+}
+.section-title span,.hero-title span{color:var(--pink)}
+.section-copy{
+  color:var(--muted);
+  max-width:580px;
+  margin:16px auto 0;
+  font-size:15px;
+}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* Header */
+.site-header{
+  position:fixed;
+  top:18px;
+  left:0;
+  right:0;
+  z-index:80;
+  pointer-events:none;
+}
+.nav-shell{
+  width:min(1120px,calc(100% - 48px));
+  margin:0 auto;
+  min-height:var(--nav-h);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:22px;
+  padding:14px 20px;
+  background:rgba(255,255,255,.84);
+  border:1px solid rgba(255,255,255,.68);
+  border-radius:26px;
+  box-shadow:0 18px 42px rgba(102,58,64,.13);
+  backdrop-filter:blur(18px);
+  pointer-events:auto;
+}
+.brand{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:24px;
+  font-weight:700;
+  color:#3f3536;
+  white-space:nowrap;
+}
+.brand span{color:var(--pink)}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{
+  font-size:13px;
+  font-weight:700;
+  color:#827274;
+  transition:color .2s ease;
+}
+.nav-links a:hover{color:#3f3536}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.nav-actions .btn{min-height:44px;padding:12px 21px}
+.lang-toggle{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  padding:4px;
+  border:1px solid rgba(244,169,181,.42);
+  border-radius:999px;
+  background:rgba(255,255,255,.72);
+  flex-shrink:0;
+}
+.lang-btn{
+  border:0;
+  background:transparent;
+  color:#8a7376;
+  border-radius:999px;
+  padding:7px 10px;
+  font-size:12px;
+  font-weight:800;
+  cursor:pointer;
+  transition:background .2s ease,color .2s ease,box-shadow .2s ease;
+}
+.lang-btn.active{
+  color:#49383b;
+  background:#fff;
+  box-shadow:0 8px 18px rgba(122,74,79,.1);
+}
+.menu-toggle{
+  display:none;
+  width:46px;
+  height:46px;
+  border:1px solid rgba(244,169,181,.48);
+  border-radius:50%;
+  background:#fff;
+  color:#604b4e;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+.menu-toggle svg{width:21px;height:21px;stroke-width:2}
+.mobile-menu{
+  position:fixed;
+  inset:0;
+  z-index:70;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  padding:120px 28px 40px;
+  background:rgba(255,244,245,.97);
+  backdrop-filter:blur(18px);
+  transform:translateY(-100%);
+  opacity:0;
+  transition:transform .42s ease,opacity .42s ease;
+}
+.mobile-menu.open{transform:translateY(0);opacity:1}
+.mobile-menu a:not(.btn){
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:34px;
+  color:#514346;
+}
+.mobile-menu .btn{width:min(340px,100%)}
+
+/* Hero */
+.hero{
+  position:relative;
+  min-height:780px;
+  padding:160px 0 110px;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  width:760px;
+  height:760px;
+  right:-280px;
+  top:-260px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.85),rgba(248,196,204,.22) 44%,transparent 68%);
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  width:520px;
+  height:520px;
+  left:-220px;
+  bottom:-190px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.8),rgba(255,208,0,.09) 48%,transparent 70%);
+}
+.hero-grid{
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(360px,520px);
+  align-items:center;
+  gap:78px;
+}
+.hero-copy{animation:fadeUp .85s ease both}
+.hero-title{
+  margin:26px 0 20px;
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(54px,7vw,86px);
+  line-height:.98;
+  letter-spacing:-.035em;
+}
+.hero-text{
+  max-width:550px;
+  color:var(--muted);
+  font-size:17px;
+}
+.hero-buttons{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:34px 0}
+.stats{
+  display:flex;
+  gap:38px;
+  flex-wrap:wrap;
+  margin-top:26px;
+}
+.stat strong{display:block;font-size:24px;line-height:1;font-weight:800;color:#453b3d}
+.stat span{display:block;margin-top:5px;font-size:12px;font-weight:700;color:#9b898c}
+.hero-visual{
+  position:relative;
+  min-height:570px;
+  animation:imageIn 1s .15s ease both;
+}
+.hero-card{
+  position:absolute;
+  inset:0 0 0 34px;
+  border-radius:34px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:var(--shadow);
+  border:12px solid rgba(255,255,255,.86);
+}
+.hero-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center center;
+  filter:saturate(.98) contrast(.98);
+}
+.float-badge{
+  position:absolute;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:150px;
+  padding:14px 16px;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(255,255,255,.88);
+  border-radius:18px;
+  box-shadow:var(--shadow-sm);
+  animation:floatSoft 5s ease-in-out infinite;
+}
+.float-badge.rating{top:-18px;right:-14px}
+.float-badge.organic{left:0;bottom:36px;animation-delay:.65s}
+.float-icon{
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#fff8cf;
+  color:#b69100;
+}
+.float-icon svg{width:17px;height:17px;stroke-width:2.2}
+.stars{display:flex;color:var(--gold-dark);gap:2px;margin-bottom:2px}
+.stars svg{width:12px;height:12px;fill:currentColor;stroke:none}
+.float-badge strong{display:block;font-size:13px;line-height:1.1}
+.float-badge span{display:block;font-size:11px;color:var(--muted);font-weight:600}
+
+/* Services */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:22px;
+}
+.service-card{
+  overflow:hidden;
+  background:#fff;
+  border:1px solid rgba(255,255,255,.85);
+  border-radius:18px;
+  box-shadow:var(--shadow-sm);
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.service-card:hover{transform:translateY(-7px);box-shadow:0 22px 45px rgba(122,74,79,.16)}
+.service-image{height:180px;overflow:hidden}
+.service-image img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease}
+.service-card:hover img{transform:scale(1.05)}
+.service-body{padding:22px}
+.service-body h3{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:21px;
+  margin-bottom:8px;
+}
+.service-body p{font-size:14px;color:var(--muted);min-height:68px}
+.service-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:18px;
+  font-size:13px;
+  color:#8f7b7e;
+  font-weight:700;
+}
+.service-meta strong{color:#3e3536;font-size:16px}
+.center-actions{display:flex;justify-content:center;margin-top:36px}
+
+/* About */
+.about-grid{
+  display:grid;
+  grid-template-columns:minmax(320px,520px) minmax(0,1fr);
+  align-items:center;
+  gap:70px;
+}
+.about-image{
+  position:relative;
+  border-radius:28px;
+  overflow:hidden;
+  background:#fff;
+  padding:12px;
+  box-shadow:var(--shadow);
+}
+.about-image img{width:100%;height:430px;object-fit:cover;border-radius:20px}
+.about-content .section-title{text-align:left}
+.about-content p{color:var(--muted);margin-top:18px}
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px 28px;
+  margin-top:30px;
+}
+.feature-item{display:flex;align-items:center;gap:11px;font-weight:800;font-size:14px;color:#5d5052}
+.feature-item span{
+  width:28px;
+  height:28px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#fff1f3;
+  color:var(--pink);
+}
+.feature-item svg{width:15px;height:15px;stroke-width:2.1}
+
+/* Packages */
+.packages-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+.package-card{
+  background:rgba(255,255,255,.82);
+  border:1px solid rgba(244,169,181,.28);
+  border-radius:24px;
+  padding:28px;
+  box-shadow:var(--shadow-sm);
+}
+.package-card.featured{background:#fff;border-color:rgba(255,208,0,.55);box-shadow:0 24px 56px rgba(166,120,0,.12)}
+.package-card h3{font-family:"Playfair Display",Georgia,serif;font-size:25px}
+.package-price{font-size:34px;font-weight:800;margin:14px 0;color:#443b3d}
+.package-card p{color:var(--muted);font-size:14px}
+.package-card ul{list-style:none;margin-top:20px;display:grid;gap:10px}
+.package-card li{display:flex;align-items:center;gap:9px;color:#6c5d60;font-size:14px;font-weight:600}
+.package-card li svg{width:15px;height:15px;color:var(--pink);stroke-width:2.2}
+
+/* Testimonials */
+.testimonials-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.testimonial-card{
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:24px;
+  padding:30px;
+  min-height:290px;
+  box-shadow:var(--shadow-sm);
+}
+.testimonial-card .stars{margin-bottom:18px}
+.testimonial-card blockquote{color:#756568;font-size:15px;line-height:1.8}
+.treatment-type{font-size:12px;font-weight:800;color:#6e5f61;margin-top:22px}
+.profile{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding-top:18px;
+  margin-top:18px;
+  border-top:1px solid rgba(244,169,181,.28);
+}
+.avatar{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#f8c4cc,#ffe2a8);
+  display:grid;
+  place-items:center;
+  color:#5b4549;
+  font-weight:800;
+}
+.profile strong{display:block;font-size:14px}
+.profile span{display:block;font-size:12px;color:#9a898c}
+
+/* Booking */
+.booking-card{
+  width:min(760px,100%);
+  margin:0 auto;
+  background:var(--blush);
+  border:1px solid rgba(244,169,181,.22);
+  border-radius:28px;
+  padding:54px;
+  box-shadow:var(--shadow);
+}
+.booking-form{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:22px;
+  margin-top:34px;
+}
+.field.full{grid-column:1/-1}
+.field label{
+  display:block;
+  margin-bottom:8px;
+  font-size:12px;
+  font-weight:800;
+  color:#6b5b5e;
+}
+.field input,.field select,.field textarea{
+  width:100%;
+  border:0;
+  border-bottom:1px solid rgba(118,91,95,.24);
+  background:transparent;
+  padding:12px 2px;
+  color:#3d3436;
+  outline:none;
+  transition:border-color .2s ease;
+}
+.field textarea{min-height:92px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--pink)}
+.field input::placeholder,.field textarea::placeholder{color:#b7a4a7}
+.booking-card .btn{width:100%;margin-top:28px}
+
+/* Footer */
+.footer{
+  background:var(--blush-2);
+  padding:78px 0 30px;
+  color:#67585b;
+}
+.footer-cta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:26px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(244,169,181,.28);
+  border-radius:28px;
+  padding:30px;
+  margin-bottom:58px;
+  box-shadow:var(--shadow-sm);
+}
+.footer-cta h2{font-family:"Playfair Display",Georgia,serif;font-size:32px;color:#403637}
+.footer-cta p{max-width:620px;margin-top:8px;color:#806f72}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.5fr repeat(3,1fr);
+  gap:46px;
+}
+.footer p,.footer a{font-size:14px;color:#7f7073}
+.footer h4{font-size:13px;color:#473d3f;margin-bottom:16px}
+.footer ul{list-style:none;display:grid;gap:10px}
+.socials{display:flex;gap:10px;margin-top:22px}
+.socials a{
+  width:36px;
+  height:36px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#fff;
+  color:#6c575b;
+}
+.socials svg{width:17px;height:17px;stroke-width:2}
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding-top:34px;
+  margin-top:48px;
+  border-top:1px solid rgba(224,191,195,.55);
+  flex-wrap:wrap;
+}
+.footer-links{display:flex;gap:24px}
+.bizweb-note{margin-top:16px;font-size:13px;color:#a08387}
+
+/* Sticky CTA and toast */
+.sticky-style{
+  position:fixed;
+  right:24px;
+  bottom:24px;
+  z-index:65;
+  box-shadow:0 20px 48px rgba(255,208,0,.28);
+}
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:30px;
+  z-index:100;
+  transform:translate(-50%,30px);
+  display:flex;
+  align-items:center;
+  gap:10px;
+  max-width:min(430px,calc(100% - 32px));
+  padding:15px 18px;
+  background:#3f3638;
+  color:#fff;
+  border-radius:999px;
+  box-shadow:0 18px 44px rgba(63,54,56,.25);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease,transform .25s ease;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast svg{width:18px;height:18px;color:var(--gold);stroke-width:2.2}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+@keyframes imageIn{from{opacity:0;transform:translateX(34px)}to{opacity:1;transform:translateX(0)}}
+@keyframes floatSoft{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+@media (max-width:980px){
+  .container{width:min(100% - 34px,720px)}
+  .nav-shell{width:calc(100% - 28px);border-radius:22px;gap:12px}
+  .nav-links,.nav-actions{display:none}
+  .menu-toggle{display:flex}
+  .hero{padding-top:130px;min-height:auto}
+  .hero-grid,.about-grid{grid-template-columns:1fr;gap:48px}
+  .hero-visual{min-height:520px;max-width:560px;margin:0 auto;width:100%}
+  .hero-card{left:0}
+  .services-grid,.packages-grid,.testimonials-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-cta{align-items:flex-start;flex-direction:column}
+}
+@media (max-width:640px){
+  :root{--nav-h:66px}
+  .container{width:calc(100% - 28px)}
+  .section{padding:76px 0}
+  .site-header{top:10px}
+  .nav-shell{padding:10px 12px;border-radius:20px}
+  .brand{font-size:21px}
+  .lang-toggle{gap:2px;padding:3px}
+  .lang-btn{padding:6px 8px;font-size:11px}
+  .hero{padding:120px 0 86px}
+  .hero-title{font-size:54px}
+  body.lang-km .hero-title{font-size:40px}
+  .hero-buttons{align-items:stretch;flex-direction:column}
+  .hero-buttons .btn{width:100%}
+  .stats{gap:20px;justify-content:space-between}
+  .stat{min-width:84px}
+  .hero-visual{min-height:430px}
+  .hero-card{border-width:8px;border-radius:26px}
+  .float-badge{min-width:136px;padding:12px}
+  .float-badge.rating{right:-4px;top:-8px}
+  .float-badge.organic{left:-4px;bottom:22px}
+  .services-grid,.packages-grid,.testimonials-grid,.booking-form,.feature-grid,.footer-grid{grid-template-columns:1fr}
+  .service-image{height:210px}
+  .about-image img{height:330px}
+  .booking-card{padding:34px 22px;border-radius:24px}
+  #booking{padding-bottom:120px}
+  .footer{padding-bottom:92px}
+  .footer-bottom{flex-direction:column}
+  .sticky-style{
+    left:14px;
+    right:14px;
+    bottom:14px;
+    width:calc(100% - 28px);
+  }
+  .toast{bottom:82px;border-radius:20px}
+}
+</style>
+</head>
+<body>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14Z"/><path d="M5 19c4-5 8-8 14-14"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.47 6.03.88-4.36 4.25 1.03 6-5.4-2.84-5.4 2.84 1.03-6-4.36-4.25 6.03-.88L12 3Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 5.6a5.1 5.1 0 0 0-7.2 0L12 7.2l-1.6-1.6a5.1 5.1 0 1 0-7.2 7.2L12 21l8.8-8.2a5.1 5.1 0 0 0 0-7.2Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><path d="M17.5 6.8h.01"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M14 8h2V4h-2c-3 0-5 2-5 5v2H6v4h3v5h4v-5h3l1-4h-4V9c0-.6.4-1 1-1Z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4 20-7Z"/><path d="M22 2 11 13"/></symbol>
+</svg>
+
+<header class="site-header">
+  <nav class="nav-shell" aria-label="Primary navigation">
+    <a class="brand" href="#top">Luna Bliss <span>Spa</span></a>
+    <div class="nav-links">
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#reviews" data-i18n="nav.reviews">Reviews</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a class="btn btn-primary" href="#booking" data-i18n="nav.bookNow">Request Visit</a>
+    </div>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button class="lang-btn active" type="button" data-lang="en">EN</button>
+      <button class="lang-btn" type="button" data-lang="km">ខ្មែរ</button>
+    </div>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <svg><use href="#i-menu"/></svg>
+    </button>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" data-i18n="nav.services">Services</a>
+  <a href="#about" data-i18n="nav.about">About</a>
+  <a href="#reviews" data-i18n="nav.reviews">Reviews</a>
+  <a href="#contact" data-i18n="nav.contact">Contact</a>
+  <a class="btn btn-primary" href="#booking" data-i18n="hero.book">Request Appointment</a>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="pill-label"><svg><use href="#i-star"/></svg><span data-i18n="hero.label">Award-Winning Spa Experience</span></span>
+        <h1 class="hero-title"><span data-i18n="hero.titleMain">Relax, Restore,</span><br><span data-i18n="hero.titleAccent">Renew</span></h1>
+        <p class="hero-text" data-i18n="hero.text">Escape the everyday and discover a sanctuary of calm. Our therapists provide personalized treatments designed to relax your body, refresh your mind, and restore your glow.</p>
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="#booking" data-i18n="hero.book">Request Appointment</a>
+          <a class="btn btn-secondary" href="#services" data-i18n="hero.viewServices">View Services</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>15+</strong><span data-i18n="stats.years">Years Experience</span></div>
+          <div class="stat"><strong>10K+</strong><span data-i18n="stats.clients">Happy Clients</span></div>
+          <div class="stat"><strong>50+</strong><span data-i18n="stats.treatments">Treatments</span></div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="Spa treatment preview">
+        <div class="hero-card">
+          <img src="https://images.pexels.com/photos/6560304/pexels-photo-6560304.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Therapist giving a relaxing back massage in a calm spa room">
+        </div>
+        <div class="float-badge rating">
+          <div>
+            <div class="stars">
+              <svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg>
+            </div>
+            <strong data-i18n="badges.rating">4.9 Rating</strong>
+            <span data-i18n="badges.reviewed">Guest reviewed</span>
+          </div>
+        </div>
+        <div class="float-badge organic">
+          <span class="float-icon"><svg><use href="#i-leaf"/></svg></span>
+          <div>
+            <strong data-i18n="badges.organic">100% Organic</strong>
+            <span data-i18n="badges.products">Natural Products</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="services.eyebrow">Our Services</p>
+        <h2 class="section-title"><span data-i18n="services.titleMain">Treatments for</span> <span data-i18n="services.titleAccent">Body & Soul</span></h2>
+      </div>
+      <div class="services-grid">
+        <article class="service-card reveal">
+          <div class="service-image"><img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=720&q=85" alt="Swedish massage room"></div>
+          <div class="service-body">
+            <h3 data-i18n="service1.title">Swedish Massage</h3>
+            <p data-i18n="service1.desc">Classic relaxation massage to ease tension and stress.</p>
+            <div class="service-meta"><span data-i18n="service1.duration">60 min</span><strong>$89</strong></div>
+          </div>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-image"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=720&q=85" alt="Facial spa treatment"></div>
+          <div class="service-body">
+            <h3 data-i18n="service2.title">Facial Treatment</h3>
+            <p data-i18n="service2.desc">Deep cleansing and rejuvenating facial for glowing skin.</p>
+            <div class="service-meta"><span data-i18n="service2.duration">45 min</span><strong>$75</strong></div>
+          </div>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-image"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=720&q=85" alt="Hot stone therapy"></div>
+          <div class="service-body">
+            <h3 data-i18n="service3.title">Hot Stone Therapy</h3>
+            <p data-i18n="service3.desc">Heated stones to melt away muscle tension.</p>
+            <div class="service-meta"><span data-i18n="service3.duration">90 min</span><strong>$120</strong></div>
+          </div>
+        </article>
+        <article class="service-card reveal">
+          <div class="service-image"><img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=720&q=85" alt="Aromatherapy oil treatment"></div>
+          <div class="service-body">
+            <h3 data-i18n="service4.title">Aromatherapy</h3>
+            <p data-i18n="service4.desc">Essential oils combined with massage for total relaxation.</p>
+            <div class="service-meta"><span data-i18n="service4.duration">75 min</span><strong>$99</strong></div>
+          </div>
+        </article>
+      </div>
+      <div class="center-actions reveal">
+        <a class="btn btn-secondary" href="#booking" data-i18n="services.viewAll">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-white" id="about">
+    <div class="container about-grid">
+      <div class="about-image reveal">
+        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=900&q=85" alt="Peaceful spa interior with natural light">
+      </div>
+      <div class="about-content reveal">
+        <p class="eyebrow" data-i18n="about.eyebrow">About Us</p>
+        <h2 class="section-title"><span data-i18n="about.titleMain">Your Journey to</span> <span data-i18n="about.titleAccent">Wellness</span></h2>
+        <p data-i18n="about.p1">Founded with a passion for mindful wellness, Luna Bliss Spa offers a peaceful escape for guests seeking relaxation, rejuvenation, and care. Our certified therapists combine traditional techniques with modern comfort to create treatments that feel deeply restorative.</p>
+        <p data-i18n="about.p2">We use carefully selected products and personalized approaches so each visit feels calm, nourishing, and memorable.</p>
+        <div class="feature-grid">
+          <div class="feature-item"><span><svg><use href="#i-leaf"/></svg></span><span data-i18n="features.organic">100% Organic</span></div>
+          <div class="feature-item"><span><svg><use href="#i-star"/></svg></span><span data-i18n="features.products">Premium Products</span></div>
+          <div class="feature-item"><span><svg><use href="#i-heart"/></svg></span><span data-i18n="features.therapists">Expert Therapists</span></div>
+          <div class="feature-item"><span><svg><use href="#i-calendar"/></svg></span><span data-i18n="features.hours">Flexible Hours</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="packages">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="packages.eyebrow">Wellness Packages</p>
+        <h2 class="section-title"><span data-i18n="packages.titleMain">Simple ways to</span> <span data-i18n="packages.titleAccent">feel renewed</span></h2>
+        <p class="section-copy" data-i18n="packages.copy">Elegant care packages for guests who want a quick refresh, a deeper reset, or a full spa day.</p>
+      </div>
+      <div class="packages-grid">
+        <article class="package-card reveal">
+          <h3 data-i18n="package1.title">Glow Starter</h3>
+          <div class="package-price">$49</div>
+          <p data-i18n="package1.desc">A short, refreshing treatment for busy days.</p>
+          <ul>
+            <li><svg><use href="#i-check"/></svg><span data-i18n="package1.item1">Express facial</span></li>
+            <li><svg><use href="#i-check"/></svg><span data-i18n="package1.item2">Scalp relaxation</span></li>
+            <li><svg><use href="#i-check"/></svg><span data-i18n="package1.item3">Herbal tea finish</span></li>
+          </ul>
+        </article>
+        <article class="package-card featured reveal">
+          <h3 data-i18n="package2.title">Relax Reset</h3>
+          <div class="package-price">$89</div>
+          <p data-i18n="package2.desc">A balanced massage and wellness experience.</p>
+          <ul>
+            <li><svg><use href="#i-check"/></svg><span data-i18n="package2.item1">60-minute massage</span></li>
+            <li><svg><use href="#i-check"/></svg><span data-i18n="package2.item2">Aromatherapy oils</span></li>
+            <li><svg><use href="#i-check"/></svg><span data-i18n="package2.item3">Warm towel ritual</span></li>
+          </ul>
+        </article>
+        <article class="package-card reveal">
+          <h3 data-i18n="package3.title">Full Rejuvenation</h3>
+          <div class="package-price">$149</div>
+          <p data-i18n="package3.desc">A complete spa visit for deep restoration.</p>
+          <ul>
+            <li><svg><use href="#i-check"/></svg><span data-i18n="package3.item1">Body massage</span></li>
+            <li><svg><use href="#i-check"/></svg><span data-i18n="package3.item2">Facial treatment</span></li>
+            <li><svg><use href="#i-check"/></svg><span data-i18n="package3.item3">Organic body care</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="reviews">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="reviews.eyebrow">Testimonials</p>
+        <h2 class="section-title"><span data-i18n="reviews.titleMain">What Our</span> <span data-i18n="reviews.titleAccent">Clients Say</span></h2>
+      </div>
+      <div class="testimonials-grid">
+        <article class="testimonial-card reveal">
+          <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+          <blockquote data-i18n="review1.quote">“The massage experience was incredibly relaxing and the atmosphere felt so peaceful.”</blockquote>
+          <p class="treatment-type" data-i18n="service1.title">Swedish Massage</p>
+          <div class="profile"><div class="avatar">S</div><div><strong>Sreypov Lim</strong><span data-i18n="reviews.verified">Verified Client</span></div></div>
+        </article>
+        <article class="testimonial-card reveal">
+          <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+          <blockquote data-i18n="review2.quote">“My skin has never looked better. The facial treatment was gentle, effective, and beautifully done.”</blockquote>
+          <p class="treatment-type" data-i18n="service2.title">Facial Treatment</p>
+          <div class="profile"><div class="avatar">M</div><div><strong>Malis Dara</strong><span data-i18n="reviews.verified">Verified Client</span></div></div>
+        </article>
+        <article class="testimonial-card reveal">
+          <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+          <blockquote data-i18n="review3.quote">“A truly calming experience. The staff are welcoming, skilled, and professional.”</blockquote>
+          <p class="treatment-type" data-i18n="service3.title">Hot Stone Therapy</p>
+          <div class="profile"><div class="avatar">K</div><div><strong>Kanya Phan</strong><span data-i18n="reviews.verified">Verified Client</span></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-white" id="booking">
+    <div class="container">
+      <div class="booking-card reveal">
+        <div class="section-head" style="margin-bottom:0">
+          <p class="eyebrow" data-i18n="booking.eyebrow">Send Inquiry</p>
+          <h2 class="section-title"><span data-i18n="booking.titleMain">Schedule Your</span> <span data-i18n="booking.titleAccent">Visit</span></h2>
+          <p class="section-copy" data-i18n="booking.copy">Ready to relax? Send an appointment inquiry and we will follow up through your preferred contact method.</p>
+        </div>
+        <form class="booking-form" id="bookingForm">
+          <div class="field">
+            <label for="name" data-i18n="form.name">Full Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" data-i18n-placeholder="form.namePlaceholder" required>
+          </div>
+          <div class="field">
+            <label for="phone" data-i18n="form.phone">Phone</label>
+            <input id="phone" name="phone" type="tel" placeholder="098 70 88 00" required>
+          </div>
+          <div class="field">
+            <label for="service" data-i18n="form.service">Service</label>
+            <select id="service" name="service">
+              <option data-i18n="service1.title">Swedish Massage</option>
+              <option data-i18n="service2.title">Facial Treatment</option>
+              <option data-i18n="service3.title">Hot Stone Therapy</option>
+              <option data-i18n="service4.title">Aromatherapy</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="date" data-i18n="form.date">Preferred Date</label>
+            <input id="date" name="date" type="date">
+          </div>
+          <div class="field">
+            <label for="time" data-i18n="form.time">Preferred Time</label>
+            <select id="time" name="time">
+              <option>10:00 AM</option>
+              <option>1:00 PM</option>
+              <option>3:00 PM</option>
+              <option>6:00 PM</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="contact" data-i18n="form.contact">Preferred Contact</label>
+            <select id="contact" name="contact">
+              <option data-i18n="form.telegram">Telegram</option>
+              <option data-i18n="form.messenger">Messenger</option>
+              <option data-i18n="form.phoneCall">Phone Call</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="requests" data-i18n="form.requests">Special Requests</label>
+            <textarea id="requests" name="requests" placeholder="Any allergies or preferences we should know about?" data-i18n-placeholder="form.requestsPlaceholder"></textarea>
+          </div>
+          <div class="field full">
+            <button class="btn btn-primary" type="submit" data-i18n="hero.book">Send Inquiry</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer" id="contact">
+  <div class="container">
+    <div class="footer-cta reveal">
+      <div>
+        <h2>Ready to make your own spa website?</h2>
+        <p>We can customize this design with your spa name, services, pricing, gallery, reviews, inquiry form, and contact details.</p>
+      </div>
+      <a class="btn btn-primary" href="index.html#request">Request this website style</a>
+    </div>
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#top">Luna Bliss <span>Spa</span></a>
+        <p style="margin-top:14px;max-width:290px" data-i18n="footer.desc">A peaceful sanctuary for relaxation, beauty, and wellness.</p>
+        <div class="socials" aria-label="Social links">
+          <a href="#" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg><use href="#i-facebook"/></svg></a>
+          <a href="#" aria-label="Telegram"><svg><use href="#i-send"/></svg></a>
+        </div>
+        <p class="bizweb-note">Demo website style by BizWeb KH</p>
+      </div>
+      <div>
+        <h4 data-i18n="nav.services">Services</h4>
+        <ul>
+          <li><a href="#services" data-i18n="footer.massage">Massage</a></li>
+          <li><a href="#services" data-i18n="footer.facials">Facials</a></li>
+          <li><a href="#services" data-i18n="footer.bodyTreatments">Body Treatments</a></li>
+          <li><a href="#packages" data-i18n="footer.packages">Packages</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="footer.company">Company</h4>
+        <ul>
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#about" data-i18n="footer.team">Team</a></li>
+          <li><a href="#reviews" data-i18n="nav.reviews">Reviews</a></li>
+          <li><a href="#booking" data-i18n="footer.booking">Inquiry</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="footer.support">Support</h4>
+        <ul>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+          <li><a href="#booking" data-i18n="footer.faq">FAQ</a></li>
+          <li><a href="#booking" data-i18n="footer.giftCards">Gift Cards</a></li>
+          <li><a href="#booking" data-i18n="footer.membership">Membership</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-i18n="footer.copy">© 2026 Luna Bliss Spa. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#" data-i18n="footer.privacy">Privacy</a>
+        <a href="#" data-i18n="footer.terms">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a class="btn btn-primary sticky-style" href="index.html#request">Request this website style</a>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg><use href="#i-check"/></svg>
+  <span data-i18n="toast.message">Thank you. Your spa appointment request has been prepared for follow-up.</span>
+</div>
+
+<script>
+const menuToggle=document.querySelector('.menu-toggle');
+const mobileMenu=document.getElementById('mobileMenu');
+const toast=document.getElementById('toast');
+const I18N={
+  km:{
+    "nav.services":"សេវាកម្ម",
+    "nav.about":"អំពីយើង",
+    "nav.reviews":"មតិអតិថិជន",
+    "nav.contact":"ទំនាក់ទំនង",
+    "nav.bookNow":"ស្នើសុំពេលណាត់",
+    "hero.label":"បទពិសោធន៍ស្ប៉ាដែលអតិថិជនទុកចិត្ត",
+    "hero.titleMain":"សម្រាក និងបំបាត់ភាពនឿយហត់",
+    "hero.titleAccent":"មានថាមពលឡើងវិញ",
+    "hero.text":"សម្រាកពីភាពរវល់ប្រចាំថ្ងៃ ហើយចូលមកកាន់កន្លែងស្ងប់ស្ងាត់របស់យើង។ អ្នកជំនាញរបស់យើងផ្តល់ការថែទាំផ្ទាល់ខ្លួន ដើម្បីឱ្យរាងកាយបានសម្រាក អារម្មណ៍បានស្រស់ថ្លា និងស្បែកភ្លឺថ្លាជាងមុន។",
+    "hero.book":"ស្នើសុំពេលណាត់",
+    "hero.viewServices":"មើលសេវាកម្ម",
+    "stats.years":"ឆ្នាំបទពិសោធន៍",
+    "stats.clients":"អតិថិជនពេញចិត្ត",
+    "stats.treatments":"សេវាថែទាំ",
+    "badges.rating":"ពិន្ទុ 4.9",
+    "badges.reviewed":"អតិថិជនវាយតម្លៃ",
+    "badges.organic":"ធម្មជាតិ 100%",
+    "badges.products":"ផលិតផលធម្មជាតិ",
+    "services.eyebrow":"សេវាកម្មរបស់យើង",
+    "services.titleMain":"ការថែទាំសម្រាប់",
+    "services.titleAccent":"រាងកាយ និងអារម្មណ៍",
+    "services.viewAll":"មើលសេវាកម្មទាំងអស់",
+    "service1.title":"ម៉ាស្សាស៊ុយអែត",
+    "service1.desc":"ម៉ាស្សាសម្រាកស្រាលៗ ដើម្បីបន្ថយភាពតានតឹង និងការនឿយហត់។",
+    "service1.duration":"60 នាទី",
+    "service2.title":"ថែទាំមុខ",
+    "service2.desc":"សម្អាត និងថែរក្សាស្បែកមុខឱ្យមានសំណើម ស្រស់ថ្លា និងភ្លឺរលោង។",
+    "service2.duration":"45 នាទី",
+    "service3.title":"ម៉ាស្សាថ្មក្តៅ",
+    "service3.desc":"ប្រើថ្មក្តៅដើម្បីបន្ធូរសាច់ដុំ និងជួយឱ្យរាងកាយសម្រាកយ៉ាងជ្រាលជ្រៅ។",
+    "service3.duration":"90 នាទី",
+    "service4.title":"អារ៉ូម៉ាថេរ៉ាពី",
+    "service4.desc":"ប្រើប្រេងក្រអូបរួមជាមួយម៉ាស្សា ដើម្បីបង្កើតអារម្មណ៍ស្ងប់ស្ងាត់ និងសម្រាកពេញលេញ។",
+    "service4.duration":"75 នាទី",
+    "about.eyebrow":"អំពីយើង",
+    "about.titleMain":"ដំណើររបស់អ្នកទៅកាន់",
+    "about.titleAccent":"ភាពស្រស់ស្រាយ",
+    "about.p1":"Luna Bliss Spa កើតឡើងពីចិត្តស្រឡាញ់ការថែទាំសុខុមាលភាព និងភាពស្ងប់ស្ងាត់។ យើងផ្តល់កន្លែងសម្រាកដ៏កក់ក្តៅសម្រាប់អតិថិជនដែលចង់បន្ថយភាពនឿយហត់ ថែរក្សាសម្រស់ និងទទួលការយកចិត្តទុកដាក់ដោយវិជ្ជាជីវៈ។",
+    "about.p2":"យើងជ្រើសរើសផលិតផលដែលមានគុណភាព និងរៀបចំការថែទាំតាមតម្រូវការរបស់អតិថិជន ដើម្បីឱ្យរាល់ការមកប្រើសេវាមានអារម្មណ៍ស្ងប់ ស្រួល និងចងចាំបាន។",
+    "features.organic":"ធម្មជាតិ 100%",
+    "features.products":"ផលិតផលពិសេស",
+    "features.therapists":"អ្នកជំនាញមានបទពិសោធន៍",
+    "features.hours":"ម៉ោងបម្រើសេវាបត់បែន",
+    "packages.eyebrow":"កញ្ចប់សុខុមាលភាព",
+    "packages.titleMain":"ជម្រើសងាយៗដើម្បី",
+    "packages.titleAccent":"ស្រស់ស្រាយឡើងវិញ",
+    "packages.copy":"កញ្ចប់ថែទាំស្រស់ស្អាតសម្រាប់អតិថិជនដែលចង់សម្រាកខ្លីៗ បំបាត់ភាពនឿយហត់ ឬរីករាយជាមួយថ្ងៃស្ប៉ាពេញលេញ។",
+    "package1.title":"Glow Starter",
+    "package1.desc":"ការថែទាំខ្លីៗ ស្រស់ស្រាយ សម្រាប់ថ្ងៃរវល់។",
+    "package1.item1":"ថែទាំមុខរហ័ស",
+    "package1.item2":"បន្ធូរអារម្មណ៍ផ្នែកក្បាល",
+    "package1.item3":"បញ្ចប់ជាមួយតែស្មៅក្តៅ",
+    "package2.title":"Relax Reset",
+    "package2.desc":"បទពិសោធន៍ម៉ាស្សា និងសុខុមាលភាពដែលមានតុល្យភាព។",
+    "package2.item1":"ម៉ាស្សា 60 នាទី",
+    "package2.item2":"ប្រេងក្រអូបអារ៉ូម៉ា",
+    "package2.item3":"ពិធីកន្សែងក្តៅ",
+    "package3.title":"Full Rejuvenation",
+    "package3.desc":"បទពិសោធន៍ស្ប៉ាពេញលេញសម្រាប់ការសម្រាកយ៉ាងជ្រាលជ្រៅ។",
+    "package3.item1":"ម៉ាស្សារាងកាយ",
+    "package3.item2":"ថែទាំមុខ",
+    "package3.item3":"ថែទាំរាងកាយធម្មជាតិ",
+    "reviews.eyebrow":"មតិអតិថិជន",
+    "reviews.titleMain":"មតិអតិថិជន",
+    "reviews.titleAccent":"របស់យើង",
+    "reviews.verified":"អតិថិជនបានផ្ទៀងផ្ទាត់",
+    "review1.quote":"“បទពិសោធន៍ម៉ាស្សាមានអារម្មណ៍សម្រាកខ្លាំង ហើយបរិយាកាសក៏ស្ងប់ស្ងាត់ល្អណាស់។”",
+    "review2.quote":"“ស្បែកមុខខ្ញុំមើលទៅស្រស់ថ្លាជាងមុន។ ការថែទាំមុខទន់ភ្លន់ មានប្រសិទ្ធភាព និងធ្វើបានយ៉ាងល្អ។”",
+    "review3.quote":"“បទពិសោធន៍ស្ងប់ស្ងាត់ណាស់។ បុគ្គលិករួសរាយរាក់ទាក់ មានជំនាញ និងមានវិជ្ជាជីវៈ។”",
+    "booking.eyebrow":"ផ្ញើសំណើ",
+    "booking.titleMain":"ស្នើសុំពេល",
+    "booking.titleAccent":"មកប្រើសេវា",
+    "booking.copy":"ត្រៀមខ្លួនសម្រាប់ការសម្រាកហើយឬនៅ? ផ្ញើសំណើណាត់ជួប ហើយយើងនឹងទាក់ទងតាមវិធីដែលអ្នកពេញចិត្ត។",
+    "form.name":"ឈ្មោះពេញ",
+    "form.namePlaceholder":"បញ្ចូលឈ្មោះរបស់អ្នក",
+    "form.phone":"លេខទូរស័ព្ទ",
+    "form.service":"សេវាកម្ម",
+    "form.date":"ថ្ងៃដែលចង់កក់",
+    "form.time":"ម៉ោងដែលចង់កក់",
+    "form.contact":"វិធីទំនាក់ទំនងដែលពេញចិត្ត",
+    "form.telegram":"តេឡេក្រាម",
+    "form.messenger":"Messenger",
+    "form.phoneCall":"ទូរស័ព្ទ",
+    "form.requests":"សំណើពិសេស",
+    "form.requestsPlaceholder":"មានអាឡែហ្ស៊ី ឬចំណូលចិត្តពិសេសអ្វីដែលយើងគួរដឹងទេ?",
+    "footer.desc":"ទីកន្លែងស្ងប់ស្ងាត់សម្រាប់ការសម្រាក សម្រស់ និងសុខុមាលភាព។",
+    "footer.massage":"ម៉ាស្សា",
+    "footer.facials":"ថែទាំមុខ",
+    "footer.bodyTreatments":"ថែទាំរាងកាយ",
+    "footer.packages":"កញ្ចប់សេវា",
+    "footer.company":"ក្រុមហ៊ុន",
+    "footer.team":"ក្រុមការងារ",
+    "footer.booking":"សំណើ",
+    "footer.support":"ជំនួយ",
+    "footer.faq":"សំណួរញឹកញាប់",
+    "footer.giftCards":"ប័ណ្ណអំណោយ",
+    "footer.membership":"សមាជិកភាព",
+    "footer.copy":"© 2026 Luna Bliss Spa. រក្សាសិទ្ធិគ្រប់យ៉ាង។",
+    "footer.privacy":"គោលការណ៍ឯកជនភាព",
+    "footer.terms":"លក្ខខណ្ឌ",
+    "toast.message":"អរគុណ! សំណើកក់ពេលរបស់អ្នកត្រូវបានរៀបចំសម្រាប់ការទាក់ទងបន្ត។"
+  }
+};
+const originalText=new Map();
+const originalPlaceholders=new Map();
+document.querySelectorAll('[data-i18n]').forEach(el=>originalText.set(el,el.textContent));
+document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>originalPlaceholders.set(el,el.getAttribute('placeholder')||''));
+
+function setLanguage(lang){
+  const activeLang=lang==='km'?'km':'en';
+  document.documentElement.lang=activeLang==='km'?'km':'en';
+  document.body.classList.toggle('lang-km',activeLang==='km');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.dataset.i18n;
+    el.textContent=activeLang==='km' && I18N.km[key] ? I18N.km[key] : originalText.get(el);
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    const key=el.dataset.i18nPlaceholder;
+    el.setAttribute('placeholder',activeLang==='km' && I18N.km[key] ? I18N.km[key] : originalPlaceholders.get(el));
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn=>{
+    btn.classList.toggle('active',btn.dataset.lang===activeLang);
+    btn.setAttribute('aria-pressed',String(btn.dataset.lang===activeLang));
+  });
+  localStorage.setItem('lunaBlissLang',activeLang);
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>setLanguage(btn.dataset.lang));
+});
+
+function closeMenu(){
+  mobileMenu.classList.remove('open');
+  document.body.classList.remove('menu-open');
+  menuToggle.setAttribute('aria-expanded','false');
+  menuToggle.innerHTML='<svg><use href="#i-menu"/></svg>';
+}
+
+menuToggle.addEventListener('click',()=>{
+  const isOpen=mobileMenu.classList.toggle('open');
+  document.body.classList.toggle('menu-open',isOpen);
+  menuToggle.setAttribute('aria-expanded',String(isOpen));
+  menuToggle.innerHTML=isOpen?'<svg><use href="#i-x"/></svg>':'<svg><use href="#i-menu"/></svg>';
+});
+
+document.querySelectorAll('.mobile-menu a').forEach(link=>{
+  link.addEventListener('click',closeMenu);
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
+  link.addEventListener('click',event=>{
+    const href=link.getAttribute('href');
+    if(!href||href==='#')return;
+    const target=document.querySelector(href);
+    if(!target)return;
+    event.preventDefault();
+    target.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.16,rootMargin:'0px 0px -60px 0px'});
+
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+document.getElementById('bookingForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),3600);
+  event.currentTarget.reset();
+});
+
+setLanguage(localStorage.getItem('lunaBlissLang')||'en');
+</script>
+</body>
+</html>

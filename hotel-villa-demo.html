@@ -1,0 +1,830 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maison Dara Villas | Luxury Villa Demo by BizWeb KH</title>
+<meta name="description" content="Maison Dara Villas is a luxury boutique villa demo website for Cambodian hotels, villas, resorts, and private stays.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#f6f0e6;
+  --paper:#fbf7ef;
+  --sand:#d9c6a5;
+  --sand-2:#b99a6c;
+  --gold:#b8894a;
+  --green:#31483a;
+  --green-2:#213328;
+  --charcoal:#191916;
+  --muted:#756d62;
+  --line:rgba(35,34,29,.14);
+  --white:#fffaf0;
+  --shadow:0 28px 80px rgba(30,25,18,.16);
+  --radius:2px;
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--charcoal);line-height:1.6;overflow-x:hidden}
+body.locked{overflow:hidden}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+button{border:0;background:none;cursor:pointer;color:inherit}
+::selection{background:var(--green);color:var(--cream)}
+.page{position:relative;overflow:hidden}
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.section{padding:118px 34px;position:relative}
+.section-inner{max-width:1240px;margin:0 auto}
+.section-head{display:grid;grid-template-columns:minmax(220px,.75fr) minmax(300px,1fr);gap:46px;align-items:end;margin-bottom:48px}
+.section-kicker{display:grid;gap:12px}
+.section-title{font-family:var(--serif);font-size:clamp(34px,5vw,70px);line-height:.98;font-weight:600;letter-spacing:-.035em;color:var(--charcoal)}
+.section-copy{color:var(--muted);font-size:15px;max-width:560px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border:1px solid currentColor;border-radius:999px;text-transform:uppercase;letter-spacing:.16em;font-size:11px;font-weight:700;transition:background .45s ease,color .45s ease,border-color .45s ease,transform .45s ease,box-shadow .45s ease}
+.btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.btn-dark{background:var(--charcoal);border-color:var(--charcoal);color:var(--cream);box-shadow:0 14px 34px rgba(25,25,22,.12)}
+.btn-dark:hover{background:var(--green);border-color:var(--green);transform:translateY(-2px);box-shadow:0 18px 44px rgba(25,25,22,.16)}
+.btn-light{background:rgba(255,250,240,.12);border-color:rgba(255,250,240,.58);color:var(--cream);backdrop-filter:blur(12px);box-shadow:0 12px 30px rgba(0,0,0,.1)}
+.btn-light:hover{background:rgba(255,250,240,.92);border-color:rgba(255,250,240,.92);color:var(--charcoal);transform:translateY(-2px);box-shadow:0 18px 42px rgba(0,0,0,.16)}
+.btn-outline{color:var(--charcoal);border-color:rgba(25,25,22,.32)}
+.btn-outline:hover{background:var(--charcoal);color:var(--cream);border-color:var(--charcoal);transform:translateY(-2px)}
+.text-link{display:inline-flex;align-items:center;gap:9px;margin-top:18px;text-transform:uppercase;font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--green)}
+.text-link svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .35s ease}
+.text-link:hover svg{transform:translateX(5px)}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in-view{opacity:1;transform:translateY(0)}
+.image-reveal{position:relative;overflow:hidden;background:var(--sand)}
+.image-reveal img{transform:scale(1.08);transition:transform 1.35s cubic-bezier(.2,.7,.2,1)}
+.image-reveal.in-view img{transform:scale(1)}
+.image-reveal::after{content:'';position:absolute;inset:0;background:var(--paper);transform:translateY(0);transition:transform 1.1s cubic-bezier(.76,0,.24,1)}
+.image-reveal.in-view::after{transform:translateY(-102%)}
+
+/* Header */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:900;height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 34px;color:var(--cream);transition:background .45s ease,box-shadow .45s ease,color .45s ease,backdrop-filter .45s ease}
+.site-header.scrolled{background:rgba(251,247,239,.82);color:var(--charcoal);backdrop-filter:blur(18px);box-shadow:0 1px 0 rgba(25,25,22,.08)}
+.brand{font-family:var(--serif);font-size:24px;letter-spacing:-.03em;font-weight:600}
+.header-nav{display:flex;align-items:center;gap:30px}
+.header-nav a{font-size:12px;text-transform:uppercase;letter-spacing:.16em;font-weight:700;opacity:.86;transition:opacity .25s ease,color .25s ease}
+.header-nav a:hover{opacity:1;color:var(--gold)}
+.header-cta{display:flex;align-items:center;gap:14px}
+.header-cta .btn{min-height:40px;padding:0 17px}
+.style-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 17px;border:1px solid rgba(255,250,240,.46);border-radius:999px;background:rgba(255,250,240,.9);color:var(--charcoal);font-size:13px;font-weight:600;letter-spacing:0;box-shadow:0 10px 28px rgba(0,0,0,.12);transition:transform .3s ease,background .3s ease,border-color .3s ease,color .3s ease}
+.style-cta svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.style-cta:hover{transform:translateY(-1px);background:var(--cream);border-color:rgba(255,250,240,.75)}
+.site-header.scrolled .style-cta{background:var(--charcoal);border-color:var(--charcoal);color:var(--cream);box-shadow:0 12px 26px rgba(25,25,22,.12)}
+.site-header.scrolled .style-cta:hover{background:var(--green);border-color:var(--green)}
+.menu-btn{display:none;width:44px;height:44px;border:1px solid currentColor;align-items:center;justify-content:center}
+.menu-btn span{display:block;width:18px;height:1px;background:currentColor;position:relative}
+.menu-btn span::before,.menu-btn span::after{content:'';position:absolute;left:0;width:18px;height:1px;background:currentColor;transition:transform .3s ease}
+.menu-btn span::before{top:-6px}.menu-btn span::after{top:6px}
+
+/* Hero */
+.hero{min-height:100vh;position:relative;color:var(--cream);display:grid;align-items:end;padding:130px 34px 42px;overflow:hidden;background:var(--charcoal)}
+.hero-media{position:absolute;inset:0;z-index:0;will-change:transform}
+.hero-media img{animation:heroZoom 22s ease-in-out infinite alternate;filter:saturate(.96) contrast(1.02)}
+.hero::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(7,10,7,.72),rgba(7,10,7,.28) 48%,rgba(7,10,7,.1)),linear-gradient(0deg,rgba(7,10,7,.82),transparent 46%)}
+.hero-inner{position:relative;z-index:2;width:min(1120px,100%);margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:46px;align-items:end}
+.hero-copy{max-width:770px;animation:fadeUp .95s ease .18s both}
+.hero h1{font-family:var(--serif);font-size:clamp(48px,8vw,116px);line-height:.9;letter-spacing:-.055em;font-weight:600;margin:18px 0 24px}
+.hero p{font-size:clamp(16px,2vw,20px);max-width:640px;color:rgba(255,250,240,.84)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-aside{border-left:1px solid rgba(255,250,240,.28);padding-left:26px;color:rgba(255,250,240,.72);animation:fadeUp .95s ease .38s both}
+.hero-aside strong{display:block;font-family:var(--serif);font-size:28px;line-height:1;color:var(--cream);font-weight:600;margin-bottom:10px}
+.scroll-cue{position:absolute;z-index:3;left:34px;bottom:34px;display:flex;align-items:center;gap:12px;font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:rgba(255,250,240,.72)}
+.scroll-line{width:44px;height:1px;background:rgba(255,250,240,.56);position:relative;overflow:hidden}
+.scroll-line::after{content:'';position:absolute;top:0;left:-60%;height:1px;width:60%;background:var(--cream);animation:scrollLine 2.4s ease-in-out infinite}
+@keyframes heroZoom{from{transform:scale(1.02)}to{transform:scale(1.12)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scrollLine{0%{left:-60%}60%,100%{left:105%}}
+
+/* Mobile menu */
+.mobile-overlay{position:fixed;inset:0;z-index:1100;background:rgba(25,25,22,.96);color:var(--cream);display:grid;grid-template-rows:78px 1fr;opacity:0;pointer-events:none;transition:opacity .45s ease}
+.mobile-overlay.open{opacity:1;pointer-events:auto}
+.mobile-top{display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid rgba(255,250,240,.12)}
+.close-btn{width:44px;height:44px;border:1px solid rgba(255,250,240,.5);display:grid;place-items:center}
+.close-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.mobile-links{display:flex;flex-direction:column;justify-content:center;padding:34px;gap:20px}
+.mobile-links a,.mobile-links button{font-family:var(--serif);font-size:clamp(38px,11vw,76px);line-height:.95;text-align:left;opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease,color .3s ease}
+.mobile-overlay.open .mobile-links a,.mobile-overlay.open .mobile-links button{opacity:1;transform:translateY(0)}
+.mobile-overlay.open .mobile-links a:nth-child(2){transition-delay:.06s}
+.mobile-overlay.open .mobile-links a:nth-child(3){transition-delay:.12s}
+.mobile-overlay.open .mobile-links a:nth-child(4){transition-delay:.18s}
+.mobile-overlay.open .mobile-links a:nth-child(5){transition-delay:.24s}
+.mobile-overlay.open .mobile-links a:nth-child(6){transition-delay:.3s}
+.mobile-links a:hover,.mobile-links button:hover{color:var(--sand)}
+.mobile-links .mobile-request{font-family:var(--sans);font-size:14px;line-height:1;width:max-content;margin-top:18px;padding:15px 20px;border:1px solid rgba(255,250,240,.34);border-radius:999px;background:rgba(255,250,240,.1);letter-spacing:0;font-weight:600}
+.mobile-links .mobile-request:hover{background:var(--cream);color:var(--charcoal)}
+.mobile-links .mobile-request svg{width:15px;height:15px;margin-left:7px;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* Floating request CTA */
+.floating-style-cta{position:fixed;right:24px;bottom:24px;z-index:880;display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:0 20px;border:1px solid rgba(255,250,240,.34);border-radius:999px;background:rgba(25,25,22,.86);color:var(--cream);font-size:13px;font-weight:600;letter-spacing:0;box-shadow:0 18px 48px rgba(0,0,0,.22);backdrop-filter:blur(14px);transition:opacity .35s ease,transform .35s ease,background .35s ease,border-color .35s ease,color .35s ease}
+.floating-style-cta svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.floating-style-cta:hover{background:var(--cream);border-color:var(--cream);color:var(--charcoal);transform:translateY(-2px)}
+.floating-style-cta.is-hidden{opacity:0;pointer-events:none;transform:translateY(14px)}
+
+/* Intro */
+.intro{background:var(--paper)}
+.intro-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:62px;align-items:center}
+.intro-statement{font-family:var(--serif);font-size:clamp(36px,5.2vw,78px);line-height:1.02;letter-spacing:-.045em;color:var(--charcoal)}
+.intro-text{margin-top:28px;color:var(--muted);max-width:620px}
+.intro-meta{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px;border-top:1px solid var(--line);padding-top:22px}
+.intro-meta strong{display:block;font-family:var(--serif);font-size:28px;font-weight:600;color:var(--green)}
+.intro-meta span{font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);font-weight:700}
+.intro-image{height:min(680px,72vh)}
+
+/* Villas */
+.villas{background:#efe5d5}
+.villa-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.villa-card{background:var(--paper);box-shadow:0 1px 0 rgba(25,25,22,.06);transition:transform .65s cubic-bezier(.2,.7,.2,1),box-shadow .65s ease}
+.villa-card:hover{transform:translateY(-10px);box-shadow:var(--shadow)}
+.villa-image{height:430px;overflow:hidden}
+.villa-card:hover .villa-image img{transform:scale(1.06)}
+.villa-image img{transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.villa-body{padding:28px}
+.villa-meta{display:flex;justify-content:space-between;gap:16px;margin:12px 0 18px;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+.villa-card h3{font-family:var(--serif);font-size:34px;line-height:1.05;font-weight:600;letter-spacing:-.03em}
+.villa-card p{color:var(--muted);font-size:14px}
+
+/* Destinations */
+.destinations{background:var(--charcoal);color:var(--cream)}
+.destinations .section-title{color:var(--cream)}
+.destinations .section-copy{color:rgba(255,250,240,.68)}
+.destination-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.destination-card{height:620px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:36px;background:var(--green)}
+.destination-card::before{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,8,6,.82),transparent 58%);z-index:1}
+.destination-card img{position:absolute;inset:0;transition:transform 1.2s ease}
+.destination-card:hover img{transform:scale(1.06)}
+.destination-content{position:relative;z-index:2;max-width:420px}
+.destination-content h3{font-family:var(--serif);font-size:48px;font-weight:600;letter-spacing:-.035em}
+.destination-content p{color:rgba(255,250,240,.78);margin-top:10px}
+
+/* Experiences */
+.experiences{background:var(--paper)}
+.experience-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.experience-card{position:relative;min-height:360px;overflow:hidden;background:var(--green);color:var(--cream);display:flex;align-items:flex-end;padding:28px}
+.experience-card.large{min-height:738px}
+.experience-stack{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.experience-card::before{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,16,12,.78),transparent 62%);z-index:1}
+.experience-card img{position:absolute;inset:0;transition:transform 1.2s ease}
+.experience-card:hover img{transform:scale(1.07)}
+.experience-content{position:relative;z-index:2}
+.experience-content h3{font-family:var(--serif);font-size:34px;line-height:1.05;font-weight:600;letter-spacing:-.03em}
+.experience-content p{color:rgba(255,250,240,.76);margin-top:10px;font-size:14px}
+
+/* Gallery */
+.gallery{background:#e7dac7}
+.gallery-grid{columns:3 280px;column-gap:18px}
+.gallery-item{break-inside:avoid;margin-bottom:18px;position:relative;overflow:hidden;background:var(--sand);cursor:zoom-in}
+.gallery-item.tall{height:520px}.gallery-item.medium{height:390px}.gallery-item.short{height:300px}
+.gallery-item img{transition:transform 1s ease,filter .45s ease}
+.gallery-item:hover img{transform:scale(1.045);filter:brightness(.92)}
+.gallery-item::after{content:'View';position:absolute;right:18px;bottom:18px;background:rgba(251,247,239,.88);color:var(--charcoal);font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;padding:8px 11px;opacity:0;transform:translateY(10px);transition:opacity .35s ease,transform .35s ease}
+.gallery-item:hover::after{opacity:1;transform:translateY(0)}
+
+/* Enquiry */
+.enquiry{background:var(--green-2);color:var(--cream)}
+.enquiry .section-title{color:var(--cream)}
+.enquiry .section-copy{color:rgba(255,250,240,.72)}
+.enquiry-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:54px;align-items:start}
+.enquiry-panel{border:1px solid rgba(255,250,240,.14);padding:34px;background:rgba(255,250,240,.045);backdrop-filter:blur(10px)}
+.enquiry-note{color:rgba(255,250,240,.72);margin-top:20px}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:grid;gap:8px}
+.field.full{grid-column:1/-1}
+.field label{font-size:11px;text-transform:uppercase;letter-spacing:.16em;font-weight:800;color:rgba(255,250,240,.72)}
+.field input,.field select,.field textarea{width:100%;border:1px solid rgba(255,250,240,.2);background:rgba(255,250,240,.06);color:var(--cream);min-height:50px;padding:0 14px;outline:none;transition:border-color .3s ease,background .3s ease}
+.field textarea{min-height:130px;padding:14px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--sand);background:rgba(255,250,240,.1)}
+.field select option{background:var(--green-2);color:var(--cream)}
+.form .btn{grid-column:1/-1;margin-top:6px}
+
+/* Footer */
+.footer{background:#11110f;color:rgba(255,250,240,.72);padding:72px 34px 34px}
+.footer-inner{max-width:1240px;margin:0 auto}
+.footer-cta-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center;margin-bottom:48px;padding:30px 32px;border:1px solid rgba(255,250,240,.14);background:linear-gradient(135deg,rgba(255,250,240,.09),rgba(255,250,240,.035));box-shadow:0 22px 70px rgba(0,0,0,.18)}
+.footer-cta-card h2{font-family:var(--serif);font-size:clamp(30px,4vw,52px);line-height:1;letter-spacing:-.04em;font-weight:600;color:var(--cream);margin-bottom:12px}
+.footer-cta-card p{margin:0;color:rgba(255,250,240,.72);max-width:720px}
+.footer-cta-card .style-cta{background:var(--cream);color:var(--charcoal);border-color:var(--cream);min-height:48px;padding:0 20px}
+.footer-cta-card .style-cta:hover{background:var(--sand);border-color:var(--sand)}
+.footer-grid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:42px;padding-bottom:48px;border-bottom:1px solid rgba(255,250,240,.13)}
+.footer-brand{font-family:var(--serif);font-size:34px;color:var(--cream);line-height:1}
+.footer p{margin-top:16px;max-width:360px}
+.footer h4{color:var(--cream);font-size:11px;text-transform:uppercase;letter-spacing:.18em;margin-bottom:16px}
+.footer ul{list-style:none;display:grid;gap:10px}
+.footer a{transition:color .25s ease}
+.footer a:hover{color:var(--sand)}
+.footer-bottom{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:24px;font-size:12px;color:rgba(255,250,240,.5)}
+
+/* Lightbox and drawer */
+.lightbox,.drawer{position:fixed;inset:0;z-index:1200;display:flex;opacity:0;pointer-events:none;transition:opacity .42s ease}
+.lightbox.open,.drawer.open{opacity:1;pointer-events:auto}
+.lightbox{align-items:center;justify-content:center;background:rgba(10,10,8,.9);padding:28px}
+.lightbox img{width:min(1120px,94vw);height:min(760px,82vh);object-fit:cover;box-shadow:0 30px 100px rgba(0,0,0,.45);transform:scale(.96);transition:transform .42s ease}
+.lightbox.open img{transform:scale(1)}
+.modal-close{position:absolute;top:24px;right:24px;width:46px;height:46px;border:1px solid rgba(255,250,240,.42);color:var(--cream);display:grid;place-items:center;background:rgba(255,255,255,.04)}
+.modal-close svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.drawer{justify-content:flex-end;background:rgba(13,14,11,.46);backdrop-filter:blur(7px)}
+.drawer-panel{width:min(560px,100%);height:100%;overflow:auto;background:var(--green-2);color:var(--cream);padding:28px;transform:translateX(102%);transition:transform .58s cubic-bezier(.2,.7,.2,1)}
+.drawer.open .drawer-panel{transform:translateX(0)}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:38px}
+.drawer h2{font-family:var(--serif);font-size:44px;line-height:1;letter-spacing:-.04em;font-weight:600;margin-bottom:14px}
+.drawer-copy{color:rgba(255,250,240,.72);margin-bottom:28px}
+.drawer .form{grid-template-columns:1fr}
+
+.toast{position:fixed;left:50%;bottom:24px;z-index:1400;transform:translate(-50%,18px);background:var(--charcoal);color:var(--cream);border:1px solid rgba(255,250,240,.18);box-shadow:0 18px 50px rgba(0,0,0,.22);padding:14px 18px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .35s ease,transform .35s ease;white-space:nowrap}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media(max-width:980px){
+  .header-nav,.desktop-style-cta{display:none}
+  .menu-btn{display:flex}
+  .hero-inner,.intro-grid,.section-head,.enquiry-layout,.footer-grid,.footer-cta-card{grid-template-columns:1fr}
+  .hero-aside{display:none}
+  .villa-grid,.destination-grid,.experience-grid{grid-template-columns:1fr}
+  .experience-stack{grid-template-columns:1fr}
+  .experience-card.large{min-height:420px}
+  .destination-card{height:460px}
+  .intro-image{height:520px}
+}
+@media(max-width:640px){
+  body{padding-bottom:82px}
+  .site-header{height:70px;padding:0 18px}
+  .brand{font-size:21px}
+  .hero{padding:110px 18px 34px;min-height:92vh}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .scroll-cue{left:18px;bottom:18px}
+  .section{padding:82px 18px}
+  .section-head{gap:22px;margin-bottom:34px}
+  .intro-meta{grid-template-columns:1fr}
+  .villa-image{height:340px}
+  .destination-card,.experience-card,.experience-card.large{height:auto;min-height:390px;padding:24px}
+  .gallery-grid{columns:1}
+  .gallery-item.tall,.gallery-item.medium,.gallery-item.short{height:360px}
+  .form{grid-template-columns:1fr}
+  .footer{padding:58px 18px 28px}
+  .footer-cta-card{padding:24px 22px;margin-bottom:38px}
+  .footer-cta-card .style-cta{width:100%;margin-top:2px}
+  .footer-bottom{display:grid}
+  .drawer-panel{padding:22px}
+  .toast{width:calc(100% - 32px);white-space:normal;text-align:center}
+  .floating-style-cta{left:16px;right:16px;bottom:max(14px,env(safe-area-inset-bottom));min-height:54px;width:auto;padding:0 18px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal,.image-reveal,.image-reveal img{opacity:1;transform:none}
+  .image-reveal::after{display:none}
+}
+</style>
+</head>
+<body>
+<div class="page" id="home">
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="#home">Maison Dara Villas</a>
+    <nav class="header-nav" aria-label="Primary navigation">
+      <a href="#home">Home</a>
+      <a href="#villas">Villas</a>
+      <a href="#experiences">Experiences</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#enquiry">Enquire</a>
+    </nav>
+    <div class="header-cta">
+      <a class="style-cta desktop-style-cta" href="index.html#request">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>
+        Request this website style
+      </a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu"><span></span></button>
+    </div>
+  </header>
+
+  <div class="mobile-overlay" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-top">
+      <a class="brand" href="#home" data-close-menu>Maison Dara Villas</a>
+      <button class="close-btn" type="button" aria-label="Close menu" data-close-menu>
+        <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <nav class="mobile-links" aria-label="Mobile navigation">
+      <a href="#home" data-close-menu>Home</a>
+      <a href="#villas" data-close-menu>Villas</a>
+      <a href="#experiences" data-close-menu>Experiences</a>
+      <a href="#gallery" data-close-menu>Gallery</a>
+      <a href="#enquiry" data-close-menu>Enquire</a>
+      <a class="mobile-request" href="index.html#request">
+        Request this website style
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="hero" aria-label="Maison Dara Villas">
+      <div class="hero-media" id="heroMedia">
+        <img src="https://images.pexels.com/photos/31199408/pexels-photo-31199408.jpeg?auto=compress&cs=tinysrgb&w=2200&h=1400&fit=crop" alt="Tropical private villa with a pool at dusk">
+      </div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Boutique villa collection</p>
+          <h1>Welcome home to slow tropical luxury.</h1>
+          <p>Private villas, curated experiences, and calm hospitality designed for unforgettable stays in Cambodia.</p>
+          <div class="hero-actions">
+            <a class="btn btn-light" href="#villas">
+              Explore villas
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <button class="btn btn-light" type="button" data-open-enquiry>Make an enquiry</button>
+          </div>
+        </div>
+        <aside class="hero-aside">
+          <strong>03</strong>
+          <span>private villa styles shaped for family stays, retreats, and quiet celebrations.</span>
+        </aside>
+      </div>
+      <a class="scroll-cue" href="#philosophy">
+        <span class="scroll-line"></span>
+        <span>Scroll for more</span>
+      </a>
+    </section>
+
+    <section class="section intro" id="philosophy">
+      <div class="section-inner intro-grid">
+        <div class="reveal">
+          <p class="eyebrow">Our philosophy</p>
+          <h2 class="intro-statement">Maison Dara Villas brings together private space, warm service, and tropical design for travelers who want more than a room.</h2>
+          <p class="intro-text">Each stay is composed around architecture, nature, privacy, and personalized hospitality. Guests arrive to quiet gardens, considered interiors, and a team that understands when to be present and when to let the day breathe.</p>
+          <div class="intro-meta">
+            <div><strong>24h</strong><span>guest care</span></div>
+            <div><strong>2</strong><span>destinations</span></div>
+            <div><strong>1</strong><span>private rhythm</span></div>
+          </div>
+        </div>
+        <div class="intro-image image-reveal reveal">
+          <img src="https://images.pexels.com/photos/14025909/pexels-photo-14025909.jpeg?auto=compress&cs=tinysrgb&w=1400&h=1900&fit=crop" alt="Elegant tropical villa bedroom with canopy bed">
+        </div>
+      </div>
+    </section>
+
+    <section class="section villas" id="villas">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <div class="section-kicker">
+            <p class="eyebrow">Private villas</p>
+            <h2 class="section-title">Private sanctuaries for every kind of stay.</h2>
+          </div>
+          <p class="section-copy">From quiet couple escapes to family gatherings, each villa is designed to feel personal, spacious, and deeply connected to its setting.</p>
+        </div>
+        <div class="villa-grid">
+          <article class="villa-card reveal">
+            <div class="villa-image"><img src="https://images.pexels.com/photos/28586229/pexels-photo-28586229.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1400&fit=crop" alt="Dara Pool Villa with lush tropical pool"></div>
+            <div class="villa-body">
+              <h3>Dara Pool Villa</h3>
+              <div class="villa-meta"><span>Siem Reap</span><span>3 bedrooms</span></div>
+              <p>A garden villa for slow mornings, private swims, and quiet dinners after temple days.</p>
+              <a class="text-link" href="#enquiry">View villa <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+          <article class="villa-card reveal">
+            <div class="villa-image"><img src="https://images.pexels.com/photos/36418268/pexels-photo-36418268.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1400&fit=crop" alt="Mekong Garden Villa tropical pool surrounded by greenery"></div>
+            <div class="villa-body">
+              <h3>Mekong Garden Villa</h3>
+              <div class="villa-meta"><span>Kampot</span><span>4 bedrooms</span></div>
+              <p>A riverside-inspired retreat with shaded terraces, outdoor dining, and easy gathering space.</p>
+              <a class="text-link" href="#enquiry">View villa <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+          <article class="villa-card reveal">
+            <div class="villa-image"><img src="https://images.pexels.com/photos/34104609/pexels-photo-34104609.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1400&fit=crop" alt="Angkor Residence aerial villa with private pool"></div>
+            <div class="villa-body">
+              <h3>Angkor Residence</h3>
+              <div class="villa-meta"><span>Siem Reap</span><span>6 bedrooms</span></div>
+              <p>A generous private residence for families, retreats, and intimate celebrations near Angkor.</p>
+              <a class="text-link" href="#enquiry">View villa <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section destinations" id="destinations">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <div class="section-kicker">
+            <p class="eyebrow">Destinations</p>
+            <h2 class="section-title">Fabled Cambodian locations, chosen for calm and character.</h2>
+          </div>
+          <p class="section-copy">Maison Dara is designed for owners who want to position their property around place, feeling, and the pace of a truly memorable stay.</p>
+        </div>
+        <div class="destination-grid">
+          <article class="destination-card reveal">
+            <img src="https://images.pexels.com/photos/15890549/pexels-photo-15890549.jpeg?auto=compress&cs=tinysrgb&w=1400&h=1600&fit=crop" alt="Angkor Wat temple in Siem Reap Cambodia">
+            <div class="destination-content">
+              <p class="eyebrow">Siem Reap</p>
+              <h3>Ancient rhythm.</h3>
+              <p>Private villas, garden mornings, and quiet evenings after days shaped by temples and local craft.</p>
+            </div>
+          </article>
+          <article class="destination-card reveal">
+            <img src="https://images.pexels.com/photos/18946625/pexels-photo-18946625.jpeg?auto=compress&cs=tinysrgb&w=1400&h=1600&fit=crop" alt="Tropical riverside style dining with mountain air">
+            <div class="destination-content">
+              <p class="eyebrow">Kampot</p>
+              <h3>Riverside air.</h3>
+              <p>Mountain views, slow days, intimate stays, and relaxed hospitality close to Cambodia's southern coast.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section experiences" id="experiences">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <div class="section-kicker">
+            <p class="eyebrow">Experiences</p>
+            <h2 class="section-title">Every stay shaped around the way you live, gather, and rest.</h2>
+          </div>
+          <p class="section-copy">Hospitality feels most luxurious when it is quiet, personal, and precisely timed. These experience cards show how a villa website can sell more than beds.</p>
+        </div>
+        <div class="experience-grid">
+          <article class="experience-card large reveal">
+            <img src="https://images.pexels.com/photos/6127022/pexels-photo-6127022.jpeg?auto=compress&cs=tinysrgb&w=1400&h=1600&fit=crop" alt="Private chef dining table at a tropical resort">
+            <div class="experience-content">
+              <p class="eyebrow">Dining</p>
+              <h3>Private chef dining</h3>
+              <p>Seasonal menus, candlelit terraces, Khmer flavors, and simple service for evenings that feel easy.</p>
+            </div>
+          </article>
+          <div class="experience-stack">
+            <article class="experience-card reveal">
+              <img src="https://images.pexels.com/photos/29000312/pexels-photo-29000312.jpeg?auto=compress&cs=tinysrgb&w=1200&h=900&fit=crop" alt="Tropical hotel room prepared for rest">
+              <div class="experience-content">
+                <h3>Wellness and massage</h3>
+                <p>In-villa treatments, quiet rooms, herbal rituals, and unhurried recovery time.</p>
+              </div>
+            </article>
+            <article class="experience-card reveal">
+              <img src="https://images.pexels.com/photos/19101784/pexels-photo-19101784.jpeg?auto=compress&cs=tinysrgb&w=1200&h=900&fit=crop" alt="Angkor temple ruins surrounded by tropical trees">
+              <div class="experience-content">
+                <h3>Temple and cultural journeys</h3>
+                <p>Guided days through Angkor, local markets, artisans, and routes that avoid the rush.</p>
+              </div>
+            </article>
+            <article class="experience-card reveal">
+              <img src="https://images.pexels.com/photos/4993247/pexels-photo-4993247.jpeg?auto=compress&cs=tinysrgb&w=1200&h=900&fit=crop" alt="Tropical terrace breakfast table">
+              <div class="experience-content">
+                <h3>Celebrations and intimate events</h3>
+                <p>Small weddings, family dinners, founder retreats, and private milestones with graceful planning.</p>
+              </div>
+            </article>
+            <article class="experience-card reveal">
+              <img src="https://images.pexels.com/photos/16771749/pexels-photo-16771749.jpeg?auto=compress&cs=tinysrgb&w=1200&h=900&fit=crop" alt="Open-air tropical resort restaurant">
+              <div class="experience-content">
+                <h3>Open-air mornings</h3>
+                <p>Breakfast in shade, fresh fruit, gentle planning, and the feeling that nothing needs to hurry.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery" id="gallery">
+      <div class="section-inner">
+        <div class="section-head reveal">
+          <div class="section-kicker">
+            <p class="eyebrow">Gallery</p>
+            <h2 class="section-title">A visual rhythm of villas, water, shade, and table.</h2>
+          </div>
+          <p class="section-copy">Large image-led galleries help boutique stays sell atmosphere before a guest reads a single rate or room detail.</p>
+        </div>
+        <div class="gallery-grid" id="galleryGrid">
+          <button class="gallery-item tall reveal" type="button" data-lightbox="https://images.pexels.com/photos/28915352/pexels-photo-28915352.jpeg?auto=compress&cs=tinysrgb&w=1800&h=1300&fit=crop"><img src="https://images.pexels.com/photos/28915352/pexels-photo-28915352.jpeg?auto=compress&cs=tinysrgb&w=900&h=1200&fit=crop" alt="Luxury villa pool glowing in the evening"></button>
+          <button class="gallery-item medium reveal" type="button" data-lightbox="https://images.pexels.com/photos/14024057/pexels-photo-14024057.jpeg?auto=compress&cs=tinysrgb&w=1800&h=1300&fit=crop"><img src="https://images.pexels.com/photos/14024057/pexels-photo-14024057.jpeg?auto=compress&cs=tinysrgb&w=900&h=900&fit=crop" alt="Tropical luxury villas along a coastline"></button>
+          <button class="gallery-item short reveal" type="button" data-lightbox="https://images.pexels.com/photos/20512825/pexels-photo-20512825.jpeg?auto=compress&cs=tinysrgb&w=1800&h=1300&fit=crop"><img src="https://images.pexels.com/photos/20512825/pexels-photo-20512825.jpeg?auto=compress&cs=tinysrgb&w=900&h=700&fit=crop" alt="Modern villa with palm trees and pool"></button>
+          <button class="gallery-item medium reveal" type="button" data-lightbox="https://images.pexels.com/photos/16711342/pexels-photo-16711342.jpeg?auto=compress&cs=tinysrgb&w=1800&h=1300&fit=crop"><img src="https://images.pexels.com/photos/16711342/pexels-photo-16711342.jpeg?auto=compress&cs=tinysrgb&w=900&h=900&fit=crop" alt="Outdoor tropical restaurant with flowers"></button>
+          <button class="gallery-item tall reveal" type="button" data-lightbox="https://images.pexels.com/photos/12161888/pexels-photo-12161888.jpeg?auto=compress&cs=tinysrgb&w=1800&h=1300&fit=crop"><img src="https://images.pexels.com/photos/12161888/pexels-photo-12161888.jpeg?auto=compress&cs=tinysrgb&w=900&h=1200&fit=crop" alt="Tropical mansion pool with gazebo"></button>
+          <button class="gallery-item short reveal" type="button" data-lightbox="https://images.pexels.com/photos/15890738/pexels-photo-15890738.jpeg?auto=compress&cs=tinysrgb&w=1800&h=1300&fit=crop"><img src="https://images.pexels.com/photos/15890738/pexels-photo-15890738.jpeg?auto=compress&cs=tinysrgb&w=900&h=700&fit=crop" alt="Carved temple wall in Siem Reap Cambodia"></button>
+          <button class="gallery-item medium reveal" type="button" data-lightbox="https://images.pexels.com/photos/36988001/pexels-photo-36988001.jpeg?auto=compress&cs=tinysrgb&w=1800&h=1300&fit=crop"><img src="https://images.pexels.com/photos/36988001/pexels-photo-36988001.jpeg?auto=compress&cs=tinysrgb&w=900&h=900&fit=crop" alt="Night pool at tropical villa resort"></button>
+          <button class="gallery-item short reveal" type="button" data-lightbox="https://images.pexels.com/photos/31387341/pexels-photo-31387341.jpeg?auto=compress&cs=tinysrgb&w=1800&h=1300&fit=crop"><img src="https://images.pexels.com/photos/31387341/pexels-photo-31387341.jpeg?auto=compress&cs=tinysrgb&w=900&h=700&fit=crop" alt="Modern tropical villa with pool and palms"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section enquiry" id="enquiry">
+      <div class="section-inner enquiry-layout">
+        <div class="reveal">
+          <p class="eyebrow">Private stay enquiry</p>
+          <h2 class="section-title">Start planning your private stay.</h2>
+          <p class="enquiry-note">Share the shape of your visit and the Maison Dara team will prepare a calm, considered follow-up. This demo form is front-end only for BizWeb KH showroom presentation.</p>
+        </div>
+        <div class="enquiry-panel reveal">
+          <form class="form" data-enquiry-form>
+            <div class="field">
+              <label for="destination">Destination</label>
+              <select id="destination" name="destination" required>
+                <option value="">Select destination</option>
+                <option>Siem Reap</option>
+                <option>Kampot</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="guests">Guests</label>
+              <input id="guests" name="guests" type="number" min="1" placeholder="6 guests" required>
+            </div>
+            <div class="field">
+              <label for="arrival">Arrival date</label>
+              <input id="arrival" name="arrival" type="date" required>
+            </div>
+            <div class="field">
+              <label for="departure">Departure date</label>
+              <input id="departure" name="departure" type="date" required>
+            </div>
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required>
+            </div>
+            <div class="field full">
+              <label for="phone">Phone / Telegram</label>
+              <input id="phone" name="phone" type="text" placeholder="098 70 88 00" required>
+            </div>
+            <div class="field full">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your preferred villa, dates, occasion, or special requests."></textarea>
+            </div>
+            <button class="btn btn-light" type="submit">Prepare enquiry</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-cta-card reveal">
+        <div>
+          <h2>Ready to create your own hotel website?</h2>
+          <p>We can customize this villa-style website with your hotel name, rooms, gallery, booking flow, map, and enquiry form.</p>
+        </div>
+        <a class="style-cta" href="index.html#request">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>
+          Request this website style
+        </a>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Maison Dara Villas</div>
+          <p>Private tropical stays, designed for slow living. A luxury villa demo for boutique hotels, resorts, guesthouses, and private stay brands in Cambodia.</p>
+        </div>
+        <div>
+          <h4>Villas</h4>
+          <ul>
+            <li><a href="#villas">Dara Pool Villa</a></li>
+            <li><a href="#villas">Mekong Garden Villa</a></li>
+            <li><a href="#villas">Angkor Residence</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Experiences</h4>
+          <ul>
+            <li><a href="#experiences">Private chef dining</a></li>
+            <li><a href="#experiences">Wellness and massage</a></li>
+            <li><a href="#experiences">Cultural journeys</a></li>
+            <li><a href="#experiences">Intimate events</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><button type="button" data-open-enquiry>Make an enquiry</button></li>
+            <li><a href="mailto:hello@maisondara.example">hello@maisondara.example</a></li>
+            <li><a href="tel:+85598708800">098 70 88 00</a></li>
+            <li><a href="#home">Instagram placeholder</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Maison Dara Villas. All rights reserved.</span>
+        <span>Demo website style by BizWeb KH</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<a class="floating-style-cta" id="floatingStyleCta" href="index.html#request">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>
+  Request this website style
+</a>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="modal-close" type="button" aria-label="Close gallery" data-close-lightbox>
+    <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+  </button>
+  <img id="lightboxImage" alt="">
+</div>
+
+<aside class="drawer" id="enquiryDrawer" aria-hidden="true">
+  <div class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+    <div class="drawer-head">
+      <a class="brand" href="#home">Maison Dara Villas</a>
+      <button class="close-btn" type="button" aria-label="Close enquiry" data-close-enquiry>
+        <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <h2 id="drawerTitle">Begin with a few details.</h2>
+    <p class="drawer-copy">This quick panel shows how a villa website can keep enquiries close to every part of the experience.</p>
+    <form class="form" data-enquiry-form>
+      <div class="field">
+        <label for="drawer-destination">Destination</label>
+        <select id="drawer-destination" name="destination" required>
+          <option value="">Select destination</option>
+          <option>Siem Reap</option>
+          <option>Kampot</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="drawer-arrival">Arrival date</label>
+        <input id="drawer-arrival" name="arrival" type="date" required>
+      </div>
+      <div class="field">
+        <label for="drawer-departure">Departure date</label>
+        <input id="drawer-departure" name="departure" type="date" required>
+      </div>
+      <div class="field">
+        <label for="drawer-guests">Guests</label>
+        <input id="drawer-guests" name="guests" type="number" min="1" placeholder="6 guests" required>
+      </div>
+      <div class="field">
+        <label for="drawer-name">Name</label>
+        <input id="drawer-name" name="name" type="text" placeholder="Your name" required>
+      </div>
+      <div class="field">
+        <label for="drawer-email">Email</label>
+        <input id="drawer-email" name="email" type="email" placeholder="you@example.com" required>
+      </div>
+      <div class="field">
+        <label for="drawer-phone">Phone / Telegram</label>
+        <input id="drawer-phone" name="phone" type="text" placeholder="098 70 88 00" required>
+      </div>
+      <div class="field">
+        <label for="drawer-message">Message</label>
+        <textarea id="drawer-message" name="message" placeholder="Preferred villa, occasion, or special requests."></textarea>
+      </div>
+      <button class="btn btn-light" type="submit">Prepare enquiry</button>
+    </form>
+  </div>
+</aside>
+
+<div class="toast" id="toast">Thank you. Your enquiry has been prepared for follow-up.</div>
+
+<script>
+const body=document.body;
+const header=document.getElementById('siteHeader');
+const mobileMenu=document.getElementById('mobileMenu');
+const enquiryDrawer=document.getElementById('enquiryDrawer');
+const lightbox=document.getElementById('lightbox');
+const lightboxImage=document.getElementById('lightboxImage');
+const toast=document.getElementById('toast');
+const heroMedia=document.getElementById('heroMedia');
+const floatingStyleCta=document.getElementById('floatingStyleCta');
+
+function setLocked(locked){
+  body.classList.toggle('locked',locked);
+}
+
+function updateHeader(){
+  header.classList.toggle('scrolled',window.scrollY>36);
+  if(heroMedia){
+    heroMedia.style.transform=`translateY(${Math.min(window.scrollY*0.08,48)}px)`;
+  }
+}
+
+function openMobileMenu(){
+  mobileMenu.classList.add('open');
+  mobileMenu.setAttribute('aria-hidden','false');
+  setLocked(true);
+}
+
+function closeMobileMenu(){
+  mobileMenu.classList.remove('open');
+  mobileMenu.setAttribute('aria-hidden','true');
+  setLocked(false);
+}
+
+function openEnquiry(){
+  closeMobileMenu();
+  enquiryDrawer.classList.add('open');
+  enquiryDrawer.setAttribute('aria-hidden','false');
+  setLocked(true);
+}
+
+function closeEnquiry(){
+  enquiryDrawer.classList.remove('open');
+  enquiryDrawer.setAttribute('aria-hidden','true');
+  setLocked(false);
+}
+
+function openLightbox(src,alt){
+  lightboxImage.src=src;
+  lightboxImage.alt=alt||'Maison Dara Villas gallery image';
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden','false');
+  setLocked(true);
+}
+
+function closeLightbox(){
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden','true');
+  lightboxImage.removeAttribute('src');
+  setLocked(false);
+}
+
+function showToast(){
+  toast.classList.add('show');
+  window.clearTimeout(showToast.timer);
+  showToast.timer=window.setTimeout(()=>toast.classList.remove('show'),3600);
+}
+
+document.getElementById('menuBtn').addEventListener('click',openMobileMenu);
+document.querySelectorAll('[data-close-menu]').forEach(el=>el.addEventListener('click',closeMobileMenu));
+document.querySelectorAll('[data-open-enquiry]').forEach(el=>el.addEventListener('click',openEnquiry));
+document.querySelectorAll('[data-close-enquiry]').forEach(el=>el.addEventListener('click',closeEnquiry));
+document.querySelectorAll('[data-close-lightbox]').forEach(el=>el.addEventListener('click',closeLightbox));
+
+mobileMenu.addEventListener('click',event=>{
+  if(event.target===mobileMenu)closeMobileMenu();
+});
+enquiryDrawer.addEventListener('click',event=>{
+  if(event.target===enquiryDrawer)closeEnquiry();
+});
+lightbox.addEventListener('click',event=>{
+  if(event.target===lightbox)closeLightbox();
+});
+
+document.querySelectorAll('[data-lightbox]').forEach(item=>{
+  item.addEventListener('click',()=>{
+    const img=item.querySelector('img');
+    openLightbox(item.dataset.lightbox,img ? img.alt : '');
+  });
+});
+
+document.querySelectorAll('[data-enquiry-form]').forEach(form=>{
+  form.addEventListener('submit',event=>{
+    event.preventDefault();
+    if(!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
+    showToast();
+    form.reset();
+    closeEnquiry();
+  });
+});
+
+document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'){
+    closeMobileMenu();
+    closeEnquiry();
+    closeLightbox();
+  }
+});
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('in-view');
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.16,rootMargin:'0px 0px -60px 0px'});
+
+document.querySelectorAll('.reveal,.image-reveal').forEach(el=>observer.observe(el));
+
+const floatingBlockers=new Set();
+const floatingBlockerObserver=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting)floatingBlockers.add(entry.target);
+    else floatingBlockers.delete(entry.target);
+  });
+  updateFloatingCta();
+},{threshold:.08});
+
+function updateFloatingCta(){
+  if(!floatingStyleCta)return;
+  const shouldHide=window.matchMedia('(max-width:640px)').matches && floatingBlockers.size>0;
+  floatingStyleCta.classList.toggle('is-hidden',shouldHide);
+}
+
+document.querySelectorAll('#enquiry,.footer').forEach(el=>floatingBlockerObserver.observe(el));
+window.addEventListener('resize',updateFloatingCta,{passive:true});
+window.addEventListener('scroll',updateHeader,{passive:true});
+updateHeader();
+updateFloatingCta();
+</script>
+</body>
+</html>

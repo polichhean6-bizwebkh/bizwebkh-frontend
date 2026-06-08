@@ -1,0 +1,1656 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sovanna Estate Resort | Premium Motion Demo by BizWeb KH</title>
+  <meta name="description" content="Premium Motion Resort demo for high-end Cambodian resorts, retreats, villas, and destination stays." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #0b2f23;
+      --green-2: #123d2d;
+      --green-3: #061b14;
+      --ivory: #fff8ea;
+      --cream: #f1e5d0;
+      --gold: #c39a58;
+      --gold-2: #e0bd7b;
+      --charcoal: #101513;
+      --ink: #203329;
+      --muted: #748077;
+      --line: rgba(255, 248, 234, 0.16);
+      --dark-line: rgba(11, 47, 35, 0.15);
+      --shadow: 0 34px 110px rgba(6, 27, 20, 0.34);
+      --max: 1180px;
+      --ease: cubic-bezier(.18,.72,.18,1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
+      font-family: Manrope, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--green-3);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    body.menu-open,
+    body.lightbox-open {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 42px));
+      margin: 0 auto;
+    }
+
+    h1,
+    h2,
+    h3,
+    .brand-name {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 0.95;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      color: var(--ivory);
+      font-size: clamp(4.3rem, 9vw, 9.8rem);
+      max-width: 780px;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      color: var(--ivory);
+      font-size: clamp(3rem, 6vw, 7rem);
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      color: var(--ivory);
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: rgba(255, 248, 234, 0.7);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold-2);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 40px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 24px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      transition: transform 220ms var(--ease), background 220ms var(--ease), color 220ms var(--ease), border-color 220ms var(--ease), box-shadow 220ms var(--ease);
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: var(--green);
+      background: var(--gold);
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.22);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-2);
+    }
+
+    .btn-outline {
+      color: var(--ivory);
+      border-color: rgba(255, 248, 234, 0.3);
+      background: rgba(255, 248, 234, 0.06);
+    }
+
+    .btn-green {
+      color: var(--ivory);
+      background: var(--green);
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold-2);
+      font-size: 0.82rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .text-link svg {
+      width: 15px;
+      height: 15px;
+      transition: transform 220ms var(--ease);
+    }
+
+    .text-link:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* Header */
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      color: var(--ivory);
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background 260ms var(--ease), color 260ms var(--ease), border-color 260ms var(--ease), box-shadow 260ms var(--ease);
+    }
+
+    .site-header.scrolled {
+      color: var(--green);
+      background: rgba(255, 248, 234, 0.93);
+      border-color: rgba(11, 47, 35, 0.13);
+      box-shadow: 0 14px 36px rgba(6, 27, 20, 0.12);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 220px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+    }
+
+    .brand-name {
+      display: block;
+      font-size: 1.18rem;
+      line-height: 1;
+    }
+
+    .brand-note {
+      display: block;
+      margin-top: 4px;
+      opacity: 0.66;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      padding: 9px 12px;
+      color: currentColor;
+      opacity: 0.82;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: opacity 180ms var(--ease), background 180ms var(--ease);
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      background: rgba(255, 248, 234, 0.1);
+    }
+
+    .site-header.scrolled .nav-links a:hover {
+      background: rgba(11, 47, 35, 0.08);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-actions .btn {
+      min-height: 44px;
+      color: var(--green);
+      background: var(--gold);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      color: currentColor;
+      background: transparent;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 150;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      color: var(--ivory);
+      background: rgba(6, 27, 20, 0.98);
+      visibility: hidden;
+      transform: translateY(-100%);
+      transition: transform 360ms var(--ease), visibility 360ms var(--ease);
+    }
+
+    .mobile-menu.active {
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .mobile-head {
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(var(--max), calc(100% - 42px));
+      margin: 0 auto;
+    }
+
+    .close-menu {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      color: var(--ivory);
+      background: transparent;
+      border: 1px solid rgba(255, 248, 234, 0.28);
+      border-radius: 50%;
+    }
+
+    .mobile-links {
+      width: min(var(--max), calc(100% - 42px));
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 22px;
+      padding-bottom: 84px;
+    }
+
+    .mobile-links a:not(.btn) {
+      color: var(--ivory);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2.6rem, 13vw, 5.5rem);
+      line-height: 0.9;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      color: var(--ivory);
+      background: var(--green-3);
+      padding: 116px 0 52px;
+      isolation: isolate;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      background-image:
+        linear-gradient(90deg, rgba(6, 27, 20, 0.96), rgba(6, 27, 20, 0.72) 45%, rgba(6, 27, 20, 0.44)),
+        url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=88");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.08);
+      animation: heroZoom 16s ease forwards;
+    }
+
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 65% 22%, rgba(195, 154, 88, 0.24), transparent 34%),
+        radial-gradient(circle at 18% 74%, rgba(255, 248, 234, 0.09), transparent 28%),
+        linear-gradient(180deg, transparent 60%, rgba(6, 27, 20, 0.92));
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(560px, 1.18fr);
+      gap: 34px;
+      align-items: center;
+      perspective: 1500px;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 3;
+      animation: fadeUp 900ms var(--ease) both;
+    }
+
+    .hero-copy p {
+      max-width: 520px;
+      margin-bottom: 30px;
+      color: rgba(255, 248, 234, 0.74);
+      font-size: 1.08rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .motion-stage {
+      position: relative;
+      min-height: 660px;
+      transform-style: preserve-3d;
+      transition: transform 160ms linear;
+      animation: stageIn 1050ms 180ms var(--ease) both;
+    }
+
+    .stage-ring {
+      position: absolute;
+      inset: 92px 6% 86px 8%;
+      border: 1px solid rgba(255, 248, 234, 0.12);
+      border-radius: 50%;
+      transform: rotateX(68deg) translateZ(-120px);
+    }
+
+    .stage-glow {
+      position: absolute;
+      width: 460px;
+      height: 460px;
+      left: 32%;
+      top: 16%;
+      background: radial-gradient(circle, rgba(195, 154, 88, 0.24), transparent 66%);
+      filter: blur(10px);
+      transform: translateZ(-220px);
+    }
+
+    .stage-panel {
+      position: absolute;
+      overflow: hidden;
+      border: 1px solid rgba(255, 248, 234, 0.2);
+      background: rgba(255, 248, 234, 0.08);
+      box-shadow: var(--shadow);
+      transform-style: preserve-3d;
+    }
+
+    .stage-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.04);
+      transition: transform 900ms var(--ease);
+    }
+
+    .motion-stage:hover .stage-panel img {
+      transform: scale(1.08);
+    }
+
+    .stage-center {
+      left: 20%;
+      top: 76px;
+      width: 58%;
+      height: 430px;
+      transform: translateZ(150px) rotateY(-7deg) rotateX(3deg);
+      animation: floatCenter 7s ease-in-out infinite;
+    }
+
+    .stage-left {
+      left: 0;
+      top: 166px;
+      width: 34%;
+      height: 300px;
+      opacity: 0.82;
+      transform: translateZ(30px) rotateY(19deg) rotateX(2deg) translateX(-10px);
+      animation: floatSide 8s ease-in-out infinite;
+    }
+
+    .stage-right {
+      right: 0;
+      top: 146px;
+      width: 35%;
+      height: 310px;
+      opacity: 0.86;
+      transform: translateZ(60px) rotateY(-20deg) rotateX(2deg) translateX(10px);
+      animation: floatSide 8s 850ms ease-in-out infinite;
+    }
+
+    .stage-caption {
+      position: absolute;
+      left: 50%;
+      bottom: 106px;
+      transform: translateX(-50%) translateZ(210px);
+      width: min(440px, 78%);
+      padding: 16px 18px;
+      color: var(--ivory);
+      background: rgba(6, 27, 20, 0.62);
+      border: 1px solid rgba(255, 248, 234, 0.2);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .stage-caption strong {
+      display: block;
+      color: var(--gold-2);
+      font-size: 0.76rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .stage-caption span {
+      display: block;
+      color: rgba(255, 248, 234, 0.78);
+      font-size: 0.92rem;
+    }
+
+    .booking-glass {
+      position: relative;
+      z-index: 4;
+      width: min(980px, calc(100% - 42px));
+      margin: -70px auto 0;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+      gap: 12px;
+      color: var(--ivory);
+      background: rgba(255, 248, 234, 0.1);
+      border: 1px solid rgba(255, 248, 234, 0.24);
+      box-shadow: 0 34px 90px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(18px);
+      animation: bookingIn 900ms 500ms var(--ease) both;
+    }
+
+    .booking-mini {
+      padding: 12px 13px;
+      border: 1px solid rgba(255, 248, 234, 0.14);
+      background: rgba(6, 27, 20, 0.3);
+    }
+
+    .booking-mini span {
+      display: block;
+      color: rgba(255, 248, 234, 0.58);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .booking-mini strong {
+      display: block;
+      margin-top: 4px;
+      color: var(--ivory);
+    }
+
+    /* Story panels */
+    .story {
+      background: var(--green-3);
+      color: var(--ivory);
+    }
+
+    .story-panel {
+      position: relative;
+      min-height: 82vh;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 248, 234, 0.08);
+    }
+
+    .story-panel img {
+      position: absolute;
+      inset: -8% 0;
+      width: 100%;
+      height: 116%;
+      object-fit: cover;
+      opacity: 0.78;
+      transform: translateY(var(--parallax, 0px)) scale(1.05);
+      will-change: transform;
+    }
+
+    .story-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(6, 27, 20, 0.82), rgba(6, 27, 20, 0.28)), linear-gradient(180deg, transparent 45%, rgba(6, 27, 20, 0.9));
+    }
+
+    .story-content {
+      position: relative;
+      z-index: 2;
+      width: min(620px, calc(100% - 42px));
+      margin: 0 auto 10vh;
+      transform: translateX(-22vw);
+    }
+
+    .story-content h2 {
+      font-size: clamp(3rem, 7vw, 7.5rem);
+      margin-bottom: 12px;
+    }
+
+    .story-content p {
+      max-width: 460px;
+      color: rgba(255, 248, 234, 0.75);
+      font-size: 1.05rem;
+    }
+
+    /* Rooms */
+    .rooms {
+      position: relative;
+      padding: 112px 0;
+      background: var(--cream);
+      overflow: hidden;
+    }
+
+    .rooms h2 {
+      color: var(--green);
+    }
+
+    .rooms p {
+      color: var(--muted);
+    }
+
+    .room-track {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(360px, 1fr));
+      gap: 22px;
+      perspective: 1400px;
+      margin-top: 42px;
+    }
+
+    .room-card {
+      position: relative;
+      min-height: 560px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      color: var(--ivory);
+      background: var(--green);
+      box-shadow: 0 24px 80px rgba(6, 27, 20, 0.18);
+      transform-style: preserve-3d;
+      transition: transform 180ms linear, box-shadow 240ms var(--ease);
+    }
+
+    .room-card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 760ms var(--ease);
+      z-index: 0;
+    }
+
+    .room-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(6, 27, 20, 0.9));
+      z-index: 1;
+    }
+
+    .room-card:hover {
+      box-shadow: 0 34px 100px rgba(6, 27, 20, 0.28);
+    }
+
+    .room-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .room-body {
+      position: relative;
+      z-index: 2;
+      padding: 28px;
+      transform: translateZ(34px);
+    }
+
+    .room-body p {
+      color: rgba(255, 248, 234, 0.74);
+      margin-bottom: 18px;
+    }
+
+    .price {
+      display: block;
+      color: var(--gold-2);
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    /* Gallery */
+    .gallery {
+      padding: 112px 0;
+      color: var(--ivory);
+      background: var(--green-3);
+      overflow: hidden;
+    }
+
+    .gallery-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 42px;
+    }
+
+    .gallery-head p {
+      max-width: 460px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 1fr;
+      grid-auto-rows: 250px;
+      gap: 16px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border: 0;
+      padding: 0;
+      background: var(--green);
+    }
+
+    .gallery-item.wide {
+      grid-column: span 2;
+    }
+
+    .gallery-item.tall {
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 700ms var(--ease), opacity 700ms var(--ease);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.07);
+      opacity: 0.88;
+    }
+
+    /* Booking */
+    .booking {
+      padding: 112px 0;
+      background: var(--cream);
+    }
+
+    .booking h2 {
+      color: var(--green);
+    }
+
+    .booking p {
+      color: var(--muted);
+    }
+
+    .booking-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+      gap: 48px;
+      align-items: start;
+    }
+
+    .booking-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+      padding: 30px;
+      background: var(--ivory);
+      border: 1px solid var(--dark-line);
+      box-shadow: 0 24px 80px rgba(6, 27, 20, 0.12);
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: var(--green);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid var(--dark-line);
+      border-radius: 0;
+      background: #fffdf8;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 180ms var(--ease), box-shadow 180ms var(--ease);
+    }
+
+    textarea {
+      min-height: 132px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 4px rgba(195, 154, 88, 0.13);
+    }
+
+    .form-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .form-actions p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    .footer {
+      color: rgba(255, 248, 234, 0.7);
+      background: #041710;
+      padding: 70px 0 28px;
+    }
+
+    .footer-cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 30px;
+      margin-bottom: 42px;
+      border: 1px solid rgba(255, 248, 234, 0.14);
+      background: linear-gradient(135deg, rgba(195, 154, 88, 0.22), rgba(255, 248, 234, 0.05));
+    }
+
+    .footer-cta h2 {
+      font-size: clamp(2rem, 4vw, 4.2rem);
+      margin-bottom: 8px;
+    }
+
+    .footer-cta p {
+      max-width: 640px;
+      margin: 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(4, minmax(0, 1fr));
+      gap: 30px;
+    }
+
+    .footer h3,
+    .footer h4 {
+      color: var(--ivory);
+      margin-top: 0;
+    }
+
+    .footer h3 {
+      font-size: 2rem;
+    }
+
+    .footer p,
+    .footer a {
+      color: rgba(255, 248, 234, 0.66);
+    }
+
+    .footer a:hover {
+      color: var(--ivory);
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 26px;
+      margin-top: 34px;
+      border-top: 1px solid rgba(255, 248, 234, 0.12);
+      font-size: 0.88rem;
+    }
+
+    /* Overlays */
+    .sticky-cta {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 90;
+      color: var(--green);
+      background: var(--gold);
+      box-shadow: 0 18px 50px rgba(6, 27, 20, 0.28);
+    }
+
+    .sticky-cta.hidden {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(14px);
+    }
+
+    .toast {
+      position: fixed;
+      right: 22px;
+      bottom: 92px;
+      z-index: 190;
+      max-width: 390px;
+      display: flex;
+      gap: 13px;
+      align-items: start;
+      padding: 16px 18px;
+      color: var(--ivory);
+      background: var(--green);
+      border: 1px solid rgba(255, 248, 234, 0.18);
+      box-shadow: 0 24px 70px rgba(6, 27, 20, 0.34);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(18px);
+      transition: opacity 240ms var(--ease), transform 240ms var(--ease);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast svg {
+      color: var(--gold);
+      flex: 0 0 auto;
+    }
+
+    .toast strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .toast span {
+      color: rgba(255, 248, 234, 0.72);
+      font-size: 0.9rem;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 180;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      background: rgba(6, 27, 20, 0.92);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 240ms var(--ease), visibility 240ms var(--ease);
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox img {
+      max-width: min(1120px, 92vw);
+      max-height: 84vh;
+      object-fit: contain;
+      transform: scale(0.96);
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.45);
+      transition: transform 240ms var(--ease);
+    }
+
+    .lightbox.active img {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      color: var(--ivory);
+      background: rgba(255, 248, 234, 0.08);
+      border: 1px solid rgba(255, 248, 234, 0.22);
+      border-radius: 50%;
+    }
+
+    /* Motion */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 820ms var(--ease), transform 820ms var(--ease);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes heroZoom {
+      to { transform: scale(1); }
+    }
+
+    @keyframes stageIn {
+      from { opacity: 0; transform: translateY(34px) rotateX(8deg); }
+      to { opacity: 1; transform: translateY(0) rotateX(0); }
+    }
+
+    @keyframes bookingIn {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatCenter {
+      0%,100% { transform: translateZ(150px) rotateY(-7deg) rotateX(3deg) translateY(0); }
+      50% { transform: translateZ(150px) rotateY(-4deg) rotateX(4deg) translateY(-14px); }
+    }
+
+    @keyframes floatSide {
+      0%,100% { translate: 0 0; }
+      50% { translate: 0 -12px; }
+    }
+
+    @media (max-width: 1080px) {
+      .nav-links,
+      .header-actions .btn {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: grid;
+      }
+
+      .hero-grid,
+      .booking-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .motion-stage {
+        min-height: 600px;
+      }
+
+      .booking-glass {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .booking-glass .btn {
+        grid-column: 1 / -1;
+      }
+
+      .room-track {
+        grid-template-columns: repeat(3, minmax(300px, 1fr));
+        overflow-x: auto;
+        padding-bottom: 10px;
+        scroll-snap-type: x proximity;
+      }
+
+      .room-card {
+        scroll-snap-align: start;
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding-bottom: 84px;
+      }
+
+      .container {
+        width: min(100% - 28px, var(--max));
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .brand-note {
+        display: none;
+      }
+
+      .brand-name {
+        font-size: 1rem;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 116px 0 64px;
+      }
+
+      h1 {
+        font-size: clamp(3.5rem, 17vw, 5.5rem);
+      }
+
+      .hero-actions,
+      .hero-actions .btn,
+      .booking-form .btn {
+        width: 100%;
+      }
+
+      .motion-stage {
+        min-height: auto;
+        display: grid;
+        gap: 12px;
+        transform: none !important;
+      }
+
+      .stage-ring,
+      .stage-glow,
+      .stage-caption {
+        display: none;
+      }
+
+      .stage-panel {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        width: 100%;
+        height: auto;
+        opacity: 1;
+        transform: none !important;
+        animation: none;
+      }
+
+      .stage-panel img {
+        aspect-ratio: 16 / 10;
+      }
+
+      .booking-glass {
+        margin-top: 0;
+        width: min(100% - 28px, 980px);
+        grid-template-columns: 1fr;
+        padding: 14px;
+      }
+
+      .story-panel {
+        min-height: 70vh;
+      }
+
+      .story-content {
+        transform: none;
+        margin-bottom: 8vh;
+      }
+
+      .room-track,
+      .booking-form,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .room-card {
+        min-height: 440px;
+      }
+
+      .gallery-head,
+      .footer-cta,
+      .footer-bottom,
+      .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 190px;
+        gap: 12px;
+      }
+
+      .gallery-item.wide {
+        grid-column: span 2;
+      }
+
+      .gallery-item.tall {
+        grid-row: span 1;
+      }
+
+      .booking,
+      .rooms,
+      .gallery {
+        padding: 76px 0;
+      }
+
+      .booking-form,
+      .footer-cta {
+        padding: 24px;
+      }
+
+      .sticky-cta {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        width: auto;
+      }
+
+      .toast {
+        left: 14px;
+        right: 14px;
+        bottom: 94px;
+        max-width: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M21 3s-7.5-.8-12 3.5C5.4 9.9 4.3 15 6.8 18.2 10.5 15 14.7 11 21 3Z"/><path d="M4 21c1.5-5.3 4.4-8.7 8.8-10.5"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></symbol>
+  </svg>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Sovanna Estate Resort home">
+        <span class="brand-mark" aria-hidden="true"><svg><use href="#i-leaf"/></svg></span>
+        <span>
+          <span class="brand-name">Sovanna Estate Resort</span>
+          <span class="brand-note">Premium Motion Website</span>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#stay">Stay</a>
+        <a href="#experiences">Experiences</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#booking">Inquiry</a>
+      </nav>
+      <div class="header-actions">
+        <a class="btn" href="index.html#request">Request this website style</a>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false"><svg><use href="#i-menu"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-head">
+      <a class="brand" href="#home">
+        <span class="brand-mark" aria-hidden="true"><svg><use href="#i-leaf"/></svg></span>
+        <span><span class="brand-name">Sovanna Estate Resort</span><span class="brand-note">Premium Motion Website</span></span>
+      </a>
+      <button class="close-menu" type="button" aria-label="Close menu"><svg><use href="#i-close"/></svg></button>
+    </div>
+    <nav class="mobile-links" aria-label="Mobile navigation">
+      <a href="#stay">Stay</a>
+      <a href="#experiences">Experiences</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#booking">Inquiry</a>
+      <a class="btn btn-primary" href="index.html#request">Request this website style</a>
+    </nav>
+  </div>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Premium Motion Resort Demo</div>
+          <h1>Slow luxury, brought to life.</h1>
+          <p>A premium motion website experience for resorts, retreats, villas, and destination stays.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#experiences">Explore experience</a>
+            <a class="btn btn-outline" href="#booking">Plan your stay</a>
+          </div>
+        </div>
+
+        <div class="motion-stage" id="motionStage" aria-label="Cinematic resort image stage">
+          <div class="stage-glow"></div>
+          <div class="stage-ring"></div>
+          <div class="stage-panel stage-left"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=900&q=86" alt="Boutique villa room" /></div>
+          <div class="stage-panel stage-center"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=88" alt="Tropical resort pool" /></div>
+          <div class="stage-panel stage-right"><img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=900&q=86" alt="Outdoor dining and event setup" /></div>
+          <div class="stage-caption"><strong>Immersive hospitality preview</strong><span>Layered motion, cinematic imagery, and a premium booking moment in the first screen.</span></div>
+        </div>
+      </div>
+      <div class="booking-glass" aria-label="Booking preview">
+        <div class="booking-mini"><span>Check-in</span><strong>Fri 12</strong></div>
+        <div class="booking-mini"><span>Check-out</span><strong>Sun 14</strong></div>
+        <div class="booking-mini"><span>Guests</span><strong>2 adults</strong></div>
+        <div class="booking-mini"><span>Stay type</span><strong>Garden Suite</strong></div>
+        <a class="btn btn-primary" href="#booking">Preview inquiry</a>
+      </div>
+    </section>
+
+    <section class="story" id="experiences">
+      <article class="story-panel reveal">
+        <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=2200&q=86" alt="Private rooms surrounded by quiet gardens" data-parallax-panel>
+        <div class="story-content">
+          <div class="eyebrow">Stay</div>
+          <h2>Private rooms surrounded by quiet gardens.</h2>
+          <p>Soft interiors, open air, and space to arrive slowly.</p>
+        </div>
+      </article>
+      <article class="story-panel reveal">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2200&q=86" alt="Seasonal tables prepared for golden evenings" data-parallax-panel>
+        <div class="story-content">
+          <div class="eyebrow">Dine</div>
+          <h2>Seasonal tables for slow mornings and golden evenings.</h2>
+          <p>Warm hospitality expressed through food, light, and ritual.</p>
+        </div>
+      </article>
+      <article class="story-panel reveal">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=86" alt="Wedding and celebration setting" data-parallax-panel>
+        <div class="story-content">
+          <div class="eyebrow">Gather</div>
+          <h2>A graceful setting for retreats and celebrations.</h2>
+          <p>Destination moments that feel considered before guests ever arrive.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="rooms" id="stay">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow">Room showcase</div>
+          <h2>Choose the mood of the stay.</h2>
+          <p>Three visual room moments, built to feel more like a premium showcase than a listing grid.</p>
+        </div>
+        <div class="room-track">
+          <article class="room-card tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=900&q=86" alt="Garden Suite" />
+            <div class="room-body">
+              <h3>Garden Suite</h3>
+              <p>Quiet privacy near garden paths.</p>
+              <span class="price">From $89 / night</span>
+              <a class="text-link" href="#booking">View room <svg><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+          <article class="room-card tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=86" alt="Pool View Room" />
+            <div class="room-body">
+              <h3>Pool View Room</h3>
+              <p>Open light, water, and slow afternoons.</p>
+              <span class="price">From $129 / night</span>
+              <a class="text-link" href="#booking">View room <svg><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+          <article class="room-card tilt-card reveal">
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=86" alt="Family Estate Villa" />
+            <div class="room-body">
+              <h3>Family Estate Villa</h3>
+              <p>A private villa for longer escapes.</p>
+              <span class="price">From $249 / night</span>
+              <a class="text-link" href="#booking">View room <svg><use href="#i-arrow"/></svg></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+      <div class="container">
+        <div class="gallery-head reveal">
+          <div>
+            <div class="eyebrow">Gallery</div>
+            <h2>Moments that move.</h2>
+          </div>
+          <p>Large cinematic images, subtle reveal, and a smooth lightbox experience.</p>
+        </div>
+        <div class="gallery-grid">
+          <button class="gallery-item wide reveal" type="button"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1000&q=86" alt="Resort pool" /></button>
+          <button class="gallery-item reveal" type="button"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=86" alt="Room interior" /></button>
+          <button class="gallery-item tall reveal" type="button"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=86" alt="Garden nature" /></button>
+          <button class="gallery-item reveal" type="button"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=86" alt="Dining table" /></button>
+          <button class="gallery-item wide reveal" type="button"><img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1000&q=86" alt="Wedding event setup" /></button>
+          <button class="gallery-item reveal" type="button"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=86" alt="Spa wellness" /></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking" id="booking">
+      <div class="container booking-layout">
+        <div class="reveal">
+          <div class="eyebrow">Inquiry</div>
+          <h2>Begin planning your stay.</h2>
+          <p>A compact premium inquiry flow for resorts, villas, retreats, and event venues.</p>
+        </div>
+        <form class="booking-form reveal" id="bookingForm">
+          <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Your name" required></div>
+          <div class="field"><label for="phone">Phone / Telegram</label><input id="phone" name="phone" type="text" placeholder="+855..." required></div>
+          <div class="field"><label for="stayType">Stay type</label><select id="stayType" name="stayType" required><option value="">Select stay type</option><option>Couple weekend</option><option>Family retreat</option><option>Wedding or event</option><option>Private dining</option></select></div>
+          <div class="field"><label for="guests">Guests</label><input id="guests" name="guests" type="number" min="1" placeholder="2" required></div>
+          <div class="field"><label for="arrival">Arrival date</label><input id="arrival" name="arrival" type="date" required></div>
+          <div class="field"><label for="departure">Departure date</label><input id="departure" name="departure" type="date" required></div>
+          <div class="field full"><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell us about your stay or event."></textarea></div>
+          <div class="form-actions"><p>This demo sends an inquiry only.</p><button class="btn btn-green" type="submit">Plan your stay</button></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-cta reveal">
+        <div>
+          <h2>Ready to make your own premium resort website?</h2>
+          <p>We can customize this motion website with your resort name, rooms, gallery, experiences, booking flow, and contact details.</p>
+        </div>
+        <a class="btn btn-primary" href="index.html#request">Request this website style</a>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <h3>Sovanna Estate Resort</h3>
+          <p>Premium Motion resort demo for high-end hospitality brands. Demo website style by BizWeb KH.</p>
+        </div>
+        <div><h4>Stay</h4><div class="footer-links"><a href="#stay">Garden Suite</a><a href="#stay">Pool View Room</a><a href="#stay">Estate Villa</a></div></div>
+        <div><h4>Experiences</h4><div class="footer-links"><a href="#experiences">Stay</a><a href="#experiences">Dine</a><a href="#experiences">Gather</a></div></div>
+        <div><h4>Gallery</h4><div class="footer-links"><a href="#gallery">Pool</a><a href="#gallery">Rooms</a><a href="#gallery">Events</a></div></div>
+        <div><h4>Contact</h4><div class="footer-links"><a href="#booking">Inquiry</a><a href="index.html#request">BizWeb KH</a></div></div>
+      </div>
+      <div class="footer-bottom"><span>Copyright 2026 Sovanna Estate Resort. Demo content only.</span><span>Demo website style by BizWeb KH</span></div>
+    </div>
+  </footer>
+
+  <a class="btn sticky-cta" id="stickyCta" href="index.html#request">Request this website style <svg><use href="#i-arrow"/></svg></a>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" type="button" aria-label="Close gallery preview"><svg><use href="#i-close"/></svg></button>
+    <img id="lightboxImage" src="" alt="">
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <svg><use href="#i-check"/></svg>
+    <div><strong>Inquiry prepared</strong><span>Thank you. Your inquiry has been prepared for follow-up.</span></div>
+  </div>
+
+  <script>
+    const header = document.getElementById("siteHeader");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const closeMenu = document.querySelector(".close-menu");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const mobileLinks = document.querySelectorAll(".mobile-links a");
+    const motionStage = document.getElementById("motionStage");
+    const bookingForm = document.getElementById("bookingForm");
+    const toast = document.getElementById("toast");
+    const stickyCta = document.getElementById("stickyCta");
+    const galleryItems = document.querySelectorAll(".gallery-item");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxClose = document.querySelector(".lightbox-close");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    let stageFrame = null;
+    let toastTimer = null;
+
+    function updateHeader() {
+      header.classList.toggle("scrolled", window.scrollY > 60);
+    }
+
+    function openMenu() {
+      mobileMenu.classList.add("active");
+      mobileMenu.setAttribute("aria-hidden", "false");
+      menuToggle.setAttribute("aria-expanded", "true");
+      document.body.classList.add("menu-open");
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove("active");
+      mobileMenu.setAttribute("aria-hidden", "true");
+      menuToggle.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("menu-open");
+    }
+
+    function showToast() {
+      clearTimeout(toastTimer);
+      toast.classList.add("show");
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 4300);
+    }
+
+    function openLightbox(image) {
+      lightboxImage.src = image.src;
+      lightboxImage.alt = image.alt;
+      lightbox.classList.add("active");
+      lightbox.setAttribute("aria-hidden", "false");
+      document.body.classList.add("lightbox-open");
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("active");
+      lightbox.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("lightbox-open");
+      lightboxImage.src = "";
+      lightboxImage.alt = "";
+    }
+
+    function handleStageMove(event) {
+      if (!finePointer || reducedMotion) return;
+      if (stageFrame) cancelAnimationFrame(stageFrame);
+      stageFrame = requestAnimationFrame(() => {
+        const rect = motionStage.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        motionStage.style.transform = `rotateY(${x * 9}deg) rotateX(${-y * 7}deg)`;
+      });
+    }
+
+    function resetStage() {
+      if (!finePointer || reducedMotion) return;
+      motionStage.style.transform = "";
+    }
+
+    function setupRoomTilt() {
+      if (!finePointer || reducedMotion) return;
+      document.querySelectorAll(".tilt-card").forEach((card) => {
+        let frame = null;
+        card.addEventListener("mousemove", (event) => {
+          if (frame) cancelAnimationFrame(frame);
+          frame = requestAnimationFrame(() => {
+            const rect = card.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width - 0.5;
+            const y = (event.clientY - rect.top) / rect.height - 0.5;
+            card.style.transform = `rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-7px)`;
+          });
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "";
+        });
+      });
+    }
+
+    function updateStoryParallax() {
+      if (reducedMotion) return;
+      document.querySelectorAll("[data-parallax-panel]").forEach((image) => {
+        const rect = image.parentElement.getBoundingClientRect();
+        const shift = (window.innerHeight / 2 - rect.top) * 0.06;
+        image.style.setProperty("--parallax", shift + "px");
+      });
+    }
+
+    window.addEventListener("scroll", () => {
+      updateHeader();
+      updateStoryParallax();
+    }, { passive: true });
+
+    updateHeader();
+
+    menuToggle.addEventListener("click", openMenu);
+    closeMenu.addEventListener("click", closeMobileMenu);
+    mobileLinks.forEach((link) => link.addEventListener("click", closeMobileMenu));
+    motionStage.addEventListener("mousemove", handleStageMove);
+    motionStage.addEventListener("mouseleave", resetStage);
+
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", (event) => {
+        const target = document.querySelector(anchor.getAttribute("href"));
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    galleryItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        const image = item.querySelector("img");
+        if (image) openLightbox(image);
+      });
+    });
+
+    lightboxClose.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+
+    bookingForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      showToast();
+      bookingForm.reset();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        if (mobileMenu.classList.contains("active")) closeMobileMenu();
+        if (lightbox.classList.contains("active")) closeLightbox();
+      }
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll(".reveal").forEach((item) => revealObserver.observe(item));
+
+    const stickyGuard = new IntersectionObserver((entries) => {
+      const shouldHide = entries.some((entry) => entry.isIntersecting);
+      stickyCta.classList.toggle("hidden", shouldHide && window.innerWidth <= 760);
+    }, { threshold: 0.08 });
+
+    stickyGuard.observe(document.getElementById("booking"));
+    stickyGuard.observe(document.querySelector(".footer"));
+    setupRoomTilt();
+    updateStoryParallax();
+  </script>
+</body>
+</html>

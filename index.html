@@ -1,0 +1,2123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BizWeb KH | Website Demos for Cambodian SMEs</title>
+<meta name="description" content="Browse completed website demo styles for Cambodian SMEs and request a custom business website.">
+<meta property="og:title" content="BizWeb KH | Website Demos for Cambodian SMEs">
+<meta property="og:description" content="Choose a website demo style and request a custom business website for your SME.">
+<meta property="og:type" content="website">
+<!-- Add bizweb-kh-og-image.png in the same folder before publishing -->
+<meta property="og:image" content="bizweb-kh-og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BizWeb KH | Website Demos for Cambodian SMEs">
+<meta name="twitter:description" content="Choose a website demo style and request a custom business website for your SME.">
+<meta name="twitter:image" content="bizweb-kh-og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@300;400;500;600;700;800&family=Noto+Serif+Khmer:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESET & BASE
+============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ink:#07090f;--ink-2:#0d1120;--ink-3:#131929;--ink-4:#1a2236;
+  --border:rgba(99,140,255,0.13);--border-hi:rgba(99,140,255,0.38);
+  --glow:#3d7bff;--glow-soft:rgba(61,123,255,0.18);--glow-2:#00d4ff;
+  --text:#e8edf8;--text-2:#8a9bc7;--text-3:#4f6090;
+  --accent:#3d7bff;--accent-2:#00d4ff;--green:#00e5a0;--amber:#ffb340;--rose:#ff5a7e;
+  --radius:12px;--radius-sm:7px;--nav-h:78px;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--ink);color:var(--text);font-family:'Outfit',sans-serif;font-size:15px;line-height:1.6;min-height:100vh;overflow-x:hidden;}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--ink-2);}::-webkit-scrollbar-thumb{background:var(--ink-4);border-radius:3px;}
+::selection{background:rgba(61,123,255,0.3);color:#fff;}
+.mono{font-family:'DM Mono',monospace;}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5;}
+
+/* ============================================================
+   SVG ICON SYSTEM
+============================================================ */
+.ico{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;vertical-align:middle;}
+.ico svg{display:block;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;}
+
+/* glowing icon container */
+.icon-box{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;background:var(--ink-4);border:1px solid var(--border);flex-shrink:0;transition:all .25s;}
+.icon-box svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;}
+.icon-box-sm{width:32px;height:32px;border-radius:8px;}
+.icon-box-lg{width:52px;height:52px;border-radius:14px;}
+
+/* chip icon */
+.chip-ico{display:inline-flex;align-items:center;gap:6px;}
+.chip-ico svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;flex-shrink:0;}
+
+/* ============================================================
+   NAV
+============================================================ */
+nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;background:rgba(7,9,15,0.88);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:0;}
+.nav-logo{display:flex;align-items:center;white-space:nowrap;flex-shrink:0;}
+.nav-logo-img{display:block;width:280px;height:auto;max-height:68px;object-fit:contain;}
+.nav-logo-mark{width:28px;height:28px;border-radius:8px;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px rgba(61,123,255,0.45);flex-shrink:0;}
+.nav-logo-mark svg{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;}
+.nav-links{display:flex;align-items:center;gap:2px;margin-left:32px;list-style:none;}
+.nav-links a{font-size:13px;color:var(--text-2);padding:6px 11px;border-radius:var(--radius-sm);transition:color .2s,background .2s;white-space:nowrap;}
+.nav-links a:hover{color:var(--text);background:var(--ink-3);}
+.nav-spacer{flex:1;}
+.nav-actions{display:flex;align-items:center;gap:10px;}
+
+.theme-toggle{height:32px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,0.035);color:var(--text-2);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.02em;padding:3px 9px 3px 4px;display:inline-flex;align-items:center;gap:7px;cursor:pointer;transition:all .2s;}
+.theme-toggle:hover{color:var(--text);border-color:var(--border-hi);background:var(--ink-3);}
+.theme-toggle-knob{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 0 16px rgba(61,123,255,.35);display:block;}
+.theme-toggle-text{line-height:1;}
+
+.btn{display:inline-flex;align-items:center;gap:7px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;border:none;border-radius:var(--radius-sm);cursor:pointer;transition:all .2s;white-space:nowrap;text-decoration:none;}
+.btn svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;flex-shrink:0;}
+.btn-ghost{background:transparent;color:var(--text-2);border:1px solid var(--border);padding:7px 14px;}
+.btn-ghost:hover{color:var(--text);border-color:var(--border-hi);background:var(--ink-3);}
+.btn-primary{background:var(--accent);color:#fff;padding:7px 16px;box-shadow:0 0 20px rgba(61,123,255,0.35);}
+.btn-primary:hover{background:#5590ff;box-shadow:0 0 28px rgba(61,123,255,0.5);transform:translateY(-1px);}
+.btn-sm{font-size:12px;padding:5px 12px;}
+.btn-outline{background:transparent;color:var(--accent-2);border:1px solid rgba(0,212,255,0.3);padding:7px 14px;}
+.btn-outline:hover{background:rgba(0,212,255,0.08);border-color:rgba(0,212,255,0.6);}
+.btn-green{background:var(--green);color:#06170e;padding:7px 16px;font-weight:600;}
+.btn-green:hover{background:#00ffb3;transform:translateY(-1px);}
+
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:6px;background:none;border:none;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text-2);border-radius:2px;transition:all .3s;}
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero{padding-top:calc(var(--nav-h) + 64px);padding-bottom:56px;padding-left:24px;padding-right:24px;position:relative;text-align:center;overflow:hidden;}
+.hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:420px;background:radial-gradient(ellipse at center top,rgba(61,123,255,0.18) 0%,transparent 70%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--ink-3);border:1px solid var(--border);border-radius:999px;padding:5px 14px;font-size:12px;font-family:'DM Mono',monospace;color:var(--text-2);margin-bottom:28px;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);flex-shrink:0;}
+.hero h1{font-size:clamp(32px,5.5vw,62px);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:#fff;max-width:820px;margin:0 auto 20px;}
+.hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:clamp(14px,2vw,17px);color:var(--text-2);max-width:600px;margin:0 auto 36px;line-height:1.7;}
+.hero-proof{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:760px;margin:-16px auto 28px;}
+.hero-proof span{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,0.035);border:1px solid var(--border);border-radius:999px;padding:7px 12px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text-2);}
+.hero-proof svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;color:var(--accent-2);flex-shrink:0;}
+
+/* search */
+.search-wrap{max-width:680px;margin:0 auto 28px;position:relative;}
+.search-icon-wrap{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--text-3);pointer-events:none;display:flex;align-items:center;}
+.search-icon-wrap svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;}
+#hero-search{width:100%;background:var(--ink-3);border:1px solid var(--border);border-radius:12px;padding:16px 18px 16px 48px;font-family:'Outfit',sans-serif;font-size:15px;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;}
+#hero-search::placeholder{color:var(--text-3);}
+#hero-search:focus{border-color:var(--border-hi);box-shadow:0 0 0 3px rgba(61,123,255,0.12),0 0 30px rgba(61,123,255,0.08);}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:780px;margin:0 auto;}
+.chip{font-size:12px;font-family:'DM Mono',monospace;color:var(--text-2);background:var(--ink-3);border:1px solid var(--border);border-radius:999px;padding:6px 14px;cursor:pointer;transition:all .18s;user-select:none;display:inline-flex;align-items:center;gap:6px;}
+.chip svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;flex-shrink:0;}
+.chip:hover,.chip.active{color:var(--accent-2);border-color:rgba(0,212,255,0.4);background:rgba(0,212,255,0.07);}
+
+/* ============================================================
+   STATS
+============================================================ */
+.stats{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--ink-2);padding:0 24px;}
+.stats-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
+.stat-item{text-align:center;padding:22px 16px;border-right:1px solid var(--border);}
+.stat-item:last-child{border-right:none;}
+.stat-val{display:block;font-size:26px;font-weight:700;font-family:'DM Mono',monospace;color:#fff;line-height:1;margin-bottom:5px;}
+.stat-val span{color:var(--accent);}
+.stat-label{font-size:12px;color:var(--text-3);}
+
+/* ============================================================
+   WHY CHOOSE
+============================================================ */
+.why-section{background:linear-gradient(180deg,var(--ink),var(--ink-2));}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.why-card{background:linear-gradient(180deg,rgba(255,255,255,0.035),rgba(255,255,255,0.018));border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:border-color .25s,transform .25s,box-shadow .25s;min-height:196px;}
+.why-card:hover{transform:translateY(-3px);border-color:var(--border-hi);box-shadow:0 18px 44px rgba(0,0,0,0.28),0 0 34px rgba(61,123,255,0.06);}
+.why-icon{width:46px;height:46px;border-radius:12px;background:rgba(61,123,255,0.10);border:1px solid rgba(99,140,255,0.22);display:flex;align-items:center;justify-content:center;color:var(--accent-2);margin-bottom:18px;}
+.why-icon svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;}
+.why-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:-0.01em;}
+.why-text{font-size:13px;color:var(--text-2);line-height:1.65;}
+.value-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px;}
+.value-item{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:var(--radius);padding:13px 14px;color:var(--text-2);font-size:13px;}
+.value-item svg{color:var(--accent-2);fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;flex-shrink:0;}
+
+/* ============================================================
+   SECTION BASE
+============================================================ */
+.section{padding:72px 24px;position:relative;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;gap:16px;flex-wrap:wrap;}
+.section-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+.section-title{font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-0.02em;color:#fff;}
+.section-sub{font-size:14px;color:var(--text-2);margin-top:6px;}
+
+/* ============================================================
+   FILTER BAR
+============================================================ */
+.filter-bar{background:var(--ink-2);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:28px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;}
+.filter-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.filter-label{font-size:11px;font-family:'DM Mono',monospace;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;white-space:nowrap;}
+.filter-chip{font-size:12px;color:var(--text-2);background:var(--ink-3);border:1px solid var(--border);border-radius:999px;padding:4px 12px;cursor:pointer;transition:all .18s;user-select:none;}
+.filter-chip:hover{color:var(--text);border-color:var(--border-hi);}
+.filter-chip.active{color:#fff;background:var(--accent);border-color:var(--accent);box-shadow:0 0 12px rgba(61,123,255,0.3);}
+.filter-clear{font-size:12px;font-family:'DM Mono',monospace;color:var(--text-3);cursor:pointer;transition:color .2s;background:none;border:none;margin-left:auto;display:flex;align-items:center;gap:5px;}
+.filter-clear:hover{color:var(--rose);}
+.filter-clear svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;}
+
+/* ============================================================
+   CARD GRID
+============================================================ */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.demo-card{background:var(--ink-3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .25s,box-shadow .25s,transform .25s;cursor:pointer;position:relative;display:flex;flex-direction:column;}
+.demo-card:hover{border-color:var(--border-hi);box-shadow:0 0 0 1px var(--border-hi),0 16px 40px rgba(0,0,0,0.4),0 0 40px rgba(61,123,255,0.06);transform:translateY(-3px);}
+.card-thumb{width:100%;height:180px;overflow:hidden;background:var(--ink-4);position:relative;}
+.card-thumb.live-thumb{height:206px;background:linear-gradient(180deg,#060914,#111827);padding:10px;}
+.card-thumb-inner{width:100%;height:100%;position:relative;overflow:hidden;}
+.live-preview-shell{position:relative;width:100%;height:100%;overflow:hidden;border:1px solid rgba(99,140,255,0.22);border-radius:10px;background:#07090f;box-shadow:inset 0 0 0 1px rgba(255,255,255,0.025),0 18px 42px rgba(0,0,0,0.32);}
+.live-preview-bar{height:22px;display:flex;align-items:center;gap:5px;padding:0 9px;background:rgba(7,9,15,0.92);border-bottom:1px solid rgba(99,140,255,0.16);position:relative;z-index:3;}
+.live-preview-dot{width:6px;height:6px;border-radius:50%;background:rgba(0,212,255,0.72);box-shadow:0 0 10px rgba(0,212,255,0.5);}
+.live-preview-url{height:5px;width:72px;border-radius:999px;background:rgba(255,255,255,0.12);margin-left:4px;}
+.live-preview-frame{position:absolute;left:0;right:0;top:22px;bottom:0;overflow:hidden;background:var(--ink);}
+.live-preview-frame iframe{width:1440px;height:980px;border:0;transform:scale(0.235);transform-origin:top left;pointer-events:none;background:#fff;}
+.live-preview-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,9,15,0.04),rgba(7,9,15,0.22));pointer-events:none;}
+.demo-card.live-card{border-color:rgba(0,212,255,0.18);}
+.demo-card.live-card:hover{border-color:rgba(0,212,255,0.46);box-shadow:0 0 0 1px rgba(0,212,255,0.22),0 18px 44px rgba(0,0,0,0.44),0 0 44px rgba(0,212,255,0.08);}
+.mockup{width:100%;height:100%;position:relative;overflow:hidden;}
+.site-shot{--c1:#101827;--c2:#1d2a44;--ac:#3d7bff;--tx:#e8edf8;width:100%;height:100%;background:linear-gradient(155deg,var(--c1),var(--c2));position:relative;overflow:hidden;color:var(--tx);font-family:'Outfit',sans-serif;}
+.site-shot::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 18%,color-mix(in srgb,var(--ac),transparent 70%),transparent 34%),linear-gradient(180deg,rgba(255,255,255,0.035),transparent);pointer-events:none;}
+.shot-browser{height:20px;background:rgba(0,0,0,0.32);display:flex;align-items:center;gap:5px;padding:0 8px;position:relative;z-index:1;}
+.shot-dot{width:5px;height:5px;border-radius:50%;background:var(--ac);box-shadow:0 0 8px color-mix(in srgb,var(--ac),transparent 30%);}
+.shot-url{height:5px;border-radius:2px;background:rgba(255,255,255,0.14);width:46px;}
+.shot-nav{margin-left:auto;display:flex;gap:4px;}
+.shot-nav span{width:18px;height:3px;border-radius:2px;background:rgba(255,255,255,0.15);}
+.shot-nav span:last-child{background:var(--ac);opacity:.75;}
+.shot-content{position:relative;z-index:1;height:160px;padding:10px;}
+.shot-title{height:8px;border-radius:3px;background:var(--tx);opacity:.9;}
+.shot-line{height:4px;border-radius:2px;background:var(--tx);opacity:.35;}
+.shot-line.dim{opacity:.16;}
+.shot-pill{height:10px;border-radius:999px;background:var(--ac);box-shadow:0 0 10px color-mix(in srgb,var(--ac),transparent 70%);}
+.shot-panel{background:rgba(255,255,255,0.075);border:1px solid rgba(255,255,255,0.08);border-radius:7px;}
+.shot-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.075);border-radius:6px;}
+.shot-img{background:linear-gradient(135deg,rgba(255,255,255,0.18),rgba(255,255,255,0.045));border-radius:6px;border:1px solid rgba(255,255,255,0.07);}
+.shot-mini{width:18px;height:18px;border-radius:6px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.08);}
+.shot-price{height:5px;border-radius:2px;background:var(--ac);opacity:.85;}
+.site-dental .shot-content{display:grid;grid-template-columns:1.15fr .85fr;gap:8px;}
+.site-dental .shot-hero{padding:10px;}
+.site-dental .shot-hero .shot-title{width:78%;margin-bottom:6px;}
+.site-dental .shot-hero .shot-line{width:62%;margin-bottom:4px;}
+.site-dental .shot-hero .shot-pill{width:54px;margin-top:10px;}
+.site-dental .shot-services{display:grid;grid-template-columns:1fr 1fr;gap:5px;align-content:start;}
+.site-dental .shot-services .shot-card{height:45px;padding:6px;}
+.site-beauty .shot-content{padding:12px 10px;background:linear-gradient(120deg,rgba(255,255,255,0.05),transparent);}
+.site-beauty .shot-hero{display:flex;gap:9px;align-items:center;margin-bottom:9px;}
+.site-beauty .shot-img{width:76px;height:56px;border-radius:12px;}
+.site-beauty .shot-copy{flex:1;}
+.site-beauty .shot-title{width:72%;margin-bottom:7px;}
+.site-beauty .shot-line{width:92%;margin-bottom:4px;}
+.site-beauty .shot-treatments{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.site-beauty .shot-card{height:48px;padding:6px;border-radius:10px;}
+.site-cafe .shot-content{display:grid;grid-template-columns:.85fr 1.15fr;gap:8px;}
+.site-cafe .shot-feature{height:136px;border-radius:10px;background:linear-gradient(145deg,rgba(255,255,255,0.18),rgba(0,0,0,0.12));border:1px solid rgba(255,255,255,0.08);}
+.site-cafe .shot-menu{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.site-cafe .shot-card{height:63px;padding:7px;}
+.site-school .shot-content{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.site-school .shot-hero{padding:10px;}
+.site-school .shot-title{width:82%;margin-bottom:7px;}
+.site-school .shot-pill{width:58px;margin-top:9px;}
+.site-school .shot-courses{display:grid;gap:6px;}
+.site-school .shot-card{height:41px;padding:7px;display:flex;gap:6px;align-items:center;}
+.site-garage .shot-content{display:grid;grid-template-rows:52px 1fr;gap:8px;}
+.site-garage .shot-hero{display:flex;align-items:center;justify-content:space-between;padding:10px;background:rgba(0,0,0,0.22);border-radius:8px;border:1px solid rgba(255,255,255,0.07);}
+.site-garage .shot-title{width:92px;}
+.site-garage .shot-pill{width:48px;}
+.site-garage .shot-repairs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.site-garage .shot-card{height:72px;padding:7px;}
+.site-realestate .shot-content{display:grid;grid-template-rows:36px 1fr;gap:8px;}
+.site-realestate .shot-search{display:flex;gap:5px;align-items:center;padding:7px;}
+.site-realestate .shot-search .shot-line{flex:1;height:6px;}
+.site-realestate .shot-properties{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.site-realestate .shot-card{padding:5px;}
+.site-realestate .shot-img{height:42px;margin-bottom:6px;}
+.site-product .shot-content{display:grid;grid-template-columns:.8fr 1.2fr;gap:8px;}
+.site-product .shot-product{height:136px;border-radius:14px;background:radial-gradient(circle at 45% 36%,var(--ac),rgba(255,255,255,0.08) 36%,rgba(0,0,0,0.18) 37%);border:1px solid rgba(255,255,255,0.08);}
+.site-product .shot-catalog{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.site-product .shot-card{height:63px;padding:6px;}
+.site-hotel .shot-content{display:grid;grid-template-rows:55px 1fr;gap:8px;}
+.site-hotel .shot-hero{padding:10px;background:linear-gradient(90deg,rgba(255,255,255,0.12),rgba(255,255,255,0.04));border-radius:10px;border:1px solid rgba(255,255,255,0.07);}
+.site-hotel .shot-title{width:68%;margin-bottom:6px;}
+.site-hotel .shot-rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.site-hotel .shot-card{padding:5px;}
+.site-hotel .shot-img{height:36px;margin-bottom:5px;}
+.site-resort .shot-content{display:grid;grid-template-columns:1fr .9fr;gap:8px;}
+.site-resort .shot-estate{height:136px;border-radius:12px;background:linear-gradient(145deg,rgba(255,255,255,0.16),rgba(0,0,0,0.18));border:1px solid rgba(255,255,255,0.08);position:relative;overflow:hidden;}
+.site-resort .shot-estate:before{content:'';position:absolute;left:14px;right:14px;bottom:18px;height:34px;border-radius:50% 50% 0 0;background:var(--ac);opacity:.42;}
+.site-resort .shot-estate:after{content:'';position:absolute;left:34px;right:34px;bottom:48px;height:26px;border-radius:50% 50% 0 0;background:rgba(255,255,255,0.18);}
+.site-resort .shot-rooms{display:grid;gap:6px;}
+.site-resort .shot-card{height:41px;padding:7px;display:flex;gap:6px;align-items:center;}
+.site-finance .shot-content{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.site-finance .shot-trust{padding:11px;}
+.site-finance .shot-title{width:82%;margin-bottom:8px;}
+.site-finance .shot-benefits{display:grid;gap:6px;}
+.site-finance .shot-card{height:39px;padding:7px;display:flex;gap:6px;align-items:center;}
+.site-event .shot-content{display:grid;grid-template-columns:1fr .75fr;gap:8px;}
+.site-event .shot-offer{padding:12px;background:rgba(0,0,0,0.24);border-radius:10px;border:1px solid rgba(255,255,255,0.08);}
+.site-event .shot-title{width:92%;height:12px;margin-bottom:7px;}
+.site-event .shot-pill{width:74px;height:14px;margin-top:12px;}
+.site-event .shot-count{display:grid;gap:6px;}
+.site-event .shot-card{height:30px;padding:6px;}
+.site-service .shot-content{display:grid;grid-template-rows:45px 1fr;gap:8px;}
+.site-service .shot-hero{padding:9px;display:flex;align-items:center;justify-content:space-between;}
+.site-service .shot-title{width:105px;}
+.site-service .shot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.site-service .shot-card{height:41px;padding:6px;}
+.site-shop .shot-content{display:grid;grid-template-rows:34px 1fr;gap:8px;}
+.site-shop .shot-tabs{display:flex;gap:6px;align-items:center;}
+.site-shop .shot-tabs .shot-pill{width:48px;}
+.site-shop .shot-products{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.site-shop .shot-card{height:88px;padding:5px;}
+.site-shop .shot-img{height:38px;margin-bottom:6px;}
+.card-body{padding:14px 16px;display:flex;flex-direction:column;flex:1;min-width:0;}
+.card-tags{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;}
+.tag{font-size:10px;font-family:'DM Mono',monospace;border-radius:4px;padding:2px 7px;font-weight:400;letter-spacing:0.04em;}
+.tag-industry{background:rgba(61,123,255,0.12);color:#7aa8ff;border:1px solid rgba(61,123,255,0.2);}
+.tag-style{background:rgba(0,212,255,0.10);color:#5de8ff;border:1px solid rgba(0,212,255,0.18);}
+.tag-budget{background:rgba(0,229,160,0.10);color:#00e5a0;border:1px solid rgba(0,229,160,0.18);}
+.tag-live{background:rgba(0,212,255,0.12);color:#7df1ff;border:1px solid rgba(0,212,255,0.42);box-shadow:0 0 14px rgba(0,212,255,0.16);}
+.card-name{font-size:15px;font-weight:600;color:#fff;margin-bottom:5px;}
+.card-desc{font-size:12px;color:var(--text-2);line-height:1.55;margin-bottom:12px;}
+.card-bestfor{font-size:11px;font-family:'DM Mono',monospace;color:var(--text-3);margin-bottom:12px;}
+.card-bestfor strong{color:var(--text-2);}
+.card-footer{display:flex;align-items:center;padding-top:12px;border-top:1px solid var(--border);margin-top:auto;min-width:0;}
+.card-actions{display:flex;gap:10px;flex-wrap:wrap;width:100%;min-width:0;}
+.card-actions .btn{justify-content:center;flex:1 1 140px;min-width:0;min-height:36px;box-sizing:border-box;text-align:center;white-space:normal;line-height:1.2;}
+.no-results{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-3);}
+.no-results h3{color:var(--text-2);margin-bottom:8px;}
+.featured-live-note{margin:-10px 0 24px;padding:18px 20px;background:linear-gradient(135deg,rgba(61,123,255,0.10),rgba(0,212,255,0.05));border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 18px 42px rgba(0,0,0,0.18);}
+.featured-live-title{display:flex;align-items:center;gap:9px;font-size:16px;font-weight:700;color:#fff;margin-bottom:5px;}
+.featured-live-title svg{fill:none;stroke:var(--accent-2);stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;}
+.featured-live-note p{font-size:13px;color:var(--text-2);max-width:760px;}
+
+/* ============================================================
+   QUIZ
+============================================================ */
+.quiz-section{background:var(--ink-2);}
+.quiz-wrap{max-width:680px;margin:0 auto;background:var(--ink-3);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+.quiz-progress{height:3px;background:var(--ink-4);}
+.quiz-progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .4s ease;border-radius:0 2px 2px 0;}
+.quiz-inner{padding:36px;}
+.quiz-step{display:none;}
+.quiz-step.active{display:block;}
+.quiz-q-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;}
+.quiz-q{font-size:20px;font-weight:600;color:#fff;margin-bottom:24px;}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;}
+.quiz-opt{padding:11px 13px;background:var(--ink-4);border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:all .18s;text-align:left;color:var(--text-2);font-size:13px;font-family:'Outfit',sans-serif;display:flex;align-items:center;gap:9px;}
+.quiz-opt svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;flex-shrink:0;color:var(--text-3);transition:color .18s;}
+.quiz-opt:hover{border-color:var(--border-hi);color:var(--text);background:var(--ink-3);}
+.quiz-opt:hover svg{color:var(--accent-2);}
+.quiz-opt.selected{border-color:var(--accent);color:#fff;background:rgba(61,123,255,0.12);box-shadow:0 0 12px rgba(61,123,255,0.15);}
+.quiz-opt.selected svg{color:var(--accent-2);}
+.quiz-nav{display:flex;justify-content:space-between;align-items:center;}
+.quiz-dot-row{display:flex;gap:6px;}
+.quiz-dot{width:6px;height:6px;border-radius:50%;background:var(--ink-4);border:1px solid var(--border);transition:all .2s;}
+.quiz-dot.done{background:var(--accent);border-color:var(--accent);}
+.quiz-dot.cur{background:var(--accent-2);border-color:var(--accent-2);box-shadow:0 0 8px var(--accent-2);}
+.quiz-result{display:none;padding:36px;text-align:center;}
+.quiz-result.active{display:block;}
+.quiz-result-icon{margin-bottom:16px;display:flex;justify-content:center;}
+.quiz-result-icon .icon-box-lg{background:rgba(61,123,255,0.12);border-color:var(--border-hi);color:var(--accent-2);}
+.quiz-result-title{font-size:22px;font-weight:700;color:#fff;margin-bottom:8px;}
+.quiz-result-sub{color:var(--text-2);font-size:14px;margin-bottom:28px;}
+.quiz-recs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:28px;}
+.quiz-rec-chip{background:var(--ink-4);border:1px solid var(--border-hi);border-radius:8px;padding:8px 16px;font-size:13px;color:var(--text);cursor:pointer;transition:all .18s;}
+.quiz-rec-chip:hover{background:rgba(61,123,255,0.12);color:#fff;}
+
+/* ============================================================
+   PRICING
+============================================================ */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,minmax(260px,1fr));gap:24px;max-width:1120px;margin:0 auto;}
+.pricing-card{background:var(--ink-3);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;transition:border-color .25s,box-shadow .25s,transform .2s;position:relative;display:flex;flex-direction:column;min-width:0;}
+.pricing-card:hover{border-color:var(--border-hi);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,0.3);}
+.pricing-card.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 0 40px rgba(61,123,255,0.12);}
+.pricing-badge{position:absolute;top:-11px;left:20px;background:var(--accent);color:#fff;font-size:10px;font-family:'DM Mono',monospace;padding:3px 10px;border-radius:999px;letter-spacing:0.06em;text-transform:uppercase;}
+.pricing-icon-wrap{margin-bottom:14px;}
+.pricing-icon-wrap .icon-box-lg{background:var(--ink-4);border-color:var(--border);color:var(--text-2);transition:all .3s;}
+.pricing-card:hover .icon-box-lg,.pricing-card.featured .icon-box-lg{color:var(--accent-2);border-color:var(--border-hi);box-shadow:0 0 18px rgba(0,212,255,0.12);}
+.pricing-name{font-size:16px;font-weight:700;color:#fff;margin-bottom:4px;}
+.pricing-bestfor{font-size:12px;color:var(--text-3);margin-bottom:16px;font-family:'DM Mono',monospace;}
+.pricing-price{font-size:28px;font-weight:800;font-family:'DM Mono',monospace;color:#fff;margin-bottom:4px;}
+.pricing-price span{font-size:14px;color:var(--text-3);font-weight:400;}
+.pricing-delivery{font-size:11px;font-family:'DM Mono',monospace;color:var(--accent-2);margin-bottom:20px;display:flex;align-items:center;gap:6px;}
+.pricing-delivery svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;flex-shrink:0;}
+.pricing-features{list-style:none;margin-bottom:24px;flex:1;}
+.pricing-features li{font-size:13px;color:var(--text-2);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:flex-start;gap:8px;}
+.pricing-features li .check-ico{color:var(--green);flex-shrink:0;margin-top:1px;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;}
+.pricing-note{margin-top:18px;padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);background:rgba(255,255,255,0.025);font-size:12px;color:var(--text-2);line-height:1.65;}
+.care-addon{margin-top:22px;border:1px solid rgba(0,212,255,0.18);border-radius:var(--radius);background:linear-gradient(135deg,rgba(0,212,255,0.055),rgba(61,123,255,0.035));padding:20px;display:grid;grid-template-columns:1.1fr 1.4fr auto;gap:18px;align-items:center;}
+.care-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:3px;}
+.care-price{font-family:'DM Mono',monospace;font-size:18px;color:var(--accent-2);font-weight:700;}
+.care-text{font-size:13px;color:var(--text-2);line-height:1.65;}
+.care-points{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;}
+.care-points span{font-size:11px;color:var(--text-2);border:1px solid var(--border);border-radius:999px;padding:4px 9px;background:rgba(255,255,255,0.025);}
+
+/* ============================================================
+   BEFORE AFTER
+============================================================ */
+.compare-section{background:radial-gradient(circle at 50% 0,rgba(61,123,255,0.08),transparent 34%),var(--ink);}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:900px;margin:0 auto;}
+.compare-card{background:var(--ink-3);border:1px solid var(--border);border-radius:var(--radius);padding:26px;position:relative;overflow:hidden;}
+.compare-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--text-3);opacity:.5;}
+.compare-card.after{border-color:rgba(0,229,160,0.22);box-shadow:0 0 34px rgba(0,229,160,0.045);}
+.compare-card.after::before{background:linear-gradient(90deg,var(--green),var(--accent-2));opacity:1;}
+.compare-kicker{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;}
+.compare-card.after .compare-kicker{color:var(--green);}
+.compare-title{font-size:20px;font-weight:700;color:#fff;margin-bottom:18px;}
+.compare-list{list-style:none;display:grid;gap:11px;}
+.compare-list li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text-2);line-height:1.45;}
+.compare-list svg{margin-top:2px;flex-shrink:0;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.9;}
+.compare-card.before .compare-list svg{color:var(--text-3);}
+.compare-card.after .compare-list svg{color:var(--green);}
+
+/* ============================================================
+   HOW IT WORKS
+============================================================ */
+.how-section{background:var(--ink-2);}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;max-width:900px;margin:0 auto;}
+.steps::before{content:'';position:absolute;top:27px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--border-hi),var(--border-hi),transparent);}
+.step{text-align:center;padding:0 16px;position:relative;}
+.step-num{width:54px;height:54px;background:var(--ink-2);border:1px solid var(--border-hi);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'DM Mono',monospace;font-size:16px;font-weight:500;color:var(--accent-2);position:relative;z-index:1;transition:all .3s;}
+.step:hover .step-num{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 0 24px rgba(61,123,255,0.4);}
+.step-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:8px;}
+.step-desc{font-size:12px;color:var(--text-2);line-height:1.6;}
+
+/* ============================================================
+   FORM
+============================================================ */
+#request{background:var(--ink);}
+.form-wrap{max-width:640px;margin:0 auto;background:var(--ink-3);border:1px solid var(--border);border-radius:16px;padding:36px;}
+.form-helper{display:grid;gap:8px;margin-bottom:22px;padding:16px;background:rgba(61,123,255,0.07);border:1px solid rgba(99,140,255,0.18);border-radius:var(--radius-sm);}
+.form-helper p{display:flex;gap:9px;align-items:flex-start;color:var(--text-2);font-size:13px;line-height:1.45;}
+.form-helper svg{margin-top:2px;flex-shrink:0;color:var(--accent-2);fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.85;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group.full{grid-column:1/-1;}
+.form-label{font-size:12px;font-family:'DM Mono',monospace;color:var(--text-3);letter-spacing:0.05em;text-transform:uppercase;}
+.form-input,.form-select,.form-textarea{background:var(--ink-4);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;width:100%;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--border-hi);box-shadow:0 0 0 3px rgba(61,123,255,0.1);}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--text-3);}
+.form-select option{background:var(--ink-3);}
+.form-textarea{resize:vertical;min-height:90px;}
+
+/* ============================================================
+   FAQ
+============================================================ */
+.faq-list{max-width:720px;margin:0 auto;}
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 0;font-family:'Outfit',sans-serif;font-size:15px;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color .2s;}
+.faq-q:hover{color:#fff;}
+.faq-icon-wrap{flex-shrink:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:var(--text-3);transition:transform .25s,color .2s;}
+.faq-icon-wrap svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;}
+.faq-item.open .faq-icon-wrap{transform:rotate(45deg);color:var(--accent-2);}
+.faq-a{display:none;padding:0 0 18px;font-size:14px;color:var(--text-2);line-height:1.7;}
+.faq-item.open .faq-a{display:block;}
+
+/* ============================================================
+   CONTACT
+============================================================ */
+.contact-section{background:var(--ink-2);}
+.contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:800px;margin:0 auto;}
+.contact-btn{display:flex;flex-direction:column;align-items:center;gap:12px;background:var(--ink-3);border:1px solid var(--border);border-radius:var(--radius);padding:28px 16px;cursor:pointer;transition:all .22s;text-decoration:none;color:var(--text-2);}
+.contact-btn:hover{transform:translateY(-4px);border-color:var(--border-hi);color:#fff;box-shadow:0 12px 30px rgba(0,0,0,0.3);}
+.contact-btn .icon-box-lg{background:var(--ink-4);color:var(--text-2);transition:all .22s;}
+.contact-btn:hover .icon-box-lg{color:var(--accent-2);border-color:var(--border-hi);box-shadow:0 0 18px rgba(0,212,255,0.15);}
+.contact-label{font-size:13px;font-weight:500;}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer{background:var(--ink);border-top:1px solid var(--border);padding:36px 24px;text-align:center;}
+.footer-logo{font-family:'DM Mono',monospace;font-size:18px;color:#fff;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:9px;}
+.footer-logo-img{display:block;width:380px;max-width:90vw;height:auto;object-fit:contain;margin-bottom:16px;}
+.footer-logo-mark{width:24px;height:24px;border-radius:7px;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(61,123,255,0.4);}
+.footer-logo-mark svg{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;}
+.footer-sub{font-size:13px;color:var(--text-3);margin-bottom:20px;}
+.footer-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:20px;list-style:none;}
+.footer-links a{font-size:13px;color:var(--text-3);transition:color .2s;}
+.footer-links a:hover{color:var(--text);}
+.footer-copy{font-size:12px;font-family:'DM Mono',monospace;color:var(--text-3);}
+
+/* ============================================================
+   MODAL
+============================================================ */
+.modal-overlay{position:fixed;inset:0;background:rgba(7,9,15,0.8);backdrop-filter:blur(6px);z-index:1000;display:none;align-items:flex-start;justify-content:flex-end;}
+.modal-overlay.open{display:flex;}
+.modal-drawer{width:min(520px,100vw);height:100vh;background:var(--ink-2);border-left:1px solid var(--border);overflow-y:auto;animation:slideIn .28s ease;display:flex;flex-direction:column;}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0;}to{transform:translateX(0);opacity:1;}}
+.modal-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--ink-2);z-index:1;}
+.modal-title{font-size:16px;font-weight:600;color:#fff;}
+.modal-close{background:none;border:none;color:var(--text-3);cursor:pointer;padding:6px;border-radius:6px;transition:all .2s;display:flex;align-items:center;justify-content:center;}
+.modal-close:hover{color:var(--text);background:var(--ink-3);}
+.modal-close svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;}
+.modal-body{padding:24px;flex:1;}
+.modal-thumb{width:100%;height:220px;background:var(--ink-3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:20px;}
+.modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+.modal-name{font-size:22px;font-weight:700;color:#fff;margin-bottom:8px;}
+.modal-desc{font-size:14px;color:var(--text-2);line-height:1.65;margin-bottom:20px;}
+.modal-section-title{font-size:11px;font-family:'DM Mono',monospace;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;}
+.modal-list{list-style:none;margin-bottom:20px;display:flex;flex-wrap:wrap;gap:6px;}
+.modal-list li{font-size:12px;background:var(--ink-4);border:1px solid var(--border);border-radius:6px;padding:4px 10px;color:var(--text-2);}
+.modal-info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.modal-info-row:last-of-type{border-bottom:none;}
+.modal-info-key{color:var(--text-3);font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;}
+.modal-info-val{color:var(--text);}
+.modal-price-big{font-family:'DM Mono',monospace;font-size:28px;font-weight:700;color:var(--green);margin:20px 0 8px;}
+.modal-price-note{font-size:12px;color:var(--text-3);margin-bottom:24px;}
+.modal-ctas{display:flex;flex-direction:column;gap:10px;}
+.modal-ctas .btn{justify-content:center;padding:13px;font-size:14px;border-radius:var(--radius-sm);width:100%;}
+
+/* ============================================================
+   TOAST
+============================================================ */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink-3);border:1px solid var(--border-hi);border-radius:10px;padding:12px 22px;font-size:14px;color:var(--text);z-index:2000;opacity:0;pointer-events:none;transition:all .3s;white-space:nowrap;display:flex;align-items:center;gap:9px;}
+.toast svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;flex-shrink:0;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ============================================================
+   MOBILE MENU
+============================================================ */
+.mobile-menu{position:fixed;inset:0;background:var(--ink-2);z-index:850;display:none;flex-direction:column;padding:calc(var(--nav-h) + 20px) 24px 24px;gap:4px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{padding:14px 0;font-size:18px;color:var(--text-2);border-bottom:1px solid var(--border);transition:color .2s;}
+.mobile-menu a:hover{color:#fff;}
+
+/* ============================================================
+   LIGHT THEME
+============================================================ */
+html[data-theme="light"]{
+  --ink:#F6FAFF;--ink-2:#EEF6FF;--ink-3:#FFFFFF;--ink-4:#F3F7FC;
+  --border:rgba(29,123,255,0.14);--border-hi:rgba(29,123,255,0.34);
+  --glow:#1D7BFF;--glow-soft:rgba(29,123,255,0.12);--glow-2:#18C8FF;
+  --text:#071C3D;--text-2:#4A5B7A;--text-3:#7585A2;
+  --accent:#1D7BFF;--accent-2:#18C8FF;--green:#16B88F;--amber:#FF8A3D;--rose:#F95B7E;
+}
+html[data-theme="light"] body{background:#F6FAFF;color:var(--text);}
+html[data-theme="light"] body::before{opacity:.18;background-image:radial-gradient(circle at 18px 18px,rgba(29,123,255,.08) 1px,transparent 1px);background-size:42px 42px;}
+html[data-theme="light"] ::selection{background:rgba(29,123,255,.18);color:var(--text);}
+html[data-theme="light"] ::-webkit-scrollbar-track{background:#EEF6FF;}
+html[data-theme="light"] ::-webkit-scrollbar-thumb{background:#C9DDF7;}
+html[data-theme="light"] nav{background:rgba(255,255,255,.84);border-bottom:1px solid rgba(29,123,255,.16);box-shadow:0 12px 34px rgba(29,72,125,.08);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);}
+html[data-theme="light"] .nav-links{gap:6px;}
+html[data-theme="light"] .nav-links a{color:#4A5B7A;border-radius:999px;padding:7px 12px;}
+html[data-theme="light"] .nav-links a:hover{color:#1D7BFF;background:rgba(29,123,255,.08);}
+html[data-theme="light"] .theme-toggle{background:#FFFFFF;border-color:rgba(29,123,255,.18);color:#071C3D;box-shadow:0 8px 18px rgba(29,72,125,.08);}
+html[data-theme="light"] .theme-toggle:hover{color:#1D7BFF;background:#F7FBFF;border-color:rgba(29,123,255,.28);}
+html[data-theme="light"] .theme-toggle-knob{background:linear-gradient(135deg,#FF8A3D,#FFC08A);box-shadow:0 8px 18px rgba(255,138,61,.22);}
+html[data-theme="light"] .btn-ghost{background:#FFFFFF;color:#4A5B7A;border-color:rgba(29,123,255,.16);box-shadow:0 8px 18px rgba(29,72,125,.06);}
+html[data-theme="light"] .btn-ghost:hover{color:#1D7BFF;background:#F7FBFF;border-color:rgba(29,123,255,.28);}
+html[data-theme="light"] .btn-primary{background:linear-gradient(135deg,#1D7BFF,#18C8FF);box-shadow:0 14px 30px rgba(29,123,255,.22);}
+html[data-theme="light"] .btn-primary:hover{background:linear-gradient(135deg,#136EEA,#13B8EA);box-shadow:0 18px 34px rgba(29,123,255,.28);}
+html[data-theme="light"] .btn-outline{color:#1D7BFF;border-color:rgba(29,123,255,.24);background:#FFFFFF;}
+html[data-theme="light"] .btn-outline:hover{background:rgba(29,123,255,.07);border-color:rgba(29,123,255,.38);}
+html[data-theme="light"] .hamburger span{background:#071C3D;}
+html[data-theme="light"] .hero{padding-top:calc(var(--nav-h) + 44px);padding-bottom:58px;min-height:auto;height:auto;display:block;background:radial-gradient(circle at 78% 12%,rgba(255,138,61,.18),transparent 28%),radial-gradient(circle at 20% 0%,rgba(24,200,255,.20),transparent 32%),linear-gradient(180deg,#F6FAFF 0%,#FFFFFF 54%,#F1F7FF 100%);}
+html[data-theme="light"] .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.7),transparent 24%,transparent 76%,rgba(255,255,255,.72));pointer-events:none;}
+html[data-theme="light"] .hero > *:not(.hero-glow){position:relative;z-index:1;}
+html[data-theme="light"] .hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:820px;height:460px;pointer-events:none;z-index:0;background:radial-gradient(ellipse at center top,rgba(29,123,255,.20) 0%,rgba(24,200,255,.10) 36%,transparent 72%);}
+html[data-theme="light"] .hero-badge{margin-top:0;background:rgba(255,255,255,.86);border-color:rgba(29,123,255,.16);color:#4A5B7A;box-shadow:0 12px 34px rgba(29,72,125,.08);}
+html[data-theme="light"] .hero-badge-dot{background:#FF8A3D;box-shadow:0 0 12px rgba(255,138,61,.45);}
+html[data-theme="light"] .hero h1{margin-top:0;color:#071C3D;text-shadow:none;}
+html[data-theme="light"] .hero h1 span{background:linear-gradient(135deg,#1D7BFF 0%,#18C8FF 76%);-webkit-background-clip:text;background-clip:text;}
+html[data-theme="light"] .hero-sub{color:#4A5B7A;}
+html[data-theme="light"] .hero-proof span{background:rgba(255,255,255,.78);border-color:rgba(29,123,255,.13);color:#4A5B7A;box-shadow:0 10px 24px rgba(29,72,125,.06);}
+html[data-theme="light"] .hero-proof svg{color:#FF8A3D;}
+html[data-theme="light"] #hero-search{background:#FFFFFF;border-color:rgba(29,123,255,.15);color:#071C3D;box-shadow:0 18px 42px rgba(29,72,125,.10);}
+html[data-theme="light"] #hero-search:focus{border-color:#1D7BFF;box-shadow:0 0 0 4px rgba(29,123,255,.12),0 20px 48px rgba(29,72,125,.12);}
+html[data-theme="light"] #hero-search::placeholder{color:#7C8CA7;}
+html[data-theme="light"] .chip{background:#FFFFFF;border-color:rgba(29,123,255,.14);color:#4A5B7A;box-shadow:0 8px 18px rgba(29,72,125,.05);}
+html[data-theme="light"] .chip:hover,html[data-theme="light"] .chip.active{color:#1D7BFF;border-color:rgba(29,123,255,.32);background:rgba(29,123,255,.07);}
+html[data-theme="light"] .stats{background:#FFFFFF;border-color:rgba(29,123,255,.12);box-shadow:0 14px 34px rgba(29,72,125,.04);}
+html[data-theme="light"] .stat-item{border-color:rgba(29,123,255,.12);}
+html[data-theme="light"] .stat-val{color:#071C3D;}
+html[data-theme="light"] .stat-val span{color:#1D7BFF;}
+html[data-theme="light"] .stat-label{color:#4A5B7A;}
+html[data-theme="light"] .section{padding-top:88px;padding-bottom:88px;}
+html[data-theme="light"] .why-section,html[data-theme="light"] .quiz-section,html[data-theme="light"] .how-section,html[data-theme="light"] .contact-section{background:linear-gradient(180deg,#F6FAFF,#EEF6FF);}
+html[data-theme="light"] .section-title,html[data-theme="light"] .why-title,html[data-theme="light"] .pricing-name,html[data-theme="light"] .compare-title,html[data-theme="light"] .step-title,html[data-theme="light"] .quiz-q,html[data-theme="light"] .quiz-result-title,html[data-theme="light"] .card-name,html[data-theme="light"] .modal-name,html[data-theme="light"] .modal-title{color:#071C3D;}
+html[data-theme="light"] .section-sub,html[data-theme="light"] .why-text,html[data-theme="light"] .value-item,html[data-theme="light"] .card-desc,html[data-theme="light"] .pricing-bestfor,html[data-theme="light"] .pricing-features li,html[data-theme="light"] .pricing-note,html[data-theme="light"] .care-text,html[data-theme="light"] .compare-list li,html[data-theme="light"] .step-desc,html[data-theme="light"] .faq-a,html[data-theme="light"] .modal-desc{color:#4A5B7A;}
+html[data-theme="light"] .section-label{color:#1D7BFF;}
+html[data-theme="light"] .why-card,html[data-theme="light"] .demo-card,html[data-theme="light"] .pricing-card,html[data-theme="light"] .compare-card,html[data-theme="light"] .form-wrap,html[data-theme="light"] .contact-btn,html[data-theme="light"] .quiz-wrap,html[data-theme="light"] .featured-live-note{background:#FFFFFF;border-color:rgba(29,123,255,.14);box-shadow:0 18px 44px rgba(29,72,125,.08);}
+html[data-theme="light"] .why-card:hover,html[data-theme="light"] .demo-card:hover,html[data-theme="light"] .pricing-card:hover,html[data-theme="light"] .contact-btn:hover{border-color:rgba(29,123,255,.28);box-shadow:0 24px 58px rgba(29,72,125,.13);transform:translateY(-3px);}
+html[data-theme="light"] .why-icon,html[data-theme="light"] .icon-box,html[data-theme="light"] .pricing-icon-wrap .icon-box-lg{background:#F2F7FF;border-color:rgba(29,123,255,.15);color:#1D7BFF;}
+html[data-theme="light"] .value-item,html[data-theme="light"] .filter-bar,html[data-theme="light"] .quiz-opt,html[data-theme="light"] .quiz-rec-chip,html[data-theme="light"] .care-points span,html[data-theme="light"] .modal-list li{background:#FFFFFF;border-color:rgba(29,123,255,.14);}
+html[data-theme="light"] .filter-bar{box-shadow:0 14px 32px rgba(29,72,125,.06);}
+html[data-theme="light"] .filter-label,html[data-theme="light"] .card-bestfor,html[data-theme="light"] .pricing-price span,html[data-theme="light"] .form-label,html[data-theme="light"] .faq-icon-wrap,html[data-theme="light"] .modal-section-title,html[data-theme="light"] .modal-info-key,html[data-theme="light"] .modal-price-note{color:#7585A2;}
+html[data-theme="light"] .filter-chip{background:#F7FBFF;border-color:rgba(29,123,255,.12);color:#4A5B7A;}
+html[data-theme="light"] .filter-chip:hover{color:#1D7BFF;border-color:rgba(29,123,255,.28);}
+html[data-theme="light"] .filter-chip.active{background:#1D7BFF;border-color:#1D7BFF;color:#fff;box-shadow:0 10px 24px rgba(29,123,255,.20);}
+html[data-theme="light"] .demo-card.live-card{border-color:rgba(29,123,255,.14);}
+html[data-theme="light"] .demo-card.live-card:hover{border-color:rgba(29,123,255,.32);box-shadow:0 24px 58px rgba(29,72,125,.13);}
+html[data-theme="light"] .card-thumb.live-thumb{background:linear-gradient(180deg,#F6FAFF,#EAF4FF);}
+html[data-theme="light"] .live-preview-shell{border-color:rgba(29,123,255,.16);background:#FFFFFF;box-shadow:0 14px 34px rgba(29,72,125,.10);}
+html[data-theme="light"] .live-preview-bar{background:#FFFFFF;border-color:rgba(29,123,255,.12);}
+html[data-theme="light"] .live-preview-dot{background:#18C8FF;box-shadow:none;}
+html[data-theme="light"] .live-preview-url{background:rgba(29,123,255,.13);}
+html[data-theme="light"] .live-preview-frame::after{background:linear-gradient(180deg,rgba(246,250,255,0),rgba(246,250,255,.12));}
+html[data-theme="light"] .card-footer,html[data-theme="light"] .faq-item,html[data-theme="light"] .modal-info-row{border-color:rgba(29,123,255,.12);}
+html[data-theme="light"] .card-bestfor strong{color:#4A5B7A;}
+html[data-theme="light"] .tag-industry{background:rgba(29,123,255,.08);color:#1D7BFF;border-color:rgba(29,123,255,.17);}
+html[data-theme="light"] .tag-style{background:rgba(24,200,255,.10);color:#008AC2;border-color:rgba(24,200,255,.20);}
+html[data-theme="light"] .tag-budget{background:rgba(255,138,61,.10);color:#D76519;border-color:rgba(255,138,61,.22);}
+html[data-theme="light"] .tag-live{background:rgba(29,123,255,.10);color:#1D7BFF;border-color:rgba(29,123,255,.24);box-shadow:none;}
+html[data-theme="light"] #pricing{background:linear-gradient(180deg,#FFFFFF,#EEF6FF);}
+html[data-theme="light"] .pricing-card{border-radius:16px;}
+html[data-theme="light"] .pricing-card.featured{border-color:#1D7BFF;box-shadow:0 0 0 1px rgba(29,123,255,.18),0 24px 64px rgba(29,123,255,.16);}
+html[data-theme="light"] .pricing-badge{background:#1D7BFF;color:#fff;box-shadow:0 10px 22px rgba(29,123,255,.22);}
+html[data-theme="light"] .pricing-price{color:#071C3D;}
+html[data-theme="light"] .pricing-delivery{color:#1D7BFF;}
+html[data-theme="light"] .pricing-features li{border-color:rgba(29,123,255,.08);}
+html[data-theme="light"] .pricing-features li .check-ico{color:#18B889;}
+html[data-theme="light"] .pricing-note,html[data-theme="light"] .care-addon{background:rgba(29,123,255,.05);border-color:rgba(29,123,255,.14);}
+html[data-theme="light"] .care-title{color:#071C3D;}
+html[data-theme="light"] .care-price{color:#1D7BFF;}
+html[data-theme="light"] .compare-section{background:linear-gradient(180deg,#F6FAFF,#FFFFFF);}
+html[data-theme="light"] .compare-card::before{background:#B7C8DF;}
+html[data-theme="light"] .compare-card.after{border-color:rgba(29,123,255,.18);box-shadow:0 18px 44px rgba(29,72,125,.08);}
+html[data-theme="light"] .how-section .step-num{background:#FFFFFF;border-color:rgba(29,123,255,.18);color:#1D7BFF;box-shadow:0 12px 28px rgba(29,72,125,.07);}
+html[data-theme="light"] .step:hover .step-num{background:#1D7BFF;color:#fff;box-shadow:0 16px 34px rgba(29,123,255,.24);}
+html[data-theme="light"] #request{background:linear-gradient(180deg,#EEF6FF,#F6FAFF);}
+html[data-theme="light"] .form-wrap{border-radius:18px;}
+html[data-theme="light"] .form-helper{background:linear-gradient(135deg,rgba(29,123,255,.07),rgba(24,200,255,.05));border-color:rgba(29,123,255,.16);}
+html[data-theme="light"] .form-helper svg{color:#FF8A3D;}
+html[data-theme="light"] .form-input,html[data-theme="light"] .form-select,html[data-theme="light"] .form-textarea{background:#F8FBFF;border-color:rgba(29,123,255,.15);color:#071C3D;}
+html[data-theme="light"] .form-input:focus,html[data-theme="light"] .form-select:focus,html[data-theme="light"] .form-textarea:focus{border-color:#1D7BFF;box-shadow:0 0 0 4px rgba(29,123,255,.12);}
+html[data-theme="light"] .form-select option{background:#FFFFFF;color:#071C3D;}
+html[data-theme="light"] .faq-q{color:#071C3D;}
+html[data-theme="light"] .faq-q:hover{color:#1D7BFF;}
+html[data-theme="light"] .contact-btn .icon-box-lg{background:#F2F7FF;color:#1D7BFF;border-color:rgba(29,123,255,.15);}
+html[data-theme="light"] .contact-btn:hover{color:#071C3D;}
+html[data-theme="light"] footer{background:linear-gradient(180deg,#FFFFFF,#F6FAFF);border-top:1px solid rgba(29,123,255,.14);}
+html[data-theme="light"] .footer-logo{color:#071C3D;}
+html[data-theme="light"] .footer-sub,html[data-theme="light"] .footer-links a,html[data-theme="light"] .footer-copy{color:#4A5B7A;}
+html[data-theme="light"] .footer-links a:hover{color:#1D7BFF;}
+html[data-theme="light"] .mobile-menu{background:#FFFFFF;}
+html[data-theme="light"] .mobile-menu a{color:#071C3D;border-color:rgba(29,123,255,.12);}
+html[data-theme="light"] .mobile-menu a:hover{color:#1D7BFF;}
+html[data-theme="light"] .modal-overlay{background:rgba(7,28,61,.28);}
+html[data-theme="light"] .modal-drawer,html[data-theme="light"] .modal-header{background:#FFFFFF;border-color:rgba(29,123,255,.14);}
+html[data-theme="light"] .modal-close:hover{background:#F2F7FF;color:#1D7BFF;}
+html[data-theme="light"] .modal-thumb{background:#F2F7FF;border-color:rgba(29,123,255,.14);}
+html[data-theme="light"] .modal-info-val{color:#071C3D;}
+html[data-theme="light"] .modal-price-big{color:#1D7BFF;}
+html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rgba(29,123,255,.22);box-shadow:0 18px 44px rgba(29,72,125,.14);}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media(max-width:900px){
+  .steps{grid-template-columns:1fr 1fr;gap:28px;}
+  .steps::before{display:none;}
+  .contact-grid{grid-template-columns:1fr 1fr;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .why-grid{grid-template-columns:1fr 1fr;}
+  .compare-grid{grid-template-columns:1fr;}
+  .pricing-grid{grid-template-columns:repeat(2,minmax(260px,1fr));}
+  .stat-item:nth-child(2){border-right:none;}
+  .care-addon{grid-template-columns:1fr;align-items:flex-start;}
+}
+@media(max-width:700px){
+  .nav-links,.nav-actions{display:none;}
+  .hamburger{display:flex;}
+  .nav-logo-img{width:180px;height:auto;max-height:46px;}
+  .footer-logo-img{width:280px;max-width:86vw;}
+  .form-grid{grid-template-columns:1fr;}
+  .quiz-options{grid-template-columns:1fr;}
+  .modal-drawer{width:100vw;}
+  .pricing-grid{grid-template-columns:1fr;}
+  .card-actions .btn{flex-basis:100%;width:100%;}
+  .why-grid{grid-template-columns:1fr;}
+  .value-strip{grid-template-columns:1fr;}
+  .section{padding:52px 16px;}
+  .card-thumb.live-thumb{height:190px;padding:8px;}
+  .live-preview-frame iframe{transform:scale(0.215);}
+}
+@media(max-width:480px){
+  .card-grid{grid-template-columns:1fr;}
+  .card-thumb.live-thumb{height:184px;}
+  .contact-grid{grid-template-columns:1fr 1fr;}
+  .stat-item{border-right:none !important;border-bottom:1px solid var(--border);}
+  .stat-item:last-child{border-bottom:none;}
+  nav{padding:0 16px;}
+}
+@media(max-width:700px){
+  html[data-theme="light"] .hero{padding-top:calc(var(--nav-h) + 32px);padding-bottom:44px;min-height:auto;height:auto;}
+  html[data-theme="light"] .section{padding:58px 16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ======================================================
+     SVG ICON DEFS  (reusable symbols)
+====================================================== -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <!-- search -->
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></symbol>
+  <!-- stethoscope -->
+  <symbol id="i-stethoscope" viewBox="0 0 24 24"><path d="M4.5 6.5a4 4 0 0 0 8 0V4a.5.5 0 0 0-.5-.5H5a.5.5 0 0 0-.5.5v2.5z"/><path d="M8.5 10.5V14a5.5 5.5 0 0 0 11 0v-1a2 2 0 1 0-2 0v1a3.5 3.5 0 0 1-7 0v-3.5"/></symbol>
+  <!-- utensils -->
+  <symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7c0 1.7 1.3 3 3 3s3-1.3 3-3V2"/><line x1="6" y1="12" x2="6" y2="22"/><path d="M20.5 2a.5.5 0 0 0-1 0v5.5a2 2 0 0 1-4 0V2a.5.5 0 0 0-1 0v5.5a4 4 0 0 0 3 3.87V22"/></symbol>
+  <!-- graduation cap -->
+  <symbol id="i-graduation" viewBox="0 0 24 24"><path d="M22 9L12 4 2 9l10 5 10-5z"/><path d="M6 11.5V17a6 6 0 0 0 12 0v-5.5"/><line x1="22" y1="9" x2="22" y2="14"/></symbol>
+  <!-- wrench -->
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+  <!-- home -->
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5L12 3l9 7.5V21a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V10.5z"/><polyline points="9,22 9,12 15,12 15,22"/></symbol>
+  <!-- sparkles -->
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/><path d="M5 17l.75 2.25L8 20l-2.25.75L5 23l-.75-2.25L2 20l2.25-.75L5 17z"/><path d="M19 2l.6 1.8L21.4 4l-1.8.6L19 6.4l-.6-1.8L16.6 4l1.8-.6L19 2z"/></symbol>
+  <!-- shopping bag -->
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+  <!-- building (finance/hotel) -->
+  <symbol id="i-building" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18"/><path d="M9 21V9"/><path d="M8 6h.01M12 6h.01M16 6h.01M12 13h.01M16 13h.01M8 13h.01M12 17h.01M16 17h.01M8 17h.01"/></symbol>
+  <!-- zap/campaign -->
+  <symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></symbol>
+  <!-- layers / service -->
+  <symbol id="i-layers" viewBox="0 0 24 24"><polygon points="12,2 2,7 12,12 22,7 12,2"/><polyline points="2,17 12,22 22,17"/><polyline points="2,12 12,17 22,12"/></symbol>
+  <!-- shop/grid -->
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+  <!-- rocket -->
+  <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+  <!-- briefcase -->
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12.01"/><path d="M2 12h20"/></symbol>
+  <!-- megaphone -->
+  <symbol id="i-megaphone" viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h1l2 4h2l-1-4h8l2 3h1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-1L16 11H6H4a1 1 0 0 0-1 1v0z"/><path d="M18 9v6"/></symbol>
+  <!-- shield check -->
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9,12 11,14 15,10"/></symbol>
+  <!-- send / telegram -->
+  <symbol id="i-send" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9 22,2"/></symbol>
+  <!-- message circle / messenger -->
+  <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+  <!-- phone -->
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.98a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <!-- mail -->
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+  <!-- plus (faq) -->
+  <symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <!-- x close -->
+  <symbol id="i-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  <!-- arrow right -->
+  <symbol id="i-arrow-r" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></symbol>
+  <!-- arrow left -->
+  <symbol id="i-arrow-l" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12,19 5,12 12,5"/></symbol>
+  <!-- check -->
+  <symbol id="i-check" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></symbol>
+  <!-- clock -->
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></symbol>
+  <!-- star -->
+  <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></symbol>
+  <!-- target -->
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <!-- layout (logo icon) -->
+  <symbol id="i-launch" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="18" height="7" rx="1.5"/></symbol>
+  <!-- tag / product -->
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></symbol>
+  <!-- map pin / real estate -->
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <!-- users / school -->
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <!-- calendar -->
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+  <!-- goal / flag -->
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></symbol>
+  <!-- dollar -->
+  <symbol id="i-dollar" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></symbol>
+  <!-- language / globe -->
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+  <!-- paint brush / style -->
+  <symbol id="i-brush" viewBox="0 0 24 24"><path d="M18.37 2.63 14 7l-1.59-1.59a2 2 0 0 0-2.82 0L8 7l9 9 1.59-1.59a2 2 0 0 0 0-2.82L17 10l4.37-4.37a2.12 2.12 0 0 0-3-3z"/><path d="M9 8c-2 3-4 3.5-7 4l8 8c1-.5 3.5-2.5 4-7"/><path d="M14.5 17.5 4.5 15"/></symbol>
+  <!-- heart pulse / beauty/clinic -->
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></symbol>
+  <!-- star/hotel -->
+  <symbol id="i-hotel" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="1"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="11" x2="12" y2="16"/><line x1="9.5" y1="13.5" x2="14.5" y2="13.5"/></symbol>
+  <!-- trending up / finance -->
+  <symbol id="i-trending" viewBox="0 0 24 24"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/><polyline points="17,6 23,6 23,12"/></symbol>
+</svg>
+
+<!-- helper: use icon -->
+
+<!-- ========== NAV ========== -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img class="nav-logo-img" src="bizweb-kh-logo-main.svg" alt="BizWeb KH">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#demos">Demos</a></li>
+    <li><a href="#styles">Styles</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#request">Free Preview</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-spacer"></div>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+      <span class="theme-toggle-knob" aria-hidden="true"></span>
+      <span class="theme-toggle-text">Light mode</span>
+    </button>
+    <a href="#demos" class="btn btn-ghost">
+      <svg width="14" height="14"><use href="#i-grid"/></svg>
+      Browse Demos
+    </a>
+    <a href="#request" class="btn btn-primary">
+      <svg width="14" height="14"><use href="#i-sparkles"/></svg>
+      Request free preview
+    </a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#demos"    onclick="closeMobileMenu()">Demos</a>
+  <a href="#styles"   onclick="closeMobileMenu()">Styles</a>
+  <a href="#pricing"  onclick="closeMobileMenu()">Pricing</a>
+  <a href="#how"      onclick="closeMobileMenu()">How It Works</a>
+  <a href="#request"  onclick="closeMobileMenu()">Free Preview</a>
+  <a href="#contact"  onclick="closeMobileMenu()">Contact</a>
+</div>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    <span class="mono">14 live website demos ready</span>
+  </div>
+  <h1>Get your business website from $99<br><span>Choose a demo style. We customize it for you.</span></h1>
+  <p class="hero-sub">Browse completed live website demos, choose the style you like, and let BizWeb KH customize it with your logo, content, photos, contact links, and Khmer + English wording.</p>
+
+  <div class="hero-proof" aria-label="Key offer details">
+    <span><svg width="13" height="13"><use href="#i-dollar"/></svg>Starting from $99</span>
+    <span><svg width="13" height="13"><use href="#i-clock"/></svg>Ready in 3–5 days</span>
+    <span><svg width="13" height="13"><use href="#i-globe"/></svg>Khmer + English</span>
+    <span><svg width="13" height="13"><use href="#i-phone"/></svg>Mobile responsive</span>
+  </div>
+
+  <div class="search-wrap">
+    <span class="search-icon-wrap">
+      <svg width="17" height="17"><use href="#i-search"/></svg>
+    </span>
+    <input type="text" id="hero-search" placeholder="Search demo styles, business types, or goals..." autocomplete="off">
+  </div>
+
+  <div class="chips">
+    <span class="chip" data-search="Clinic">
+      <svg width="13" height="13"><use href="#i-stethoscope"/></svg>Clinic
+    </span>
+    <span class="chip" data-search="Restaurant">
+      <svg width="13" height="13"><use href="#i-utensils"/></svg>Restaurant
+    </span>
+    <span class="chip" data-search="School">
+      <svg width="13" height="13"><use href="#i-graduation"/></svg>School
+    </span>
+    <span class="chip" data-search="Garage">
+      <svg width="13" height="13"><use href="#i-wrench"/></svg>Garage
+    </span>
+    <span class="chip" data-search="Beauty">
+      <svg width="13" height="13"><use href="#i-sparkles"/></svg>Beauty
+    </span>
+    <span class="chip" data-search="Premium">
+      <svg width="13" height="13"><use href="#i-star"/></svg>Premium
+    </span>
+    <span class="chip" data-search="Khmer">
+      <svg width="13" height="13"><use href="#i-globe"/></svg>Khmer + English
+    </span>
+  </div>
+</section>
+
+<!-- ========== STATS ========== -->
+<div class="stats">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-val">14</span>
+      <span class="stat-label">Live demos</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-val">3<span>–7</span></span>
+      <span class="stat-label">Day delivery</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-val">$<span>99</span></span>
+      <span class="stat-label">Starting price</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-val">KH<span>/EN</span></span>
+      <span class="stat-label">Bilingual support</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== WHY CAMBODIAN SMES CHOOSE BIZWEB KH ========== -->
+<section class="section why-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <p class="section-label">// built for local SMEs</p>
+        <h2 class="section-title">Why Cambodian SMEs choose BizWeb KH</h2>
+        <p class="section-sub">A practical website service for owners who need trust, leads, and a shareable business link fast.</p>
+      </div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="23" height="23"><use href="#i-clock"/></svg>
+        </div>
+        <div class="why-title">Fast launch in 3–7 days</div>
+        <p class="why-text">Start from a proven demo style, then replace it with your real services, photos, brand colors, and contact details.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="23" height="23"><use href="#i-dollar"/></svg>
+        </div>
+        <div class="why-title">Clear starter price from $99</div>
+        <p class="why-text">Clear starter pricing for clinics, cafés, schools, shops, and local services that need a professional first website.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="23" height="23"><use href="#i-globe"/></svg>
+        </div>
+        <div class="why-title">Khmer + English support</div>
+        <p class="why-text">Create a website customers can understand locally, while still looking credible for expats, tourists, and partners.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="23" height="23"><use href="#i-message"/></svg>
+        </div>
+        <div class="why-title">Telegram / Messenger lead setup</div>
+        <p class="why-text">Add clear contact buttons so customers can ask questions, request appointments, or request prices from the website.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== DEMO LIBRARY ========== -->
+<section class="section" id="demos">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <p class="section-label">// demo library</p>
+        <h2 class="section-title">Featured live demos</h2>
+        <p class="section-sub">Explore completed website styles for real Cambodian SME categories. Choose a demo, view the live website, then request customization for your own business.</p>
+      </div>
+      <span id="card-count" class="mono" style="font-size:13px;color:var(--text-3)">14 live demos available</span>
+    </div>
+
+    <div class="featured-live-note">
+      <div class="featured-live-title">
+        <svg width="16" height="16"><use href="#i-sparkles"/></svg>
+        Featured live demos
+      </div>
+      <p>Browse completed live website demos for Cambodian SMEs. Choose a website style first. Final package depends on how many pages, sections, products, or content items your business needs.</p>
+    </div>
+
+    <!-- filter bar -->
+    <div class="filter-bar" id="styles">
+      <div class="filter-group">
+        <span class="filter-label" style="display:flex;align-items:center;gap:5px">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-brush"/></svg>
+          Category
+        </span>
+        <span class="filter-chip" data-filter="industry" data-val="All">All</span>
+        <span class="filter-chip" data-filter="industry" data-val="Healthcare">Healthcare</span>
+        <span class="filter-chip" data-filter="industry" data-val="Food & Beverage">Food & Beverage</span>
+        <span class="filter-chip" data-filter="industry" data-val="Hospitality">Hospitality</span>
+        <span class="filter-chip" data-filter="industry" data-val="Education">Education</span>
+        <span class="filter-chip" data-filter="industry" data-val="Auto Service">Auto Service</span>
+        <span class="filter-chip" data-filter="industry" data-val="Pet Care">Pet Care</span>
+        <span class="filter-chip" data-filter="industry" data-val="Fitness">Fitness</span>
+        <span class="filter-chip" data-filter="industry" data-val="Premium Motion">Premium Motion</span>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label" style="display:flex;align-items:center;gap:5px">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-brush"/></svg>
+          Style
+        </span>
+        <span class="filter-chip" data-filter="style" data-val="Clean">Clean</span>
+        <span class="filter-chip" data-filter="style" data-val="Premium">Premium</span>
+        <span class="filter-chip" data-filter="style" data-val="Bold">Bold</span>
+        <span class="filter-chip" data-filter="style" data-val="Soft">Soft</span>
+        <span class="filter-chip" data-filter="style" data-val="Corporate">Corporate</span>
+        <span class="filter-chip" data-filter="style" data-val="Dark">Dark</span>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label" style="display:flex;align-items:center;gap:5px">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flag"/></svg>
+          Goal
+        </span>
+        <span class="filter-chip" data-filter="goal" data-val="Get leads">Get leads</span>
+        <span class="filter-chip" data-filter="goal" data-val="Show services">Show services</span>
+        <span class="filter-chip" data-filter="goal" data-val="Sell products">Sell products</span>
+        <span class="filter-chip" data-filter="goal" data-val="Promote campaign">Promote campaign</span>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label" style="display:flex;align-items:center;gap:5px">
+          <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-globe"/></svg>
+          Language
+        </span>
+        <span class="filter-chip" data-filter="lang" data-val="Both">KH+EN</span>
+        <span class="filter-chip" data-filter="lang" data-val="English">EN only</span>
+        <span class="filter-chip" data-filter="lang" data-val="Khmer">KH only</span>
+      </div>
+      <button class="filter-clear" onclick="clearFilters()">
+        <svg width="12" height="12"><use href="#i-x"/></svg>
+        Clear filters
+      </button>
+    </div>
+
+    <div class="card-grid" id="card-grid">
+      <!-- cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ========== QUIZ ========== -->
+<section class="section quiz-section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <p class="section-label">// style finder</p>
+        <h2 class="section-title">Not sure which style fits?</h2>
+        <p class="section-sub">Answer 5 quick questions and we'll suggest the right demo for your business.</p>
+      </div>
+    </div>
+    <div class="quiz-wrap">
+      <div class="quiz-progress">
+        <div class="quiz-progress-bar" id="quiz-bar" style="width:20%"></div>
+      </div>
+      <div class="quiz-inner" id="quiz-inner">
+
+        <!-- Step 1 -->
+        <div class="quiz-step active" data-step="1">
+          <p class="quiz-q-num">Question 1 of 5</p>
+          <p class="quiz-q">What type of business do you run?</p>
+          <div class="quiz-options">
+            <button class="quiz-opt" data-q="1" data-val="Health &amp; Clinic">
+              <svg width="16" height="16"><use href="#i-stethoscope"/></svg>Health / Clinic
+            </button>
+            <button class="quiz-opt" data-q="1" data-val="Food &amp; Café">
+              <svg width="16" height="16"><use href="#i-utensils"/></svg>Food / Café
+            </button>
+            <button class="quiz-opt" data-q="1" data-val="School &amp; Training">
+              <svg width="16" height="16"><use href="#i-graduation"/></svg>School / Training
+            </button>
+            <button class="quiz-opt" data-q="1" data-val="Retail &amp; Product">
+              <svg width="16" height="16"><use href="#i-bag"/></svg>Retail / Product
+            </button>
+            <button class="quiz-opt" data-q="1" data-val="Real Estate &amp; Property">
+              <svg width="16" height="16"><use href="#i-pin"/></svg>Real Estate
+            </button>
+            <button class="quiz-opt" data-q="1" data-val="Service &amp; Local">
+              <svg width="16" height="16"><use href="#i-wrench"/></svg>Local Service
+            </button>
+          </div>
+          <div class="quiz-nav">
+            <div class="quiz-dot-row">
+              <span class="quiz-dot cur"></span><span class="quiz-dot"></span><span class="quiz-dot"></span><span class="quiz-dot"></span><span class="quiz-dot"></span>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="quizNext(1)">
+              Next
+              <svg width="13" height="13"><use href="#i-arrow-r"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="quiz-step" data-step="2">
+          <p class="quiz-q-num">Question 2 of 5</p>
+          <p class="quiz-q">What is your main goal with this website?</p>
+          <div class="quiz-options">
+            <button class="quiz-opt" data-q="2" data-val="Get leads">
+              <svg width="16" height="16"><use href="#i-phone"/></svg>Get more leads &amp; calls
+            </button>
+            <button class="quiz-opt" data-q="2" data-val="Show services">
+              <svg width="16" height="16"><use href="#i-layers"/></svg>Show my services clearly
+            </button>
+            <button class="quiz-opt" data-q="2" data-val="Sell products">
+              <svg width="16" height="16"><use href="#i-bag"/></svg>Sell products online
+            </button>
+            <button class="quiz-opt" data-q="2" data-val="Promote campaign">
+              <svg width="16" height="16"><use href="#i-megaphone"/></svg>Promote a campaign or event
+            </button>
+          </div>
+          <div class="quiz-nav">
+            <div class="quiz-dot-row">
+              <span class="quiz-dot done"></span><span class="quiz-dot cur"></span><span class="quiz-dot"></span><span class="quiz-dot"></span><span class="quiz-dot"></span>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-ghost btn-sm" onclick="quizPrev(2)">
+                <svg width="13" height="13"><use href="#i-arrow-l"/></svg>Back
+              </button>
+              <button class="btn btn-primary btn-sm" onclick="quizNext(2)">
+                Next<svg width="13" height="13"><use href="#i-arrow-r"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="quiz-step" data-step="3">
+          <p class="quiz-q-num">Question 3 of 5</p>
+          <p class="quiz-q">Which design style feels right for your brand?</p>
+          <div class="quiz-options">
+            <button class="quiz-opt" data-q="3" data-val="Clean">
+              <svg width="16" height="16"><use href="#i-layers"/></svg>Clean &amp; minimal
+            </button>
+            <button class="quiz-opt" data-q="3" data-val="Premium">
+              <svg width="16" height="16"><use href="#i-star"/></svg>Elegant &amp; premium
+            </button>
+            <button class="quiz-opt" data-q="3" data-val="Bold">
+              <svg width="16" height="16"><use href="#i-zap"/></svg>Bold &amp; energetic
+            </button>
+            <button class="quiz-opt" data-q="3" data-val="Soft">
+              <svg width="16" height="16"><use href="#i-heart"/></svg>Soft &amp; friendly
+            </button>
+            <button class="quiz-opt" data-q="3" data-val="Corporate">
+              <svg width="16" height="16"><use href="#i-briefcase"/></svg>Professional &amp; corporate
+            </button>
+            <button class="quiz-opt" data-q="3" data-val="Dark">
+              <svg width="16" height="16"><use href="#i-launch"/></svg>Dark &amp; modern
+            </button>
+          </div>
+          <div class="quiz-nav">
+            <div class="quiz-dot-row">
+              <span class="quiz-dot done"></span><span class="quiz-dot done"></span><span class="quiz-dot cur"></span><span class="quiz-dot"></span><span class="quiz-dot"></span>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-ghost btn-sm" onclick="quizPrev(3)">
+                <svg width="13" height="13"><use href="#i-arrow-l"/></svg>Back
+              </button>
+              <button class="btn btn-primary btn-sm" onclick="quizNext(3)">
+                Next<svg width="13" height="13"><use href="#i-arrow-r"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="quiz-step" data-step="4">
+          <p class="quiz-q-num">Question 4 of 5</p>
+          <p class="quiz-q">How much content do you need on your website?</p>
+          <div class="quiz-options">
+            <button class="quiz-opt" data-q="4" data-val="Simple website">
+              <svg width="16" height="16"><use href="#i-layers"/></svg>Simple website — a focused homepage
+            </button>
+            <button class="quiz-opt" data-q="4" data-val="More complete website">
+              <svg width="16" height="16"><use href="#i-grid"/></svg>More complete website — services, gallery, and enquiry flow
+            </button>
+            <button class="quiz-opt" data-q="4" data-val="Large catalog website">
+              <svg width="16" height="16"><use href="#i-rocket"/></svg>Large catalog website — many products, rooms, or content items
+            </button>
+          </div>
+          <div class="quiz-nav">
+            <div class="quiz-dot-row">
+              <span class="quiz-dot done"></span><span class="quiz-dot done"></span><span class="quiz-dot done"></span><span class="quiz-dot cur"></span><span class="quiz-dot"></span>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-ghost btn-sm" onclick="quizPrev(4)">
+                <svg width="13" height="13"><use href="#i-arrow-l"/></svg>Back
+              </button>
+              <button class="btn btn-primary btn-sm" onclick="quizNext(4)">
+                Next<svg width="13" height="13"><use href="#i-arrow-r"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="quiz-step" data-step="5">
+          <p class="quiz-q-num">Question 5 of 5</p>
+          <p class="quiz-q">Which language(s) do you need?</p>
+          <div class="quiz-options">
+            <button class="quiz-opt" data-q="5" data-val="Both">
+              <svg width="16" height="16"><use href="#i-globe"/></svg>Khmer + English (recommended)
+            </button>
+            <button class="quiz-opt" data-q="5" data-val="English">
+              <svg width="16" height="16"><use href="#i-globe"/></svg>English only
+            </button>
+            <button class="quiz-opt" data-q="5" data-val="Khmer">
+              <svg width="16" height="16"><use href="#i-globe"/></svg>Khmer only
+            </button>
+          </div>
+          <div class="quiz-nav">
+            <div class="quiz-dot-row">
+              <span class="quiz-dot done"></span><span class="quiz-dot done"></span><span class="quiz-dot done"></span><span class="quiz-dot done"></span><span class="quiz-dot cur"></span>
+            </div>
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-ghost btn-sm" onclick="quizPrev(5)">
+                <svg width="13" height="13"><use href="#i-arrow-l"/></svg>Back
+              </button>
+              <button class="btn btn-primary btn-sm" onclick="quizFinish()">
+                See results
+                <svg width="13" height="13"><use href="#i-arrow-r"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /quiz-inner -->
+
+      <!-- Quiz Result -->
+      <div class="quiz-result" id="quiz-result">
+        <div class="quiz-result-icon">
+          <div class="icon-box icon-box-lg">
+            <svg width="24" height="24"><use href="#i-target"/></svg>
+          </div>
+        </div>
+        <div class="quiz-result-title" id="quiz-result-title">Your best matches</div>
+        <div class="quiz-result-sub" id="quiz-result-sub">Based on your answers, these styles are a great fit for your business.</div>
+        <div class="quiz-recs" id="quiz-recs"></div>
+        <button class="btn btn-ghost" onclick="resetQuiz()" style="margin-right:8px">
+          <svg width="14" height="14"><use href="#i-arrow-l"/></svg>
+          Retake quiz
+        </button>
+        <a href="#demos" class="btn btn-primary">
+          <svg width="14" height="14"><use href="#i-grid"/></svg>
+          Browse all demos
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== VALUE ROW ========== -->
+<section class="section" style="background:var(--ink-2)">
+  <div class="section-inner">
+    <div class="section-header" style="justify-content:center;text-align:center">
+      <div>
+        <p class="section-label">// included</p>
+        <h2 class="section-title">What you get</h2>
+      </div>
+    </div>
+    <div class="value-strip">
+      <div class="value-item"><svg width="17" height="17"><use href="#i-phone"/></svg>Mobile-ready website</div>
+      <div class="value-item"><svg width="17" height="17"><use href="#i-globe"/></svg>Khmer + English content setup</div>
+      <div class="value-item"><svg width="17" height="17"><use href="#i-message"/></svg>Telegram / Messenger / Phone contact</div>
+      <div class="value-item"><svg width="17" height="17"><use href="#i-pin"/></svg>Google Map connection</div>
+      <div class="value-item"><svg width="17" height="17"><use href="#i-search"/></svg>Basic SEO setup</div>
+      <div class="value-item"><svg width="17" height="17"><use href="#i-sparkles"/></svg>Free homepage preview before final approval</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRICING ========== -->
+<section class="section" id="pricing">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <p class="section-label">// packages</p>
+        <h2 class="section-title">Simple website packages for Cambodian SMEs</h2>
+        <p class="section-sub">Choose a package based on how much content your business needs. Domain name and business email are paid by client.</p>
+      </div>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="pricing-card">
+        <div class="pricing-icon-wrap">
+          <div class="icon-box icon-box-lg">
+            <svg width="24" height="24"><use href="#i-rocket"/></svg>
+          </div>
+        </div>
+        <div class="pricing-name">Starter Website</div>
+        <div class="pricing-bestfor">Best for simple businesses that need a clean online presence.</div>
+        <div class="pricing-price">$99</div>
+        <div class="pricing-delivery">
+          <svg width="13" height="13"><use href="#i-clock"/></svg>
+          Delivered in 3–5 days
+        </div>
+        <ul class="pricing-features">
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>1-page website</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Khmer + English bilingual content</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Mobile-responsive design</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Client provides logo, content, and photos</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Contact button: Telegram / Messenger / Phone</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Google Map link or embed</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Basic SEO title and description</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>1 round of revisions</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Domain cost is paid by client</li>
+        </ul>
+        <button class="btn btn-ghost" onclick="choosePackage('Starter Website')" style="width:100%;justify-content:center">Choose Starter</button>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-icon-wrap">
+          <div class="icon-box icon-box-lg">
+            <svg width="24" height="24"><use href="#i-briefcase"/></svg>
+          </div>
+        </div>
+        <div class="pricing-name">Pro Website</div>
+        <div class="pricing-bestfor">Best for SMEs that need a more complete business website.</div>
+        <div class="pricing-price">$199</div>
+        <div class="pricing-delivery">
+          <svg width="13" height="13"><use href="#i-clock"/></svg>
+          Delivered in 5–7 days
+        </div>
+        <ul class="pricing-features">
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Multiple pages or longer business website</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Khmer + English bilingual content</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Mobile-responsive design</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Client provides logo, content, and photos</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Services / menu / gallery / reviews sections</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Contact form or inquiry form</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Telegram / Messenger / Phone integration</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Google Maps embed</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Basic SEO setup</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>2 rounds of revisions</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Domain cost is paid by client</li>
+        </ul>
+        <button class="btn btn-primary" onclick="choosePackage('Pro Website')" style="width:100%;justify-content:center">Choose Pro</button>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-icon-wrap">
+          <div class="icon-box icon-box-lg">
+            <svg width="24" height="24"><use href="#i-grid"/></svg>
+          </div>
+        </div>
+        <div class="pricing-name">Pro Max Website</div>
+        <div class="pricing-bestfor">Best for businesses with many products, services, rooms, menus, or gallery items.</div>
+        <div class="pricing-price">$299</div>
+        <div class="pricing-delivery">
+          <svg width="13" height="13"><use href="#i-clock"/></svg>
+          Delivered in 7–10 days
+        </div>
+        <ul class="pricing-features">
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Multiple pages or large catalog-style website</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Khmer + English bilingual content</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Product / service / room / menu listing sections</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Lots of product or portfolio display pages/sections</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Mobile-responsive design</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Client provides logo, content, and photos</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Contact form or inquiry form</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Telegram / Messenger / Phone integration</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Google Map embed</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Basic SEO setup</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>3 rounds of revisions</li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Domain cost is paid by client</li>
+        </ul>
+        <button class="btn btn-ghost" onclick="choosePackage('Pro Max Website')" style="width:100%;justify-content:center">Choose Pro Max</button>
+      </div>
+
+    </div>
+    <div class="pricing-note">All packages use your selected demo style. Final structure depends on your business content, pages, photos, and service/product list.</div>
+    <div class="care-addon">
+      <div>
+        <div class="care-title">Monthly Care Add-on</div>
+        <div class="care-price">From $15/month</div>
+      </div>
+      <div>
+        <div class="care-text">For small updates, hosting support, content changes, and basic website care after launch.</div>
+        <div class="care-points">
+          <span>Minor text/photo updates</span>
+          <span>Technical support</span>
+          <span>Content change support</span>
+          <span>Website health check</span>
+        </div>
+      </div>
+      <button class="btn btn-outline" onclick="choosePackage('Monthly Care Add-on')" style="justify-content:center">Ask about monthly care</button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== BEFORE AFTER ========== -->
+<section class="section compare-section">
+  <div class="section-inner">
+    <div class="section-header" style="justify-content:center;text-align:center">
+      <div>
+        <p class="section-label">// business upgrade</p>
+        <h2 class="section-title">From Facebook-only to professional website</h2>
+        <p class="section-sub">Give customers one clear place to understand your business and contact you.</p>
+      </div>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-card before">
+        <p class="compare-kicker">Before</p>
+        <h3 class="compare-title">Facebook-only presence</h3>
+        <ul class="compare-list">
+          <li><svg width="16" height="16"><use href="#i-x"/></svg>Customers only see Facebook posts</li>
+          <li><svg width="16" height="16"><use href="#i-x"/></svg>Services are hard to find</li>
+          <li><svg width="16" height="16"><use href="#i-x"/></svg>No clear pricing or booking</li>
+          <li><svg width="16" height="16"><use href="#i-x"/></svg>Hard to build trust outside social media</li>
+        </ul>
+      </div>
+      <div class="compare-card after">
+        <p class="compare-kicker">After</p>
+        <h3 class="compare-title">Professional website link</h3>
+        <ul class="compare-list">
+          <li><svg width="16" height="16"><use href="#i-check"/></svg>Professional website link to share</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg>Clear services and contact buttons</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg>Google Map and business information</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg>Better trust for ads and customers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HOW IT WORKS ========== -->
+<section class="section how-section" id="how">
+  <div class="section-inner">
+    <div class="section-header" style="justify-content:center;text-align:center">
+      <div>
+        <p class="section-label">// process</p>
+        <h2 class="section-title">From demo to live — in 4 steps</h2>
+        <p class="section-sub">No technical knowledge needed. We handle everything.</p>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Choose a demo</div>
+        <div class="step-desc">Browse our showroom and pick the style that feels right for your brand and industry.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Send your info</div>
+        <div class="step-desc">Fill in a short form with your business name, logo, photos, services, and Telegram number.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">We customize it</div>
+        <div class="step-desc">Our team rebuilds the demo with your real content, colors, and branding — fast and precise.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Review and launch</div>
+        <div class="step-desc">You review, we adjust. Once approved, your website is live and ready to share on Facebook and Google.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== REQUEST FORM ========== -->
+<section class="section" id="request">
+  <div class="section-inner">
+    <div class="section-header" style="justify-content:center;text-align:center">
+      <div>
+        <p class="section-label">// free preview</p>
+        <h2 class="section-title">Request your free homepage preview</h2>
+        <p class="section-sub">Tell us about your business and the demo style you like. We will reply with the next step through Telegram or Messenger.</p>
+      </div>
+    </div>
+    <div class="form-wrap">
+      <div class="form-helper">
+        <p><svg width="15" height="15"><use href="#i-check"/></svg>No deposit needed for the first homepage preview.</p>
+        <p><svg width="15" height="15"><use href="#i-check"/></svg>Send your Facebook page, business type, and preferred demo style.</p>
+        <p><svg width="15" height="15"><use href="#i-check"/></svg>We will reply via Telegram or Messenger.</p>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label" for="f-name">Your Name</label>
+          <input type="text" id="f-name" class="form-input" placeholder="Sophea Chan">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-biz">Business Name</label>
+          <input type="text" id="f-biz" class="form-input" placeholder="Phnom Penh Dental Clinic">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-type">Business Type</label>
+          <select id="f-type" class="form-select">
+            <option value="">Select…</option>
+            <option>Dental / Medical Clinic</option>
+            <option>Beauty Clinic / Spa</option>
+            <option>Café / Restaurant</option>
+            <option>Training School</option>
+            <option>Car Garage / Auto Service</option>
+            <option>Real Estate Agent</option>
+            <option>Product Brand</option>
+            <option>Guesthouse / Hotel</option>
+            <option>Insurance / Finance</option>
+            <option>Event / Promotion</option>
+            <option>Local Service Business</option>
+            <option>Online Shop</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-phone">Phone / Telegram</label>
+          <input type="text" id="f-phone" class="form-input" placeholder="012 345 678">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-fb">Facebook Page Link</label>
+          <input type="text" id="f-fb" class="form-input" placeholder="facebook.com/yourbusiness">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-demo">Selected Demo Style</label>
+          <input type="text" id="f-demo" class="form-input" placeholder="e.g. Dental Clinic, Café">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-package">Preferred Package</label>
+          <select id="f-package" class="form-select">
+            <option value="">Select…</option>
+            <option>Starter Website</option>
+            <option>Pro Website</option>
+            <option>Pro Max Website</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-domain">Do you already have a domain?</label>
+          <select id="f-domain" class="form-select">
+            <option value="">Select…</option>
+            <option>Yes, I already have a domain</option>
+            <option>No, I need help choosing one</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label class="form-label" for="f-assets">Do you already have logo/photos/content?</label>
+          <select id="f-assets" class="form-select">
+            <option value="">Select…</option>
+            <option>Yes, I have logo, photos, and content</option>
+            <option>I have some content but need help</option>
+            <option>No, I need help preparing content</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label class="form-label" for="f-msg">Message</label>
+          <textarea id="f-msg" class="form-textarea" placeholder="Tell us about your business, what your customers need, or what you love about a specific demo style…"></textarea>
+        </div>
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;font-size:15px" onclick="submitForm()">
+        <svg width="16" height="16"><use href="#i-send"/></svg>
+        Request free preview
+      </button>
+      <p style="text-align:center;font-size:12px;color:var(--text-3);margin-top:12px">We will review your request and contact you through Telegram, Messenger, or phone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section class="section" style="background:var(--ink-2)">
+  <div class="section-inner">
+    <div class="section-header" style="justify-content:center;text-align:center">
+      <div>
+        <p class="section-label">// FAQ</p>
+        <h2 class="section-title">Common questions</h2>
+      </div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How long does it take to build my website?
+          <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
+        </button>
+        <div class="faq-a">Most websites are delivered within 3–7 business days after we receive your content and confirm the demo style. Campaign landing pages can be ready in 2–4 days.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do I need to prepare content or photos?
+          <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
+        </button>
+        <div class="faq-a">It helps! If you have photos, your logo, and a short list of services, we can build faster. But if you don't have everything ready, we can use placeholder content and update later.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Is domain and hosting included in the price?
+          <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
+        </button>
+        <div class="faq-a">The package price covers design and development. Domain registration (~$15/year) and hosting (~$30–60/year) are additional. We can manage both for you or guide you through setup.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can you make the website in both Khmer and English?
+          <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
+        </button>
+        <div class="faq-a">Yes — bilingual Khmer + English is one of our most popular options, especially for clinics, schools, and professional service businesses in Cambodia.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How many revisions are included?
+          <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
+        </button>
+        <div class="faq-a">Starter includes 1 revision round, Pro includes 2 rounds, and Pro Max includes 3 rounds. Additional revision rounds can be added for a small fee.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Are cart, checkout, or online payment included?
+          <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
+        </button>
+        <div class="faq-a">No. The standard packages include business websites, catalog pages, inquiry forms, Telegram/Messenger/Phone contact, and Google Map. Cart, checkout, online payment, booking system, or payment gateway integration are custom upgrades and quoted separately.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What is the Monthly Care plan?
+          <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
+        </button>
+        <div class="faq-a">After launch, your website may need small updates, hosting support, content changes, and basic checks. Monthly Care starts from $15/month and can be added after launch.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section class="section contact-section" id="contact">
+  <div class="section-inner">
+    <div class="section-header" style="justify-content:center;text-align:center">
+      <div>
+        <p class="section-label">// get in touch</p>
+        <h2 class="section-title">Ready to talk?</h2>
+        <p class="section-sub">Chat with us on Telegram or Messenger — we're based in Cambodia and reply fast.</p>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <a href="https://t.me/BizWebKH" target="_blank" class="contact-btn" data-contact="telegram">
+        <div class="icon-box icon-box-lg">
+          <svg width="22" height="22"><use href="#i-send"/></svg>
+        </div>
+        <span class="contact-label">Telegram</span>
+      </a>
+      <a href="https://m.me/BizWebKH" target="_blank" class="contact-btn" data-contact="messenger">
+        <div class="icon-box icon-box-lg">
+          <svg width="22" height="22"><use href="#i-message"/></svg>
+        </div>
+        <span class="contact-label">Messenger</span>
+      </a>
+      <a href="tel:+85598708800" class="contact-btn" data-contact="phone">
+        <div class="icon-box icon-box-lg">
+          <svg width="22" height="22"><use href="#i-phone"/></svg>
+        </div>
+        <span class="contact-label">098 70 88 00</span>
+      </a>
+      <a href="mailto:hello@bizwebkh.com" class="contact-btn" data-contact="email">
+        <div class="icon-box icon-box-lg">
+          <svg width="22" height="22"><use href="#i-mail"/></svg>
+        </div>
+        <span class="contact-label">Email</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-logo">
+    <img class="footer-logo-img" src="bizweb-kh-logo-main.svg" alt="BizWeb KH">
+  </div>
+  <p class="footer-sub">Beautiful websites for Cambodian SMEs. Ready in days, not months.</p>
+  <ul class="footer-links">
+    <li><a href="#demos">Demos</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#request">Free Preview</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2025 BizWeb KH — Cambodia's SME website showroom</p>
+</footer>
+
+<!-- ========== MODAL ========== -->
+<div class="modal-overlay" id="modal" onclick="closeModalOnOverlay(event)">
+  <div class="modal-drawer" id="modal-drawer">
+    <div class="modal-header">
+      <span class="modal-title" id="modal-title">Website Preview</span>
+      <button class="modal-close" onclick="closeModal()">
+        <svg width="18" height="18"><use href="#i-x"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <svg width="15" height="15"><use href="#i-check"/></svg>
+  <span id="toast-msg"></span>
+</div>
+
+<!-- ========== JAVASCRIPT ========== -->
+<script>
+const CONFIG = {
+  telegramUrl: "https://t.me/BizWebKH",
+  messengerUrl: "https://m.me/BizWebKH",
+  phoneUrl: "tel:+85598708800",
+  emailUrl: "mailto:hello@bizwebkh.com"
+};
+
+/* =====================================================
+   DEMO DATA
+===================================================== */
+const DEMOS = [
+  {id:1,name:"Premium Dental Clinic",industry:"Healthcare / Dental",style:"Clean Medical",budget:"From $99",goal:"Get appointments",lang:"Both",price:"$99",filterIndustry:"Healthcare",filterStyle:"Clean",filterGoal:"Get leads",desc:"A bright modern clinic website for braces, clear aligners, whitening, smile design, doctor profile, treatment results, and appointment requests.",bestfor:"Healthcare, clinic, dental, orthodontic, braces, aligner, and smile design businesses",sections:["Hero + appointment CTA","Treatment services","Doctor profile","Treatment results","Patient trust sections","Appointment request form"],usecase:"A dental clinic in Cambodia that wants more appointment requests and stronger trust before customers visit.",pkg:"Business Website",thumb:"dental",color1:"#0e2a4a",color2:"#1a4a7a",accent:"#3d9fff",text:"#cde4ff",liveUrl:"dental-clinic-demo.html",keywords:"dental clinic braces aligner aligners whitening smile doctor healthcare appointment"},
+  {id:3,name:"Auto Detailing Website",industry:"Auto Service",style:"Bold Automotive",budget:"From $99",goal:"Get appointments",lang:"Both",price:"$99",filterIndustry:"Auto Service",filterStyle:"Bold",filterGoal:"Get leads",desc:"A bold black-red automotive website for car wash, detailing, ceramic coating, pricing plans, team, reviews, and appointment requests.",bestfor:"Auto, garage, car service, car wash, detailing, ceramic coating, and paint protection businesses",sections:["Dramatic automotive hero","Complete service list","Detailing expertise","Pricing plans","Team and reviews","Appointment request form"],usecase:"A car wash, garage, or detailing studio that wants more appointment requests and a premium automotive image.",pkg:"Business Website",thumb:"garage",color1:"#0f0f0f",color2:"#1a1a1a",accent:"#ff3d3d",text:"#ffe0e0",liveUrl:"car-garage-demo.html",keywords:"garage car auto detailing carwash car wash ceramic coating appointment mechanic"},
+  {id:5,name:"Luxury Villa Website",industry:"Hotel / Villa",style:"Luxury Hospitality",budget:"From $99",goal:"Get booking inquiries",lang:"Both",price:"$99",filterIndustry:"Hospitality",filterStyle:"Premium",filterGoal:"Get leads",desc:"A cinematic boutique hotel and private villa website with villa cards, destinations, experiences, gallery, enquiry drawer, and premium hospitality feel.",bestfor:"Hotel, villa, hospitality, boutique stay, private villa, guesthouse, and booking inquiry businesses",sections:["Luxury hero","Villa cards","Destination story","Experiences","Gallery lightbox","Enquiry drawer"],usecase:"A villa or boutique hotel that wants a cinematic website customers can inspect before sending booking inquiries.",pkg:"Business Website",thumb:"hotel",color1:"#0a1520",color2:"#152540",accent:"#00b8d4",text:"#c8eeff",liveUrl:"hotel-villa-demo.html",keywords:"hotel villa booking hospitality rooms stay enquiry gallery luxury"},
+  {id:7,name:"Kids School Website",industry:"Education / Kids School",style:"Playful Learning",budget:"From $99",goal:"Get enrollment inquiries",lang:"Both",price:"$99",filterIndustry:"Education",filterStyle:"Soft",filterGoal:"Get leads",desc:"A playful modern school website for kids learning centers, English schools, preschools, programs, teachers, parent reviews, pricing, and enrollment inquiries.",bestfor:"Kids schools, preschools, English schools, learning centers, kindergartens, and children's education programs",sections:["Playful hero","Program cards","Parent benefits","Teacher profiles","Pricing packages","Enrollment inquiry form"],usecase:"A kids school or learning center that wants more parent inquiries and a friendly professional brand.",pkg:"Business Website",thumb:"school",color1:"#fff8f2",color2:"#b9e5f2",accent:"#27c765",text:"#28354a",liveUrl:"kid-school-demo.html",keywords:"kids school preschool english school learning center kindergarten children parent inquiry education"},
+  {id:9,name:"Fine Dining Restaurant Website",industry:"Restaurant / Fine Dining",style:"Elegant Dining",budget:"From $99",goal:"Get table reservations",lang:"Both",price:"$99",filterIndustry:"Food & Beverage",filterStyle:"Premium",filterGoal:"Get leads",desc:"An elegant restaurant website for chef-led dining, premium menu presentation, story section, reservation form, testimonials, and refined hospitality branding.",bestfor:"Fine dining restaurants, chef-led restaurants, premium dining venues, and reservation-based restaurants",sections:["Editorial hero","Food collage","Premium menu cards","Chef story","Reservation form","Guest testimonials"],usecase:"A premium restaurant that wants to show menu quality and capture table reservations.",pkg:"Business Website",thumb:"cafe",color1:"#f8efe1",color2:"#2d160f",accent:"#ff6533",text:"#2d211b",liveUrl:"restaurant-fine-dining-demo.html",keywords:"restaurant fine dining menu chef food reservation table booking dining premium restaurant"},
+  {id:10,name:"Fitness Gym Website",industry:"Fitness / Gym",style:"Bold Fitness",budget:"From $99",goal:"Get trial signups",lang:"Both",price:"$99",filterIndustry:"Fitness",filterStyle:"Dark",filterGoal:"Get leads",desc:"A bold dark fitness website for gyms, trainers, workout programs, pricing plans, community, trial booking, and high-energy brand presentation.",bestfor:"Gyms, fitness clubs, boxing clubs, yoga studios, personal trainers, and CrossFit-style businesses",sections:["Dark gym hero","Workout dashboard","Program cards","Trainer profiles","Pricing plans","Trial request form"],usecase:"A fitness business that wants more free-trial requests and a powerful athletic brand.",pkg:"Business Website",thumb:"event",color1:"#050607",color2:"#17191c",accent:"#ff6333",text:"#f7f7f3",liveUrl:"fitness-gym-demo.html",keywords:"gym fitness trainer workout boxing yoga membership trial health club personal trainer"},
+  {id:6,name:"Countryside Resort Website",industry:"Resort / Retreat",style:"Premium Nature",budget:"From $99",goal:"Get booking inquiries",lang:"Both",price:"$99",filterIndustry:"Hospitality",filterStyle:"Premium",filterGoal:"Get leads",desc:"A calm premium resort website with estate story, rooms, dining, events, gallery, map-style overview, booking inquiry, and deep green luxury style.",bestfor:"Resort, retreat, hotel, countryside stay, eco resort, wellness retreat, estate, and destination venue businesses",sections:["Layered editorial hero","Estate story","Rooms and experiences","Dining and events","Gallery lightbox","Booking inquiry form"],usecase:"A resort or retreat that wants to look calm, premium, and destination-worthy while capturing booking inquiries.",pkg:"Premium Website",thumb:"resort",color1:"#102f24",color2:"#173c2e",accent:"#b68a48",text:"#fff4df",liveUrl:"resort-demo.html",keywords:"resort retreat estate hotel hospitality booking rooms dining events nature countryside"},
+  {id:8,name:"Pet Grooming Website",industry:"Pet Care / Grooming",style:"Warm Pet Care",budget:"From $99",goal:"Get grooming appointments",lang:"Both",price:"$99",filterIndustry:"Pet Care",filterStyle:"Soft",filterGoal:"Get leads",desc:"A friendly pet grooming and pet spa website with services, happy pet gallery, pricing packages, reviews, inquiry form, and warm pet-care branding.",bestfor:"Pet grooming shops, pet salons, pet spas, pet shops, pet hotels, and pet care businesses",sections:["Friendly pet hero","Grooming services","Happy pet gallery","Pricing packages","Customer reviews","Inquiry form"],usecase:"A pet grooming shop that wants customers to see services, prices, and request appointments online.",pkg:"Business Website",thumb:"service",color1:"#fff7f0",color2:"#ffe4d3",accent:"#ff8644",text:"#3b3f45",liveUrl:"pet-grooming-demo.html",keywords:"pet grooming dog cat pet spa pet shop pet salon pet care appointment"},
+  {id:19,name:"Spa Wellness Website",industry:"Spa / Wellness",style:"Soft Wellness",budget:"From $99",goal:"Get appointments",lang:"Both",price:"$99",filterIndustry:"Healthcare",filterStyle:"Soft",filterGoal:"Get leads",desc:"A soft premium spa website for massage, wellness treatments, facial care, packages, testimonials, and appointment requests.",bestfor:"Spa, massage center, wellness spa, facial spa, body treatment center, and beauty wellness businesses",sections:["Soft wellness hero","Treatment cards","About wellness story","Client testimonials","Packages","Inquiry form"],usecase:"A spa or wellness business that wants a calm, premium website for appointment requests.",pkg:"Business Website",thumb:"beauty",color1:"#fff4f5",color2:"#fdeced",accent:"#ffd000",text:"#3c3435",liveUrl:"spa-wellness-demo.html",keywords:"spa wellness massage facial treatment beauty relaxation appointment"},
+  {id:4,name:"Education Institute Website",industry:"Education",style:"Institutional Modern",budget:"From $99",goal:"Get inquiries",lang:"Both",price:"$99",filterIndustry:"Education",filterStyle:"Corporate",filterGoal:"Get leads",desc:"A modern education website for schools, training centers, and colleges with programs, admissions, student life, support, news, events, and inquiry form.",bestfor:"Education, school, college, training center, institute, language school, and career program businesses",sections:["Bold education hero","Program exploration","Admissions / student fit","Student life","News and events","Inquiry form"],usecase:"A private school, college, or training center that wants parents and students to understand programs and inquire online.",pkg:"Business Website",thumb:"school",color1:"#051530",color2:"#0a2a5a",accent:"#2d8fff",text:"#c8deff",liveUrl:"education-college-demo.html",keywords:"school education college training institute admissions programs students inquiry"},
+  {id:20,name:"Wedding Planner Website",industry:"Wedding / Event Planning",style:"Romantic Premium",budget:"From $99",goal:"Get consultation requests",lang:"Both",price:"$99",filterIndustry:"Hospitality",filterStyle:"Soft",filterGoal:"Get leads",desc:"A romantic wedding planner website with services, portfolio gallery, trusted partners, planning tools, testimonials, and consultation form.",bestfor:"Wedding planners, event organizers, bridal decorators, and romantic event businesses",sections:["Wedding hero","Planning services","Portfolio gallery","Partner network","Testimonials","Consultation form"],usecase:"A wedding planner that wants to look elegant and capture consultation requests.",pkg:"Business Website",thumb:"beauty",color1:"#fff9f1",color2:"#fcebed",accent:"#cba642",text:"#47383a",liveUrl:"wedding-planner-demo.html",keywords:"wedding planner event organizer bridal decorator consultation portfolio couple ceremony"},
+  {id:2,name:"Boutique Café Website",industry:"Food & Beverage",style:"Warm Boutique",budget:"From $99",goal:"Show menu / Get orders",lang:"Both",price:"$99",filterIndustry:"Food & Beverage",filterStyle:"Premium",filterGoal:"Show services",desc:"A warm café and restaurant website with real menu cards, promotions, story section, gallery, reviews, delivery/contact flow, and cozy brand feeling.",bestfor:"Restaurant, café, cafe, food, menu, drinks, bakery, brunch, and delivery businesses",sections:["Image-led hero","Menu cards","Promotion section","Brand story","Gallery and reviews","Delivery / contact flow"],usecase:"A café or restaurant that wants customers to view the menu, feel the brand, and ask for orders or reservations.",pkg:"Business Website",thumb:"cafe",color1:"#1a0e08",color2:"#3d1e0a",accent:"#ff7a20",text:"#ffe4cc",liveUrl:"cafe-restaurant-demo.html",keywords:"cafe café restaurant menu food coffee brunch delivery gallery reviews orders"},
+  {id:21,name:"Coffee Roaster Catalog Website",industry:"Coffee / Product Catalog",style:"Bold Coffee Brand",budget:"From $99",goal:"Get product inquiries",lang:"Both",price:"$99",filterIndustry:"Food & Beverage",filterStyle:"Bold",filterGoal:"Sell products",desc:"A bold yellow-black coffee roaster catalog website for beans, blends, subscriptions, gifts, product inquiries, search, FAQ, and Telegram/phone follow-up.",bestfor:"Coffee roasters, coffee bean sellers, café brands, specialty coffee shops, gift sellers, and subscription coffee businesses",sections:["Bold promo hero","Best-seller product catalog","New arrivals","Coffee categories","Gift and subscription sections","Product inquiry form"],usecase:"A coffee brand that wants customers to explore products and ask about beans, gifts, or subscriptions through a simple inquiry flow.",pkg:"Pro Max Website",thumb:"product",color1:"#0b0b0b",color2:"#151515",accent:"#ffd400",text:"#fff7c2",liveUrl:"coffee-roaster-shop-demo.html",keywords:"coffee roaster beans cafe café product catalog subscription gifts inquiry telegram"},
+  {id:11,name:"Premium Motion Resort Website",industry:"Resort / Premium Motion",style:"Premium Motion",budget:"From $99",goal:"Get premium booking inquiries",lang:"Both",price:"$99",filterIndustry:"Premium Motion",filterStyle:"Premium",filterGoal:"Get leads",desc:"A more animated premium resort demo with cinematic resort visuals, booking flow, parallax-style motion, gallery, and high-end hospitality presentation.",bestfor:"Premium resorts, villas, retreats, destination stays, and high-end hospitality brands",sections:["Cinematic motion hero","Layered resort visuals","Stay and dining story","Room showcase","Gallery lightbox","Booking inquiry form"],usecase:"A premium resort that wants a more animated high-end website experience for booking inquiries.",pkg:"Premium Website",thumb:"resort",color1:"#061b14",color2:"#123d2d",accent:"#c39a58",text:"#fff8ea",liveUrl:"resort-premium-motion-demo.html",keywords:"resort hotel motion premium animation villa retreat booking hospitality luxury"}
+];
+
+/* =====================================================
+   MINI MOCKUP
+===================================================== */
+function buildMockup(demo) {
+  const c1=demo.color1,c2=demo.color2,ac=demo.accent,tx=demo.text;
+  const line=(w,cls='')=>`<div class="shot-line ${cls}" style="width:${w}"></div>`;
+  const title=w=>`<div class="shot-title" style="width:${w}"></div>`;
+  const price=w=>`<div class="shot-price" style="width:${w}"></div>`;
+  const card=(inner='')=>`<div class="shot-card">${inner}</div>`;
+  const shell=body=>`<div class="mockup site-shot site-${demo.thumb}" style="--c1:${c1};--c2:${c2};--ac:${ac};--tx:${tx}">
+    <div class="shot-browser">
+      <span class="shot-dot"></span><span class="shot-url"></span>
+      <div class="shot-nav"><span></span><span></span><span></span></div>
+    </div>
+    <div class="shot-content">${body}</div>
+  </div>`;
+
+  const templates={
+    dental:()=>shell(`
+      <div class="shot-panel shot-hero">${title('78%')}${line('64%')}${line('46%','dim')}<div class="shot-pill"></div></div>
+      <div class="shot-services">
+        ${card(`<div class="shot-mini"></div>${line('70%')}${line('46%','dim')}`)}
+        ${card(`<div class="shot-mini"></div>${line('58%')}${line('50%','dim')}`)}
+        ${card(`<div class="shot-mini"></div>${line('66%')}${line('44%','dim')}`)}
+        ${card(`<div class="shot-mini"></div>${line('52%')}${line('60%','dim')}`)}
+      </div>`),
+    beauty:()=>shell(`
+      <div class="shot-hero"><div class="shot-img"></div><div class="shot-copy">${title('74%')}${line('88%')}${line('58%','dim')}<div class="shot-pill" style="width:52px;margin-top:8px"></div></div></div>
+      <div class="shot-treatments">
+        ${card(`${line('64%')}${line('78%','dim')}${price('36%')}`)}
+        ${card(`${line('58%')}${line('64%','dim')}${price('42%')}`)}
+        ${card(`${line('72%')}${line('54%','dim')}${price('34%')}`)}
+      </div>`),
+    cafe:()=>shell(`
+      <div class="shot-feature"></div>
+      <div class="shot-menu">
+        ${card(`${line('70%')}${line('54%','dim')}${price('34%')}`)}
+        ${card(`${line('62%')}${line('76%','dim')}${price('42%')}`)}
+        ${card(`${line('78%')}${line('48%','dim')}${price('30%')}`)}
+        ${card(`${line('58%')}${line('62%','dim')}${price('38%')}`)}
+      </div>`),
+    school:()=>shell(`
+      <div class="shot-panel shot-hero">${title('84%')}${line('62%')}${line('76%','dim')}<div class="shot-pill"></div></div>
+      <div class="shot-courses">
+        ${card(`<div class="shot-mini"></div><div style="flex:1">${line('72%')}${line('48%','dim')}</div>`)}
+        ${card(`<div class="shot-mini"></div><div style="flex:1">${line('64%')}${line('56%','dim')}</div>`)}
+        ${card(`<div class="shot-mini"></div><div style="flex:1">${line('78%')}${line('44%','dim')}</div>`)}
+      </div>`),
+    garage:()=>shell(`
+      <div class="shot-hero"><div>${title('92px')}${line('72px','dim')}</div><div class="shot-pill"></div></div>
+      <div class="shot-repairs">
+        ${card(`<div class="shot-mini"></div>${line('72%')}${line('56%','dim')}`)}
+        ${card(`<div class="shot-mini"></div>${line('64%')}${line('62%','dim')}`)}
+        ${card(`<div class="shot-mini"></div>${line('70%')}${line('48%','dim')}`)}
+      </div>`),
+    realestate:()=>shell(`
+      <div class="shot-panel shot-search">${line('100%')}${line('78%')}${line('68%')}<div class="shot-pill" style="width:36px"></div></div>
+      <div class="shot-properties">
+        ${card(`<div class="shot-img"></div>${line('76%')}${price('44%')}`)}
+        ${card(`<div class="shot-img"></div>${line('68%')}${price('50%')}`)}
+        ${card(`<div class="shot-img"></div>${line('72%')}${price('42%')}`)}
+      </div>`),
+    product:()=>shell(`
+      <div class="shot-product"></div>
+      <div class="shot-catalog">
+        ${card(`${line('62%')}${line('78%','dim')}${price('42%')}`)}
+        ${card(`${line('70%')}${line('58%','dim')}${price('38%')}`)}
+        ${card(`${line('66%')}${line('64%','dim')}${price('46%')}`)}
+        ${card(`${line('54%')}${line('72%','dim')}${price('34%')}`)}
+      </div>`),
+    hotel:()=>shell(`
+      <div class="shot-hero">${title('68%')}${line('46%')}<div class="shot-pill" style="width:64px;margin-top:8px"></div></div>
+      <div class="shot-rooms">
+        ${card(`<div class="shot-img"></div>${line('72%')}${price('44%')}`)}
+        ${card(`<div class="shot-img"></div>${line('64%')}${price('50%')}`)}
+        ${card(`<div class="shot-img"></div>${line('70%')}${price('42%')}`)}
+      </div>`),
+    resort:()=>shell(`
+      <div class="shot-estate"></div>
+      <div class="shot-rooms">
+        ${card(`<div class="shot-mini"></div><div style="flex:1">${line('74%')}${line('48%','dim')}</div>`)}
+        ${card(`<div class="shot-mini"></div><div style="flex:1">${line('66%')}${line('56%','dim')}</div>`)}
+        ${card(`<div class="shot-mini"></div><div style="flex:1">${line('78%')}${line('42%','dim')}</div>`)}
+      </div>`),
+    finance:()=>shell(`
+      <div class="shot-panel shot-trust">${title('82%')}${line('68%')}${line('80%','dim')}<div style="display:flex;gap:6px;margin-top:13px"><div class="shot-pill" style="width:44px"></div><div class="shot-pill" style="width:36px;background:rgba(255,255,255,0.14)"></div></div></div>
+      <div class="shot-benefits">
+        ${card(`<div class="shot-mini"></div><div style="flex:1">${line('78%')}${line('48%','dim')}</div>`)}
+        ${card(`<div class="shot-mini"></div><div style="flex:1">${line('66%')}${line('52%','dim')}</div>`)}
+        ${card(`<div class="shot-mini"></div><div style="flex:1">${line('72%')}${line('42%','dim')}</div>`)}
+      </div>`),
+    event:()=>shell(`
+      <div class="shot-offer">${title('92%')}${title('68%')}${line('78%','dim')}<div class="shot-pill"></div></div>
+      <div class="shot-count">
+        ${card(`${line('54%')}${price('72%')}`)}
+        ${card(`${line('66%')}${price('48%')}`)}
+        ${card(`${line('48%')}${price('62%')}`)}
+        ${card(`${line('58%')}${price('52%')}`)}
+      </div>`),
+    service:()=>shell(`
+      <div class="shot-panel shot-hero"><div>${title('105px')}${line('70px','dim')}</div><div class="shot-pill" style="width:46px"></div></div>
+      <div class="shot-grid">
+        ${card(`<div class="shot-mini"></div>${line('66%')}`)}
+        ${card(`<div class="shot-mini"></div>${line('58%')}`)}
+        ${card(`<div class="shot-mini"></div>${line('72%')}`)}
+        ${card(`<div class="shot-mini"></div>${line('54%')}`)}
+        ${card(`<div class="shot-mini"></div>${line('64%')}`)}
+        ${card(`<div class="shot-mini"></div>${line('68%')}`)}
+        ${card(`<div class="shot-mini"></div>${line('56%')}`)}
+        ${card(`<div class="shot-mini"></div>${line('62%')}`)}
+      </div>`),
+    shop:()=>shell(`
+      <div class="shot-tabs"><div class="shot-pill"></div>${line('44px')}${line('38px')}${line('50px')}</div>
+      <div class="shot-products">
+        ${card(`<div class="shot-img"></div>${line('72%')}${price('48%')}`)}
+        ${card(`<div class="shot-img"></div>${line('64%')}${price('42%')}`)}
+        ${card(`<div class="shot-img"></div>${line('70%')}${price('46%')}`)}
+        ${card(`<div class="shot-img"></div>${line('58%')}${price('38%')}`)}
+      </div>`)
+  };
+  return (templates[demo.thumb]||templates.service)();
+}
+
+function buildCardThumb(demo){
+  if(!demo.liveUrl){
+    return `<div class="card-thumb"><div class="card-thumb-inner">${buildMockup(demo)}</div></div>`;
+  }
+  return `
+    <div class="card-thumb live-thumb" aria-label="${demo.name} live website preview">
+      <div class="live-preview-shell">
+        <div class="live-preview-bar" aria-hidden="true">
+          <span class="live-preview-dot"></span>
+          <span class="live-preview-dot"></span>
+          <span class="live-preview-dot"></span>
+          <span class="live-preview-url"></span>
+        </div>
+        <div class="live-preview-frame">
+          <iframe src="${demo.liveUrl}" title="${demo.name} live preview" loading="lazy" tabindex="-1"></iframe>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* =====================================================
+   FILTER STATE
+===================================================== */
+let activeFilters={industry:'',style:'',goal:'',lang:''};
+let searchQ='';
+
+/* =====================================================
+   RENDER CARDS
+===================================================== */
+function renderCards(){
+  const grid=document.getElementById('card-grid');
+  let visible=DEMOS.filter(d=>{
+    if(!d.liveUrl) return false;
+    const filterIndustry=d.filterIndustry||d.industry;
+    const filterStyle=d.filterStyle||d.style;
+    const filterGoal=d.filterGoal||d.goal;
+    if(activeFilters.industry){
+      if(filterIndustry !== activeFilters.industry) return false;
+    }
+    if(activeFilters.style  && filterStyle !==activeFilters.style) return false;
+    if(activeFilters.goal   && filterGoal  !==activeFilters.goal)  return false;
+    if(activeFilters.lang   && d.lang  !==activeFilters.lang)  return false;
+    if(searchQ){
+      const q=searchQ.toLowerCase();
+      const searchable=[
+        d.name,d.industry,d.filterIndustry,d.style,d.goal,d.desc,d.bestfor,d.usecase,d.pkg,d.keywords,
+        ...(d.sections||[])
+      ].join(' ').toLowerCase();
+      return searchable.includes(q);
+    }
+    return true;
+  });
+  const liveCount=DEMOS.filter(d=>d.liveUrl).length;
+  document.getElementById('card-count').textContent=visible.length+' style'+(visible.length!==1?'s':'')+' · '+liveCount+' live demos available';
+  if(!visible.length){
+    grid.innerHTML=`<div class="no-results"><h3>No styles match your filters</h3><p>Try removing some filters or clearing the search.</p></div>`;
+    return;
+  }
+  grid.innerHTML=visible.map(d=>{
+    const liveBadge='<span class="tag tag-live">Live Demo</span>';
+    const previewButton=`<a class="btn btn-ghost btn-sm" href="${d.liveUrl}" target="_blank" rel="noopener">View Live Demo</a>`;
+    return `
+    <div class="demo-card live-card" data-id="${d.id}">
+      ${buildCardThumb(d)}
+      <div class="card-body">
+        <div class="card-tags">
+          <span class="tag tag-industry">${d.industry}</span>
+          <span class="tag tag-style">${d.style}</span>
+          <span class="tag tag-budget">${d.budget}</span>
+          ${liveBadge}
+        </div>
+        <div class="card-name">${d.name}</div>
+        <div class="card-desc">${d.desc}</div>
+        <div class="card-bestfor"><strong>Best for:</strong> ${d.bestfor}</div>
+        <div class="card-footer">
+          <div class="card-actions">
+            ${previewButton}
+            <button class="btn btn-primary btn-sm" onclick="useStyle('${d.name}')">Use This Style</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+/* =====================================================
+   FILTER CHIPS
+===================================================== */
+document.querySelectorAll('.filter-chip').forEach(chip=>{
+  chip.addEventListener('click',()=>{
+    const f=chip.dataset.filter,v=chip.dataset.val;
+    if(v==='All'){
+      activeFilters[f]='';
+      document.querySelectorAll(`.filter-chip[data-filter="${f}"]`).forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+    }
+    else if(activeFilters[f]===v){activeFilters[f]='';chip.classList.remove('active');}
+    else{document.querySelectorAll(`.filter-chip[data-filter="${f}"]`).forEach(c=>c.classList.remove('active'));activeFilters[f]=v;chip.classList.add('active');}
+    renderCards();
+  });
+});
+
+function clearFilters(){
+  activeFilters={industry:'',style:'',goal:'',lang:''};
+  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  searchQ='';document.getElementById('hero-search').value='';renderCards();
+}
+
+document.getElementById('hero-search').addEventListener('input',e=>{
+  searchQ=e.target.value.trim();renderCards();
+});
+
+document.getElementById('hero-search').addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&e.target.value.trim()){
+    document.getElementById('demos').scrollIntoView({behavior:'smooth'});
+  }
+});
+
+document.querySelectorAll('.chip').forEach(chip=>{
+  chip.addEventListener('click',()=>{
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    searchQ=chip.dataset.search;
+    document.getElementById('hero-search').value=chip.dataset.search;
+    renderCards();
+    document.getElementById('demos').scrollIntoView({behavior:'smooth'});
+  });
+});
+
+/* =====================================================
+   MODAL
+===================================================== */
+function openModal(id){
+  const d=DEMOS.find(x=>x.id===id);if(!d)return;
+  document.getElementById('modal-title').textContent=d.name+' — Style Preview';
+  document.getElementById('modal-body').innerHTML=`
+    <div class="modal-thumb">${buildMockup(d)}</div>
+    <div class="modal-tags">
+      <span class="tag tag-industry">${d.industry}</span>
+      <span class="tag tag-style">${d.style}</span>
+      <span class="tag tag-budget">${d.budget}</span>
+    </div>
+    <div class="modal-name">${d.name}</div>
+    <div class="modal-desc">${d.desc}</div>
+    <p class="modal-section-title">Included sections</p>
+    <ul class="modal-list">${d.sections.map(s=>`<li>${s}</li>`).join('')}</ul>
+    <div class="modal-info-row"><span class="modal-info-key">Best use case</span><span class="modal-info-val" style="max-width:280px;text-align:right">${d.usecase}</span></div>
+    <div class="modal-info-row"><span class="modal-info-key">Recommended for</span><span class="modal-info-val" style="max-width:280px;text-align:right">${d.bestfor}</span></div>
+    <div class="modal-info-row"><span class="modal-info-key">Suggested package</span><span class="modal-info-val">${d.pkg}</span></div>
+    <div class="modal-info-row"><span class="modal-info-key">Language</span><span class="modal-info-val">Khmer + English</span></div>
+    <div class="modal-price-big">From ${d.price}</div>
+    <div class="modal-price-note">Final price depends on number of pages and features. Get a free quote today.</div>
+    <div class="modal-ctas">
+      <button class="btn btn-primary" onclick="useStyle('${d.name}');closeModal()">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"><use href="#i-sparkles"/></svg>
+        Use This Style
+      </button>
+      <a href="${CONFIG.telegramUrl}" target="_blank" class="btn btn-outline">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"><use href="#i-send"/></svg>
+        Chat on Telegram
+      </a>
+    </div>`;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeModalOnOverlay(e){if(e.target===document.getElementById('modal'))closeModal();}
+
+/* =====================================================
+   USE THIS STYLE
+===================================================== */
+function useStyle(name){
+  document.getElementById('f-demo').value=name;
+  document.getElementById('request').scrollIntoView({behavior:'smooth'});
+  showToast(name+' selected. Complete the request form below.');
+}
+
+function choosePackage(name){
+  const packageField=document.getElementById('f-package');
+  if(['Starter Website','Pro Website','Pro Max Website'].includes(name)){
+    packageField.value=name;
+  }else{
+    const msg=document.getElementById('f-msg');
+    const line='Interested add-on: '+name;
+    const current=msg.value.trim();
+    msg.value=current
+      ? (current.includes('Interested add-on:') ? current.replace(/Interested add-on: .*/,line) : line+'\n'+current)
+      : line;
+  }
+  document.getElementById('request').scrollIntoView({behavior:'smooth'});
+  showToast(name+' selected. Complete the request form below.');
+}
+
+/* =====================================================
+   FORM SUBMIT
+===================================================== */
+function submitForm(){
+  const name=document.getElementById('f-name').value.trim();
+  const biz=document.getElementById('f-biz').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  if(!name||!biz||!phone){showToast('Please fill in your name, business name, and contact.');return;}
+  showToast('Request received. We will contact you within 24–48 hours.');
+  ['f-name','f-biz','f-phone','f-fb','f-demo','f-msg'].forEach(id=>document.getElementById(id).value='');
+  ['f-type','f-package','f-domain','f-assets'].forEach(id=>document.getElementById(id).selectedIndex=0);
+}
+
+/* =====================================================
+   FAQ
+===================================================== */
+function toggleFaq(btn){btn.parentElement.classList.toggle('open');}
+
+/* =====================================================
+   QUIZ
+===================================================== */
+const quizAnswers={};
+
+function quizNext(step){
+  const sel=document.querySelector(`.quiz-opt[data-q="${step}"].selected`);
+  if(!sel){showToast('Please pick an option to continue.');return;}
+  quizAnswers[step]=sel.dataset.val;
+  document.querySelector(`.quiz-step[data-step="${step}"]`).classList.remove('active');
+  document.querySelector(`.quiz-step[data-step="${step+1}"]`).classList.add('active');
+  document.getElementById('quiz-bar').style.width=((step+1)/5*100)+'%';
+}
+function quizPrev(step){
+  document.querySelector(`.quiz-step[data-step="${step}"]`).classList.remove('active');
+  document.querySelector(`.quiz-step[data-step="${step-1}"]`).classList.add('active');
+  document.getElementById('quiz-bar').style.width=((step-1)/5*100)+'%';
+}
+function quizFinish(){
+  const sel=document.querySelector('.quiz-opt[data-q="5"].selected');
+  if(!sel){showToast('Please pick a language preference.');return;}
+  quizAnswers[5]=sel.dataset.val;
+  const scored=DEMOS.map(d=>{
+    let s=0;
+    if(quizAnswers[2]&&(d.filterGoal||d.goal)===quizAnswers[2])s+=3;
+    if(quizAnswers[3]&&(d.filterStyle||d.style)===quizAnswers[3])s+=2;
+    return{d,s};
+  }).sort((a,b)=>b.s-a.s).slice(0,4);
+  const recs=scored.map(x=>x.d);
+  document.getElementById('quiz-result-sub').textContent=`Based on your answers — ${quizAnswers[1]}, ${quizAnswers[2]}, ${quizAnswers[3]} style, ${quizAnswers[4]}.`;
+  document.getElementById('quiz-recs').innerHTML=recs.map(d=>`<span class="quiz-rec-chip" onclick="useStyle('${d.name}')">${d.name} — From ${d.price}</span>`).join('');
+  document.querySelector('.quiz-step[data-step="5"]').classList.remove('active');
+  document.getElementById('quiz-result').classList.add('active');
+  document.getElementById('quiz-inner').style.display='none';
+  document.getElementById('quiz-bar').style.width='100%';
+}
+function resetQuiz(){
+  document.querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('selected'));
+  document.getElementById('quiz-result').classList.remove('active');
+  document.getElementById('quiz-inner').style.display='';
+  for(let i=2;i<=5;i++)document.querySelector(`.quiz-step[data-step="${i}"]`).classList.remove('active');
+  document.querySelector('.quiz-step[data-step="1"]').classList.add('active');
+  document.getElementById('quiz-bar').style.width='20%';
+}
+document.querySelectorAll('.quiz-opt').forEach(opt=>{
+  opt.addEventListener('click',()=>{
+    const q=opt.dataset.q;
+    document.querySelectorAll(`.quiz-opt[data-q="${q}"]`).forEach(o=>o.classList.remove('selected'));
+    opt.classList.add('selected');
+  });
+});
+
+/* =====================================================
+   TOAST
+===================================================== */
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+document.getElementById('hamburger').addEventListener('click',()=>{
+  document.getElementById('mobile-menu').classList.toggle('open');
+});
+function closeMobileMenu(){document.getElementById('mobile-menu').classList.remove('open');}
+
+/* =====================================================
+   INIT
+===================================================== */
+const themeToggle=document.getElementById('theme-toggle');
+function setTheme(mode){
+  const isLight=mode==='light';
+  if(isLight){
+    document.documentElement.setAttribute('data-theme','light');
+  }else{
+    document.documentElement.removeAttribute('data-theme');
+  }
+  if(themeToggle){
+    themeToggle.setAttribute('aria-pressed',String(isLight));
+    themeToggle.setAttribute('aria-label',isLight?'Switch to dark mode':'Switch to light mode');
+    const text=themeToggle.querySelector('.theme-toggle-text');
+    if(text)text.textContent=isLight?'Dark mode':'Light mode';
+  }
+}
+function initTheme(){
+  let saved='';
+  try{saved=localStorage.getItem('bizwebkh-theme')||'';}catch(e){}
+  setTheme(saved==='light'?'light':'dark');
+}
+if(themeToggle){
+  themeToggle.addEventListener('click',()=>{
+    const next=document.documentElement.getAttribute('data-theme')==='light'?'dark':'light';
+    setTheme(next);
+    try{localStorage.setItem('bizwebkh-theme',next);}catch(e){}
+  });
+}
+
+function applyContactConfig(){
+  const links={
+    telegram:CONFIG.telegramUrl,
+    messenger:CONFIG.messengerUrl,
+    phone:CONFIG.phoneUrl,
+    email:CONFIG.emailUrl
+  };
+  Object.keys(links).forEach(key=>{
+    document.querySelectorAll(`[data-contact="${key}"]`).forEach(el=>el.href=links[key]);
+  });
+}
+
+initTheme();
+applyContactConfig();
+renderCards();
+</script>
+</body>
+</html>

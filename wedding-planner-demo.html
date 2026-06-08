@@ -1,0 +1,1131 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ever After Events | Beautifully planned. Lovingly remembered.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#fff9f1;
+  --cream:#fff3e6;
+  --blush:#fcebed;
+  --blush-2:#f7dfe3;
+  --rose:#d99aaa;
+  --rose-dark:#b87887;
+  --gold:#cba642;
+  --gold-soft:#f5e3aa;
+  --ink:#47383a;
+  --muted:#8b777a;
+  --soft:#bda9ac;
+  --card:#fffdf9;
+  --line:#ead7d8;
+  --shadow:0 22px 60px rgba(116,72,78,.13);
+  --shadow-sm:0 14px 36px rgba(116,72,78,.1);
+  --radius:26px;
+  --radius-sm:18px;
+  --nav-h:72px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:var(--ivory);
+  line-height:1.65;
+  overflow-x:hidden;
+}
+body.menu-open{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+svg{display:block;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.container{width:min(1120px,calc(100% - 48px));margin:0 auto}
+.serif{font-family:"Cormorant Garamond",Georgia,serif}
+.icon{width:18px;height:18px;stroke-width:1.7}
+.section{padding:98px 0}
+.section-cream{background:linear-gradient(180deg,var(--ivory),var(--cream))}
+.section-blush{background:linear-gradient(180deg,var(--blush),#fff5f6)}
+.section-head{text-align:center;margin-bottom:48px}
+.eyebrow{
+  color:var(--gold);
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-weight:800;
+  margin-bottom:10px;
+}
+.section-title{
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:clamp(38px,5vw,56px);
+  line-height:.98;
+  font-weight:700;
+  color:var(--ink);
+}
+.section-title span{color:var(--rose-dark)}
+.section-copy{
+  width:min(620px,100%);
+  margin:16px auto 0;
+  color:var(--muted);
+  font-size:15px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  min-height:47px;
+  padding:13px 22px;
+  border-radius:999px;
+  border:1px solid transparent;
+  font-size:13px;
+  font-weight:800;
+  cursor:pointer;
+  transition:transform .25s ease,box-shadow .25s ease,background .25s ease,border-color .25s ease,color .25s ease;
+}
+.btn svg{width:16px;height:16px;stroke-width:2}
+.btn-primary{
+  color:#fff;
+  background:linear-gradient(135deg,#d99aaa,#c98696);
+  box-shadow:0 16px 34px rgba(199,126,143,.24);
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 22px 46px rgba(199,126,143,.31)}
+.btn-gold{
+  color:#46350d;
+  background:linear-gradient(135deg,#f1d884,#d3ad37);
+  box-shadow:0 16px 34px rgba(203,166,66,.25);
+}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 22px 44px rgba(203,166,66,.31)}
+.btn-light{
+  color:#7a5960;
+  background:rgba(255,255,255,.76);
+  border-color:rgba(217,154,170,.36);
+}
+.btn-light:hover{transform:translateY(-3px);border-color:rgba(217,154,170,.72);box-shadow:var(--shadow-sm)}
+.pill-label{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:#7f5960;
+  font-size:12px;
+  font-weight:800;
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(255,255,255,.72);
+  border-radius:999px;
+  padding:8px 13px;
+  box-shadow:0 12px 30px rgba(86,46,54,.12);
+}
+.pill-label svg{width:14px;height:14px;color:var(--gold);stroke-width:2}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .75s ease,transform .75s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* Header */
+.site-header{
+  position:fixed;
+  top:18px;
+  left:0;
+  right:0;
+  z-index:90;
+  pointer-events:none;
+}
+.nav-shell{
+  width:min(1120px,calc(100% - 48px));
+  min-height:var(--nav-h);
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:22px;
+  padding:13px 18px;
+  border:1px solid rgba(255,255,255,.72);
+  border-radius:24px;
+  background:rgba(255,249,241,.9);
+  box-shadow:0 16px 42px rgba(90,56,61,.12);
+  backdrop-filter:blur(18px);
+  pointer-events:auto;
+}
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:26px;
+  font-weight:700;
+  color:#4d3a3e;
+  white-space:nowrap;
+}
+.brand-mark{
+  width:28px;
+  height:28px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  color:var(--rose-dark);
+  background:#fff0f2;
+  border:1px solid rgba(217,154,170,.34);
+}
+.brand-mark svg{width:15px;height:15px;stroke-width:2}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{
+  color:#806b6e;
+  font-size:13px;
+  font-weight:700;
+  transition:color .2s ease;
+}
+.nav-links a:hover{color:#47383a}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.nav-actions .btn{min-height:42px;padding:11px 18px}
+.menu-toggle{
+  display:none;
+  width:44px;
+  height:44px;
+  border:1px solid rgba(217,154,170,.42);
+  border-radius:50%;
+  background:#fffaf6;
+  color:#674f54;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+}
+.menu-toggle svg{width:21px;height:21px;stroke-width:2}
+.mobile-menu{
+  position:fixed;
+  inset:0;
+  z-index:80;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  padding:120px 28px 44px;
+  background:rgba(255,249,241,.98);
+  backdrop-filter:blur(18px);
+  transform:translateY(-100%);
+  opacity:0;
+  transition:transform .42s ease,opacity .42s ease;
+}
+.mobile-menu.open{transform:translateY(0);opacity:1}
+.mobile-menu a:not(.btn){
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:36px;
+  line-height:1;
+  color:#4d3a3e;
+}
+.mobile-menu .btn{width:min(340px,100%)}
+
+/* Hero */
+.hero{
+  min-height:760px;
+  position:relative;
+  display:grid;
+  align-items:center;
+  padding:150px 0 92px;
+  overflow:hidden;
+  color:#fff;
+}
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background-image:linear-gradient(90deg,rgba(35,27,26,.78),rgba(54,39,38,.48),rgba(54,39,38,.2)),url("https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=85");
+  background-size:cover;
+  background-position:center 40%;
+  transform:scale(1.04);
+  animation:heroZoom 15s ease-out forwards;
+}
+.hero-bg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 65% 22%,rgba(245,227,170,.28),transparent 28%),linear-gradient(180deg,rgba(42,28,28,.1),rgba(42,28,28,.35));
+}
+.hero-content{
+  position:relative;
+  z-index:1;
+  width:min(650px,100%);
+  animation:fadeUp .9s ease both;
+}
+.hero .pill-label{color:#fff;background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.24);backdrop-filter:blur(8px)}
+.hero-title{
+  margin:22px 0 18px;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:clamp(58px,8vw,94px);
+  line-height:.92;
+  letter-spacing:-.035em;
+  font-weight:700;
+  text-shadow:0 14px 32px rgba(0,0,0,.22);
+}
+.hero-title span{color:#f3c6cd}
+.hero-text{
+  max-width:560px;
+  color:rgba(255,255,255,.82);
+  font-size:17px;
+}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin:32px 0}
+.hero-stats{
+  display:flex;
+  flex-wrap:wrap;
+  gap:38px;
+  padding-top:16px;
+}
+.hero-stat strong{
+  display:block;
+  font-size:24px;
+  line-height:1;
+  color:var(--gold-soft);
+  font-weight:800;
+}
+.hero-stat span{
+  display:block;
+  margin-top:6px;
+  color:rgba(255,255,255,.68);
+  font-size:12px;
+  font-weight:700;
+}
+
+/* Services */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+.service-card{
+  background:rgba(255,255,255,.76);
+  border:1px solid rgba(255,255,255,.72);
+  border-radius:22px;
+  padding:30px;
+  text-align:center;
+  box-shadow:var(--shadow-sm);
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.service-card:hover{transform:translateY(-7px);box-shadow:0 22px 46px rgba(116,72,78,.15)}
+.service-icon{
+  width:54px;
+  height:54px;
+  margin:0 auto 18px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#fff0f2;
+  color:var(--rose-dark);
+}
+.service-icon svg{width:23px;height:23px;stroke-width:1.8}
+.service-card h3{
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:25px;
+  line-height:1;
+  margin-bottom:10px;
+}
+.service-card p{color:var(--muted);font-size:14px}
+.price-line{margin-top:16px;color:var(--gold);font-weight:800;font-size:13px}
+.learn{display:inline-flex;margin-top:14px;color:var(--rose-dark);font-size:13px;font-weight:800}
+
+/* Gallery */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:1.2fr 1fr 1fr;
+  grid-auto-rows:210px;
+  gap:18px;
+}
+.gallery-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  box-shadow:var(--shadow-sm);
+  background:#ead7d8;
+}
+.gallery-card.tall{grid-row:span 2}
+.gallery-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease,filter .7s ease}
+.gallery-card:hover img{transform:scale(1.06);filter:saturate(1.04)}
+.gallery-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,transparent 35%,rgba(48,34,35,.58));
+}
+.gallery-label{
+  position:absolute;
+  z-index:1;
+  left:18px;
+  bottom:16px;
+  color:#fff;
+  font-weight:800;
+  font-size:14px;
+}
+.center-actions{display:flex;justify-content:center;margin-top:34px}
+
+/* Partners */
+.partner-strip{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:14px;
+  margin-bottom:34px;
+}
+.partner-logo{
+  min-height:102px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:18px;
+  box-shadow:0 12px 28px rgba(116,72,78,.08);
+  color:#725d61;
+  font-size:12px;
+  font-weight:800;
+  text-align:center;
+}
+.partner-logo span{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  color:var(--gold);
+  background:#fff8e3;
+}
+.partner-logo svg{width:18px;height:18px;stroke-width:1.9}
+.featured-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+.moment-card{
+  overflow:hidden;
+  background:#fff;
+  border-radius:20px;
+  box-shadow:var(--shadow-sm);
+}
+.moment-card img{width:100%;height:220px;object-fit:cover}
+.moment-body{padding:20px}
+.moment-body h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:25px}
+.moment-body p{font-size:14px;color:var(--muted);margin-top:6px}
+.moment-badge{display:inline-flex;margin-top:14px;color:var(--gold);font-size:12px;font-weight:800}
+
+/* Planning */
+.planning-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+.planning-card{
+  display:grid;
+  grid-template-columns:54px 1fr;
+  gap:18px;
+  align-items:flex-start;
+  padding:26px;
+  background:rgba(255,255,255,.72);
+  border:1px solid rgba(255,255,255,.76);
+  border-radius:22px;
+  box-shadow:0 12px 28px rgba(116,72,78,.08);
+}
+.planning-card .service-icon{margin:0;width:50px;height:50px}
+.planning-card h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:25px;line-height:1}
+.planning-card p{color:var(--muted);font-size:14px;margin-top:6px}
+.planning-cta{
+  width:min(520px,100%);
+  margin:44px auto 0;
+  text-align:center;
+  padding:32px;
+  background:#fff;
+  border:1px solid rgba(217,154,170,.22);
+  border-radius:24px;
+  box-shadow:var(--shadow-sm);
+}
+.planning-cta h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:31px}
+.planning-cta p{color:var(--muted);margin:8px 0 18px}
+
+/* Testimonials */
+.testimonial-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+.testimonial-card{
+  background:rgba(255,255,255,.8);
+  border:1px solid rgba(255,255,255,.78);
+  border-radius:22px;
+  padding:28px;
+  box-shadow:var(--shadow-sm);
+}
+.quote-mark{
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:48px;
+  line-height:.55;
+  color:var(--rose);
+}
+.testimonial-card blockquote{color:#756366;font-size:15px;line-height:1.8;margin-top:10px}
+.couple{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid rgba(217,154,170,.24);
+}
+.avatar{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  color:#fff;
+  background:linear-gradient(135deg,var(--rose),var(--gold));
+  font-weight:800;
+}
+.couple strong{display:block;font-size:14px}
+.couple span{display:block;color:var(--muted);font-size:12px}
+.featured-review{
+  width:min(760px,100%);
+  margin:36px auto 0;
+  padding:26px 34px;
+  text-align:center;
+  background:#fff;
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:22px;
+  box-shadow:var(--shadow-sm);
+}
+.stars{display:flex;justify-content:center;gap:4px;color:var(--gold);margin-bottom:12px}
+.stars svg{width:15px;height:15px;fill:currentColor;stroke:none}
+.featured-review p{font-family:"Cormorant Garamond",Georgia,serif;font-size:23px;color:#624e52}
+.review-stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  margin-top:36px;
+  text-align:center;
+}
+.review-stats strong{display:block;color:var(--gold);font-size:23px}
+.review-stats span{display:block;color:var(--muted);font-size:12px;font-weight:700}
+
+/* Contact */
+.contact-grid{
+  display:grid;
+  grid-template-columns:minmax(320px,470px) 1fr;
+  gap:58px;
+  align-items:center;
+}
+.contact-image{
+  position:relative;
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.contact-image img{width:100%;height:640px;object-fit:cover}
+.contact-note{
+  position:absolute;
+  left:22px;
+  bottom:22px;
+  width:min(300px,calc(100% - 44px));
+  display:flex;
+  gap:13px;
+  align-items:flex-start;
+  padding:18px;
+  border-radius:18px;
+  background:rgba(255,255,255,.9);
+  box-shadow:var(--shadow-sm);
+}
+.contact-note span{
+  width:40px;
+  height:40px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  color:var(--rose-dark);
+  background:#fff0f2;
+  flex:0 0 auto;
+}
+.contact-note svg{width:18px;height:18px;stroke-width:2}
+.contact-note strong{display:block;font-size:13px}
+.contact-note p{color:var(--muted);font-size:12px;margin-top:2px}
+.form-card{
+  padding:38px;
+  border-radius:26px;
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(255,255,255,.75);
+  box-shadow:var(--shadow);
+}
+.form-card .section-title{text-align:left;font-size:48px}
+.form-card .section-copy{margin-left:0}
+.inquiry-form{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  margin-top:30px;
+}
+.field.full{grid-column:1/-1}
+.field label{
+  display:block;
+  margin-bottom:8px;
+  color:#655154;
+  font-size:12px;
+  font-weight:800;
+}
+.field input,.field select,.field textarea{
+  width:100%;
+  border:1px solid rgba(217,154,170,.25);
+  border-radius:14px;
+  background:#fffaf6;
+  padding:13px 14px;
+  color:#47383a;
+  outline:none;
+  transition:border-color .2s ease,box-shadow .2s ease;
+}
+.field textarea{min-height:112px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:rgba(217,154,170,.72);
+  box-shadow:0 0 0 4px rgba(217,154,170,.13);
+}
+.field input::placeholder,.field textarea::placeholder{color:#b79da2}
+.inquiry-form .btn{width:100%;margin-top:8px}
+
+/* Footer */
+.footer{
+  background:linear-gradient(180deg,var(--ivory),#fff2e7);
+  padding:78px 0 32px;
+}
+.footer-cta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:26px;
+  padding:30px;
+  margin-bottom:56px;
+  border-radius:26px;
+  border:1px solid rgba(217,154,170,.24);
+  background:rgba(255,255,255,.68);
+  box-shadow:var(--shadow-sm);
+}
+.footer-cta h2{
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:36px;
+  line-height:1;
+}
+.footer-cta p{max-width:650px;margin-top:8px;color:var(--muted)}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.5fr repeat(4,1fr);
+  gap:36px;
+}
+.footer p,.footer a{font-size:14px;color:#827073}
+.footer h4{font-size:13px;color:#4e3d40;margin-bottom:15px}
+.footer ul{list-style:none;display:grid;gap:9px}
+.socials{display:flex;gap:10px;margin-top:20px}
+.socials a{
+  width:36px;
+  height:36px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  color:#7a5960;
+  background:#fff;
+  box-shadow:0 10px 24px rgba(116,72,78,.08);
+}
+.socials svg{width:17px;height:17px;stroke-width:2}
+.bizweb-note{margin-top:16px;color:#a68b90}
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  padding-top:34px;
+  margin-top:46px;
+  border-top:1px solid rgba(217,154,170,.22);
+}
+.footer-links{display:flex;gap:24px}
+
+/* Sticky CTA and toast */
+.sticky-style{
+  position:fixed;
+  z-index:65;
+  right:24px;
+  bottom:24px;
+  box-shadow:0 20px 48px rgba(199,126,143,.28);
+}
+.toast{
+  position:fixed;
+  z-index:120;
+  left:50%;
+  bottom:30px;
+  transform:translate(-50%,30px);
+  max-width:min(520px,calc(100% - 32px));
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:15px 18px;
+  color:#fff;
+  background:#4a3a3d;
+  border-radius:999px;
+  box-shadow:0 18px 46px rgba(74,58,61,.24);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease,transform .25s ease;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast svg{width:18px;height:18px;color:var(--gold);stroke-width:2.2}
+
+@keyframes heroZoom{from{transform:scale(1.08)}to{transform:scale(1.02)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+@media (max-width:980px){
+  .container{width:min(100% - 34px,740px)}
+  .nav-shell{width:calc(100% - 28px)}
+  .nav-links,.nav-actions{display:none}
+  .menu-toggle{display:flex}
+  .hero{min-height:720px}
+  .services-grid,.featured-grid,.testimonial-grid{grid-template-columns:1fr 1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-auto-rows:220px}
+  .partner-strip{grid-template-columns:repeat(3,1fr)}
+  .contact-grid{grid-template-columns:1fr;gap:42px}
+  .contact-image img{height:460px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-cta{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:640px){
+  :root{--nav-h:66px}
+  .container{width:calc(100% - 28px)}
+  .section{padding:76px 0}
+  .site-header{top:10px}
+  .nav-shell{padding:10px 12px;border-radius:20px}
+  .brand{font-size:22px}
+  .brand-mark{width:26px;height:26px}
+  .hero{min-height:680px;padding:124px 0 74px}
+  .hero-title{font-size:56px}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .hero-actions .btn{width:100%}
+  .hero-stats{gap:18px;justify-content:space-between}
+  .hero-stat{min-width:92px}
+  .services-grid,.featured-grid,.testimonial-grid,.planning-grid,.inquiry-form,.review-stats,.footer-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr;grid-auto-rows:250px}
+  .gallery-card.tall{grid-row:span 1}
+  .partner-strip{grid-template-columns:1fr 1fr}
+  .planning-card{grid-template-columns:1fr}
+  .contact-image img{height:360px}
+  .form-card{padding:28px 20px}
+  .form-card .section-title{font-size:42px}
+  #contact-form-section{padding-bottom:122px}
+  .footer{padding-bottom:92px}
+  .footer-bottom{flex-direction:column}
+  .sticky-style{
+    left:14px;
+    right:14px;
+    bottom:14px;
+    width:calc(100% - 28px);
+  }
+  .toast{bottom:84px;border-radius:20px}
+}
+</style>
+</head>
+<body>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 5.6a5.1 5.1 0 0 0-7.2 0L12 7.2l-1.6-1.6a5.1 5.1 0 1 0-7.2 7.2L12 21l8.8-8.2a5.1 5.1 0 0 0 0-7.2Z"/></symbol>
+  <symbol id="i-ring" viewBox="0 0 24 24"><circle cx="12" cy="14" r="7"/><path d="m8.5 5 3.5-3 3.5 3M8.5 5h7"/></symbol>
+  <symbol id="i-flower" viewBox="0 0 24 24"><path d="M12 12c-3-3-3-6 0-8 3 2 3 5 0 8Z"/><path d="M12 12c3-3 6-3 8 0-2 3-5 3-8 0Z"/><path d="M12 12c3 3 3 6 0 8-3-2-3-5 0-8Z"/><path d="M12 12c-3 3-6 3-8 0 2-3 5-3 8 0Z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 2v4M16 2v4M3 10h18"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.85M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Z"/><path d="M9 3v15M15 6v15"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><path d="M3 8h18v4H3zM5 12v9h14v-9M12 8v13"/><path d="M12 8H8.5a2.5 2.5 0 1 1 2.5-2.5V8ZM12 8h3.5A2.5 2.5 0 1 0 13 5.5V8Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3 2.7 5.47 6.03.88-4.36 4.25 1.03 6-5.4-2.84-5.4 2.84 1.03-6-4.36-4.25 6.03-.88L12 3Z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><path d="M17.5 6.8h.01"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M14 8h2V4h-2c-3 0-5 2-5 5v2H6v4h3v5h4v-5h3l1-4h-4V9c0-.6.4-1 1-1Z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4 20-7Z"/><path d="M22 2 11 13"/></symbol>
+</svg>
+
+<header class="site-header">
+  <nav class="nav-shell" aria-label="Primary navigation">
+    <a class="brand" href="#top"><span class="brand-mark"><svg><use href="#i-ring"/></svg></span>Ever After Events</a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact-form-section">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a class="btn btn-primary" href="#contact-form-section">Book Consultation</a>
+    </div>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <svg><use href="#i-menu"/></svg>
+    </button>
+  </nav>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services">Services</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#reviews">Reviews</a>
+  <a href="#contact-form-section">Contact</a>
+  <a class="btn btn-primary" href="#contact-form-section">Book Consultation</a>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="pill-label"><svg><use href="#i-flower"/></svg>Perfectly Planned Wedding Experience</span>
+        <h1 class="hero-title">Perfect Days,<br><span>Beautifully Planned</span></h1>
+        <p class="hero-text">From first inspiration to the final celebration, we design wedding experiences that feel personal, elegant, and unforgettable.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact-form-section">Schedule Consultation</a>
+          <a class="btn btn-light" href="#portfolio">View Portfolio</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong>120+</strong><span>Weddings Planned</span></div>
+          <div class="hero-stat"><strong>5.0</strong><span>Average Reviews</span></div>
+          <div class="hero-stat"><strong>8+</strong><span>Years Experience</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-cream" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Our Services</p>
+        <h2 class="section-title">How We Can <span>Help</span></h2>
+        <p class="section-copy">From full planning to day-of coordination, we make every wedding moment feel effortless.</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card reveal">
+          <span class="service-icon"><svg><use href="#i-calendar"/></svg></span>
+          <h3>Full Planning</h3>
+          <p>End-to-end wedding planning from concept to celebration.</p>
+          <div class="price-line">From $1,200</div>
+          <a class="learn" href="#contact-form-section">Learn More</a>
+        </article>
+        <article class="service-card reveal">
+          <span class="service-icon"><svg><use href="#i-check"/></svg></span>
+          <h3>Day-of Coordination</h3>
+          <p>Smooth support on your wedding day so everything runs beautifully.</p>
+          <div class="price-line">From $350</div>
+          <a class="learn" href="#contact-form-section">Learn More</a>
+        </article>
+        <article class="service-card reveal">
+          <span class="service-icon"><svg><use href="#i-flower"/></svg></span>
+          <h3>Decor & Styling</h3>
+          <p>Elegant styling, florals, and event design tailored to your theme.</p>
+          <div class="price-line">From $800</div>
+          <a class="learn" href="#contact-form-section">Learn More</a>
+        </article>
+        <article class="service-card reveal">
+          <span class="service-icon"><svg><use href="#i-map"/></svg></span>
+          <h3>Venue & Vendor Support</h3>
+          <p>Guidance for venue selection and trusted suppliers.</p>
+          <div class="price-line">From $250</div>
+          <a class="learn" href="#contact-form-section">Learn More</a>
+        </article>
+        <article class="service-card reveal">
+          <span class="service-icon"><svg><use href="#i-heart"/></svg></span>
+          <h3>Bridal Planning</h3>
+          <p>Timelines, guest coordination, and ceremony preparation.</p>
+          <div class="price-line">From $450</div>
+          <a class="learn" href="#contact-form-section">Learn More</a>
+        </article>
+        <article class="service-card reveal">
+          <span class="service-icon"><svg><use href="#i-gift"/></svg></span>
+          <h3>Honeymoon / Couple Planning</h3>
+          <p>Optional romantic experience coordination and add-ons.</p>
+          <div class="price-line">From $300</div>
+          <a class="learn" href="#contact-form-section">Learn More</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-cream" id="portfolio">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Our Portfolio</p>
+        <h2 class="section-title">Love Stories <span>We've Styled</span></h2>
+        <p class="section-copy">Explore a few of the celebrations we've helped bring to life.</p>
+      </div>
+      <div class="gallery-grid">
+        <article class="gallery-card tall reveal"><img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=900&q=85" alt="Romantic garden wedding couple"><span class="gallery-label">Garden Wedding</span></article>
+        <article class="gallery-card reveal"><img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=700&q=85" alt="Elegant wedding reception table"><span class="gallery-label">Classic Reception</span></article>
+        <article class="gallery-card reveal"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=85" alt="Wedding rings and bridal details"><span class="gallery-label">Bridal Details</span></article>
+        <article class="gallery-card reveal"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=700&q=85" alt="Wedding ceremony aisle decor"><span class="gallery-label">Intimate Ceremony</span></article>
+        <article class="gallery-card reveal"><img src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Bride and groom golden hour portrait"><span class="gallery-label">Golden Hour Portraits</span></article>
+        <article class="gallery-card reveal"><img src="https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?auto=format&fit=crop&w=700&q=85" alt="Wedding floral arrangement"><span class="gallery-label">Elegant Florals</span></article>
+      </div>
+      <div class="center-actions reveal">
+        <a class="btn btn-light" href="#contact-form-section">View Full Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-blush" id="partners">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Our Network</p>
+        <h2 class="section-title">Trusted <span>Partners</span></h2>
+        <p class="section-copy">We collaborate with reliable wedding professionals to give every couple a seamless experience.</p>
+      </div>
+      <div class="partner-strip">
+        <div class="partner-logo reveal"><span><svg><use href="#i-flower"/></svg></span>Florist</div>
+        <div class="partner-logo reveal"><span><svg><use href="#i-heart"/></svg></span>Makeup Artist</div>
+        <div class="partner-logo reveal"><span><svg><use href="#i-ring"/></svg></span>Bridal Boutique</div>
+        <div class="partner-logo reveal"><span><svg><use href="#i-star"/></svg></span>Photographer</div>
+        <div class="partner-logo reveal"><span><svg><use href="#i-calendar"/></svg></span>Videographer</div>
+        <div class="partner-logo reveal"><span><svg><use href="#i-gift"/></svg></span>Cake Studio</div>
+      </div>
+      <div class="section-head reveal" style="margin-top:64px">
+        <p class="eyebrow">Featured Moments</p>
+        <h2 class="section-title">Details Worth <span>Remembering</span></h2>
+      </div>
+      <div class="featured-grid">
+        <article class="moment-card reveal">
+          <img src="https://images.unsplash.com/photo-1525258946800-98cfd641d0de?auto=format&fit=crop&w=720&q=85" alt="Bridal bouquet styling">
+          <div class="moment-body"><h3>Bridal Bouquet Styling</h3><p>Soft florals, refined colors, and thoughtful details for the wedding morning.</p><span class="moment-badge">Featured project</span></div>
+        </article>
+        <article class="moment-card reveal">
+          <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=720&q=85" alt="Romantic seaside wedding ceremony">
+          <div class="moment-body"><h3>Romantic Seaside Ceremony</h3><p>An intimate ceremony concept with warm light and a peaceful coastal mood.</p><span class="moment-badge">Featured project</span></div>
+        </article>
+        <article class="moment-card reveal">
+          <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=720&q=85" alt="Live wedding entertainment">
+          <div class="moment-body"><h3>Live Wedding Entertainment</h3><p>Coordinated vendor timing for music, celebration, and guest experience.</p><span class="moment-badge">Featured project</span></div>
+        </article>
+      </div>
+      <div class="center-actions reveal">
+        <a class="btn btn-light" href="#portfolio">Explore More Stories</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-cream" id="planning">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Planning Tools</p>
+        <h2 class="section-title">Everything You <span>Need</span></h2>
+        <p class="section-copy">A graceful planning process with clear guidance, aligned vendors, and fewer stressful surprises.</p>
+      </div>
+      <div class="planning-grid">
+        <article class="planning-card reveal">
+          <span class="service-icon"><svg><use href="#i-check"/></svg></span>
+          <div><h3>Checklists & Timeline</h3><p>Stay organized with clear planning milestones and reminders.</p></div>
+        </article>
+        <article class="planning-card reveal">
+          <span class="service-icon"><svg><use href="#i-gift"/></svg></span>
+          <div><h3>Budget Guidance</h3><p>Manage priorities and keep your celebration aligned with your budget.</p></div>
+        </article>
+        <article class="planning-card reveal">
+          <span class="service-icon"><svg><use href="#i-users"/></svg></span>
+          <div><h3>Guest Management</h3><p>Coordinate seating, RSVPs, and important guest details with ease.</p></div>
+        </article>
+        <article class="planning-card reveal">
+          <span class="service-icon"><svg><use href="#i-flower"/></svg></span>
+          <div><h3>Vendor Coordination</h3><p>Keep all your suppliers aligned for a smooth, joyful event.</p></div>
+        </article>
+      </div>
+      <div class="planning-cta reveal">
+        <h3>Ready to Start Planning?</h3>
+        <p>Book your first consultation with our team.</p>
+        <a class="btn btn-gold" href="#contact-form-section">Get Started Today</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-blush" id="reviews">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">Love Stories</p>
+        <h2 class="section-title">Happy <span>Couples</span></h2>
+      </div>
+      <div class="testimonial-grid">
+        <article class="testimonial-card reveal">
+          <div class="quote-mark">"</div>
+          <blockquote>Ever After Events made our day feel effortless and magical. Every detail was beautifully handled.</blockquote>
+          <div class="couple"><div class="avatar">N</div><div><strong>Nika & Mony</strong><span>Garden Wedding</span></div></div>
+        </article>
+        <article class="testimonial-card reveal">
+          <div class="quote-mark">"</div>
+          <blockquote>We felt supported from the beginning to the very last moment. Our wedding felt exactly like us.</blockquote>
+          <div class="couple"><div class="avatar">S</div><div><strong>Sokha & Dara</strong><span>Classic Reception</span></div></div>
+        </article>
+        <article class="testimonial-card reveal">
+          <div class="quote-mark">"</div>
+          <blockquote>The planning process was smooth, calm, and joyful. We couldn't have asked for a better team.</blockquote>
+          <div class="couple"><div class="avatar">L</div><div><strong>Lina & Rithy</strong><span>Intimate Ceremony</span></div></div>
+        </article>
+      </div>
+      <div class="featured-review reveal">
+        <div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+        <p>"Their coordination made the whole celebration feel calm, beautiful, and completely personal."</p>
+      </div>
+      <div class="review-stats reveal">
+        <div><strong>120+</strong><span>Weddings Planned</span></div>
+        <div><strong>50K+</strong><span>Guests Hosted</span></div>
+        <div><strong>5.0</strong><span>Average Reviews</span></div>
+        <div><strong>8+</strong><span>Years Experience</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-cream" id="contact-form-section">
+    <div class="container contact-grid">
+      <div class="contact-image reveal">
+        <img src="https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Outdoor wedding ceremony chairs with floral aisle decor">
+        <div class="contact-note">
+          <span><svg><use href="#i-calendar"/></svg></span>
+          <div>
+            <strong>Now booking 2026 weddings</strong>
+            <p>Consultations available by appointment.</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-card reveal">
+        <p class="eyebrow">Let's Begin</p>
+        <h2 class="section-title">Let's Plan Your <span>Perfect Day</span></h2>
+        <p class="section-copy">Tell us about your celebration and we'll help you design a beautiful wedding experience.</p>
+        <form class="inquiry-form" id="consultationForm">
+          <div class="field"><label for="yourName">Your Name</label><input id="yourName" name="yourName" type="text" placeholder="Your name" required></div>
+          <div class="field"><label for="partnerName">Partner's Name</label><input id="partnerName" name="partnerName" type="text" placeholder="Partner name"></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@example.com" required></div>
+          <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" placeholder="098 70 88 00"></div>
+          <div class="field"><label for="weddingDate">Wedding Date</label><input id="weddingDate" name="weddingDate" type="date"></div>
+          <div class="field"><label for="guestCount">Guest Count</label><select id="guestCount" name="guestCount"><option>Select range</option><option>Under 80</option><option>80 - 150</option><option>150 - 300</option><option>300+</option></select></div>
+          <div class="field"><label for="venue">Venue / City</label><input id="venue" name="venue" type="text" placeholder="Phnom Penh, Siem Reap, Kampot"></div>
+          <div class="field"><label for="budget">Budget Range</label><select id="budget" name="budget"><option>Select range</option><option>Under $3,000</option><option>$3,000 - $8,000</option><option>$8,000 - $15,000</option><option>$15,000+</option></select></div>
+          <div class="field full"><label for="servicesNeeded">Services Needed</label><select id="servicesNeeded" name="servicesNeeded"><option>Full Planning</option><option>Day-of Coordination</option><option>Decor & Styling</option><option>Vendor Support</option><option>Not sure yet</option></select></div>
+          <div class="field full"><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell us your wedding style, priorities, and what support you need."></textarea></div>
+          <div class="field full"><button class="btn btn-primary" type="submit">Request Consultation</button></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-cta reveal">
+      <div>
+        <h2>Ready to make your own wedding website?</h2>
+        <p>We can customize this design with your wedding planner name, services, gallery, reviews, packages, and contact form.</p>
+      </div>
+      <a class="btn btn-primary" href="index.html#request">Request this website style</a>
+    </div>
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#top"><span class="brand-mark"><svg><use href="#i-ring"/></svg></span>Ever After Events</a>
+        <p style="margin-top:14px;max-width:300px">Creating meaningful wedding celebrations with beauty, care, and unforgettable detail.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg><use href="#i-instagram"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg><use href="#i-facebook"/></svg></a>
+          <a href="#" aria-label="Telegram"><svg><use href="#i-send"/></svg></a>
+        </div>
+        <p class="bizweb-note">Demo website style by BizWeb KH</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Full Planning</a></li>
+          <li><a href="#services">Day-of Coordination</a></li>
+          <li><a href="#services">Decor & Styling</a></li>
+          <li><a href="#services">Vendor Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Portfolio</h4>
+        <ul>
+          <li><a href="#portfolio">Gallery</a></li>
+          <li><a href="#partners">Featured Moments</a></li>
+          <li><a href="#reviews">Happy Couples</a></li>
+          <li><a href="#planning">Planning Tools</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#top">About Us</a></li>
+          <li><a href="#partners">Our Network</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact-form-section">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#contact-form-section">Book Consultation</a></li>
+          <li><a href="#contact-form-section">Availability</a></li>
+          <li><a href="#contact-form-section">Packages</a></li>
+          <li><a href="#contact-form-section">Planning Call</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ever After Events. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a class="btn btn-primary sticky-style" href="index.html#request">Request this website style</a>
+
+<div class="toast" id="toast" role="status" aria-live="polite">
+  <svg><use href="#i-check"/></svg>
+  <span>Thank you. Your wedding consultation request has been prepared for follow-up.</span>
+</div>
+
+<script>
+const menuToggle=document.querySelector('.menu-toggle');
+const mobileMenu=document.getElementById('mobileMenu');
+const toast=document.getElementById('toast');
+
+function closeMenu(){
+  mobileMenu.classList.remove('open');
+  document.body.classList.remove('menu-open');
+  menuToggle.setAttribute('aria-expanded','false');
+  menuToggle.innerHTML='<svg><use href="#i-menu"/></svg>';
+}
+
+menuToggle.addEventListener('click',()=>{
+  const isOpen=mobileMenu.classList.toggle('open');
+  document.body.classList.toggle('menu-open',isOpen);
+  menuToggle.setAttribute('aria-expanded',String(isOpen));
+  menuToggle.innerHTML=isOpen?'<svg><use href="#i-x"/></svg>':'<svg><use href="#i-menu"/></svg>';
+});
+
+document.querySelectorAll('.mobile-menu a').forEach(link=>{
+  link.addEventListener('click',closeMenu);
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
+  link.addEventListener('click',event=>{
+    const href=link.getAttribute('href');
+    if(!href||href==='#')return;
+    const target=document.querySelector(href);
+    if(!target)return;
+    event.preventDefault();
+    target.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:.14,rootMargin:'0px 0px -60px 0px'});
+
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+document.getElementById('consultationForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),3600);
+  event.currentTarget.reset();
+});
+</script>
+</body>
+</html>
