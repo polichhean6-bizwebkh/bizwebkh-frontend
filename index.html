@@ -3,19 +3,76 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BizWeb KH | Website Demos for Cambodian SMEs</title>
-<meta name="description" content="Browse completed website demo styles for Cambodian SMEs and request a custom business website.">
-<meta property="og:title" content="BizWeb KH | Website Demos for Cambodian SMEs">
-<meta property="og:description" content="Choose a website demo style and request a custom business website for your SME.">
+<title>Website Design for Cambodian SMEs from $99 | BizWeb KH</title>
+<meta name="description" content="BizWeb KH builds affordable Khmer + English business websites for Cambodian SMEs. Choose a demo style and get a mobile-ready website from $99.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.bizwebkh.com/">
+<meta property="og:title" content="Website Design for Cambodian SMEs from $99 | BizWeb KH">
+<meta property="og:description" content="BizWeb KH builds affordable Khmer + English business websites for Cambodian SMEs. Choose a demo style and get a mobile-ready website from $99.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://www.bizwebkh.com/">
 <!-- Add bizweb-kh-og-image.png in the same folder before publishing -->
-<meta property="og:image" content="bizweb-kh-og-image.png">
+<meta property="og:image" content="https://www.bizwebkh.com/bizweb-kh-og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BizWeb KH | Website Demos for Cambodian SMEs">
-<meta name="twitter:description" content="Choose a website demo style and request a custom business website for your SME.">
-<meta name="twitter:image" content="bizweb-kh-og-image.png">
+<meta name="twitter:title" content="Website Design for Cambodian SMEs from $99 | BizWeb KH">
+<meta name="twitter:description" content="BizWeb KH builds affordable Khmer + English business websites for Cambodian SMEs. Choose a demo style and get a mobile-ready website from $99.">
+<meta name="twitter:image" content="https://www.bizwebkh.com/bizweb-kh-og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "BizWeb KH",
+  "url": "https://www.bizwebkh.com/",
+  "description": "Affordable Khmer + English website design for Cambodian SMEs. Choose a demo style and get a mobile-ready business website from $99.",
+  "areaServed": {
+    "@type": "Country",
+    "name": "Cambodia"
+  },
+  "telephone": "+85517400044",
+  "sameAs": [
+    "https://t.me/BizWebKH"
+  ],
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Starter Website",
+      "price": "99",
+      "priceCurrency": "USD",
+      "description": "One-page business website for Cambodian SMEs."
+    },
+    {
+      "@type": "Offer",
+      "name": "Pro Website",
+      "price": "199",
+      "priceCurrency": "USD",
+      "description": "Multi-page business website with Khmer and English content."
+    },
+    {
+      "@type": "Offer",
+      "name": "Pro Max Website",
+      "price": "299",
+      "priceCurrency": "USD",
+      "description": "Catalog-style business website for products, services, menus, rooms, or gallery items."
+    }
+  ]
+}
+</script>
+<script>
+(function(){
+  try{
+    var savedTheme=localStorage.getItem('bizwebkh-theme');
+    if(savedTheme==='dark'){
+      document.documentElement.removeAttribute('data-theme');
+    }else{
+      document.documentElement.setAttribute('data-theme','light');
+    }
+  }catch(e){
+    document.documentElement.setAttribute('data-theme','light');
+  }
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@300;400;500;600;700;800&family=Noto+Serif+Khmer:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Khmer:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    RESET & BASE
@@ -30,10 +87,10 @@
   --radius:12px;--radius-sm:7px;--nav-h:78px;
 }
 html{scroll-behavior:smooth;}
-body{background:var(--ink);color:var(--text);font-family:'Outfit',sans-serif;font-size:15px;line-height:1.6;min-height:100vh;overflow-x:hidden;}
+body{background:var(--ink);color:var(--text);font-family:'Inter','Noto Sans Khmer',sans-serif;font-size:15px;line-height:1.6;min-height:100vh;overflow-x:hidden;}
 ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--ink-2);}::-webkit-scrollbar-thumb{background:var(--ink-4);border-radius:3px;}
 ::selection{background:rgba(61,123,255,0.3);color:#fff;}
-.mono{font-family:'DM Mono',monospace;}
+.mono{font-family:inherit;font-weight:600;letter-spacing:0.02em;}
 img{display:block;max-width:100%;}
 a{color:inherit;text-decoration:none;}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5;}
@@ -68,12 +125,12 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 .nav-spacer{flex:1;}
 .nav-actions{display:flex;align-items:center;gap:10px;}
 
-.theme-toggle{height:32px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,0.035);color:var(--text-2);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.02em;padding:3px 9px 3px 4px;display:inline-flex;align-items:center;gap:7px;cursor:pointer;transition:all .2s;}
+.theme-toggle{height:32px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,0.035);color:var(--text-2);font-family:inherit;font-size:11px;font-weight:700;letter-spacing:.02em;padding:3px 9px 3px 4px;display:inline-flex;align-items:center;gap:7px;cursor:pointer;transition:all .2s;}
 .theme-toggle:hover{color:var(--text);border-color:var(--border-hi);background:var(--ink-3);}
 .theme-toggle-knob{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 0 16px rgba(61,123,255,.35);display:block;}
 .theme-toggle-text{line-height:1;}
 
-.btn{display:inline-flex;align-items:center;gap:7px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;border:none;border-radius:var(--radius-sm);cursor:pointer;transition:all .2s;white-space:nowrap;text-decoration:none;}
+.btn{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-size:13px;font-weight:700;border:none;border-radius:var(--radius-sm);cursor:pointer;transition:all .2s;white-space:nowrap;text-decoration:none;}
 .btn svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;flex-shrink:0;}
 .btn-ghost{background:transparent;color:var(--text-2);border:1px solid var(--border);padding:7px 14px;}
 .btn-ghost:hover{color:var(--text);border-color:var(--border-hi);background:var(--ink-3);}
@@ -82,7 +139,7 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 .btn-sm{font-size:12px;padding:5px 12px;}
 .btn-outline{background:transparent;color:var(--accent-2);border:1px solid rgba(0,212,255,0.3);padding:7px 14px;}
 .btn-outline:hover{background:rgba(0,212,255,0.08);border-color:rgba(0,212,255,0.6);}
-.btn-green{background:var(--green);color:#06170e;padding:7px 16px;font-weight:600;}
+.btn-green{background:var(--green);color:#06170e;padding:7px 16px;font-weight:700;}
 .btn-green:hover{background:#00ffb3;transform:translateY(-1px);}
 
 .hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:6px;background:none;border:none;}
@@ -93,26 +150,31 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 ============================================================ */
 .hero{padding-top:calc(var(--nav-h) + 64px);padding-bottom:56px;padding-left:24px;padding-right:24px;position:relative;text-align:center;overflow:hidden;}
 .hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:420px;background:radial-gradient(ellipse at center top,rgba(61,123,255,0.18) 0%,transparent 70%);pointer-events:none;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--ink-3);border:1px solid var(--border);border-radius:999px;padding:5px 14px;font-size:12px;font-family:'DM Mono',monospace;color:var(--text-2);margin-bottom:28px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--ink-3);border:1px solid var(--border);border-radius:999px;padding:5px 14px;font-size:12px;font-family:inherit;font-weight:600;letter-spacing:0.03em;color:var(--text-2);margin-bottom:28px;}
 .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);flex-shrink:0;}
-.hero h1{font-size:clamp(32px,5.5vw,62px);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:#fff;max-width:820px;margin:0 auto 20px;}
-.hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero h1{font-size:clamp(32px,5.5vw,62px);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:#fff;max-width:920px;margin:0 auto 20px;}
+.hero-title-line,.hero-title-subline{display:block;}
+.hero-title-subline{font-size:clamp(24px,4.2vw,46px);line-height:1.15;margin-top:10px;min-height:1.2em;color:var(--text);}
+.hero-typing-wrap{display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:420px;min-height:1.15em;height:1.15em;line-height:1.15;vertical-align:top;background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;}
+.hero-typing-text{display:inline-block;}
+.typing-cursor{display:inline-block;flex:0 0 3px;width:3px;height:.85em;margin-left:4px;border-radius:999px;background:var(--accent-2);animation:blinkCursor .8s steps(1) infinite;-webkit-text-fill-color:initial;}
+@keyframes blinkCursor{0%,45%{opacity:1;}46%,100%{opacity:0;}}
 .hero-sub{font-size:clamp(14px,2vw,17px);color:var(--text-2);max-width:600px;margin:0 auto 36px;line-height:1.7;}
 .hero-proof{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:760px;margin:-16px auto 28px;}
-.hero-proof span{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,0.035);border:1px solid var(--border);border-radius:999px;padding:7px 12px;font-family:'DM Mono',monospace;font-size:11px;color:var(--text-2);}
+.hero-proof span{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,0.035);border:1px solid var(--border);border-radius:999px;padding:7px 12px;font-family:inherit;font-size:11px;font-weight:600;letter-spacing:0.02em;color:var(--text-2);}
 .hero-proof svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;color:var(--accent-2);flex-shrink:0;}
 
 /* search */
 .search-wrap{max-width:680px;margin:0 auto 28px;position:relative;}
 .search-icon-wrap{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--text-3);pointer-events:none;display:flex;align-items:center;}
 .search-icon-wrap svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;}
-#hero-search{width:100%;background:var(--ink-3);border:1px solid var(--border);border-radius:12px;padding:16px 18px 16px 48px;font-family:'Outfit',sans-serif;font-size:15px;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;}
+#hero-search{width:100%;background:var(--ink-3);border:1px solid var(--border);border-radius:12px;padding:16px 18px 16px 48px;font-family:inherit;font-size:15px;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;}
 #hero-search::placeholder{color:var(--text-3);}
 #hero-search:focus{border-color:var(--border-hi);box-shadow:0 0 0 3px rgba(61,123,255,0.12),0 0 30px rgba(61,123,255,0.08);}
 
 /* chips */
 .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:780px;margin:0 auto;}
-.chip{font-size:12px;font-family:'DM Mono',monospace;color:var(--text-2);background:var(--ink-3);border:1px solid var(--border);border-radius:999px;padding:6px 14px;cursor:pointer;transition:all .18s;user-select:none;display:inline-flex;align-items:center;gap:6px;}
+.chip{font-size:12px;font-family:inherit;font-weight:600;letter-spacing:0.02em;color:var(--text-2);background:var(--ink-3);border:1px solid var(--border);border-radius:999px;padding:6px 14px;cursor:pointer;transition:all .18s;user-select:none;display:inline-flex;align-items:center;gap:6px;}
 .chip svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;flex-shrink:0;}
 .chip:hover,.chip.active{color:var(--accent-2);border-color:rgba(0,212,255,0.4);background:rgba(0,212,255,0.07);}
 
@@ -123,7 +185,7 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 .stats-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);}
 .stat-item{text-align:center;padding:22px 16px;border-right:1px solid var(--border);}
 .stat-item:last-child{border-right:none;}
-.stat-val{display:block;font-size:26px;font-weight:700;font-family:'DM Mono',monospace;color:#fff;line-height:1;margin-bottom:5px;}
+.stat-val{display:block;font-size:26px;font-weight:800;font-family:inherit;color:#fff;line-height:1;margin-bottom:5px;}
 .stat-val span{color:var(--accent);}
 .stat-label{font-size:12px;color:var(--text-3);}
 
@@ -146,9 +208,10 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
    SECTION BASE
 ============================================================ */
 .section{padding:72px 24px;position:relative;}
+.included-section{padding-top:64px;padding-bottom:72px;background:var(--ink-2);}
 .section-inner{max-width:1200px;margin:0 auto;}
 .section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;gap:16px;flex-wrap:wrap;}
-.section-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;}
+.section-label{font-family:inherit;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;}
 .section-title{font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-0.02em;color:#fff;}
 .section-sub{font-size:14px;color:var(--text-2);margin-top:6px;}
 
@@ -157,11 +220,11 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 ============================================================ */
 .filter-bar{background:var(--ink-2);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:28px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;}
 .filter-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.filter-label{font-size:11px;font-family:'DM Mono',monospace;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;white-space:nowrap;}
+.filter-label{font-size:11px;font-family:inherit;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;white-space:nowrap;}
 .filter-chip{font-size:12px;color:var(--text-2);background:var(--ink-3);border:1px solid var(--border);border-radius:999px;padding:4px 12px;cursor:pointer;transition:all .18s;user-select:none;}
 .filter-chip:hover{color:var(--text);border-color:var(--border-hi);}
 .filter-chip.active{color:#fff;background:var(--accent);border-color:var(--accent);box-shadow:0 0 12px rgba(61,123,255,0.3);}
-.filter-clear{font-size:12px;font-family:'DM Mono',monospace;color:var(--text-3);cursor:pointer;transition:color .2s;background:none;border:none;margin-left:auto;display:flex;align-items:center;gap:5px;}
+.filter-clear{font-size:12px;font-family:inherit;font-weight:700;color:var(--text-3);cursor:pointer;transition:color .2s;background:none;border:none;margin-left:auto;display:flex;align-items:center;gap:5px;}
 .filter-clear:hover{color:var(--rose);}
 .filter-clear svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;}
 
@@ -184,7 +247,7 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 .demo-card.live-card{border-color:rgba(0,212,255,0.18);}
 .demo-card.live-card:hover{border-color:rgba(0,212,255,0.46);box-shadow:0 0 0 1px rgba(0,212,255,0.22),0 18px 44px rgba(0,0,0,0.44),0 0 44px rgba(0,212,255,0.08);}
 .mockup{width:100%;height:100%;position:relative;overflow:hidden;}
-.site-shot{--c1:#101827;--c2:#1d2a44;--ac:#3d7bff;--tx:#e8edf8;width:100%;height:100%;background:linear-gradient(155deg,var(--c1),var(--c2));position:relative;overflow:hidden;color:var(--tx);font-family:'Outfit',sans-serif;}
+.site-shot{--c1:#101827;--c2:#1d2a44;--ac:#3d7bff;--tx:#e8edf8;width:100%;height:100%;background:linear-gradient(155deg,var(--c1),var(--c2));position:relative;overflow:hidden;color:var(--tx);font-family:inherit;}
 .site-shot::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 18%,color-mix(in srgb,var(--ac),transparent 70%),transparent 34%),linear-gradient(180deg,rgba(255,255,255,0.035),transparent);pointer-events:none;}
 .shot-browser{height:20px;background:rgba(0,0,0,0.32);display:flex;align-items:center;gap:5px;padding:0 8px;position:relative;z-index:1;}
 .shot-dot{width:5px;height:5px;border-radius:50%;background:var(--ac);box-shadow:0 0 8px color-mix(in srgb,var(--ac),transparent 30%);}
@@ -279,14 +342,14 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 .site-shop .shot-img{height:38px;margin-bottom:6px;}
 .card-body{padding:14px 16px;display:flex;flex-direction:column;flex:1;min-width:0;}
 .card-tags{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;}
-.tag{font-size:10px;font-family:'DM Mono',monospace;border-radius:4px;padding:2px 7px;font-weight:400;letter-spacing:0.04em;}
+.tag{font-size:10px;font-family:inherit;border-radius:4px;padding:2px 7px;font-weight:700;letter-spacing:0.04em;}
 .tag-industry{background:rgba(61,123,255,0.12);color:#7aa8ff;border:1px solid rgba(61,123,255,0.2);}
 .tag-style{background:rgba(0,212,255,0.10);color:#5de8ff;border:1px solid rgba(0,212,255,0.18);}
 .tag-budget{background:rgba(0,229,160,0.10);color:#00e5a0;border:1px solid rgba(0,229,160,0.18);}
 .tag-live{background:rgba(0,212,255,0.12);color:#7df1ff;border:1px solid rgba(0,212,255,0.42);box-shadow:0 0 14px rgba(0,212,255,0.16);}
-.card-name{font-size:15px;font-weight:600;color:#fff;margin-bottom:5px;}
+.card-name{font-size:15px;font-weight:700;color:#fff;margin-bottom:5px;}
 .card-desc{font-size:12px;color:var(--text-2);line-height:1.55;margin-bottom:12px;}
-.card-bestfor{font-size:11px;font-family:'DM Mono',monospace;color:var(--text-3);margin-bottom:12px;}
+.card-bestfor{font-size:11px;font-family:inherit;font-weight:500;letter-spacing:0.01em;color:var(--text-3);margin-bottom:12px;}
 .card-bestfor strong{color:var(--text-2);}
 .card-footer{display:flex;align-items:center;padding-top:12px;border-top:1px solid var(--border);margin-top:auto;min-width:0;}
 .card-actions{display:flex;gap:10px;flex-wrap:wrap;width:100%;min-width:0;}
@@ -301,17 +364,17 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 /* ============================================================
    QUIZ
 ============================================================ */
-.quiz-section{background:var(--ink-2);}
+.quiz-section{background:var(--ink-2);padding-bottom:64px;}
 .quiz-wrap{max-width:680px;margin:0 auto;background:var(--ink-3);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
 .quiz-progress{height:3px;background:var(--ink-4);}
 .quiz-progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .4s ease;border-radius:0 2px 2px 0;}
 .quiz-inner{padding:36px;}
 .quiz-step{display:none;}
 .quiz-step.active{display:block;}
-.quiz-q-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;}
-.quiz-q{font-size:20px;font-weight:600;color:#fff;margin-bottom:24px;}
+.quiz-q-num{font-family:inherit;font-size:11px;font-weight:700;color:var(--text-3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;}
+.quiz-q{font-size:20px;font-weight:700;color:#fff;margin-bottom:24px;}
 .quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;}
-.quiz-opt{padding:11px 13px;background:var(--ink-4);border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:all .18s;text-align:left;color:var(--text-2);font-size:13px;font-family:'Outfit',sans-serif;display:flex;align-items:center;gap:9px;}
+.quiz-opt{padding:11px 13px;background:var(--ink-4);border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:all .18s;text-align:left;color:var(--text-2);font-size:13px;font-family:inherit;font-weight:600;display:flex;align-items:center;gap:9px;}
 .quiz-opt svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;flex-shrink:0;color:var(--text-3);transition:color .18s;}
 .quiz-opt:hover{border-color:var(--border-hi);color:var(--text);background:var(--ink-3);}
 .quiz-opt:hover svg{color:var(--accent-2);}
@@ -339,15 +402,15 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 .pricing-card{background:var(--ink-3);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;transition:border-color .25s,box-shadow .25s,transform .2s;position:relative;display:flex;flex-direction:column;min-width:0;}
 .pricing-card:hover{border-color:var(--border-hi);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,0.3);}
 .pricing-card.featured{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent),0 0 40px rgba(61,123,255,0.12);}
-.pricing-badge{position:absolute;top:-11px;left:20px;background:var(--accent);color:#fff;font-size:10px;font-family:'DM Mono',monospace;padding:3px 10px;border-radius:999px;letter-spacing:0.06em;text-transform:uppercase;}
+.pricing-badge{position:absolute;top:-11px;left:20px;background:var(--accent);color:#fff;font-size:10px;font-family:inherit;font-weight:700;padding:3px 10px;border-radius:999px;letter-spacing:0.06em;text-transform:uppercase;}
 .pricing-icon-wrap{margin-bottom:14px;}
 .pricing-icon-wrap .icon-box-lg{background:var(--ink-4);border-color:var(--border);color:var(--text-2);transition:all .3s;}
 .pricing-card:hover .icon-box-lg,.pricing-card.featured .icon-box-lg{color:var(--accent-2);border-color:var(--border-hi);box-shadow:0 0 18px rgba(0,212,255,0.12);}
 .pricing-name{font-size:16px;font-weight:700;color:#fff;margin-bottom:4px;}
-.pricing-bestfor{font-size:12px;color:var(--text-3);margin-bottom:16px;font-family:'DM Mono',monospace;}
-.pricing-price{font-size:28px;font-weight:800;font-family:'DM Mono',monospace;color:#fff;margin-bottom:4px;}
+.pricing-bestfor{font-size:12px;color:var(--text-3);margin-bottom:16px;font-family:inherit;font-weight:500;}
+.pricing-price{font-size:28px;font-weight:800;font-family:inherit;color:#fff;margin-bottom:4px;}
 .pricing-price span{font-size:14px;color:var(--text-3);font-weight:400;}
-.pricing-delivery{font-size:11px;font-family:'DM Mono',monospace;color:var(--accent-2);margin-bottom:20px;display:flex;align-items:center;gap:6px;}
+.pricing-delivery{font-size:11px;font-family:inherit;font-weight:700;letter-spacing:0.02em;color:var(--accent-2);margin-bottom:20px;display:flex;align-items:center;gap:6px;}
 .pricing-delivery svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;flex-shrink:0;}
 .pricing-features{list-style:none;margin-bottom:24px;flex:1;}
 .pricing-features li{font-size:13px;color:var(--text-2);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:flex-start;gap:8px;}
@@ -355,7 +418,7 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 .pricing-note{margin-top:18px;padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);background:rgba(255,255,255,0.025);font-size:12px;color:var(--text-2);line-height:1.65;}
 .care-addon{margin-top:22px;border:1px solid rgba(0,212,255,0.18);border-radius:var(--radius);background:linear-gradient(135deg,rgba(0,212,255,0.055),rgba(61,123,255,0.035));padding:20px;display:grid;grid-template-columns:1.1fr 1.4fr auto;gap:18px;align-items:center;}
 .care-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:3px;}
-.care-price{font-family:'DM Mono',monospace;font-size:18px;color:var(--accent-2);font-weight:700;}
+.care-price{font-family:inherit;font-size:18px;color:var(--accent-2);font-weight:800;}
 .care-text{font-size:13px;color:var(--text-2);line-height:1.65;}
 .care-points{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;}
 .care-points span{font-size:11px;color:var(--text-2);border:1px solid var(--border);border-radius:999px;padding:4px 9px;background:rgba(255,255,255,0.025);}
@@ -369,7 +432,7 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 .compare-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--text-3);opacity:.5;}
 .compare-card.after{border-color:rgba(0,229,160,0.22);box-shadow:0 0 34px rgba(0,229,160,0.045);}
 .compare-card.after::before{background:linear-gradient(90deg,var(--green),var(--accent-2));opacity:1;}
-.compare-kicker{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;}
+.compare-kicker{font-family:inherit;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:8px;}
 .compare-card.after .compare-kicker{color:var(--green);}
 .compare-title{font-size:20px;font-weight:700;color:#fff;margin-bottom:18px;}
 .compare-list{list-style:none;display:grid;gap:11px;}
@@ -385,7 +448,7 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;max-width:900px;margin:0 auto;}
 .steps::before{content:'';position:absolute;top:27px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--border-hi),var(--border-hi),transparent);}
 .step{text-align:center;padding:0 16px;position:relative;}
-.step-num{width:54px;height:54px;background:var(--ink-2);border:1px solid var(--border-hi);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'DM Mono',monospace;font-size:16px;font-weight:500;color:var(--accent-2);position:relative;z-index:1;transition:all .3s;}
+.step-num{width:54px;height:54px;background:var(--ink-2);border:1px solid var(--border-hi);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:inherit;font-size:16px;font-weight:800;color:var(--accent-2);position:relative;z-index:1;transition:all .3s;}
 .step:hover .step-num{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 0 24px rgba(61,123,255,0.4);}
 .step-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:8px;}
 .step-desc{font-size:12px;color:var(--text-2);line-height:1.6;}
@@ -401,8 +464,8 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
 .form-group{display:flex;flex-direction:column;gap:6px;}
 .form-group.full{grid-column:1/-1;}
-.form-label{font-size:12px;font-family:'DM Mono',monospace;color:var(--text-3);letter-spacing:0.05em;text-transform:uppercase;}
-.form-input,.form-select,.form-textarea{background:var(--ink-4);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;width:100%;}
+.form-label{font-size:12px;font-family:inherit;font-weight:700;color:var(--text-3);letter-spacing:0.04em;text-transform:uppercase;}
+.form-input,.form-select,.form-textarea{background:var(--ink-4);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;font-family:inherit;font-size:14px;color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;width:100%;}
 .form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--border-hi);box-shadow:0 0 0 3px rgba(61,123,255,0.1);}
 .form-input::placeholder,.form-textarea::placeholder{color:var(--text-3);}
 .form-select option{background:var(--ink-3);}
@@ -413,7 +476,7 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 ============================================================ */
 .faq-list{max-width:720px;margin:0 auto;}
 .faq-item{border-bottom:1px solid var(--border);}
-.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 0;font-family:'Outfit',sans-serif;font-size:15px;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color .2s;}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 0;font-family:inherit;font-size:15px;font-weight:700;color:var(--text);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:color .2s;}
 .faq-q:hover{color:#fff;}
 .faq-icon-wrap{flex-shrink:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center;color:var(--text-3);transition:transform .25s,color .2s;}
 .faq-icon-wrap svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;}
@@ -425,18 +488,20 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
    CONTACT
 ============================================================ */
 .contact-section{background:var(--ink-2);}
-.contact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:800px;margin:0 auto;}
+.contact-grid{display:grid;grid-template-columns:repeat(2,minmax(180px,240px));justify-content:center;gap:14px;max-width:540px;margin:0 auto;}
 .contact-btn{display:flex;flex-direction:column;align-items:center;gap:12px;background:var(--ink-3);border:1px solid var(--border);border-radius:var(--radius);padding:28px 16px;cursor:pointer;transition:all .22s;text-decoration:none;color:var(--text-2);}
 .contact-btn:hover{transform:translateY(-4px);border-color:var(--border-hi);color:#fff;box-shadow:0 12px 30px rgba(0,0,0,0.3);}
 .contact-btn .icon-box-lg{background:var(--ink-4);color:var(--text-2);transition:all .22s;}
 .contact-btn:hover .icon-box-lg{color:var(--accent-2);border-color:var(--border-hi);box-shadow:0 0 18px rgba(0,212,255,0.15);}
 .contact-label{font-size:13px;font-weight:500;}
+.disabled-contact,
+.disabled-contact:hover{opacity:.55;cursor:not-allowed;pointer-events:none;}
 
 /* ============================================================
    FOOTER
 ============================================================ */
 footer{background:var(--ink);border-top:1px solid var(--border);padding:36px 24px;text-align:center;}
-.footer-logo{font-family:'DM Mono',monospace;font-size:18px;color:#fff;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:9px;}
+.footer-logo{font-family:inherit;font-size:18px;font-weight:800;color:#fff;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:9px;}
 .footer-logo-img{display:block;width:380px;max-width:90vw;height:auto;object-fit:contain;margin-bottom:16px;}
 .footer-logo-mark{width:24px;height:24px;border-radius:7px;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(61,123,255,0.4);}
 .footer-logo-mark svg{fill:none;stroke:#fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;}
@@ -444,7 +509,7 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:36px 24p
 .footer-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:20px;list-style:none;}
 .footer-links a{font-size:13px;color:var(--text-3);transition:color .2s;}
 .footer-links a:hover{color:var(--text);}
-.footer-copy{font-size:12px;font-family:'DM Mono',monospace;color:var(--text-3);}
+.footer-copy{font-size:12px;font-family:inherit;font-weight:500;color:var(--text-3);}
 
 /* ============================================================
    MODAL
@@ -463,14 +528,14 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:36px 24p
 .modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
 .modal-name{font-size:22px;font-weight:700;color:#fff;margin-bottom:8px;}
 .modal-desc{font-size:14px;color:var(--text-2);line-height:1.65;margin-bottom:20px;}
-.modal-section-title{font-size:11px;font-family:'DM Mono',monospace;color:var(--text-3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;}
+.modal-section-title{font-size:11px;font-family:inherit;font-weight:700;color:var(--text-3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;}
 .modal-list{list-style:none;margin-bottom:20px;display:flex;flex-wrap:wrap;gap:6px;}
 .modal-list li{font-size:12px;background:var(--ink-4);border:1px solid var(--border);border-radius:6px;padding:4px 10px;color:var(--text-2);}
 .modal-info-row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
 .modal-info-row:last-of-type{border-bottom:none;}
-.modal-info-key{color:var(--text-3);font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;}
+.modal-info-key{color:var(--text-3);font-family:inherit;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;}
 .modal-info-val{color:var(--text);}
-.modal-price-big{font-family:'DM Mono',monospace;font-size:28px;font-weight:700;color:var(--green);margin:20px 0 8px;}
+.modal-price-big{font-family:inherit;font-size:28px;font-weight:800;color:var(--green);margin:20px 0 8px;}
 .modal-price-note{font-size:12px;color:var(--text-3);margin-bottom:24px;}
 .modal-ctas{display:flex;flex-direction:column;gap:10px;}
 .modal-ctas .btn{justify-content:center;padding:13px;font-size:14px;border-radius:var(--radius-sm);width:100%;}
@@ -526,7 +591,8 @@ html[data-theme="light"] .hero-glow{position:absolute;top:0;left:50%;transform:t
 html[data-theme="light"] .hero-badge{margin-top:0;background:rgba(255,255,255,.86);border-color:rgba(29,123,255,.16);color:#4A5B7A;box-shadow:0 12px 34px rgba(29,72,125,.08);}
 html[data-theme="light"] .hero-badge-dot{background:#FF8A3D;box-shadow:0 0 12px rgba(255,138,61,.45);}
 html[data-theme="light"] .hero h1{margin-top:0;color:#071C3D;text-shadow:none;}
-html[data-theme="light"] .hero h1 span{background:linear-gradient(135deg,#1D7BFF 0%,#18C8FF 76%);-webkit-background-clip:text;background-clip:text;}
+html[data-theme="light"] .hero-title-subline{color:#071C3D;}
+html[data-theme="light"] .hero-typing-wrap{background:linear-gradient(135deg,#1D7BFF 0%,#18C8FF 76%);-webkit-background-clip:text;background-clip:text;}
 html[data-theme="light"] .hero-sub{color:#4A5B7A;}
 html[data-theme="light"] .hero-proof span{background:rgba(255,255,255,.78);border-color:rgba(29,123,255,.13);color:#4A5B7A;box-shadow:0 10px 24px rgba(29,72,125,.06);}
 html[data-theme="light"] .hero-proof svg{color:#FF8A3D;}
@@ -541,6 +607,8 @@ html[data-theme="light"] .stat-val{color:#071C3D;}
 html[data-theme="light"] .stat-val span{color:#1D7BFF;}
 html[data-theme="light"] .stat-label{color:#4A5B7A;}
 html[data-theme="light"] .section{padding-top:88px;padding-bottom:88px;}
+html[data-theme="light"] .quiz-section{padding-bottom:64px;}
+html[data-theme="light"] .included-section{padding-top:64px;padding-bottom:72px;}
 html[data-theme="light"] .why-section,html[data-theme="light"] .quiz-section,html[data-theme="light"] .how-section,html[data-theme="light"] .contact-section{background:linear-gradient(180deg,#F6FAFF,#EEF6FF);}
 html[data-theme="light"] .section-title,html[data-theme="light"] .why-title,html[data-theme="light"] .pricing-name,html[data-theme="light"] .compare-title,html[data-theme="light"] .step-title,html[data-theme="light"] .quiz-q,html[data-theme="light"] .quiz-result-title,html[data-theme="light"] .card-name,html[data-theme="light"] .modal-name,html[data-theme="light"] .modal-title{color:#071C3D;}
 html[data-theme="light"] .section-sub,html[data-theme="light"] .why-text,html[data-theme="light"] .value-item,html[data-theme="light"] .card-desc,html[data-theme="light"] .pricing-bestfor,html[data-theme="light"] .pricing-features li,html[data-theme="light"] .pricing-note,html[data-theme="light"] .care-text,html[data-theme="light"] .compare-list li,html[data-theme="light"] .step-desc,html[data-theme="light"] .faq-a,html[data-theme="light"] .modal-desc{color:#4A5B7A;}
@@ -616,7 +684,6 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
 @media(max-width:900px){
   .steps{grid-template-columns:1fr 1fr;gap:28px;}
   .steps::before{display:none;}
-  .contact-grid{grid-template-columns:1fr 1fr;}
   .stats-inner{grid-template-columns:1fr 1fr;}
   .why-grid{grid-template-columns:1fr 1fr;}
   .compare-grid{grid-template-columns:1fr;}
@@ -628,6 +695,9 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   .nav-links,.nav-actions{display:none;}
   .hamburger{display:flex;}
   .nav-logo-img{width:180px;height:auto;max-height:46px;}
+  .hero h1{max-width:100%;font-size:clamp(31px,10vw,44px);}
+  .hero-title-subline{font-size:clamp(22px,7.5vw,32px);margin-top:8px;}
+  .hero-typing-wrap{min-width:min(92vw,340px);max-width:92vw;white-space:normal;}
   .footer-logo-img{width:280px;max-width:86vw;}
   .form-grid{grid-template-columns:1fr;}
   .quiz-options{grid-template-columns:1fr;}
@@ -637,13 +707,16 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   .why-grid{grid-template-columns:1fr;}
   .value-strip{grid-template-columns:1fr;}
   .section{padding:52px 16px;}
+  .included-section{padding-top:44px;padding-bottom:56px;}
   .card-thumb.live-thumb{height:190px;padding:8px;}
   .live-preview-frame iframe{transform:scale(0.215);}
+}
+@media(max-width:520px){
+  .contact-grid{grid-template-columns:1fr;max-width:320px;}
 }
 @media(max-width:480px){
   .card-grid{grid-template-columns:1fr;}
   .card-thumb.live-thumb{height:184px;}
-  .contact-grid{grid-template-columns:1fr 1fr;}
   .stat-item{border-right:none !important;border-bottom:1px solid var(--border);}
   .stat-item:last-child{border-bottom:none;}
   nav{padding:0 16px;}
@@ -651,6 +724,7 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
 @media(max-width:700px){
   html[data-theme="light"] .hero{padding-top:calc(var(--nav-h) + 32px);padding-bottom:44px;min-height:auto;height:auto;}
   html[data-theme="light"] .section{padding:58px 16px;}
+  html[data-theme="light"] .included-section{padding-top:44px;padding-bottom:56px;}
 }
 </style>
 </head>
@@ -747,7 +821,7 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
 <!-- ========== NAV ========== -->
 <nav>
   <a href="#" class="nav-logo">
-    <img class="nav-logo-img" src="bizweb-kh-logo-main.svg" alt="BizWeb KH">
+    <img class="nav-logo-img" src="bizweb-kh-logo-main.svg" alt="BizWeb KH website design Cambodia">
   </a>
   <ul class="nav-links">
     <li><a href="#demos">Demos</a></li>
@@ -759,9 +833,9 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   </ul>
   <div class="nav-spacer"></div>
   <div class="nav-actions">
-    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false">
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="true">
       <span class="theme-toggle-knob" aria-hidden="true"></span>
-      <span class="theme-toggle-text">Light mode</span>
+      <span class="theme-toggle-text">Dark mode</span>
     </button>
     <a href="#demos" class="btn btn-ghost">
       <svg width="14" height="14"><use href="#i-grid"/></svg>
@@ -794,8 +868,15 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
     <span class="hero-badge-dot"></span>
     <span class="mono">14 live website demos ready</span>
   </div>
-  <h1>Get your business website from $99<br><span>Choose a demo style. We customize it for you.</span></h1>
-  <p class="hero-sub">Browse completed live website demos, choose the style you like, and let BizWeb KH customize it with your logo, content, photos, contact links, and Khmer + English wording.</p>
+  <h1>
+    <span class="hero-title-line">Get your business website</span>
+    <span class="hero-typing-wrap">
+      <span id="heroTypingText" class="hero-typing-text">from $99</span>
+      <span class="typing-cursor" aria-hidden="true"></span>
+    </span>
+    <span class="hero-title-subline">Choose a demo style. We customize it for you.</span>
+  </h1>
+  <p class="hero-sub">Browse completed live website demos for Cambodian SMEs, choose the style you like, and let BizWeb KH customize a mobile-ready business website with your logo, content, photos, contact links, Google Map, and Khmer + English wording.</p>
 
   <div class="hero-proof" aria-label="Key offer details">
     <span><svg width="13" height="13"><use href="#i-dollar"/></svg>Starting from $99</span>
@@ -1191,7 +1272,7 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
 </section>
 
 <!-- ========== VALUE ROW ========== -->
-<section class="section" style="background:var(--ink-2)">
+<section class="section included-section">
   <div class="section-inner">
     <div class="section-header" style="justify-content:center;text-align:center">
       <div>
@@ -1202,7 +1283,7 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
     <div class="value-strip">
       <div class="value-item"><svg width="17" height="17"><use href="#i-phone"/></svg>Mobile-ready website</div>
       <div class="value-item"><svg width="17" height="17"><use href="#i-globe"/></svg>Khmer + English content setup</div>
-      <div class="value-item"><svg width="17" height="17"><use href="#i-message"/></svg>Telegram / Messenger / Phone contact</div>
+      <div class="value-item"><svg width="17" height="17"><use href="#i-message"/></svg>Telegram / Phone contact</div>
       <div class="value-item"><svg width="17" height="17"><use href="#i-pin"/></svg>Google Map connection</div>
       <div class="value-item"><svg width="17" height="17"><use href="#i-search"/></svg>Basic SEO setup</div>
       <div class="value-item"><svg width="17" height="17"><use href="#i-sparkles"/></svg>Free homepage preview before final approval</div>
@@ -1407,14 +1488,14 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
       <div>
         <p class="section-label">// free preview</p>
         <h2 class="section-title">Request your free homepage preview</h2>
-        <p class="section-sub">Tell us about your business and the demo style you like. We will reply with the next step through Telegram or Messenger.</p>
+        <p class="section-sub">Tell us about your business and the demo style you like. We will reply with the next step through Telegram or phone.</p>
       </div>
     </div>
     <div class="form-wrap">
       <div class="form-helper">
         <p><svg width="15" height="15"><use href="#i-check"/></svg>No deposit needed for the first homepage preview.</p>
         <p><svg width="15" height="15"><use href="#i-check"/></svg>Send your Facebook page, business type, and preferred demo style.</p>
-        <p><svg width="15" height="15"><use href="#i-check"/></svg>We will reply via Telegram or Messenger.</p>
+        <p><svg width="15" height="15"><use href="#i-check"/></svg>We will reply via Telegram or phone.</p>
       </div>
       <div class="form-grid">
         <div class="form-group">
@@ -1446,7 +1527,7 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
         </div>
         <div class="form-group">
           <label class="form-label" for="f-phone">Phone / Telegram</label>
-          <input type="text" id="f-phone" class="form-input" placeholder="012 345 678">
+          <input type="text" id="f-phone" class="form-input" placeholder="017 400 044">
         </div>
         <div class="form-group">
           <label class="form-label" for="f-fb">Facebook Page Link</label>
@@ -1493,7 +1574,7 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
         <svg width="16" height="16"><use href="#i-send"/></svg>
         Request free preview
       </button>
-      <p style="text-align:center;font-size:12px;color:var(--text-3);margin-top:12px">We will review your request and contact you through Telegram, Messenger, or phone.</p>
+      <p style="text-align:center;font-size:12px;color:var(--text-3);margin-top:12px">We will review your request and contact you through Telegram or phone.</p>
     </div>
   </div>
 </section>
@@ -1508,6 +1589,27 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
       </div>
     </div>
     <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How much does a business website cost?
+          <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
+        </button>
+        <div class="faq-a">BizWeb KH website packages start from $99. The final price depends on the number of pages, content, and catalog or product sections needed.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Do you make Khmer and English websites?
+          <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
+        </button>
+        <div class="faq-a">Yes. BizWeb KH can prepare Khmer + English wording for Cambodian SMEs, based on the information you provide.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can I choose a ready demo style?
+          <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
+        </button>
+        <div class="faq-a">Yes. You can choose one of our live website demos, then we customize it for your business logo, photos, content, and contact links.</div>
+      </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
           How long does it take to build my website?
@@ -1531,13 +1633,6 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          Can you make the website in both Khmer and English?
-          <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
-        </button>
-        <div class="faq-a">Yes — bilingual Khmer + English is one of our most popular options, especially for clinics, schools, and professional service businesses in Cambodia.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">
           How many revisions are included?
           <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
         </button>
@@ -1548,7 +1643,7 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
           Are cart, checkout, or online payment included?
           <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
         </button>
-        <div class="faq-a">No. The standard packages include business websites, catalog pages, inquiry forms, Telegram/Messenger/Phone contact, and Google Map. Cart, checkout, online payment, booking system, or payment gateway integration are custom upgrades and quoted separately.</div>
+        <div class="faq-a">No. Standard packages include business websites, catalog pages, inquiry forms, Telegram/Phone contact, and Google Map. Cart, checkout, online payment, booking system, or payment gateway integration are custom upgrades and quoted separately.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
@@ -1568,7 +1663,7 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
       <div>
         <p class="section-label">// get in touch</p>
         <h2 class="section-title">Ready to talk?</h2>
-        <p class="section-sub">Chat with us on Telegram or Messenger — we're based in Cambodia and reply fast.</p>
+        <p class="section-sub">Chat with us on Telegram or call us — we’re based in Cambodia and reply fast.</p>
       </div>
     </div>
     <div class="contact-grid">
@@ -1576,25 +1671,13 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
         <div class="icon-box icon-box-lg">
           <svg width="22" height="22"><use href="#i-send"/></svg>
         </div>
-        <span class="contact-label">Telegram</span>
+        <span class="contact-label">Telegram: @BizWebKH</span>
       </a>
-      <a href="https://m.me/BizWebKH" target="_blank" class="contact-btn" data-contact="messenger">
-        <div class="icon-box icon-box-lg">
-          <svg width="22" height="22"><use href="#i-message"/></svg>
-        </div>
-        <span class="contact-label">Messenger</span>
-      </a>
-      <a href="tel:+85598708800" class="contact-btn" data-contact="phone">
+      <a href="tel:+85517400044" class="contact-btn" data-contact="phone">
         <div class="icon-box icon-box-lg">
           <svg width="22" height="22"><use href="#i-phone"/></svg>
         </div>
-        <span class="contact-label">098 70 88 00</span>
-      </a>
-      <a href="mailto:hello@bizwebkh.com" class="contact-btn" data-contact="email">
-        <div class="icon-box icon-box-lg">
-          <svg width="22" height="22"><use href="#i-mail"/></svg>
-        </div>
-        <span class="contact-label">Email</span>
+        <span class="contact-label">017 400 044</span>
       </a>
     </div>
   </div>
@@ -1603,9 +1686,9 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
 <!-- ========== FOOTER ========== -->
 <footer>
   <div class="footer-logo">
-    <img class="footer-logo-img" src="bizweb-kh-logo-main.svg" alt="BizWeb KH">
+    <img class="footer-logo-img" src="bizweb-kh-logo-main.svg" alt="BizWeb KH affordable website design for Cambodian SMEs">
   </div>
-  <p class="footer-sub">Beautiful websites for Cambodian SMEs. Ready in days, not months.</p>
+  <p class="footer-sub">Affordable Khmer + English website design for Cambodian SMEs. Ready in days, not months.</p>
   <ul class="footer-links">
     <li><a href="#demos">Demos</a></li>
     <li><a href="#pricing">Pricing</a></li>
@@ -1640,27 +1723,27 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
 const CONFIG = {
   telegramUrl: "https://t.me/BizWebKH",
   messengerUrl: "https://m.me/BizWebKH",
-  phoneUrl: "tel:+85598708800",
-  emailUrl: "mailto:hello@bizwebkh.com"
+  phoneUrl: "tel:+85517400044",
+  emailUrl: "#"
 };
 
 /* =====================================================
    DEMO DATA
 ===================================================== */
 const DEMOS = [
-  {id:1,name:"Premium Dental Clinic",industry:"Healthcare / Dental",style:"Clean Medical",budget:"From $99",goal:"Get appointments",lang:"Both",price:"$99",filterIndustry:"Healthcare",filterStyle:"Clean",filterGoal:"Get leads",desc:"A bright modern clinic website for braces, clear aligners, whitening, smile design, doctor profile, treatment results, and appointment requests.",bestfor:"Healthcare, clinic, dental, orthodontic, braces, aligner, and smile design businesses",sections:["Hero + appointment CTA","Treatment services","Doctor profile","Treatment results","Patient trust sections","Appointment request form"],usecase:"A dental clinic in Cambodia that wants more appointment requests and stronger trust before customers visit.",pkg:"Business Website",thumb:"dental",color1:"#0e2a4a",color2:"#1a4a7a",accent:"#3d9fff",text:"#cde4ff",liveUrl:"dental-clinic-demo.html",keywords:"dental clinic braces aligner aligners whitening smile doctor healthcare appointment"},
-  {id:3,name:"Auto Detailing Website",industry:"Auto Service",style:"Bold Automotive",budget:"From $99",goal:"Get appointments",lang:"Both",price:"$99",filterIndustry:"Auto Service",filterStyle:"Bold",filterGoal:"Get leads",desc:"A bold black-red automotive website for car wash, detailing, ceramic coating, pricing plans, team, reviews, and appointment requests.",bestfor:"Auto, garage, car service, car wash, detailing, ceramic coating, and paint protection businesses",sections:["Dramatic automotive hero","Complete service list","Detailing expertise","Pricing plans","Team and reviews","Appointment request form"],usecase:"A car wash, garage, or detailing studio that wants more appointment requests and a premium automotive image.",pkg:"Business Website",thumb:"garage",color1:"#0f0f0f",color2:"#1a1a1a",accent:"#ff3d3d",text:"#ffe0e0",liveUrl:"car-garage-demo.html",keywords:"garage car auto detailing carwash car wash ceramic coating appointment mechanic"},
-  {id:5,name:"Luxury Villa Website",industry:"Hotel / Villa",style:"Luxury Hospitality",budget:"From $99",goal:"Get booking inquiries",lang:"Both",price:"$99",filterIndustry:"Hospitality",filterStyle:"Premium",filterGoal:"Get leads",desc:"A cinematic boutique hotel and private villa website with villa cards, destinations, experiences, gallery, enquiry drawer, and premium hospitality feel.",bestfor:"Hotel, villa, hospitality, boutique stay, private villa, guesthouse, and booking inquiry businesses",sections:["Luxury hero","Villa cards","Destination story","Experiences","Gallery lightbox","Enquiry drawer"],usecase:"A villa or boutique hotel that wants a cinematic website customers can inspect before sending booking inquiries.",pkg:"Business Website",thumb:"hotel",color1:"#0a1520",color2:"#152540",accent:"#00b8d4",text:"#c8eeff",liveUrl:"hotel-villa-demo.html",keywords:"hotel villa booking hospitality rooms stay enquiry gallery luxury"},
-  {id:7,name:"Kids School Website",industry:"Education / Kids School",style:"Playful Learning",budget:"From $99",goal:"Get enrollment inquiries",lang:"Both",price:"$99",filterIndustry:"Education",filterStyle:"Soft",filterGoal:"Get leads",desc:"A playful modern school website for kids learning centers, English schools, preschools, programs, teachers, parent reviews, pricing, and enrollment inquiries.",bestfor:"Kids schools, preschools, English schools, learning centers, kindergartens, and children's education programs",sections:["Playful hero","Program cards","Parent benefits","Teacher profiles","Pricing packages","Enrollment inquiry form"],usecase:"A kids school or learning center that wants more parent inquiries and a friendly professional brand.",pkg:"Business Website",thumb:"school",color1:"#fff8f2",color2:"#b9e5f2",accent:"#27c765",text:"#28354a",liveUrl:"kid-school-demo.html",keywords:"kids school preschool english school learning center kindergarten children parent inquiry education"},
-  {id:9,name:"Fine Dining Restaurant Website",industry:"Restaurant / Fine Dining",style:"Elegant Dining",budget:"From $99",goal:"Get table reservations",lang:"Both",price:"$99",filterIndustry:"Food & Beverage",filterStyle:"Premium",filterGoal:"Get leads",desc:"An elegant restaurant website for chef-led dining, premium menu presentation, story section, reservation form, testimonials, and refined hospitality branding.",bestfor:"Fine dining restaurants, chef-led restaurants, premium dining venues, and reservation-based restaurants",sections:["Editorial hero","Food collage","Premium menu cards","Chef story","Reservation form","Guest testimonials"],usecase:"A premium restaurant that wants to show menu quality and capture table reservations.",pkg:"Business Website",thumb:"cafe",color1:"#f8efe1",color2:"#2d160f",accent:"#ff6533",text:"#2d211b",liveUrl:"restaurant-fine-dining-demo.html",keywords:"restaurant fine dining menu chef food reservation table booking dining premium restaurant"},
+  {id:1,name:"Premium Dental Clinic",industry:"Healthcare / Dental",style:"Clean Medical",budget:"From $99",goal:"Get appointments",lang:"Both",price:"$99",filterIndustry:"Healthcare",filterStyle:"Clean",filterGoal:"Get leads",desc:"A bright modern clinic website Cambodia demo for braces, clear aligners, whitening, smile design, doctor profile, treatment results, and appointment requests.",bestfor:"Healthcare, clinic, dental, orthodontic, braces, aligner, and smile design businesses",sections:["Hero + appointment CTA","Treatment services","Doctor profile","Treatment results","Patient trust sections","Appointment request form"],usecase:"A dental clinic in Cambodia that wants more appointment requests and stronger trust before customers visit.",pkg:"Business Website",thumb:"dental",color1:"#0e2a4a",color2:"#1a4a7a",accent:"#3d9fff",text:"#cde4ff",liveUrl:"dental-clinic-demo.html",keywords:"dental clinic braces aligner aligners whitening smile doctor healthcare appointment"},
+  {id:3,name:"Auto Detailing Website",industry:"Auto Service",style:"Bold Automotive",budget:"From $99",goal:"Get appointments",lang:"Both",price:"$99",filterIndustry:"Auto Service",filterStyle:"Bold",filterGoal:"Get leads",desc:"A bold black-red garage website Cambodia demo for car wash, detailing, ceramic coating, pricing plans, team, reviews, and appointment requests.",bestfor:"Auto, garage, car service, car wash, detailing, ceramic coating, and paint protection businesses",sections:["Dramatic automotive hero","Complete service list","Detailing expertise","Pricing plans","Team and reviews","Appointment request form"],usecase:"A car wash, garage, or detailing studio that wants more appointment requests and a premium automotive image.",pkg:"Business Website",thumb:"garage",color1:"#0f0f0f",color2:"#1a1a1a",accent:"#ff3d3d",text:"#ffe0e0",liveUrl:"car-garage-demo.html",keywords:"garage car auto detailing carwash car wash ceramic coating appointment mechanic"},
+  {id:5,name:"Luxury Villa Website",industry:"Hotel / Villa",style:"Luxury Hospitality",budget:"From $99",goal:"Get booking inquiries",lang:"Both",price:"$99",filterIndustry:"Hospitality",filterStyle:"Premium",filterGoal:"Get leads",desc:"A cinematic hotel website Cambodia demo for boutique hotels and private villas, with villa cards, destinations, experiences, gallery, enquiry drawer, and premium hospitality feel.",bestfor:"Hotel, villa, hospitality, boutique stay, private villa, guesthouse, and booking inquiry businesses",sections:["Luxury hero","Villa cards","Destination story","Experiences","Gallery lightbox","Enquiry drawer"],usecase:"A villa or boutique hotel that wants a cinematic website customers can inspect before sending booking inquiries.",pkg:"Business Website",thumb:"hotel",color1:"#0a1520",color2:"#152540",accent:"#00b8d4",text:"#c8eeff",liveUrl:"hotel-villa-demo.html",keywords:"hotel villa booking hospitality rooms stay enquiry gallery luxury"},
+  {id:7,name:"Kids School Website",industry:"Education / Kids School",style:"Playful Learning",budget:"From $99",goal:"Get enrollment inquiries",lang:"Both",price:"$99",filterIndustry:"Education",filterStyle:"Soft",filterGoal:"Get leads",desc:"A playful modern school website Cambodia demo for kids learning centers, English schools, preschools, programs, teachers, parent reviews, pricing, and enrollment inquiries.",bestfor:"Kids schools, preschools, English schools, learning centers, kindergartens, and children's education programs",sections:["Playful hero","Program cards","Parent benefits","Teacher profiles","Pricing packages","Enrollment inquiry form"],usecase:"A kids school or learning center that wants more parent inquiries and a friendly professional brand.",pkg:"Business Website",thumb:"school",color1:"#fff8f2",color2:"#b9e5f2",accent:"#27c765",text:"#28354a",liveUrl:"kid-school-demo.html",keywords:"kids school preschool english school learning center kindergarten children parent inquiry education"},
+  {id:9,name:"Fine Dining Restaurant Website",industry:"Restaurant / Fine Dining",style:"Elegant Dining",budget:"From $99",goal:"Get table reservations",lang:"Both",price:"$99",filterIndustry:"Food & Beverage",filterStyle:"Premium",filterGoal:"Get leads",desc:"An elegant restaurant website Cambodia demo for chef-led dining, premium menu presentation, story section, reservation form, testimonials, and refined hospitality branding.",bestfor:"Fine dining restaurants, chef-led restaurants, premium dining venues, and reservation-based restaurants",sections:["Editorial hero","Food collage","Premium menu cards","Chef story","Reservation form","Guest testimonials"],usecase:"A premium restaurant that wants to show menu quality and capture table reservations.",pkg:"Business Website",thumb:"cafe",color1:"#f8efe1",color2:"#2d160f",accent:"#ff6533",text:"#2d211b",liveUrl:"restaurant-fine-dining-demo.html",keywords:"restaurant fine dining menu chef food reservation table booking dining premium restaurant"},
   {id:10,name:"Fitness Gym Website",industry:"Fitness / Gym",style:"Bold Fitness",budget:"From $99",goal:"Get trial signups",lang:"Both",price:"$99",filterIndustry:"Fitness",filterStyle:"Dark",filterGoal:"Get leads",desc:"A bold dark fitness website for gyms, trainers, workout programs, pricing plans, community, trial booking, and high-energy brand presentation.",bestfor:"Gyms, fitness clubs, boxing clubs, yoga studios, personal trainers, and CrossFit-style businesses",sections:["Dark gym hero","Workout dashboard","Program cards","Trainer profiles","Pricing plans","Trial request form"],usecase:"A fitness business that wants more free-trial requests and a powerful athletic brand.",pkg:"Business Website",thumb:"event",color1:"#050607",color2:"#17191c",accent:"#ff6333",text:"#f7f7f3",liveUrl:"fitness-gym-demo.html",keywords:"gym fitness trainer workout boxing yoga membership trial health club personal trainer"},
-  {id:6,name:"Countryside Resort Website",industry:"Resort / Retreat",style:"Premium Nature",budget:"From $99",goal:"Get booking inquiries",lang:"Both",price:"$99",filterIndustry:"Hospitality",filterStyle:"Premium",filterGoal:"Get leads",desc:"A calm premium resort website with estate story, rooms, dining, events, gallery, map-style overview, booking inquiry, and deep green luxury style.",bestfor:"Resort, retreat, hotel, countryside stay, eco resort, wellness retreat, estate, and destination venue businesses",sections:["Layered editorial hero","Estate story","Rooms and experiences","Dining and events","Gallery lightbox","Booking inquiry form"],usecase:"A resort or retreat that wants to look calm, premium, and destination-worthy while capturing booking inquiries.",pkg:"Premium Website",thumb:"resort",color1:"#102f24",color2:"#173c2e",accent:"#b68a48",text:"#fff4df",liveUrl:"resort-demo.html",keywords:"resort retreat estate hotel hospitality booking rooms dining events nature countryside"},
-  {id:8,name:"Pet Grooming Website",industry:"Pet Care / Grooming",style:"Warm Pet Care",budget:"From $99",goal:"Get grooming appointments",lang:"Both",price:"$99",filterIndustry:"Pet Care",filterStyle:"Soft",filterGoal:"Get leads",desc:"A friendly pet grooming and pet spa website with services, happy pet gallery, pricing packages, reviews, inquiry form, and warm pet-care branding.",bestfor:"Pet grooming shops, pet salons, pet spas, pet shops, pet hotels, and pet care businesses",sections:["Friendly pet hero","Grooming services","Happy pet gallery","Pricing packages","Customer reviews","Inquiry form"],usecase:"A pet grooming shop that wants customers to see services, prices, and request appointments online.",pkg:"Business Website",thumb:"service",color1:"#fff7f0",color2:"#ffe4d3",accent:"#ff8644",text:"#3b3f45",liveUrl:"pet-grooming-demo.html",keywords:"pet grooming dog cat pet spa pet shop pet salon pet care appointment"},
-  {id:19,name:"Spa Wellness Website",industry:"Spa / Wellness",style:"Soft Wellness",budget:"From $99",goal:"Get appointments",lang:"Both",price:"$99",filterIndustry:"Healthcare",filterStyle:"Soft",filterGoal:"Get leads",desc:"A soft premium spa website for massage, wellness treatments, facial care, packages, testimonials, and appointment requests.",bestfor:"Spa, massage center, wellness spa, facial spa, body treatment center, and beauty wellness businesses",sections:["Soft wellness hero","Treatment cards","About wellness story","Client testimonials","Packages","Inquiry form"],usecase:"A spa or wellness business that wants a calm, premium website for appointment requests.",pkg:"Business Website",thumb:"beauty",color1:"#fff4f5",color2:"#fdeced",accent:"#ffd000",text:"#3c3435",liveUrl:"spa-wellness-demo.html",keywords:"spa wellness massage facial treatment beauty relaxation appointment"},
+  {id:6,name:"Countryside Resort Website",industry:"Resort / Retreat",style:"Premium Nature",budget:"From $99",goal:"Get booking inquiries",lang:"Both",price:"$99",filterIndustry:"Hospitality",filterStyle:"Premium",filterGoal:"Get leads",desc:"A calm premium resort website Cambodia demo with estate story, rooms, dining, events, gallery, map-style overview, booking inquiry, and deep green luxury style.",bestfor:"Resort, retreat, hotel, countryside stay, eco resort, wellness retreat, estate, and destination venue businesses",sections:["Layered editorial hero","Estate story","Rooms and experiences","Dining and events","Gallery lightbox","Booking inquiry form"],usecase:"A resort or retreat that wants to look calm, premium, and destination-worthy while capturing booking inquiries.",pkg:"Premium Website",thumb:"resort",color1:"#102f24",color2:"#173c2e",accent:"#b68a48",text:"#fff4df",liveUrl:"resort-demo.html",keywords:"resort retreat estate hotel hospitality booking rooms dining events nature countryside"},
+  {id:8,name:"Pet Grooming Website",industry:"Pet Care / Grooming",style:"Warm Pet Care",budget:"From $99",goal:"Get grooming appointments",lang:"Both",price:"$99",filterIndustry:"Pet Care",filterStyle:"Soft",filterGoal:"Get leads",desc:"A friendly pet shop website Cambodia demo for grooming and pet spa services, happy pet gallery, pricing packages, reviews, inquiry form, and warm pet-care branding.",bestfor:"Pet grooming shops, pet salons, pet spas, pet shops, pet hotels, and pet care businesses",sections:["Friendly pet hero","Grooming services","Happy pet gallery","Pricing packages","Customer reviews","Inquiry form"],usecase:"A pet grooming shop that wants customers to see services, prices, and request appointments online.",pkg:"Business Website",thumb:"service",color1:"#fff7f0",color2:"#ffe4d3",accent:"#ff8644",text:"#3b3f45",liveUrl:"pet-grooming-demo.html",keywords:"pet grooming dog cat pet spa pet shop pet salon pet care appointment"},
+  {id:19,name:"Spa Wellness Website",industry:"Spa / Wellness",style:"Soft Wellness",budget:"From $99",goal:"Get appointments",lang:"Both",price:"$99",filterIndustry:"Healthcare",filterStyle:"Soft",filterGoal:"Get leads",desc:"A soft premium spa website Cambodia demo for massage, wellness treatments, facial care, packages, testimonials, and appointment requests.",bestfor:"Spa, massage center, wellness spa, facial spa, body treatment center, and beauty wellness businesses",sections:["Soft wellness hero","Treatment cards","About wellness story","Client testimonials","Packages","Inquiry form"],usecase:"A spa or wellness business that wants a calm, premium website for appointment requests.",pkg:"Business Website",thumb:"beauty",color1:"#fff4f5",color2:"#fdeced",accent:"#ffd000",text:"#3c3435",liveUrl:"spa-wellness-demo.html",keywords:"spa wellness massage facial treatment beauty relaxation appointment"},
   {id:4,name:"Education Institute Website",industry:"Education",style:"Institutional Modern",budget:"From $99",goal:"Get inquiries",lang:"Both",price:"$99",filterIndustry:"Education",filterStyle:"Corporate",filterGoal:"Get leads",desc:"A modern education website for schools, training centers, and colleges with programs, admissions, student life, support, news, events, and inquiry form.",bestfor:"Education, school, college, training center, institute, language school, and career program businesses",sections:["Bold education hero","Program exploration","Admissions / student fit","Student life","News and events","Inquiry form"],usecase:"A private school, college, or training center that wants parents and students to understand programs and inquire online.",pkg:"Business Website",thumb:"school",color1:"#051530",color2:"#0a2a5a",accent:"#2d8fff",text:"#c8deff",liveUrl:"education-college-demo.html",keywords:"school education college training institute admissions programs students inquiry"},
   {id:20,name:"Wedding Planner Website",industry:"Wedding / Event Planning",style:"Romantic Premium",budget:"From $99",goal:"Get consultation requests",lang:"Both",price:"$99",filterIndustry:"Hospitality",filterStyle:"Soft",filterGoal:"Get leads",desc:"A romantic wedding planner website with services, portfolio gallery, trusted partners, planning tools, testimonials, and consultation form.",bestfor:"Wedding planners, event organizers, bridal decorators, and romantic event businesses",sections:["Wedding hero","Planning services","Portfolio gallery","Partner network","Testimonials","Consultation form"],usecase:"A wedding planner that wants to look elegant and capture consultation requests.",pkg:"Business Website",thumb:"beauty",color1:"#fff9f1",color2:"#fcebed",accent:"#cba642",text:"#47383a",liveUrl:"wedding-planner-demo.html",keywords:"wedding planner event organizer bridal decorator consultation portfolio couple ceremony"},
-  {id:2,name:"Boutique Café Website",industry:"Food & Beverage",style:"Warm Boutique",budget:"From $99",goal:"Show menu / Get orders",lang:"Both",price:"$99",filterIndustry:"Food & Beverage",filterStyle:"Premium",filterGoal:"Show services",desc:"A warm café and restaurant website with real menu cards, promotions, story section, gallery, reviews, delivery/contact flow, and cozy brand feeling.",bestfor:"Restaurant, café, cafe, food, menu, drinks, bakery, brunch, and delivery businesses",sections:["Image-led hero","Menu cards","Promotion section","Brand story","Gallery and reviews","Delivery / contact flow"],usecase:"A café or restaurant that wants customers to view the menu, feel the brand, and ask for orders or reservations.",pkg:"Business Website",thumb:"cafe",color1:"#1a0e08",color2:"#3d1e0a",accent:"#ff7a20",text:"#ffe4cc",liveUrl:"cafe-restaurant-demo.html",keywords:"cafe café restaurant menu food coffee brunch delivery gallery reviews orders"},
-  {id:21,name:"Coffee Roaster Catalog Website",industry:"Coffee / Product Catalog",style:"Bold Coffee Brand",budget:"From $99",goal:"Get product inquiries",lang:"Both",price:"$99",filterIndustry:"Food & Beverage",filterStyle:"Bold",filterGoal:"Sell products",desc:"A bold yellow-black coffee roaster catalog website for beans, blends, subscriptions, gifts, product inquiries, search, FAQ, and Telegram/phone follow-up.",bestfor:"Coffee roasters, coffee bean sellers, café brands, specialty coffee shops, gift sellers, and subscription coffee businesses",sections:["Bold promo hero","Best-seller product catalog","New arrivals","Coffee categories","Gift and subscription sections","Product inquiry form"],usecase:"A coffee brand that wants customers to explore products and ask about beans, gifts, or subscriptions through a simple inquiry flow.",pkg:"Pro Max Website",thumb:"product",color1:"#0b0b0b",color2:"#151515",accent:"#ffd400",text:"#fff7c2",liveUrl:"coffee-roaster-shop-demo.html",keywords:"coffee roaster beans cafe café product catalog subscription gifts inquiry telegram"},
+  {id:2,name:"Boutique Café Website",industry:"Food & Beverage",style:"Warm Boutique",budget:"From $99",goal:"Show menu / Get orders",lang:"Both",price:"$99",filterIndustry:"Food & Beverage",filterStyle:"Premium",filterGoal:"Show services",desc:"A warm café website Cambodia demo with real menu cards, promotions, story section, gallery, reviews, delivery/contact flow, and cozy brand feeling.",bestfor:"Restaurant, café, cafe, food, menu, drinks, bakery, brunch, and delivery businesses",sections:["Image-led hero","Menu cards","Promotion section","Brand story","Gallery and reviews","Delivery / contact flow"],usecase:"A café or restaurant that wants customers to view the menu, feel the brand, and ask for orders or reservations.",pkg:"Business Website",thumb:"cafe",color1:"#1a0e08",color2:"#3d1e0a",accent:"#ff7a20",text:"#ffe4cc",liveUrl:"cafe-restaurant-demo.html",keywords:"cafe café restaurant menu food coffee brunch delivery gallery reviews orders"},
+  {id:21,name:"Coffee Roaster Catalog Website",industry:"Coffee / Product Catalog",style:"Bold Coffee Brand",budget:"From $99",goal:"Get product inquiries",lang:"Both",price:"$99",filterIndustry:"Food & Beverage",filterStyle:"Bold",filterGoal:"Sell products",desc:"A bold yellow-black product catalog website Cambodia demo for coffee beans, blends, subscriptions, gifts, product inquiries, search, FAQ, and Telegram/phone follow-up.",bestfor:"Coffee roasters, coffee bean sellers, café brands, specialty coffee shops, gift sellers, and subscription coffee businesses",sections:["Bold promo hero","Best-seller product catalog","New arrivals","Coffee categories","Gift and subscription sections","Product inquiry form"],usecase:"A coffee brand that wants customers to explore products and ask about beans, gifts, or subscriptions through a simple inquiry flow.",pkg:"Pro Max Website",thumb:"product",color1:"#0b0b0b",color2:"#151515",accent:"#ffd400",text:"#fff7c2",liveUrl:"coffee-roaster-shop-demo.html",keywords:"coffee roaster beans cafe café product catalog subscription gifts inquiry telegram"},
   {id:11,name:"Premium Motion Resort Website",industry:"Resort / Premium Motion",style:"Premium Motion",budget:"From $99",goal:"Get premium booking inquiries",lang:"Both",price:"$99",filterIndustry:"Premium Motion",filterStyle:"Premium",filterGoal:"Get leads",desc:"A more animated premium resort demo with cinematic resort visuals, booking flow, parallax-style motion, gallery, and high-end hospitality presentation.",bestfor:"Premium resorts, villas, retreats, destination stays, and high-end hospitality brands",sections:["Cinematic motion hero","Layered resort visuals","Stay and dining story","Room showcase","Gallery lightbox","Booking inquiry form"],usecase:"A premium resort that wants a more animated high-end website experience for booking inquiries.",pkg:"Premium Website",thumb:"resort",color1:"#061b14",color2:"#123d2d",accent:"#c39a58",text:"#fff8ea",liveUrl:"resort-premium-motion-demo.html",keywords:"resort hotel motion premium animation villa retreat booking hospitality luxury"}
 ];
 
@@ -1992,9 +2075,32 @@ function submitForm(){
   const biz=document.getElementById('f-biz').value.trim();
   const phone=document.getElementById('f-phone').value.trim();
   if(!name||!biz||!phone){showToast('Please fill in your name, business name, and contact.');return;}
-  showToast('Request received. We will contact you within 24–48 hours.');
-  ['f-name','f-biz','f-phone','f-fb','f-demo','f-msg'].forEach(id=>document.getElementById(id).value='');
-  ['f-type','f-package','f-domain','f-assets'].forEach(id=>document.getElementById(id).selectedIndex=0);
+  const valueOrFallback=id=>{
+    const value=document.getElementById(id).value.trim();
+    return value||'Not provided';
+  };
+  const message=[
+    'Hello BizWeb KH, I want to request a free website preview.',
+    '',
+    'Name: '+name,
+    'Business Name: '+biz,
+    'Business Type: '+valueOrFallback('f-type'),
+    'Phone / Telegram: '+phone,
+    'Facebook Page: '+valueOrFallback('f-fb'),
+    'Selected Demo Style: '+valueOrFallback('f-demo'),
+    'Preferred Package: '+valueOrFallback('f-package'),
+    'Already Have Domain: '+valueOrFallback('f-domain'),
+    'Have Logo / Photos / Content: '+valueOrFallback('f-assets'),
+    '',
+    'Message:',
+    valueOrFallback('f-msg'),
+    '',
+    'Please contact me back. Thank you.'
+  ].join('\n');
+  const telegramUrl=CONFIG.telegramUrl+'?text='+encodeURIComponent(message);
+  const opened=window.open(telegramUrl,'_blank');
+  if(!opened)window.location.href=telegramUrl;
+  showToast('Opening Telegram chat with your request...');
 }
 
 /* =====================================================
@@ -2093,7 +2199,7 @@ function setTheme(mode){
 function initTheme(){
   let saved='';
   try{saved=localStorage.getItem('bizwebkh-theme')||'';}catch(e){}
-  setTheme(saved==='light'?'light':'dark');
+  setTheme(saved==='dark'?'dark':'light');
 }
 if(themeToggle){
   themeToggle.addEventListener('click',()=>{
@@ -2101,6 +2207,50 @@ if(themeToggle){
     setTheme(next);
     try{localStorage.setItem('bizwebkh-theme',next);}catch(e){}
   });
+}
+
+function initHeroTyping(){
+  const el=document.getElementById('heroTypingText');
+  if(!el)return;
+  const phrases=[
+    'from $99',
+    'ready in 3–5 days',
+    'in Khmer + English',
+    'mobile responsive'
+  ];
+  const reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion){
+    el.textContent=phrases[0];
+    return;
+  }
+  let phraseIndex=0;
+  let charIndex=phrases[0].length;
+  let deleting=true;
+  el.textContent=phrases[0];
+  function tick(){
+    const phrase=phrases[phraseIndex];
+    if(deleting){
+      charIndex-=1;
+      el.textContent=phrase.slice(0,charIndex);
+      if(charIndex<=0){
+        deleting=false;
+        phraseIndex=(phraseIndex+1)%phrases.length;
+        setTimeout(tick,300);
+        return;
+      }
+      setTimeout(tick,38);
+      return;
+    }
+    charIndex+=1;
+    el.textContent=phrase.slice(0,charIndex);
+    if(charIndex>=phrase.length){
+      deleting=true;
+      setTimeout(tick,1400);
+      return;
+    }
+    setTimeout(tick,70);
+  }
+  setTimeout(tick,1400);
 }
 
 function applyContactConfig(){
@@ -2116,6 +2266,7 @@ function applyContactConfig(){
 }
 
 initTheme();
+initHeroTyping();
 applyContactConfig();
 renderCards();
 </script>
