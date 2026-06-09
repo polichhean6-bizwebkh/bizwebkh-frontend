@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sterling & Partners Law | Legal Services Website Demo by BizWeb KH</title>
+  <meta name="description" content="A professional law firm website demo for legal services, practice areas, attorney profiles, case results, testimonials, consultation requests, and contact information.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --navy:#0a1730;--navy-2:#101f3d;--navy-3:#15284d;--gold:#c7a35a;--gold-2:#e0c178;
+      --paper:#ffffff;--ivory:#f8f6f0;--soft:#f2f5f9;--ink:#12203c;--muted:#63708a;--line:rgba(18,32,60,.12);
+      --shadow:0 24px 70px rgba(10,23,48,.16);--radius:18px;--max:1180px;--serif:"Playfair Display",Georgia,serif;--sans:Inter,Arial,sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--sans);background:var(--ivory);color:var(--ink);line-height:1.65;overflow-x:hidden}
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    .container{width:min(var(--max),calc(100% - 42px));margin:0 auto}
+    .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}
+    .nav-inner{height:78px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+    .brand{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-size:23px;font-weight:700;letter-spacing:-.03em;color:var(--navy)}
+    .brand-mark{width:35px;height:35px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--gold));display:grid;place-items:center;color:#fff;font-family:var(--sans);font-size:13px;font-weight:900}
+    .links{display:flex;gap:25px;color:var(--muted);font-size:13px;font-weight:800}
+    .links a:hover{color:var(--gold)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:4px;font-size:13px;font-weight:850;border:1px solid transparent;transition:.25s ease;white-space:nowrap}
+    .btn-primary{background:var(--gold);color:var(--navy);box-shadow:0 16px 34px rgba(199,163,90,.24)}
+    .btn-primary:hover,.btn-outline:hover,.btn-light:hover{transform:translateY(-2px)}
+    .btn-outline{border-color:rgba(255,255,255,.38);color:#fff;background:rgba(255,255,255,.08)}
+    .btn-light{background:#fff;color:var(--navy);border-color:rgba(255,255,255,.8);box-shadow:0 14px 34px rgba(0,0,0,.12)}
+    .hero{position:relative;min-height:760px;display:grid;align-items:center;background:var(--navy);color:#fff;overflow:hidden}
+    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,23,48,.92),rgba(10,23,48,.72) 45%,rgba(10,23,48,.22)),linear-gradient(0deg,rgba(10,23,48,.86),transparent 48%);z-index:1}
+    .hero-bg{position:absolute;inset:0}
+    .hero-bg img{filter:saturate(.88) contrast(1.05)}
+    .hero-inner{position:relative;z-index:2;padding:92px 0;max-width:760px}
+    .badge{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(224,193,120,.35);background:rgba(224,193,120,.11);border-radius:999px;padding:8px 13px;color:var(--gold-2);font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+    .badge:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold)}
+    h1{font-family:var(--serif);font-size:clamp(44px,7vw,86px);line-height:.96;letter-spacing:-.045em;margin:22px 0 22px;color:inherit}
+    .hero p{font-size:18px;color:rgba(255,255,255,.78);max-width:700px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:38px;max-width:680px}
+    .hero-stat{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);border-radius:12px;padding:18px;backdrop-filter:blur(12px)}
+    .hero-stat strong{display:block;font-size:26px;line-height:1;color:var(--gold-2)}
+    .hero-stat span{font-size:12px;color:rgba(255,255,255,.7);font-weight:800}
+    .section{padding:88px 0}
+    .section.light{background:#fff}
+    .section.soft{background:var(--soft);border-block:1px solid var(--line)}
+    .section-head{text-align:center;max-width:760px;margin:0 auto 42px}
+    .label{font-size:12px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+    h2{font-family:var(--serif);font-size:clamp(34px,5vw,58px);line-height:1;letter-spacing:-.04em;color:var(--navy);margin-bottom:14px}
+    .section-head p{color:var(--muted)}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 18px 50px rgba(10,23,48,.08);overflow:hidden}
+    .practice-card{padding:26px}
+    .icon{width:48px;height:48px;border-radius:50%;background:rgba(199,163,90,.14);display:grid;place-items:center;color:var(--gold);font-weight:900;margin-bottom:20px}
+    h3{font-size:20px;color:var(--navy);letter-spacing:-.02em;margin-bottom:9px}
+    .card p{color:var(--muted);font-size:14px}
+    .learn{display:inline-flex;margin-top:18px;color:var(--gold);font-size:13px;font-weight:900}
+    .attorney-img{height:260px;background:var(--soft)}
+    .attorney-body{padding:20px}
+    .specialty{color:var(--gold);font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+    .results-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+    .result-stat{background:var(--navy);color:#fff;border-radius:var(--radius);padding:24px;text-align:center}
+    .result-stat strong{display:block;font-size:30px;color:var(--gold-2);line-height:1;margin-bottom:8px}
+    .case-card{padding:24px;border-left:4px solid var(--gold)}
+    .case-card strong{display:block;font-size:23px;color:var(--navy);line-height:1.15;margin-bottom:9px}
+    .disclaimer{font-size:12px;color:var(--muted);text-align:center;margin-top:24px}
+    .testimonial{padding:26px}
+    .stars{color:var(--gold);letter-spacing:2px;margin-bottom:16px}
+    .quote{font-family:var(--serif);font-size:22px;line-height:1.28;color:var(--navy);margin-bottom:18px}
+    .awards{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    .award{background:#fff;border:1px solid var(--line);border-radius:999px;padding:12px 18px;font-weight:900;color:var(--navy);box-shadow:0 12px 34px rgba(10,23,48,.06)}
+    .contact-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:24px;align-items:start}
+    .contact-list{display:grid;gap:14px}
+    .contact-card{display:flex;gap:14px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 14px 38px rgba(10,23,48,.07)}
+    .contact-card .icon{margin:0;flex:0 0 48px}
+    .form{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .field{display:grid;gap:6px}
+    .field.full{grid-column:1/-1}
+    label{font-size:12px;font-weight:900;color:var(--navy)}
+    input,select,textarea{width:100%;border:1px solid var(--line);border-radius:8px;background:#f9fafc;color:var(--ink);padding:12px 13px;outline:none}
+    textarea{min-height:120px;resize:vertical}
+    .checkbox{display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:13px;margin:16px 0}
+    .checkbox input{width:auto;margin-top:4px}
+    .demo-note{display:none;margin-top:14px;color:var(--gold);font-size:13px;font-weight:900}
+    .demo-note.show{display:block}
+    footer{background:var(--navy);color:#fff;padding:58px 0 28px}
+    .footer-grid{display:grid;grid-template-columns:1.2fr repeat(3,1fr) 1.1fr;gap:28px}
+    .footer-brand{font-family:var(--serif);font-size:26px;margin-bottom:12px}
+    footer p,footer a{color:rgba(255,255,255,.72);font-size:14px}
+    footer h4{color:#fff;margin-bottom:12px}
+    .footer-links{display:grid;gap:8px}
+    .footer-cta{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:18px}
+    .footer-phone{font-size:22px;color:var(--gold-2);font-weight:900;margin-top:8px}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:34px;padding-top:20px;font-size:12px;color:rgba(255,255,255,.58)}
+    .sticky-cta{position:fixed;right:18px;bottom:18px;z-index:60;background:var(--gold);color:var(--navy);border-radius:999px;padding:14px 18px;font-weight:900;font-size:13px;box-shadow:0 18px 38px rgba(10,23,48,.28)}
+    @media(max-width:980px){.links{display:none}.grid-3,.grid-4,.results-strip,.contact-grid,.footer-grid{grid-template-columns:1fr 1fr}.hero{min-height:auto}.hero-inner{padding:72px 0}.footer-grid>div:first-child,.contact-grid,.form{grid-column:1/-1}}
+    @media(max-width:620px){.container{width:min(100% - 28px,var(--max))}.nav-inner{height:auto;min-height:72px}.brand{font-size:19px}.hero-stats,.grid-3,.grid-4,.results-strip,.contact-grid,.footer-grid,.form-grid{grid-template-columns:1fr}.section{padding:58px 0}.hero-inner{padding:58px 0}.btn{width:100%}.hero-actions{width:100%}.sticky-cta{left:14px;right:14px;text-align:center}.attorney-img{height:320px}}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#"><span class="brand-mark">S</span>Sterling & Partners Law</a>
+      <nav class="links"><a href="#practice">Practice Areas</a><a href="#attorneys">Our Attorneys</a><a href="#results">Case Results</a><a href="#testimonials">Testimonials</a><a href="#contact">Contact</a></nav>
+      <a class="btn btn-primary" href="index.html#request?style=Legal%20Services%20Website">Free Consultation</a>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-bg"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=2200&q=86" alt="Lady Justice statue and legal books"></div>
+      <div class="container hero-inner">
+        <span class="badge">Trusted Legal Advice</span>
+        <h1>Experienced Legal Counsel You Can Trust</h1>
+        <p>Professional legal support for individuals, families, and businesses. Our team helps clients handle important legal matters with clarity, care, and confidence.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="index.html#request?style=Legal%20Services%20Website">Schedule Free Consultation</a><a class="btn btn-outline" href="#results">View Case Results</a></div>
+        <div class="hero-stats"><div class="hero-stat"><strong>$500M+</strong><span>Recovered</span></div><div class="hero-stat"><strong>5,000+</strong><span>Cases Won</span></div><div class="hero-stat"><strong>30+</strong><span>Years Experience</span></div></div>
+      </div>
+    </section>
+
+    <section class="section light" id="practice">
+      <div class="container">
+        <div class="section-head"><div class="label">Our Expertise</div><h2>Practice Areas</h2><p>Our experienced attorneys provide practical legal support across a wide range of practice areas.</p></div>
+        <div class="grid-3">
+          <article class="card practice-card"><div class="icon">PI</div><h3>Personal Injury</h3><p>Support for injury claims, negotiations, and complex liability matters.</p><a class="learn" href="index.html#request">Learn More</a></article>
+          <article class="card practice-card"><div class="icon">CL</div><h3>Corporate Law</h3><p>Legal guidance for contracts, company matters, and business risk.</p><a class="learn" href="index.html#request">Learn More</a></article>
+          <article class="card practice-card"><div class="icon">FL</div><h3>Family Law</h3><p>Careful support for family agreements, separation, and custody matters.</p><a class="learn" href="index.html#request">Learn More</a></article>
+          <article class="card practice-card"><div class="icon">CD</div><h3>Criminal Defense</h3><p>Strategic defense support for sensitive legal situations.</p><a class="learn" href="index.html#request">Learn More</a></article>
+          <article class="card practice-card"><div class="icon">EP</div><h3>Estate Planning</h3><p>Plan wills, estates, and asset protection with clear documentation.</p><a class="learn" href="index.html#request">Learn More</a></article>
+          <article class="card practice-card"><div class="icon">EL</div><h3>Employment Law</h3><p>Advice for workplace agreements, disputes, and employer obligations.</p><a class="learn" href="index.html#request">Learn More</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="attorneys">
+      <div class="container">
+        <div class="section-head"><div class="label">Meet Our Team</div><h2>Our Attorneys</h2><p>A team of experienced lawyers with strong professional backgrounds and a proven record of client support.</p></div>
+        <div class="grid-4">
+          <article class="card"><div class="attorney-img"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=700&q=86" alt="Robert Sterling attorney portrait"></div><div class="attorney-body"><div class="specialty">Personal Injury</div><h3>Robert Sterling</h3><p>Senior trial lawyer with 25 years of litigation experience.</p><a class="learn" href="index.html#request">View Profile</a></div></article>
+          <article class="card"><div class="attorney-img"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=86" alt="Elizabeth Chen attorney portrait"></div><div class="attorney-body"><div class="specialty">Corporate Law</div><h3>Elizabeth Chen</h3><p>Commercial counsel focused on contracts and corporate risk.</p><a class="learn" href="index.html#request">View Profile</a></div></article>
+          <article class="card"><div class="attorney-img"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=86" alt="Michael Thompson attorney portrait"></div><div class="attorney-body"><div class="specialty">Criminal Defense</div><h3>Michael Thompson</h3><p>Defense attorney with strong courtroom and negotiation skills.</p><a class="learn" href="index.html#request">View Profile</a></div></article>
+          <article class="card"><div class="attorney-img"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=700&q=86" alt="Sarah Williams attorney portrait"></div><div class="attorney-body"><div class="specialty">Family Law</div><h3>Sarah Williams</h3><p>Family law advisor known for calm, practical client support.</p><a class="learn" href="index.html#request">View Profile</a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light" id="results">
+      <div class="container">
+        <div class="section-head"><div class="label">Proven Results</div><h2>Case Results</h2><p>Selected results that show our commitment to protecting client interests.</p></div>
+        <div class="results-strip"><div class="result-stat"><strong>$500M+</strong>Total Recovery</div><div class="result-stat"><strong>5,000+</strong>Cases Won</div><div class="result-stat"><strong>98%</strong>Success Rate</div><div class="result-stat"><strong>30+</strong>Years Experience</div></div>
+        <div class="grid-4">
+          <article class="card case-card"><strong>$12.5M</strong><h3>Medical Malpractice Settlement</h3><p>Complex medical negligence claim resolved through strategic preparation.</p></article>
+          <article class="card case-card"><strong>$8.2M</strong><h3>Personal Injury Settlement</h3><p>Serious injury matter with strong client advocacy and negotiation.</p></article>
+          <article class="card case-card"><strong>$5.7M</strong><h3>Product Liability Verdict</h3><p>Defective product claim presented with expert evidence and care.</p></article>
+          <article class="card case-card"><strong>$4.3M</strong><h3>Wrongful Death Settlement</h3><p>Sensitive family claim handled with professionalism and discretion.</p></article>
+        </div>
+        <p class="disclaimer">Past results do not guarantee future outcomes. Each case is unique and results vary based on specific circumstances.</p>
+      </div>
+    </section>
+
+    <section class="section soft" id="testimonials">
+      <div class="container">
+        <div class="section-head"><div class="label">Client Testimonials</div><h2>What Our Clients Say</h2></div>
+        <div class="grid-3">
+          <article class="card testimonial"><div class="stars">★★★★★</div><p class="quote">They explained every step clearly and helped us make confident decisions during a stressful time.</p><h3>James Mitchell</h3><p>Personal injury client</p></article>
+          <article class="card testimonial"><div class="stars">★★★★★</div><p class="quote">Professional, responsive, and practical. The team gave our business the legal structure we needed.</p><h3>Maria Rodriguez</h3><p>Corporate client</p></article>
+          <article class="card testimonial"><div class="stars">★★★★★</div><p class="quote">I appreciated the calm guidance and detailed preparation before every important meeting.</p><h3>David Chen</h3><p>Family law client</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light">
+      <div class="container"><div class="awards"><span class="award">Super Lawyers</span><span class="award">Best Law Firms</span><span class="award">Martindale-Hubbell</span><span class="award">American Bar Association</span><span class="award">Top 100 Trial Lawyers</span></div></div>
+    </section>
+
+    <section class="section soft" id="contact">
+      <div class="container">
+        <div class="section-head"><div class="label">Get In Touch</div><h2>Schedule Your Free Consultation</h2></div>
+        <div class="contact-grid">
+          <div class="contact-list">
+            <div class="contact-card"><div class="icon">📍</div><div><h3>Office Location</h3><p>1200 Justice Avenue, Suite 450, Metro City</p></div></div>
+            <div class="contact-card"><div class="icon">☎</div><div><h3>Phone</h3><p>(123) 456-7890</p></div></div>
+            <div class="contact-card"><div class="icon">✉</div><div><h3>Email</h3><p>consult@sterlinglaw.example</p></div></div>
+            <div class="contact-card"><div class="icon">⌚</div><div><h3>Office Hours</h3><p>Monday to Friday, 8:30 AM - 6:00 PM</p></div></div>
+          </div>
+          <form class="form" onsubmit="event.preventDefault();document.getElementById('demoNote').classList.add('show');">
+            <div class="form-grid">
+              <div class="field"><label for="first">First Name</label><input id="first" type="text" placeholder="James"></div>
+              <div class="field"><label for="last">Last Name</label><input id="last" type="text" placeholder="Mitchell"></div>
+              <div class="field"><label for="email">Email Address</label><input id="email" type="email" placeholder="client@example.com"></div>
+              <div class="field"><label for="phone">Phone Number</label><input id="phone" type="text" placeholder="(123) 456-7890"></div>
+              <div class="field full"><label for="area">Practice Area</label><select id="area"><option>Personal Injury</option><option>Corporate Law</option><option>Family Law</option><option>Criminal Defense</option><option>Estate Planning</option><option>Employment Law</option></select></div>
+              <div class="field full"><label for="case">Brief Description of Your Case</label><textarea id="case" placeholder="Tell us what legal support you need..."></textarea></div>
+            </div>
+            <label class="checkbox"><input type="checkbox"> I understand this is a demo consultation form and does not create an attorney-client relationship.</label>
+            <button class="btn btn-primary" type="submit">Submit Request</button>
+            <a class="btn btn-light" style="margin-left:8px" href="index.html#request?style=Legal%20Services%20Website">Request This Style</a>
+            <div class="demo-note" id="demoNote">Demo message only. For BizWeb KH, use the request button to ask for this website style.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><div class="footer-brand">Sterling & Partners Law</div><p>Professional legal representation for individuals, families, and businesses.</p></div>
+        <div><h4>Practice Areas</h4><div class="footer-links"><a href="#practice">Personal Injury</a><a href="#practice">Corporate Law</a><a href="#practice">Family Law</a></div></div>
+        <div><h4>About Us</h4><div class="footer-links"><a href="#attorneys">Attorneys</a><a href="#results">Case Results</a><a href="#testimonials">Testimonials</a></div></div>
+        <div><h4>Resources</h4><div class="footer-links"><a href="#contact">Consultation</a><a href="#practice">Legal Services</a><a href="#results">Disclaimer</a></div></div>
+        <div class="footer-cta"><h4>Need Legal Help?</h4><p>Speak with a legal team member.</p><div class="footer-phone">(123) 456-7890</div></div>
+      </div>
+      <div class="footer-bottom">This website is for demo purposes only and does not provide legal advice.</div>
+    </div>
+  </footer>
+  <a class="sticky-cta" href="index.html#request?style=Legal%20Services%20Website">Request this website style</a>
+</body>
+</html>
