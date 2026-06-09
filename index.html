@@ -925,7 +925,7 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
       <span class="stat-label">Live demos</span>
     </div>
     <div class="stat-item">
-      <span class="stat-val">3<span>–7</span></span>
+      <span class="stat-val">3<span>–15</span></span>
       <span class="stat-label">Day delivery</span>
     </div>
     <div class="stat-item">
@@ -954,7 +954,7 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
         <div class="why-icon">
           <svg width="23" height="23"><use href="#i-clock"/></svg>
         </div>
-        <div class="why-title">Fast launch in 3–7 days</div>
+        <div class="why-title">Fast launch by package</div>
         <p class="why-text">Start from a proven demo style, then replace it with your real services, photos, brand colors, and contact details.</p>
       </div>
       <div class="why-card">
@@ -1342,7 +1342,7 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
         <div class="pricing-price">$199</div>
         <div class="pricing-delivery">
           <svg width="13" height="13"><use href="#i-clock"/></svg>
-          Delivered in 5–7 days
+          Delivered in 7–10 days
         </div>
         <ul class="pricing-features">
           <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Multiple pages or longer business website</li>
@@ -1371,7 +1371,7 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
         <div class="pricing-price">$299</div>
         <div class="pricing-delivery">
           <svg width="13" height="13"><use href="#i-clock"/></svg>
-          Delivered in 7–10 days
+          Delivered in 10–15 days
         </div>
         <ul class="pricing-features">
           <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Multiple pages or large catalog-style website</li>
@@ -1499,8 +1499,8 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
       </div>
       <div class="form-grid">
         <div class="form-group">
-          <label class="form-label" for="f-name">Your Name</label>
-          <input type="text" id="f-name" class="form-input" placeholder="Sophea Chan">
+          <label class="form-label" for="f-name">Your Name *</label>
+          <input type="text" id="f-name" class="form-input" placeholder="Sophea Chan" required>
         </div>
         <div class="form-group">
           <label class="form-label" for="f-biz">Business Name</label>
@@ -1526,8 +1526,8 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label" for="f-phone">Phone / Telegram</label>
-          <input type="text" id="f-phone" class="form-input" placeholder="017 400 044">
+          <label class="form-label" for="f-phone">Phone / Telegram *</label>
+          <input type="text" id="f-phone" class="form-input" placeholder="012 345 678 or @yourtelegram" required>
         </div>
         <div class="form-group">
           <label class="form-label" for="f-fb">Facebook Page Link</label>
@@ -1615,7 +1615,7 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
           How long does it take to build my website?
           <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
         </button>
-        <div class="faq-a">Most websites are delivered within 3–7 business days after we receive your content and confirm the demo style. Campaign landing pages can be ready in 2–4 days.</div>
+        <div class="faq-a">Starter websites are usually delivered in 3–5 days, Pro websites in 7–10 days, and Pro Max websites in 10–15 days after we receive your content and confirm the demo style.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
@@ -2076,7 +2076,7 @@ function submitForm(){
   const name=document.getElementById('f-name').value.trim();
   const biz=document.getElementById('f-biz').value.trim();
   const phone=document.getElementById('f-phone').value.trim();
-  if(!name||!biz||!phone){showToast('Please fill in your name, business name, and contact.');return;}
+  if(!name||!phone){showToast('Please enter your name and phone or Telegram so we can contact you.');return;}
   const valueOrFallback=id=>{
     const value=document.getElementById(id).value.trim();
     return value||'Not provided';
@@ -2085,7 +2085,7 @@ function submitForm(){
     'Hello BizWeb KH, I want to request a free website preview.',
     '',
     'Name: '+name,
-    'Business Name: '+biz,
+    'Business Name: '+(biz||'Not provided'),
     'Business Type: '+valueOrFallback('f-type'),
     'Phone / Telegram: '+phone,
     'Facebook Page: '+valueOrFallback('f-fb'),
