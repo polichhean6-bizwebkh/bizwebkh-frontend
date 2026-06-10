@@ -378,8 +378,9 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 .quiz-opt svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;flex-shrink:0;color:var(--text-3);transition:color .18s;}
 .quiz-opt:hover{border-color:var(--border-hi);color:var(--text);background:var(--ink-3);}
 .quiz-opt:hover svg{color:var(--accent-2);}
-.quiz-opt.selected{border-color:var(--accent);color:#fff;background:rgba(61,123,255,0.12);box-shadow:0 0 12px rgba(61,123,255,0.15);}
-.quiz-opt.selected svg{color:var(--accent-2);}
+.quiz-opt.selected,.quiz-opt.active,.quiz-opt[aria-selected="true"]{border-color:#38bdf8;color:#fff;background:rgba(30,136,255,0.18);box-shadow:0 0 12px rgba(56,189,248,0.16);font-weight:700;}
+.quiz-opt.selected *,.quiz-opt.active *,.quiz-opt[aria-selected="true"] *{color:inherit;}
+.quiz-opt.selected svg,.quiz-opt.active svg,.quiz-opt[aria-selected="true"] svg{color:#38bdf8;stroke:#38bdf8;}
 .quiz-nav{display:flex;justify-content:space-between;align-items:center;}
 .quiz-dot-row{display:flex;gap:6px;}
 .quiz-dot{width:6px;height:6px;border-radius:50%;background:var(--ink-4);border:1px solid var(--border);transition:all .2s;}
@@ -617,6 +618,9 @@ html[data-theme="light"] .why-card,html[data-theme="light"] .demo-card,html[data
 html[data-theme="light"] .why-card:hover,html[data-theme="light"] .demo-card:hover,html[data-theme="light"] .pricing-card:hover,html[data-theme="light"] .contact-btn:hover{border-color:rgba(29,123,255,.28);box-shadow:0 24px 58px rgba(29,72,125,.13);transform:translateY(-3px);}
 html[data-theme="light"] .why-icon,html[data-theme="light"] .icon-box,html[data-theme="light"] .pricing-icon-wrap .icon-box-lg{background:#F2F7FF;border-color:rgba(29,123,255,.15);color:#1D7BFF;}
 html[data-theme="light"] .value-item,html[data-theme="light"] .filter-bar,html[data-theme="light"] .quiz-opt,html[data-theme="light"] .quiz-rec-chip,html[data-theme="light"] .care-points span,html[data-theme="light"] .modal-list li{background:#FFFFFF;border-color:rgba(29,123,255,.14);}
+html[data-theme="light"] .quiz-opt.selected,html[data-theme="light"] .quiz-opt.active,html[data-theme="light"] .quiz-opt[aria-selected="true"]{background:#eaf4ff;border-color:#1e88ff;color:#0b1b3f;box-shadow:0 12px 28px rgba(30,136,255,.14);font-weight:700;}
+html[data-theme="light"] .quiz-opt.selected *,html[data-theme="light"] .quiz-opt.active *,html[data-theme="light"] .quiz-opt[aria-selected="true"] *{color:inherit;}
+html[data-theme="light"] .quiz-opt.selected svg,html[data-theme="light"] .quiz-opt.active svg,html[data-theme="light"] .quiz-opt[aria-selected="true"] svg{color:#1e88ff;stroke:#1e88ff;}
 html[data-theme="light"] .filter-bar{box-shadow:0 14px 32px rgba(29,72,125,.06);}
 html[data-theme="light"] .filter-label,html[data-theme="light"] .card-bestfor,html[data-theme="light"] .pricing-price span,html[data-theme="light"] .form-label,html[data-theme="light"] .faq-icon-wrap,html[data-theme="light"] .modal-section-title,html[data-theme="light"] .modal-info-key,html[data-theme="light"] .modal-price-note{color:#7585A2;}
 html[data-theme="light"] .filter-chip{background:#F7FBFF;border-color:rgba(29,123,255,.12);color:#4A5B7A;}
