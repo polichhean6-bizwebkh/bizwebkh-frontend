@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="km">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,6 @@
 <meta property="og:description" content="BizWeb KH builds affordable Khmer + English business websites for Cambodian SMEs. Choose a demo style and get a mobile-ready website from $99.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.bizwebkh.com/">
-<!-- Add bizweb-kh-og-image.png in the same folder before publishing -->
 <meta property="og:image" content="https://www.bizwebkh.com/bizweb-kh-og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Website Design for Cambodian SMEs from $99 | BizWeb KH">
@@ -70,6 +69,15 @@
     document.documentElement.setAttribute('data-theme','light');
   }
 })();
+(function(){
+  try{
+    var lang=localStorage.getItem('bizwebkh-lang');
+    if(lang!=='en')lang='kh';
+    document.documentElement.lang=lang==='kh'?'km':'en';
+  }catch(e){
+    document.documentElement.lang='km';
+  }
+})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Khmer:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -88,6 +96,31 @@
 }
 html{scroll-behavior:smooth;}
 body{background:var(--ink);color:var(--text);font-family:'Inter','Noto Sans Khmer',sans-serif;font-size:15px;line-height:1.6;min-height:100vh;overflow-x:hidden;}
+html[lang="km"] body{font-family:'Noto Sans Khmer','Inter',sans-serif;line-height:1.72;}
+html[lang="km"] .section-title,
+html[lang="km"] .hero h1,
+html[lang="km"] .pricing-name,
+html[lang="km"] .why-title,
+html[lang="km"] .step-title{line-height:1.35;}
+html[lang="km"] .btn,
+html[lang="km"] .nav-links a,
+html[lang="km"] .filter-chip,
+html[lang="km"] .tag,
+html[lang="km"] .section-label,
+html[lang="km"] .filter-label,
+html[lang="km"] .quiz-q-num,
+html[lang="km"] .form-label,
+html[lang="km"] .pricing-badge,
+html[lang="km"] .pricing-delivery,
+html[lang="km"] .compare-kicker,
+html[lang="km"] .hero-proof span,
+html[lang="km"] .chip,
+html[lang="km"] .hero-badge,
+html[lang="km"] .modal-section-title,
+html[lang="km"] .modal-info-key,
+html[lang="km"] .card-bestfor{letter-spacing:0;}
+html[lang="km"] .section-title,
+html[lang="km"] .hero h1{letter-spacing:0;}
 ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--ink-2);}::-webkit-scrollbar-thumb{background:var(--ink-4);border-radius:3px;}
 ::selection{background:rgba(61,123,255,0.3);color:#fff;}
 .mono{font-family:inherit;font-weight:600;letter-spacing:0.02em;}
@@ -130,6 +163,17 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 .theme-toggle-knob{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 0 16px rgba(61,123,255,.35);display:block;}
 .theme-toggle-text{line-height:1;}
 
+/* ============================================================
+   LANGUAGE TOGGLE
+============================================================ */
+.lang-toggle{height:32px;border:1px solid var(--border);border-radius:999px;background:rgba(255,255,255,0.035);display:inline-flex;align-items:center;padding:3px;gap:1px;transition:all .2s;}
+.lang-btn{font-family:inherit;font-size:11px;font-weight:800;letter-spacing:.04em;padding:3px 9px;border-radius:999px;transition:all .18s;color:var(--text-3);border:none;background:none;cursor:pointer;line-height:1;}
+.lang-btn.active{background:var(--accent);color:#fff;box-shadow:0 0 10px rgba(61,123,255,.3);}
+.lang-btn:hover:not(.active){color:var(--text);background:var(--ink-3);}
+html[data-theme="light"] .lang-toggle{background:#fff;border-color:rgba(29,123,255,.18);box-shadow:0 4px 12px rgba(29,72,125,.06);}
+html[data-theme="light"] .lang-btn:hover:not(.active){background:#F2F7FF;color:#1D7BFF;}
+html[data-theme="light"] .lang-btn.active{background:#1D7BFF;color:#fff;}
+
 .btn{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-size:13px;font-weight:700;border:none;border-radius:var(--radius-sm);cursor:pointer;transition:all .2s;white-space:nowrap;text-decoration:none;}
 .btn svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.75;flex-shrink:0;}
 .btn-ghost{background:transparent;color:var(--text-2);border:1px solid var(--border);padding:7px 14px;}
@@ -152,9 +196,9 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:900;backgrou
 .hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:420px;background:radial-gradient(ellipse at center top,rgba(61,123,255,0.18) 0%,transparent 70%);pointer-events:none;}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--ink-3);border:1px solid var(--border);border-radius:999px;padding:5px 14px;font-size:12px;font-family:inherit;font-weight:600;letter-spacing:0.03em;color:var(--text-2);margin-bottom:28px;}
 .hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);flex-shrink:0;}
-.hero h1{font-size:clamp(32px,5.5vw,62px);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:#fff;max-width:920px;margin:0 auto 20px;}
+.hero h1{font-size:clamp(32px,5.5vw,62px);font-weight:800;line-height:1.1;letter-spacing:-0.03em;color:#fff;max-width:980px;margin:0 auto 20px;}
 .hero-title-line,.hero-title-subline{display:block;}
-.hero-title-subline{font-size:clamp(24px,4.2vw,46px);line-height:1.15;margin-top:10px;min-height:1.2em;color:var(--text);}
+.hero-title-subline{font-size:clamp(20px,3.2vw,38px);line-height:1.15;margin-top:10px;min-height:1.2em;color:var(--text);white-space:nowrap;}
 .hero-typing-wrap{display:inline-flex;align-items:center;justify-content:center;gap:4px;min-width:420px;min-height:1.15em;height:1.15em;line-height:1.15;vertical-align:top;background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;}
 .hero-typing-text{display:inline-block;}
 .typing-cursor{display:inline-block;flex:0 0 3px;width:3px;height:.85em;margin-left:4px;border-radius:999px;background:var(--accent-2);animation:blinkCursor .8s steps(1) infinite;-webkit-text-fill-color:initial;}
@@ -700,7 +744,7 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   .hamburger{display:flex;}
   .nav-logo-img{width:180px;height:auto;max-height:46px;}
   .hero h1{max-width:100%;font-size:clamp(31px,10vw,44px);}
-  .hero-title-subline{font-size:clamp(22px,7.5vw,32px);margin-top:8px;}
+  .hero-title-subline{font-size:clamp(22px,7.5vw,32px);margin-top:8px;white-space:normal;}
   .hero-typing-wrap{min-width:min(92vw,340px);max-width:92vw;white-space:normal;}
   .footer-logo-img{width:280px;max-width:86vw;}
   .form-grid{grid-template-columns:1fr;}
@@ -729,6 +773,37 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   html[data-theme="light"] .hero{padding-top:calc(var(--nav-h) + 32px);padding-bottom:44px;min-height:auto;height:auto;}
   html[data-theme="light"] .section{padding:58px 16px;}
   html[data-theme="light"] .included-section{padding-top:44px;padding-bottom:56px;}
+}
+/* ===== PROMO SECTION ===== */
+.promo-section{padding:0 0 8px;}
+.promo-card{position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid rgba(0,212,255,0.32);background:linear-gradient(135deg,rgba(0,212,255,0.09) 0%,rgba(61,123,255,0.08) 55%,rgba(0,212,255,0.05) 100%);padding:36px 40px;display:flex;align-items:center;gap:36px;}
+.promo-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 5% 50%,rgba(0,212,255,0.12) 0%,transparent 60%);pointer-events:none;}
+.promo-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent-2),var(--accent),transparent);opacity:.7;}
+.promo-icon-wrap{flex:0 0 64px;width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,rgba(0,212,255,0.22),rgba(61,123,255,0.18));border:1px solid rgba(0,212,255,0.28);display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(0,212,255,0.12);}
+.promo-body{flex:1;min-width:0;}
+.promo-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,212,255,0.14);border:1px solid rgba(0,212,255,0.28);border-radius:999px;padding:3px 12px;font-size:11px;font-weight:700;color:var(--accent-2);letter-spacing:.04em;margin-bottom:10px;}
+.promo-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent-2);animation:promoBlip 1.4s ease-in-out infinite;}
+@keyframes promoBlip{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.45;transform:scale(.8);}}
+.promo-title{font-size:clamp(19px,2.2vw,24px);font-weight:700;color:#fff;margin-bottom:6px;line-height:1.3;}
+.promo-offer{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(0,212,255,0.16),rgba(61,123,255,0.13));border:1px solid rgba(0,212,255,0.35);border-radius:10px;padding:8px 16px;font-size:clamp(14px,1.4vw,16px);font-weight:700;color:var(--accent-2);margin:8px 0 14px;line-height:1.4;max-width:100%;}
+.promo-offer svg{flex:0 0 16px;opacity:.85;}
+.promo-desc{font-size:14px;color:var(--text-2);line-height:1.75;max-width:560px;}
+.promo-note{font-size:11px;color:var(--text-3);margin-top:10px;display:flex;align-items:center;gap:6px;}
+.promo-cta{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;}
+html[data-theme="light"] .promo-card{background:linear-gradient(135deg,rgba(29,123,255,.07),rgba(0,212,255,.05));border-color:rgba(29,123,255,.26);}
+html[data-theme="light"] .promo-card::after{background:linear-gradient(90deg,#1D7BFF,#18C8FF,transparent);}
+html[data-theme="light"] .promo-badge{background:rgba(29,123,255,.1);border-color:rgba(29,123,255,.2);color:#1D7BFF;}
+html[data-theme="light"] .promo-badge::before{background:#1D7BFF;}
+html[data-theme="light"] .promo-title{color:#071C3D;}
+html[data-theme="light"] .promo-offer{background:linear-gradient(135deg,rgba(29,123,255,.1),rgba(0,212,255,.07));border-color:rgba(29,123,255,.3);color:#1D7BFF;}
+html[data-theme="light"] .promo-desc{color:#4A5B7A;}
+html[data-theme="light"] .promo-icon-wrap{background:linear-gradient(135deg,rgba(29,123,255,.14),rgba(0,212,255,.1));border-color:rgba(29,123,255,.2);box-shadow:0 0 24px rgba(29,123,255,.1);}
+html[lang="km"] .promo-badge,html[lang="km"] .promo-offer{letter-spacing:0;}
+html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
+@media(max-width:768px){
+  .promo-card{flex-direction:column;align-items:flex-start;gap:20px;padding:24px 20px;}
+  .promo-cta{width:100%;}
+  .promo-cta .btn{width:100%;justify-content:center;padding:13px 20px;}
 }
 </style>
 <!-- Google tag (gtag.js) -->
@@ -837,26 +912,30 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
     <img class="nav-logo-img" src="bizweb-kh-logo-main.svg" alt="BizWeb KH website design Cambodia">
   </a>
   <ul class="nav-links">
-    <li><a href="#demos">Demos</a></li>
-    <li><a href="#styles">Styles</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#how">How It Works</a></li>
-    <li><a href="#request">Free Preview</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#demos" data-i18n="nav.demos">គំរូ</a></li>
+    <li><a href="#styles" data-i18n="nav.styles">រចនាប័ទ្ម</a></li>
+    <li><a href="#pricing" data-i18n="nav.pricing">តម្លៃ</a></li>
+    <li><a href="#how" data-i18n="nav.how">របៀបដំណើរការ</a></li>
+    <li><a href="#request" data-i18n="nav.preview">ព្រីវ្យូឥតគិតថ្លៃ</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">ទំនាក់ទំនង</a></li>
   </ul>
   <div class="nav-spacer"></div>
   <div class="nav-actions">
+    <div class="lang-toggle" aria-label="Switch language">
+      <button class="lang-btn active" id="btn-kh" onclick="setLang('kh')">KH</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="true">
       <span class="theme-toggle-knob" aria-hidden="true"></span>
-      <span class="theme-toggle-text">Dark mode</span>
+      <span class="theme-toggle-text" data-i18n="theme.dark">ងងឹត</span>
     </button>
     <a href="#demos" class="btn btn-ghost">
       <svg width="14" height="14"><use href="#i-grid"/></svg>
-      Browse Demos
+      <span data-i18n="nav.browseDemos">មើលគំរូ</span>
     </a>
     <a href="#request" class="btn btn-primary">
       <svg width="14" height="14"><use href="#i-sparkles"/></svg>
-      Request free preview
+      <span data-i18n="nav.requestPreview">ស្នើព្រីវ្យូ</span>
     </a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -866,12 +945,16 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
 
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#demos"    onclick="closeMobileMenu()">Demos</a>
-  <a href="#styles"   onclick="closeMobileMenu()">Styles</a>
-  <a href="#pricing"  onclick="closeMobileMenu()">Pricing</a>
-  <a href="#how"      onclick="closeMobileMenu()">How It Works</a>
-  <a href="#request"  onclick="closeMobileMenu()">Free Preview</a>
-  <a href="#contact"  onclick="closeMobileMenu()">Contact</a>
+  <a href="#demos"    onclick="closeMobileMenu()" data-i18n="nav.demos">គំរូ</a>
+  <a href="#styles"   onclick="closeMobileMenu()" data-i18n="nav.styles">រចនាប័ទ្ម</a>
+  <a href="#pricing"  onclick="closeMobileMenu()" data-i18n="nav.pricing">តម្លៃ</a>
+  <a href="#how"      onclick="closeMobileMenu()" data-i18n="nav.how">របៀបដំណើរការ</a>
+  <a href="#request"  onclick="closeMobileMenu()" data-i18n="nav.preview">ព្រីវ្យូឥតគិតថ្លៃ</a>
+  <a href="#contact"  onclick="closeMobileMenu()" data-i18n="nav.contact">ទំនាក់ទំនង</a>
+  <div style="display:flex;gap:8px;padding:14px 0;border-top:1px solid var(--border)">
+    <button id="mob-btn-kh" onclick="setLang('kh');closeMobileMenu()" style="flex:1;padding:10px;font-family:inherit;font-size:14px;font-weight:800;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--accent);color:#fff;cursor:pointer;">KH</button>
+    <button id="mob-btn-en" onclick="setLang('en');closeMobileMenu()" style="flex:1;padding:10px;font-family:inherit;font-size:14px;font-weight:800;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--ink-3);color:var(--text-2);cursor:pointer;">EN</button>
+  </div>
 </div>
 
 <!-- ========== HERO ========== -->
@@ -879,53 +962,53 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   <div class="hero-glow"></div>
   <div class="hero-badge">
     <span class="hero-badge-dot"></span>
-    <span class="mono">16 live website demos ready</span>
+    <span class="mono" data-i18n="hero.badge">មានគំរូវែបសាយ 16</span>
   </div>
   <h1>
-    <span class="hero-title-line">Get your business website</span>
+    <span class="hero-title-line" data-i18n="hero.title">ធ្វើវែបសាយសម្រាប់អាជីវកម្មរបស់អ្នក</span>
     <span class="hero-typing-wrap">
-      <span id="heroTypingText" class="hero-typing-text">from $99</span>
+      <span id="heroTypingText" class="hero-typing-text">ចាប់ពី $99</span>
       <span class="typing-cursor" aria-hidden="true"></span>
     </span>
-    <span class="hero-title-subline">Choose a demo style. We customize it for you.</span>
+    <span class="hero-title-subline" data-i18n="hero.subline">ជ្រើសគំរូដែលចូលចិត្ត ហើយយើងប្ដូរជូនតាមអាជីវកម្មអ្នក។</span>
   </h1>
-  <p class="hero-sub">Browse completed live website demos for Cambodian SMEs, choose the style you like, and let BizWeb KH customize a mobile-ready business website with your logo, content, photos, contact links, Google Map, and Khmer + English wording.</p>
+  <p class="hero-sub" data-i18n="hero.sub">រកមើលគំរូវែបសាយដែលបានរៀបចំរួចសម្រាប់ SME ខ្មែរ។ ជ្រើសរចនាប័ទ្មដែលចូលចិត្ត ហើយ BizWeb KH នឹងប្ដូរជូនជាវែបសាយដែលសមស្របទូរស័ព្ទ មាន logo មាតិកា រូបថត ប៊ូតុងទំនាក់ទំនង Google Map និងខ្មែរ + អង់គ្លេស។</p>
 
   <div class="hero-proof" aria-label="Key offer details">
-    <span><svg width="13" height="13"><use href="#i-dollar"/></svg>Starting from $99</span>
-    <span><svg width="13" height="13"><use href="#i-clock"/></svg>Ready in 3–5 days</span>
-    <span><svg width="13" height="13"><use href="#i-globe"/></svg>Khmer + English</span>
-    <span><svg width="13" height="13"><use href="#i-phone"/></svg>Mobile responsive</span>
+    <span><svg width="13" height="13"><use href="#i-dollar"/></svg><span data-i18n="hero.proof.price">តម្លៃចាប់ពី $99</span></span>
+    <span><svg width="13" height="13"><use href="#i-clock"/></svg><span data-i18n="hero.proof.days">រួចរាល់ 3–5 ថ្ងៃ</span></span>
+    <span><svg width="13" height="13"><use href="#i-globe"/></svg><span data-i18n="hero.proof.lang">ខ្មែរ + អង់គ្លេស</span></span>
+    <span><svg width="13" height="13"><use href="#i-phone"/></svg><span data-i18n="hero.proof.mobile">សមស្របទូរស័ព្ទ</span></span>
   </div>
 
   <div class="search-wrap">
     <span class="search-icon-wrap">
       <svg width="17" height="17"><use href="#i-search"/></svg>
     </span>
-    <input type="text" id="hero-search" placeholder="Search demo styles, business types, or goals..." autocomplete="off">
+    <input type="text" id="hero-search" data-i18n-placeholder="hero.search" placeholder="ស្វែងរកគំរូ ប្រភេទអាជីវកម្ម ឬគោលដៅ..." autocomplete="off">
   </div>
 
   <div class="chips">
     <span class="chip" data-search="Clinic">
-      <svg width="13" height="13"><use href="#i-stethoscope"/></svg>Clinic
+      <svg width="13" height="13"><use href="#i-stethoscope"/></svg><span data-i18n="chip.clinic">គ្លីនិក</span>
     </span>
     <span class="chip" data-search="Restaurant">
-      <svg width="13" height="13"><use href="#i-utensils"/></svg>Restaurant
+      <svg width="13" height="13"><use href="#i-utensils"/></svg><span data-i18n="chip.restaurant">ភោជនីយដ្ឋាន</span>
     </span>
     <span class="chip" data-search="School">
-      <svg width="13" height="13"><use href="#i-graduation"/></svg>School
+      <svg width="13" height="13"><use href="#i-graduation"/></svg><span data-i18n="chip.school">សាលារៀន</span>
     </span>
     <span class="chip" data-search="Garage">
-      <svg width="13" height="13"><use href="#i-wrench"/></svg>Garage
+      <svg width="13" height="13"><use href="#i-wrench"/></svg><span data-i18n="chip.garage">ហ្គារ៉ាស</span>
     </span>
     <span class="chip" data-search="Beauty">
-      <svg width="13" height="13"><use href="#i-sparkles"/></svg>Beauty
+      <svg width="13" height="13"><use href="#i-sparkles"/></svg><span data-i18n="chip.beauty">ស្រីស្អាត / Spa</span>
     </span>
     <span class="chip" data-search="Premium">
-      <svg width="13" height="13"><use href="#i-star"/></svg>Premium
+      <svg width="13" height="13"><use href="#i-star"/></svg><span data-i18n="chip.premium">ពិសេស</span>
     </span>
     <span class="chip" data-search="Khmer">
-      <svg width="13" height="13"><use href="#i-globe"/></svg>Khmer + English
+      <svg width="13" height="13"><use href="#i-globe"/></svg><span data-i18n="chip.khmer">ខ្មែរ + អង់គ្លេស</span>
     </span>
   </div>
 </section>
@@ -935,31 +1018,61 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   <div class="stats-inner">
     <div class="stat-item">
       <span class="stat-val">16</span>
-      <span class="stat-label">Live demos</span>
+      <span class="stat-label" data-i18n="stats.liveDemos">គំរូវែបសាយ</span>
     </div>
     <div class="stat-item">
       <span class="stat-val">3<span>–15</span></span>
-      <span class="stat-label">Day delivery</span>
+      <span class="stat-label" data-i18n="stats.dayDelivery">ថ្ងៃរៀបចំ</span>
     </div>
     <div class="stat-item">
       <span class="stat-val">$<span>99</span></span>
-      <span class="stat-label">Starting price</span>
+      <span class="stat-label" data-i18n="stats.startingPrice">តម្លៃចាប់ផ្ដើម</span>
     </div>
     <div class="stat-item">
       <span class="stat-val">KH<span>/EN</span></span>
-      <span class="stat-label">Bilingual support</span>
+      <span class="stat-label" data-i18n="stats.bilingual">គាំទ្រ KH/EN</span>
     </div>
   </div>
 </div>
+
+<!-- ========== PROMO ========== -->
+<section class="section promo-section">
+  <div class="section-inner">
+    <div class="promo-card">
+      <div class="promo-icon-wrap" aria-hidden="true">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-2)"><path d="M20 12V22H4V12"/><path d="M22 7H2v5h20V7z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+      </div>
+      <div class="promo-body">
+        <div class="promo-badge" data-i18n="promo.badge">ប្រូម៉ូសិនប្រចាំខែ</div>
+        <h3 class="promo-title" data-i18n="promo.title">ប្រូម៉ូសិនប្រចាំខែនេះ</h3>
+        <div class="promo-offer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          <span data-i18n="promo.offer">ទទួលបានការគាំទ្រ Hosting 1 ខែ ដោយឥតគិតថ្លៃ</span>
+        </div>
+        <p class="promo-desc" data-i18n="promo.desc">កក់គម្រោងវែបសាយក្នុងខែនេះ ហើយទទួលបានការគាំទ្រ Hosting 1 ខែ ដើម្បីជួយឱ្យអាជីវកម្មបើកដំណើរការវែបសាយបានរលូន។</p>
+        <p class="promo-note">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span data-i18n="promo.note">សម្រាប់គម្រោងថ្មីដែលបើកដំណើរការក្នុងខែ</span>
+        </p>
+      </div>
+      <div class="promo-cta">
+        <button class="btn btn-primary" onclick="claimPromo()" style="padding:14px 26px;font-size:15px;font-weight:700;box-shadow:0 0 28px rgba(61,123,255,0.35);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          <span data-i18n="promo.btn">ទទួលយកប្រូម៉ូសិនតាម Telegram</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ========== WHY CAMBODIAN SMES CHOOSE BIZWEB KH ========== -->
 <section class="section why-section">
   <div class="section-inner">
     <div class="section-header">
       <div>
-        <p class="section-label">// built for local SMEs</p>
-        <h2 class="section-title">Why Cambodian SMEs choose BizWeb KH</h2>
-        <p class="section-sub">A practical website service for owners who need trust, leads, and a shareable business link fast.</p>
+        <p class="section-label" data-i18n="why.label">// សម្រាប់ SME ខ្មែរ</p>
+        <h2 class="section-title" data-i18n="why.title">ហេតុអ្វី SME ខ្មែរជ្រើស BizWeb KH</h2>
+        <p class="section-sub" data-i18n="why.sub">សេវាធ្វើវែបសាយសាមញ្ញ ច្បាស់លាស់ និងរហ័ស សម្រាប់ម្ចាស់អាជីវកម្មដែលចង់បានទំនុកចិត្ត ភ្ញៀវថ្មី និងតំណអាជីវកម្មសម្រាប់ចែករំលែក។</p>
       </div>
     </div>
     <div class="why-grid">
@@ -967,29 +1080,29 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
         <div class="why-icon">
           <svg width="23" height="23"><use href="#i-clock"/></svg>
         </div>
-        <div class="why-title">Fast launch by package</div>
-        <p class="why-text">Start from a proven demo style, then replace it with your real services, photos, brand colors, and contact details.</p>
+        <div class="why-title" data-i18n="why.card1.title">ចាប់ផ្ដើមលឿន តាមកញ្ចប់</div>
+        <p class="why-text" data-i18n="why.card1.text">ចាប់ពីគំរូដែលមានរួច ហើយប្ដូរ logo រូបថត ពណ៌ brand មាតិកា និងព័ត៌មានទំនាក់ទំនងរបស់អ្នក។</p>
       </div>
       <div class="why-card">
         <div class="why-icon">
           <svg width="23" height="23"><use href="#i-dollar"/></svg>
         </div>
-        <div class="why-title">Clear starter price from $99</div>
-        <p class="why-text">Clear starter pricing for clinics, cafés, schools, shops, and local services that need a professional first website.</p>
+        <div class="why-title" data-i18n="why.card2.title">តម្លៃច្បាស់ ចាប់ពី $99</div>
+        <p class="why-text" data-i18n="why.card2.text">តម្លៃច្បាស់លាស់ សម្រាប់គ្លីនិក ហាងកាហ្វេ សាលារៀន ហាង និងសេវាតំបន់ ដែលត្រូវការវែបសាយដំបូង។</p>
       </div>
       <div class="why-card">
         <div class="why-icon">
           <svg width="23" height="23"><use href="#i-globe"/></svg>
         </div>
-        <div class="why-title">Khmer + English support</div>
-        <p class="why-text">Create a website customers can understand locally, while still looking credible for expats, tourists, and partners.</p>
+        <div class="why-title" data-i18n="why.card3.title">ខ្មែរ + អង់គ្លេស</div>
+        <p class="why-text" data-i18n="why.card3.text">ធ្វើវែបសាយដែលអតិថិជនខ្មែរអាចយល់បានងាយ ហើយនៅតែមានភាពវិជ្ជាជីវៈសម្រាប់ភ្ញៀវបរទេស និងដៃគូអាជីវកម្ម។</p>
       </div>
       <div class="why-card">
         <div class="why-icon">
           <svg width="23" height="23"><use href="#i-message"/></svg>
         </div>
-        <div class="why-title">Telegram / Messenger lead setup</div>
-        <p class="why-text">Add clear contact buttons so customers can ask questions, request appointments, or request prices from the website.</p>
+        <div class="why-title" data-i18n="why.card4.title">ភ្ជាប់ Telegram / Messenger</div>
+        <p class="why-text" data-i18n="why.card4.text">បន្ថែមប៊ូតុងទំនាក់ទំនងច្បាស់លាស់ ដើម្បីឱ្យអតិថិជនអាចសួរតម្លៃ កក់ណាត់ ឬទាក់ទងពីវែបសាយបានភ្លាមៗ។</p>
       </div>
     </div>
   </div>
@@ -1000,19 +1113,19 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   <div class="section-inner">
     <div class="section-header">
       <div>
-        <p class="section-label">// demo library</p>
-        <h2 class="section-title">Featured live demos</h2>
-        <p class="section-sub">Explore completed website styles for real Cambodian SME categories. Choose a demo, view the live website, then request customization for your own business.</p>
+        <p class="section-label" data-i18n="demo.label">// បណ្ណាល័យគំរូ</p>
+        <h2 class="section-title" data-i18n="demo.title">គំរូវែបសាយ Live</h2>
+        <p class="section-sub" data-i18n="demo.sub">មើលគំរូវែបសាយដែលរៀបចំរួចសម្រាប់ប្រភេទអាជីវកម្មខ្មែរ។ ជ្រើសគំរូ មើល Live Website ហើយស្នើឱ្យយើងប្ដូរជូន។</p>
       </div>
-      <span id="card-count" class="mono" style="font-size:13px;color:var(--text-3)">16 live demos available</span>
+      <span id="card-count" class="mono" style="font-size:13px;color:var(--text-3)"></span>
     </div>
 
     <div class="featured-live-note">
       <div class="featured-live-title">
         <svg width="16" height="16"><use href="#i-sparkles"/></svg>
-        Featured live demos
+        <span data-i18n="demo.featured.title">គំរូវែបសាយ Live</span>
       </div>
-      <p>Browse completed live website demos for Cambodian SMEs. Choose a website style first. Final package depends on how many pages, sections, products, or content items your business needs.</p>
+      <p data-i18n="demo.featured.text">ជ្រើសរចនាប័ទ្មដែលសមនឹងអាជីវកម្មរបស់អ្នក។ កញ្ចប់ចុងក្រោយអាស្រ័យលើចំនួនទំព័រ មាតិកា និងផ្នែកដែលត្រូវការ។</p>
     </div>
 
     <!-- filter bar -->
@@ -1020,52 +1133,52 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
       <div class="filter-group">
         <span class="filter-label" style="display:flex;align-items:center;gap:5px">
           <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-brush"/></svg>
-          Category
+          <span data-i18n="filter.category">ប្រភេទ</span>
         </span>
-        <span class="filter-chip" data-filter="industry" data-val="All">All</span>
-        <span class="filter-chip" data-filter="industry" data-val="Healthcare">Healthcare</span>
-        <span class="filter-chip" data-filter="industry" data-val="Food & Beverage">Food & Beverage</span>
-        <span class="filter-chip" data-filter="industry" data-val="Hospitality">Hospitality</span>
-        <span class="filter-chip" data-filter="industry" data-val="Education">Education</span>
-        <span class="filter-chip" data-filter="industry" data-val="Auto Service">Auto Service</span>
-        <span class="filter-chip" data-filter="industry" data-val="Pet Care">Pet Care</span>
-        <span class="filter-chip" data-filter="industry" data-val="Fitness">Fitness</span>
-        <span class="filter-chip" data-filter="industry" data-val="Premium Motion">Premium Motion</span>
+        <span class="filter-chip" data-filter="industry" data-val="All" data-i18n="filter.all">ទាំងអស់</span>
+        <span class="filter-chip" data-filter="industry" data-val="Healthcare" data-i18n="filter.healthcare">សុខភាព</span>
+        <span class="filter-chip" data-filter="industry" data-val="Food & Beverage" data-i18n="filter.food">អាហារ</span>
+        <span class="filter-chip" data-filter="industry" data-val="Hospitality" data-i18n="filter.hospitality">ពាណិជ្ជកម្ម</span>
+        <span class="filter-chip" data-filter="industry" data-val="Education" data-i18n="filter.education">ការអប់រំ</span>
+        <span class="filter-chip" data-filter="industry" data-val="Auto Service" data-i18n="filter.auto">ហ្គារ៉ាស</span>
+        <span class="filter-chip" data-filter="industry" data-val="Pet Care" data-i18n="filter.pet">ចិញ្ចឹមសត្វ</span>
+        <span class="filter-chip" data-filter="industry" data-val="Fitness" data-i18n="filter.fitness">ហាត់ប្រាណ</span>
+        <span class="filter-chip" data-filter="industry" data-val="Premium Motion" data-i18n="filter.premiumMotion">ពិសេស Motion</span>
       </div>
       <div class="filter-group">
         <span class="filter-label" style="display:flex;align-items:center;gap:5px">
           <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-brush"/></svg>
-          Style
+          <span data-i18n="filter.style">រចនាប័ទ្ម</span>
         </span>
-        <span class="filter-chip" data-filter="style" data-val="Clean">Clean</span>
-        <span class="filter-chip" data-filter="style" data-val="Premium">Premium</span>
-        <span class="filter-chip" data-filter="style" data-val="Bold">Bold</span>
-        <span class="filter-chip" data-filter="style" data-val="Soft">Soft</span>
-        <span class="filter-chip" data-filter="style" data-val="Corporate">Corporate</span>
-        <span class="filter-chip" data-filter="style" data-val="Dark">Dark</span>
+        <span class="filter-chip" data-filter="style" data-val="Clean" data-i18n="filter.clean">ស្អាត</span>
+        <span class="filter-chip" data-filter="style" data-val="Premium" data-i18n="filter.premium">ប្រណីត</span>
+        <span class="filter-chip" data-filter="style" data-val="Bold" data-i18n="filter.bold">ក្លាហាន</span>
+        <span class="filter-chip" data-filter="style" data-val="Soft" data-i18n="filter.soft">ស្លូត</span>
+        <span class="filter-chip" data-filter="style" data-val="Corporate" data-i18n="filter.corporate">ផ្លូវការ</span>
+        <span class="filter-chip" data-filter="style" data-val="Dark" data-i18n="filter.dark">ងងឹត</span>
       </div>
       <div class="filter-group">
         <span class="filter-label" style="display:flex;align-items:center;gap:5px">
           <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-flag"/></svg>
-          Goal
+          <span data-i18n="filter.goal">គោលដៅ</span>
         </span>
-        <span class="filter-chip" data-filter="goal" data-val="Get leads">Get leads</span>
-        <span class="filter-chip" data-filter="goal" data-val="Show services">Show services</span>
-        <span class="filter-chip" data-filter="goal" data-val="Sell products">Sell products</span>
-        <span class="filter-chip" data-filter="goal" data-val="Promote campaign">Promote campaign</span>
+        <span class="filter-chip" data-filter="goal" data-val="Get leads" data-i18n="filter.getLeads">ទទួលភ្ញៀវ</span>
+        <span class="filter-chip" data-filter="goal" data-val="Show services" data-i18n="filter.showServices">បង្ហាញសេវា</span>
+        <span class="filter-chip" data-filter="goal" data-val="Sell products" data-i18n="filter.sellProducts">លក់ទំនិញ</span>
+        <span class="filter-chip" data-filter="goal" data-val="Promote campaign" data-i18n="filter.promote">ផ្សព្វផ្សាយ</span>
       </div>
       <div class="filter-group">
         <span class="filter-label" style="display:flex;align-items:center;gap:5px">
           <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><use href="#i-globe"/></svg>
-          Language
+          <span data-i18n="filter.langLabel">ភាសា</span>
         </span>
-        <span class="filter-chip" data-filter="lang" data-val="Both">KH+EN</span>
-        <span class="filter-chip" data-filter="lang" data-val="English">EN only</span>
-        <span class="filter-chip" data-filter="lang" data-val="Khmer">KH only</span>
+        <span class="filter-chip" data-filter="lang" data-val="Both" data-i18n="filter.khEn">KH+EN</span>
+        <span class="filter-chip" data-filter="lang" data-val="English" data-i18n="filter.enOnly">EN ប៉ុណ្ណោះ</span>
+        <span class="filter-chip" data-filter="lang" data-val="Khmer" data-i18n="filter.khOnly">KH ប៉ុណ្ណោះ</span>
       </div>
       <button class="filter-clear" onclick="clearFilters()">
         <svg width="12" height="12"><use href="#i-x"/></svg>
-        Clear filters
+        <span data-i18n="filter.clear">លុបជម្រើស</span>
       </button>
     </div>
 
@@ -1080,9 +1193,9 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   <div class="section-inner">
     <div class="section-header">
       <div>
-        <p class="section-label">// style finder</p>
-        <h2 class="section-title">Not sure which style fits?</h2>
-        <p class="section-sub">Answer 5 quick questions and we'll suggest the right demo for your business.</p>
+        <p class="section-label" data-i18n="quiz.label">// ជួយជ្រើសរើស</p>
+        <h2 class="section-title" data-i18n="quiz.title">មិនទាន់ប្រាកដថាត្រូវជ្រើសរចនាប័ទ្មណា?</h2>
+        <p class="section-sub" data-i18n="quiz.sub">ឆ្លើយ 5 សំណួរ ហើយយើងនឹងណែនាំគំរូដែលសាកសម។</p>
       </div>
     </div>
     <div class="quiz-wrap">
@@ -1093,26 +1206,26 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
 
         <!-- Step 1 -->
         <div class="quiz-step active" data-step="1">
-          <p class="quiz-q-num">Question 1 of 5</p>
-          <p class="quiz-q">What type of business do you run?</p>
+          <p class="quiz-q-num" data-i18n="quiz.q1.num">សំណួរ 1 ក្នុង 5</p>
+          <p class="quiz-q" data-i18n="quiz.q1.text">អាជីវកម្មរបស់អ្នកជាប្រភេទអ្វី?</p>
           <div class="quiz-options">
             <button class="quiz-opt" data-q="1" data-val="Health &amp; Clinic">
-              <svg width="16" height="16"><use href="#i-stethoscope"/></svg>Health / Clinic
+              <svg width="16" height="16"><use href="#i-stethoscope"/></svg><span data-i18n="quiz.q1.opt1">សុខភាព / គ្លីនិក</span>
             </button>
             <button class="quiz-opt" data-q="1" data-val="Food &amp; Café">
-              <svg width="16" height="16"><use href="#i-utensils"/></svg>Food / Café
+              <svg width="16" height="16"><use href="#i-utensils"/></svg><span data-i18n="quiz.q1.opt2">អាហារ / ហាងកាហ្វេ</span>
             </button>
             <button class="quiz-opt" data-q="1" data-val="School &amp; Training">
-              <svg width="16" height="16"><use href="#i-graduation"/></svg>School / Training
+              <svg width="16" height="16"><use href="#i-graduation"/></svg><span data-i18n="quiz.q1.opt3">សាលា / បណ្ដុះបណ្ដាល</span>
             </button>
             <button class="quiz-opt" data-q="1" data-val="Retail &amp; Product">
-              <svg width="16" height="16"><use href="#i-bag"/></svg>Retail / Product
+              <svg width="16" height="16"><use href="#i-bag"/></svg><span data-i18n="quiz.q1.opt4">ហាង / ផលិតផល</span>
             </button>
             <button class="quiz-opt" data-q="1" data-val="Real Estate &amp; Property">
-              <svg width="16" height="16"><use href="#i-pin"/></svg>Real Estate
+              <svg width="16" height="16"><use href="#i-pin"/></svg><span data-i18n="quiz.q1.opt5">អចលនទ្រព្យ</span>
             </button>
             <button class="quiz-opt" data-q="1" data-val="Service &amp; Local">
-              <svg width="16" height="16"><use href="#i-wrench"/></svg>Local Service
+              <svg width="16" height="16"><use href="#i-wrench"/></svg><span data-i18n="quiz.q1.opt6">សេវាកម្មក្នុងតំបន់</span>
             </button>
           </div>
           <div class="quiz-nav">
@@ -1120,7 +1233,7 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
               <span class="quiz-dot cur"></span><span class="quiz-dot"></span><span class="quiz-dot"></span><span class="quiz-dot"></span><span class="quiz-dot"></span>
             </div>
             <button class="btn btn-primary btn-sm" onclick="quizNext(1)">
-              Next
+              <span data-i18n="quiz.next">បន្ទាប់</span>
               <svg width="13" height="13"><use href="#i-arrow-r"/></svg>
             </button>
           </div>
@@ -1128,20 +1241,20 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
 
         <!-- Step 2 -->
         <div class="quiz-step" data-step="2">
-          <p class="quiz-q-num">Question 2 of 5</p>
-          <p class="quiz-q">What is your main goal with this website?</p>
+          <p class="quiz-q-num" data-i18n="quiz.q2.num">សំណួរ 2 ក្នុង 5</p>
+          <p class="quiz-q" data-i18n="quiz.q2.text">គោលដៅសំខាន់សម្រាប់វែបសាយ?</p>
           <div class="quiz-options">
             <button class="quiz-opt" data-q="2" data-val="Get leads">
-              <svg width="16" height="16"><use href="#i-phone"/></svg>Get more leads &amp; calls
+              <svg width="16" height="16"><use href="#i-phone"/></svg><span data-i18n="quiz.q2.opt1">ទទួលភ្ញៀវថ្មី</span>
             </button>
             <button class="quiz-opt" data-q="2" data-val="Show services">
-              <svg width="16" height="16"><use href="#i-layers"/></svg>Show my services clearly
+              <svg width="16" height="16"><use href="#i-layers"/></svg><span data-i18n="quiz.q2.opt2">បង្ហាញសេវាឱ្យច្បាស់</span>
             </button>
             <button class="quiz-opt" data-q="2" data-val="Sell products">
-              <svg width="16" height="16"><use href="#i-bag"/></svg>Sell products online
+              <svg width="16" height="16"><use href="#i-bag"/></svg><span data-i18n="quiz.q2.opt3">បង្ហាញ / លក់ផលិតផល</span>
             </button>
             <button class="quiz-opt" data-q="2" data-val="Promote campaign">
-              <svg width="16" height="16"><use href="#i-megaphone"/></svg>Promote a campaign or event
+              <svg width="16" height="16"><use href="#i-megaphone"/></svg><span data-i18n="quiz.q2.opt4">ផ្សព្វផ្សាយ Campaign</span>
             </button>
           </div>
           <div class="quiz-nav">
@@ -1150,10 +1263,10 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
             </div>
             <div style="display:flex;gap:8px">
               <button class="btn btn-ghost btn-sm" onclick="quizPrev(2)">
-                <svg width="13" height="13"><use href="#i-arrow-l"/></svg>Back
+                <svg width="13" height="13"><use href="#i-arrow-l"/></svg><span data-i18n="quiz.back">ត្រឡប់</span>
               </button>
               <button class="btn btn-primary btn-sm" onclick="quizNext(2)">
-                Next<svg width="13" height="13"><use href="#i-arrow-r"/></svg>
+                <span data-i18n="quiz.next">បន្ទាប់</span><svg width="13" height="13"><use href="#i-arrow-r"/></svg>
               </button>
             </div>
           </div>
@@ -1161,26 +1274,26 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
 
         <!-- Step 3 -->
         <div class="quiz-step" data-step="3">
-          <p class="quiz-q-num">Question 3 of 5</p>
-          <p class="quiz-q">Which design style feels right for your brand?</p>
+          <p class="quiz-q-num" data-i18n="quiz.q3.num">សំណួរ 3 ក្នុង 5</p>
+          <p class="quiz-q" data-i18n="quiz.q3.text">រចនាប័ទ្មណាសមនឹង Brand របស់អ្នក?</p>
           <div class="quiz-options">
             <button class="quiz-opt" data-q="3" data-val="Clean">
-              <svg width="16" height="16"><use href="#i-layers"/></svg>Clean &amp; minimal
+              <svg width="16" height="16"><use href="#i-layers"/></svg><span data-i18n="quiz.q3.opt1">ស្អាត និងទំនើប</span>
             </button>
             <button class="quiz-opt" data-q="3" data-val="Premium">
-              <svg width="16" height="16"><use href="#i-star"/></svg>Elegant &amp; premium
+              <svg width="16" height="16"><use href="#i-star"/></svg><span data-i18n="quiz.q3.opt2">ប្រណីត និងមានទំនុកចិត្ត</span>
             </button>
             <button class="quiz-opt" data-q="3" data-val="Bold">
-              <svg width="16" height="16"><use href="#i-zap"/></svg>Bold &amp; energetic
+              <svg width="16" height="16"><use href="#i-zap"/></svg><span data-i18n="quiz.q3.opt3">លេចធ្លោ និងរឹងមាំ</span>
             </button>
             <button class="quiz-opt" data-q="3" data-val="Soft">
-              <svg width="16" height="16"><use href="#i-heart"/></svg>Soft &amp; friendly
+              <svg width="16" height="16"><use href="#i-heart"/></svg><span data-i18n="quiz.q3.opt4">ទន់ភ្លន់ និងកក់ក្ដៅ</span>
             </button>
             <button class="quiz-opt" data-q="3" data-val="Corporate">
-              <svg width="16" height="16"><use href="#i-briefcase"/></svg>Professional &amp; corporate
+              <svg width="16" height="16"><use href="#i-briefcase"/></svg><span data-i18n="quiz.q3.opt5">ផ្លូវការ</span>
             </button>
             <button class="quiz-opt" data-q="3" data-val="Dark">
-              <svg width="16" height="16"><use href="#i-launch"/></svg>Dark &amp; modern
+              <svg width="16" height="16"><use href="#i-launch"/></svg><span data-i18n="quiz.q3.opt6">ងងឹត និងទំនើប</span>
             </button>
           </div>
           <div class="quiz-nav">
@@ -1189,10 +1302,10 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
             </div>
             <div style="display:flex;gap:8px">
               <button class="btn btn-ghost btn-sm" onclick="quizPrev(3)">
-                <svg width="13" height="13"><use href="#i-arrow-l"/></svg>Back
+                <svg width="13" height="13"><use href="#i-arrow-l"/></svg><span data-i18n="quiz.back">ត្រឡប់</span>
               </button>
               <button class="btn btn-primary btn-sm" onclick="quizNext(3)">
-                Next<svg width="13" height="13"><use href="#i-arrow-r"/></svg>
+                <span data-i18n="quiz.next">បន្ទាប់</span><svg width="13" height="13"><use href="#i-arrow-r"/></svg>
               </button>
             </div>
           </div>
@@ -1200,17 +1313,17 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
 
         <!-- Step 4 -->
         <div class="quiz-step" data-step="4">
-          <p class="quiz-q-num">Question 4 of 5</p>
-          <p class="quiz-q">How much content do you need on your website?</p>
+          <p class="quiz-q-num" data-i18n="quiz.q4.num">សំណួរ 4 ក្នុង 5</p>
+          <p class="quiz-q" data-i18n="quiz.q4.text">អ្នកមានមាតិកាប៉ុន្មាន?</p>
           <div class="quiz-options">
             <button class="quiz-opt" data-q="4" data-val="Simple website">
-              <svg width="16" height="16"><use href="#i-layers"/></svg>Simple website — a focused homepage
+              <svg width="16" height="16"><use href="#i-layers"/></svg><span data-i18n="quiz.q4.opt1">វែបសាយសាមញ្ញ</span>
             </button>
             <button class="quiz-opt" data-q="4" data-val="More complete website">
-              <svg width="16" height="16"><use href="#i-grid"/></svg>More complete website — services, gallery, and enquiry flow
+              <svg width="16" height="16"><use href="#i-grid"/></svg><span data-i18n="quiz.q4.opt2">វែបសាយពេញលេញជាងមុន</span>
             </button>
             <button class="quiz-opt" data-q="4" data-val="Large catalog website">
-              <svg width="16" height="16"><use href="#i-rocket"/></svg>Large catalog website — many products, rooms, or content items
+              <svg width="16" height="16"><use href="#i-rocket"/></svg><span data-i18n="quiz.q4.opt3">វែបសាយ Catalog ធំ</span>
             </button>
           </div>
           <div class="quiz-nav">
@@ -1219,10 +1332,10 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
             </div>
             <div style="display:flex;gap:8px">
               <button class="btn btn-ghost btn-sm" onclick="quizPrev(4)">
-                <svg width="13" height="13"><use href="#i-arrow-l"/></svg>Back
+                <svg width="13" height="13"><use href="#i-arrow-l"/></svg><span data-i18n="quiz.back">ត្រឡប់</span>
               </button>
               <button class="btn btn-primary btn-sm" onclick="quizNext(4)">
-                Next<svg width="13" height="13"><use href="#i-arrow-r"/></svg>
+                <span data-i18n="quiz.next">បន្ទាប់</span><svg width="13" height="13"><use href="#i-arrow-r"/></svg>
               </button>
             </div>
           </div>
@@ -1230,17 +1343,17 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
 
         <!-- Step 5 -->
         <div class="quiz-step" data-step="5">
-          <p class="quiz-q-num">Question 5 of 5</p>
-          <p class="quiz-q">Which language(s) do you need?</p>
+          <p class="quiz-q-num" data-i18n="quiz.q5.num">សំណួរ 5 ក្នុង 5</p>
+          <p class="quiz-q" data-i18n="quiz.q5.text">ត្រូវការភាសាអ្វី?</p>
           <div class="quiz-options">
             <button class="quiz-opt" data-q="5" data-val="Both">
-              <svg width="16" height="16"><use href="#i-globe"/></svg>Khmer + English (recommended)
+              <svg width="16" height="16"><use href="#i-globe"/></svg><span data-i18n="quiz.q5.opt1">ខ្មែរ + អង់គ្លេស (ណែនាំ)</span>
             </button>
             <button class="quiz-opt" data-q="5" data-val="English">
-              <svg width="16" height="16"><use href="#i-globe"/></svg>English only
+              <svg width="16" height="16"><use href="#i-globe"/></svg><span data-i18n="quiz.q5.opt2">អង់គ្លេសប៉ុណ្ណោះ</span>
             </button>
             <button class="quiz-opt" data-q="5" data-val="Khmer">
-              <svg width="16" height="16"><use href="#i-globe"/></svg>Khmer only
+              <svg width="16" height="16"><use href="#i-globe"/></svg><span data-i18n="quiz.q5.opt3">ខ្មែរប៉ុណ្ណោះ</span>
             </button>
           </div>
           <div class="quiz-nav">
@@ -1249,10 +1362,10 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
             </div>
             <div style="display:flex;gap:8px">
               <button class="btn btn-ghost btn-sm" onclick="quizPrev(5)">
-                <svg width="13" height="13"><use href="#i-arrow-l"/></svg>Back
+                <svg width="13" height="13"><use href="#i-arrow-l"/></svg><span data-i18n="quiz.back">ត្រឡប់</span>
               </button>
               <button class="btn btn-primary btn-sm" onclick="quizFinish()">
-                See results
+                <span data-i18n="quiz.finish">មើលលទ្ធផល</span>
                 <svg width="13" height="13"><use href="#i-arrow-r"/></svg>
               </button>
             </div>
@@ -1268,16 +1381,16 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
             <svg width="24" height="24"><use href="#i-target"/></svg>
           </div>
         </div>
-        <div class="quiz-result-title" id="quiz-result-title">Your best matches</div>
-        <div class="quiz-result-sub" id="quiz-result-sub">Based on your answers, these styles are a great fit for your business.</div>
+        <div class="quiz-result-title" id="quiz-result-title" data-i18n="quiz.result.title">ការណែនាំដែលសាកសម</div>
+        <div class="quiz-result-sub" id="quiz-result-sub" data-i18n="quiz.result.sub">ផ្អែកលើចម្លើយរបស់អ្នក</div>
         <div class="quiz-recs" id="quiz-recs"></div>
         <button class="btn btn-ghost" onclick="resetQuiz()" style="margin-right:8px">
           <svg width="14" height="14"><use href="#i-arrow-l"/></svg>
-          Retake quiz
+          <span data-i18n="quiz.retake">ធ្វើម្ដងទៀត</span>
         </button>
         <a href="#demos" class="btn btn-primary">
           <svg width="14" height="14"><use href="#i-grid"/></svg>
-          Browse all demos
+          <span data-i18n="quiz.browse">មើលគំរូទាំងអស់</span>
         </a>
       </div>
     </div>
@@ -1289,17 +1402,17 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   <div class="section-inner">
     <div class="section-header" style="justify-content:center;text-align:center">
       <div>
-        <p class="section-label">// included</p>
-        <h2 class="section-title">What you get</h2>
+        <p class="section-label" data-i18n="value.label">// រួមបញ្ចូល</p>
+        <h2 class="section-title" data-i18n="value.title">អ្វីដែលអ្នកទទួលបាន</h2>
       </div>
     </div>
     <div class="value-strip">
-      <div class="value-item"><svg width="17" height="17"><use href="#i-phone"/></svg>Mobile-ready website</div>
-      <div class="value-item"><svg width="17" height="17"><use href="#i-globe"/></svg>Khmer + English content setup</div>
-      <div class="value-item"><svg width="17" height="17"><use href="#i-message"/></svg>Telegram / Phone contact</div>
-      <div class="value-item"><svg width="17" height="17"><use href="#i-pin"/></svg>Google Map connection</div>
-      <div class="value-item"><svg width="17" height="17"><use href="#i-search"/></svg>Basic SEO setup</div>
-      <div class="value-item"><svg width="17" height="17"><use href="#i-sparkles"/></svg>Free homepage preview before final approval</div>
+      <div class="value-item"><svg width="17" height="17"><use href="#i-phone"/></svg><span data-i18n="value.1">វែបសាយសមស្របទូរស័ព្ទ</span></div>
+      <div class="value-item"><svg width="17" height="17"><use href="#i-globe"/></svg><span data-i18n="value.2">ខ្មែរ + អង់គ្លេស</span></div>
+      <div class="value-item"><svg width="17" height="17"><use href="#i-message"/></svg><span data-i18n="value.3">ប៊ូតុង Telegram / Phone</span></div>
+      <div class="value-item"><svg width="17" height="17"><use href="#i-pin"/></svg><span data-i18n="value.4">ភ្ជាប់ Google Map</span></div>
+      <div class="value-item"><svg width="17" height="17"><use href="#i-search"/></svg><span data-i18n="value.5">រៀបចំ SEO មូលដ្ឋាន</span></div>
+      <div class="value-item"><svg width="17" height="17"><use href="#i-sparkles"/></svg><span data-i18n="value.6">ព្រីវ្យូ Homepage ឥតគិតថ្លៃ</span></div>
     </div>
   </div>
 </section>
@@ -1309,9 +1422,9 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   <div class="section-inner">
     <div class="section-header">
       <div>
-        <p class="section-label">// packages</p>
-        <h2 class="section-title">Simple website packages for Cambodian SMEs</h2>
-        <p class="section-sub">Choose a package based on how much content your business needs. Domain name and business email are paid by client.</p>
+        <p class="section-label" data-i18n="pricing.label">// កញ្ចប់</p>
+        <h2 class="section-title" data-i18n="pricing.title">កញ្ចប់វែបសាយសម្រាប់ SME ខ្មែរ</h2>
+        <p class="section-sub" data-i18n="pricing.sub">ជ្រើសកញ្ចប់តាមចំនួនទំព័រ និងមាតិកាដែលត្រូវការ។ Domain និង Hosting គិតថ្លៃផ្សេង។</p>
       </div>
     </div>
     <div class="pricing-grid">
@@ -1323,54 +1436,54 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
           </div>
         </div>
         <div class="pricing-name">Starter Website</div>
-        <div class="pricing-bestfor">Best for simple businesses that need a clean online presence.</div>
+        <div class="pricing-bestfor" data-i18n="pricing.starter.bestfor">សាកសមសម្រាប់អាជីវកម្មតូចដែលត្រូវការ Website ដំបូង។</div>
         <div class="pricing-price">$99</div>
         <div class="pricing-delivery">
           <svg width="13" height="13"><use href="#i-clock"/></svg>
-          Delivered in 3–5 days
+          <span data-i18n="pricing.starter.delivery">រួចរាល់ក្នុង 3–5 ថ្ងៃ</span>
         </div>
-        <ul class="pricing-features">
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>1-page website</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Khmer + English bilingual content</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Mobile-responsive design</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Client provides logo, content, and photos</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Contact button: Telegram / Messenger / Phone</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Google Map link or embed</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Basic SEO title and description</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>1 round of revisions</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Domain cost is paid by client</li>
+        <ul class="pricing-features" id="features-starter">
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.s.1">វែបសាយ 1 ទំព័រ</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.s.2">ខ្មែរ + អង់គ្លេស</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.s.3">សមស្របទូរស័ព្ទ</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.s.4">ប្រើ logo មាតិកា និងរូបថតពីអតិថិជន</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.s.5">ប៊ូតុង Telegram / Messenger / Phone</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.s.6">ភ្ជាប់ Google Map</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.s.7">រៀបចំ SEO មូលដ្ឋាន</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.s.8">កែសម្រួល 2 ដង</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.s.9">Domain គិតថ្លៃផ្សេង</span></li>
         </ul>
-        <button class="btn btn-ghost" onclick="choosePackage('Starter Website')" style="width:100%;justify-content:center">Choose Starter</button>
+        <button class="btn btn-ghost" onclick="choosePackage('Starter Website')" style="width:100%;justify-content:center"><span data-i18n="pricing.starter.btn">ជ្រើស Starter</span></button>
       </div>
 
       <div class="pricing-card featured">
-        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-badge" data-i18n="pricing.popular">ពេញនិយមជាងគេ</div>
         <div class="pricing-icon-wrap">
           <div class="icon-box icon-box-lg">
             <svg width="24" height="24"><use href="#i-briefcase"/></svg>
           </div>
         </div>
         <div class="pricing-name">Pro Website</div>
-        <div class="pricing-bestfor">Best for SMEs that need a more complete business website.</div>
+        <div class="pricing-bestfor" data-i18n="pricing.pro.bestfor">សាកសមសម្រាប់ SME ដែលត្រូវការវែបសាយពេញលេញជាងមុន។</div>
         <div class="pricing-price">$199</div>
         <div class="pricing-delivery">
           <svg width="13" height="13"><use href="#i-clock"/></svg>
-          Delivered in 7–10 days
+          <span data-i18n="pricing.pro.delivery">រួចរាល់ក្នុង 7–10 ថ្ងៃ</span>
         </div>
-        <ul class="pricing-features">
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Multiple pages or longer business website</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Khmer + English bilingual content</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Mobile-responsive design</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Client provides logo, content, and photos</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Services / menu / gallery / reviews sections</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Contact form or inquiry form</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Telegram / Messenger / Phone integration</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Google Maps embed</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Basic SEO setup</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>2 rounds of revisions</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Domain cost is paid by client</li>
+        <ul class="pricing-features" id="features-pro">
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.p.1">ច្រើនទំព័រ ឬវែបសាយវែង</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.p.2">ខ្មែរ + អង់គ្លេស</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.p.3">សមស្របទូរស័ព្ទ</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.p.4">ប្រើ logo មាតិកា និងរូបថតពីអតិថិជន</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.p.5">ផ្នែកសេវា / Menu / Gallery / Reviews</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.p.6">ទម្រង់សំណួរ ឬទំនាក់ទំនង</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.p.7">ភ្ជាប់ Telegram / Messenger / Phone</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.p.8">ភ្ជាប់ Google Maps</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.p.9">រៀបចំ SEO មូលដ្ឋាន</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.p.10">កែសម្រួល 3 ដង</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.p.11">Domain គិតថ្លៃផ្សេង</span></li>
         </ul>
-        <button class="btn btn-primary" onclick="choosePackage('Pro Website')" style="width:100%;justify-content:center">Choose Pro</button>
+        <button class="btn btn-primary" onclick="choosePackage('Pro Website')" style="width:100%;justify-content:center"><span data-i18n="pricing.pro.btn">ជ្រើស Pro</span></button>
       </div>
 
       <div class="pricing-card">
@@ -1380,46 +1493,46 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
           </div>
         </div>
         <div class="pricing-name">Pro Max Website</div>
-        <div class="pricing-bestfor">Best for businesses with many products, services, rooms, menus, or gallery items.</div>
+        <div class="pricing-bestfor" data-i18n="pricing.promax.bestfor">សាកសមសម្រាប់អាជីវកម្មដែលមានផលិតផល សេវា បន្ទប់ ឬមុខម្ហូបច្រើន។</div>
         <div class="pricing-price">$299</div>
         <div class="pricing-delivery">
           <svg width="13" height="13"><use href="#i-clock"/></svg>
-          Delivered in 10–15 days
+          <span data-i18n="pricing.promax.delivery">រួចរាល់ក្នុង 10–15 ថ្ងៃ</span>
         </div>
-        <ul class="pricing-features">
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Multiple pages or large catalog-style website</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Khmer + English bilingual content</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Product / service / room / menu listing sections</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Lots of product or portfolio display pages/sections</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Mobile-responsive design</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Client provides logo, content, and photos</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Contact form or inquiry form</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Telegram / Messenger / Phone integration</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Google Map embed</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Basic SEO setup</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>3 rounds of revisions</li>
-          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg>Domain cost is paid by client</li>
+        <ul class="pricing-features" id="features-promax">
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.pm.1">ច្រើនទំព័រ ឬ Catalog ធំ</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.pm.2">ខ្មែរ + អង់គ្លេស</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.pm.3">ផ្នែក Product / Service / Room / Menu</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.pm.4">ប្រព័ន្ធបង្ហាញទំនិញ ឬបញ្ជីច្រើន</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.pm.5">សមស្របទូរស័ព្ទ</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.pm.6">ប្រើ logo មាតិកា និងរូបថតពីអតិថិជន</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.pm.7">ទម្រង់សំណួរ ឬទំនាក់ទំនង</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.pm.8">ភ្ជាប់ Telegram / Messenger / Phone</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.pm.9">ភ្ជាប់ Google Map</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.pm.10">រៀបចំ SEO មូលដ្ឋាន</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.pm.11">កែសម្រួល 4 ដង</span></li>
+          <li><svg class="check-ico" width="13" height="13"><use href="#i-check"/></svg><span data-i18n="f.pm.12">Domain គិតថ្លៃផ្សេង</span></li>
         </ul>
-        <button class="btn btn-ghost" onclick="choosePackage('Pro Max Website')" style="width:100%;justify-content:center">Choose Pro Max</button>
+        <button class="btn btn-ghost" onclick="choosePackage('Pro Max Website')" style="width:100%;justify-content:center"><span data-i18n="pricing.promax.btn">ជ្រើស Pro Max</span></button>
       </div>
 
     </div>
-    <div class="pricing-note">All packages use your selected demo style. Final structure depends on your business content, pages, photos, and service/product list.</div>
+    <div class="pricing-note" data-i18n="pricing.note">កញ្ចប់ទាំងអស់ប្រើ Demo Style ដែលអ្នកជ្រើស។ ចំនួនទំព័រ និងផ្នែកចុងក្រោយអាស្រ័យលើមាតិកា និងតម្រូវការ។</div>
     <div class="care-addon">
       <div>
-        <div class="care-title">Monthly Care Add-on</div>
-        <div class="care-price">From $15/month</div>
+        <div class="care-title" data-i18n="care.title">Monthly Care Add-on</div>
+        <div class="care-price" data-i18n="care.price">ចាប់ពី $15/ខែ</div>
       </div>
       <div>
-        <div class="care-text">For small updates, hosting support, content changes, and basic website care after launch.</div>
+        <div class="care-text" data-i18n="care.text">សម្រាប់ការកែប្រែតូចៗ ជំនួយ Hosting ការផ្លាស់ប្ដូរមាតិកា និងថែទាំ Website បន្ទាប់ពីបើកដំណើរការ។</div>
         <div class="care-points">
-          <span>Minor text/photo updates</span>
-          <span>Technical support</span>
-          <span>Content change support</span>
-          <span>Website health check</span>
+          <span data-i18n="care.p1">កែអក្សរ / រូបភាព</span>
+          <span data-i18n="care.p2">ជំនួយបច្ចេកទេស</span>
+          <span data-i18n="care.p3">ជួយប្ដូរមាតិកា</span>
+          <span data-i18n="care.p4">ពិនិត្យសុខភាព Website</span>
         </div>
       </div>
-      <button class="btn btn-outline" onclick="choosePackage('Monthly Care Add-on')" style="justify-content:center">Ask about monthly care</button>
+      <button class="btn btn-outline" onclick="choosePackage('Monthly Care Add-on')" style="justify-content:center"><span data-i18n="care.btn">សួរ Monthly Care</span></button>
     </div>
   </div>
 </section>
@@ -1429,30 +1542,30 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   <div class="section-inner">
     <div class="section-header" style="justify-content:center;text-align:center">
       <div>
-        <p class="section-label">// business upgrade</p>
-        <h2 class="section-title">From Facebook-only to professional website</h2>
-        <p class="section-sub">Give customers one clear place to understand your business and contact you.</p>
+        <p class="section-label" data-i18n="compare.label">// ផ្លាស់ប្ដូរ</p>
+        <h2 class="section-title" data-i18n="compare.title">ពី Facebook ទៅជាវែបសាយផ្លូវការ</h2>
+        <p class="section-sub" data-i18n="compare.sub">ផ្ដល់ឱ្យអតិថិជននូវព័ត៌មានច្បាស់ តំណចែករំលែកងាយ និងទំនុកចិត្តជាងមុន។</p>
       </div>
     </div>
     <div class="compare-grid">
       <div class="compare-card before">
-        <p class="compare-kicker">Before</p>
-        <h3 class="compare-title">Facebook-only presence</h3>
+        <p class="compare-kicker" data-i18n="compare.before.kicker">មុន</p>
+        <h3 class="compare-title" data-i18n="compare.before.title">ប្រើតែ Facebook</h3>
         <ul class="compare-list">
-          <li><svg width="16" height="16"><use href="#i-x"/></svg>Customers only see Facebook posts</li>
-          <li><svg width="16" height="16"><use href="#i-x"/></svg>Services are hard to find</li>
-          <li><svg width="16" height="16"><use href="#i-x"/></svg>No clear pricing or booking</li>
-          <li><svg width="16" height="16"><use href="#i-x"/></svg>Hard to build trust outside social media</li>
+          <li><svg width="16" height="16"><use href="#i-x"/></svg><span data-i18n="compare.before.1">អតិថិជនឃើញតែ Post លើ Facebook</span></li>
+          <li><svg width="16" height="16"><use href="#i-x"/></svg><span data-i18n="compare.before.2">ពិបាករកសេវា និងព័ត៌មានសំខាន់</span></li>
+          <li><svg width="16" height="16"><use href="#i-x"/></svg><span data-i18n="compare.before.3">មិនច្បាស់តម្លៃ ទីតាំង ឬរបៀបទាក់ទង</span></li>
+          <li><svg width="16" height="16"><use href="#i-x"/></svg><span data-i18n="compare.before.4">ទំនុកចិត្តអាចមិនគ្រប់គ្រាន់សម្រាប់អតិថិជនថ្មី</span></li>
         </ul>
       </div>
       <div class="compare-card after">
-        <p class="compare-kicker">After</p>
-        <h3 class="compare-title">Professional website link</h3>
+        <p class="compare-kicker" data-i18n="compare.after.kicker">បន្ទាប់</p>
+        <h3 class="compare-title" data-i18n="compare.after.title">វែបសាយផ្លូវការ</h3>
         <ul class="compare-list">
-          <li><svg width="16" height="16"><use href="#i-check"/></svg>Professional website link to share</li>
-          <li><svg width="16" height="16"><use href="#i-check"/></svg>Clear services and contact buttons</li>
-          <li><svg width="16" height="16"><use href="#i-check"/></svg>Google Map and business information</li>
-          <li><svg width="16" height="16"><use href="#i-check"/></svg>Better trust for ads and customers</li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg><span data-i18n="compare.after.1">មានតំណ Website សម្រាប់ចែករំលែក</span></li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg><span data-i18n="compare.after.2">បង្ហាញសេវា និងប៊ូតុងទំនាក់ទំនងច្បាស់</span></li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg><span data-i18n="compare.after.3">មាន Google Map និងព័ត៌មានអាជីវកម្ម</span></li>
+          <li><svg width="16" height="16"><use href="#i-check"/></svg><span data-i18n="compare.after.4">មើលទៅវិជ្ជាជីវៈជាងមុនសម្រាប់ Ads និងអតិថិជនថ្មី</span></li>
         </ul>
       </div>
     </div>
@@ -1464,31 +1577,31 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   <div class="section-inner">
     <div class="section-header" style="justify-content:center;text-align:center">
       <div>
-        <p class="section-label">// process</p>
-        <h2 class="section-title">From demo to live — in 4 steps</h2>
-        <p class="section-sub">No technical knowledge needed. We handle everything.</p>
+        <p class="section-label" data-i18n="how.label">// ដំណើរការ</p>
+        <h2 class="section-title" data-i18n="how.title">ពី Demo ដល់ Website Live — 4 ជំហាន</h2>
+        <p class="section-sub" data-i18n="how.sub">មិនចាំបាច់ចេះបច្ចេកទេសទេ។ យើងជួយរៀបចំ និងណែនាំពីដើមដល់ចប់។</p>
       </div>
     </div>
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
-        <div class="step-title">Choose a demo</div>
-        <div class="step-desc">Browse our showroom and pick the style that feels right for your brand and industry.</div>
+        <div class="step-title" data-i18n="how.step1.title">ជ្រើស Demo</div>
+        <div class="step-desc" data-i18n="how.step1.desc">មើល Showroom ហើយជ្រើសរចនាប័ទ្មដែលសមនឹង Brand របស់អ្នក។</div>
       </div>
       <div class="step">
         <div class="step-num">02</div>
-        <div class="step-title">Send your info</div>
-        <div class="step-desc">Fill in a short form with your business name, logo, photos, services, and Telegram number.</div>
+        <div class="step-title" data-i18n="how.step2.title">ផ្ញើព័ត៌មាន</div>
+        <div class="step-desc" data-i18n="how.step2.desc">ផ្ញើឈ្មោះអាជីវកម្ម Logo រូបថត សេវា និងព័ត៌មានទំនាក់ទំនង។</div>
       </div>
       <div class="step">
         <div class="step-num">03</div>
-        <div class="step-title">We customize it</div>
-        <div class="step-desc">Our team rebuilds the demo with your real content, colors, and branding — fast and precise.</div>
+        <div class="step-title" data-i18n="how.step3.title">យើងប្ដូរជូន</div>
+        <div class="step-desc" data-i18n="how.step3.desc">យើងកែ Demo តាមមាតិកា ពណ៌ Brand និងតម្រូវការរបស់អ្នក។</div>
       </div>
       <div class="step">
         <div class="step-num">04</div>
-        <div class="step-title">Review and launch</div>
-        <div class="step-desc">You review, we adjust. Once approved, your website is live and ready to share on Facebook and Google.</div>
+        <div class="step-title" data-i18n="how.step4.title">ពិនិត្យ និងបើកដំណើរការ</div>
+        <div class="step-desc" data-i18n="how.step4.desc">អ្នកពិនិត្យ យើងកែ ហើយបើក Website ឱ្យ Live សម្រាប់ចែករំលែក។</div>
       </div>
     </div>
   </div>
@@ -1499,30 +1612,30 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   <div class="section-inner">
     <div class="section-header" style="justify-content:center;text-align:center">
       <div>
-        <p class="section-label">// free preview</p>
-        <h2 class="section-title">Request your free homepage preview</h2>
-        <p class="section-sub">Tell us about your business and the demo style you like. We will reply with the next step through Telegram or phone.</p>
+        <p class="section-label" data-i18n="form.label">// ព្រីវ្យូឥតគិតថ្លៃ</p>
+        <h2 class="section-title" data-i18n="form.title">ស្នើព្រីវ្យូ Homepage ឥតគិតថ្លៃ</h2>
+        <p class="section-sub" data-i18n="form.sub">ប្រាប់យើងពីអាជីវកម្ម និង Demo ដែលអ្នកចូលចិត្ត។ យើងនឹងឆ្លើយតបតាម Telegram ឬទូរស័ព្ទ។</p>
       </div>
     </div>
     <div class="form-wrap">
       <div class="form-helper">
-        <p><svg width="15" height="15"><use href="#i-check"/></svg>No deposit needed for the first homepage preview.</p>
-        <p><svg width="15" height="15"><use href="#i-check"/></svg>Send your Facebook page, business type, and preferred demo style.</p>
-        <p><svg width="15" height="15"><use href="#i-check"/></svg>We will reply via Telegram or phone.</p>
+        <p><svg width="15" height="15"><use href="#i-check"/></svg><span data-i18n="form.helper1">មិនចាំបាច់បង់ប្រាក់សម្រាប់ព្រីវ្យូ Homepage ដំបូង។</span></p>
+        <p><svg width="15" height="15"><use href="#i-check"/></svg><span data-i18n="form.helper2">ផ្ញើ Facebook Page ប្រភេទអាជីវកម្ម និង Demo ដែលអ្នកជ្រើស។</span></p>
+        <p><svg width="15" height="15"><use href="#i-check"/></svg><span data-i18n="form.helper3">យើងនឹងឆ្លើយតបតាម Telegram ឬទូរស័ព្ទ។</span></p>
       </div>
       <div class="form-grid">
         <div class="form-group">
-          <label class="form-label" for="f-name">Your Name *</label>
-          <input type="text" id="f-name" class="form-input" placeholder="Sophea Chan" required>
+          <label class="form-label" for="f-name" data-i18n="form.field.name">ឈ្មោះ *</label>
+          <input type="text" id="f-name" class="form-input" data-i18n-placeholder="form.ph.name" placeholder="សុភា ចាន់" required>
         </div>
         <div class="form-group">
-          <label class="form-label" for="f-biz">Business Name</label>
-          <input type="text" id="f-biz" class="form-input" placeholder="Phnom Penh Dental Clinic">
+          <label class="form-label" for="f-biz" data-i18n="form.field.biz">ឈ្មោះអាជីវកម្ម</label>
+          <input type="text" id="f-biz" class="form-input" data-i18n-placeholder="form.ph.biz" placeholder="គ្លីនិក ធ្មេញ ភ្នំពេញ">
         </div>
         <div class="form-group">
-          <label class="form-label" for="f-type">Business Type</label>
-          <select id="f-type" class="form-select">
-            <option value="">Select…</option>
+          <label class="form-label" for="f-type" data-i18n="form.field.type">ប្រភេទអាជីវកម្ម</label>
+          <select id="f-type" class="form-select" data-i18n-select="form.options.type">
+            <option value="" data-i18n-opt="form.select">ជ្រើស...</option>
             <option>Dental / Medical Clinic</option>
             <option>Beauty Clinic / Spa</option>
             <option>Café / Restaurant</option>
@@ -1539,55 +1652,55 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label" for="f-phone">Phone / Telegram *</label>
-          <input type="text" id="f-phone" class="form-input" placeholder="012 345 678 or @yourtelegram" required>
+          <label class="form-label" for="f-phone" data-i18n="form.field.phone">ទូរស័ព្ទ / Telegram *</label>
+          <input type="text" id="f-phone" class="form-input" data-i18n-placeholder="form.ph.phone" placeholder="012 345 678 ឬ @yourtelegram" required>
         </div>
         <div class="form-group">
-          <label class="form-label" for="f-fb">Facebook Page Link</label>
-          <input type="text" id="f-fb" class="form-input" placeholder="facebook.com/yourbusiness">
+          <label class="form-label" for="f-fb" data-i18n="form.field.fb">Facebook Page</label>
+          <input type="text" id="f-fb" class="form-input" data-i18n-placeholder="form.ph.fb" placeholder="facebook.com/yourbusiness">
         </div>
         <div class="form-group">
-          <label class="form-label" for="f-demo">Selected Demo Style</label>
-          <input type="text" id="f-demo" class="form-input" placeholder="e.g. Dental Clinic, Café">
+          <label class="form-label" for="f-demo" data-i18n="form.field.demo">Demo Style</label>
+          <input type="text" id="f-demo" class="form-input" data-i18n-placeholder="form.ph.demo" placeholder="ឧ. Dental Clinic, Café">
         </div>
         <div class="form-group">
-          <label class="form-label" for="f-package">Preferred Package</label>
+          <label class="form-label" for="f-package" data-i18n="form.field.package">កញ្ចប់</label>
           <select id="f-package" class="form-select">
-            <option value="">Select…</option>
+            <option value="" data-i18n-opt="form.select">ជ្រើស...</option>
             <option>Starter Website</option>
             <option>Pro Website</option>
             <option>Pro Max Website</option>
-            <option>Not sure yet</option>
+            <option data-i18n-opt="form.notSure">មិនទាន់ប្រាកដ</option>
           </select>
         </div>
         <div class="form-group">
-          <label class="form-label" for="f-domain">Do you already have a domain?</label>
+          <label class="form-label" for="f-domain" data-i18n="form.field.domain">មាន Domain ហើយឬនៅ?</label>
           <select id="f-domain" class="form-select">
-            <option value="">Select…</option>
-            <option>Yes, I already have a domain</option>
-            <option>No, I need help choosing one</option>
-            <option>Not sure yet</option>
+            <option value="" data-i18n-opt="form.select">ជ្រើស...</option>
+            <option data-i18n-opt="form.domain.yes">មាន Domain ហើយ</option>
+            <option data-i18n-opt="form.domain.no">មិនទាន់មាន ត្រូវការជំនួយ</option>
+            <option data-i18n-opt="form.notSure">មិនទាន់ប្រាកដ</option>
           </select>
         </div>
         <div class="form-group full">
-          <label class="form-label" for="f-assets">Do you already have logo/photos/content?</label>
+          <label class="form-label" for="f-assets" data-i18n="form.field.assets">មាន Logo / រូបថតហើយឬនៅ?</label>
           <select id="f-assets" class="form-select">
-            <option value="">Select…</option>
-            <option>Yes, I have logo, photos, and content</option>
-            <option>I have some content but need help</option>
-            <option>No, I need help preparing content</option>
+            <option value="" data-i18n-opt="form.select">ជ្រើស...</option>
+            <option data-i18n-opt="form.assets.yes">មាន Logo រូបថត និងមាតិកា</option>
+            <option data-i18n-opt="form.assets.some">មានខ្លះ ត្រូវការជំនួយ</option>
+            <option data-i18n-opt="form.assets.no">មិនទាន់មាន ត្រូវការជំនួយ</option>
           </select>
         </div>
         <div class="form-group full">
-          <label class="form-label" for="f-msg">Message</label>
-          <textarea id="f-msg" class="form-textarea" placeholder="Tell us about your business, what your customers need, or what you love about a specific demo style…"></textarea>
+          <label class="form-label" for="f-msg" data-i18n="form.field.msg">ព័ត៌មានបន្ថែម</label>
+          <textarea id="f-msg" class="form-textarea" data-i18n-placeholder="form.ph.msg" placeholder="ប្រាប់យើងពីអាជីវកម្ម..."></textarea>
         </div>
       </div>
       <button class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;font-size:15px" onclick="submitForm()">
         <svg width="16" height="16"><use href="#i-send"/></svg>
-        Request free preview
+        <span data-i18n="form.submit">ស្នើព្រីវ្យូឥតគិតថ្លៃ</span>
       </button>
-      <p style="text-align:center;font-size:12px;color:var(--text-3);margin-top:12px">We will review your request and contact you through Telegram or phone.</p>
+      <p style="text-align:center;font-size:12px;color:var(--text-3);margin-top:12px" data-i18n="form.note">យើងនឹងទាក់ទងតាម Telegram ឬទូរស័ព្ទ។</p>
     </div>
   </div>
 </section>
@@ -1597,73 +1710,73 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   <div class="section-inner">
     <div class="section-header" style="justify-content:center;text-align:center">
       <div>
-        <p class="section-label">// FAQ</p>
-        <h2 class="section-title">Common questions</h2>
+        <p class="section-label" data-i18n="faq.label">// FAQ</p>
+        <h2 class="section-title" data-i18n="faq.title">សំណួរទូទៅ</h2>
       </div>
     </div>
     <div class="faq-list">
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          How much does a business website cost?
+          <span data-i18n="faq.q1">វែបសាយមួយតម្លៃប៉ុន្មាន?</span>
           <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
         </button>
-        <div class="faq-a">BizWeb KH website packages start from $99. The final price depends on the number of pages, content, and catalog or product sections needed.</div>
+        <div class="faq-a" data-i18n="faq.a1">កញ្ចប់ BizWeb KH ចាប់ពី $99។ តម្លៃចុងក្រោយអាស្រ័យលើចំនួនទំព័រ មាតិកា និងមុខងារដែលត្រូវការ។</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          Do you make Khmer and English websites?
+          <span data-i18n="faq.q2">អាចធ្វើវែបសាយខ្មែរ + អង់គ្លេសបានឬទេ?</span>
           <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
         </button>
-        <div class="faq-a">Yes. BizWeb KH can prepare Khmer + English wording for Cambodian SMEs, based on the information you provide.</div>
+        <div class="faq-a" data-i18n="faq.a2">បាន។ BizWeb KH គាំទ្រខ្មែរ + អង់គ្លេសសម្រាប់ SME ខ្មែរ។</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          Can I choose a ready demo style?
+          <span data-i18n="faq.q3">អាចជ្រើស Demo Style ដែលចូលចិត្តបានឬទេ?</span>
           <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
         </button>
-        <div class="faq-a">Yes. You can choose one of our live website demos, then we customize it for your business logo, photos, content, and contact links.</div>
+        <div class="faq-a" data-i18n="faq.a3">បាន។ អ្នកអាចជ្រើសគំរូ Live ហើយយើងនឹងប្ដូរតាម brand និងមាតិកាអាជីវកម្មរបស់អ្នក។</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          How long does it take to build my website?
+          <span data-i18n="faq.q4">ចំណាយពេលប៉ុន្មានថ្ងៃ?</span>
           <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
         </button>
-        <div class="faq-a">Starter websites are usually delivered in 3–5 days, Pro websites in 7–10 days, and Pro Max websites in 10–15 days after we receive your content and confirm the demo style.</div>
+        <div class="faq-a" data-i18n="faq.a4">Starter 3–5 ថ្ងៃ, Pro 7–10 ថ្ងៃ, និង Pro Max 10–15 ថ្ងៃ អាស្រ័យលើមាតិកា និងការឆ្លើយតប។</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          Do I need to prepare content or photos?
+          <span data-i18n="faq.q5">ត្រូវត្រៀមអ្វីខ្លះ?</span>
           <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
         </button>
-        <div class="faq-a">It helps! If you have photos, your logo, and a short list of services, we can build faster. But if you don't have everything ready, we can use placeholder content and update later.</div>
+        <div class="faq-a" data-i18n="faq.a5">បើមាន Logo រូបថត មាតិកា និងព័ត៌មានទំនាក់ទំនងរួច នឹងធ្វើបានលឿនជាងមុន។ បើមិនទាន់មាន យើងអាចណែនាំជំហានបន្ទាប់បាន។</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          Is domain and hosting included in the price?
+          <span data-i18n="faq.q6">Domain និង Hosting រួមក្នុងតម្លៃឬទេ?</span>
           <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
         </button>
-        <div class="faq-a">The package price covers design and development. Domain registration (~$15/year) and hosting (~$30–60/year) are additional. We can manage both for you or guide you through setup.</div>
+        <div class="faq-a" data-i18n="faq.a6">មិនទាន់រួមក្នុងតម្លៃកញ្ចប់ទេ។ Domain ប្រហែល $15/ឆ្នាំ និង Hosting ប្រហែល $30–60/ឆ្នាំ គិតថ្លៃផ្សេង។</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          How many revisions are included?
+          <span data-i18n="faq.q7">អាចកែសម្រួលបានប៉ុន្មានដង?</span>
           <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
         </button>
-        <div class="faq-a">Starter includes 1 revision round, Pro includes 2 rounds, and Pro Max includes 3 rounds. Additional revision rounds can be added for a small fee.</div>
+        <div class="faq-a" data-i18n="faq.a7">Starter រួមបញ្ចូលការកែ 2 ដង, Pro 3 ដង, និង Pro Max 4 ដង។</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          Are cart, checkout, or online payment included?
+          <span data-i18n="faq.q8">មាន Cart, Checkout ឬ Online Payment ដែរឬទេ?</span>
           <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
         </button>
-        <div class="faq-a">No. Standard packages include business websites, catalog pages, inquiry forms, Telegram/Phone contact, and Google Map. Cart, checkout, online payment, booking system, or payment gateway integration are custom upgrades and quoted separately.</div>
+        <div class="faq-a" data-i18n="faq.a8">មិនរួមក្នុងកញ្ចប់ស្តង់ដារទេ។ Cart, Checkout និង Payment Gateway ជា Custom Upgrade ដែលនឹង quote ផ្សេង។</div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
-          What is the Monthly Care plan?
+          <span data-i18n="faq.q9">Monthly Care Plan ជាអ្វី?</span>
           <span class="faq-icon-wrap"><svg width="16" height="16"><use href="#i-plus"/></svg></span>
         </button>
-        <div class="faq-a">After launch, your website may need small updates, hosting support, content changes, and basic checks. Monthly Care starts from $15/month and can be added after launch.</div>
+        <div class="faq-a" data-i18n="faq.a9">Monthly Care សម្រាប់កែប្រែតូចៗ ជំនួយ Hosting ផ្លាស់ប្ដូរមាតិកា និងថែទាំវែបសាយបន្ទាប់ពី Launch។ ចាប់ពី $15/ខែ។</div>
       </div>
     </div>
   </div>
@@ -1674,9 +1787,9 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   <div class="section-inner">
     <div class="section-header" style="justify-content:center;text-align:center">
       <div>
-        <p class="section-label">// get in touch</p>
-        <h2 class="section-title">Ready to talk?</h2>
-        <p class="section-sub">Chat with us on Telegram or call us — we’re based in Cambodia and reply fast.</p>
+        <p class="section-label" data-i18n="contact.label">// ទំនាក់ទំនង</p>
+        <h2 class="section-title" data-i18n="contact.title">ចង់ពិភាក្សាឥឡូវ?</h2>
+        <p class="section-sub" data-i18n="contact.sub">ជជែកជាមួយយើងតាម Telegram ឬទូរស័ព្ទ។ យើងនៅកម្ពុជា និងឆ្លើយតបរហ័ស។</p>
       </div>
     </div>
     <div class="contact-grid">
@@ -1701,22 +1814,22 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   <div class="footer-logo">
     <img class="footer-logo-img" src="bizweb-kh-logo-main.svg" alt="BizWeb KH affordable website design for Cambodian SMEs">
   </div>
-  <p class="footer-sub">Affordable Khmer + English website design for Cambodian SMEs. Ready in days, not months.</p>
+  <p class="footer-sub">សេវាធ្វើវែបសាយខ្មែរ + អង់គ្លេស តម្លៃសមរម្យ សម្រាប់ SME ខ្មែរ។ រួចរាល់ក្នុងប៉ុន្មានថ្ងៃ មិនមែនប៉ុន្មានខែ។</p>
   <ul class="footer-links">
-    <li><a href="#demos">Demos</a></li>
-    <li><a href="#pricing">Pricing</a></li>
-    <li><a href="#how">How It Works</a></li>
-    <li><a href="#request">Free Preview</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#demos" data-i18n="nav.demos">គំរូ</a></li>
+    <li><a href="#pricing" data-i18n="nav.pricing">តម្លៃ</a></li>
+    <li><a href="#how" data-i18n="nav.how">របៀបដំណើរការ</a></li>
+    <li><a href="#request" data-i18n="nav.preview">ព្រីវ្យូឥតគិតថ្លៃ</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">ទំនាក់ទំនង</a></li>
   </ul>
-  <p class="footer-copy">© 2025 BizWeb KH — Cambodia's SME website showroom</p>
+  <p class="footer-copy">© 2025–2026 BizWeb KH — Showroom វែបសាយសម្រាប់ SME កម្ពុជា</p>
 </footer>
 
 <!-- ========== MODAL ========== -->
 <div class="modal-overlay" id="modal" onclick="closeModalOnOverlay(event)">
   <div class="modal-drawer" id="modal-drawer">
     <div class="modal-header">
-      <span class="modal-title" id="modal-title">Website Preview</span>
+      <span class="modal-title" id="modal-title">មើលគំរូវែបសាយ</span>
       <button class="modal-close" onclick="closeModal()">
         <svg width="18" height="18"><use href="#i-x"/></svg>
       </button>
@@ -1739,6 +1852,657 @@ const CONFIG = {
   phoneUrl: "tel:+85517400044",
   emailUrl: "#"
 };
+
+/* =====================================================
+   LANGUAGE SYSTEM
+===================================================== */
+const LANG_DATA = {
+  kh: {
+    'nav.demos': 'គំរូ',
+    'nav.styles': 'រចនាប័ទ្ម',
+    'nav.pricing': 'តម្លៃ',
+    'nav.how': 'របៀបដំណើរការ',
+    'nav.preview': 'ព្រីវ្យូឥតគិតថ្លៃ',
+    'nav.contact': 'ទំនាក់ទំនង',
+    'nav.browseDemos': 'មើលគំរូ',
+    'nav.requestPreview': 'ស្នើព្រីវ្យូ',
+    'theme.dark': 'ងងឹត',
+    'theme.light': 'ភ្លឺ',
+    'hero.badge': 'មានគំរូវែបសាយ 16',
+    'hero.title': 'ធ្វើវែបសាយសម្រាប់អាជីវកម្មរបស់អ្នក',
+    'hero.subline': 'ជ្រើសគំរូដែលចូលចិត្ត ហើយយើងប្ដូរជូនតាមអាជីវកម្មអ្នក។',
+    'hero.sub': 'រកមើលគំរូវែបសាយដែលបានរៀបចំរួចសម្រាប់ SME ខ្មែរ។ ជ្រើសរចនាប័ទ្មដែលចូលចិត្ត ហើយ BizWeb KH នឹងប្ដូរជូនជាវែបសាយដែលសមស្របទូរស័ព្ទ មាន logo មាតិកា រូបថត ប៊ូតុងទំនាក់ទំនង Google Map និងខ្មែរ + អង់គ្លេស។',
+    'hero.proof.price': 'តម្លៃចាប់ពី $99',
+    'hero.proof.days': 'រួចរាល់ 3–5 ថ្ងៃ',
+    'hero.proof.lang': 'ខ្មែរ + អង់គ្លេស',
+    'hero.proof.mobile': 'សមស្របទូរស័ព្ទ',
+    'hero.search': 'ស្វែងរកគំរូ ប្រភេទអាជីវកម្ម ឬគោលដៅ...',
+    'chip.clinic': 'គ្លីនិក',
+    'chip.restaurant': 'ភោជនីយដ្ឋាន',
+    'chip.school': 'សាលារៀន',
+    'chip.garage': 'ហ្គារ៉ាស',
+    'chip.beauty': 'សម្ផស្ស / Spa',
+    'chip.premium': 'ប្រណីត',
+    'chip.khmer': 'ខ្មែរ + អង់គ្លេស',
+    'stats.liveDemos': 'គំរូវែបសាយ',
+    'stats.dayDelivery': 'ថ្ងៃរៀបចំ',
+    'stats.startingPrice': 'តម្លៃចាប់ផ្ដើម',
+    'stats.bilingual': 'គាំទ្រ KH/EN',
+    'why.label': '// សម្រាប់ SME ខ្មែរ',
+    'why.title': 'ហេតុអ្វី SME ខ្មែរជ្រើស BizWeb KH',
+    'why.sub': 'សេវាធ្វើវែបសាយសាមញ្ញ ច្បាស់លាស់ និងរហ័ស សម្រាប់ម្ចាស់អាជីវកម្មដែលចង់បានទំនុកចិត្ត ភ្ញៀវថ្មី និងតំណអាជីវកម្មសម្រាប់ចែករំលែក។',
+    'why.card1.title': 'ចាប់ផ្ដើមលឿនតាមគំរូ',
+    'why.card1.text': 'ចាប់ពីគំរូដែលមានរួច ហើយប្ដូរ logo រូបថត ពណ៌ brand មាតិកា និងព័ត៌មានទំនាក់ទំនងរបស់អ្នក។',
+    'why.card2.title': 'តម្លៃច្បាស់ ចាប់ពី $99',
+    'why.card2.text': 'កញ្ចប់តម្លៃងាយយល់សម្រាប់គ្លីនិក ហាងកាហ្វេ សាលារៀន ហាងលក់ទំនិញ និងសេវាកម្មក្នុងតំបន់។',
+    'why.card3.title': 'គាំទ្រខ្មែរ + អង់គ្លេស',
+    'why.card3.text': 'ធ្វើវែបសាយដែលអតិថិជនខ្មែរអាចយល់បានងាយ ហើយនៅតែមានភាពវិជ្ជាជីវៈសម្រាប់ភ្ញៀវបរទេស និងដៃគូអាជីវកម្ម។',
+    'why.card4.title': 'ភ្ជាប់ Telegram / Messenger',
+    'why.card4.text': 'បន្ថែមប៊ូតុងទំនាក់ទំនងច្បាស់លាស់ ដើម្បីឱ្យអតិថិជនអាចសួរតម្លៃ កក់ណាត់ ឬទាក់ទងពីវែបសាយបានភ្លាមៗ។',
+    'demo.label': '// បណ្ណាល័យគំរូ',
+    'demo.title': 'គំរូវែបសាយ Live',
+    'demo.sub': 'មើលគំរូវែបសាយដែលរៀបចំរួចសម្រាប់ប្រភេទអាជីវកម្មខ្មែរ។ ជ្រើសគំរូ មើល Live Website ហើយស្នើឱ្យយើងប្ដូរជូន។',
+    'demo.featured.title': 'គំរូវែបសាយ Live',
+    'demo.featured.text': 'ជ្រើសរចនាប័ទ្មដែលសមនឹងអាជីវកម្មរបស់អ្នក។ កញ្ចប់ចុងក្រោយអាស្រ័យលើចំនួនទំព័រ មាតិកា និងផ្នែកដែលត្រូវការ។',
+    'filter.category': 'ប្រភេទ',
+    'filter.style': 'រចនាប័ទ្ម',
+    'filter.goal': 'គោលដៅ',
+    'filter.langLabel': 'ភាសា',
+    'filter.clear': 'លុបជម្រើស',
+    'filter.all': 'ទាំងអស់',
+    'filter.healthcare': 'សុខភាព',
+    'filter.food': 'អាហារ និងភេសជ្ជៈ',
+    'filter.hospitality': 'សណ្ឋាគារ / Resort',
+    'filter.education': 'ការអប់រំ',
+    'filter.auto': 'សេវារថយន្ត',
+    'filter.pet': 'សត្វចិញ្ចឹម',
+    'filter.fitness': 'ហាត់ប្រាណ',
+    'filter.premiumMotion': 'Premium Motion',
+    'filter.clean': 'ស្អាត',
+    'filter.premium': 'ប្រណីត',
+    'filter.bold': 'លេចធ្លោ',
+    'filter.soft': 'ទន់ភ្លន់',
+    'filter.corporate': 'ផ្លូវការ',
+    'filter.dark': 'ងងឹត',
+    'filter.getLeads': 'ទទួលភ្ញៀវថ្មី',
+    'filter.showServices': 'បង្ហាញសេវា',
+    'filter.sellProducts': 'លក់ទំនិញ',
+    'filter.promote': 'ផ្សព្វផ្សាយ',
+    'filter.khEn': 'KH+EN',
+    'filter.enOnly': 'EN ប៉ុណ្ណោះ',
+    'filter.khOnly': 'KH ប៉ុណ្ណោះ',
+    'card.viewLive': 'មើល Live',
+    'card.useStyle': 'ប្រើរចនាប័ទ្មនេះ',
+    'card.bestFor': 'សាកសមសម្រាប់',
+    'card.noResults.title': 'រកមិនឃើញគំរូ',
+    'card.noResults.text': 'សូមលុបជម្រើស ឬស្វែងរកពាក្យផ្សេង។',
+    'quiz.label': '// ជួយជ្រើសរើស',
+    'quiz.title': 'មិនទាន់ប្រាកដថាត្រូវជ្រើសរចនាប័ទ្មណា?',
+    'quiz.sub': 'ឆ្លើយ 5 សំណួរ ហើយយើងនឹងណែនាំគំរូដែលសាកសម។',
+    'quiz.q1.num': 'សំណួរ 1 ក្នុង 5',
+    'quiz.q1.text': 'អាជីវកម្មរបស់អ្នកជាប្រភេទអ្វី?',
+    'quiz.q1.opt1': 'សុខភាព / គ្លីនិក',
+    'quiz.q1.opt2': 'អាហារ / ហាងកាហ្វេ',
+    'quiz.q1.opt3': 'សាលា / បណ្ដុះបណ្ដាល',
+    'quiz.q1.opt4': 'ហាង / ផលិតផល',
+    'quiz.q1.opt5': 'អចលនទ្រព្យ',
+    'quiz.q1.opt6': 'សេវាកម្មក្នុងតំបន់',
+    'quiz.q2.num': 'សំណួរ 2 ក្នុង 5',
+    'quiz.q2.text': 'គោលដៅសំខាន់សម្រាប់វែបសាយ?',
+    'quiz.q2.opt1': 'ទទួលភ្ញៀវថ្មី',
+    'quiz.q2.opt2': 'បង្ហាញសេវាឱ្យច្បាស់',
+    'quiz.q2.opt3': 'បង្ហាញ / លក់ផលិតផល',
+    'quiz.q2.opt4': 'ផ្សព្វផ្សាយ campaign',
+    'quiz.q3.num': 'សំណួរ 3 ក្នុង 5',
+    'quiz.q3.text': 'រចនាប័ទ្មណាសមនឹង brand របស់អ្នក?',
+    'quiz.q3.opt1': 'ស្អាត និងទំនើប',
+    'quiz.q3.opt2': 'ប្រណីត និងមានទំនុកចិត្ត',
+    'quiz.q3.opt3': 'លេចធ្លោ និងរឹងមាំ',
+    'quiz.q3.opt4': 'ទន់ភ្លន់ និងកក់ក្ដៅ',
+    'quiz.q3.opt5': 'ផ្លូវការ',
+    'quiz.q3.opt6': 'ងងឹត និងទំនើប',
+    'quiz.q4.num': 'សំណួរ 4 ក្នុង 5',
+    'quiz.q4.text': 'អ្នកមានមាតិកាប៉ុន្មាន?',
+    'quiz.q4.opt1': 'វែបសាយសាមញ្ញ',
+    'quiz.q4.opt2': 'វែបសាយពេញលេញជាងមុន',
+    'quiz.q4.opt3': 'វែបសាយ Catalog ធំ',
+    'quiz.q5.num': 'សំណួរ 5 ក្នុង 5',
+    'quiz.q5.text': 'ត្រូវការភាសាអ្វី?',
+    'quiz.q5.opt1': 'ខ្មែរ + អង់គ្លេស (ណែនាំ)',
+    'quiz.q5.opt2': 'អង់គ្លេសប៉ុណ្ណោះ',
+    'quiz.q5.opt3': 'ខ្មែរប៉ុណ្ណោះ',
+    'quiz.next': 'បន្ទាប់',
+    'quiz.back': 'ត្រឡប់',
+    'quiz.finish': 'មើលលទ្ធផល',
+    'quiz.result.title': 'ការណែនាំដែលសាកសម',
+    'quiz.result.sub': 'ផ្អែកលើចម្លើយរបស់អ្នក',
+    'quiz.retake': 'ធ្វើម្ដងទៀត',
+    'quiz.browse': 'មើលគំរូទាំងអស់',
+    'value.label': '// រួមបញ្ចូល',
+    'value.title': 'អ្វីដែលអ្នកទទួលបាន',
+    'value.1': 'វែបសាយសមស្របទូរស័ព្ទ',
+    'value.2': 'មាតិកាខ្មែរ + អង់គ្លេស',
+    'value.3': 'ប៊ូតុង Telegram / Phone',
+    'value.4': 'ភ្ជាប់ Google Map',
+    'value.5': 'រៀបចំ SEO មូលដ្ឋាន',
+    'value.6': 'ព្រីវ្យូ Homepage ឥតគិតថ្លៃ',
+    'pricing.label': '// កញ្ចប់តម្លៃ',
+    'pricing.title': 'កញ្ចប់វែបសាយសម្រាប់ SME ខ្មែរ',
+    'pricing.sub': 'ជ្រើសកញ្ចប់តាមចំនួនទំព័រ និងមាតិកាដែលត្រូវការ។ Domain និង Hosting គិតថ្លៃផ្សេង។',
+    'pricing.starter.bestfor': 'សាកសមសម្រាប់អាជីវកម្មតូចដែលត្រូវការ Website ដំបូង។',
+    'pricing.starter.delivery': 'រួចរាល់ក្នុង 3–5 ថ្ងៃ',
+    'pricing.starter.btn': 'ជ្រើស Starter',
+    'pricing.popular': 'ពេញនិយមជាងគេ',
+    'pricing.pro.bestfor': 'សាកសមសម្រាប់ SME ដែលត្រូវការវែបសាយពេញលេញជាងមុន។',
+    'pricing.pro.delivery': 'រួចរាល់ក្នុង 7–10 ថ្ងៃ',
+    'pricing.pro.btn': 'ជ្រើស Pro',
+    'pricing.promax.bestfor': 'សាកសមសម្រាប់អាជីវកម្មដែលមានផលិតផល សេវា បន្ទប់ ឬមុខម្ហូបច្រើន។',
+    'pricing.promax.delivery': 'រួចរាល់ក្នុង 10–15 ថ្ងៃ',
+    'pricing.promax.btn': 'ជ្រើស Pro Max',
+    'pricing.note': 'កញ្ចប់ទាំងអស់ប្រើ demo style ដែលអ្នកជ្រើស។ ចំនួនទំព័រ និងផ្នែកចុងក្រោយអាស្រ័យលើមាតិកា និងតម្រូវការ។',
+    'f.s.1': 'វែបសាយ 1 ទំព័រ',
+    'f.s.2': 'ខ្មែរ + អង់គ្លេស',
+    'f.s.3': 'សមស្របទូរស័ព្ទ',
+    'f.s.4': 'ប្រើ logo មាតិកា និងរូបថតពីអតិថិជន',
+    'f.s.5': 'ប៊ូតុង Telegram / Messenger / Phone',
+    'f.s.6': 'ភ្ជាប់ Google Map',
+    'f.s.7': 'រៀបចំ SEO មូលដ្ឋាន',
+    'f.s.8': 'កែសម្រួល 2 ដង',
+    'f.s.9': 'Domain គិតថ្លៃផ្សេង',
+    'f.p.1': 'ច្រើនទំព័រ ឬវែបសាយវែង',
+    'f.p.2': 'ខ្មែរ + អង់គ្លេស',
+    'f.p.3': 'សមស្របទូរស័ព្ទ',
+    'f.p.4': 'ប្រើ logo មាតិកា និងរូបថតពីអតិថិជន',
+    'f.p.5': 'ផ្នែកសេវា / Menu / Gallery / Reviews',
+    'f.p.6': 'ទម្រង់សំណួរ ឬទំនាក់ទំនង',
+    'f.p.7': 'ភ្ជាប់ Telegram / Messenger / Phone',
+    'f.p.8': 'ភ្ជាប់ Google Maps',
+    'f.p.9': 'រៀបចំ SEO មូលដ្ឋាន',
+    'f.p.10': 'កែសម្រួល 3 ដង',
+    'f.p.11': 'Domain គិតថ្លៃផ្សេង',
+    'f.pm.1': 'ច្រើនទំព័រ ឬ Catalog ធំ',
+    'f.pm.2': 'ខ្មែរ + អង់គ្លេស',
+    'f.pm.3': 'ផ្នែក Product / Service / Room / Menu',
+    'f.pm.4': 'ប្រព័ន្ធបង្ហាញទំនិញ ឬបញ្ជីច្រើន',
+    'f.pm.5': 'សមស្របទូរស័ព្ទ',
+    'f.pm.6': 'ប្រើ logo មាតិកា និងរូបថតពីអតិថិជន',
+    'f.pm.7': 'ទម្រង់សំណួរ ឬទំនាក់ទំនង',
+    'f.pm.8': 'ភ្ជាប់ Telegram / Messenger / Phone',
+    'f.pm.9': 'ភ្ជាប់ Google Map',
+    'f.pm.10': 'រៀបចំ SEO មូលដ្ឋាន',
+    'f.pm.11': 'កែសម្រួល 4 ដង',
+    'f.pm.12': 'Domain គិតថ្លៃផ្សេង',
+    'care.title': 'Monthly Care Add-on',
+    'care.price': 'ចាប់ពី $15/ខែ',
+    'care.text': 'សម្រាប់ការកែប្រែតូចៗ ជំនួយ Hosting ការផ្លាស់ប្ដូរមាតិកា និងថែទាំវែបសាយបន្ទាប់ពីបើកដំណើរការ។',
+    'care.p1': 'កែអក្សរ / រូបភាព',
+    'care.p2': 'ជំនួយបច្ចេកទេស',
+    'care.p3': 'ជួយប្ដូរមាតិកា',
+    'care.p4': 'ពិនិត្យសុខភាពវែបសាយ',
+    'care.btn': 'សួរ Monthly Care',
+    'compare.label': '// អាប់ដេតអាជីវកម្ម',
+    'compare.title': 'ពី Facebook ទៅជាវែបសាយផ្លូវការ',
+    'compare.sub': 'ផ្ដល់ឱ្យអតិថិជននូវព័ត៌មានច្បាស់ តំណចែករំលែកងាយ និងទំនុកចិត្តជាងមុន។',
+    'compare.before.kicker': 'មុន',
+    'compare.before.title': 'ប្រើតែ Facebook',
+    'compare.before.1': 'អតិថិជនឃើញតែ Post លើ Facebook',
+    'compare.before.2': 'ពិបាករកសេវា និងព័ត៌មានសំខាន់',
+    'compare.before.3': 'មិនច្បាស់តម្លៃ ទីតាំង ឬរបៀបទាក់ទង',
+    'compare.before.4': 'ទំនុកចិត្តអាចមិនគ្រប់គ្រាន់សម្រាប់អតិថិជនថ្មី',
+    'compare.after.kicker': 'បន្ទាប់',
+    'compare.after.title': 'វែបសាយផ្លូវការ',
+    'compare.after.1': 'មានតំណវែបសាយសម្រាប់ចែករំលែក',
+    'compare.after.2': 'បង្ហាញសេវា និងប៊ូតុងទំនាក់ទំនងច្បាស់',
+    'compare.after.3': 'មាន Google Map និងព័ត៌មានអាជីវកម្ម',
+    'compare.after.4': 'មើលទៅវិជ្ជាជីវៈជាងមុនសម្រាប់ Ads និងអតិថិជនថ្មី',
+    'how.label': '// ដំណើរការ',
+    'how.title': 'ពី Demo ដល់ Website Live — 4 ជំហាន',
+    'how.sub': 'មិនចាំបាច់ចេះបច្ចេកទេសទេ។ យើងជួយរៀបចំ និងណែនាំពីដើមដល់ចប់។',
+    'how.step1.title': 'ជ្រើស Demo',
+    'how.step1.desc': 'មើល Showroom ហើយជ្រើសរចនាប័ទ្មដែលសមនឹង brand របស់អ្នក។',
+    'how.step2.title': 'ផ្ញើព័ត៌មាន',
+    'how.step2.desc': 'ផ្ញើឈ្មោះអាជីវកម្ម logo រូបថត សេវា និងព័ត៌មានទំនាក់ទំនង។',
+    'how.step3.title': 'យើងប្ដូរជូន',
+    'how.step3.desc': 'យើងកែ Demo តាមមាតិកា ពណ៌ brand និងតម្រូវការរបស់អ្នក។',
+    'how.step4.title': 'ពិនិត្យ និងបើកដំណើរការ',
+    'how.step4.desc': 'អ្នកពិនិត្យមើល កែសម្រួលចុងក្រោយ ហើយបើក Website ឱ្យ Live។',
+    'form.label': '// ព្រីវ្យូឥតគិតថ្លៃ',
+    'form.title': 'ស្នើព្រីវ្យូ Homepage ឥតគិតថ្លៃ',
+    'form.sub': 'ប្រាប់យើងពីអាជីវកម្ម និង Demo ដែលអ្នកចូលចិត្ត។ យើងនឹងឆ្លើយតបតាម Telegram ឬទូរស័ព្ទ។',
+    'form.helper1': 'មិនចាំបាច់បង់ប្រាក់សម្រាប់ព្រីវ្យូ Homepage ដំបូង។',
+    'form.helper2': 'ផ្ញើ Facebook Page ប្រភេទអាជីវកម្ម និង Demo ដែលអ្នកជ្រើស។',
+    'form.helper3': 'យើងនឹងឆ្លើយតបតាម Telegram ឬទូរស័ព្ទ។',
+    'form.field.name': 'ឈ្មោះ *',
+    'form.field.biz': 'ឈ្មោះអាជីវកម្ម',
+    'form.field.type': 'ប្រភេទអាជីវកម្ម',
+    'form.field.phone': 'ទូរស័ព្ទ / Telegram *',
+    'form.field.fb': 'Facebook Page',
+    'form.field.demo': 'Demo Style',
+    'form.field.package': 'កញ្ចប់',
+    'form.field.domain': 'មាន Domain ហើយឬនៅ?',
+    'form.field.assets': 'មាន Logo / រូបថតហើយឬនៅ?',
+    'form.field.msg': 'ព័ត៌មានបន្ថែម',
+    'form.ph.name': 'សុភា ចាន់',
+    'form.ph.biz': 'គ្លីនិកធ្មេញ ភ្នំពេញ',
+    'form.ph.phone': '012 345 678 ឬ @yourtelegram',
+    'form.ph.fb': 'facebook.com/yourbusiness',
+    'form.ph.demo': 'ឧ. Dental Clinic, Cafe',
+    'form.ph.msg': 'ប្រាប់យើងពីអាជីវកម្ម ឬអ្វីដែលអ្នកចង់បាន...',
+    'form.select': 'ជ្រើស...',
+    'form.notSure': 'មិនទាន់ប្រាកដ',
+    'form.domain.yes': 'មាន Domain ហើយ',
+    'form.domain.no': 'មិនទាន់មាន ត្រូវការជំនួយ',
+    'form.assets.yes': 'មាន Logo រូបថត និងមាតិកា',
+    'form.assets.some': 'មានខ្លះ ត្រូវការជំនួយ',
+    'form.assets.no': 'មិនទាន់មាន ត្រូវការជំនួយ',
+    'form.submit': 'ស្នើព្រីវ្យូឥតគិតថ្លៃ',
+    'form.note': 'យើងនឹងទាក់ទងតាម Telegram ឬទូរស័ព្ទ។',
+    'faq.label': '// FAQ',
+    'faq.title': 'សំណួរទូទៅ',
+    'faq.q1': 'វែបសាយមួយតម្លៃប៉ុន្មាន?',
+    'faq.a1': 'កញ្ចប់ BizWeb KH ចាប់ពី $99។ តម្លៃចុងក្រោយអាស្រ័យលើចំនួនទំព័រ មាតិកា និងមុខងារដែលត្រូវការ។',
+    'faq.q2': 'អាចធ្វើវែបសាយខ្មែរ + អង់គ្លេសបានឬទេ?',
+    'faq.a2': 'បាន។ BizWeb KH គាំទ្រខ្មែរ + អង់គ្លេសសម្រាប់ SME ខ្មែរ។',
+    'faq.q3': 'អាចជ្រើស Demo Style ដែលចូលចិត្តបានឬទេ?',
+    'faq.a3': 'បាន។ អ្នកអាចជ្រើសគំរូ Live ហើយយើងនឹងប្ដូរតាម brand និងមាតិកាអាជីវកម្មរបស់អ្នក។',
+    'faq.q4': 'ចំណាយពេលប៉ុន្មានថ្ងៃ?',
+    'faq.a4': 'Starter 3–5 ថ្ងៃ, Pro 7–10 ថ្ងៃ, និង Pro Max 10–15 ថ្ងៃ អាស្រ័យលើមាតិកា និងការឆ្លើយតប។',
+    'faq.q5': 'ត្រូវត្រៀមអ្វីខ្លះ?',
+    'faq.a5': 'បើមាន Logo រូបថត មាតិកា និងព័ត៌មានទំនាក់ទំនងរួច នឹងធ្វើបានលឿនជាងមុន។ បើមិនទាន់មាន យើងអាចណែនាំជំហានបន្ទាប់បាន។',
+    'faq.q6': 'Domain និង Hosting រួមក្នុងតម្លៃឬទេ?',
+    'faq.a6': 'មិនទាន់រួមក្នុងតម្លៃកញ្ចប់ទេ។ Domain ប្រហែល $15/ឆ្នាំ និង Hosting ប្រហែល $30–60/ឆ្នាំ គិតថ្លៃផ្សេង។',
+    'faq.q7': 'អាចកែសម្រួលបានប៉ុន្មានដង?',
+    'faq.a7': 'Starter រួមបញ្ចូលការកែ 2 ដង, Pro 3 ដង, និង Pro Max 4 ដង។',
+    'faq.q8': 'មាន Cart, Checkout ឬ Online Payment ដែរឬទេ?',
+    'faq.a8': 'មិនរួមក្នុងកញ្ចប់ស្តង់ដារទេ។ Cart, Checkout និង Payment Gateway ជា Custom Upgrade ដែលនឹង quote ផ្សេង។',
+    'faq.q9': 'Monthly Care Plan ជាអ្វី?',
+    'faq.a9': 'Monthly Care សម្រាប់កែប្រែតូចៗ ជំនួយ Hosting ផ្លាស់ប្ដូរមាតិកា និងថែទាំវែបសាយបន្ទាប់ពី Launch។ ចាប់ពី $15/ខែ។',
+    'contact.label': '// ទំនាក់ទំនង',
+    'contact.title': 'ចង់ពិភាក្សាឥឡូវ?',
+    'contact.sub': 'ជជែកជាមួយយើងតាម Telegram ឬទូរស័ព្ទ។ យើងនៅកម្ពុជា និងឆ្លើយតបរហ័ស។',
+    'footer.sub': 'សេវាធ្វើវែបសាយខ្មែរ + អង់គ្លេស តម្លៃសមរម្យ សម្រាប់ SME ខ្មែរ។ រួចរាល់ក្នុងប៉ុន្មានថ្ងៃ មិនមែនប៉ុន្មានខែ។',
+    'footer.copy': '\u00a9 2025\u20132026 BizWeb KH \u2014 Showroom វែបសាយសម្រាប់ SME កម្ពុជា',
+    'toast.selected': ' បានជ្រើស។ សូមបំពេញទម្រង់ខាងក្រោម។',
+    'toast.selectOpt': 'សូមជ្រើសជម្រើសមួយ។',
+    'toast.pickLang': 'សូមជ្រើសភាសា។',
+    'toast.opening': 'កំពុងបើក Telegram...',
+    'toast.enterInfo': 'សូមបំពេញឈ្មោះ និងទូរស័ព្ទ ឬ Telegram។',
+    'modal.useStyle': 'ប្រើរចនាប័ទ្មនេះ',
+    'modal.chat': 'ជជែកតាម Telegram',
+    'modal.bestUse': 'សាកសមសម្រាប់',
+    'modal.recFor': 'ណែនាំសម្រាប់',
+    'modal.pkg': 'កញ្ចប់ណែនាំ',
+    'modal.lang': 'ភាសា',
+    'modal.from': 'ចាប់ពី',
+    'modal.priceNote': 'តម្លៃចុងក្រោយអាស្រ័យលើចំនួនទំព័រ និងមុខងារដែលត្រូវការ។',
+    'modal.included': 'ផ្នែកដែលរួមបញ្ចូល',
+    'promo.badge': 'ប្រូម៉ូសិនប្រចាំខែ',
+    'promo.label': '// ប្រូម៉ូសិន',
+    'promo.title': 'ប្រូម៉ូសិនប្រចាំខែនេះ',
+    'promo.offer': 'ទទួលបានការគាំទ្រ Hosting 1 ខែ ដោយឥតគិតថ្លៃ',
+    'promo.desc': 'កក់គម្រោងវែបសាយក្នុងខែនេះ ហើយទទួលបានការគាំទ្រ Hosting 1 ខែ ដើម្បីជួយឱ្យអាជីវកម្មបើកដំណើរការវែបសាយបានរលូន។',
+    'promo.note': 'សម្រាប់គម្រោងថ្មីដែលបើកដំណើរការក្នុងខែ',
+    'promo.btn': 'ទទួលយកប្រូម៉ូសិនតាម Telegram'
+  },
+  en: {
+    'nav.demos': 'Demos',
+    'nav.styles': 'Styles',
+    'nav.pricing': 'Pricing',
+    'nav.how': 'How It Works',
+    'nav.preview': 'Free Preview',
+    'nav.contact': 'Contact',
+    'nav.browseDemos': 'Browse Demos',
+    'nav.requestPreview': 'Request free preview',
+    'theme.dark': 'Dark mode',
+    'theme.light': 'Light mode',
+    'hero.badge': '16 live website demos',
+    'hero.title': 'Get your business website',
+    'hero.subline': 'Choose a demo style. We customize it for you.',
+    'hero.sub': 'Browse completed live website demos for Cambodian SMEs, choose the style you like, and let BizWeb KH customize a mobile-ready business website with your logo, content, photos, contact links, Google Map, and Khmer + English wording.',
+    'hero.proof.price': 'Starting from $99',
+    'hero.proof.days': 'Ready in 3–5 days',
+    'hero.proof.lang': 'Khmer + English',
+    'hero.proof.mobile': 'Mobile responsive',
+    'hero.search': 'Search demo styles, business types, or goals...',
+    'chip.clinic': 'Clinic',
+    'chip.restaurant': 'Restaurant',
+    'chip.school': 'School',
+    'chip.garage': 'Garage',
+    'chip.beauty': 'Beauty / Spa',
+    'chip.premium': 'Premium',
+    'chip.khmer': 'Khmer + English',
+    'stats.liveDemos': 'Live demos',
+    'stats.dayDelivery': 'Day delivery',
+    'stats.startingPrice': 'Starting price',
+    'stats.bilingual': 'Bilingual support',
+    'why.label': '// built for local SMEs',
+    'why.title': 'Why Cambodian SMEs choose BizWeb KH',
+    'why.sub': 'A practical website service for owners who need trust, leads, and a shareable business link fast.',
+    'why.card1.title': 'Fast launch by package',
+    'why.card1.text': 'Start from a proven demo style, then replace with your real services, photos, brand colors, and contact details.',
+    'why.card2.title': 'Clear starter price from $99',
+    'why.card2.text': 'Clear starter pricing for clinics, cafés, schools, shops, and local services that need a professional first website.',
+    'why.card3.title': 'Khmer + English support',
+    'why.card3.text': 'Create a website customers can understand locally, while still looking credible for expats, tourists, and partners.',
+    'why.card4.title': 'Telegram / Messenger lead setup',
+    'why.card4.text': 'Add clear contact buttons so customers can ask questions, request appointments, or request prices from the website.',
+    'demo.label': '// demo library',
+    'demo.title': 'Featured live demos',
+    'demo.sub': 'Explore completed website styles for real Cambodian SME categories. Choose a demo, view the live website, then request customization.',
+    'demo.featured.title': 'Featured live demos',
+    'demo.featured.text': 'Browse completed live website demos for Cambodian SMEs. Choose a style first. Final package depends on pages, content, and sections needed.',
+    'filter.category': 'Category',
+    'filter.style': 'Style',
+    'filter.goal': 'Goal',
+    'filter.langLabel': 'Language',
+    'filter.clear': 'Clear filters',
+    'filter.all': 'All',
+    'filter.healthcare': 'Healthcare',
+    'filter.food': 'Food & Beverage',
+    'filter.hospitality': 'Hospitality',
+    'filter.education': 'Education',
+    'filter.auto': 'Auto Service',
+    'filter.pet': 'Pet Care',
+    'filter.fitness': 'Fitness',
+    'filter.premiumMotion': 'Premium Motion',
+    'filter.clean': 'Clean',
+    'filter.premium': 'Premium',
+    'filter.bold': 'Bold',
+    'filter.soft': 'Soft',
+    'filter.corporate': 'Corporate',
+    'filter.dark': 'Dark',
+    'filter.getLeads': 'Get leads',
+    'filter.showServices': 'Show services',
+    'filter.sellProducts': 'Sell products',
+    'filter.promote': 'Promote campaign',
+    'filter.khEn': 'KH+EN',
+    'filter.enOnly': 'EN only',
+    'filter.khOnly': 'KH only',
+    'card.viewLive': 'View Live Demo',
+    'card.useStyle': 'Use This Style',
+    'card.bestFor': 'Best for',
+    'card.noResults.title': 'No styles match your filters',
+    'card.noResults.text': 'Try removing some filters or clearing the search.',
+    'quiz.label': '// style finder',
+    'quiz.title': 'Not sure which style fits?',
+    'quiz.sub': 'Answer 5 quick questions and we\'ll suggest the right demo for your business.',
+    'quiz.q1.num': 'Question 1 of 5',
+    'quiz.q1.text': 'What type of business do you run?',
+    'quiz.q1.opt1': 'Health / Clinic',
+    'quiz.q1.opt2': 'Food / Café',
+    'quiz.q1.opt3': 'School / Training',
+    'quiz.q1.opt4': 'Retail / Product',
+    'quiz.q1.opt5': 'Real Estate',
+    'quiz.q1.opt6': 'Local Service',
+    'quiz.q2.num': 'Question 2 of 5',
+    'quiz.q2.text': 'What is your main goal with this website?',
+    'quiz.q2.opt1': 'Get more leads & calls',
+    'quiz.q2.opt2': 'Show my services clearly',
+    'quiz.q2.opt3': 'Sell products online',
+    'quiz.q2.opt4': 'Promote a campaign or event',
+    'quiz.q3.num': 'Question 3 of 5',
+    'quiz.q3.text': 'Which design style feels right for your brand?',
+    'quiz.q3.opt1': 'Clean & minimal',
+    'quiz.q3.opt2': 'Elegant & premium',
+    'quiz.q3.opt3': 'Bold & energetic',
+    'quiz.q3.opt4': 'Soft & friendly',
+    'quiz.q3.opt5': 'Professional & corporate',
+    'quiz.q3.opt6': 'Dark & modern',
+    'quiz.q4.num': 'Question 4 of 5',
+    'quiz.q4.text': 'How much content do you need?',
+    'quiz.q4.opt1': 'Simple website — a focused homepage',
+    'quiz.q4.opt2': 'More complete — services, gallery, enquiry',
+    'quiz.q4.opt3': 'Large catalog — many products or content items',
+    'quiz.q5.num': 'Question 5 of 5',
+    'quiz.q5.text': 'Which language(s) do you need?',
+    'quiz.q5.opt1': 'Khmer + English (recommended)',
+    'quiz.q5.opt2': 'English only',
+    'quiz.q5.opt3': 'Khmer only',
+    'quiz.next': 'Next',
+    'quiz.back': 'Back',
+    'quiz.finish': 'See results',
+    'quiz.result.title': 'Your best matches',
+    'quiz.result.sub': 'Based on your answers, these styles are a great fit.',
+    'quiz.retake': 'Retake quiz',
+    'quiz.browse': 'Browse all demos',
+    'value.label': '// included',
+    'value.title': 'What you get',
+    'value.1': 'Mobile-ready website',
+    'value.2': 'Khmer + English content setup',
+    'value.3': 'Telegram / Phone contact',
+    'value.4': 'Google Map connection',
+    'value.5': 'Basic SEO setup',
+    'value.6': 'Free homepage preview',
+    'pricing.label': '// packages',
+    'pricing.title': 'Simple website packages for Cambodian SMEs',
+    'pricing.sub': 'Choose a package based on how much content your business needs. Domain and hosting are paid by client.',
+    'pricing.starter.bestfor': 'Best for simple businesses that need a clean online presence.',
+    'pricing.starter.delivery': 'Delivered in 3–5 days',
+    'pricing.starter.btn': 'Choose Starter',
+    'pricing.popular': 'Most Popular',
+    'pricing.pro.bestfor': 'Best for SMEs that need a more complete business website.',
+    'pricing.pro.delivery': 'Delivered in 7–10 days',
+    'pricing.pro.btn': 'Choose Pro',
+    'pricing.promax.bestfor': 'Best for businesses with many products, services, rooms, menus, or gallery items.',
+    'pricing.promax.delivery': 'Delivered in 10–15 days',
+    'pricing.promax.btn': 'Choose Pro Max',
+    'pricing.note': 'All packages use your selected demo style. Final structure depends on your business content, pages, and service list.',
+    'f.s.1': '1-page website',
+    'f.s.2': 'Khmer + English bilingual content',
+    'f.s.3': 'Mobile-responsive design',
+    'f.s.4': 'Client provides logo, content, and photos',
+    'f.s.5': 'Contact button: Telegram / Messenger / Phone',
+    'f.s.6': 'Google Map link or embed',
+    'f.s.7': 'Basic SEO title and description',
+    'f.s.8': 'Revision 2 times',
+    'f.s.9': 'Domain cost is paid by client',
+    'f.p.1': 'Multiple pages or longer business website',
+    'f.p.2': 'Khmer + English bilingual content',
+    'f.p.3': 'Mobile-responsive design',
+    'f.p.4': 'Client provides logo, content, and photos',
+    'f.p.5': 'Services / menu / gallery / reviews sections',
+    'f.p.6': 'Contact form or inquiry form',
+    'f.p.7': 'Telegram / Messenger / Phone integration',
+    'f.p.8': 'Google Maps embed',
+    'f.p.9': 'Basic SEO setup',
+    'f.p.10': 'Revision 3 times',
+    'f.p.11': 'Domain cost is paid by client',
+    'f.pm.1': 'Multiple pages or large catalog-style website',
+    'f.pm.2': 'Khmer + English bilingual content',
+    'f.pm.3': 'Product / service / room / menu listing sections',
+    'f.pm.4': 'Large product or portfolio display pages',
+    'f.pm.5': 'Mobile-responsive design',
+    'f.pm.6': 'Client provides logo, content, and photos',
+    'f.pm.7': 'Contact form or inquiry form',
+    'f.pm.8': 'Telegram / Messenger / Phone integration',
+    'f.pm.9': 'Google Map embed',
+    'f.pm.10': 'Basic SEO setup',
+    'f.pm.11': 'Revision 4 times',
+    'f.pm.12': 'Domain cost is paid by client',
+    'care.title': 'Monthly Care Add-on',
+    'care.price': 'From $15/month',
+    'care.text': 'For small updates, hosting support, content changes, and basic website care after launch.',
+    'care.p1': 'Minor text/photo updates',
+    'care.p2': 'Technical support',
+    'care.p3': 'Content change support',
+    'care.p4': 'Website health check',
+    'care.btn': 'Ask about monthly care',
+    'compare.label': '// business upgrade',
+    'compare.title': 'From Facebook-only to professional website',
+    'compare.sub': 'Give customers one clear place to understand your business and contact you.',
+    'compare.before.kicker': 'Before',
+    'compare.before.title': 'Facebook-only presence',
+    'compare.before.1': 'Customers only see Facebook posts',
+    'compare.before.2': 'Services are hard to find',
+    'compare.before.3': 'No clear pricing or booking',
+    'compare.before.4': 'Hard to build trust outside social media',
+    'compare.after.kicker': 'After',
+    'compare.after.title': 'Professional website link',
+    'compare.after.1': 'Professional website link to share',
+    'compare.after.2': 'Clear services and contact buttons',
+    'compare.after.3': 'Google Map and business information',
+    'compare.after.4': 'Better trust for ads and customers',
+    'how.label': '// process',
+    'how.title': 'From demo to live — in 4 steps',
+    'how.sub': 'No technical knowledge needed. We handle everything.',
+    'how.step1.title': 'Choose a demo',
+    'how.step1.desc': 'Browse our showroom and pick the style that feels right for your brand and industry.',
+    'how.step2.title': 'Send your info',
+    'how.step2.desc': 'Fill in a short form with your business name, logo, photos, services, and Telegram number.',
+    'how.step3.title': 'We customize it',
+    'how.step3.desc': 'Our team rebuilds the demo with your real content, colors, and branding — fast and precise.',
+    'how.step4.title': 'Review and launch',
+    'how.step4.desc': 'You review, we adjust. Once approved, your website is live and ready to share on Facebook and Google.',
+    'form.label': '// free preview',
+    'form.title': 'Request your free homepage preview',
+    'form.sub': 'Tell us about your business and the demo style you like. We will reply via Telegram or phone.',
+    'form.helper1': 'No deposit needed for the first homepage preview.',
+    'form.helper2': 'Send your Facebook page, business type, and preferred demo style.',
+    'form.helper3': 'We will reply via Telegram or phone.',
+    'form.field.name': 'Your Name *',
+    'form.field.biz': 'Business Name',
+    'form.field.type': 'Business Type',
+    'form.field.phone': 'Phone / Telegram *',
+    'form.field.fb': 'Facebook Page Link',
+    'form.field.demo': 'Selected Demo Style',
+    'form.field.package': 'Preferred Package',
+    'form.field.domain': 'Do you already have a domain?',
+    'form.field.assets': 'Do you have logo / photos / content?',
+    'form.field.msg': 'Message',
+    'form.ph.name': 'Sophea Chan',
+    'form.ph.biz': 'Phnom Penh Dental Clinic',
+    'form.ph.phone': '012 345 678 or @yourtelegram',
+    'form.ph.fb': 'facebook.com/yourbusiness',
+    'form.ph.demo': 'e.g. Dental Clinic, Café',
+    'form.ph.msg': 'Tell us about your business, what your customers need, or what you love about a specific demo style\u2026',
+    'form.select': 'Select\u2026',
+    'form.notSure': 'Not sure yet',
+    'form.domain.yes': 'Yes, I already have a domain',
+    'form.domain.no': 'No, I need help choosing one',
+    'form.assets.yes': 'Yes, I have logo, photos, and content',
+    'form.assets.some': 'I have some content but need help',
+    'form.assets.no': 'No, I need help preparing content',
+    'form.submit': 'Request free preview',
+    'form.note': 'We will review your request and contact you through Telegram or phone.',
+    'faq.label': '// FAQ',
+    'faq.title': 'Common questions',
+    'faq.q1': 'How much does a business website cost?',
+    'faq.a1': 'BizWeb KH website packages start from $99. The final price depends on the number of pages, content, and catalog or product sections needed.',
+    'faq.q2': 'Do you make Khmer and English websites?',
+    'faq.a2': 'Yes. BizWeb KH can prepare Khmer + English wording for Cambodian SMEs, based on the information you provide.',
+    'faq.q3': 'Can I choose a ready demo style?',
+    'faq.a3': 'Yes. Choose one of our live website demos, then we customize it for your business logo, photos, content, and contact links.',
+    'faq.q4': 'How long does it take to build my website?',
+    'faq.a4': 'Starter websites are delivered in 3–5 days, Pro in 7–10 days, Pro Max in 10–15 days after we receive your content.',
+    'faq.q5': 'Do I need to prepare content or photos?',
+    'faq.a5': 'It helps! If you have photos, your logo, and a short list of services, we can build faster. If not, we can use placeholder content and update later.',
+    'faq.q6': 'Is domain and hosting included in the price?',
+    'faq.a6': 'The package price covers design and development. Domain registration (~$15/year) and hosting (~$30\u201360/year) are additional. We can manage both for you.',
+    'faq.q7': 'How many revisions are included?',
+    'faq.a7': 'Starter includes 2 revision rounds, Pro includes 3, Pro Max includes 4. Additional rounds can be added for a small fee.',
+    'faq.q8': 'Are cart, checkout, or online payment included?',
+    'faq.a8': 'No. Standard packages include business websites, inquiry forms, Telegram/Phone contact, and Google Map. Cart, checkout, and payment gateways are custom upgrades quoted separately.',
+    'faq.q9': 'What is the Monthly Care plan?',
+    'faq.a9': 'After launch, your website may need small updates, hosting support, and content changes. Monthly Care starts from $15/month.',
+    'contact.label': '// get in touch',
+    'contact.title': 'Ready to talk?',
+    'contact.sub': 'Chat with us on Telegram or call us \u2014 we\'re based in Cambodia and reply fast.',
+    'footer.sub': 'Affordable Khmer + English website design for Cambodian SMEs. Ready in days, not months.',
+    'footer.copy': '\u00a9 2025\u20132026 BizWeb KH \u2014 Cambodia\'s SME website showroom',
+    'toast.selected': ' selected. Complete the request form below.',
+    'toast.selectOpt': 'Please pick an option to continue.',
+    'toast.pickLang': 'Please pick a language preference.',
+    'toast.opening': 'Opening Telegram chat with your request\u2026',
+    'toast.enterInfo': 'Please enter your name and phone or Telegram so we can contact you.',
+    'modal.useStyle': 'Use This Style',
+    'modal.chat': 'Chat on Telegram',
+    'modal.bestUse': 'Best use case',
+    'modal.recFor': 'Recommended for',
+    'modal.pkg': 'Suggested package',
+    'modal.lang': 'Language',
+    'modal.from': 'From',
+    'modal.priceNote': 'Final price depends on number of pages and features. Get a free quote today.',
+    'modal.included': 'Included sections',
+    'promo.badge': 'This Month Only',
+    'promo.label': '// Promotion',
+    'promo.title': 'This Month\'s Promo',
+    'promo.offer': 'Get 1 Month Free Hosting Support',
+    'promo.desc': 'Book your website project this month and receive 1 month of free hosting support to help your business launch smoothly.',
+    'promo.note': 'For new projects launching this month',
+    'promo.btn': 'Claim This Offer on Telegram'
+  }
+};
+
+let currentLang = 'kh';
+
+function t(key) {
+  return (LANG_DATA[currentLang] && LANG_DATA[currentLang][key]) ||
+         (LANG_DATA['en'][key]) || key;
+}
+
+function applyLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    const val = t(key);
+    if (val && val !== key) el.textContent = val;
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.dataset.i18nPlaceholder;
+    const val = t(key);
+    if (val && val !== key) el.placeholder = val;
+  });
+  document.querySelectorAll('[data-i18n-opt]').forEach(el => {
+    const key = el.dataset.i18nOpt;
+    const val = t(key);
+    if (val && val !== key) el.textContent = val;
+  });
+  const btnKh = document.getElementById('btn-kh');
+  const btnEn = document.getElementById('btn-en');
+  if (btnKh) btnKh.classList.toggle('active', lang === 'kh');
+  if (btnEn) btnEn.classList.toggle('active', lang === 'en');
+  const mobKh = document.getElementById('mob-btn-kh');
+  const mobEn = document.getElementById('mob-btn-en');
+  if (mobKh) {
+    mobKh.style.background = lang === 'kh' ? 'var(--accent)' : 'var(--ink-3)';
+    mobKh.style.color = lang === 'kh' ? '#fff' : 'var(--text-2)';
+  }
+  if (mobEn) {
+    mobEn.style.background = lang === 'en' ? 'var(--accent)' : 'var(--ink-3)';
+    mobEn.style.color = lang === 'en' ? '#fff' : 'var(--text-2)';
+  }
+  const themeText = document.querySelector('.theme-toggle-text');
+  if (themeText) {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    themeText.textContent = isLight ? t('theme.dark') : t('theme.light');
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) themeToggle.setAttribute('aria-label', isLight ? t('theme.dark') : t('theme.light'));
+  }
+  document.documentElement.lang = lang === 'kh' ? 'km' : 'en';
+  // Handle elements that couldn't receive data-i18n due to encoding
+  const contactSub = document.querySelector('.contact-section .section-sub');
+  if (contactSub) contactSub.textContent = t('contact.sub');
+  const footerSub = document.querySelector('.footer-sub');
+  if (footerSub) footerSub.textContent = t('footer.sub');
+  const footerCopy = document.querySelector('.footer-copy');
+  if (footerCopy) footerCopy.textContent = t('footer.copy');
+  if (typeof renderCards === 'function') renderCards();
+  if (typeof window._heroTypingRestart === 'function') window._heroTypingRestart();
+}
+
+function setLang(lang) {
+  try { localStorage.setItem('bizwebkh-lang', lang); } catch(e) {}
+  applyLang(lang);
+}
+
+function initLang() {
+  let saved = 'kh';
+  try {
+    saved = localStorage.getItem('bizwebkh-lang');
+    if (saved !== 'en') saved = 'kh';
+  } catch(e) {}
+  applyLang(saved);
+}
 
 /* =====================================================
    DEMO DATA
@@ -1938,14 +2702,16 @@ function renderCards(){
     return true;
   });
   const liveCount=DEMOS.filter(d=>d.liveUrl).length;
-  document.getElementById('card-count').textContent=visible.length+' style'+(visible.length!==1?'s':'')+' · '+liveCount+' live demos available';
+  document.getElementById('card-count').textContent=currentLang==='kh'
+    ? visible.length+' គំរូ · សរុប '+liveCount+' គំរូ Live'
+    : visible.length+' style'+(visible.length!==1?'s':'')+' \u00b7 '+liveCount+' live demos available';
   if(!visible.length){
-    grid.innerHTML=`<div class="no-results"><h3>No styles match your filters</h3><p>Try removing some filters or clearing the search.</p></div>`;
+    grid.innerHTML=`<div class="no-results"><h3>${t('card.noResults.title')}</h3><p>${t('card.noResults.text')}</p></div>`;
     return;
   }
   grid.innerHTML=visible.map(d=>{
-    const liveBadge='<span class="tag tag-live">Live Demo</span>';
-    const previewButton=`<a class="btn btn-ghost btn-sm" href="${d.liveUrl}" target="_blank" rel="noopener">View Live Demo</a>`;
+    const liveBadge=`<span class="tag tag-live">${currentLang==='kh'?'គំរូ Live':'Live Demo'}</span>`;
+    const previewButton=`<a class="btn btn-ghost btn-sm" href="${d.liveUrl}" target="_blank" rel="noopener">${t('card.viewLive')}</a>`;
     return `
     <div class="demo-card live-card" data-id="${d.id}">
       ${buildCardThumb(d)}
@@ -1958,11 +2724,11 @@ function renderCards(){
         </div>
         <div class="card-name">${d.name}</div>
         <div class="card-desc">${d.desc}</div>
-        <div class="card-bestfor"><strong>Best for:</strong> ${d.bestfor}</div>
+        <div class="card-bestfor"><strong>${t('card.bestFor')}:</strong> ${d.bestfor}</div>
         <div class="card-footer">
           <div class="card-actions">
             ${previewButton}
-            <button class="btn btn-primary btn-sm" onclick="useStyle('${d.name}')">Use This Style</button>
+            <button class="btn btn-primary btn-sm" onclick="useStyle('${d.name}')">${t('card.useStyle')}</button>
           </div>
         </div>
       </div>
@@ -2019,7 +2785,7 @@ document.querySelectorAll('.chip').forEach(chip=>{
 ===================================================== */
 function openModal(id){
   const d=DEMOS.find(x=>x.id===id);if(!d)return;
-  document.getElementById('modal-title').textContent=d.name+' — Style Preview';
+  document.getElementById('modal-title').textContent=d.name+' — '+(currentLang==='kh'?'មើលរចនាប័ទ្ម':'Style Preview');
   document.getElementById('modal-body').innerHTML=`
     <div class="modal-thumb">${buildMockup(d)}</div>
     <div class="modal-tags">
@@ -2029,22 +2795,22 @@ function openModal(id){
     </div>
     <div class="modal-name">${d.name}</div>
     <div class="modal-desc">${d.desc}</div>
-    <p class="modal-section-title">Included sections</p>
+    <p class="modal-section-title">${t('modal.included')}</p>
     <ul class="modal-list">${d.sections.map(s=>`<li>${s}</li>`).join('')}</ul>
-    <div class="modal-info-row"><span class="modal-info-key">Best use case</span><span class="modal-info-val" style="max-width:280px;text-align:right">${d.usecase}</span></div>
-    <div class="modal-info-row"><span class="modal-info-key">Recommended for</span><span class="modal-info-val" style="max-width:280px;text-align:right">${d.bestfor}</span></div>
-    <div class="modal-info-row"><span class="modal-info-key">Suggested package</span><span class="modal-info-val">${d.pkg}</span></div>
-    <div class="modal-info-row"><span class="modal-info-key">Language</span><span class="modal-info-val">Khmer + English</span></div>
-    <div class="modal-price-big">From ${d.price}</div>
-    <div class="modal-price-note">Final price depends on number of pages and features. Get a free quote today.</div>
+    <div class="modal-info-row"><span class="modal-info-key">${t('modal.bestUse')}</span><span class="modal-info-val" style="max-width:280px;text-align:right">${d.usecase}</span></div>
+    <div class="modal-info-row"><span class="modal-info-key">${t('modal.recFor')}</span><span class="modal-info-val" style="max-width:280px;text-align:right">${d.bestfor}</span></div>
+    <div class="modal-info-row"><span class="modal-info-key">${t('modal.pkg')}</span><span class="modal-info-val">${d.pkg}</span></div>
+    <div class="modal-info-row"><span class="modal-info-key">${t('modal.lang')}</span><span class="modal-info-val">${currentLang==='kh'?'ខ្មែរ + អង់គ្លេស':'Khmer + English'}</span></div>
+    <div class="modal-price-big">${t('modal.from')} ${d.price}</div>
+    <div class="modal-price-note">${t('modal.priceNote')}</div>
     <div class="modal-ctas">
       <button class="btn btn-primary" onclick="useStyle('${d.name}');closeModal()">
         <svg width="15" height="15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"><use href="#i-sparkles"/></svg>
-        Use This Style
+        ${t('modal.useStyle')}
       </button>
       <a href="${CONFIG.telegramUrl}" target="_blank" class="btn btn-outline">
         <svg width="15" height="15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"><use href="#i-send"/></svg>
-        Chat on Telegram
+        ${t('modal.chat')}
       </a>
     </div>`;
   document.getElementById('modal').classList.add('open');
@@ -2060,10 +2826,19 @@ function closeModalOnOverlay(e){if(e.target===document.getElementById('modal'))c
 /* =====================================================
    USE THIS STYLE
 ===================================================== */
+function claimPromo(){
+  const isKh=(currentLang||'kh')==='kh';
+  const msg=isKh
+    ? 'សួស្ដី BizWeb KH ខ្ញុំចង់ដឹងបន្ថែមអំពីប្រូម៉ូសិនប្រចាំខែនេះ ដែលមានការគាំទ្រ Hosting 1 ខែដោយឥតគិតថ្លៃ។ សូមជួយណែនាំ Package និង Demo ដែលសាកសម។'
+    : 'Hello BizWeb KH, I want to know more about this month\'s promotion with 1 month of free hosting support. Please recommend a suitable package and demo.';
+  showToast(t('toast.opening'));
+  setTimeout(()=>{ window.open(CONFIG.telegramUrl+'?text='+encodeURIComponent(msg),'_blank'); },350);
+}
+
 function useStyle(name){
   document.getElementById('f-demo').value=name;
   document.getElementById('request').scrollIntoView({behavior:'smooth'});
-  showToast(name+' selected. Complete the request form below.');
+  showToast(name + t('toast.selected'));
 }
 
 function choosePackage(name){
@@ -2079,7 +2854,7 @@ function choosePackage(name){
       : line;
   }
   document.getElementById('request').scrollIntoView({behavior:'smooth'});
-  showToast(name+' selected. Complete the request form below.');
+  showToast(name + t('toast.selected'));
 }
 
 /* =====================================================
@@ -2089,33 +2864,55 @@ function submitForm(){
   const name=document.getElementById('f-name').value.trim();
   const biz=document.getElementById('f-biz').value.trim();
   const phone=document.getElementById('f-phone').value.trim();
-  if(!name||!phone){showToast('Please enter your name and phone or Telegram so we can contact you.');return;}
+  if(!name||!phone){showToast(t('toast.enterInfo'));return;}
   const valueOrFallback=id=>{
     const value=document.getElementById(id).value.trim();
-    return value||'Not provided';
+    return value||(currentLang==='kh'?'មិនបានបញ្ជាក់':'Not provided');
   };
-  const message=[
-    'Hello BizWeb KH, I want to request a free website preview.',
-    '',
-    'Name: '+name,
-    'Business Name: '+(biz||'Not provided'),
-    'Business Type: '+valueOrFallback('f-type'),
-    'Phone / Telegram: '+phone,
-    'Facebook Page: '+valueOrFallback('f-fb'),
-    'Selected Demo Style: '+valueOrFallback('f-demo'),
-    'Preferred Package: '+valueOrFallback('f-package'),
-    'Already Have Domain: '+valueOrFallback('f-domain'),
-    'Have Logo / Photos / Content: '+valueOrFallback('f-assets'),
-    '',
-    'Message:',
-    valueOrFallback('f-msg'),
-    '',
-    'Please contact me back. Thank you.'
-  ].join('\n');
+  let message;
+  if(currentLang==='kh'){
+    message=[
+      'សួស្ដី BizWeb KH, ខ្ញុំចង់ស្នើព្រីវ្យូ Homepage ឥតគិតថ្លៃ។',
+      '',
+      'ឈ្មោះ: '+name,
+      'ឈ្មោះអាជីវកម្ម: '+(biz||'មិនបានបញ្ជាក់'),
+      'ប្រភេទអាជីវកម្ម: '+valueOrFallback('f-type'),
+      'ទូរស័ព្ទ / Telegram: '+phone,
+      'Facebook: '+valueOrFallback('f-fb'),
+      'Demo Style: '+valueOrFallback('f-demo'),
+      'កញ្ចប់: '+valueOrFallback('f-package'),
+      'Domain: '+valueOrFallback('f-domain'),
+      'Logo/រូបថត: '+valueOrFallback('f-assets'),
+      '',
+      'ព័ត៌មានបន្ថែម:',
+      valueOrFallback('f-msg'),
+      '',
+      'សូមទាក់ទងតប។ អរគុណ។'
+    ].join('\n');
+  } else {
+    message=[
+      'Hello BizWeb KH, I want to request a free website preview.',
+      '',
+      'Name: '+name,
+      'Business Name: '+(biz||'Not provided'),
+      'Business Type: '+valueOrFallback('f-type'),
+      'Phone / Telegram: '+phone,
+      'Facebook Page: '+valueOrFallback('f-fb'),
+      'Selected Demo Style: '+valueOrFallback('f-demo'),
+      'Preferred Package: '+valueOrFallback('f-package'),
+      'Already Have Domain: '+valueOrFallback('f-domain'),
+      'Have Logo / Photos / Content: '+valueOrFallback('f-assets'),
+      '',
+      'Message:',
+      valueOrFallback('f-msg'),
+      '',
+      'Please contact me back. Thank you.'
+    ].join('\n');
+  }
   const telegramUrl=CONFIG.telegramUrl+'?text='+encodeURIComponent(message);
   const opened=window.open(telegramUrl,'_blank');
   if(!opened)window.location.href=telegramUrl;
-  showToast('Opening Telegram chat with your request...');
+  showToast(t('toast.opening'));
 }
 
 /* =====================================================
@@ -2130,7 +2927,7 @@ const quizAnswers={};
 
 function quizNext(step){
   const sel=document.querySelector(`.quiz-opt[data-q="${step}"].selected`);
-  if(!sel){showToast('Please pick an option to continue.');return;}
+  if(!sel){showToast(t('toast.selectOpt'));return;}
   quizAnswers[step]=sel.dataset.val;
   document.querySelector(`.quiz-step[data-step="${step}"]`).classList.remove('active');
   document.querySelector(`.quiz-step[data-step="${step+1}"]`).classList.add('active');
@@ -2143,7 +2940,7 @@ function quizPrev(step){
 }
 function quizFinish(){
   const sel=document.querySelector('.quiz-opt[data-q="5"].selected');
-  if(!sel){showToast('Please pick a language preference.');return;}
+  if(!sel){showToast(t('toast.pickLang'));return;}
   quizAnswers[5]=sel.dataset.val;
   const scored=DEMOS.map(d=>{
     let s=0;
@@ -2152,8 +2949,8 @@ function quizFinish(){
     return{d,s};
   }).sort((a,b)=>b.s-a.s).slice(0,4);
   const recs=scored.map(x=>x.d);
-  document.getElementById('quiz-result-sub').textContent=`Based on your answers — ${quizAnswers[1]}, ${quizAnswers[2]}, ${quizAnswers[3]} style, ${quizAnswers[4]}.`;
-  document.getElementById('quiz-recs').innerHTML=recs.map(d=>`<span class="quiz-rec-chip" onclick="useStyle('${d.name}')">${d.name} — From ${d.price}</span>`).join('');
+  document.getElementById('quiz-result-sub').textContent=t('quiz.result.sub');
+  document.getElementById('quiz-recs').innerHTML=recs.map(d=>`<span class="quiz-rec-chip" onclick="useStyle('${d.name}')">${d.name} — ${t('modal.from')} ${d.price}</span>`).join('');
   document.querySelector('.quiz-step[data-step="5"]').classList.remove('active');
   document.getElementById('quiz-result').classList.add('active');
   document.getElementById('quiz-inner').style.display='none';
@@ -2206,9 +3003,9 @@ function setTheme(mode){
   }
   if(themeToggle){
     themeToggle.setAttribute('aria-pressed',String(isLight));
-    themeToggle.setAttribute('aria-label',isLight?'Switch to dark mode':'Switch to light mode');
+    themeToggle.setAttribute('aria-label',isLight?t('theme.dark'):t('theme.light'));
     const text=themeToggle.querySelector('.theme-toggle-text');
-    if(text)text.textContent=isLight?'Dark mode':'Light mode';
+    if(text)text.textContent=isLight?t('theme.dark'):t('theme.light');
   }
 }
 function initTheme(){
@@ -2226,46 +3023,101 @@ if(themeToggle){
 
 function initHeroTyping(){
   const el=document.getElementById('heroTypingText');
+  const cursor=document.querySelector('.typing-cursor');
   if(!el)return;
-  const phrases=[
-    'from $99',
-    'ready in 3–5 days',
-    'in Khmer + English',
-    'mobile responsive'
-  ];
+  const phrasesByLang={
+    kh:['ចាប់ពី $99','រួចរាល់ 3–5 ថ្ងៃ','ខ្មែរ + អង់គ្លេស','សមស្របទូរស័ព្ទ'],
+    en:['from $99','ready in 3–5 days','in Khmer + English','mobile responsive']
+  };
+  /* Split text into safe typing units.
+     Khmer: use Intl.Segmenter (grapheme clusters) so vowels/subscripts stay intact.
+     Fallback for Khmer: accumulate code-points until whitespace/ASCII boundary.
+     English: standard character array. */
+  function getUnits(text,lang){
+    if(typeof Intl!=='undefined'&&Intl.Segmenter){
+      try{
+        const seg=new Intl.Segmenter(lang==='kh'?'km':'en',{granularity:'grapheme'});
+        return[...seg.segment(text)].map(s=>s.segment);
+      }catch(e){}
+    }
+    if(lang==='kh'){
+      /* Fallback: group Khmer codepoints; split at spaces and ASCII */
+      const units=[];let buf='';
+      for(let i=0;i<text.length;i++){
+        const ch=text[i];
+        const cp=text.codePointAt(i);
+        if(ch===' '||ch==='\t'){
+          if(buf){units.push(buf);buf='';}
+          units.push(ch);
+        } else if(cp>=0x1780&&cp<=0x17FF){
+          /* Khmer Unicode block – accumulate into buffer */
+          buf+=ch;
+          if(cp>0xFFFF)i++;/* surrogate pair safety */
+        } else {
+          /* ASCII/Latin mixed in (e.g. "$99", "3–5") */
+          if(buf){units.push(buf);buf='';}
+          units.push(ch);
+        }
+      }
+      if(buf)units.push(buf);
+      return units;
+    }
+    return[...text];/* English: char-by-char */
+  }
   const reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduceMotion){
-    el.textContent=phrases[0];
+    el.textContent=phrasesByLang[currentLang||'kh'][0];
     return;
   }
-  let phraseIndex=0;
-  let charIndex=phrases[0].length;
-  let deleting=true;
-  el.textContent=phrases[0];
+  let phraseIndex=0,unitIndex=0,deleting=false,timer=null,units=[];
+  function clearTimer(){if(timer){clearTimeout(timer);timer=null;}}
   function tick(){
-    const phrase=phrases[phraseIndex];
+    const lang=currentLang||'kh';
+    const phrases=phrasesByLang[lang];
+    /* Rebuild units at start of a new phrase */
+    if(unitIndex===0&&!deleting)units=getUnits(phrases[phraseIndex%phrases.length],lang);
+    const typeSpeed=lang==='kh'?90:70;
+    const deleteSpeed=lang==='kh'?55:38;
     if(deleting){
-      charIndex-=1;
-      el.textContent=phrase.slice(0,charIndex);
-      if(charIndex<=0){
+      unitIndex--;
+      el.textContent=units.slice(0,unitIndex).join('');
+      if(unitIndex<=0){
         deleting=false;
         phraseIndex=(phraseIndex+1)%phrases.length;
-        setTimeout(tick,300);
+        units=getUnits(phrases[phraseIndex],lang);
+        timer=setTimeout(tick,350);
         return;
       }
-      setTimeout(tick,38);
+      timer=setTimeout(tick,deleteSpeed);
       return;
     }
-    charIndex+=1;
-    el.textContent=phrase.slice(0,charIndex);
-    if(charIndex>=phrase.length){
+    unitIndex++;
+    el.textContent=units.slice(0,unitIndex).join('');
+    if(unitIndex>=units.length){
       deleting=true;
-      setTimeout(tick,1400);
+      timer=setTimeout(tick,1500);
       return;
     }
-    setTimeout(tick,70);
+    timer=setTimeout(tick,typeSpeed);
   }
-  setTimeout(tick,1400);
+  window._heroTypingRestart=function(){
+    clearTimer();
+    const lang=currentLang||'kh';
+    if(cursor)cursor.style.display='';
+    el.classList.remove('fading');
+    phraseIndex=0;unitIndex=0;deleting=false;
+    units=getUnits(phrasesByLang[lang][0],lang);
+    el.textContent='';
+    timer=setTimeout(tick,600);
+  };
+  /* Initial boot */
+  const lang=currentLang||'kh';
+  if(cursor)cursor.style.display='';
+  el.classList.remove('fading');
+  units=getUnits(phrasesByLang[lang][0],lang);
+  phraseIndex=0;unitIndex=0;deleting=false;
+  el.textContent='';
+  timer=setTimeout(tick,900);
 }
 
 function applyContactConfig(){
@@ -2281,9 +3133,11 @@ function applyContactConfig(){
 }
 
 initTheme();
+initLang();
 initHeroTyping();
 applyContactConfig();
 renderCards();
+
 </script>
 </body>
 </html>
