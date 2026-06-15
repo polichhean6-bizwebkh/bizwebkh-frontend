@@ -1,0 +1,1177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lymba Seven Star Translation | Professional Translation &amp; Interpretation in Cambodia</title>
+  <meta name="description" content="Lymba Seven Star Translation — 39 years of translation, interpretation, and conference earphone services in Phnom Penh. Strong in Vietnamese and English. Seven languages supported.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Khmer:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a1730;
+      --navy-2: #101f3d;
+      --navy-3: #15284d;
+      --gold: #c7a35a;
+      --gold-2: #e0c178;
+      --paper: #ffffff;
+      --ivory: #f8f6f0;
+      --soft: #f2f5f9;
+      --ink: #12203c;
+      --muted: #63708a;
+      --line: rgba(18, 32, 60, .12);
+      --shadow: 0 24px 70px rgba(10, 23, 48, .16);
+      --radius: 18px;
+      --max: 1180px;
+      --serif: "Playfair Display", Georgia, serif;
+      --sans: Inter, Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body,
+    button,
+    input,
+    select,
+    textarea {
+      font-family: "Noto Sans Khmer", Inter, Arial, sans-serif;
+    }
+    body {
+      font-size: 15px;
+      background: radial-gradient(circle at 85% -5%, rgba(199,163,90,.12), transparent 28%), var(--ivory);
+      color: var(--ink);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    body.lang-km {
+      line-height: 1.9;
+    }
+    [data-km], .lang-text { font-family: "Noto Sans Khmer", Inter, Arial, sans-serif; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    .container { width: min(var(--max), calc(100% - 42px)); margin: 0 auto; }
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255, 255, 255, .92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+    .nav-inner {
+      height: 78px; display: flex; align-items: center;
+      justify-content: space-between; gap: 18px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 11px;
+      font-family: var(--serif); font-size: clamp(17px, 2.2vw, 22px);
+      font-weight: 700; letter-spacing: -.03em; color: var(--navy);
+      min-width: 0;
+    }
+    .brand small {
+      display: block; font-family: var(--sans); font-size: 10px;
+      font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--gold); margin-top: 2px;
+    }
+    .brand-mark {
+      flex: 0 0 35px; width: 35px; height: 35px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--gold));
+      display: grid; place-items: center; color: #fff;
+      font-family: var(--sans); font-size: 12px; font-weight: 900;
+    }
+    .links { display: flex; gap: 22px; color: var(--muted); font-size: 13px; font-weight: 800; }
+    .links a:hover { color: var(--gold); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .lang-switcher {
+      display: inline-flex; border: 1px solid var(--line);
+      border-radius: 999px; overflow: hidden; background: #fff;
+    }
+    .lang-btn {
+      border: 0; background: transparent; color: var(--muted);
+      font-size: 11px; font-weight: 900; letter-spacing: .06em;
+      padding: 8px 11px; cursor: pointer; transition: .2s ease;
+    }
+    .lang-btn.active { background: var(--navy); color: #fff; }
+    .lang-btn:not(.active):hover { color: var(--navy); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 46px; padding: 0 20px; border-radius: 4px;
+      font-size: 13px; font-weight: 850; border: 1px solid transparent;
+      transition: .25s ease; white-space: nowrap; cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--gold); color: var(--navy);
+      box-shadow: 0 16px 34px rgba(199, 163, 90, .24);
+      position: relative; overflow: hidden;
+    }
+    .btn-primary::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+      transform: translateX(-120%);
+      transition: transform .6s ease;
+    }
+    .btn-primary:hover::after { transform: translateX(120%); }
+    .btn-primary:hover, .btn-outline:hover, .btn-light:hover { transform: translateY(-2px); }
+    .btn-outline {
+      border-color: rgba(255, 255, 255, .38); color: #fff;
+      background: rgba(255, 255, 255, .08);
+    }
+    .btn-light {
+      background: #fff; color: var(--navy);
+      border-color: rgba(255, 255, 255, .8);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, .12);
+    }
+    .menu-toggle {
+      display: none; border: 1px solid var(--line); background: #fff;
+      width: 42px; height: 42px; border-radius: 10px; cursor: pointer;
+      color: var(--navy); font-size: 18px;
+    }
+    .hero {
+      position: relative; min-height: 760px; display: grid;
+      align-items: center; background: var(--navy); color: #fff; overflow: hidden;
+    }
+    .hero:before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(10, 23, 48, .93), rgba(10, 23, 48, .72) 45%, rgba(10, 23, 48, .24)),
+                  linear-gradient(0deg, rgba(10, 23, 48, .88), transparent 48%);
+      z-index: 1;
+    }
+    .hero-bg { position: absolute; inset: 0; }
+    .hero-bg img { filter: saturate(.95) contrast(1.05); animation: heroImageZoom 14s ease-in-out infinite alternate; transform-origin: center; }
+    .hero-inner { position: relative; z-index: 2; padding: 92px 0; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 34px; align-items: center; }
+    .hero-copy { max-width: 780px; }
+    .hero-visual {
+      position: relative; min-height: 520px; border-radius: 24px;
+      overflow: hidden; border: 1px solid rgba(255,255,255,.24);
+      box-shadow: 0 28px 70px rgba(0,0,0,.28);
+    }
+    .hero-visual::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(10,23,48,.18), rgba(10,23,48,.78));
+      z-index: 1;
+    }
+    .hero-visual img { position: absolute; inset: 0; }
+    .hero-panel {
+      position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 2;
+      background: rgba(16,31,61,.86); border: 1px solid rgba(224,193,120,.28);
+      border-radius: 14px; padding: 16px;
+    }
+    .hero-panel strong { color: var(--gold-2); display: block; margin-bottom: 6px; font-size: 16px; }
+    .hero-panel p { color: rgba(255,255,255,.78); font-size: 13px; }
+    .hero-chip-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+    .hero-chip {
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.18);
+      border-radius: 10px; padding: 10px 12px; font-size: 12px; font-weight: 800; color: #fff;
+    }
+    .hero .badge,
+    .hero h1,
+    .hero .hero-copy > p,
+    .hero-actions,
+    .hero-stats,
+    .hero-visual {
+      opacity: 0;
+      animation: fadeUp .8s ease forwards;
+    }
+    .hero h1 { animation-delay: .12s; }
+    .hero .hero-copy > p { animation-delay: .22s; }
+    .hero-actions { animation-delay: .32s; }
+    .hero-stats { animation-delay: .42s; }
+    .hero-visual { animation-delay: .28s; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 9px;
+      border: 1px solid rgba(224, 193, 120, .35);
+      background: rgba(224, 193, 120, .11); border-radius: 999px;
+      padding: 8px 13px; color: var(--gold-2);
+      font-size: 12px; font-weight: 900; letter-spacing: .08em; text-transform: uppercase;
+    }
+    .badge:before {
+      content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
+    }
+    h1 {
+      font-family: var(--serif), "Noto Sans Khmer", Inter, Arial, sans-serif; font-size: clamp(40px, 6.5vw, 78px);
+      line-height: .98; letter-spacing: -.045em; margin: 22px 0 22px; color: inherit;
+    }
+    .hero p { font-size: 18px; color: rgba(255, 255, 255, .78); max-width: 700px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin-top: 38px; max-width: 680px;
+    }
+    .hero-stat {
+      border: 1px solid rgba(255, 255, 255, .16);
+      background: rgba(255, 255, 255, .08); border-radius: 12px;
+      padding: 18px; backdrop-filter: blur(12px);
+    }
+    .hero-stat strong { display: block; font-size: 26px; line-height: 1; color: var(--gold-2); }
+    .hero-stat span { font-size: 12px; color: rgba(255, 255, 255, .7); font-weight: 800; }
+    .section { padding: 88px 0; }
+    .section.light { background: #fff; }
+    .section.soft { background: var(--soft); border-block: 1px solid var(--line); }
+    .section-head { text-align: center; max-width: 760px; margin: 0 auto 42px; }
+    .section-head.left { text-align: left; margin-left: 0; }
+    .label {
+      font-size: 12px; font-weight: 900; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+    }
+    h2 {
+      font-family: var(--serif), "Noto Sans Khmer", Inter, Arial, sans-serif; font-size: clamp(34px, 5vw, 58px);
+      line-height: 1; letter-spacing: -.04em; color: var(--navy); margin-bottom: 14px;
+    }
+    h3 { font-family: "Noto Sans Khmer", var(--serif), Inter, Arial, sans-serif; font-size: 20px; color: var(--navy); letter-spacing: -.02em; margin-bottom: 9px; }
+    .section-head p { color: var(--muted); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .card {
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+      box-shadow: 0 18px 50px rgba(10, 23, 48, .08); overflow: hidden;
+      transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(10, 23, 48, .16); border-color: rgba(199,163,90,.34); }
+    .service-card { padding: 26px; }
+    .icon {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: rgba(199, 163, 90, .14); display: grid; place-items: center;
+      color: var(--gold); font-weight: 900; margin-bottom: 20px; font-size: 13px;
+    }
+    .icon svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+    .icon svg { transition: transform .28s ease; }
+    .card:hover .icon svg { transform: translateY(-2px) scale(1.05); }
+    .card p { color: var(--muted); font-size: 14px; }
+    .visual-story {
+      display: grid; grid-template-columns: 1.05fr .95fr; gap: 22px; align-items: stretch;
+    }
+    .story-media {
+      position: relative; border-radius: var(--radius); overflow: hidden;
+      min-height: 380px; border: 1px solid var(--line);
+      box-shadow: 0 20px 52px rgba(10,23,48,.12);
+    }
+    .story-overlay {
+      position: absolute; inset: auto 18px 18px 18px;
+      background: rgba(10,23,48,.86); color: #fff; border-radius: 12px;
+      border: 1px solid rgba(224,193,120,.24); padding: 14px;
+    }
+    .story-overlay strong { color: var(--gold-2); display: block; margin-bottom: 4px; }
+    .story-content.card { padding: 28px; }
+    .story-points { margin-top: 16px; display: grid; gap: 10px; }
+    .story-points li {
+      list-style: none; display: flex; gap: 10px; align-items: flex-start; color: var(--muted); font-size: 14px;
+    }
+    .story-points li::before {
+      content: ""; width: 8px; height: 8px; border-radius: 50%; margin-top: 8px; flex: 0 0 8px;
+      background: var(--gold);
+    }
+    .logo-strip {
+      margin-top: 28px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px;
+    }
+    .logo-item {
+      background: #fff; border: 1px solid var(--line); border-radius: 12px;
+      min-height: 74px; display: grid; place-items: center; text-align: center;
+      padding: 10px; color: var(--muted); font-size: 12px; font-weight: 800;
+      box-shadow: 0 10px 24px rgba(10,23,48,.06);
+    }
+    .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .showcase-card {
+      position: relative; border-radius: var(--radius); overflow: hidden; min-height: 310px;
+      border: 1px solid var(--line); box-shadow: 0 22px 55px rgba(10,23,48,.14);
+    }
+    .showcase-card img { position: absolute; inset: 0; }
+    .story-media img,
+    .showcase-card img,
+    .avatar img { transition: transform .45s ease; }
+    .story-media:hover img,
+    .showcase-card:hover img { transform: scale(1.05); }
+    .showcase-card::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(10,23,48,.1), rgba(10,23,48,.84));
+      z-index: 1;
+    }
+    .showcase-body { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 2; color: #fff; }
+    .showcase-tag {
+      display: inline-flex; border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.12);
+      border-radius: 999px; padding: 6px 10px; font-size: 11px; font-weight: 800; margin-bottom: 10px;
+    }
+    .showcase-body h3 { color: #fff; }
+    .showcase-body p { color: rgba(255,255,255,.76); font-size: 13px; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .testimonial-card { padding: 22px; }
+    .testimonial-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .avatar {
+      width: 52px; height: 52px; border-radius: 50%; overflow: hidden;
+      border: 2px solid rgba(199,163,90,.45); flex: 0 0 52px;
+    }
+    .stars { color: var(--gold); letter-spacing: 1px; font-size: 14px; margin-bottom: 8px; }
+    .quote { color: var(--muted); font-size: 14px; }
+    .lang-badges {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+      margin: 28px 0 24px;
+    }
+    .lang-badge {
+      background: #fff;
+      color: var(--navy);
+      border: 1px solid rgba(18, 32, 60, .12);
+      border-radius: 999px;
+      padding: 12px 20px;
+      font-weight: 900;
+      box-shadow: 0 10px 24px rgba(10, 23, 48, .06);
+      font-size: 14px;
+      cursor: default;
+    }
+    .lang-badge.highlight {
+      background: #fff;
+      color: var(--navy);
+      border-color: rgba(18, 32, 60, .12);
+    }
+    .highlight-box {
+      max-width: 720px; margin: 0 auto; text-align: center;
+      background: linear-gradient(135deg, rgba(199, 163, 90, .14), rgba(199, 163, 90, .06));
+      border: 1px solid rgba(199, 163, 90, .28); border-radius: var(--radius);
+      padding: 22px 28px; color: var(--navy); font-weight: 800; font-size: 15px;
+    }
+    .industry-card { padding: 24px; text-align: center; }
+    .industry-card .icon { margin: 0 auto 16px; }
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .process-step {
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 24px; box-shadow: 0 14px 40px rgba(10, 23, 48, .07);
+      position: relative;
+    }
+    .step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--navy); color: var(--gold-2);
+      font-weight: 900; font-size: 14px; margin-bottom: 14px;
+    }
+    .trust-strip {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+      background: var(--navy); border-radius: var(--radius); padding: 28px;
+    }
+    .trust-item { text-align: center; color: #fff; padding: 8px; }
+    .trust-item strong {
+      display: block; font-size: 28px; color: var(--gold-2);
+      line-height: 1; margin-bottom: 8px; font-family: var(--serif);
+    }
+    .trust-item span { font-size: 13px; color: rgba(255, 255, 255, .72); font-weight: 800; }
+    .faq-list {
+      max-width: 900px; margin: 0 auto; background: #fff;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 8px 24px;
+    }
+    .faq-item { border-bottom: 1px solid var(--line); padding: 18px 0; }
+    .faq-item:last-child { border-bottom: 0; }
+    .faq-q { font-weight: 900; color: var(--ink); margin-bottom: 6px; }
+    .faq-a { color: var(--muted); font-size: 14px; }
+    .cta-band {
+      background: linear-gradient(135deg, var(--navy), var(--navy-3));
+      color: #fff; border-radius: var(--radius); padding: 54px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; overflow: hidden; position: relative;
+    }
+    .cta-band:after {
+      content: ""; position: absolute; right: -130px; bottom: -170px;
+      width: 380px; height: 380px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(199, 163, 90, .22), transparent 64%);
+    }
+    .cta-band h2 { color: #fff; max-width: 620px; margin-bottom: 0; position: relative; z-index: 1; }
+    .cta-band p { color: rgba(255, 255, 255, .74); margin-top: 12px; position: relative; z-index: 1; }
+    .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1; }
+    .contact-grid {
+      display: grid; grid-template-columns: .86fr 1.14fr;
+      gap: 24px; align-items: start;
+    }
+    .contact-list { display: grid; gap: 14px; }
+    .contact-card {
+      display: flex; gap: 14px; background: #fff;
+      border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 20px; box-shadow: 0 14px 38px rgba(10, 23, 48, .07);
+      transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+    }
+    .contact-card:hover { transform: translateY(-4px); box-shadow: 0 18px 44px rgba(10, 23, 48, .12); border-color: rgba(199,163,90,.34); }
+    .contact-card .icon { margin: 0; flex: 0 0 48px; }
+    .form {
+      background: #fff; border: 1px solid var(--line);
+      border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px;
+    }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .field { display: grid; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-size: 12px; font-weight: 900; color: var(--navy); }
+    input, select, textarea {
+      width: 100%; border: 1px solid var(--line); border-radius: 8px;
+      background: #f9fafc; color: var(--ink); padding: 12px 13px; outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--gold); box-shadow: 0 0 0 3px rgba(199, 163, 90, .18);
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    .demo-note {
+      display: none; margin-top: 14px; color: var(--muted);
+      font-size: 12px; font-weight: 600; line-height: 1.6;
+    }
+    .demo-note.show { display: block; }
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity .7s ease, transform .7s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: .08s; }
+    .reveal-delay-2 { transition-delay: .16s; }
+    .reveal-delay-3 { transition-delay: .24s; }
+    .reveal-delay-4 { transition-delay: .32s; }
+    footer { background: var(--navy); color: #fff; padding: 58px 0 28px; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr repeat(2, 1fr); gap: 28px; }
+    .footer-brand { font-family: var(--serif); font-size: 24px; margin-bottom: 12px; }
+    footer p, footer a { color: rgba(255, 255, 255, .72); font-size: 14px; }
+    footer h4 { color: #fff; margin-bottom: 12px; font-size: 14px; }
+    .footer-links { display: grid; gap: 8px; }
+    .footer-links a:hover { color: var(--gold-2); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, .12);
+      margin-top: 34px; padding-top: 20px;
+      font-size: 12px; color: rgba(255, 255, 255, .58);
+    }
+    .sticky-cta {
+      position: fixed; right: 18px; bottom: 18px; z-index: 60;
+      background: var(--gold); color: var(--navy); border-radius: 999px;
+      padding: 14px 18px; font-weight: 900; font-size: 13px;
+      box-shadow: 0 18px 38px rgba(10, 23, 48, .28);
+      transition: opacity .25s ease, transform .25s ease;
+    }
+    .sticky-cta.hide { opacity: 0; pointer-events: none; transform: translateY(12px); }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 80;
+      background: rgba(10, 23, 48, .55); backdrop-filter: blur(6px);
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-panel {
+      position: absolute; top: 0; right: 0; width: min(320px, 88vw);
+      height: 100%; background: #fff; padding: 24px;
+      box-shadow: -20px 0 60px rgba(10, 23, 48, .18);
+      display: grid; align-content: start; gap: 14px;
+    }
+    .mobile-panel a { font-weight: 800; color: var(--navy); padding: 8px 0; }
+    .close-menu {
+      justify-self: end; border: 1px solid var(--line); background: #fff;
+      width: 40px; height: 40px; border-radius: 10px; cursor: pointer; color: var(--navy);
+    }
+    body.lang-km .label {
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: 13px;
+    }
+    body.lang-km h1,
+    body.lang-km h2,
+    body.lang-km h3,
+    body.lang-km .label {
+      font-family: "Noto Sans Khmer", Inter, Arial, sans-serif;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    body.lang-km h1 { line-height: 1.25; }
+    body.lang-km h2 { line-height: 1.32; }
+    body.lang-km h3 { line-height: 1.45; }
+    @media (max-width: 980px) {
+      .links { display: none; }
+      .menu-toggle { display: grid; place-items: center; }
+      .grid-3, .grid-4, .process-grid, .trust-strip, .contact-grid, .footer-grid, .hero-grid, .visual-story, .showcase-grid, .testimonials-grid, .logo-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero { min-height: auto; }
+      .hero-inner { padding: 72px 0; }
+      .footer-grid > div:first-child, .contact-grid, .form { grid-column: 1 / -1; }
+      .cta-band { display: grid; padding: 40px 28px; }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 28px, var(--max)); }
+      .nav-inner { height: auto; min-height: 72px; flex-wrap: wrap; padding: 10px 0; }
+      .brand { font-size: 16px; }
+      .hero-stats, .grid-3, .grid-4, .process-grid, .trust-strip,
+      .contact-grid, .footer-grid, .form-grid, .hero-grid, .visual-story, .showcase-grid, .testimonials-grid, .logo-strip { grid-template-columns: 1fr; }
+      .section { padding: 58px 0; }
+      .hero-inner { padding: 58px 0; }
+      .btn { width: 100%; }
+      .hero-actions, .cta-actions { width: 100%; }
+      .sticky-cta { left: 14px; right: 14px; text-align: center; }
+      .nav-actions .btn-primary { display: none; }
+      .hero-visual { min-height: 390px; }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heroImageZoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.06); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6QKJFRHY7M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6QKJFRHY7M');
+  </script>
+</head>
+<body class="lang-en">
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#home">
+        <span class="brand-mark">L7</span>
+        <span>Lymba Seven Star<small>Translation</small></span>
+      </a>
+      <nav class="links" aria-label="Primary navigation">
+        <a href="#services"><span class="lang-text" data-en="Services" data-km="សេវាកម្ម">Services</span></a>
+        <a href="#languages"><span class="lang-text" data-en="Languages" data-km="ភាសា">Languages</span></a>
+        <a href="#industries"><span class="lang-text" data-en="Industries" data-km="វិស័យ">Industries</span></a>
+        <a href="#why"><span class="lang-text" data-en="Why Us" data-km="ហេតุផលជ្រើសរើស">Why Us</span></a>
+        <a href="#faq"><span class="lang-text" data-en="FAQ" data-km="សំណួរ">FAQ</span></a>
+        <a href="#contact"><span class="lang-text" data-en="Contact" data-km="ទំនាក់ទំនង">Contact</span></a>
+      </nav>
+      <div class="nav-actions">
+        <div class="lang-switcher" aria-label="Language switcher">
+          <button class="lang-btn active" id="btnEn" type="button" aria-pressed="true">EN</button>
+          <button class="lang-btn" id="btnKm" type="button" aria-pressed="false">KM</button>
+        </div>
+        <a class="btn btn-primary" href="#contact"><span class="lang-text" data-en="Get a Quote" data-km="ស្នើសុំតម្លៃ">Get a Quote</span></a>
+        <button class="menu-toggle" type="button" id="menuOpen" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-panel">
+      <button class="close-menu" type="button" id="menuClose" aria-label="Close menu">✕</button>
+      <a href="#services"><span class="lang-text" data-en="Services" data-km="សេវាកម្ម">Services</span></a>
+      <a href="#languages"><span class="lang-text" data-en="Languages" data-km="ភាសា">Languages</span></a>
+      <a href="#industries"><span class="lang-text" data-en="Industries" data-km="វិស័យ">Industries</span></a>
+      <a href="#why"><span class="lang-text" data-en="Why Us" data-km="ហេតุផលជ្រើសរើស">Why Us</span></a>
+      <a href="#faq"><span class="lang-text" data-en="FAQ" data-km="សំណួរ">FAQ</span></a>
+      <a href="#contact"><span class="lang-text" data-en="Contact" data-km="ទំនាក់ទំនង">Contact</span></a>
+      <a class="btn btn-primary" href="#contact"><span class="lang-text" data-en="Get a Quote" data-km="ស្នើសុំតម្លៃ">Get a Quote</span></a>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-bg">
+        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&amp;fit=crop&amp;w=1800&amp;q=85" alt="Business documents and laptop for translation workflow">
+      </div>
+      <div class="container hero-inner">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="badge"><span class="lang-text" data-en="Professional Language Services Since 1987" data-km="ក្រុមហ៊ុនបកប្រែ តាំងពីឆ្នាំ ១៩៨៧">Professional Language Services Since 1987</span></span>
+            <h1><span class="lang-text" data-en="Translation, Interpretation &amp; Conference Language Services in Cambodia" data-km="សេវាបកប្រែឯកសារ · សេវាបកប្រែផ្ទាល់មាត់ · ឧបករណ៍សម្រាប់សន្និសីទ នៅកម្ពុជា">Translation, Interpretation &amp; Conference Language Services in Cambodia</span></h1>
+            <p><span class="lang-text" data-en="Trusted by businesses, NGOs, and government institutions for 39 years. Strong in Vietnamese and English across 7 working languages." data-km="យើងទទួលបានការជឿទុកចិត្តពីអតិថិជនអាជីវកម្ម អង្គការមិនមែនរដ្ឋាភិបាល និងស្ថាប័នរដ្ឋ អស់រយៈពេល ៣៩ ឆ្នាំ។ យើងមានជំនាញខ្លាំងលើភាសាវៀតណាម និងអង់គ្លេស ក្នុងការបម្រើ ៧ ភាសា។">Trusted by businesses, NGOs, and government institutions for 39 years. Strong in Vietnamese and English across 7 working languages.</span></p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#contact"><span class="lang-text" data-en="Get a Quote" data-km="ស្នើសុំតម្លៃ">Get a Quote</span></a>
+              <a class="btn btn-outline" href="#services"><span class="lang-text" data-en="Our Services" data-km="សេវាកម្មរបស់យើង">Our Services</span></a>
+            </div>
+            <div class="hero-stats">
+              <div class="hero-stat"><strong data-count="39" data-suffix="+">39+</strong><span><span class="lang-text" data-en="Years Experience" data-km="ឆ្នាំនៃបទពិសោធន៍">Years Experience</span></span></div>
+              <div class="hero-stat"><strong data-count="7">7</strong><span><span class="lang-text" data-en="Languages" data-km="ភាសាដែលបម្រើ">Languages</span></span></div>
+              <div class="hero-stat"><strong>VN + EN</strong><span><span class="lang-text" data-en="Core Strength" data-km="ជំនាញស្នូល">Core Strength</span></span></div>
+            </div>
+          </div>
+          <aside class="hero-visual">
+            <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=86" alt="Business meeting with multilingual interpretation support">
+            <div class="hero-panel">
+              <strong><span class="lang-text" data-en="Conference-Ready Operations" data-km="សេវាត្រៀមរួចរាល់សម្រាប់សន្និសីទ">Conference-Ready Operations</span></strong>
+              <p><span class="lang-text" data-en="Interpreter booths, headset systems, and event language coordination from briefing to live delivery." data-km="ការរៀបចំបន្ទប់អ្នកបកប្រែផ្ទាល់មាត់ ប្រព័ន្ធកាសស្តាប់ និងការសម្របសម្រួលភាសា ចាប់ពីវគ្គរៀបចំរហូតដល់ថ្ងៃដំណើរការ។">Interpreter booths, headset systems, and event language coordination from briefing to live delivery.</span></p>
+              <div class="hero-chip-row">
+                <span class="hero-chip"><span class="lang-text" data-en="Phnom Penh-based Team" data-km="ក្រុមការងារនៅភ្នំពេញ">Phnom Penh-based Team</span></span>
+                <span class="hero-chip"><span class="lang-text" data-en="Business · NGO · Government" data-km="អាជីវកម្ម · អង្គការ · ស្ថាប័នរដ្ឋ">Business · NGO · Government</span></span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div class="label"><span class="lang-text" data-en="What We Do" data-km="សេវាកម្ម">What We Do</span></div>
+          <h2><span class="lang-text" data-en="Translation &amp; Interpretation Services" data-km="សេវាបកប្រែឯកសារ និងបកប្រែផ្ទាល់មាត់">Translation &amp; Interpretation Services</span></h2>
+          <p><span class="lang-text" data-en="Document translation, spoken interpretation, and complete conference language support from planning to final delivery." data-km="សេវាបកប្រែឯកសារ សេវាបកប្រែផ្ទាល់មាត់ និងការគាំទ្រភាសាសម្រាប់សន្និសីទ ពីការរៀបចំដំបូងរហូតដល់ការប្រគល់ចុងក្រោយ។">Document translation, spoken interpretation, and complete conference language support from planning to final delivery.</span></p>
+        </div>
+        <div class="grid-3">
+          <article class="card service-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M10 13h6M10 17h6"/></svg></div>
+            <h3><span class="lang-text" data-en="Document Translation" data-km="បកប្រែឯកសារ">Document Translation</span></h3>
+            <p><span class="lang-text" data-en="Business, legal, technical, and official documents translated with accuracy and confidentiality." data-km="ឯកសារអាជីវកម្ម ផ្លូវច្បាប់ បច្ចេកទេស និងផ្លូវការ បកប្រែដោយត្រឹមត្រូវ និងរក្សាការសម្ងាត់។">Business, legal, technical, and official documents translated with accuracy and confidentiality.</span></p>
+          </article>
+          <article class="card service-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/><path d="M4 12v4a2 2 0 0 0 2 2h1v-6H6a2 2 0 0 0-2 2zM20 12v4a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2z"/><path d="M9 18h6"/></svg></div>
+            <h3><span class="lang-text" data-en="Simultaneous Interpretation" data-km="ការបកប្រែផ្ទាល់មាត់ក្នុងពេលដំណាលគ្នា">Simultaneous Interpretation</span></h3>
+            <p><span class="lang-text" data-en="Real-time spoken interpretation for conferences, forums, and large meetings, including booth support." data-km="សេវាបកប្រែផ្ទាល់មាត់ក្នុងពេលដំណាលគ្នា សម្រាប់សន្និសីទ វេទិកា និងកិច្ចប្រជុំធំៗ រួមទាំងការរៀបចំបន្ទប់បកប្រែផ្ទាល់មាត់។">Real-time spoken interpretation for conferences, forums, and large meetings, including booth support.</span></p>
+          </article>
+          <article class="card service-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 10a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM16 10a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/><path d="M3 18a5 5 0 0 1 10 0M11 18a5 5 0 0 1 10 0"/><path d="M9 13h6"/></svg></div>
+            <h3><span class="lang-text" data-en="Consecutive Interpretation" data-km="ការបកប្រែផ្ទាល់មាត់បន្តបន្ទាប់">Consecutive Interpretation</span></h3>
+            <p><span class="lang-text" data-en="Suitable for negotiations, site visits, interviews, and business meetings that require clear turn-by-turn interpretation." data-km="សមស្របសម្រាប់ការចរចា ទស្សនកិច្ច សម្ភាសន៍ និងកិច្ចប្រជុំអាជីវកម្ម ដែលត្រូវការការបកប្រែផ្ទាល់មាត់តាមលំដាប់។">Suitable for negotiations, site visits, interviews, and business meetings that require clear turn-by-turn interpretation.</span></p>
+          </article>
+          <article class="card service-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v10"/><path d="M8 8a4 4 0 1 0 8 0"/><path d="M5 21h14"/><path d="M12 13v8"/></svg></div>
+            <h3><span class="lang-text" data-en="Conference Equipment Support" data-km="ឧបករណ៍សម្រាប់សន្និសីទ">Conference Equipment Support</span></h3>
+            <p><span class="lang-text" data-en="Headset receivers, interpreter booth setup, and technical conference audio support for multilingual events." data-km="ប្រព័ន្ធកាសស្តាប់ ការរៀបចំបន្ទប់អ្នកបកប្រែផ្ទាល់មាត់ និងការគាំទ្របច្ចេកទេសសំឡេងសន្និសីទ សម្រាប់ព្រឹត្តិការណ៍ពហុភាសា។">Headset receivers, interpreter booth setup, and technical conference audio support for multilingual events.</span></p>
+          </article>
+          <article class="card service-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11 6.5 8.5a2 2 0 0 0-2.8 0L2 10.2 6.8 15l1.7-1.7"/><path d="m15 13 2.5 2.5a2 2 0 0 0 2.8 0l1.7-1.7L17.2 9l-1.7 1.7"/><path d="M8 13h8"/><path d="M10 8h4"/></svg></div>
+            <h3><span class="lang-text" data-en="Business Meeting Support" data-km="គាំទ្រកិច្ចប្រជុំអាជីវកម្ម">Business Meeting Support</span></h3>
+            <p><span class="lang-text" data-en="On-site translators and interpreters for investor meetings, factory visits, delegations, and cross-border partnerships." data-km="អ្នកបកប្រែឯកសារ និងអ្នកបកប្រែផ្ទាល់មាត់នៅទីតាំង សម្រាប់កិច្ចប្រជុំវិនិយោគ ទស្សនកិច្ចរោងចក្រ គណៈប្រតិភូ និងភាពជាដៃគូឆ្លងព្រំដែន។">On-site translators and interpreters for investor meetings, factory visits, delegations, and cross-border partnerships.</span></p>
+          </article>
+          <article class="card service-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 4 7v6c0 5 3.4 7.8 8 8 4.6-.2 8-3 8-8V7z"/><path d="M9 12h6M9 16h6"/></svg></div>
+            <h3><span class="lang-text" data-en="Official Translation (on request)" data-km="បកប្រែផ្លូវការ (តាមស្នើ)">Official Translation (on request)</span></h3>
+            <p><span class="lang-text" data-en="Official translation support is available on request. Scope, wording, and submission requirements are confirmed with the client before delivery." data-km="សេវាបកប្រែផ្លូវការមានតាមការស្នើសុំ។ វិសាលភាពការងារ ពាក្យពេចន៍ និងលក្ខខណ្ឌដាក់ស្នើ នឹងត្រូវបញ្ជាក់ជាមួយអតិថិជនមុនពេលប្រគល់ការងារ។">Official translation support is available on request. Scope, wording, and submission requirements are confirmed with the client before delivery.</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="languages">
+      <div class="container">
+        <div class="section-head">
+          <div class="label"><span class="lang-text" data-en="Multilingual Coverage" data-km="ភាសាដែលយើងបម្រើ">Multilingual Coverage</span></div>
+          <h2><span class="lang-text" data-en="Languages We Support" data-km="ភាសាដែលយើងគាំទ្រ">Languages We Support</span></h2>
+          <p><span class="lang-text" data-en="Seven working languages for document translation and spoken interpretation across Cambodia and the region." data-km="បម្រើ ៧ ភាសា សម្រាប់សេវាបកប្រែឯកសារ និងសេវាបកប្រែផ្ទាល់មាត់ នៅកម្ពុជា និងតំបន់។">Seven working languages for document translation and spoken interpretation across Cambodia and the region.</span></p>
+        </div>
+        <div class="lang-badges">
+          <span class="lang-badge">English</span>
+          <span class="lang-badge">French</span>
+          <span class="lang-badge">Vietnamese</span>
+          <span class="lang-badge">Chinese</span>
+          <span class="lang-badge">Laotian</span>
+          <span class="lang-badge">Thai</span>
+          <span class="lang-badge">Khmer</span>
+        </div>
+        <div class="highlight-box">
+          <span class="lang-text" data-en="Especially strong in Vietnamese and English — our core expertise built over 39 years." data-km="ខ្លាំងជាពិសេសក្នុងភាសាវៀតណាម និងអង់គ្លេស — ជំនាញស្នូលរបស់យើងក្នុងរយៈពេល ៣៩ ឆ្នាំ។">Especially strong in Vietnamese and English — our core expertise built over 39 years.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light">
+      <div class="container">
+        <div class="visual-story">
+          <div class="story-media">
+            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1400&q=86" alt="Legal and business document translation workspace">
+            <div class="story-overlay">
+              <strong><span class="lang-text" data-en="39 Years of Service Excellence" data-km="គុណភាពសេវាកម្ម ៣៩ ឆ្នាំ">39 Years of Service Excellence</span></strong>
+              <p><span class="lang-text" data-en="Built through long-term partnerships with institutions, conferences, and business teams in Cambodia." data-km="បង្កើតឡើងពីភាពជាដៃគូរយៈពេលវែងជាមួយស្ថាប័ន សន្និសីទ និងក្រុមហ៊ុនអាជីវកម្មនៅកម្ពុជា។">Built through long-term partnerships with institutions, conferences, and business teams in Cambodia.</span></p>
+            </div>
+          </div>
+          <article class="story-content card">
+            <div class="label"><span class="lang-text" data-en="Company Profile" data-km="ទិដ្ឋភាពក្រុមហ៊ុន">Company Profile</span></div>
+            <h3><span class="lang-text" data-en="A trusted language partner for complex communication" data-km="ដៃគូភាសាដែលអាចទុកចិត្តបាន សម្រាប់ការទំនាក់ទំនងស្មុគស្មាញ">A trusted language partner for complex communication</span></h3>
+            <p><span class="lang-text" data-en="Lymba Seven Star Translation supports multilingual communication for business negotiations, institutional events, legal documentation, and cross-border cooperation." data-km="Lymba Seven Star Translation គាំទ្រការទំនាក់ទំនងពហុភាសា សម្រាប់ការចរចាអាជីវកម្ម ព្រឹត្តិការណ៍ស្ថាប័ន ឯកសារផ្លូវច្បាប់ និងកិច្ចសហប្រតិបត្តិការឆ្លងព្រំដែន។">Lymba Seven Star Translation supports multilingual communication for business negotiations, institutional events, legal documentation, and cross-border cooperation.</span></p>
+            <ul class="story-points">
+              <li><span class="lang-text" data-en="Strong Vietnamese and English capability for regional projects" data-km="មានសមត្ថភាពខ្លាំងលើវៀតណាម និងអង់គ្លេស សម្រាប់គម្រោងតំបន់">Strong Vietnamese and English capability for regional projects</span></li>
+              <li><span class="lang-text" data-en="Integrated services: document translation, spoken interpretation, and conference equipment" data-km="សេវារួមបញ្ចូល៖ បកប្រែឯកសារ បកប្រែផ្ទាល់មាត់ និងឧបករណ៍សម្រាប់សន្និសីទ">Integrated services: document translation, spoken interpretation, and conference equipment</span></li>
+              <li><span class="lang-text" data-en="Disciplined quality control and confidentiality workflows" data-km="ដំណើរការត្រួតពិនិត្យគុណភាព និងការរក្សាការសម្ងាត់យ៉ាងតឹងរឹង">Disciplined quality control and confidentiality workflows</span></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="logo-strip" aria-label="Client categories">
+          <div class="logo-item"><span class="lang-text" data-en="Government Ministries" data-km="ក្រសួង និងស្ថាប័នរដ្ឋ">Government Ministries</span></div>
+          <div class="logo-item"><span class="lang-text" data-en="Development Partners" data-km="ដៃគូអភិវឌ្ឍន៍">Development Partners</span></div>
+          <div class="logo-item"><span class="lang-text" data-en="International NGOs" data-km="អង្គការ NGO អន្តរជាតិ">International NGOs</span></div>
+          <div class="logo-item"><span class="lang-text" data-en="Corporate Clients" data-km="អតិថិជនក្រុមហ៊ុន">Corporate Clients</span></div>
+          <div class="logo-item"><span class="lang-text" data-en="Legal &amp; Advisory Teams" data-km="ក្រុមច្បាប់ និងប្រឹក្សា">Legal &amp; Advisory Teams</span></div>
+          <div class="logo-item"><span class="lang-text" data-en="Conference Organizers" data-km="អ្នករៀបចំសន្និសីទ">Conference Organizers</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light" id="industries">
+      <div class="container">
+        <div class="section-head">
+          <div class="label"><span class="lang-text" data-en="Use Cases" data-km="ក្រុមហ៊ុន / វិស័យ">Use Cases</span></div>
+          <h2><span class="lang-text" data-en="Industries &amp; Settings" data-km="វិស័យ និងបរិយាកាស">Industries &amp; Settings</span></h2>
+          <p><span class="lang-text" data-en="Clear language support for meetings, documents, conferences, and cross-border communication." data-km="គាំទ្រភាសាយ៉ាងច្បាស់លាស់ សម្រាប់កិច្ចប្រជុំ ឯកសារ សន្និសីទ និងការទំនាក់ទំនងឆ្លងព្រំដែន។">Clear language support for meetings, documents, conferences, and cross-border communication.</span></p>
+        </div>
+        <div class="grid-3">
+          <article class="card industry-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M8 10h8M8 14h5"/><path d="M9 6V4m6 2V4"/></svg></div>
+            <h3><span class="lang-text" data-en="Conferences" data-km="សន្និសីទ">Conferences</span></h3>
+            <p><span class="lang-text" data-en="Summits, forums, and international events with simultaneous spoken interpretation and conference equipment support." data-km="កិច្ចប្រជុំកំពូល វេទិកា និងព្រឹត្តិការណ៍អន្តរជាតិ ជាមួយសេវាបកប្រែផ្ទាល់មាត់ក្នុងពេលដំណាលគ្នា និងឧបករណ៍សម្រាប់សន្និសីទ។">Summits, forums, and international events with simultaneous spoken interpretation and conference equipment support.</span></p>
+          </article>
+          <article class="card industry-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 10h18M5 10v9m4-9v9m6-9v9m4-9v9"/><path d="M2 19h20"/><path d="m12 3 9 5H3z"/></svg></div>
+            <h3><span class="lang-text" data-en="Government &amp; NGO" data-km="ស្ថាប័នរដ្ឋ &amp; អង្គការ">Government &amp; NGO</span></h3>
+            <p><span class="lang-text" data-en="Meetings, workshops, and official documentation for public-sector and development partners." data-km="គាំទ្រកិច្ចប្រជុំ សិក្ខាសាលា និងឯកសារផ្លូវការ សម្រាប់ស្ថាប័នសាធារណៈ និងដៃគូអភិវឌ្ឍន៍។">Meetings, workshops, and official documentation for public-sector and development partners.</span></p>
+          </article>
+          <article class="card industry-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h10l2 2h4v10a2 2 0 0 1-2 2H4z"/><path d="M8 12h8M8 16h6"/></svg></div>
+            <h3><span class="lang-text" data-en="Business &amp; Legal Docs" data-km="ឯកសារអាជីវកម្ម &amp; ផ្លូវច្បាប់">Business &amp; Legal Docs</span></h3>
+            <p><span class="lang-text" data-en="Contracts, reports, correspondence, and compliance documents for companies and law firms." data-km="កិច្ចសន្យា របាយការណ៍ សំបុត្រ និងឯកសារអនុលោមសម្រាប់ក្រុមហ៊ុន និងការិយាល័យច្បាប់។">Contracts, reports, correspondence, and compliance documents for companies and law firms.</span></p>
+          </article>
+          <article class="card industry-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M3 12h18"/><path d="M5 8a13 13 0 0 0 14 0M5 16a13 13 0 0 1 14 0"/></svg></div>
+            <h3><span class="lang-text" data-en="Tourism &amp; Hospitality" data-km="ទេសចរណ៍ &amp; បដិសណ្ឋារកម្ម">Tourism &amp; Hospitality</span></h3>
+            <p><span class="lang-text" data-en="Spoken interpretation for delegations, tours, and guest-facing events across the region." data-km="សេវាបកប្រែផ្ទាល់មាត់សម្រាប់គណៈប្រតិភូ កម្មវិធីទេសចរណ៍ និងព្រឹត្តិការណ៍ទទួលភ្ញៀវក្នុងតំបន់។">Spoken interpretation for delegations, tours, and guest-facing events across the region.</span></p>
+          </article>
+          <article class="card industry-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 8 9-4 9 4-9 4z"/><path d="M7 10v5c0 1.5 2.2 3 5 3s5-1.5 5-3v-5"/><path d="M21 9v5"/></svg></div>
+            <h3><span class="lang-text" data-en="Education" data-km="អប់រំ">Education</span></h3>
+            <p><span class="lang-text" data-en="Academic materials, seminars, and institutional events requiring clear multilingual communication." data-km="សម្ភារៈអប់រំ សិក្ខាសាលា និងព្រឹត្តិការណ៍ស្ថាប័នដែលត្រូវការទំនាក់ទំនងពហុភាសាយ៉ាងច្បាស់លាស់។">Academic materials, seminars, and institutional events requiring clear multilingual communication.</span></p>
+          </article>
+          <article class="card industry-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 1 0 12 8.5z"/><path d="m19.4 15-.8 1.4 1 1.7-1.4 1.4-1.7-1-1.4.8-.5 1.9h-2l-.5-1.9-1.4-.8-1.7 1-1.4-1.4 1-1.7-.8-1.4-1.9-.5v-2l1.9-.5.8-1.4-1-1.7 1.4-1.4 1.7 1 1.4-.8.5-1.9h2l.5 1.9 1.4.8 1.7-1 1.4 1.4-1 1.7.8 1.4 1.9.5v2z"/></svg></div>
+            <h3><span class="lang-text" data-en="Technical &amp; Industrial" data-km="បច្ចេកទេស &amp; ឧស្សាហកម្ម">Technical &amp; Industrial</span></h3>
+            <p><span class="lang-text" data-en="Manuals, specifications, and on-site support for factories, engineering, and infrastructure projects." data-km="បកប្រែសៀវភៅណែនាំ លក្ខណៈបច្ចេកទេស និងគាំទ្រនៅកន្លែង សម្រាប់រោងចក្រ វិស្វកម្ម និងគម្រោងហេដ្ឋារចនាសម្ព័ន្ធ។">Manuals, specifications, and on-site support for factories, engineering, and infrastructure projects.</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="why">
+      <div class="container">
+        <div class="section-head">
+          <div class="label"><span class="lang-text" data-en="Why Choose Us" data-km="ហេតุផលជ្រើសរើស">Why Choose Us</span></div>
+          <h2><span class="lang-text" data-en="Trusted Language Partner Since 1987" data-km="ដៃគូភាសាដែលទុកចិត្តតាំងពី ១៩៨៧">Trusted Language Partner Since 1987</span></h2>
+          <p><span class="lang-text" data-en="Decades of experience, regional language depth, and end-to-end conference support from one Phnom Penh team." data-km="បទពិសោធន៍ជាច្រើនទសវត្សរ៍ ជំនាញភាសាជ្រៅជ្រះក្នុងតំបន់ និងការគាំទ្រសន្និសីទពីដើមដល់ចប់ ដោយក្រុមការងារនៅភ្នំពេញ។">Decades of experience, regional language depth, and end-to-end conference support from one Phnom Penh team.</span></p>
+        </div>
+        <div class="grid-3">
+          <article class="card service-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/></svg></div>
+            <h3><span class="lang-text" data-en="39 Years of Experience" data-km="បទពិសោធន៍ ៣៩ ឆ្នាំ">39 Years of Experience</span></h3>
+            <p><span class="lang-text" data-en="A long-established language services provider with institutional knowledge and proven workflows." data-km="អ្នកផ្តល់សេវាភាសាដែលមានបទពិសោធន៍យូរ ជាមួយចំណេះដឹងស្ថាប័ន និងដំណើរការដែលបានសាកល្បង។">A long-established language services provider with institutional knowledge and proven workflows.</span></p>
+          </article>
+          <article class="card service-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M3 12h18"/><path d="M5 7c2.5 2 11.5 2 14 0M5 17c2.5-2 11.5-2 14 0"/></svg></div>
+            <h3><span class="lang-text" data-en="Vietnamese &amp; English Strength" data-km="ជំនាញខ្លាំងលើវៀតណាម &amp; អង់គ្លេស">Vietnamese &amp; English Strength</span></h3>
+            <p><span class="lang-text" data-en="Deep expertise in Vietnamese and English — essential for regional business and cross-border events." data-km="ជំនាញជ្រៅជ្រះលើភាសាវៀតណាម និងអង់គ្លេស ដែលសំខាន់សម្រាប់អាជីវកម្មតំបន់ និងព្រឹត្តិការណ៍ឆ្លងព្រំដែន។">Deep expertise in Vietnamese and English — essential for regional business and cross-border events.</span></p>
+          </article>
+          <article class="card service-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3v3m10-3v3M4 8h16v12H4z"/><path d="M8 12h3M13 12h3M8 16h8"/></svg></div>
+            <h3><span class="lang-text" data-en="Conference-Ready Support" data-km="សេវាសម្រាប់សន្និសីទរួចរាល់">Conference-Ready Support</span></h3>
+            <p><span class="lang-text" data-en="Simultaneous spoken interpretation, interpreter booths, and headset systems for professional multilingual events." data-km="សេវាបកប្រែផ្ទាល់មាត់ក្នុងពេលដំណាលគ្នា បន្ទប់អ្នកបកប្រែផ្ទាល់មាត់ និងប្រព័ន្ធកាសស្តាប់ សម្រាប់ព្រឹត្តិការណ៍ពហុភាសាវិជ្ជាជីវៈ។">Simultaneous spoken interpretation, interpreter booths, and headset systems for professional multilingual events.</span></p>
+          </article>
+          <article class="card service-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 1 0 12 8.5z"/><path d="m19.4 15-.8 1.4 1 1.7-1.4 1.4-1.7-1-1.4.8-.5 1.9h-2l-.5-1.9-1.4-.8-1.7 1-1.4-1.4 1-1.7-.8-1.4-1.9-.5v-2l1.9-.5.8-1.4-1-1.7 1.4-1.4 1.7 1 1.4-.8.5-1.9h2l.5 1.9 1.4.8 1.7-1 1.4 1.4-1 1.7.8 1.4 1.9.5v2z"/></svg></div>
+            <h3><span class="lang-text" data-en="Conference Equipment Support" data-km="គាំទ្រឧបករណ៍សម្រាប់សន្និសីទ">Conference Equipment Support</span></h3>
+            <p><span class="lang-text" data-en="Conference headset systems and interpretation equipment supplied and managed for events of different sizes." data-km="ផ្គត់ផ្គង់ និងគ្រប់គ្រងប្រព័ន្ធកាសស្តាប់ និងឧបករណ៍សម្រាប់សន្និសីទ សម្រាប់ព្រឹត្តិការណ៍គ្រប់ទំហំ។">Conference headset systems and interpretation equipment supplied and managed for events of different sizes.</span></p>
+          </article>
+          <article class="card service-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 11V8a5 5 0 0 1 10 0v3"/><rect x="5" y="11" width="14" height="10" rx="2"/></svg></div>
+            <h3><span class="lang-text" data-en="Confidentiality" data-km="ការរក្សាការសម្ងាត់">Confidentiality</span></h3>
+            <p><span class="lang-text" data-en="Sensitive business, legal, and institutional materials handled with discretion and care." data-km="ឯកសារអាជីវកម្ម ផ្លូវច្បាប់ និងស្ថាប័នរសើប ដោះស្រាយដោយប្រុងប្រយ័ត្ន និងយកចិត្តទុកដាក់។">Sensitive business, legal, and institutional materials handled with discretion and care.</span></p>
+          </article>
+          <article class="card service-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><path d="M12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></div>
+            <h3><span class="lang-text" data-en="Based in Phnom Penh" data-km="មានមូលដ្ឋាននៅភ្នំពេញ">Based in Phnom Penh</span></h3>
+            <p><span class="lang-text" data-en="Locally based team ready for on-site assignments across Cambodia and regional assignments." data-km="ក្រុមក្នុងស្រុករួចរាល់សម្រាប់ការងារនៅកន្លែងនៅកម្ពុជា និងតំបន់។">Locally based team ready for on-site assignments across Cambodia and regional assignments.</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light" id="process">
+      <div class="container">
+        <div class="section-head">
+          <div class="label"><span class="lang-text" data-en="How It Works" data-km="ដំណើរការ">How It Works</span></div>
+          <h2><span class="lang-text" data-en="Our Process" data-km="ដំណើរការរបស់យើង">Our Process</span></h2>
+          <p><span class="lang-text" data-en="A clear path from your first inquiry to delivery or on-site support." data-km="ផ្លូវច្បាស់ពីការស្នើដំបូងរហូតដល់ការប្រគល់ ឬគាំទ្រនៅកន្លែង។">A clear path from your first inquiry to delivery or on-site support.</span></p>
+        </div>
+        <div class="process-grid">
+          <article class="process-step">
+            <div class="step-num">1</div>
+            <h3><span class="lang-text" data-en="Request" data-km="ស្នើសុំ">Request</span></h3>
+            <p><span class="lang-text" data-en="Share your document, event details, languages, and timeline." data-km="ចែករំលែកឯកសារ ព័ត៌មានព្រឹត្តិការណ៍ ភាសា និងកាលបរិច្ឆេទ។">Share your document, event details, languages, and timeline.</span></p>
+          </article>
+          <article class="process-step">
+            <div class="step-num">2</div>
+            <h3><span class="lang-text" data-en="Quote" data-km="តម្លៃ">Quote</span></h3>
+            <p><span class="lang-text" data-en="Receive a tailored quote based on scope, language pair, and delivery requirements." data-km="ទទួលតម្លៃតាមទំហំ គូភាសា និងតម្រូវការប្រគល់។">Receive a tailored quote based on scope, language pair, and delivery requirements.</span></p>
+          </article>
+          <article class="process-step">
+            <div class="step-num">3</div>
+            <h3><span class="lang-text" data-en="Assign Linguist" data-km="កំណត់អ្នកភាសា">Assign Linguist</span></h3>
+            <p><span class="lang-text" data-en="We assign the right translator, interpreter, or equipment team based on the language pair, topic, and setting." data-km="យើងជ្រើសរើសអ្នកបកប្រែឯកសារ អ្នកបកប្រែផ្ទាល់មាត់ ឬក្រុមឧបករណ៍ដែលសមស្រប តាមគូភាសា ប្រធានបទ និងបរិបទការងារ។">We assign the right translator, interpreter, or equipment team based on the language pair, topic, and setting.</span></p>
+          </article>
+          <article class="process-step">
+            <div class="step-num">4</div>
+            <h3><span class="lang-text" data-en="Delivery / On-Site" data-km="ប្រគល់ / នៅកន្លែង">Delivery / On-Site</span></h3>
+            <p><span class="lang-text" data-en="Final delivery of documents, on-site spoken interpretation, or conference equipment setup as agreed." data-km="ប្រគល់ឯកសារចុងក្រោយ សេវាបកប្រែផ្ទាល់មាត់នៅទីតាំង ឬការដំឡើងឧបករណ៍សម្រាប់សន្និសីទ តាមកិច្ចព្រមព្រៀង។">Final delivery of documents, on-site spoken interpretation, or conference equipment setup as agreed.</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="container">
+        <div class="section-head">
+          <div class="label"><span class="lang-text" data-en="Featured Service Scenarios" data-km="គម្រោង និងសេវាកម្មសំខាន់">Featured Service Scenarios</span></div>
+          <h2><span class="lang-text" data-en="How our team supports real-world language operations" data-km="របៀបដែលក្រុមយើងគាំទ្រប្រតិបត្តិការភាសានៅជាក់ស្តែង">How our team supports real-world language operations</span></h2>
+          <p><span class="lang-text" data-en="Premium demo examples of the service environment your project can receive." data-km="ឧទាហរណ៍បង្ហាញសេវាកម្មកម្រិតពិសេស សម្រាប់បរិយាកាសការងារដែលគម្រោងរបស់អ្នកអាចទទួលបាន។">Premium demo examples of the service environment your project can receive.</span></p>
+        </div>
+        <div class="showcase-grid">
+          <article class="showcase-card">
+            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=86" alt="Boardroom meeting with interpretation support">
+            <div class="showcase-body">
+              <span class="showcase-tag"><span class="lang-text" data-en="Business Meetings" data-km="កិច្ចប្រជុំអាជីវកម្ម">Business Meetings</span></span>
+              <h3><span class="lang-text" data-en="Executive meetings with bilingual facilitation" data-km="កិច្ចប្រជុំថ្នាក់ដឹកនាំ ជាមួយការសម្របសម្រួលពីរភាសា">Executive meetings with bilingual facilitation</span></h3>
+              <p><span class="lang-text" data-en="Interpreters support negotiations, technical clarifications, and sensitive commercial discussions." data-km="អ្នកបកប្រែផ្ទាល់មាត់គាំទ្រការចរចា ការពន្យល់បច្ចេកទេស និងការពិភាក្សាពាណិជ្ជកម្មដែលមានភាពរសើប។">Interpreters support negotiations, technical clarifications, and sensitive commercial discussions.</span></p>
+            </div>
+          </article>
+          <article class="showcase-card">
+            <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&w=1200&q=86" alt="Conference microphone and headset equipment setup">
+            <div class="showcase-body">
+              <span class="showcase-tag"><span class="lang-text" data-en="Conferences" data-km="សន្និសីទ">Conferences</span></span>
+              <h3><span class="lang-text" data-en="Simultaneous interpretation with equipment setup" data-km="ការបកប្រែផ្ទាល់មាត់ក្នុងពេលដំណាលគ្នា ជាមួយការដំឡើងឧបករណ៍">Simultaneous interpretation with equipment setup</span></h3>
+              <p><span class="lang-text" data-en="From interpreter booth planning to headset distribution and on-site technical monitoring." data-km="ចាប់ពីការរៀបចំបន្ទប់អ្នកបកប្រែផ្ទាល់មាត់ រហូតដល់ការចែកប្រព័ន្ធកាសស្តាប់ និងការត្រួតពិនិត្យបច្ចេកទេសនៅទីតាំង។">From interpreter booth planning to headset distribution and on-site technical monitoring.</span></p>
+            </div>
+          </article>
+          <article class="showcase-card">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=86" alt="Legal and institutional document translation workflow">
+            <div class="showcase-body">
+              <span class="showcase-tag"><span class="lang-text" data-en="Document Workflows" data-km="ដំណើរការឯកសារ">Document Workflows</span></span>
+              <h3><span class="lang-text" data-en="High-accuracy translation for institutional documents" data-km="បកប្រែភាពត្រឹមត្រូវខ្ពស់ សម្រាប់ឯកសារស្ថាប័ន">High-accuracy translation for institutional documents</span></h3>
+              <p><span class="lang-text" data-en="Structured translation and review for legal, policy, and operational documentation." data-km="បកប្រែ និងពិនិត្យឡើងវិញតាមលំដាប់ សម្រាប់ឯកសារផ្លូវច្បាប់ គោលនយោបាយ និងប្រតិបត្តិការ។">Structured translation and review for legal, policy, and operational documentation.</span></p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="container">
+        <div class="trust-strip">
+          <div class="trust-item"><strong data-count="39">39</strong><span><span class="lang-text" data-en="Years Experience" data-km="ឆ្នាំនៃបទពិសោធន៍">Years Experience</span></span></div>
+          <div class="trust-item"><strong data-count="7">7</strong><span><span class="lang-text" data-en="Languages" data-km="ភាសាដែលបម្រើ">Languages</span></span></div>
+          <div class="trust-item"><strong data-count="3">3</strong><span><span class="lang-text" data-en="Service Types: Translation · Interpretation · Equipment" data-km="ប្រភេទសេវា ៣៖ បកប្រែឯកសារ · បកប្រែផ្ទាល់មាត់ · ឧបករណ៍">Service Types: Translation · Interpretation · Equipment</span></span></div>
+          <div class="trust-item"><strong>Since 1987</strong><span><span class="lang-text" data-en="Established" data-km="បានបង្កើតតាំងពី">Established</span></span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light">
+      <div class="container">
+        <div class="section-head">
+          <div class="label"><span class="lang-text" data-en="Client Feedback" data-km="មតិយោបល់អតិថិជន">Client Feedback</span></div>
+          <h2><span class="lang-text" data-en="Professional support clients remember" data-km="សេវាគាំទ្រដែលអតិថិជនចងចាំ">Professional support clients remember</span></h2>
+          <p><span class="lang-text" data-en="Demo testimonials to showcase tone, quality, and confidence in delivery." data-km="សក្ខីកម្មគំរូសម្រាប់បង្ហាញអារម្មណ៍សេវាកម្ម គុណភាព និងទំនុកចិត្តក្នុងការប្រគល់ការងារ។">Demo testimonials to showcase tone, quality, and confidence in delivery.</span></p>
+        </div>
+        <div class="testimonials-grid">
+          <article class="card testimonial-card">
+            <div class="testimonial-head">
+              <div class="avatar"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=86" alt="Corporate manager testimonial avatar"></div>
+              <div>
+                <h3><span class="lang-text" data-en="Corporate Client" data-km="អតិថិជនអាជីវកម្ម">Corporate Client</span></h3>
+                <div class="stars">★★★★★</div>
+              </div>
+            </div>
+            <p class="quote"><span class="lang-text" data-en="“The team handled bilingual meetings with discipline and speed. Their Vietnamese-English strength was exactly what we needed.”" data-km="“ក្រុមការងារគ្រប់គ្រងកិច្ចប្រជុំពីរភាសាបានយ៉ាងមានវិន័យ និងរហ័ស។ ជំនាញវៀតណាម-អង់គ្លេសរបស់ពួកគេ សមស្របនឹងតម្រូវការយើងខ្លាំងណាស់។”">“The team handled bilingual meetings with discipline and speed. Their Vietnamese-English strength was exactly what we needed.”</span></p>
+          </article>
+          <article class="card testimonial-card">
+            <div class="testimonial-head">
+              <div class="avatar"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=86" alt="NGO program lead testimonial avatar"></div>
+              <div>
+                <h3><span class="lang-text" data-en="NGO Program Team" data-km="ក្រុមការងារកម្មវិធីអង្គការ">NGO Program Team</span></h3>
+                <div class="stars">★★★★★</div>
+              </div>
+            </div>
+            <p class="quote"><span class="lang-text" data-en="“From workshop interpretation to translated reports, communication stayed clear across all participants.”" data-km="“ចាប់ពីសេវាបកប្រែផ្ទាល់មាត់ក្នុងសិក្ខាសាលា រហូតដល់របាយការណ៍បកប្រែឯកសារ ការទំនាក់ទំនងមានភាពច្បាស់លាស់សម្រាប់អ្នកចូលរួមទាំងអស់។”">“From workshop interpretation to translated reports, communication stayed clear across all participants.”</span></p>
+          </article>
+          <article class="card testimonial-card">
+            <div class="testimonial-head">
+              <div class="avatar"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=86" alt="Conference organizer testimonial avatar"></div>
+              <div>
+                <h3><span class="lang-text" data-en="Conference Organizer" data-km="អ្នករៀបចំសន្និសីទ">Conference Organizer</span></h3>
+                <div class="stars">★★★★★</div>
+              </div>
+            </div>
+            <p class="quote"><span class="lang-text" data-en="“Conference equipment and live language support were coordinated professionally from setup to closing session.”" data-km="“ឧបករណ៍សម្រាប់សន្និសីទ និងការគាំទ្រភាសាក្នុងពេលព្រឹត្តិការណ៍ ត្រូវបានសម្របសម្រួលយ៉ាងវិជ្ជាជីវៈ ចាប់ពីការដំឡើងរហូតដល់បិទកម្មវិធី។”">“Conference equipment and live language support were coordinated professionally from setup to closing session.”</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div class="label"><span class="lang-text" data-en="FAQ" data-km="សំណួរញឹកញាប់">FAQ</span></div>
+          <h2><span class="lang-text" data-en="Frequently Asked Questions" data-km="សំណួរដែលអតិថិជនសួរញឹកញាប់">Frequently Asked Questions</span></h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-q"><span class="lang-text" data-en="What document translation services do you provide?" data-km="តើអ្នកផ្តល់សេវាបកប្រែឯកសារប្រភេទអ្វីខ្លះ?">What document translation services do you provide?</span></div>
+            <div class="faq-a"><span class="lang-text" data-en="We provide document translation for business, legal, technical, and institutional materials based on your required language pair." data-km="យើងផ្តល់សេវាបកប្រែឯកសារ សម្រាប់ឯកសារអាជីវកម្ម ផ្លូវច្បាប់ បច្ចេកទេស និងឯកសារស្ថាប័ន តាមគូភាសាដែលអ្នកត្រូវការ។">We provide document translation for business, legal, technical, and institutional materials based on your required language pair.</span></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span class="lang-text" data-en="Do you provide spoken interpretation for meetings and events?" data-km="តើអ្នកផ្តល់សេវាបកប្រែផ្ទាល់មាត់សម្រាប់កិច្ចប្រជុំ និងព្រឹត្តិការណ៍ទេ?">Do you provide spoken interpretation for meetings and events?</span></div>
+            <div class="faq-a"><span class="lang-text" data-en="Yes. We provide spoken interpretation for meetings, workshops, conferences, delegations, and official visits." data-km="បាទ/ចាស។ យើងផ្តល់សេវាបកប្រែផ្ទាល់មាត់ សម្រាប់កិច្ចប្រជុំ សិក្ខាសាលា សន្និសីទ គណៈប្រតិភូ និងទស្សនកិច្ចផ្លូវការ។">Yes. We provide spoken interpretation for meetings, workshops, conferences, delegations, and official visits.</span></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span class="lang-text" data-en="Can you support conference earphone/headset equipment?" data-km="តើអ្នកអាចគាំទ្រឧបករណ៍កាសស្តាប់សម្រាប់សន្និសីទបានទេ?">Can you support conference earphone/headset equipment?</span></div>
+            <div class="faq-a"><span class="lang-text" data-en="Yes. We support conference headset systems, interpreter booth setup, and on-site technical coordination." data-km="បាទ/ចាស។ យើងគាំទ្រប្រព័ន្ធកាសស្តាប់សម្រាប់សន្និសីទ ការរៀបចំបន្ទប់អ្នកបកប្រែផ្ទាល់មាត់ និងការសម្របសម្រួលបច្ចេកទេសនៅទីតាំង។">Yes. We support conference headset systems, interpreter booth setup, and on-site technical coordination.</span></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span class="lang-text" data-en="Which languages are your strongest?" data-km="តើភាសាណាដែលអ្នកមានជំនាញខ្លាំងជាងគេ?">Which languages are your strongest?</span></div>
+            <div class="faq-a"><span class="lang-text" data-en="Our team is especially strong in Vietnamese and English, while also serving French, Chinese, Laotian, Thai, and Khmer." data-km="ក្រុមយើងមានជំនាញខ្លាំងជាពិសេសលើភាសាវៀតណាម និងអង់គ្លេស ហើយក៏បម្រើភាសាបារាំង ចិន ឡាវ ថៃ និងខ្មែរផងដែរ។">Our team is especially strong in Vietnamese and English, while also serving French, Chinese, Laotian, Thai, and Khmer.</span></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span class="lang-text" data-en="How can we request a quotation?" data-km="តើយើងអាចស្នើសុំសំណើតម្លៃបានដូចម្តេច?">How can we request a quotation?</span></div>
+            <div class="faq-a"><span class="lang-text" data-en="Send your service request with language pair, deadline, and project details via the form, phone, email, or Telegram." data-km="សូមផ្ញើស្នើសុំសេវា រួមជាមួយគូភាសា កាលកំណត់ និងព័ត៌មានគម្រោង តាមទម្រង់ខាងក្រោម ទូរស័ព្ទ អ៊ីមែល ឬ Telegram។">Send your service request with language pair, deadline, and project details via the form, phone, email, or Telegram.</span></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span class="lang-text" data-en="How do you handle confidential documents?" data-km="តើអ្នកគ្រប់គ្រងឯកសារសម្ងាត់ដោយរបៀបណា?">How do you handle confidential documents?</span></div>
+            <div class="faq-a"><span class="lang-text" data-en="We apply strict confidentiality in file handling, team assignment, and delivery procedures for sensitive content." data-km="យើងអនុវត្តការរក្សាការសម្ងាត់យ៉ាងតឹងរឹង ក្នុងការគ្រប់គ្រងឯកសារ ការចាត់តាំងក្រុមការងារ និងដំណើរការប្រគល់សម្រាប់មាតិកាសំខាន់។">We apply strict confidentiality in file handling, team assignment, and delivery procedures for sensitive content.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <h2><span class="lang-text" data-en="Need translation, interpretation, or conference equipment support in Cambodia?" data-km="តើអ្នកត្រូវការសេវាបកប្រែឯកសារ បកប្រែផ្ទាល់មាត់ ឬឧបករណ៍សម្រាប់សន្និសីទនៅកម្ពុជាដែរ​ឬទេ?">Need translation, interpretation, or conference equipment support in Cambodia?</span></h2>
+            <p><span class="lang-text" data-en="39 years of language expertise — from document translation to full conference operations." data-km="បទពិសោធន៍ ៣៩ ឆ្នាំលើសេវាភាសា — ចាប់ពីបកប្រែឯកសារ រហូតដល់ការគាំទ្រសន្និសីទពេញលេញ។">39 years of language expertise — from document translation to full conference operations.</span></p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="#contact"><span class="lang-text" data-en="Get a Quote" data-km="ស្នើសុំតម្លៃ">Get a Quote</span></a>
+            <a class="btn btn-light" href="#services"><span class="lang-text" data-en="View Services" data-km="មើលសេវាកម្ម">View Services</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div class="label"><span class="lang-text" data-en="Get In Touch" data-km="ទំនាក់ទំនង">Get In Touch</span></div>
+          <h2><span class="lang-text" data-en="Request a Quotation" data-km="ស្នើសុំសំណើតម្លៃ">Request a Quotation</span></h2>
+          <p><span class="lang-text" data-en="Tell us about your document translation, spoken interpretation, or conference equipment needs. We will respond with a tailored quotation." data-km="សូមប្រាប់យើងអំពីតម្រូវការបកប្រែឯកសារ បកប្រែផ្ទាល់មាត់ ឬឧបករណ៍សម្រាប់សន្និសីទ។ យើងនឹងឆ្លើយតបជាមួយសំណើតម្លៃតាមតម្រូវការ។">Tell us about your document translation, spoken interpretation, or conference equipment needs. We will respond with a tailored quotation.</span></p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-list">
+            <div class="contact-card">
+              <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><path d="M12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg></div>
+              <div>
+                <h3><span class="lang-text" data-en="Office Address" data-km="អាសយដ្ឋាន">Office Address</span></h3>
+                <p>House 18, Street 17BT, Phum Sonsam Kosal 1, Sangkat Beng Tumpun 1, Meanchey District, Phnom Penh, Cambodia</p>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 3h3l1.4 4-1.9 2a15 15 0 0 0 5.9 5.9l2-1.9 4 1.4v3c0 1-.8 1.8-1.8 1.7C10.8 18.7 5.3 13.2 4.8 5A1.8 1.8 0 0 1 6.5 3z"/></svg></div>
+              <div>
+                <h3><span class="lang-text" data-en="Phone" data-km="ទូរស័ព្ទ">Phone</span></h3>
+                <p><span class="lang-text" data-en="[Phone number to be confirmed]" data-km="[លេខទូរស័ព្ទនឹងបញ្ជាក់បន្ថែម]">[Phone number to be confirmed]</span></p>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 8 8 6 8-6"/></svg></div>
+              <div>
+                <h3><span class="lang-text" data-en="Email" data-km="អ៊ីមែល">Email</span></h3>
+                <p><span class="lang-text" data-en="[Email to be confirmed]" data-km="[អ៊ីមែលនឹងបញ្ជាក់បន្ថែម]">[Email to be confirmed]</span></p>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 5 3 12l7 2 2 7 9-16z"/><path d="M10 14 21 5"/></svg></div>
+              <div>
+                <h3>Telegram</h3>
+                <p><span class="lang-text" data-en="[Telegram link to be confirmed]" data-km="[តំណ Telegram នឹងបញ្ជាក់បន្ថែម]">[Telegram link to be confirmed]</span></p>
+              </div>
+            </div>
+          </div>
+          <form class="form" id="inquiryForm">
+            <div class="form-grid">
+              <div class="field">
+                <label for="name"><span class="lang-text" data-en="Name" data-km="ឈ្មោះ">Name</span></label>
+                <input id="name" type="text" required data-en-placeholder="Your full name" data-km-placeholder="ឈ្មោះពេញរបស់អ្នក" placeholder="Your full name">
+              </div>
+              <div class="field">
+                <label for="phone"><span class="lang-text" data-en="Phone / Telegram" data-km="លេខទូរស័ព្ទ / Telegram">Phone / Telegram</span></label>
+                <input id="phone" type="text" required data-en-placeholder="Your phone number or Telegram ID" data-km-placeholder="លេខទូរស័ព្ទ ឬ Telegram របស់អ្នក" placeholder="Your phone number or Telegram ID">
+              </div>
+              <div class="field">
+                <label for="service"><span class="lang-text" data-en="Service Needed" data-km="សេវាដែលត្រូវការ">Service Needed</span></label>
+                <select id="service" required>
+                  <option value="" data-en="Select service needed" data-km="ជ្រើសរើសសេវាដែលត្រូវការ">Select service needed</option>
+                  <option data-en="Document Translation" data-km="បកប្រែឯកសារ">Document Translation</option>
+                  <option data-en="Spoken Interpretation" data-km="បកប្រែផ្ទាល់មាត់">Spoken Interpretation</option>
+                  <option data-en="Conference Equipment" data-km="ឧបករណ៍សម្រាប់សន្និសីទ">Conference Equipment</option>
+                  <option data-en="Business Meeting Support" data-km="គាំទ្រកិច្ចប្រជុំអាជីវកម្ម">Business Meeting Support</option>
+                  <option data-en="Other" data-km="ផ្សេងៗ">Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="languagePair"><span class="lang-text" data-en="Language Pair" data-km="គូភាសា">Language Pair</span></label>
+                <input id="languagePair" type="text" data-en-placeholder="Example: Khmer to English" data-km-placeholder="ឧទាហរណ៍៖ ខ្មែរ ទៅ អង់គ្លេស" placeholder="Example: Khmer to English">
+              </div>
+              <div class="field full">
+                <label for="message"><span class="lang-text" data-en="Message" data-km="សារ">Message</span></label>
+                <textarea id="message" data-en-placeholder="Share your request details, timeline, and any important notes..." data-km-placeholder="សូមបញ្ជាក់ព័ត៌មានស្នើសុំ កាលកំណត់ និងចំណាំសំខាន់ៗ..." placeholder="Share your request details, timeline, and any important notes..."></textarea>
+              </div>
+            </div>
+            <button class="btn btn-primary" type="submit" style="margin-top:16px;width:100%"><span class="lang-text" data-en="Submit Inquiry" data-km="ដាក់ស្នើ">Submit Inquiry</span></button>
+            <div class="demo-note" id="demoNote"><span class="lang-text" data-en="This is a demo preview. The live form can be connected to Telegram, email, or Messenger once contact details are confirmed." data-km="នេះជា Demo សម្រាប់មើលជាមុន។ ទម្រង់ពិតអាចភ្ជាប់ទៅ Telegram, Email ឬ Messenger នៅពេលព័ត៌មានទំនាក់ទំនងត្រូវបានបញ្ជាក់។">This is a demo preview. The live form can be connected to Telegram, email, or Messenger once contact details are confirmed.</span></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">Lymba Seven Star Translation</div>
+          <p><span class="lang-text" data-en="Professional document translation, spoken interpretation, and conference support in Phnom Penh — 39 years of experience." data-km="សេវាបកប្រែឯកសារ បកប្រែផ្ទាល់មាត់ និងគាំទ្រសន្និសីទវិជ្ជាជីវៈនៅភ្នំពេញ — បទពិសោធន៍ ៣៩ ឆ្នាំ។">Professional document translation, spoken interpretation, and conference support in Phnom Penh — 39 years of experience.</span></p>
+          <p style="margin-top:12px">House 18, Street 17BT, Phum Sonsam Kosal 1, Sangkat Beng Tumpun 1, Meanchey District, Phnom Penh, Cambodia</p>
+        </div>
+        <div>
+          <h4><span class="lang-text" data-en="Quick Links" data-km="តំណភ្ជាប់">Quick Links</span></h4>
+          <div class="footer-links">
+            <a href="#services"><span class="lang-text" data-en="Services" data-km="សេវាកម្ម">Services</span></a>
+            <a href="#languages"><span class="lang-text" data-en="Languages" data-km="ភាសា">Languages</span></a>
+            <a href="#industries"><span class="lang-text" data-en="Industries" data-km="វិស័យ">Industries</span></a>
+            <a href="#why"><span class="lang-text" data-en="Why Us" data-km="ហេតุផល">Why Us</span></a>
+            <a href="#faq"><span class="lang-text" data-en="FAQ" data-km="សំណួរ">FAQ</span></a>
+            <a href="#contact"><span class="lang-text" data-en="Contact" data-km="ទំនាក់ទំនង">Contact</span></a>
+          </div>
+        </div>
+        <div>
+          <h4><span class="lang-text" data-en="Contact" data-km="ទំនាក់ទំនង">Contact</span></h4>
+          <div class="footer-links">
+            <span><span class="lang-text" data-en="Phone: [Phone number to be confirmed]" data-km="ទូរស័ព្ទ៖ [លេខទូរស័ព្ទនឹងបញ្ជាក់បន្ថែម]">Phone: [Phone number to be confirmed]</span></span>
+            <span><span class="lang-text" data-en="Email: [Email to be confirmed]" data-km="អ៊ីមែល៖ [អ៊ីមែលនឹងបញ្ជាក់បន្ថែម]">Email: [Email to be confirmed]</span></span>
+            <span>Telegram: <span class="lang-text" data-en="[Telegram link to be confirmed]" data-km="[តំណ Telegram នឹងបញ្ជាក់បន្ថែម]">[Telegram link to be confirmed]</span></span>
+            <span>Facebook: <span class="lang-text" data-en="[Facebook page to be confirmed]" data-km="[ទំព័រ Facebook នឹងបញ្ជាក់បន្ថែម]">[Facebook page to be confirmed]</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2026 Lymba Seven Star Translation</div>
+    </div>
+  </footer>
+
+  <a class="sticky-cta" id="stickyCta" href="#contact"><span class="lang-text" data-en="Get a Quote" data-km="ស្នើសុំតម្លៃ">Get a Quote</span></a>
+
+  <script>
+    const btnEn = document.getElementById("btnEn");
+    const btnKm = document.getElementById("btnKm");
+    const inquiryForm = document.getElementById("inquiryForm");
+    const demoNote = document.getElementById("demoNote");
+    const stickyCta = document.getElementById("stickyCta");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const menuOpen = document.getElementById("menuOpen");
+    const menuClose = document.getElementById("menuClose");
+
+    function setLang(lang) {
+      const isEn = lang === "en";
+      document.body.classList.toggle("lang-en", isEn);
+      document.body.classList.toggle("lang-km", !isEn);
+      document.documentElement.lang = isEn ? "en" : "km";
+      document.querySelectorAll(".lang-text").forEach((el) => {
+        el.textContent = isEn ? el.dataset.en : el.dataset.km;
+      });
+      document.querySelectorAll("[data-en-placeholder]").forEach((el) => {
+        el.placeholder = isEn ? el.dataset.enPlaceholder : el.dataset.kmPlaceholder;
+      });
+      document.querySelectorAll("option[data-en]").forEach((opt) => {
+        opt.textContent = isEn ? opt.dataset.en : opt.dataset.km;
+      });
+      btnEn.classList.toggle("active", isEn);
+      btnKm.classList.toggle("active", !isEn);
+      btnEn.setAttribute("aria-pressed", String(isEn));
+      btnKm.setAttribute("aria-pressed", String(!isEn));
+      try { localStorage.setItem("lymba-lang", lang); } catch (e) {}
+    }
+
+    btnEn.addEventListener("click", () => setLang("en"));
+    btnKm.addEventListener("click", () => setLang("km"));
+
+    (function () {
+      let saved = "en";
+      try { saved = localStorage.getItem("lymba-lang") || "en"; } catch (e) {}
+      setLang(saved);
+    })();
+
+    inquiryForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      demoNote.classList.add("show");
+      inquiryForm.reset();
+    });
+
+    menuOpen.addEventListener("click", () => {
+      mobileMenu.classList.add("open");
+      mobileMenu.setAttribute("aria-hidden", "false");
+    });
+    menuClose.addEventListener("click", closeMenu);
+    mobileMenu.addEventListener("click", (e) => {
+      if (e.target === mobileMenu) closeMenu();
+    });
+    mobileMenu.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
+
+    function closeMenu() {
+      mobileMenu.classList.remove("open");
+      mobileMenu.setAttribute("aria-hidden", "true");
+    }
+
+    // Scroll reveal animation
+    const revealTargets = [
+      ...document.querySelectorAll(".section-head, .visual-story > *, .logo-item, .grid-3 .card, .process-step, .showcase-card, .testimonials-grid .card, .faq-item, .contact-grid > *, .cta-band, .trust-item")
+    ];
+    revealTargets.forEach((el, idx) => {
+      el.classList.add("reveal");
+      el.classList.add(`reveal-delay-${(idx % 4) + 1}`);
+    });
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+    revealTargets.forEach((item) => revealObserver.observe(item));
+
+    // Count up stats when in view
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = Number(el.dataset.count || 0);
+        const suffix = el.dataset.suffix || "";
+        const duration = 1100;
+        const start = performance.now();
+        const step = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const value = Math.floor(progress * target);
+          el.textContent = `${value}${suffix}`;
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = `${target}${suffix}`;
+        };
+        requestAnimationFrame(step);
+        countObserver.unobserve(el);
+      });
+    }, { threshold: 0.45 });
+    document.querySelectorAll("[data-count]").forEach((el) => countObserver.observe(el));
+
+    const stickyGuard = new IntersectionObserver((entries) => {
+      const hide = entries.some((entry) => entry.isIntersecting);
+      stickyCta.classList.toggle("hide", hide);
+    }, { threshold: 0.08 });
+
+    const contactSection = document.getElementById("contact");
+    const footerEl = document.querySelector("footer");
+    if (contactSection) stickyGuard.observe(contactSection);
+    if (footerEl) stickyGuard.observe(footerEl);
+  </script>
+</body>
+</html>
