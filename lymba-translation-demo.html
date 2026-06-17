@@ -9,23 +9,90 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Khmer:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
+    :root,
+    body.theme-light {
       --navy: #0a1730;
       --navy-2: #101f3d;
       --navy-3: #15284d;
       --gold: #c7a35a;
       --gold-2: #e0c178;
       --paper: #ffffff;
-      --ivory: #f8f6f0;
-      --soft: #f2f5f9;
-      --ink: #12203c;
-      --muted: #63708a;
-      --line: rgba(18, 32, 60, .12);
+      --page-bg: #f8f6f0;
+      --section-bg: #ffffff;
+      --section-soft: #f2f5f9;
+      --section-light: #f8f6f0;
+      --card-bg: #ffffff;
+      --card-bg-solid: #ffffff;
+      --text-heading: #0f1f3a;
+      --text-body: #3d4f67;
+      --text-muted: #5f7189;
+      --text-soft: #7b8798;
+      --border-soft: rgba(10, 23, 48, .13);
+      --border-on-light: rgba(10, 23, 48, .12);
+      --text-on-light-heading: #0a1730;
+      --text-on-light-body: #334155;
+      --text-on-light-muted: #64748b;
+      --input-bg: #ffffff;
+      --input-text: #0a1730;
+      --input-placeholder: #8a96a8;
+      --nav-bg: rgba(255, 255, 255, .92);
+      --footer-bg: #0a1730;
+      --footer-text: rgba(236, 243, 255, .8);
+      --footer-soft: rgba(236, 243, 255, .62);
+      --bg-page: var(--page-bg);
+      --bg-glow: rgba(199,163,90,.12);
+      --surface-1: var(--section-bg);
+      --surface-2: var(--section-soft);
+      --text-strong: var(--text-heading);
+      --text-inverse: #ffffff;
+      --line-soft: var(--border-soft);
+      --mobile-overlay: rgba(10, 23, 48, .55);
       --shadow: 0 24px 70px rgba(10, 23, 48, .16);
+      --heading: var(--text-heading);
+      --ivory: var(--bg-page);
+      --soft: var(--surface-2);
+      --ink: var(--text-strong);
+      --muted: var(--text-body);
+      --line: var(--line-soft);
       --radius: 18px;
       --max: 1180px;
       --serif: "Playfair Display", Georgia, serif;
       --sans: Inter, Arial, sans-serif;
+    }
+    body.theme-dark {
+      --page-bg: #0a1730;
+      --section-bg: #101f3d;
+      --section-soft: #15284d;
+      --section-light: #f8f6f0;
+      --card-bg: rgba(255, 255, 255, .07);
+      --card-bg-solid: #101f3d;
+      --text-heading: #ffffff;
+      --text-body: rgba(255, 255, 255, .82);
+      --text-muted: rgba(255, 255, 255, .66);
+      --text-soft: rgba(255, 255, 255, .54);
+      --border-soft: rgba(255, 255, 255, .14);
+      --border-on-light: rgba(10, 23, 48, .12);
+      --text-on-light-heading: #0a1730;
+      --text-on-light-body: #334155;
+      --text-on-light-muted: #64748b;
+      --input-bg: rgba(255, 255, 255, .08);
+      --input-text: #ffffff;
+      --input-placeholder: rgba(255, 255, 255, .52);
+      --nav-bg: rgba(10, 23, 48, .9);
+      --footer-bg: #050d1d;
+      --footer-text: rgba(233, 241, 255, .82);
+      --footer-soft: rgba(233, 241, 255, .62);
+      --bg-page: var(--page-bg);
+      --bg-glow: rgba(224,193,120,.1);
+      --surface-1: var(--section-bg);
+      --surface-2: var(--section-soft);
+      --text-strong: var(--text-heading);
+      --text-inverse: #ffffff;
+      --line-soft: var(--border-soft);
+      --mobile-overlay: rgba(4, 10, 24, .72);
+      --shadow: 0 24px 70px rgba(0, 0, 0, .42);
+      --heading: var(--text-heading);
+      --muted: var(--text-body);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -38,7 +105,7 @@
     }
     body {
       font-size: 15px;
-      background: radial-gradient(circle at 85% -5%, rgba(199,163,90,.12), transparent 28%), var(--ivory);
+      background: radial-gradient(circle at 85% -5%, var(--bg-glow), transparent 28%), var(--ivory);
       color: var(--ink);
       line-height: 1.65;
       overflow-x: hidden;
@@ -53,7 +120,7 @@
     .container { width: min(var(--max), calc(100% - 42px)); margin: 0 auto; }
     .nav {
       position: sticky; top: 0; z-index: 50;
-      background: rgba(255, 255, 255, .92);
+      background: var(--nav-bg);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(18px);
     }
@@ -64,7 +131,7 @@
     .brand {
       display: flex; align-items: center; gap: 11px;
       font-family: var(--serif); font-size: clamp(17px, 2.2vw, 22px);
-      font-weight: 700; letter-spacing: -.03em; color: var(--navy);
+      font-weight: 700; letter-spacing: -.03em; color: var(--heading);
       min-width: 0;
     }
     .brand small {
@@ -83,7 +150,7 @@
     .nav-actions { display: flex; align-items: center; gap: 10px; }
     .lang-switcher {
       display: inline-flex; border: 1px solid var(--line);
-      border-radius: 999px; overflow: hidden; background: #fff;
+      border-radius: 999px; overflow: hidden; background: var(--surface-1);
     }
     .lang-btn {
       border: 0; background: transparent; color: var(--muted);
@@ -91,7 +158,32 @@
       padding: 8px 11px; cursor: pointer; transition: .2s ease;
     }
     .lang-btn.active { background: var(--navy); color: #fff; }
-    .lang-btn:not(.active):hover { color: var(--navy); }
+    .lang-btn:not(.active):hover { color: var(--heading); }
+    .theme-toggle {
+      display: inline-flex; align-items: center; gap: 8px;
+      min-height: 38px; padding: 0 12px;
+      border: 1px solid var(--line); border-radius: 999px;
+      background: var(--surface-1); color: var(--heading);
+      font-size: 11px; font-weight: 900; letter-spacing: .04em;
+      cursor: pointer;
+    }
+    .theme-icon { width: 16px; height: 16px; display: inline-grid; place-items: center; color: var(--gold); }
+    .theme-icon svg {
+      width: 16px; height: 16px; stroke: currentColor; fill: none;
+      stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .theme-icon-sun { display: none; }
+    .theme-icon-moon { display: inline-grid; }
+    body.theme-light .theme-icon-sun { display: inline-grid; }
+    body.theme-light .theme-icon-moon { display: none; }
+    body.theme-dark .theme-icon-sun { display: none; }
+    body.theme-dark .theme-icon-moon { display: inline-grid; }
+    .theme-label { white-space: nowrap; }
+    .theme-toggle:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 4px rgba(199, 163, 90, .2);
+    }
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
       min-height: 46px; padding: 0 20px; border-radius: 4px;
@@ -116,14 +208,14 @@
       background: rgba(255, 255, 255, .08);
     }
     .btn-light {
-      background: #fff; color: var(--navy);
+      background: var(--surface-1); color: var(--heading);
       border-color: rgba(255, 255, 255, .8);
       box-shadow: 0 14px 34px rgba(0, 0, 0, .12);
     }
     .menu-toggle {
-      display: none; border: 1px solid var(--line); background: #fff;
+      display: none; border: 1px solid var(--line); background: var(--surface-1);
       width: 42px; height: 42px; border-radius: 10px; cursor: pointer;
-      color: var(--navy); font-size: 18px;
+      color: var(--heading); font-size: 18px;
     }
     .hero {
       position: relative; min-height: 760px; display: grid;
@@ -147,7 +239,7 @@
     }
     .hero-visual::before {
       content: ""; position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(10,23,48,.18), rgba(10,23,48,.78));
+      background: linear-gradient(180deg, rgba(10,23,48,.28), rgba(10,23,48,.88));
       z-index: 1;
     }
     .hero-visual img { position: absolute; inset: 0; }
@@ -157,7 +249,7 @@
       border-radius: 14px; padding: 16px;
     }
     .hero-panel strong { color: var(--gold-2); display: block; margin-bottom: 6px; font-size: 16px; }
-    .hero-panel p { color: rgba(255,255,255,.78); font-size: 13px; }
+    .hero-panel p { color: rgba(255,255,255,.84); font-size: 13px; }
     .hero-chip-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
     .hero-chip {
       background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.18);
@@ -188,11 +280,12 @@
       content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
     }
     h1 {
-      font-family: var(--serif), "Noto Sans Khmer", Inter, Arial, sans-serif; font-size: clamp(40px, 6.5vw, 78px);
-      line-height: .98; letter-spacing: -.045em; margin: 22px 0 22px; color: inherit;
+      font-family: var(--serif), "Noto Sans Khmer", Inter, Arial, sans-serif; font-size: clamp(34px, 5vw, 62px);
+      line-height: 1.06; letter-spacing: -.035em; margin: 20px 0 20px; color: inherit;
     }
-    .hero p { font-size: 18px; color: rgba(255, 255, 255, .78); max-width: 700px; }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+    .hero h1 { color: #fff; text-shadow: 0 2px 18px rgba(0, 0, 0, .18); }
+    .hero p { font-size: 17px; color: rgba(255, 255, 255, .86); max-width: 650px; text-shadow: 0 1px 14px rgba(0, 0, 0, .2); }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
     .hero-stats {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 12px; margin-top: 38px; max-width: 680px;
@@ -205,8 +298,29 @@
     .hero-stat strong { display: block; font-size: 26px; line-height: 1; color: var(--gold-2); }
     .hero-stat span { font-size: 12px; color: rgba(255, 255, 255, .7); font-weight: 800; }
     .section { padding: 88px 0; }
-    .section.light { background: #fff; }
+    .section.light { background: var(--surface-1); }
     .section.soft { background: var(--soft); border-block: 1px solid var(--line); }
+    /* Force readable dark text on light/ivory sections in both themes */
+    .section.light,
+    .section.soft {
+      background: var(--section-light);
+      color: var(--text-on-light-body);
+      border-color: var(--border-on-light);
+    }
+    .section.light .section-head h2,
+    .section.soft .section-head h2,
+    .section.light h3,
+    .section.soft h3 {
+      color: var(--text-on-light-heading);
+    }
+    .section.light .section-head p,
+    .section.soft .section-head p,
+    .section.light p,
+    .section.soft p {
+      color: var(--text-on-light-body);
+    }
+    .section.light .label,
+    .section.soft .label { color: var(--gold); }
     .section-head { text-align: center; max-width: 760px; margin: 0 auto 42px; }
     .section-head.left { text-align: left; margin-left: 0; }
     .label {
@@ -215,16 +329,62 @@
     }
     h2 {
       font-family: var(--serif), "Noto Sans Khmer", Inter, Arial, sans-serif; font-size: clamp(34px, 5vw, 58px);
-      line-height: 1; letter-spacing: -.04em; color: var(--navy); margin-bottom: 14px;
+      line-height: 1; letter-spacing: -.04em; color: var(--heading); margin-bottom: 14px;
     }
-    h3 { font-family: "Noto Sans Khmer", var(--serif), Inter, Arial, sans-serif; font-size: 20px; color: var(--navy); letter-spacing: -.02em; margin-bottom: 9px; }
+    h3 { font-family: "Noto Sans Khmer", var(--serif), Inter, Arial, sans-serif; font-size: 20px; color: var(--heading); letter-spacing: -.02em; margin-bottom: 9px; }
     .section-head p { color: var(--muted); }
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
     .card {
-      background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--card-bg-solid); border: 1px solid var(--line); border-radius: var(--radius);
       box-shadow: 0 18px 50px rgba(10, 23, 48, .08); overflow: hidden;
       transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+    }
+    .section.light .card,
+    .section.soft .card,
+    .section.light .process-step,
+    .section.soft .process-step,
+    .section.light .logo-item,
+    .section.soft .logo-item,
+    .section.light .faq-list,
+    .section.light .contact-card,
+    .section.light .form {
+      background: var(--card-bg);
+      border-color: var(--border-on-light);
+      color: var(--text-on-light-body);
+    }
+    .section.light .card h3,
+    .section.soft .card h3,
+    .section.light .process-step h3,
+    .section.soft .process-step h3,
+    .section.light .faq-q,
+    .section.soft .faq-q {
+      color: var(--text-on-light-heading);
+    }
+    .section.light .card p,
+    .section.soft .card p,
+    .section.light .faq-a,
+    .section.soft .faq-a,
+    .section.light .quote,
+    .section.soft .quote,
+    .section.light .logo-item,
+    .section.soft .logo-item,
+    .section.light .story-points li,
+    .section.soft .story-points li {
+      color: var(--text-on-light-body);
+    }
+    .section.light .lang-badge,
+    .section.soft .lang-badge,
+    .section.light .lang-badge.highlight,
+    .section.soft .lang-badge.highlight {
+      background: var(--card-bg);
+      color: var(--text-on-light-heading);
+      border-color: var(--border-on-light);
+    }
+    .section.light .highlight-box,
+    .section.soft .highlight-box {
+      color: var(--text-on-light-heading);
+      border-color: rgba(199, 163, 90, .3);
     }
     .card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(10, 23, 48, .16); border-color: rgba(199,163,90,.34); }
     .service-card { padding: 26px; }
@@ -237,6 +397,11 @@
     .icon svg { transition: transform .28s ease; }
     .card:hover .icon svg { transform: translateY(-2px) scale(1.05); }
     .card p { color: var(--muted); font-size: 14px; }
+    .documents-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .document-card { padding: 24px; display: grid; gap: 14px; align-content: start; }
+    .document-card .icon { margin-bottom: 2px; }
+    .document-card p { min-height: 68px; }
+    .document-action { margin-top: 4px; width: fit-content; }
     .visual-story {
       display: grid; grid-template-columns: 1.05fr .95fr; gap: 22px; align-items: stretch;
     }
@@ -247,10 +412,11 @@
     }
     .story-overlay {
       position: absolute; inset: auto 18px 18px 18px;
-      background: rgba(10,23,48,.86); color: #fff; border-radius: 12px;
+      background: rgba(10,23,48,.9); color: #fff; border-radius: 12px;
       border: 1px solid rgba(224,193,120,.24); padding: 14px;
     }
     .story-overlay strong { color: var(--gold-2); display: block; margin-bottom: 4px; }
+    .story-overlay p { color: rgba(255,255,255,.84); font-size: 13px; }
     .story-content.card { padding: 28px; }
     .story-points { margin-top: 16px; display: grid; gap: 10px; }
     .story-points li {
@@ -264,9 +430,9 @@
       margin-top: 28px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px;
     }
     .logo-item {
-      background: #fff; border: 1px solid var(--line); border-radius: 12px;
+      background: var(--card-bg-solid); border: 1px solid var(--line); border-radius: 12px;
       min-height: 74px; display: grid; place-items: center; text-align: center;
-      padding: 10px; color: var(--muted); font-size: 12px; font-weight: 800;
+      padding: 10px; color: var(--text-body); font-size: 12px; font-weight: 800;
       box-shadow: 0 10px 24px rgba(10,23,48,.06);
     }
     .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -282,7 +448,7 @@
     .showcase-card:hover img { transform: scale(1.05); }
     .showcase-card::before {
       content: ""; position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(10,23,48,.1), rgba(10,23,48,.84));
+      background: linear-gradient(180deg, rgba(10,23,48,.18), rgba(10,23,48,.92));
       z-index: 1;
     }
     .showcase-body { position: absolute; left: 18px; right: 18px; bottom: 18px; z-index: 2; color: #fff; }
@@ -290,8 +456,8 @@
       display: inline-flex; border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.12);
       border-radius: 999px; padding: 6px 10px; font-size: 11px; font-weight: 800; margin-bottom: 10px;
     }
-    .showcase-body h3 { color: #fff; }
-    .showcase-body p { color: rgba(255,255,255,.76); font-size: 13px; }
+    .showcase-body h3 { color: #fff; text-shadow: 0 2px 14px rgba(0,0,0,.28); }
+    .showcase-body p { color: rgba(255,255,255,.84); font-size: 13px; text-shadow: 0 1px 12px rgba(0,0,0,.24); }
     .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .testimonial-card { padding: 22px; }
     .testimonial-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
@@ -300,15 +466,15 @@
       border: 2px solid rgba(199,163,90,.45); flex: 0 0 52px;
     }
     .stars { color: var(--gold); letter-spacing: 1px; font-size: 14px; margin-bottom: 8px; }
-    .quote { color: var(--muted); font-size: 14px; }
+    .quote { color: var(--text-body); font-size: 14px; }
     .lang-badges {
       display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
       margin: 28px 0 24px;
     }
     .lang-badge {
-      background: #fff;
-      color: var(--navy);
-      border: 1px solid rgba(18, 32, 60, .12);
+      background: var(--surface-1);
+      color: var(--heading);
+      border: 1px solid var(--line);
       border-radius: 999px;
       padding: 12px 20px;
       font-weight: 900;
@@ -317,21 +483,21 @@
       cursor: default;
     }
     .lang-badge.highlight {
-      background: #fff;
-      color: var(--navy);
-      border-color: rgba(18, 32, 60, .12);
+      background: var(--surface-1);
+      color: var(--heading);
+      border-color: var(--line);
     }
     .highlight-box {
       max-width: 720px; margin: 0 auto; text-align: center;
       background: linear-gradient(135deg, rgba(199, 163, 90, .14), rgba(199, 163, 90, .06));
       border: 1px solid rgba(199, 163, 90, .28); border-radius: var(--radius);
-      padding: 22px 28px; color: var(--navy); font-weight: 800; font-size: 15px;
+      padding: 22px 28px; color: var(--heading); font-weight: 800; font-size: 15px;
     }
     .industry-card { padding: 24px; text-align: center; }
     .industry-card .icon { margin: 0 auto 16px; }
     .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
     .process-step {
-      background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+      background: var(--surface-1); border: 1px solid var(--line); border-radius: var(--radius);
       padding: 24px; box-shadow: 0 14px 40px rgba(10, 23, 48, .07);
       position: relative;
     }
@@ -350,16 +516,18 @@
       display: block; font-size: 28px; color: var(--gold-2);
       line-height: 1; margin-bottom: 8px; font-family: var(--serif);
     }
-    .trust-item span { font-size: 13px; color: rgba(255, 255, 255, .72); font-weight: 800; }
+    .trust-item span { font-size: 13px; color: rgba(255, 255, 255, .8); font-weight: 800; }
     .faq-list {
-      max-width: 900px; margin: 0 auto; background: #fff;
+      max-width: 900px; margin: 0 auto; background: var(--surface-1);
       border: 1px solid var(--line); border-radius: var(--radius);
       box-shadow: var(--shadow); padding: 8px 24px;
     }
     .faq-item { border-bottom: 1px solid var(--line); padding: 18px 0; }
     .faq-item:last-child { border-bottom: 0; }
-    .faq-q { font-weight: 900; color: var(--ink); margin-bottom: 6px; }
-    .faq-a { color: var(--muted); font-size: 14px; }
+    .faq-q { font-weight: 900; color: var(--text-heading); margin-bottom: 6px; }
+    .faq-a { color: var(--text-body); font-size: 14px; }
+    .section.light .faq-item,
+    .section.soft .faq-item { border-color: var(--border-on-light); }
     .cta-band {
       background: linear-gradient(135deg, var(--navy), var(--navy-3));
       color: #fff; border-radius: var(--radius); padding: 54px;
@@ -372,39 +540,91 @@
       background: radial-gradient(circle, rgba(199, 163, 90, .22), transparent 64%);
     }
     .cta-band h2 { color: #fff; max-width: 620px; margin-bottom: 0; position: relative; z-index: 1; }
-    .cta-band p { color: rgba(255, 255, 255, .74); margin-top: 12px; position: relative; z-index: 1; }
+    .cta-band p { color: rgba(255, 255, 255, .8); margin-top: 12px; position: relative; z-index: 1; }
+    .cta-band .btn-light {
+      background: #fff;
+      color: var(--navy);
+      border-color: rgba(255, 255, 255, .88);
+    }
     .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1; }
+    .section.light .story-overlay,
+    .section.soft .story-overlay,
+    .section.light .showcase-body,
+    .section.soft .showcase-body,
+    .section.light .cta-band,
+    .section.soft .cta-band {
+      color: #fff;
+    }
+    .section.light .story-overlay p,
+    .section.soft .story-overlay p,
+    .section.light .showcase-body p,
+    .section.soft .showcase-body p,
+    .section.light .cta-band p,
+    .section.soft .cta-band p {
+      color: rgba(255, 255, 255, .84);
+    }
+    .section.light .showcase-body h3,
+    .section.soft .showcase-body h3,
+    .section.light .cta-band h2,
+    .section.soft .cta-band h2 {
+      color: #fff;
+    }
+    .section.light .story-overlay strong,
+    .section.soft .story-overlay strong {
+      color: var(--gold-2);
+    }
     .contact-grid {
       display: grid; grid-template-columns: .86fr 1.14fr;
       gap: 24px; align-items: start;
     }
     .contact-list { display: grid; gap: 14px; }
     .contact-card {
-      display: flex; gap: 14px; background: #fff;
+      display: flex; gap: 14px; background: var(--surface-1);
       border: 1px solid var(--line); border-radius: var(--radius);
       padding: 20px; box-shadow: 0 14px 38px rgba(10, 23, 48, .07);
       transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
     }
     .contact-card:hover { transform: translateY(-4px); box-shadow: 0 18px 44px rgba(10, 23, 48, .12); border-color: rgba(199,163,90,.34); }
     .contact-card .icon { margin: 0; flex: 0 0 48px; }
+    .contact-card h3 { color: var(--text-on-light-heading); }
+    .contact-card p { color: var(--text-on-light-body); }
     .form {
-      background: #fff; border: 1px solid var(--line);
+      background: var(--surface-1); border: 1px solid var(--line);
       border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px;
     }
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .field { display: grid; gap: 6px; }
     .field.full { grid-column: 1 / -1; }
-    label { font-size: 12px; font-weight: 900; color: var(--navy); }
+    label { font-size: 12px; font-weight: 900; color: var(--heading); }
+    .section.light label,
+    .section.soft label { color: var(--text-on-light-heading); }
     input, select, textarea {
       width: 100%; border: 1px solid var(--line); border-radius: 8px;
-      background: #f9fafc; color: var(--ink); padding: 12px 13px; outline: none;
+      background: var(--input-bg); color: var(--input-text); padding: 12px 13px; outline: none;
     }
+    .section.light input,
+    .section.light select,
+    .section.light textarea,
+    .section.soft input,
+    .section.soft select,
+    .section.soft textarea {
+      background: #fff;
+      color: var(--text-on-light-heading);
+      border-color: var(--border-on-light);
+    }
+    .section.light input::placeholder,
+    .section.light textarea::placeholder,
+    .section.soft input::placeholder,
+    .section.soft textarea::placeholder {
+      color: var(--text-on-light-muted);
+    }
+    input::placeholder, textarea::placeholder { color: var(--input-placeholder); opacity: 1; }
     input:focus, select:focus, textarea:focus {
       border-color: var(--gold); box-shadow: 0 0 0 3px rgba(199, 163, 90, .18);
     }
     textarea { min-height: 120px; resize: vertical; }
     .demo-note {
-      display: none; margin-top: 14px; color: var(--muted);
+      display: none; margin-top: 14px; color: var(--text-body);
       font-size: 12px; font-weight: 600; line-height: 1.6;
     }
     .demo-note.show { display: block; }
@@ -422,17 +642,17 @@
     .reveal-delay-2 { transition-delay: .16s; }
     .reveal-delay-3 { transition-delay: .24s; }
     .reveal-delay-4 { transition-delay: .32s; }
-    footer { background: var(--navy); color: #fff; padding: 58px 0 28px; }
+    footer { background: var(--footer-bg); color: var(--text-inverse); padding: 58px 0 28px; }
     .footer-grid { display: grid; grid-template-columns: 1.4fr repeat(2, 1fr); gap: 28px; }
     .footer-brand { font-family: var(--serif); font-size: 24px; margin-bottom: 12px; }
-    footer p, footer a { color: rgba(255, 255, 255, .72); font-size: 14px; }
-    footer h4 { color: #fff; margin-bottom: 12px; font-size: 14px; }
+    footer p, footer a { color: var(--footer-text); font-size: 14px; }
+    footer h4 { color: var(--text-inverse); margin-bottom: 12px; font-size: 14px; }
     .footer-links { display: grid; gap: 8px; }
     .footer-links a:hover { color: var(--gold-2); }
     .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, .12);
+      border-top: 1px solid var(--line-soft);
       margin-top: 34px; padding-top: 20px;
-      font-size: 12px; color: rgba(255, 255, 255, .58);
+      font-size: 12px; color: var(--footer-soft);
     }
     .sticky-cta {
       position: fixed; right: 18px; bottom: 18px; z-index: 60;
@@ -444,19 +664,42 @@
     .sticky-cta.hide { opacity: 0; pointer-events: none; transform: translateY(12px); }
     .mobile-menu {
       display: none; position: fixed; inset: 0; z-index: 80;
-      background: rgba(10, 23, 48, .55); backdrop-filter: blur(6px);
+      background: var(--mobile-overlay); backdrop-filter: blur(6px);
     }
     .mobile-menu.open { display: block; }
     .mobile-panel {
       position: absolute; top: 0; right: 0; width: min(320px, 88vw);
-      height: 100%; background: #fff; padding: 24px;
+      height: 100%; background: var(--surface-1); padding: 24px;
       box-shadow: -20px 0 60px rgba(10, 23, 48, .18);
       display: grid; align-content: start; gap: 14px;
     }
-    .mobile-panel a { font-weight: 800; color: var(--navy); padding: 8px 0; }
+    .mobile-panel a { font-weight: 800; color: var(--heading); padding: 8px 0; }
     .close-menu {
-      justify-self: end; border: 1px solid var(--line); background: #fff;
-      width: 40px; height: 40px; border-radius: 10px; cursor: pointer; color: var(--navy);
+      justify-self: end; border: 1px solid var(--line); background: var(--surface-1);
+      width: 40px; height: 40px; border-radius: 10px; cursor: pointer; color: var(--heading);
+    }
+    body,
+    .nav,
+    .card,
+    .service-card,
+    .industry-card,
+    .faq-item,
+    .contact-card,
+    .document-card,
+    .form,
+    .mobile-panel,
+    footer,
+    input,
+    textarea,
+    select,
+    .lang-switcher,
+    .theme-toggle,
+    .menu-toggle {
+      transition:
+        background-color .28s ease,
+        color .28s ease,
+        border-color .28s ease,
+        box-shadow .28s ease;
     }
     body.lang-km .label {
       text-transform: none;
@@ -472,12 +715,13 @@
       text-transform: none;
     }
     body.lang-km h1 { line-height: 1.25; }
+    body.lang-km .hero h1 { line-height: 1.36; letter-spacing: 0; max-width: 720px; }
     body.lang-km h2 { line-height: 1.32; }
     body.lang-km h3 { line-height: 1.45; }
     @media (max-width: 980px) {
       .links { display: none; }
       .menu-toggle { display: grid; place-items: center; }
-      .grid-3, .grid-4, .process-grid, .trust-strip, .contact-grid, .footer-grid, .hero-grid, .visual-story, .showcase-grid, .testimonials-grid, .logo-strip {
+      .grid-3, .grid-4, .process-grid, .trust-strip, .contact-grid, .footer-grid, .hero-grid, .visual-story, .showcase-grid, .testimonials-grid, .logo-strip, .documents-grid {
         grid-template-columns: 1fr 1fr;
       }
       .hero { min-height: auto; }
@@ -490,14 +734,21 @@
       .nav-inner { height: auto; min-height: 72px; flex-wrap: wrap; padding: 10px 0; }
       .brand { font-size: 16px; }
       .hero-stats, .grid-3, .grid-4, .process-grid, .trust-strip,
-      .contact-grid, .footer-grid, .form-grid, .hero-grid, .visual-story, .showcase-grid, .testimonials-grid, .logo-strip { grid-template-columns: 1fr; }
+      .contact-grid, .footer-grid, .form-grid, .hero-grid, .visual-story, .showcase-grid, .testimonials-grid, .logo-strip, .documents-grid { grid-template-columns: 1fr; }
       .section { padding: 58px 0; }
       .hero-inner { padding: 58px 0; }
       .btn { width: 100%; }
+      .document-action { width: 100%; }
+      .document-card p { min-height: 0; }
       .hero-actions, .cta-actions { width: 100%; }
       .sticky-cta { left: 14px; right: 14px; text-align: center; }
       .nav-actions .btn-primary { display: none; }
+      .theme-toggle { min-height: 36px; padding: 0 10px; }
       .hero-visual { min-height: 390px; }
+    }
+    @media (max-width: 420px) {
+      .theme-label { display: none; }
+      .theme-toggle { width: 40px; justify-content: center; padding: 0; }
     }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(22px); }
@@ -524,7 +775,7 @@
     gtag('config', 'G-6QKJFRHY7M');
   </script>
 </head>
-<body class="lang-en">
+<body class="lang-en theme-light">
   <header class="nav">
     <div class="container nav-inner">
       <a class="brand" href="#home">
@@ -536,6 +787,7 @@
         <a href="#languages"><span class="lang-text" data-en="Languages" data-km="ភាសា">Languages</span></a>
         <a href="#industries"><span class="lang-text" data-en="Industries" data-km="វិស័យ">Industries</span></a>
         <a href="#why"><span class="lang-text" data-en="Why Us" data-km="ហេតุផលជ្រើសរើស">Why Us</span></a>
+        <a href="#documents"><span class="lang-text" data-en="Documents" data-km="ឯកសារ">Documents</span></a>
         <a href="#faq"><span class="lang-text" data-en="FAQ" data-km="សំណួរ">FAQ</span></a>
         <a href="#contact"><span class="lang-text" data-en="Contact" data-km="ទំនាក់ទំនង">Contact</span></a>
       </nav>
@@ -544,6 +796,15 @@
           <button class="lang-btn active" id="btnEn" type="button" aria-pressed="true">EN</button>
           <button class="lang-btn" id="btnKm" type="button" aria-pressed="false">KM</button>
         </div>
+        <button class="theme-toggle" type="button" id="themeToggle" data-theme-toggle aria-label="Switch color theme" aria-pressed="false">
+          <span class="theme-icon theme-icon-sun" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
+          </span>
+          <span class="theme-icon theme-icon-moon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3c0 0-1.71 6.79 2.09 10.59S21 12.79 21 12.79z"/></svg>
+          </span>
+          <span class="theme-label lang-text" data-en="Dark" data-km="ងងឹត">Dark</span>
+        </button>
         <a class="btn btn-primary" href="#contact"><span class="lang-text" data-en="Get a Quote" data-km="ស្នើសុំតម្លៃ">Get a Quote</span></a>
         <button class="menu-toggle" type="button" id="menuOpen" aria-label="Open menu">☰</button>
       </div>
@@ -553,10 +814,20 @@
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <div class="mobile-panel">
       <button class="close-menu" type="button" id="menuClose" aria-label="Close menu">✕</button>
+      <button class="theme-toggle" type="button" id="themeToggleMobile" data-theme-toggle aria-label="Switch color theme" aria-pressed="false">
+        <span class="theme-icon theme-icon-sun" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M2 12h3M19 12h3M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
+        </span>
+        <span class="theme-icon theme-icon-moon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3c0 0-1.71 6.79 2.09 10.59S21 12.79 21 12.79z"/></svg>
+        </span>
+        <span class="theme-label lang-text" data-en="Dark" data-km="ងងឹត">Dark</span>
+      </button>
       <a href="#services"><span class="lang-text" data-en="Services" data-km="សេវាកម្ម">Services</span></a>
       <a href="#languages"><span class="lang-text" data-en="Languages" data-km="ភាសា">Languages</span></a>
       <a href="#industries"><span class="lang-text" data-en="Industries" data-km="វិស័យ">Industries</span></a>
       <a href="#why"><span class="lang-text" data-en="Why Us" data-km="ហេតุផលជ្រើសរើស">Why Us</span></a>
+      <a href="#documents"><span class="lang-text" data-en="Documents" data-km="ឯកសារ">Documents</span></a>
       <a href="#faq"><span class="lang-text" data-en="FAQ" data-km="សំណួរ">FAQ</span></a>
       <a href="#contact"><span class="lang-text" data-en="Contact" data-km="ទំនាក់ទំនង">Contact</span></a>
       <a class="btn btn-primary" href="#contact"><span class="lang-text" data-en="Get a Quote" data-km="ស្នើសុំតម្លៃ">Get a Quote</span></a>
@@ -572,8 +843,8 @@
         <div class="hero-grid">
           <div class="hero-copy">
             <span class="badge"><span class="lang-text" data-en="Professional Language Services Since 1987" data-km="ក្រុមហ៊ុនបកប្រែ តាំងពីឆ្នាំ ១៩៨៧">Professional Language Services Since 1987</span></span>
-            <h1><span class="lang-text" data-en="Translation, Interpretation &amp; Conference Language Services in Cambodia" data-km="សេវាបកប្រែឯកសារ · សេវាបកប្រែផ្ទាល់មាត់ · ឧបករណ៍សម្រាប់សន្និសីទ នៅកម្ពុជា">Translation, Interpretation &amp; Conference Language Services in Cambodia</span></h1>
-            <p><span class="lang-text" data-en="Trusted by businesses, NGOs, and government institutions for 39 years. Strong in Vietnamese and English across 7 working languages." data-km="យើងទទួលបានការជឿទុកចិត្តពីអតិថិជនអាជីវកម្ម អង្គការមិនមែនរដ្ឋាភិបាល និងស្ថាប័នរដ្ឋ អស់រយៈពេល ៣៩ ឆ្នាំ។ យើងមានជំនាញខ្លាំងលើភាសាវៀតណាម និងអង់គ្លេស ក្នុងការបម្រើ ៧ ភាសា។">Trusted by businesses, NGOs, and government institutions for 39 years. Strong in Vietnamese and English across 7 working languages.</span></p>
+            <h1><span class="lang-text" data-en="Trusted Document Translation Service" data-km="សេវាបកប្រែឯកសារ ប្រកបដោយទំនុកចិត្ត">Trusted Document Translation Service</span></h1>
+            <p><span class="lang-text" data-en="Professional translation support for documents, audio, and text with attention to accuracy, confidentiality, and clear communication." data-km="បកប្រែឯកសារ សំឡេង និងអត្ថបទ សម្រាប់អាជីវកម្ម និងបុគ្គល ដោយយកចិត្តទុកដាក់លើភាពត្រឹមត្រូវ និងឯកជនភាព។">Professional translation support for documents, audio, and text with attention to accuracy, confidentiality, and clear communication.</span></p>
             <div class="hero-actions">
               <a class="btn btn-primary" href="#contact"><span class="lang-text" data-en="Get a Quote" data-km="ស្នើសុំតម្លៃ">Get a Quote</span></a>
               <a class="btn btn-outline" href="#services"><span class="lang-text" data-en="Our Services" data-km="សេវាកម្មរបស់យើង">Our Services</span></a>
@@ -936,6 +1207,36 @@
       </div>
     </section>
 
+    <section class="section soft" id="documents">
+      <div class="container">
+        <div class="section-head">
+          <div class="label"><span class="lang-text" data-en="Client Documents" data-km="ឯកសារអតិថិជន">Client Documents</span></div>
+          <h2><span class="lang-text" data-en="Reference Documents &amp; Additional Information" data-km="ឯកសារយោង និងព័ត៌មានបន្ថែម">Reference Documents &amp; Additional Information</span></h2>
+          <p><span class="lang-text" data-en="Official company reference files are available for review in PDF format. Files open in a new tab for easy checking." data-km="ឯកសារយោងផ្លូវការរបស់ក្រុមហ៊ុនមានជាទម្រង់ PDF សម្រាប់ពិនិត្យមើល។ ឯកសារនឹងបើកក្នុងផ្ទាំងថ្មី។">Official company reference files are available for review in PDF format. Files open in a new tab for easy checking.</span></p>
+        </div>
+        <div class="documents-grid">
+          <article class="card document-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg></div>
+            <h3><span class="lang-text" data-en="Commercial Registration" data-km="ចុះបញ្ជីពាណិជ្ជកម្ម">Commercial Registration</span></h3>
+            <p><span class="lang-text" data-en="Company registration reference document provided by Lymba Seven Star Translation." data-km="ឯកសារយោងចុះបញ្ជីក្រុមហ៊ុន ដែលផ្តល់ដោយ Lymba Seven Star Translation។">Company registration reference document provided by Lymba Seven Star Translation.</span></p>
+            <a class="btn btn-light document-action" href="assets/ចុះបញ្ជីពាណិជ្ជកម្ម.pdf" target="_blank" rel="noopener"><span class="lang-text" data-en="View PDF" data-km="មើល PDF">View PDF</span></a>
+          </article>
+          <article class="card document-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h12v18H6z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></div>
+            <h3><span class="lang-text" data-en="Company Patent Document" data-km="ប៉ាតង់ក្រុមហ៊ុន">Company Patent Document</span></h3>
+            <p><span class="lang-text" data-en="Patent or tax reference file supplied as part of the client's official document set." data-km="ឯកសារប៉ាតង់ ឬឯកសារយោងពន្ធ ដែលបានផ្តល់ជាផ្នែកមួយនៃឯកសារផ្លូវការរបស់អតិថិជន។">Patent or tax reference file supplied as part of the client's official document set.</span></p>
+            <a class="btn btn-light document-action" href="assets/ប៉ាតង់ក្រុមហ៊ុន.pdf" target="_blank" rel="noopener"><span class="lang-text" data-en="View PDF" data-km="មើល PDF">View PDF</span></a>
+          </article>
+          <article class="card document-card">
+            <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></div>
+            <h3><span class="lang-text" data-en="Company Extract" data-km="សម្រង់ក្រុមហ៊ុន">Company Extract</span></h3>
+            <p><span class="lang-text" data-en="Additional company information document for reference and client confidence." data-km="ឯកសារព័ត៌មានបន្ថែមអំពីក្រុមហ៊ុន សម្រាប់យោង និងបង្កើនទំនុកចិត្តអតិថិជន។">Additional company information document for reference and client confidence.</span></p>
+            <a class="btn btn-light document-action" href="assets/សម្រង់ក្រុមហ៊ុនទាំងអស់.pdf" target="_blank" rel="noopener"><span class="lang-text" data-en="View PDF" data-km="មើល PDF">View PDF</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section soft">
       <div class="container">
         <div class="cta-band">
@@ -971,21 +1272,21 @@
               <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.5 3h3l1.4 4-1.9 2a15 15 0 0 0 5.9 5.9l2-1.9 4 1.4v3c0 1-.8 1.8-1.8 1.7C10.8 18.7 5.3 13.2 4.8 5A1.8 1.8 0 0 1 6.5 3z"/></svg></div>
               <div>
                 <h3><span class="lang-text" data-en="Phone" data-km="ទូរស័ព្ទ">Phone</span></h3>
-                <p><span class="lang-text" data-en="[Phone number to be confirmed]" data-km="[លេខទូរស័ព្ទនឹងបញ្ជាក់បន្ថែម]">[Phone number to be confirmed]</span></p>
+                <p>(+855) 95 222 171<br>012 90 56 31</p>
               </div>
             </div>
             <div class="contact-card">
               <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 8 8 6 8-6"/></svg></div>
               <div>
                 <h3><span class="lang-text" data-en="Email" data-km="អ៊ីមែល">Email</span></h3>
-                <p><span class="lang-text" data-en="[Email to be confirmed]" data-km="[អ៊ីមែលនឹងបញ្ជាក់បន្ថែម]">[Email to be confirmed]</span></p>
+                <p>lymba7star.777@gmail.com<br>seilahang04@gmail.com.kh</p>
               </div>
             </div>
             <div class="contact-card">
               <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 5 3 12l7 2 2 7 9-16z"/><path d="M10 14 21 5"/></svg></div>
               <div>
                 <h3>Telegram</h3>
-                <p><span class="lang-text" data-en="[Telegram link to be confirmed]" data-km="[តំណ Telegram នឹងបញ្ជាក់បន្ថែម]">[Telegram link to be confirmed]</span></p>
+                <p>095 222 171<br>089 443 533</p>
               </div>
             </div>
           </div>
@@ -1042,6 +1343,7 @@
             <a href="#languages"><span class="lang-text" data-en="Languages" data-km="ភាសា">Languages</span></a>
             <a href="#industries"><span class="lang-text" data-en="Industries" data-km="វិស័យ">Industries</span></a>
             <a href="#why"><span class="lang-text" data-en="Why Us" data-km="ហេតุផល">Why Us</span></a>
+            <a href="#documents"><span class="lang-text" data-en="Documents" data-km="ឯកសារ">Documents</span></a>
             <a href="#faq"><span class="lang-text" data-en="FAQ" data-km="សំណួរ">FAQ</span></a>
             <a href="#contact"><span class="lang-text" data-en="Contact" data-km="ទំនាក់ទំនង">Contact</span></a>
           </div>
@@ -1049,9 +1351,9 @@
         <div>
           <h4><span class="lang-text" data-en="Contact" data-km="ទំនាក់ទំនង">Contact</span></h4>
           <div class="footer-links">
-            <span><span class="lang-text" data-en="Phone: [Phone number to be confirmed]" data-km="ទូរស័ព្ទ៖ [លេខទូរស័ព្ទនឹងបញ្ជាក់បន្ថែម]">Phone: [Phone number to be confirmed]</span></span>
-            <span><span class="lang-text" data-en="Email: [Email to be confirmed]" data-km="អ៊ីមែល៖ [អ៊ីមែលនឹងបញ្ជាក់បន្ថែម]">Email: [Email to be confirmed]</span></span>
-            <span>Telegram: <span class="lang-text" data-en="[Telegram link to be confirmed]" data-km="[តំណ Telegram នឹងបញ្ជាក់បន្ថែម]">[Telegram link to be confirmed]</span></span>
+            <span><span class="lang-text" data-en="Phone: (+855) 95 222 171 / 012 90 56 31" data-km="ទូរស័ព្ទ៖ (+855) 95 222 171 / 012 90 56 31">Phone: (+855) 95 222 171 / 012 90 56 31</span></span>
+            <span>Email: lymba7star.777@gmail.com</span>
+            <span>Telegram: 095 222 171 / 089 443 533</span>
             <span>Facebook: <span class="lang-text" data-en="[Facebook page to be confirmed]" data-km="[ទំព័រ Facebook នឹងបញ្ជាក់បន្ថែម]">[Facebook page to be confirmed]</span></span>
           </div>
         </div>
@@ -1065,12 +1367,47 @@
   <script>
     const btnEn = document.getElementById("btnEn");
     const btnKm = document.getElementById("btnKm");
+    const themeToggleButtons = [...document.querySelectorAll("[data-theme-toggle]")];
     const inquiryForm = document.getElementById("inquiryForm");
     const demoNote = document.getElementById("demoNote");
     const stickyCta = document.getElementById("stickyCta");
     const mobileMenu = document.getElementById("mobileMenu");
     const menuOpen = document.getElementById("menuOpen");
     const menuClose = document.getElementById("menuClose");
+    const THEME_KEY = "lymba-theme";
+
+    function getCurrentTheme() {
+      return document.body.classList.contains("theme-dark") ? "dark" : "light";
+    }
+
+    function updateThemeToggle(theme) {
+      const nextIsDark = theme === "light";
+      const labelEn = nextIsDark ? "Dark" : "Light";
+      const labelKm = nextIsDark ? "ងងឹត" : "ភ្លឺ";
+      const isKm = document.body.classList.contains("lang-km");
+      const ariaLabel = isKm
+        ? (nextIsDark ? "ប្ដូរទៅរបៀបងងឹត" : "ប្ដូរទៅរបៀបភ្លឺ")
+        : `Switch to ${nextIsDark ? "dark" : "light"} mode`;
+
+      themeToggleButtons.forEach((btn) => {
+        const label = btn.querySelector(".theme-label");
+        if (label) {
+          label.dataset.en = labelEn;
+          label.dataset.km = labelKm;
+          label.textContent = isKm ? labelKm : labelEn;
+        }
+        btn.setAttribute("aria-pressed", String(theme === "light"));
+        btn.setAttribute("aria-label", ariaLabel);
+      });
+    }
+
+    function applyTheme(theme) {
+      const safeTheme = theme === "dark" ? "dark" : "light";
+      document.body.classList.toggle("theme-light", safeTheme === "light");
+      document.body.classList.toggle("theme-dark", safeTheme === "dark");
+      try { localStorage.setItem(THEME_KEY, safeTheme); } catch (e) {}
+      updateThemeToggle(safeTheme);
+    }
 
     function setLang(lang) {
       const isEn = lang === "en";
@@ -1090,11 +1427,24 @@
       btnKm.classList.toggle("active", !isEn);
       btnEn.setAttribute("aria-pressed", String(isEn));
       btnKm.setAttribute("aria-pressed", String(!isEn));
+      updateThemeToggle(getCurrentTheme());
       try { localStorage.setItem("lymba-lang", lang); } catch (e) {}
     }
 
     btnEn.addEventListener("click", () => setLang("en"));
     btnKm.addEventListener("click", () => setLang("km"));
+    themeToggleButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const nextTheme = getCurrentTheme() === "light" ? "dark" : "light";
+        applyTheme(nextTheme);
+      });
+    });
+
+    (function () {
+      let savedTheme = "light";
+      try { savedTheme = localStorage.getItem(THEME_KEY) || "light"; } catch (e) {}
+      applyTheme(savedTheme);
+    })();
 
     (function () {
       let saved = "en";
@@ -1125,7 +1475,7 @@
 
     // Scroll reveal animation
     const revealTargets = [
-      ...document.querySelectorAll(".section-head, .visual-story > *, .logo-item, .grid-3 .card, .process-step, .showcase-card, .testimonials-grid .card, .faq-item, .contact-grid > *, .cta-band, .trust-item")
+      ...document.querySelectorAll(".section-head, .visual-story > *, .logo-item, .grid-3 .card, .process-step, .showcase-card, .testimonials-grid .card, .document-card, .faq-item, .contact-grid > *, .cta-band, .trust-item")
     ];
     revealTargets.forEach((el, idx) => {
       el.classList.add("reveal");
