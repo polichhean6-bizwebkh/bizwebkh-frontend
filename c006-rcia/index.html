@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Raamaid Cambodia International Academy — កម្មវិធីសិក្សា ៣ ភាសា និងការអភិវឌ្ឍកុមារ។">
+  <title>RCIA | Raamaid Cambodia International Academy</title>
+  <style>
+    :root {
+      --blue: #123ecf;
+      --blue-dark: #08246d;
+      --red: #ef202d;
+      --yellow: #ffd500;
+      --green: #2eaa66;
+      --cream: #fffaf0;
+      --ink: #102653;
+      --muted: #64718b;
+      --white: #fff;
+      --shadow: 0 18px 50px rgba(16,38,83,.12);
+      --radius: 30px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: "Noto Sans Khmer", "Khmer OS Battambang", "Segoe UI", Arial, sans-serif;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    body.menu-open { overflow: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea, select { font: inherit; }
+    button { cursor: pointer; }
+    .icon { width: 1.2em; height: 1.2em; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-fill { fill: currentColor; stroke: none; }
+    section { position: relative; scroll-margin-top: 90px; }
+    .container { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px;
+      margin-bottom: 14px; color: var(--red); font-size: .78rem;
+      font-weight: 900; letter-spacing: .08em; text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 28px; height: 4px; border-radius: 4px; background: var(--yellow); }
+    .section-head { max-width: 680px; margin: 0 auto 50px; text-align: center; }
+    .section-head h2, .split-copy h2, .cta-copy h2 {
+      font-size: clamp(2rem, 4vw, 3.35rem); line-height: 1.22; margin: 0 0 16px; letter-spacing: -.035em;
+    }
+    .section-head p, .split-copy p { color: var(--muted); margin: 0; }
+    .kicker { color: var(--blue); font-weight: 900; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      min-height: 52px; padding: 12px 24px; border: 0; border-radius: 999px;
+      font-weight: 900; transition: transform .25s, box-shadow .25s, background .25s;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { color: white; background: var(--red); box-shadow: 0 12px 28px rgba(239,32,45,.28); }
+    .btn-primary:hover { background: #d51521; box-shadow: 0 16px 34px rgba(239,32,45,.34); }
+    .btn-blue { color: white; background: var(--blue); box-shadow: 0 12px 28px rgba(18,62,207,.25); }
+    .btn-ghost { color: var(--blue-dark); border: 2px solid rgba(16,38,83,.13); background: white; }
+    .btn .arrow { font-size: 1.2em; transition: transform .25s; }
+    .btn:hover .arrow { transform: translateX(3px); }
+
+    header {
+      position: sticky; top: 0; z-index: 50; background: rgba(255,250,240,.93);
+      border-bottom: 1px solid rgba(16,38,83,.08); backdrop-filter: blur(16px);
+    }
+    .nav { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 235px; }
+    .brand-logo { width: 66px; height: 62px; padding: 4px; object-fit: contain; border-radius: 14px; border: 2px solid rgba(18,62,207,.12); background: white; box-shadow: 0 7px 18px rgba(16,38,83,.12); }
+    .brand-copy { line-height: 1.12; }
+    .brand-copy b { display: block; color: var(--red); font-size: 1.28rem; letter-spacing: .04em; }
+    .brand-copy span { display: block; margin-top: 4px; color: var(--blue); font-size: .6rem; font-weight: 900; text-transform: uppercase; }
+    .nav-links { display: flex; gap: 26px; align-items: center; font-size: .88rem; font-weight: 800; }
+    .nav-links a { position: relative; white-space: nowrap; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -8px; height: 3px; border-radius: 3px; background: var(--red); transition: right .25s; }
+    .nav-links a:hover::after { right: 0; }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .lang-switch { display: flex; gap: 3px; padding: 4px; border: 1px solid rgba(18,62,207,.14); border-radius: 999px; background: white; box-shadow: 0 5px 16px rgba(16,38,83,.07); }
+    .lang-btn { min-width: 40px; min-height: 36px; padding: 7px 10px; color: var(--muted); border: 0; border-radius: 999px; background: transparent; font-size: .72rem; font-weight: 900; transition: color .2s, background .2s, box-shadow .2s; }
+    .lang-btn.active { color: white; background: var(--blue); box-shadow: 0 5px 12px rgba(18,62,207,.24); }
+    .menu-btn { display: none; width: 46px; height: 46px; padding: 0; border: 0; border-radius: 50%; background: var(--blue); }
+    .menu-btn span { display: block; width: 20px; height: 2px; margin: 5px auto; background: white; transition: .25s; }
+
+    .hero { min-height: 720px; display: grid; align-items: center; padding: 68px 0 95px; background: linear-gradient(135deg,#fffaf0 5%,#fff 60%,#fff2be); isolation: isolate; }
+    .hero::after { content: ""; position: absolute; z-index: -1; left: 0; right: 0; bottom: -1px; height: 68px; background: var(--blue); clip-path: polygon(0 72%,10% 55%,21% 74%,32% 42%,47% 70%,59% 48%,72% 68%,87% 39%,100% 62%,100% 100%,0 100%); }
+    .hero-grid { display: grid; grid-template-columns: 1.04fr .96fr; gap: 70px; align-items: center; }
+    .hero-copy h1 { margin: 0 0 22px; font-size: clamp(2.65rem,5.6vw,5.25rem); line-height: 1.06; letter-spacing: -.055em; }
+    .hero-copy h1 span { color: var(--blue); }
+    .hero-copy h1 em { color: var(--red); font-style: normal; position: relative; }
+    .hero-copy h1 em::after { content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 9px; border-radius: 50%; background: var(--yellow); z-index: -1; transform: rotate(-1deg); }
+    .hero-copy p { max-width: 590px; color: var(--muted); font-size: 1.05rem; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+    .trust-row { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 36px; }
+    .trust-item { display: flex; align-items: center; gap: 10px; font-size: .86rem; font-weight: 800; }
+    .trust-icon { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; color: white; background: var(--green); }
+    .trust-icon .icon { width: 17px; height: 17px; }
+    .hero-visual { position: relative; min-height: 540px; }
+    .photo-blob { position: absolute; inset: 0 16px 0 45px; overflow: hidden; border-radius: 46% 54% 47% 53% / 35% 45% 55% 65%; box-shadow: var(--shadow); border: 10px solid white; background: var(--yellow); transform: rotate(2deg); }
+    .photo-blob img { width: 100%; height: 100%; object-fit: cover; object-position: center; transform: rotate(-2deg) scale(1.08); }
+    .float-card { position: absolute; z-index: 2; display: flex; align-items: center; gap: 12px; padding: 13px 17px; border: 3px solid white; border-radius: 18px; background: white; box-shadow: var(--shadow); font-size: .8rem; font-weight: 900; animation: float 4s ease-in-out infinite; }
+    .float-card .bubble { display: grid; place-items: center; flex: 0 0 40px; height: 40px; border-radius: 50%; }
+    .float-card .bubble .icon { width: 21px; height: 21px; color: var(--blue); }
+    .card-one { left: 0; top: 60px; }
+    .card-one .bubble { background: #e5ebff; }
+    .card-two { right: -15px; bottom: 75px; animation-delay: -2s; }
+    .card-two .bubble { background: #fff1b8; }
+    .doodle { position: absolute; z-index: -1; color: var(--red); animation: wiggle 5s ease-in-out infinite; }
+    .doodle .icon { width: 42px; height: 42px; stroke-width: 1.5; }
+    .doodle.star { right: -12px; top: 25px; }
+    .doodle.plus { left: 6px; bottom: 24px; color: var(--blue); }
+    @keyframes float { 50% { transform: translateY(-12px) rotate(-1deg); } }
+    @keyframes wiggle { 50% { transform: rotate(15deg) scale(1.08); } }
+
+    .mini-stats { margin-top: -1px; padding: 24px 0 32px; color: white; background: var(--blue); }
+    .stat-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+    .stat { padding: 12px 24px; text-align: center; border-right: 1px solid rgba(255,255,255,.2); }
+    .stat:last-child { border-right: 0; }
+    .stat strong { display: block; color: var(--yellow); font-size: 1.8rem; line-height: 1.2; }
+    .stat span { font-size: .82rem; opacity: .9; }
+
+    .about { padding: 110px 0; overflow: hidden; }
+    .about-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 80px; align-items: center; }
+    .about-visual { position: relative; min-height: 520px; }
+    .about-main { position: absolute; inset: 20px 60px 55px 0; overflow: hidden; border: 8px solid white; border-radius: 32px 120px 32px 120px; box-shadow: var(--shadow); }
+    .about-main img { width: 100%; height: 100%; object-fit: cover; }
+    .about-small { position: absolute; right: 0; bottom: 0; width: 44%; aspect-ratio: 1; overflow: hidden; border: 8px solid var(--cream); border-radius: 50%; box-shadow: var(--shadow); }
+    .about-small img { width: 100%; height: 100%; object-fit: cover; }
+    .about-badge { position: absolute; left: -22px; bottom: 48px; display: grid; place-items: center; width: 118px; height: 118px; padding: 14px; border-radius: 50%; color: white; background: var(--red); text-align: center; font-size: .77rem; font-weight: 900; box-shadow: 0 14px 26px rgba(239,32,45,.25); transform: rotate(-8deg); }
+    .check-list { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; margin: 28px 0 34px; padding: 0; list-style: none; }
+    .check-list li { display: flex; gap: 10px; font-size: .9rem; font-weight: 800; }
+    .check-list li::before { content: ""; display: grid; place-items: center; flex: 0 0 25px; height: 25px; border-radius: 50%; background: var(--green) center/14px 14px no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 4 4L19 6'/%3E%3C/svg%3E"); }
+
+    .programs { padding: 105px 0 120px; background: white; }
+    .programs::before { content: ""; position: absolute; top: -35px; left: 0; right: 0; height: 36px; background: white; clip-path: polygon(0 80%,7% 45%,16% 76%,27% 38%,39% 79%,50% 48%,61% 75%,74% 35%,86% 75%,94% 50%,100% 76%,100% 100%,0 100%); }
+    .program-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .program-card { position: relative; overflow: hidden; padding: 32px 28px 30px; border: 1px solid rgba(16,38,83,.08); border-radius: var(--radius); background: var(--cream); transition: transform .3s, box-shadow .3s; }
+    .program-card:hover { transform: translateY(-9px); box-shadow: var(--shadow); }
+    .program-card::after { content: ""; position: absolute; right: -36px; top: -36px; width: 120px; height: 120px; border-radius: 50%; background: var(--accent,#e8edff); opacity: .8; }
+    .program-card.featured { color: white; border-color: transparent; background: var(--blue); }
+    .program-card.featured p { color: rgba(255,255,255,.76); }
+    .program-icon { position: relative; z-index: 1; display: grid; place-items: center; width: 62px; height: 62px; margin-bottom: 25px; border-radius: 20px; color: var(--blue); background: white; box-shadow: 0 10px 25px rgba(16,38,83,.1); }
+    .program-icon .icon { width: 30px; height: 30px; }
+    .program-card h3 { margin: 0 0 10px; font-size: 1.18rem; }
+    .program-card p { min-height: 76px; margin: 0 0 22px; color: var(--muted); font-size: .88rem; }
+    .program-link { color: var(--red); font-size: .83rem; font-weight: 900; }
+    .featured .program-link { color: var(--yellow); }
+
+    .why { padding: 110px 0; background: #fff7dd; overflow: hidden; }
+    .why::after { content: "ABC"; position: absolute; right: -30px; bottom: -80px; color: rgba(18,62,207,.045); font-size: 18rem; font-weight: 1000; line-height: 1; transform: rotate(-8deg); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 70px; align-items: center; }
+    .why-photo { position: relative; min-height: 570px; }
+    .why-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; border: 10px solid white; border-radius: 46px 46px 180px 46px; box-shadow: var(--shadow); }
+    .why-note { position: absolute; right: -30px; bottom: 40px; max-width: 220px; padding: 20px; border-radius: 22px; background: var(--yellow); font-size: .85rem; font-weight: 900; box-shadow: var(--shadow); transform: rotate(3deg); }
+    .feature-list { display: grid; gap: 16px; margin-top: 32px; }
+    .feature { display: grid; grid-template-columns: 55px 1fr; gap: 16px; align-items: start; padding: 18px; border-radius: 20px; background: rgba(255,255,255,.72); transition: transform .25s, background .25s; }
+    .feature:hover { transform: translateX(7px); background: white; }
+    .feature-icon { display: grid; place-items: center; width: 55px; height: 55px; border-radius: 18px; color: white; background: var(--blue); }
+    .feature-icon .icon { width: 26px; height: 26px; }
+    .feature:nth-child(2) .feature-icon { background: var(--red); }
+    .feature:nth-child(3) .feature-icon { color: var(--ink); background: var(--yellow); }
+    .feature:nth-child(4) .feature-icon { background: var(--green); }
+    .feature h3 { margin: 1px 0 4px; font-size: 1rem; }
+    .feature p { margin: 0; color: var(--muted); font-size: .83rem; }
+
+    .schedule { padding: 110px 0; background: white; }
+    .schedule-panel { overflow: hidden; border-radius: 36px; background: var(--blue-dark); box-shadow: var(--shadow); }
+    .schedule-top { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding: 30px 34px; color: white; }
+    .schedule-top h3 { margin: 0 0 4px; font-size: 1.45rem; }
+    .schedule-top p { margin: 0; color: rgba(255,255,255,.65); font-size: .82rem; }
+    .tabs { display: flex; gap: 8px; padding: 6px; border-radius: 99px; background: rgba(255,255,255,.1); }
+    .tab { min-width: 155px; padding: 10px 16px; color: rgba(255,255,255,.75); border: 0; border-radius: 99px; background: transparent; font-weight: 900; }
+    .tab.active { color: var(--ink); background: var(--yellow); }
+    .timeline { display: none; grid-template-columns: repeat(5,1fr); gap: 1px; background: rgba(255,255,255,.14); }
+    .timeline.active { display: grid; }
+    .time-slot { min-height: 190px; padding: 26px 21px; color: white; background: #10307d; }
+    .time-slot span { display: block; color: var(--yellow); font-size: .77rem; font-weight: 900; }
+    .time-slot h4 { margin: 14px 0 6px; font-size: .98rem; }
+    .time-slot p { margin: 0; color: rgba(255,255,255,.65); font-size: .76rem; }
+    .poster-strip { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 16px; margin-top: 30px; }
+    .poster { display: flex; min-width: 0; flex-direction: column; padding: 10px; border: 1px solid rgba(16,38,83,.09); border-radius: 20px; background: white; box-shadow: 0 9px 24px rgba(16,38,83,.09); transition: transform .25s, box-shadow .25s; }
+    .poster:hover { transform: translateY(-5px); box-shadow: 0 16px 32px rgba(16,38,83,.14); }
+    .poster-preview { display: block; width: 100%; padding: 0; color: inherit; border: 0; border-radius: 14px; background: transparent; text-align: center; }
+    .poster-preview img { width: 100%; height: 225px; object-fit: cover; object-position: top; border-radius: 13px; background: #f4f6fb; transition: filter .25s, transform .25s; }
+    .poster-preview:hover img { filter: brightness(.94); transform: scale(.985); }
+    .poster-preview h3 { margin: 13px 4px 10px; font-size: .82rem; line-height: 1.45; }
+    .poster-download { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 44px; margin-top: auto; padding: 9px 10px; color: white; border-radius: 12px; background: var(--blue); font-size: .72rem; font-weight: 900; transition: background .2s, transform .2s; }
+    .poster-download:hover { background: var(--red); transform: translateY(-2px); }
+    .poster-download .icon, .lightbox-download .icon { width: 16px; height: 16px; }
+
+    .life { padding: 110px 0; background: var(--cream); }
+    .life-grid { display: grid; grid-template-columns: repeat(4,1fr); grid-auto-rows: 235px; gap: 16px; }
+    .life-card { position: relative; overflow: hidden; border-radius: 26px; background: #ddd; cursor: pointer; }
+    .life-card:nth-child(1), .life-card:nth-child(6) { grid-column: span 2; }
+    .life-card:nth-child(3) { grid-row: span 2; }
+    .life-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .55s; }
+    .life-card:hover img { transform: scale(1.08); }
+    .life-overlay { position: absolute; inset: auto 0 0; padding: 50px 18px 16px; color: white; background: linear-gradient(transparent,rgba(8,36,109,.82)); opacity: 0; transition: opacity .3s; }
+    .life-card:hover .life-overlay { opacity: 1; }
+    .life-overlay b { display: block; font-size: .92rem; }
+    .life-overlay span { font-size: .72rem; opacity: .8; }
+
+    .admissions { padding: 110px 0; background: white; }
+    .admission-wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: 0; overflow: hidden; border-radius: 38px; background: var(--red); box-shadow: var(--shadow); }
+    .cta-copy { position: relative; padding: 65px 55px; color: white; overflow: hidden; }
+    .cta-copy::after { content: ""; position: absolute; right: -55px; bottom: -85px; width: 220px; height: 220px; border: 38px solid rgba(255,255,255,.08); border-radius: 50%; }
+    .cta-copy p { color: rgba(255,255,255,.76); }
+    .step-list { display: grid; gap: 18px; margin-top: 32px; }
+    .step { display: flex; gap: 14px; align-items: center; font-size: .86rem; font-weight: 800; }
+    .step i { display: grid; place-items: center; flex: 0 0 34px; height: 34px; border-radius: 50%; color: var(--ink); background: var(--yellow); font-style: normal; }
+    .inquiry-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 46px; background: var(--cream); }
+    .field { display: grid; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: .78rem; font-weight: 900; }
+    .field input, .field select, .field textarea { width: 100%; padding: 13px 15px; color: var(--ink); border: 1px solid rgba(16,38,83,.14); border-radius: 14px; outline: none; background: white; transition: border .2s, box-shadow .2s; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(18,62,207,.1); }
+    .field textarea { min-height: 92px; resize: vertical; }
+    .form-note { grid-column: 1 / -1; margin: -3px 0 0; color: var(--muted); font-size: .7rem; }
+    .form-submit { grid-column: 1 / -1; }
+
+    .contact { padding: 105px 0; background: #eef2ff; }
+    .contact-grid { display: grid; grid-template-columns: .88fr 1.12fr; gap: 30px; }
+    .contact-card { padding: 42px; border-radius: 30px; background: white; box-shadow: var(--shadow); }
+    .contact-card h2 { margin: 0 0 10px; font-size: 2rem; }
+    .contact-card > p { margin: 0 0 28px; color: var(--muted); font-size: .88rem; }
+    .contact-line { display: flex; gap: 14px; align-items: center; padding: 15px 0; border-bottom: 1px solid rgba(16,38,83,.08); }
+    .contact-line:last-child { border-bottom: 0; }
+    .contact-line i { display: grid; place-items: center; flex: 0 0 44px; height: 44px; color: var(--blue); border-radius: 14px; background: #eef2ff; font-style: normal; }
+    .contact-line i .icon { width: 21px; height: 21px; }
+    .contact-line b, .contact-line span { display: block; }
+    .contact-line b { font-size: .78rem; }
+    .contact-line span { color: var(--muted); font-size: .8rem; }
+    .map-card { position: relative; min-height: 460px; overflow: hidden; border-radius: 30px; background: #dce8d9; box-shadow: var(--shadow); }
+    .map-grid { position: absolute; inset: 0; opacity: .72; background-image: linear-gradient(28deg,transparent 48%,#fff 49%,#fff 52%,transparent 53%),linear-gradient(95deg,transparent 47%,#fff 48%,#fff 51%,transparent 52%),linear-gradient(-22deg,transparent 45%,rgba(18,62,207,.18) 46%,rgba(18,62,207,.18) 50%,transparent 51%); background-size: 180px 140px,130px 170px,300px 230px; }
+    .map-pin { position: absolute; left: 54%; top: 44%; display: grid; place-items: center; width: 66px; height: 66px; border: 8px solid rgba(255,255,255,.85); border-radius: 50% 50% 50% 0; color: white; background: var(--red); box-shadow: var(--shadow); font-size: 1.6rem; transform: rotate(-45deg); }
+    .map-pin .icon { width: 25px; height: 25px; transform: rotate(45deg); }
+    .map-label { position: absolute; left: 50%; top: 63%; width: min(300px,80%); padding: 19px; border-radius: 20px; background: white; box-shadow: var(--shadow); transform: translateX(-50%); text-align: center; }
+    .map-label b { display: block; color: var(--blue); }
+    .map-label span { color: var(--muted); font-size: .76rem; }
+    .map-link { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; margin-top: 12px; padding: 8px 16px; color: white; border-radius: 999px; background: var(--blue); font-size: .76rem; font-weight: 900; }
+
+    footer { padding: 70px 0 24px; color: white; background: var(--blue-dark); }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr .8fr .8fr 1fr; gap: 45px; }
+    .footer-brand { display: flex; align-items: center; gap: 15px; }
+    .footer-brand img { width: 84px; height: 80px; padding: 5px; object-fit: contain; border: 2px solid rgba(255,213,0,.8); border-radius: 16px; background: white; }
+    .footer-brand b { display: block; color: var(--yellow); font-size: 1.4rem; }
+    .footer-brand span { font-size: .65rem; opacity: .7; }
+    .footer-about p { max-width: 340px; color: rgba(255,255,255,.62); font-size: .78rem; }
+    .footer-col h4 { margin: 5px 0 18px; color: var(--yellow); }
+    .footer-col a, .footer-col span { display: block; margin: 9px 0; color: rgba(255,255,255,.7); font-size: .78rem; }
+    .footer-col a:hover { color: white; }
+    .socials { display: flex; gap: 9px; margin-top: 17px; }
+    .socials a { display: grid; place-items: center; width: 38px; height: 38px; margin: 0; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; color: white; }
+    .socials .icon { width: 17px; height: 17px; }
+    .copyright { display: flex; justify-content: space-between; gap: 20px; margin-top: 50px; padding-top: 20px; color: rgba(255,255,255,.5); border-top: 1px solid rgba(255,255,255,.12); font-size: .7rem; }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .75s ease, transform .75s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .toast { position: fixed; z-index: 100; left: 50%; bottom: 28px; padding: 14px 22px; color: white; border-radius: 99px; background: var(--green); box-shadow: var(--shadow); font-size: .84rem; font-weight: 900; opacity: 0; pointer-events: none; transform: translate(-50%,25px); transition: .35s; }
+    .toast.show { opacity: 1; transform: translate(-50%,0); }
+    .lightbox { position: fixed; z-index: 90; inset: 0; display: grid; place-items: center; padding: 30px; background: rgba(4,16,50,.9); opacity: 0; visibility: hidden; transition: .3s; }
+    .lightbox.open { opacity: 1; visibility: visible; }
+    .lightbox-dialog { display: flex; max-width: min(920px,92vw); max-height: 92vh; flex-direction: column; align-items: center; gap: 14px; }
+    .lightbox img { max-width: 100%; max-height: calc(92vh - 70px); border: 7px solid white; border-radius: 24px; background: white; box-shadow: 0 30px 80px rgba(0,0,0,.4); }
+    .lightbox-close { position: absolute; right: 28px; top: 25px; width: 46px; height: 46px; color: white; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; background: rgba(255,255,255,.1); font-size: 1.4rem; }
+    .lightbox-download { display: none; min-height: 46px; padding: 10px 20px; color: var(--ink); border-radius: 999px; background: var(--yellow); font-size: .8rem; font-weight: 900; box-shadow: 0 12px 28px rgba(0,0,0,.22); }
+    .lightbox-download.visible { display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+
+    @media (max-width: 1020px) {
+      .nav-links, .nav-actions > .btn { display: none; }
+      .menu-btn { display: block; }
+      .nav-links.open { position: fixed; inset: 120px 18px auto; display: grid; gap: 0; padding: 16px; border-radius: 24px; background: white; box-shadow: var(--shadow); }
+      .nav-links.open a { padding: 13px 12px; }
+      .hero-grid, .about-grid, .why-grid { gap: 45px; }
+      .hero-grid { grid-template-columns: 1fr 1fr; }
+      .hero-visual { min-height: 470px; }
+      .program-grid { grid-template-columns: repeat(2,1fr); }
+      .timeline { grid-template-columns: repeat(3,1fr); }
+      .time-slot:nth-child(n+4) { border-top: 1px solid rgba(255,255,255,.14); }
+      .poster-strip { grid-template-columns: repeat(3,minmax(0,1fr)); }
+      .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; }
+      .footer-col:last-child { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 760px) {
+      .container { width: min(100% - 28px,1160px); }
+      .nav { min-height: 72px; }
+      .brand { min-width: 0; }
+      .brand-logo { width: 56px; height: 52px; padding: 3px; border-radius: 12px; }
+      .brand-copy b { font-size: 1.05rem; }
+      .brand-copy span { font-size: .5rem; }
+      .nav-actions { gap: 7px; }
+      .lang-switch { padding: 3px; }
+      .lang-btn { min-width: 36px; min-height: 34px; padding: 6px 8px; }
+      .hero { padding: 48px 0 92px; }
+      .hero-grid, .about-grid, .why-grid, .admission-wrap, .contact-grid { grid-template-columns: 1fr; }
+      .hero-copy { text-align: center; }
+      .hero-copy p { margin-inline: auto; }
+      .hero-actions, .trust-row { justify-content: center; }
+      .hero-visual { min-height: 500px; margin-top: 12px; }
+      .photo-blob { inset: 10px 20px 5px; }
+      .card-one { left: 0; top: 55px; }
+      .card-two { right: 0; bottom: 35px; }
+      .stat-grid { grid-template-columns: repeat(2,1fr); }
+      .stat { border-bottom: 1px solid rgba(255,255,255,.18); }
+      .stat:nth-child(2) { border-right: 0; }
+      .about, .programs, .why, .schedule, .life, .admissions, .contact { padding: 80px 0; }
+      .about-grid { display: flex; flex-direction: column-reverse; }
+      .about-visual, .why-photo { width: 100%; min-height: 470px; }
+      .check-list { grid-template-columns: 1fr; }
+      .program-grid { grid-template-columns: 1fr; }
+      .program-card p { min-height: 0; }
+      .why-note { right: -5px; }
+      .schedule-top { align-items: stretch; flex-direction: column; }
+      .tabs { width: 100%; }
+      .tab { flex: 1; min-width: 0; font-size: .76rem; }
+      .timeline { grid-template-columns: 1fr; }
+      .time-slot { min-height: auto; }
+      .time-slot:nth-child(n+2) { border-top: 1px solid rgba(255,255,255,.14); }
+      .poster-strip { display: flex; gap: 14px; padding: 4px 2px 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: thin; }
+      .poster { flex: 0 0 min(250px,78vw); scroll-snap-align: start; }
+      .poster-preview img { height: 300px; }
+      .lightbox { padding: 18px; }
+      .lightbox-close { right: 14px; top: 14px; width: 44px; height: 44px; }
+      .lightbox-dialog { max-width: 94vw; max-height: 94vh; }
+      .lightbox img { max-height: calc(94vh - 76px); border-width: 4px; border-radius: 16px; }
+      .lightbox-download { min-height: 48px; padding-inline: 22px; }
+      .life-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 210px; }
+      .life-card:nth-child(1), .life-card:nth-child(6) { grid-column: span 2; }
+      .life-card:nth-child(3) { grid-row: span 1; }
+      .life-overlay { opacity: 1; }
+      .cta-copy, .inquiry-form { padding: 38px 24px; }
+      .inquiry-form { grid-template-columns: 1fr; }
+      .field, .field.full, .form-note, .form-submit { grid-column: 1; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-about, .footer-col:last-child { grid-column: 1 / -1; }
+      .copyright { flex-direction: column; }
+    }
+
+    @media (max-width: 430px) {
+      .hero-copy h1 { font-size: 2.5rem; }
+      .hero-visual { min-height: 410px; }
+      .float-card { padding: 10px 12px; font-size: .68rem; }
+      .float-card .bubble { flex-basis: 32px; height: 32px; }
+      .section-head { margin-bottom: 34px; }
+      .about-visual, .why-photo { min-height: 390px; }
+      .about-main { right: 25px; }
+      .about-badge { left: -4px; width: 95px; height: 95px; font-size: .63rem; }
+      .life-grid { grid-template-columns: 1fr; grid-auto-rows: 240px; }
+      .life-card:nth-child(1), .life-card:nth-child(6) { grid-column: span 1; }
+      .contact-card { padding: 30px 22px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-about, .footer-col:last-child { grid-column: auto; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.63a2 2 0 0 1-.45 2.11L8 9.73a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.85.29 1.73.5 2.63.62A2 2 0 0 1 22 16.9z"/></symbol>
+      <symbol id="icon-location" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></symbol>
+      <symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v17H7.5A3.5 3.5 0 0 0 4 22zM20 5.5A3.5 3.5 0 0 0 16.5 2H13v17h3.5A3.5 3.5 0 0 1 20 22z"/></symbol>
+      <symbol id="icon-blocks" viewBox="0 0 24 24"><rect x="3" y="12" width="8" height="8" rx="1"/><rect x="13" y="12" width="8" height="8" rx="1"/><path d="m8 3 4 7H4zM16 3a4 4 0 1 1 0 8 4 4 0 0 1 0-8z"/></symbol>
+      <symbol id="icon-pencil" viewBox="0 0 24 24"><path d="m4 20 4.5-1 10-10a2.1 2.1 0 0 0-3-3l-10 10zM14 7l3 3M4 20h5"/></symbol>
+      <symbol id="icon-activity" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><path d="m8 21 2-6-3-2 2-5 3 3 3-2 2 2-5 3 3 2 2 5"/></symbol>
+      <symbol id="icon-palette" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0 0 18h1.5a1.5 1.5 0 0 0 0-3H12a2 2 0 0 1 0-4h3a6 6 0 0 0 0-12z"/><circle cx="7.5" cy="10" r=".8" class="icon-fill"/><circle cx="10" cy="6.5" r=".8" class="icon-fill"/><circle cx="15" cy="6.5" r=".8" class="icon-fill"/></symbol>
+      <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></symbol>
+      <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="icon-star" viewBox="0 0 24 24"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/></symbol>
+      <symbol id="icon-spark" viewBox="0 0 24 24"><path d="M12 2v5M12 17v5M4.9 4.9l3.5 3.5M15.6 15.6l3.5 3.5M2 12h5M17 12h5M4.9 19.1l3.5-3.5M15.6 8.4l3.5-3.5"/></symbol>
+      <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 20h16"/></symbol>
+      <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8M5 10v11h14V10M9 21v-7h6v7"/></symbol>
+      <symbol id="icon-facebook" viewBox="0 0 24 24"><path class="icon-fill" d="M14 8h3V4h-3c-3.3 0-5 2-5 5v2H6v4h3v7h4v-7h3.2l.8-4h-4V9c0-.7.3-1 1-1z"/></symbol>
+      <symbol id="icon-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4zM22 2 11 13"/></symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    </defs>
+  </svg>
+
+  <header>
+    <nav class="container nav" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="RCIA home">
+        <img class="brand-logo" src="Logo.jpg" alt="Raamaid Cambodia International Academy logo">
+        <span class="brand-copy"><b>RAAMAID</b><span>Cambodia International Academy</span></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" data-kh="ទំព័រដើម" data-en="Home">ទំព័រដើម</a><a href="#about" data-kh="អំពីសាលា" data-en="About the School">អំពីសាលា</a><a href="#programs" data-kh="កម្មវិធីសិក្សា" data-en="Study Programs">កម្មវិធីសិក្សា</a><a href="#activities" data-kh="សកម្មភាពសិស្ស" data-en="Student Activities">សកម្មភាពសិស្ស</a><a href="#contact" data-kh="ទំនាក់ទំនង" data-en="Contact">ទំនាក់ទំនង</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-switch" aria-label="Website language"><button class="lang-btn" type="button" data-lang="en" aria-pressed="false">EN</button><button class="lang-btn active" type="button" data-lang="kh" aria-pressed="true">KH</button></div>
+        <a class="btn btn-primary" href="#admissions"><span data-kh="ចុះឈ្មោះសាកសួរ" data-en="Admissions Inquiry">ចុះឈ្មោះសាកសួរ</span> <span class="arrow">→</span></a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Learn • Play • Grow</span>
+          <h1 data-kh="រៀន <span>៣ ភាសា</span><br>រីកចម្រើនដោយ<br><em>ភាពរីករាយ</em>" data-en="Learn in <span>3 Languages</span><br>Grow with<br><em>Joy</em>">រៀន <span>៣ ភាសា</span><br>រីកចម្រើនដោយ<br><em>ភាពរីករាយ</em></h1>
+          <p data-kh="បរិយាកាសសិក្សាដ៏កក់ក្តៅសម្រាប់កុមារ ផ្តោតលើភាសាខ្មែរ អង់គ្លេស និងចិន ព្រមទាំងសកម្មភាពអភិវឌ្ឍរាងកាយ បញ្ញា និងទំនុកចិត្ត។" data-en="A warm learning environment for young learners, focused on Khmer, English and Chinese alongside activities that build physical skills, thinking and confidence.">បរិយាកាសសិក្សាដ៏កក់ក្តៅសម្រាប់កុមារ ផ្តោតលើភាសាខ្មែរ អង់គ្លេស និងចិន ព្រមទាំងសកម្មភាពអភិវឌ្ឍរាងកាយ បញ្ញា និងទំនុកចិត្ត។</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#admissions"><span data-kh="សាកសួរចុះឈ្មោះ" data-en="Admissions Inquiry">សាកសួរចុះឈ្មោះ</span> <span class="arrow">→</span></a>
+            <a class="btn btn-ghost" href="#programs" data-kh="មើលកម្មវិធីសិក្សា" data-en="View Programs">មើលកម្មវិធីសិក្សា</a>
+          </div>
+          <div class="trust-row">
+            <div class="trust-item"><span class="trust-icon"><svg class="icon"><use href="#icon-check"></use></svg></span><span data-kh="ថ្នាក់ព្រឹក និងរសៀល" data-en="Morning & afternoon classes">ថ្នាក់ព្រឹក និងរសៀល</span></div>
+            <div class="trust-item"><span class="trust-icon"><svg class="icon"><use href="#icon-heart"></use></svg></span><span data-kh="បរិយាកាសយកចិត្តទុកដាក់" data-en="A caring environment">បរិយាកាសយកចិត្តទុកដាក់</span></div>
+          </div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="photo-blob"><img src="Image 06.jpg" alt="RCIA students learning together in the classroom"></div>
+          <div class="float-card card-one"><span class="bubble"><svg class="icon"><use href="#icon-globe"></use></svg></span><span>ខ្មែរ • English • 中文<br><small>Trilingual Learning</small></span></div>
+          <div class="float-card card-two"><span class="bubble"><svg class="icon"><use href="#icon-star"></use></svg></span><span>រៀន និងលេង<br><small>Learn through play</small></span></div>
+          <span class="doodle star"><svg class="icon"><use href="#icon-star"></use></svg></span><span class="doodle plus"><svg class="icon"><use href="#icon-spark"></use></svg></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="mini-stats" aria-label="School highlights">
+      <div class="container stat-grid">
+        <div class="stat"><strong>៣</strong><span>ភាសាសិក្សា</span></div>
+        <div class="stat"><strong>2</strong><span>វគ្គព្រឹក និងរសៀល</span></div>
+        <div class="stat"><strong>FMSP</strong><span>អភិវឌ្ឍចលនាកុមារ</span></div>
+        <div class="stat"><strong>RCIA</strong><span>Learn • Play • Grow</span></div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div class="about-visual reveal">
+          <div class="about-main"><img src="Image 04.webp" alt="Happy RCIA student during a school activity"></div>
+          <div class="about-small"><img src="Image 02.jpg" alt="Young RCIA student enjoying class"></div>
+          <div class="about-badge">ការរៀនសូត្រ<br>ចាប់ផ្តើមពី<br>ភាពរីករាយ!</div>
+        </div>
+        <div class="split-copy reveal">
+          <span class="eyebrow">About Our Academy</span>
+          <h2 data-kh="មូលដ្ឋានរឹងមាំសម្រាប់<br><span class='kicker'>អនាគតកូនៗ</span>" data-en="A strong foundation for<br><span class='kicker'>your child's future</span>">មូលដ្ឋានរឹងមាំសម្រាប់<br><span class="kicker">អនាគតកូនៗ</span></h2>
+          <p>សាលា Raamaid Cambodia International Academy (RCIA) ផ្តោតលើការអប់រំ ៣ ភាសា និងការអភិវឌ្ឍកុមារតាមវ័យ។ យើងបង្កើតបរិយាកាសដែលកុមារអាចស្វែងយល់ អនុវត្ត ប្រាស្រ័យទាក់ទង និងរីកចម្រើនដោយទំនុកចិត្ត។</p>
+          <ul class="check-list">
+            <li>ភាសាខ្មែរ អង់គ្លេស និងចិន</li>
+            <li>សកម្មភាពសមស្របតាមវ័យ</li>
+            <li>គ្រូយកចិត្តទុកដាក់</li>
+            <li>វិន័យ និងទម្លាប់ល្អ</li>
+          </ul>
+          <a class="btn btn-blue" href="#contact">ស្វែងយល់ពីសាលា <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="programs" id="programs">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Our Learning Programs</span>
+          <h2 data-kh="កម្មវិធីសិក្សាដែលជួយកុមារ<br><span class='kicker'>រៀនបានល្អ រីកចម្រើនបានពេញលេញ</span>" data-en="Learning programs designed to help children<br><span class='kicker'>learn well and grow fully</span>">កម្មវិធីសិក្សាដែលជួយកុមារ<br><span class="kicker">រៀនបានល្អ រីកចម្រើនបានពេញលេញ</span></h2>
+          <p>ការសិក្សាមានរចនាសម្ព័ន្ធច្បាស់លាស់ បញ្ចូលភាសា ជំនាញរស់នៅ និងសកម្មភាពសម្រាប់ការអភិវឌ្ឍកុមារ។</p>
+        </div>
+        <div class="program-grid">
+          <article class="program-card featured reveal" style="--accent:rgba(255,213,0,.28)"><div class="program-icon"><svg class="icon"><use href="#icon-book"></use></svg></div><h3>Trilingual Plus</h3><p>កម្មវិធីសិក្សាភាសាខ្មែរ អង់គ្លេស និងចិន សម្រាប់បង្កើនសមត្ថភាពទំនាក់ទំនងតាំងពីវ័យក្មេង។</p><a class="program-link" href="#schedule">មើលម៉ោងសិក្សា →</a></article>
+          <article class="program-card reveal" style="--accent:#ffe1e3"><div class="program-icon"><svg class="icon"><use href="#icon-globe"></use></svg></div><h3>International Plus</h3><p>បទពិសោធន៍រៀនបែបសកម្ម ជួយកុមារស្វែងយល់ពិភពជុំវិញ និងអភិវឌ្ឍការគិត។</p><a class="program-link" href="#admissions">សាកសួរព័ត៌មាន →</a></article>
+          <article class="program-card reveal" style="--accent:#fff1ad"><div class="program-icon"><svg class="icon"><use href="#icon-blocks"></use></svg></div><h3>Kindergarten</h3><p>ថ្នាក់មត្តេយ្យដែលផ្សំការរៀន លេង និងសកម្មភាពបង្កើតទម្លាប់ល្អក្នុងបរិយាកាសកក់ក្តៅ។</p><a class="program-link" href="#activities">មើលសកម្មភាព →</a></article>
+          <article class="program-card reveal" style="--accent:#dff5e8"><div class="program-icon"><svg class="icon"><use href="#icon-pencil"></use></svg></div><h3>Grade 1 / Primary</h3><p>ថ្នាក់បឋមសិក្សាដែលពង្រឹងមូលដ្ឋានអាន សរសេរ គណិតវិទ្យា និងការសិក្សាប្រចាំថ្ងៃ។</p><a class="program-link" href="#schedule">មើលកាលវិភាគ →</a></article>
+          <article class="program-card reveal" style="--accent:#e6e9ff"><div class="program-icon"><svg class="icon"><use href="#icon-activity"></use></svg></div><h3>Gross–Fine Motor Skills</h3><p>សកម្មភាព FMSP ជួយលើចលនាធំ ចលនាតូច ការសម្របសម្រួល និងភាពជឿជាក់លើខ្លួនឯង។</p><a class="program-link" href="#activities">ស្វែងយល់បន្ថែម →</a></article>
+          <article class="program-card reveal" style="--accent:#ffe9cf"><div class="program-icon"><svg class="icon"><use href="#icon-palette"></use></svg></div><h3>Creative Activities</h3><p>សិល្បៈ ល្បែង ការងារជាក្រុម និងសកម្មភាពអនុវត្ត ដែលធ្វើឱ្យការរៀនមានភាពរស់រវើក។</p><a class="program-link" href="#activities">សកម្មភាពសិស្ស →</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="why">
+      <div class="container why-grid">
+        <div class="why-photo reveal"><img src="Image 05.webp" alt="RCIA school community welcoming a student"><div class="why-note">“កុមាររៀនបានល្អ នៅពេលពួកគេមានអារម្មណ៍កក់ក្តៅ និងមានទំនុកចិត្ត”</div></div>
+        <div class="split-copy reveal">
+          <span class="eyebrow">Why Parents Choose RCIA</span>
+          <h2 data-kh="រាល់ថ្ងៃជាឱកាសថ្មី<br><span class='kicker'>សម្រាប់ការរីកចម្រើន</span>" data-en="Every day is a new opportunity<br><span class='kicker'>to learn and grow</span>">រាល់ថ្ងៃជាឱកាសថ្មី<br><span class="kicker">សម្រាប់ការរីកចម្រើន</span></h2>
+          <p>យើងបញ្ចូលការសិក្សា សកម្មភាព និងការថែទាំទៅក្នុងថ្ងៃសិក្សាដែលមានរចនាសម្ព័ន្ធច្បាស់លាស់។</p>
+          <div class="feature-list">
+            <div class="feature"><div class="feature-icon"><svg class="icon"><use href="#icon-globe"></use></svg></div><div><h3>បរិយាកាស ៣ ភាសា</h3><p>ឱ្យកុមារស្គាល់ និងប្រើប្រាស់ភាសាខ្មែរ អង់គ្លេស និងចិនជាប្រចាំ។</p></div></div>
+            <div class="feature"><div class="feature-icon"><svg class="icon"><use href="#icon-heart"></use></svg></div><div><h3>ការថែទាំដោយយកចិត្តទុកដាក់</h3><p>បរិយាកាសសុវត្ថិភាព ស្និទ្ធស្នាល និងគាំទ្រការរៀនតាមសមត្ថភាពកុមារ។</p></div></div>
+            <div class="feature"><div class="feature-icon"><svg class="icon"><use href="#icon-spark"></use></svg></div><div><h3>អភិវឌ្ឍជំនាញពេញលេញ</h3><p>ជំនាញភាសា ចលនា សង្គម អារម្មណ៍ និងទម្លាប់ប្រចាំថ្ងៃ។</p></div></div>
+            <div class="feature"><div class="feature-icon"><svg class="icon"><use href="#icon-check"></use></svg></div><div><h3>កាលវិភាគមានរចនាសម្ព័ន្ធ</h3><p>ម៉ោងសិក្សា សម្រាក សកម្មភាព និងរំលឹកមេរៀនរៀបចំយ៉ាងច្បាស់។</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="schedule" id="schedule">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">A Day at RCIA</span><h2 data-kh="ថ្ងៃសិក្សាដែលមាន<br><span class='kicker'>តុល្យភាព និងភាពរីករាយ</span>" data-en="A school day with<br><span class='kicker'>balance and joyful learning</span>">ថ្ងៃសិក្សាដែលមាន<br><span class="kicker">តុល្យភាព និងភាពរីករាយ</span></h2><p>ទិដ្ឋភាពទូទៅនៃវគ្គសិក្សា។ កាលវិភាគលម្អិតអាចខុសគ្នាតាមថ្នាក់ និងកម្រិតសិក្សា។</p></div>
+        <div class="schedule-panel reveal">
+          <div class="schedule-top"><div><h3>កាលវិភាគសិក្សា</h3><p>School year reference: 2025–2026</p></div><div class="tabs" role="tablist"><button class="tab active" data-tab="morning" role="tab">វគ្គព្រឹក 7:00–11:00</button><button class="tab" data-tab="afternoon" role="tab">វគ្គរសៀល 1:00–5:00</button></div></div>
+          <div class="timeline active" id="morning"><div class="time-slot"><span>7:00 AM</span><h4>ស្វាគមន៍សិស្ស</h4><p>មកដល់ រៀបចំខ្លួន និងសន្ទនាពេលព្រឹក</p></div><div class="time-slot"><span>7:30 AM</span><h4>មេរៀនភាសា</h4><p>ភាសាខ្មែរ អង់គ្លេស ឬចិនតាមកាលវិភាគ</p></div><div class="time-slot"><span>8:30 AM</span><h4>សម្រាក និងអាហារសម្រន់</h4><p>ពេលសម្រាក អនាម័យ និងទម្លាប់ល្អ</p></div><div class="time-slot"><span>9:00 AM</span><h4>សកម្មភាពអភិវឌ្ឍ</h4><p>FMSP សិល្បៈ ល្បែង ឬការងារជាក្រុម</p></div><div class="time-slot"><span>10:30 AM</span><h4>រំលឹកមេរៀន</h4><p>សង្ខេបការសិក្សា និងត្រៀមត្រឡប់ផ្ទះ</p></div></div>
+          <div class="timeline" id="afternoon"><div class="time-slot"><span>1:00 PM</span><h4>ស្វាគមន៍ និងត្រៀមខ្លួន</h4><p>ការសន្ទនាខ្លី និងរៀបចំសម្ភារៈសិក្សា</p></div><div class="time-slot"><span>1:30 PM</span><h4>មេរៀនស្នូល</h4><p>ភាសា គណិតវិទ្យា ឬការស្វែងយល់ជុំវិញខ្លួន</p></div><div class="time-slot"><span>2:30 PM</span><h4>សម្រាក</h4><p>អាហារសម្រន់ អនាម័យ និងលំហែកាយ</p></div><div class="time-slot"><span>3:00 PM</span><h4>រៀនតាមសកម្មភាព</h4><p>ការអនុវត្ត ការងារជាក្រុម និងជំនាញចលនា</p></div><div class="time-slot"><span>4:30 PM</span><h4>រំលឹក និងបញ្ចប់</h4><p>សង្ខេបមេរៀន និងត្រៀមជួបអាណាព្យាបាល</p></div></div>
+        </div>
+        <div class="poster-strip reveal" aria-label="Original program schedules">
+          <article class="poster"><button class="poster-preview" type="button" data-preview="About Study Program 1.jpg"><img src="About Study Program 1.jpg" alt="RCIA study program 01"><h3>កម្មវិធីសិក្សាទី 01</h3></button><a class="poster-download" href="About Study Program 1.jpg" download><svg class="icon"><use href="#icon-download"></use></svg> ទាញយក / Download</a></article>
+          <article class="poster"><button class="poster-preview" type="button" data-preview="About Study Program 2.webp"><img src="About Study Program 2.webp" alt="RCIA study program 02"><h3>កម្មវិធីសិក្សាទី 02</h3></button><a class="poster-download" href="About Study Program 2.webp" download><svg class="icon"><use href="#icon-download"></use></svg> ទាញយក / Download</a></article>
+          <article class="poster"><button class="poster-preview" type="button" data-preview="About Study Program 3.webp"><img src="About Study Program 3.webp" alt="RCIA study program 03"><h3>កម្មវិធីសិក្សាទី 03</h3></button><a class="poster-download" href="About Study Program 3.webp" download><svg class="icon"><use href="#icon-download"></use></svg> ទាញយក / Download</a></article>
+          <article class="poster"><button class="poster-preview" type="button" data-preview="About Study Program 4.jpg"><img src="About Study Program 4.jpg" alt="RCIA study program 04"><h3>កម្មវិធីសិក្សាទី 04</h3></button><a class="poster-download" href="About Study Program 4.jpg" download><svg class="icon"><use href="#icon-download"></use></svg> ទាញយក / Download</a></article>
+          <article class="poster"><button class="poster-preview" type="button" data-preview="About Study Program 5.jpg"><img src="About Study Program 5.jpg" alt="RCIA study program 05"><h3>កម្មវិធីសិក្សាទី 05</h3></button><a class="poster-download" href="About Study Program 5.jpg" download><svg class="icon"><use href="#icon-download"></use></svg> ទាញយក / Download</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="life" id="activities">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">Student Activities & Gallery</span><h2 data-kh="រៀន លេង សហការ<br><span class='kicker'>និងបង្កើតអនុស្សាវរីយ៍</span>" data-en="Learn, play and work together<br><span class='kicker'>while creating happy memories</span>">រៀន លេង សហការ<br><span class="kicker">និងបង្កើតអនុស្សាវរីយ៍</span></h2><p>ទិដ្ឋភាពសកម្មភាព ការរៀននៅថ្នាក់ និងបរិយាកាសស្វាគមន៍នៅ RCIA។</p></div>
+        <div class="life-grid">
+          <figure class="life-card reveal"><img src="Image 06.jpg" alt="Students learning around a classroom table"><figcaption class="life-overlay"><b>រៀនជាក្រុម</b><span>Classroom learning</span></figcaption></figure>
+          <figure class="life-card reveal"><img src="Image 02.jpg" alt="Student participating in a physical activity"><figcaption class="life-overlay"><b>ចលនា និងការសម្របសម្រួល</b><span>Motor skill activity</span></figcaption></figure>
+          <figure class="life-card reveal"><img src="Image 04.webp" alt="Student enjoying an outdoor school activity"><figcaption class="life-overlay"><b>ភាពរីករាយរាល់ថ្ងៃ</b><span>Joyful moments</span></figcaption></figure>
+          <figure class="life-card reveal"><img src="Image 03.webp" alt="Smiling student in class"><figcaption class="life-overlay"><b>ទំនុកចិត្ត</b><span>Growing with confidence</span></figcaption></figure>
+          <figure class="life-card reveal"><img src="Image 05.webp" alt="School staff and families at RCIA"><figcaption class="life-overlay"><b>សហគមន៍សាលា</b><span>Our school family</span></figcaption></figure>
+          <figure class="life-card reveal"><img src="Image 07.jpg" alt="Raamaid Cambodia International Academy building"><figcaption class="life-overlay"><b>សាលារបស់យើង</b><span>Welcome to RCIA</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="admissions" id="admissions">
+      <div class="container admission-wrap reveal">
+        <div class="cta-copy"><span class="eyebrow" style="color:#fff">Admissions & Inquiry</span><h2 data-kh="តោះ! ចាប់ផ្តើមដំណើរ<br>សិក្សារបស់កូនអ្នក" data-en="Start your child's<br>learning journey today">តោះ! ចាប់ផ្តើមដំណើរ<br>សិក្សារបស់កូនអ្នក</h2><p>សូមផ្ញើព័ត៌មានខ្លីៗមកកាន់យើង។ ក្រុមការងារសាលានឹងជួយណែនាំកម្មវិធី និងវគ្គសិក្សាដែលសមស្រប។</p><div class="step-list"><div class="step"><i>1</i> បំពេញព័ត៌មានសាកសួរ</div><div class="step"><i>2</i> ពិភាក្សាពីកម្មវិធីសិក្សា</div><div class="step"><i>3</i> ទស្សនាសាលា និងចុះឈ្មោះ</div></div></div>
+        <form class="inquiry-form" id="inquiryForm">
+          <div class="field"><label for="parentName">ឈ្មោះអាណាព្យាបាល</label><input id="parentName" required placeholder="ឈ្មោះរបស់អ្នក"></div>
+          <div class="field"><label for="phone">លេខទូរស័ព្ទ</label><input id="phone" required inputmode="tel" placeholder="0xx xxx xxx"></div>
+          <div class="field"><label for="childAge">អាយុកុមារ</label><input id="childAge" inputmode="numeric" placeholder="ឧ. ៥ ឆ្នាំ"></div>
+          <div class="field"><label for="interest">កម្មវិធីចាប់អារម្មណ៍</label><select id="interest"><option>Trilingual Plus</option><option>International Plus</option><option>Kindergarten</option><option>Grade 1 / Primary</option><option>សាកសួរទូទៅ</option></select></div>
+          <div class="field full"><label for="message">សារបន្ថែម</label><textarea id="message" placeholder="សូមប្រាប់យើងពីអ្វីដែលអ្នកចង់សាកសួរ..."></textarea></div>
+          <p class="form-note">សម្គាល់៖ នេះជាទម្រង់សាកល្បងប៉ុណ្ណោះ — ព័ត៌មានមិនត្រូវបានផ្ញើទៅម៉ាស៊ីនមេទេ។</p>
+          <button class="btn btn-blue form-submit" type="submit">ផ្ញើការសាកសួរ <span class="arrow">→</span></button>
+        </form>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-card reveal"><span class="eyebrow">Contact RCIA</span><h2 data-kh="មកស្គាល់សាលា<br>ឱ្យកាន់តែច្បាស់" data-en="Visit and get to know<br>our school">មកស្គាល់សាលា<br>ឱ្យកាន់តែច្បាស់</h2><p>សូមទាក់ទងមកសាលាដើម្បីសាកសួរកម្មវិធី ម៉ោងសិក្សា និងកំណត់ពេលទស្សនាសាលា។</p><div class="contact-line"><i><svg class="icon"><use href="#icon-phone"></use></svg></i><div><b>លេខទូរស័ព្ទ</b><span>081 516 234 • 011 967 539</span></div></div><div class="contact-line"><i><svg class="icon"><use href="#icon-clock"></use></svg></i><div><b>ម៉ោងសាកសួរ</b><span>សូមទាក់ទងសាលាសម្រាប់ព័ត៌មានបច្ចុប្បន្ន</span></div></div><div class="contact-line"><i><svg class="icon"><use href="#icon-location"></use></svg></i><div><b>ទីតាំងសាលា</b><span>Raamaid Cambodia International Academy</span></div></div></div>
+        <div class="map-card reveal" aria-label="School location"><div class="map-grid"></div><div class="map-pin"><svg class="icon"><use href="#icon-home"></use></svg></div><div class="map-label"><b>RAAMAID CAMBODIA</b><span>បើកទីតាំងសាលានៅលើ Google Maps</span><a class="map-link" href="https://maps.app.goo.gl/UV9SB3SXjNuDq8h26" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#icon-location"></use></svg><span data-kh="មើលផែនទី" data-en="View Map">មើលផែនទី</span></a></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about"><div class="footer-brand"><img src="Logo.jpg" alt="RCIA logo"><div><b>RAAMAID</b><span>CAMBODIA INTERNATIONAL ACADEMY</span></div></div><p>បរិយាកាសសិក្សា ៣ ភាសា និងសកម្មភាពអភិវឌ្ឍកុមារ សម្រាប់មូលដ្ឋានរឹងមាំ និងអនាគតដ៏ភ្លឺស្វាង។</p></div>
+        <div class="footer-col"><h4>តំណភ្ជាប់</h4><a href="#about">អំពីសាលា</a><a href="#programs">កម្មវិធីសិក្សា</a><a href="#activities">សកម្មភាពសិស្ស</a><a href="#admissions">ចុះឈ្មោះ</a></div>
+        <div class="footer-col"><h4>កម្មវិធី</h4><span>Trilingual Plus</span><span>International Plus</span><span>Kindergarten</span><span>FMSP</span></div>
+        <div class="footer-col"><h4>ទំនាក់ទំនង</h4><span>081 516 234</span><span>011 967 539</span><div class="socials"><a href="https://web.facebook.com/raamaid" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg class="icon"><use href="#icon-facebook"></use></svg></a><a href="#" aria-label="Telegram"><svg class="icon"><use href="#icon-send"></use></svg></a></div></div>
+      </div>
+      <div class="copyright"><span>© 2026 Raamaid Cambodia International Academy. Demo website.</span><span>Designed for RCIA • Learn • Play • Grow</span></div>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">អរគុណ! នេះជាទម្រង់សាកល្បងសម្រាប់ Demo</div>
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview"><button class="lightbox-close" aria-label="Close image"><svg class="icon"><use href="#icon-close"></use></svg></button><div class="lightbox-dialog"><img src="" alt="Expanded preview"><a class="lightbox-download" id="lightboxDownload" href="#" download><svg class="icon"><use href="#icon-download"></use></svg> ទាញយក / Download</a></div></div>
+
+  <script>
+    const langButtons = document.querySelectorAll('.lang-btn');
+    const localizedElements = document.querySelectorAll('[data-kh][data-en]');
+    const staticTranslations = {
+      "៣": "3",
+      "រៀន • លេង • រីកចម្រើន": "Learn • Play • Grow",
+      "រៀន និងលេង": "Learn & Play",
+      "ភាសាសិក្សា": "Learning Languages",
+      "វគ្គព្រឹក និងរសៀល": "Morning & Afternoon Sessions",
+      "អភិវឌ្ឍចលនាកុមារ": "Motor Skills Development",
+      "ការរៀនសូត្រ": "Learning",
+      "ចាប់ផ្តើមពី": "Begins with",
+      "ភាពរីករាយ!": "Joy!",
+      "អំពីសាលារបស់យើង": "About Our Academy",
+      "សាលា Raamaid Cambodia International Academy (RCIA) ផ្តោតលើការអប់រំ ៣ ភាសា និងការអភិវឌ្ឍកុមារតាមវ័យ។ យើងបង្កើតបរិយាកាសដែលកុមារអាចស្វែងយល់ អនុវត្ត ប្រាស្រ័យទាក់ទង និងរីកចម្រើនដោយទំនុកចិត្ត។": "Raamaid Cambodia International Academy (RCIA) focuses on trilingual education and age-appropriate child development. We create an environment where children can explore, practise, communicate and grow with confidence.",
+      "ភាសាខ្មែរ អង់គ្លេស និងចិន": "Khmer, English and Chinese",
+      "សកម្មភាពសមស្របតាមវ័យ": "Age-appropriate activities",
+      "គ្រូយកចិត្តទុកដាក់": "Caring teachers",
+      "វិន័យ និងទម្លាប់ល្អ": "Positive discipline and habits",
+      "ស្វែងយល់ពីសាលា": "Discover Our School",
+      "កម្មវិធីសិក្សារបស់យើង": "Our Learning Programs",
+      "ការសិក្សាមានរចនាសម្ព័ន្ធច្បាស់លាស់ បញ្ចូលភាសា ជំនាញរស់នៅ និងសកម្មភាពសម្រាប់ការអភិវឌ្ឍកុមារ។": "Our structured learning combines languages, life skills and engaging activities that support each child's development.",
+      "កម្មវិធីសិក្សាភាសាខ្មែរ អង់គ្លេស និងចិន សម្រាប់បង្កើនសមត្ថភាពទំនាក់ទំនងតាំងពីវ័យក្មេង។": "A Khmer, English and Chinese program that builds communication skills from an early age.",
+      "បទពិសោធន៍រៀនបែបសកម្ម ជួយកុមារស្វែងយល់ពិភពជុំវិញ និងអភិវឌ្ឍការគិត។": "Active learning experiences that help children explore the world and develop their thinking skills.",
+      "ថ្នាក់មត្តេយ្យដែលផ្សំការរៀន លេង និងសកម្មភាពបង្កើតទម្លាប់ល្អក្នុងបរិយាកាសកក់ក្តៅ។": "Kindergarten classes that blend learning, play and habit-building activities in a warm environment.",
+      "ថ្នាក់បឋមសិក្សាដែលពង្រឹងមូលដ្ឋានអាន សរសេរ គណិតវិទ្យា និងការសិក្សាប្រចាំថ្ងៃ។": "Primary classes that strengthen foundations in reading, writing, mathematics and everyday learning.",
+      "សកម្មភាព FMSP ជួយលើចលនាធំ ចលនាតូច ការសម្របសម្រួល និងភាពជឿជាក់លើខ្លួនឯង។": "FMSP activities support gross and fine motor skills, coordination and self-confidence.",
+      "សិល្បៈ ល្បែង ការងារជាក្រុម និងសកម្មភាពអនុវត្ត ដែលធ្វើឱ្យការរៀនមានភាពរស់រវើក។": "Art, games, teamwork and hands-on activities that make learning active and enjoyable.",
+      "មើលម៉ោងសិក្សា →": "View Schedule →",
+      "សាកសួរព័ត៌មាន →": "Inquiry →",
+      "មើលសកម្មភាព →": "View Activities →",
+      "មើលកាលវិភាគ →": "View Schedule →",
+      "ស្វែងយល់បន្ថែម →": "Learn More →",
+      "សកម្មភាពសិស្ស →": "Student Activities →",
+      "សកម្មភាពសិស្ស": "Student Activities",
+      "“កុមាររៀនបានល្អ នៅពេលពួកគេមានអារម្មណ៍កក់ក្តៅ និងមានទំនុកចិត្ត”": "“Children learn best when they feel safe, supported and confident.”",
+      "ហេតុអ្វីអាណាព្យាបាលជ្រើសរើស RCIA": "Why Parents Choose RCIA",
+      "យើងបញ្ចូលការសិក្សា សកម្មភាព និងការថែទាំទៅក្នុងថ្ងៃសិក្សាដែលមានរចនាសម្ព័ន្ធច្បាស់លាស់។": "We bring learning, activities and attentive care together in a clearly structured school day.",
+      "បរិយាកាស ៣ ភាសា": "Trilingual Environment",
+      "ឱ្យកុមារស្គាល់ និងប្រើប្រាស់ភាសាខ្មែរ អង់គ្លេស និងចិនជាប្រចាំ។": "Children become familiar with Khmer, English and Chinese through regular use.",
+      "ការថែទាំដោយយកចិត្តទុកដាក់": "Attentive Care",
+      "បរិយាកាសសុវត្ថិភាព ស្និទ្ធស្នាល និងគាំទ្រការរៀនតាមសមត្ថភាពកុមារ។": "A safe and welcoming environment that supports each child's learning needs.",
+      "អភិវឌ្ឍជំនាញពេញលេញ": "Whole-Child Development",
+      "ជំនាញភាសា ចលនា សង្គម អារម្មណ៍ និងទម្លាប់ប្រចាំថ្ងៃ។": "Language, movement, social, emotional and daily-living skills.",
+      "កាលវិភាគមានរចនាសម្ព័ន្ធ": "Structured Schedule",
+      "ម៉ោងសិក្សា សម្រាក សកម្មភាព និងរំលឹកមេរៀនរៀបចំយ៉ាងច្បាស់។": "Learning, breaks, activities and review time are clearly organised.",
+      "មួយថ្ងៃនៅ RCIA": "A Day at RCIA",
+      "ទិដ្ឋភាពទូទៅនៃវគ្គសិក្សា។ កាលវិភាគលម្អិតអាចខុសគ្នាតាមថ្នាក់ និងកម្រិតសិក្សា។": "A general overview of the school day. Detailed schedules may vary by class and level.",
+      "កាលវិភាគសិក្សា": "Class Schedule",
+      "ឯកសារយោងឆ្នាំសិក្សា៖ 2025–2026": "School year reference: 2025–2026",
+      "វគ្គព្រឹក 7:00–11:00": "Morning 7:00–11:00",
+      "វគ្គរសៀល 1:00–5:00": "Afternoon 1:00–5:00",
+      "ស្វាគមន៍សិស្ស": "Student Welcome",
+      "មកដល់ រៀបចំខ្លួន និងសន្ទនាពេលព្រឹក": "Arrival, preparation and morning conversation",
+      "មេរៀនភាសា": "Language Lesson",
+      "ភាសាខ្មែរ អង់គ្លេស ឬចិនតាមកាលវិភាគ": "Khmer, English or Chinese according to the class schedule",
+      "សម្រាក និងអាហារសម្រន់": "Break & Snack",
+      "ពេលសម្រាក អនាម័យ និងទម្លាប់ល្អ": "Rest, hygiene and positive daily habits",
+      "សកម្មភាពអភិវឌ្ឍ": "Development Activities",
+      "FMSP សិល្បៈ ល្បែង ឬការងារជាក្រុម": "FMSP, art, play or teamwork",
+      "រំលឹកមេរៀន": "Lesson Review",
+      "សង្ខេបការសិក្សា និងត្រៀមត្រឡប់ផ្ទះ": "Review learning and prepare to go home",
+      "ស្វាគមន៍ និងត្រៀមខ្លួន": "Welcome & Preparation",
+      "ការសន្ទនាខ្លី និងរៀបចំសម្ភារៈសិក្សា": "Short conversation and learning-material preparation",
+      "មេរៀនស្នូល": "Core Lesson",
+      "ភាសា គណិតវិទ្យា ឬការស្វែងយល់ជុំវិញខ្លួន": "Languages, mathematics or exploring the world around us",
+      "សម្រាក": "Break",
+      "អាហារសម្រន់ អនាម័យ និងលំហែកាយ": "Snack, hygiene and relaxation",
+      "រៀនតាមសកម្មភាព": "Activity-Based Learning",
+      "ការអនុវត្ត ការងារជាក្រុម និងជំនាញចលនា": "Practice, teamwork and movement skills",
+      "រំលឹក និងបញ្ចប់": "Review & Wrap-Up",
+      "សង្ខេបមេរៀន និងត្រៀមជួបអាណាព្យាបាល": "Review lessons and prepare to meet parents",
+      "កម្មវិធីសិក្សាទី 01": "Study Program 01",
+      "កម្មវិធីសិក្សាទី 02": "Study Program 02",
+      "កម្មវិធីសិក្សាទី 03": "Study Program 03",
+      "កម្មវិធីសិក្សាទី 04": "Study Program 04",
+      "កម្មវិធីសិក្សាទី 05": "Study Program 05",
+      "ទាញយក / Download": "Download",
+      "សកម្មភាពសិស្ស និងរូបភាព": "Student Activities & Gallery",
+      "ទិដ្ឋភាពសកម្មភាព ការរៀននៅថ្នាក់ និងបរិយាកាសស្វាគមន៍នៅ RCIA។": "A glimpse of activities, classroom learning and the welcoming environment at RCIA.",
+      "រៀនជាក្រុម": "Collaborative Learning",
+      "ចលនា និងការសម្របសម្រួល": "Movement & Coordination",
+      "ភាពរីករាយរាល់ថ្ងៃ": "Joy in Every Day",
+      "ទំនុកចិត្ត": "Confidence",
+      "សហគមន៍សាលា": "School Community",
+      "សាលារបស់យើង": "Our Campus",
+      "ការចុះឈ្មោះ និងសាកសួរ": "Admissions & Inquiry",
+      "សូមផ្ញើព័ត៌មានខ្លីៗមកកាន់យើង។ ក្រុមការងារសាលានឹងជួយណែនាំកម្មវិធី និងវគ្គសិក្សាដែលសមស្រប។": "Share a few details with us and our school team will help you choose a suitable program and class session.",
+      "បំពេញព័ត៌មានសាកសួរ": "Complete the inquiry form",
+      "ពិភាក្សាពីកម្មវិធីសិក្សា": "Discuss the study programs",
+      "ទស្សនាសាលា និងចុះឈ្មោះ": "Visit the school and enrol",
+      "ឈ្មោះអាណាព្យាបាល": "Parent or Guardian Name",
+      "លេខទូរស័ព្ទ": "Phone Number",
+      "អាយុកុមារ": "Child's Age",
+      "កម្មវិធីចាប់អារម្មណ៍": "Program of Interest",
+      "សាកសួរទូទៅ": "General Inquiry",
+      "សារបន្ថែម": "Additional Message",
+      "សម្គាល់៖ នេះជាទម្រង់សាកល្បងប៉ុណ្ណោះ — ព័ត៌មានមិនត្រូវបានផ្ញើទៅម៉ាស៊ីនមេទេ។": "Demo form only — information is not sent to a server.",
+      "ផ្ញើការសាកសួរ": "Send Inquiry",
+      "ទំនាក់ទំនង RCIA": "Contact RCIA",
+      "សូមទាក់ទងមកសាលាដើម្បីសាកសួរកម្មវិធី ម៉ោងសិក្សា និងកំណត់ពេលទស្សនាសាលា។": "Contact the school to ask about programs, class schedules or to arrange a school visit.",
+      "ម៉ោងសាកសួរ": "Inquiry Hours",
+      "សូមទាក់ទងសាលាសម្រាប់ព័ត៌មានបច្ចុប្បន្ន": "Please contact the school for current information",
+      "ទីតាំងសាលា": "School Location",
+      "បើកទីតាំងសាលានៅលើ Google Maps": "Open the school location in Google Maps",
+      "តំណភ្ជាប់": "Quick Links",
+      "អំពីសាលា": "About the School",
+      "កម្មវិធីសិក្សា": "Study Programs",
+      "ចុះឈ្មោះ": "Enrol",
+      "កម្មវិធី": "Programs",
+      "ទំនាក់ទំនង": "Contact",
+      "បរិយាកាសសិក្សា ៣ ភាសា និងសកម្មភាពអភិវឌ្ឍកុមារ សម្រាប់មូលដ្ឋានរឹងមាំ និងអនាគតដ៏ភ្លឺស្វាង។": "Trilingual learning and child-development activities for a strong foundation and a bright future.",
+      "© 2026 Raamaid Cambodia International Academy. គេហទំព័រសាកល្បង។": "© 2026 Raamaid Cambodia International Academy. Demo website.",
+      "រចនាសម្រាប់ RCIA • រៀន • លេង • រីកចម្រើន": "Designed for RCIA • Learn • Play • Grow",
+      "អរគុណ! នេះជាទម្រង់សាកល្បងសម្រាប់ Demo": "Thank you! This is a demo inquiry form."
+    };
+    const reverseTranslations = Object.fromEntries(Object.entries(staticTranslations).map(([kh, en]) => [en, kh]));
+    const placeholderTranslations = {
+      parentName: { kh: "ឈ្មោះរបស់អ្នក", en: "Your name" },
+      childAge: { kh: "ឧ. ៥ ឆ្នាំ", en: "e.g. 5 years" },
+      message: { kh: "សូមប្រាប់យើងពីអ្វីដែលអ្នកចង់សាកសួរ...", en: "Tell us what you would like to ask..." }
+    };
+    const translateStaticContent = lang => {
+      const dictionary = lang === 'en' ? staticTranslations : reverseTranslations;
+      document.querySelectorAll('body *').forEach(element => {
+        if (element.closest('script, style, svg, [data-kh][data-en]')) return;
+        Array.from(element.childNodes).forEach(node => {
+          if (node.nodeType !== 3) return;
+          const value = node.nodeValue.trim();
+          if (!value || !dictionary[value]) return;
+          node.nodeValue = node.nodeValue.replace(value, dictionary[value]);
+        });
+      });
+      Object.entries(placeholderTranslations).forEach(([id, values]) => {
+        const field = document.getElementById(id);
+        if (field) field.placeholder = values[lang];
+      });
+    };
+    const setLanguage = language => {
+      const lang = language === 'en' ? 'en' : 'kh';
+      document.documentElement.lang = lang === 'kh' ? 'km' : 'en';
+      localizedElements.forEach(element => { element.innerHTML = element.dataset[lang]; });
+      translateStaticContent(lang);
+      langButtons.forEach(button => {
+        const active = button.dataset.lang === lang;
+        button.classList.toggle('active', active);
+        button.setAttribute('aria-pressed', active);
+      });
+      try { localStorage.setItem('rcia-language', lang); } catch (error) { /* local preview may block storage */ }
+    };
+    langButtons.forEach(button => button.addEventListener('click', () => setLanguage(button.dataset.lang)));
+    let savedLanguage = 'kh';
+    try { savedLanguage = localStorage.getItem('rcia-language') || 'kh'; } catch (error) { /* keep Khmer default */ }
+    setLanguage(savedLanguage);
+
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      document.body.classList.toggle('menu-open', open);
+      menuBtn.setAttribute('aria-expanded', open);
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open'); document.body.classList.remove('menu-open'); menuBtn.setAttribute('aria-expanded','false');
+    }));
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+    }, { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = `${Math.min((i % 4) * 70, 210)}ms`; observer.observe(el); });
+
+    document.querySelectorAll('.tab').forEach(tab => tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.timeline').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active'); document.getElementById(tab.dataset.tab).classList.add('active');
+    }));
+
+    const toast = document.getElementById('toast');
+    document.getElementById('inquiryForm').addEventListener('submit', e => {
+      e.preventDefault(); toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3600);
+    });
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const lightboxDownload = document.getElementById('lightboxDownload');
+    const openLightbox = (src, alt, downloadable = false) => {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt;
+      lightboxDownload.href = downloadable ? src : '#';
+      lightboxDownload.classList.toggle('visible', downloadable);
+      lightbox.classList.add('open');
+      document.body.classList.add('menu-open');
+    };
+    document.querySelectorAll('.life-card img').forEach(img => img.addEventListener('click', () => {
+      openLightbox(img.src, img.alt);
+    }));
+    document.querySelectorAll('.poster-preview').forEach(button => button.addEventListener('click', () => {
+      const img = button.querySelector('img');
+      openLightbox(button.dataset.preview, img.alt, true);
+    }));
+    const closeLightbox = () => {
+      lightbox.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      lightboxDownload.classList.remove('visible');
+    };
+    lightbox.querySelector('button').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    document.querySelectorAll('a[href="#"]:not(#lightboxDownload)').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+  </script>
+</body>
+</html>
