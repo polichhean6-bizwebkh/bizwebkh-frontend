@@ -21,6 +21,35 @@ body {
   background: var(--pale);
   line-height: 1.6;
 }
+html[lang="km"] body,
+html[lang="km"] h1,
+html[lang="km"] h2,
+html[lang="km"] h3,
+html[lang="km"] p,
+html[lang="km"] a,
+html[lang="km"] button,
+html[lang="km"] span,
+html[lang="km"] label,
+html[lang="km"] input,
+html[lang="km"] textarea,
+html[lang="km"] select {
+  font-family: "Kantumruy Pro", "Inter", sans-serif;
+}
+
+html[lang="zh"] body,
+html[lang="zh"] h1,
+html[lang="zh"] h2,
+html[lang="zh"] h3,
+html[lang="zh"] p,
+html[lang="zh"] a,
+html[lang="zh"] button,
+html[lang="zh"] span,
+html[lang="zh"] label,
+html[lang="zh"] input,
+html[lang="zh"] textarea,
+html[lang="zh"] select {
+  font-family: "Noto Sans SC", "Inter", sans-serif;
+}
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 button, input, select, textarea { font: inherit; }
@@ -285,4 +314,34 @@ h3 { margin: 0 0 10px; line-height: 1.25; letter-spacing: 0; }
   .clinic-card { padding: 28px 18px; }
   .appointment-form { padding: 20px; }
   .footer h2, .footer p[data-i18n="slogan"] { white-space: normal; }
+}
+
+html[lang="km"] body,
+html[lang="km"] h1,
+html[lang="km"] h2,
+html[lang="km"] h3,
+html[lang="km"] p,
+html[lang="km"] a,
+html[lang="km"] button,
+html[lang="km"] span,
+html[lang="km"] label,
+html[lang="km"] input,
+html[lang="km"] textarea,
+html[lang="km"] select {
+  font-family: "Kantumruy Pro", "Inter", sans-serif !important;
+}
+
+html[lang="zh"] body,
+html[lang="zh"] h1,
+html[lang="zh"] h2,
+html[lang="zh"] h3,
+html[lang="zh"] p,
+html[lang="zh"] a,
+html[lang="zh"] button,
+html[lang="zh"] span,
+html[lang="zh"] label,
+html[lang="zh"] input,
+html[lang="zh"] textarea,
+html[lang="zh"] select {
+  font-family: "Noto Sans SC", "Inter", sans-serif !important;
 }
