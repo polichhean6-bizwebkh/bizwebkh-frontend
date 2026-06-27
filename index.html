@@ -185,6 +185,7 @@ html[data-theme="light"] .lang-btn.active{background:#1D7BFF;color:#fff;}
 .btn-outline:hover{background:rgba(0,212,255,0.08);border-color:rgba(0,212,255,0.6);}
 .btn-green{background:var(--green);color:#06170e;padding:7px 16px;font-weight:700;}
 .btn-green:hover{background:#00ffb3;transform:translateY(-1px);}
+.is-hidden{display:none!important;}
 
 .hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:6px;background:none;border:none;}
 .hamburger span{display:block;width:22px;height:2px;background:var(--text-2);border-radius:2px;transition:all .3s;}
@@ -469,6 +470,38 @@ html[data-theme="light"] .lang-btn.active{background:#1D7BFF;color:#fff;}
 .care-points span{font-size:11px;color:var(--text-2);border:1px solid var(--border);border-radius:999px;padding:4px 9px;background:rgba(255,255,255,0.025);}
 
 /* ============================================================
+   RECENT PROJECTS
+============================================================ */
+.projects-section{background:radial-gradient(circle at 50% 0,rgba(0,212,255,0.07),transparent 32%),var(--ink-2);}
+.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;max-width:1040px;margin:0 auto;}
+.project-card{position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.025));border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 18px 48px rgba(0,0,0,.16);opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease,border-color .25s ease,box-shadow .25s ease;}
+.project-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 0,rgba(0,212,255,.08),transparent 38%);pointer-events:none;}
+.project-card.is-visible{opacity:1;transform:translateY(0);}
+.project-card.is-visible:nth-child(2){transition-delay:.08s;}
+.project-card:hover{transform:translateY(-5px);border-color:var(--border-hi);box-shadow:0 24px 62px rgba(0,0,0,.24),0 0 34px rgba(0,212,255,.08);}
+.project-preview{position:relative;padding:18px;background:linear-gradient(135deg,#07152f,#103f86 58%,#18c8ff);overflow:hidden;}
+.project-preview::before{content:'';position:absolute;right:-18%;top:-35%;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.18);filter:blur(10px);}
+.project-preview::after{content:'';position:absolute;left:-20%;bottom:-45%;width:260px;height:260px;border-radius:50%;background:rgba(255,138,61,.16);filter:blur(16px);}
+.project-browser-frame{position:relative;z-index:1;overflow:hidden;border-radius:16px;background:#fff;box-shadow:0 22px 54px rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.55);}
+.project-browser-bar{height:28px;display:flex;align-items:center;gap:6px;padding:0 10px;background:rgba(248,251,255,.96);border-bottom:1px solid rgba(7,28,61,.08);}
+.project-dot{width:7px;height:7px;border-radius:50%;background:#ff6b6b;}
+.project-dot:nth-child(2){background:#ffc247;}
+.project-dot:nth-child(3){background:#2bd67b;}
+.project-thumb-wrap{position:relative;aspect-ratio:16/9;overflow:hidden;background:#07152f;}
+.project-thumb-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,21,47,0),rgba(7,21,47,.10));pointer-events:none;}
+.project-thumb{width:100%;height:100%;display:block;object-fit:cover;object-position:top center;transition:transform .45s ease;}
+.project-card:hover .project-thumb{transform:scale(1.025);}
+.project-body{position:relative;z-index:1;padding:22px;}
+.project-meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
+.project-badge,.project-category{display:inline-flex;align-items:center;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700;line-height:1.2;}
+.project-badge{background:rgba(0,229,160,.1);border:1px solid rgba(0,229,160,.2);color:var(--green);}
+.project-category{background:rgba(61,123,255,.12);border:1px solid rgba(99,140,255,.22);color:var(--accent-2);}
+.project-card h3{font-size:22px;font-weight:800;color:#fff;margin-bottom:9px;}
+.project-card p{font-size:14px;line-height:1.7;color:var(--text-2);margin-bottom:18px;}
+.project-btn{justify-content:center;}
+.project-btn svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;}
+
+/* ============================================================
    BEFORE AFTER
 ============================================================ */
 .compare-section{background:radial-gradient(circle at 50% 0,rgba(61,123,255,0.08),transparent 34%),var(--ink);}
@@ -591,6 +624,9 @@ footer{background:var(--ink);border-top:1px solid var(--border);padding:36px 24p
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink-3);border:1px solid var(--border-hi);border-radius:10px;padding:12px 22px;font-size:14px;color:var(--text);z-index:2000;opacity:0;pointer-events:none;transition:all .3s;white-space:nowrap;display:flex;align-items:center;gap:9px;}
 .toast svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;flex-shrink:0;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.back-to-top{position:fixed;right:18px;bottom:18px;width:42px;height:42px;border-radius:999px;border:1px solid var(--border-hi);background:rgba(19,25,41,.9);color:var(--text);box-shadow:0 14px 34px rgba(0,0,0,.28),0 0 22px rgba(61,123,255,.12);z-index:940;display:flex;align-items:center;justify-content:center;font-family:inherit;font-size:20px;font-weight:800;line-height:1;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .22s,visibility .22s,transform .22s,background .2s,border-color .2s;}
+.back-to-top:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
+.back-to-top.show{opacity:1;visibility:visible;transform:translateY(0);}
 
 /* ============================================================
    MOBILE MENU
@@ -695,6 +731,13 @@ html[data-theme="light"] .pricing-features li .check-ico{color:#18B889;}
 html[data-theme="light"] .pricing-note,html[data-theme="light"] .care-addon{background:rgba(29,123,255,.05);border-color:rgba(29,123,255,.14);}
 html[data-theme="light"] .care-title{color:#071C3D;}
 html[data-theme="light"] .care-price{color:#1D7BFF;}
+html[data-theme="light"] .projects-section{background:linear-gradient(180deg,#EEF6FF,#FFFFFF);}
+html[data-theme="light"] .project-card{background:#FFFFFF;border-color:rgba(29,123,255,.14);box-shadow:0 18px 50px rgba(29,72,125,.09);}
+html[data-theme="light"] .project-card:hover{border-color:rgba(29,123,255,.28);box-shadow:0 24px 64px rgba(29,72,125,.14);}
+html[data-theme="light"] .project-card h3{color:#071C3D;}
+html[data-theme="light"] .project-card p{color:#4A5B7A;}
+html[data-theme="light"] .project-badge{background:rgba(24,184,137,.1);border-color:rgba(24,184,137,.2);color:#0F9D74;}
+html[data-theme="light"] .project-category{background:rgba(29,123,255,.08);border-color:rgba(29,123,255,.17);color:#1D7BFF;}
 html[data-theme="light"] .compare-section{background:linear-gradient(180deg,#F6FAFF,#FFFFFF);}
 html[data-theme="light"] .compare-card::before{background:#B7C8DF;}
 html[data-theme="light"] .compare-card.after{border-color:rgba(29,123,255,.18);box-shadow:0 18px 44px rgba(29,72,125,.08);}
@@ -725,6 +768,8 @@ html[data-theme="light"] .modal-thumb{background:#F2F7FF;border-color:rgba(29,12
 html[data-theme="light"] .modal-info-val{color:#071C3D;}
 html[data-theme="light"] .modal-price-big{color:#1D7BFF;}
 html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rgba(29,123,255,.22);box-shadow:0 18px 44px rgba(29,72,125,.14);}
+html[data-theme="light"] .back-to-top{background:rgba(255,255,255,.94);color:#071C3D;border-color:rgba(29,123,255,.24);box-shadow:0 16px 38px rgba(29,72,125,.16);}
+html[data-theme="light"] .back-to-top:hover{background:#1D7BFF;border-color:#1D7BFF;color:#fff;}
 
 /* ============================================================
    RESPONSIVE
@@ -734,52 +779,97 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
   .steps::before{display:none;}
   .stats-inner{grid-template-columns:1fr 1fr;}
   .why-grid{grid-template-columns:1fr 1fr;}
-  .compare-grid{grid-template-columns:1fr;}
+  .compare-grid,.project-grid{grid-template-columns:1fr;}
   .pricing-grid{grid-template-columns:repeat(2,minmax(260px,1fr));}
   .stat-item:nth-child(2){border-right:none;}
   .care-addon{grid-template-columns:1fr;align-items:flex-start;}
 }
-@media(max-width:700px){
-  .nav-links,.nav-actions{display:none;}
-  .hamburger{display:flex;}
-  .nav-logo-img{width:180px;height:auto;max-height:46px;}
+@media(max-width:768px){
+  nav{padding:0 14px;gap:8px;}
+  .nav-logo{flex:1 1 auto;min-width:0;overflow:hidden;}
+  .nav-logo-img{width:clamp(148px,44vw,210px);height:auto;max-height:50px;object-fit:contain;object-position:left center;}
+  .nav-links,.nav-actions .btn{display:none;}
+  .nav-spacer{display:none;}
+  .nav-actions{display:flex;flex:0 0 auto;gap:7px;margin-left:auto;}
+  .lang-toggle{height:34px;flex-shrink:0;}
+  .lang-btn{min-width:31px;padding:5px 8px;}
+  .theme-toggle{width:34px;height:34px;padding:3px;justify-content:center;gap:0;flex-shrink:0;}
+  .theme-toggle-text{display:none;}
+  .hamburger{display:flex;align-items:center;justify-content:center;width:34px;height:34px;padding:6px;flex-shrink:0;}
+  .mobile-menu{padding-left:18px;padding-right:18px;}
+  .card-grid,.why-grid,.value-strip,.pricing-grid,.compare-grid,.project-grid,.quiz-options,.steps,.contact-grid{grid-template-columns:1fr !important;}
+  .card-grid,.pricing-grid{gap:18px;}
+  .why-card,.pricing-card,.compare-card{min-height:auto;padding:22px 20px;}
+  .project-grid{gap:18px;}
+  .project-preview{padding:14px;}
+  .project-browser-frame{border-radius:14px;}
+  .project-body{padding:20px 18px;}
+  .value-item{padding:15px 16px;align-items:flex-start;}
+  .card-thumb{height:auto;aspect-ratio:16/10;flex:0 0 auto;}
+  .card-thumb.live-thumb{height:auto;aspect-ratio:16/10;padding:8px;}
+  .card-thumb img{width:100%;height:100%;object-fit:cover;}
+  .card-body{position:relative;z-index:1;padding:18px 18px 16px;background:var(--ink-3);}
+  .card-desc{font-size:13px;line-height:1.65;}
+  .card-bestfor{font-size:12px;line-height:1.6;}
+  .card-actions .btn{flex-basis:100%;width:100%;}
+  .filter-bar{padding:14px;gap:14px;align-items:stretch;}
+  .filter-group{align-items:flex-start;gap:8px;}
+  .filter-label{width:100%;white-space:normal;}
+  .filter-clear{margin-left:0;justify-content:center;width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--ink-3);}
+  .steps{gap:20px;}
+  .step{padding:0;text-align:left;display:grid;grid-template-columns:54px 1fr;column-gap:14px;align-items:start;}
+  .step-num{grid-row:1 / span 2;margin:0;}
+  .quiz-inner,.quiz-result{padding:24px 18px;}
+  .quiz-nav{gap:14px;align-items:flex-start;flex-direction:column;}
+  .form-wrap{padding:24px 18px;border-radius:14px;}
+  .care-addon{grid-template-columns:1fr;align-items:stretch;padding:18px;}
+  .care-addon .btn{width:100%;}
+  .contact-grid{max-width:420px;}
+  .contact-btn{padding:20px 16px;}
+  footer{padding:28px 18px 30px;}
+  .footer-logo-img{width:250px;max-width:78vw;margin-bottom:12px;}
+  .footer-sub{max-width:380px;margin:0 auto 16px;line-height:1.65;}
+  .footer-links{display:none;}
+  .footer-quick-actions{display:grid;}
+  .back-to-top{right:14px;bottom:calc(14px + env(safe-area-inset-bottom));width:40px;height:40px;font-size:19px;}
   .hero h1{max-width:100%;font-size:clamp(31px,10vw,44px);}
   .hero-title-subline{font-size:clamp(22px,7.5vw,32px);margin-top:8px;white-space:normal;}
   .hero-typing-wrap{min-width:min(92vw,340px);max-width:92vw;white-space:normal;}
-  .footer-logo-img{width:280px;max-width:86vw;}
   .form-grid{grid-template-columns:1fr;}
-  .quiz-options{grid-template-columns:1fr;}
   .modal-drawer{width:100vw;}
-  .pricing-grid{grid-template-columns:1fr;}
-  .card-actions .btn{flex-basis:100%;width:100%;}
-  .why-grid{grid-template-columns:1fr;}
-  .value-strip{grid-template-columns:1fr;}
   .section{padding:52px 16px;}
   .included-section{padding-top:44px;padding-bottom:56px;}
-  .card-thumb.live-thumb{height:190px;padding:8px;}
   .live-preview-frame iframe{transform:scale(0.215);}
+}
+@media(max-width:700px){
 }
 @media(max-width:520px){
   .contact-grid{grid-template-columns:1fr;max-width:320px;}
 }
 @media(max-width:480px){
-  .card-grid{grid-template-columns:1fr;}
-  .card-thumb.live-thumb{height:184px;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
   .stat-item{border-right:none !important;border-bottom:1px solid var(--border);}
+  .stat-item:nth-last-child(-n+2){border-bottom:none;}
   .stat-item:last-child{border-bottom:none;}
-  nav{padding:0 16px;}
+  nav{padding:0 12px;gap:6px;}
+  .nav-logo-img{width:clamp(138px,41vw,176px);}
+  .nav-actions{gap:5px;}
+  .lang-btn{min-width:29px;padding-left:7px;padding-right:7px;}
 }
-@media(max-width:700px){
+@media(max-width:768px){
   html[data-theme="light"] .hero{padding-top:calc(var(--nav-h) + 32px);padding-bottom:44px;min-height:auto;height:auto;}
   html[data-theme="light"] .section{padding:58px 16px;}
   html[data-theme="light"] .included-section{padding-top:44px;padding-bottom:56px;}
+  html[data-theme="light"] .card-body{background:#FFFFFF;}
+  html[data-theme="light"] .filter-clear{background:#FFFFFF;}
 }
 /* ===== PROMO SECTION ===== */
 .promo-section{padding:0 0 8px;}
-.promo-card{position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid rgba(0,212,255,0.32);background:linear-gradient(135deg,rgba(0,212,255,0.09) 0%,rgba(61,123,255,0.08) 55%,rgba(0,212,255,0.05) 100%);padding:36px 40px;display:flex;align-items:center;gap:36px;}
+.promo-card{position:relative;overflow:hidden;border-radius:var(--radius);border:1px solid rgba(0,212,255,0.32);background:linear-gradient(135deg,rgba(0,212,255,0.09) 0%,rgba(61,123,255,0.08) 55%,rgba(0,212,255,0.05) 100%);padding:36px 40px;display:flex;align-items:center;gap:36px;opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease,box-shadow .3s ease;box-shadow:0 18px 48px rgba(0,0,0,.08),0 0 0 rgba(0,212,255,0);}
+.promo-card.is-visible{opacity:1;transform:translateY(0);animation:promoCardGlow 5.8s ease-in-out infinite;}
 .promo-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 5% 50%,rgba(0,212,255,0.12) 0%,transparent 60%);pointer-events:none;}
-.promo-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent-2),var(--accent),transparent);opacity:.7;}
-.promo-icon-wrap{flex:0 0 64px;width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,rgba(0,212,255,0.22),rgba(61,123,255,0.18));border:1px solid rgba(0,212,255,0.28);display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(0,212,255,0.12);}
+.promo-card::after{content:'';position:absolute;top:0;left:-45%;width:45%;height:2px;background:linear-gradient(90deg,transparent,var(--accent-2),var(--accent),transparent);opacity:.85;animation:promoBorderSweep 4.8s ease-in-out infinite;}
+.promo-icon-wrap{flex:0 0 64px;width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,rgba(0,212,255,0.22),rgba(61,123,255,0.18));border:1px solid rgba(0,212,255,0.28);display:flex;align-items:center;justify-content:center;box-shadow:0 0 24px rgba(0,212,255,0.12);animation:promoGiftFloat 4.2s ease-in-out infinite;}
 .promo-body{flex:1;min-width:0;}
 .promo-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,212,255,0.14);border:1px solid rgba(0,212,255,0.28);border-radius:999px;padding:3px 12px;font-size:11px;font-weight:700;color:var(--accent-2);letter-spacing:.04em;margin-bottom:10px;}
 .promo-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent-2);animation:promoBlip 1.4s ease-in-out infinite;}
@@ -790,6 +880,19 @@ html[data-theme="light"] .toast{background:#FFFFFF;color:#071C3D;border-color:rg
 .promo-desc{font-size:14px;color:var(--text-2);line-height:1.75;max-width:560px;}
 .promo-note{font-size:11px;color:var(--text-3);margin-top:10px;display:flex;align-items:center;gap:6px;}
 .promo-cta{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;}
+.promo-cta .btn{position:relative;overflow:hidden;isolation:isolate;transition:transform .24s ease,box-shadow .24s ease,background .24s ease;}
+.promo-cta .btn::before{content:'';position:absolute;inset:-30% auto -30% -45%;width:42%;background:linear-gradient(110deg,transparent,rgba(255,255,255,.38),transparent);transform:skewX(-18deg);animation:promoBtnShimmer 4.2s ease-in-out infinite;z-index:0;}
+.promo-cta .btn>*{position:relative;z-index:1;}
+.promo-cta .btn:hover{transform:translateY(-3px);box-shadow:0 16px 42px rgba(61,123,255,.46),0 0 30px rgba(0,212,255,.18)!important;}
+@keyframes promoCardGlow{0%,100%{box-shadow:0 18px 48px rgba(0,0,0,.08),0 0 0 rgba(0,212,255,0);}50%{box-shadow:0 24px 58px rgba(0,0,0,.12),0 0 34px rgba(0,212,255,.12);}}
+@keyframes promoBorderSweep{0%,55%{left:-45%;opacity:0;}68%{opacity:.9;}100%{left:100%;opacity:0;}}
+@keyframes promoGiftFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+@keyframes promoBtnShimmer{0%,62%{left:-45%;opacity:0;}72%{opacity:1;}100%{left:120%;opacity:0;}}
+.footer-quick-actions{display:none;grid-template-columns:1fr;gap:8px;max-width:340px;margin:0 auto 18px;}
+.footer-quick-actions .btn{justify-content:center;width:100%;padding:10px 14px;}
+@media(max-width:768px){
+  .footer-quick-actions{display:grid;}
+}
 html[data-theme="light"] .promo-card{background:linear-gradient(135deg,rgba(29,123,255,.07),rgba(0,212,255,.05));border-color:rgba(29,123,255,.26);}
 html[data-theme="light"] .promo-card::after{background:linear-gradient(90deg,#1D7BFF,#18C8FF,transparent);}
 html[data-theme="light"] .promo-badge{background:rgba(29,123,255,.1);border-color:rgba(29,123,255,.2);color:#1D7BFF;}
@@ -804,6 +907,13 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
   .promo-card{flex-direction:column;align-items:flex-start;gap:20px;padding:24px 20px;}
   .promo-cta{width:100%;}
   .promo-cta .btn{width:100%;justify-content:center;padding:13px 20px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .project-card,.project-card.is-visible{opacity:1;transform:none;transition:none!important;}
+  .project-card:hover{transform:none;}
+  .promo-card,.promo-card.is-visible,.promo-card::after,.promo-icon-wrap,.promo-badge::before,.promo-cta .btn::before{animation:none!important;transition:none!important;}
+  .promo-card,.promo-card.is-visible{opacity:1;transform:none;}
+  .promo-cta .btn:hover{transform:none;}
 }
 </style>
 <!-- Google tag (gtag.js) -->
@@ -1047,9 +1157,9 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
         <h3 class="promo-title" data-i18n="promo.title">ប្រូម៉ូសិនប្រចាំខែនេះ</h3>
         <div class="promo-offer">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          <span data-i18n="promo.offer">ទទួលបានការគាំទ្រ Hosting 1 ខែ ដោយឥតគិតថ្លៃ</span>
+          <span data-i18n="promo.offer">ទទួលបានការរៀបចំ Hosting 1 ឆ្នាំ ដោយឥតគិតថ្លៃ</span>
         </div>
-        <p class="promo-desc" data-i18n="promo.desc">កក់គម្រោងវែបសាយក្នុងខែនេះ ហើយទទួលបានការគាំទ្រ Hosting 1 ខែ ដើម្បីជួយឱ្យអាជីវកម្មបើកដំណើរការវែបសាយបានរលូន។</p>
+        <p class="promo-desc" data-i18n="promo.desc">កក់គម្រោងវែបសាយក្នុងខែនេះ ហើយទទួលបានការរៀបចំ Hosting 1 ឆ្នាំ ដោយឥតគិតថ្លៃ ដើម្បីជួយឱ្យអាជីវកម្មបើកដំណើរការវែបសាយបានរលូន។</p>
         <p class="promo-note">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <span data-i18n="promo.note">សម្រាប់គម្រោងថ្មីដែលបើកដំណើរការក្នុងខែ</span>
@@ -1537,6 +1647,76 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
   </div>
 </section>
 
+<!-- ========== RECENT PROJECTS ========== -->
+<!-- Recent Website Projects section temporarily hidden until more public projects are ready. Remove is-hidden to re-enable. -->
+<section class="section projects-section is-hidden" id="projects" aria-hidden="true">
+  <div class="section-inner">
+    <div class="section-header" style="justify-content:center;text-align:center">
+      <div>
+        <p class="section-label" data-i18n="projects.label">// គម្រោងថ្មីៗ</p>
+        <h2 class="section-title" data-i18n="projects.title">គម្រោងវែបសាយថ្មីៗ</h2>
+        <p class="section-sub" data-i18n="projects.sub">គំរូគម្រោងដែល BizWeb KH បានរៀបចំសម្រាប់អាជីវកម្ម និងស្ថាប័នក្នុងស្រុក។</p>
+      </div>
+    </div>
+
+    <div class="project-grid">
+      <article class="project-card">
+        <div class="project-preview">
+          <div class="project-browser-frame">
+            <div class="project-browser-bar">
+              <span class="project-dot"></span>
+              <span class="project-dot"></span>
+              <span class="project-dot"></span>
+            </div>
+            <div class="project-thumb-wrap">
+              <img class="project-thumb" src="assets/projects/iia-education-thumbnail.jpg" alt="IIA Education website thumbnail" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta-row">
+            <span class="project-badge" data-i18n="projects.real">គម្រោងពិត</span>
+            <span class="project-category" data-i18n="projects.iia.category">សាលារៀន / អប់រំ</span>
+          </div>
+          <h3>IIA Education</h3>
+          <p data-i18n="projects.iia.desc">វែបសាយសម្រាប់សាលារៀន ដើម្បីបង្ហាញកម្មវិធីសិក្សា ព័ត៌មានចុះឈ្មោះ សកម្មភាពសិស្ស ព័ត៌មានទំនាក់ទំនង និងការសាកសួរពីអាណាព្យាបាល។</p>
+          <a class="btn btn-outline project-btn" href="https://iia-edu.com/" target="_blank" rel="noopener">
+            <span data-i18n="projects.iia.btn">មើលវែបសាយ</span>
+            <svg width="15" height="15"><path d="M5 3h7v7"/><path d="M12 3 4 11"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="project-preview">
+          <div class="project-browser-frame">
+            <div class="project-browser-bar">
+              <span class="project-dot"></span>
+              <span class="project-dot"></span>
+              <span class="project-dot"></span>
+            </div>
+            <div class="project-thumb-wrap">
+              <img class="project-thumb" src="assets/projects/safemove-thumbnail.jpg" alt="SAFEMOVE EXPRESS website thumbnail" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta-row">
+            <span class="project-badge" data-i18n="projects.real">គម្រោងពិត</span>
+            <span class="project-category" data-i18n="projects.safe.category">ដឹកជញ្ជូន / Logistics</span>
+          </div>
+          <h3>SAFEMOVE EXPRESS</h3>
+          <p data-i18n="projects.safe.desc">វែបសាយសម្រាប់អាជីវកម្មដឹកជញ្ជូន ដើម្បីបង្ហាញសេវាដឹកជញ្ជូន COD, EV Delivery, Parcel Drop-off Services, Live Tracking និងភាពជឿទុកចិត្តរបស់អាជីវកម្ម។</p>
+          <a class="btn btn-outline project-btn" href="https://www.bizwebkh.com/c008-safemove/" target="_blank" rel="noopener">
+            <span data-i18n="projects.safe.btn">មើលគម្រោង</span>
+            <svg width="15" height="15"><path d="M5 3h7v7"/><path d="M12 3 4 11"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ========== BEFORE AFTER ========== -->
 <section class="section compare-section">
   <div class="section-inner">
@@ -1815,6 +1995,20 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
     <img class="footer-logo-img" src="bizweb-kh-logo-main.svg" alt="BizWeb KH affordable website design for Cambodian SMEs">
   </div>
   <p class="footer-sub">សេវាធ្វើវែបសាយខ្មែរ + អង់គ្លេស តម្លៃសមរម្យ សម្រាប់ SME ខ្មែរ។ រួចរាល់ក្នុងប៉ុន្មានថ្ងៃ មិនមែនប៉ុន្មានខែ។</p>
+  <div class="footer-quick-actions" aria-label="Footer quick actions">
+    <a href="https://t.me/BizWebKH" target="_blank" rel="noopener" class="btn btn-primary" data-contact="telegram">
+      <svg width="14" height="14"><use href="#i-send"/></svg>
+      <span>Telegram</span>
+    </a>
+    <a href="tel:+85517400044" class="btn btn-ghost" data-contact="phone">
+      <svg width="14" height="14"><use href="#i-phone"/></svg>
+      <span>Call</span>
+    </a>
+    <a href="#request" class="btn btn-outline">
+      <svg width="14" height="14"><use href="#i-sparkles"/></svg>
+      <span data-i18n="nav.preview">ព្រីវ្យូឥតគិតថ្លៃ</span>
+    </a>
+  </div>
   <ul class="footer-links">
     <li><a href="#demos" data-i18n="nav.demos">គំរូ</a></li>
     <li><a href="#pricing" data-i18n="nav.pricing">តម្លៃ</a></li>
@@ -1843,6 +2037,7 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
   <svg width="15" height="15"><use href="#i-check"/></svg>
   <span id="toast-msg"></span>
 </div>
+<button class="back-to-top" id="back-to-top" type="button" aria-label="Back to top">↑</button>
 
 <!-- ========== JAVASCRIPT ========== -->
 <script>
@@ -2139,10 +2334,22 @@ const LANG_DATA = {
     'promo.badge': 'ប្រូម៉ូសិនប្រចាំខែ',
     'promo.label': '// ប្រូម៉ូសិន',
     'promo.title': 'ប្រូម៉ូសិនប្រចាំខែនេះ',
-    'promo.offer': 'ទទួលបានការគាំទ្រ Hosting 1 ខែ ដោយឥតគិតថ្លៃ',
-    'promo.desc': 'កក់គម្រោងវែបសាយក្នុងខែនេះ ហើយទទួលបានការគាំទ្រ Hosting 1 ខែ ដើម្បីជួយឱ្យអាជីវកម្មបើកដំណើរការវែបសាយបានរលូន។',
+    'promo.offer': 'ទទួលបានការរៀបចំ Hosting 1 ឆ្នាំ ដោយឥតគិតថ្លៃ',
+    'promo.desc': 'កក់គម្រោងវែបសាយក្នុងខែនេះ ហើយទទួលបានការរៀបចំ Hosting 1 ឆ្នាំ ដោយឥតគិតថ្លៃ ដើម្បីជួយឱ្យអាជីវកម្មបើកដំណើរការវែបសាយបានរលូន។',
     'promo.note': 'សម្រាប់គម្រោងថ្មីដែលបើកដំណើរការក្នុងខែ',
-    'promo.btn': 'ទទួលយកប្រូម៉ូសិនតាម Telegram'
+    'promo.btn': 'ទទួលយកប្រូម៉ូសិនតាម Telegram',
+    'projects.label': '// គម្រោងថ្មីៗ',
+    'projects.title': 'គម្រោងវែបសាយថ្មីៗ',
+    'projects.sub': 'គំរូគម្រោងដែល BizWeb KH បានរៀបចំសម្រាប់អាជីវកម្ម និងស្ថាប័នក្នុងស្រុក។',
+    'projects.real': 'គម្រោងពិត',
+    'projects.iia.preview': 'សាលារៀន',
+    'projects.iia.category': 'សាលារៀន / អប់រំ',
+    'projects.iia.desc': 'វែបសាយសម្រាប់សាលារៀន ដើម្បីបង្ហាញកម្មវិធីសិក្សា ព័ត៌មានចុះឈ្មោះ សកម្មភាពសិស្ស ព័ត៌មានទំនាក់ទំនង និងការសាកសួរពីអាណាព្យាបាល។',
+    'projects.iia.btn': 'មើលវែបសាយ',
+    'projects.safe.preview': 'ដឹកជញ្ជូន',
+    'projects.safe.category': 'ដឹកជញ្ជូន / Logistics',
+    'projects.safe.desc': 'វែបសាយសម្រាប់អាជីវកម្មដឹកជញ្ជូន ដើម្បីបង្ហាញសេវាដឹកជញ្ជូន COD, EV Delivery, Parcel Drop-off Services, Live Tracking និងភាពជឿទុកចិត្តរបស់អាជីវកម្ម។',
+    'projects.safe.btn': 'មើលគម្រោង'
   },
   en: {
     'nav.demos': 'Demos',
@@ -2426,10 +2633,22 @@ const LANG_DATA = {
     'promo.badge': 'This Month Only',
     'promo.label': '// Promotion',
     'promo.title': 'This Month\'s Promo',
-    'promo.offer': 'Get 1 Month Free Hosting Support',
-    'promo.desc': 'Book your website project this month and receive 1 month of free hosting support to help your business launch smoothly.',
+    'promo.offer': 'Get free hosting setup for 1 year',
+    'promo.desc': 'Book your website project this month and get free hosting setup for 1 year to help your business launch smoothly.',
     'promo.note': 'For new projects launching this month',
-    'promo.btn': 'Claim This Offer on Telegram'
+    'promo.btn': 'Claim This Offer on Telegram',
+    'projects.label': '// recent projects',
+    'projects.title': 'Recent Website Projects',
+    'projects.sub': 'A few recent website projects prepared by BizWeb KH for local businesses and institutions.',
+    'projects.real': 'Real project',
+    'projects.iia.preview': 'School website',
+    'projects.iia.category': 'School / Education Website',
+    'projects.iia.desc': 'A school website designed to present programs, admissions information, student activities, contact details, and parent inquiries clearly.',
+    'projects.iia.btn': 'View Website',
+    'projects.safe.preview': 'Logistics website',
+    'projects.safe.category': 'Delivery / Logistics Website',
+    'projects.safe.desc': 'A logistics website designed to highlight delivery services, COD support, EV delivery, parcel drop-off services, live tracking, and business credibility.',
+    'projects.safe.btn': 'View Project'
   }
 };
 
@@ -2829,8 +3048,8 @@ function closeModalOnOverlay(e){if(e.target===document.getElementById('modal'))c
 function claimPromo(){
   const isKh=(currentLang||'kh')==='kh';
   const msg=isKh
-    ? 'សួស្ដី BizWeb KH ខ្ញុំចង់ដឹងបន្ថែមអំពីប្រូម៉ូសិនប្រចាំខែនេះ ដែលមានការគាំទ្រ Hosting 1 ខែដោយឥតគិតថ្លៃ។ សូមជួយណែនាំ Package និង Demo ដែលសាកសម។'
-    : 'Hello BizWeb KH, I want to know more about this month\'s promotion with 1 month of free hosting support. Please recommend a suitable package and demo.';
+    ? 'សួស្ដី BizWeb KH ខ្ញុំចង់ដឹងបន្ថែមអំពីប្រូម៉ូសិនប្រចាំខែនេះ ដែលមានការរៀបចំ Hosting 1 ឆ្នាំដោយឥតគិតថ្លៃ។ សូមជួយណែនាំ Package និង Demo ដែលសាកសម។'
+    : 'Hello BizWeb KH, I want to know more about this month\'s promotion with free hosting setup for 1 year. Please recommend a suitable package and demo.';
   showToast(t('toast.opening'));
   setTimeout(()=>{ window.open(CONFIG.telegramUrl+'?text='+encodeURIComponent(msg),'_blank'); },350);
 }
@@ -2983,6 +3202,22 @@ function showToast(msg){
 }
 
 /* =====================================================
+   BACK TO TOP
+===================================================== */
+const backToTopBtn=document.getElementById('back-to-top');
+function updateBackToTop(){
+  if(!backToTopBtn)return;
+  backToTopBtn.classList.toggle('show',window.scrollY>420);
+}
+if(backToTopBtn){
+  backToTopBtn.addEventListener('click',()=>{
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+  window.addEventListener('scroll',updateBackToTop,{passive:true});
+  updateBackToTop();
+}
+
+/* =====================================================
    MOBILE MENU
 ===================================================== */
 document.getElementById('hamburger').addEventListener('click',()=>{
@@ -3132,9 +3367,49 @@ function applyContactConfig(){
   });
 }
 
+function initPromoAnimation(){
+  const card=document.querySelector('.promo-card');
+  if(!card)return;
+  const reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion||!('IntersectionObserver'in window)){
+    card.classList.add('is-visible');
+    return;
+  }
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        card.classList.add('is-visible');
+        observer.disconnect();
+      }
+    });
+  },{threshold:.28});
+  observer.observe(card);
+}
+
+function initProjectAnimation(){
+  const cards=document.querySelectorAll('.project-card');
+  if(!cards.length)return;
+  const reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion||!('IntersectionObserver'in window)){
+    cards.forEach(card=>card.classList.add('is-visible'));
+    return;
+  }
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:.18});
+  cards.forEach(card=>observer.observe(card));
+}
+
 initTheme();
 initLang();
 initHeroTyping();
+initPromoAnimation();
+initProjectAnimation();
 applyContactConfig();
 renderCards();
 
