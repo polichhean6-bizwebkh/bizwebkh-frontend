@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bright Brain School Admin Demo</title>
+  <meta name="description" content="Front-end admin dashboard demo for Bright Brain School content management.">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="admin-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="dashboard.html">
+        <img src="../assets/logo.png" alt="Bright Brain School logo">
+        <span>Bright Brain<br>Admin</span>
+      </a>
+      <nav class="side-nav" aria-label="Dashboard navigation">
+        <button class="active" data-panel="overview">Dashboard Overview</button>
+        <button data-panel="news">News & Events</button>
+        <button data-panel="gallery">Gallery</button>
+        <button data-panel="programs">Programs</button>
+        <button data-panel="staff">Staff / Teachers</button>
+        <button data-panel="school-info">School Info</button>
+        <button data-panel="inquiries">Inquiry Messages</button>
+        <button data-panel="settings">Settings</button>
+      </nav>
+      <div class="sidebar-note">No real data is saved in this demo.</div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <button class="menu-toggle" type="button" aria-label="Open dashboard menu">☰</button>
+        <div>
+          <h1>Bright Brain School Admin</h1>
+          <p>Content management preview dashboard</p>
+        </div>
+        <span class="demo-badge">Demo Mode</span>
+        <div class="admin-profile" aria-label="Admin profile placeholder">A</div>
+      </header>
+
+      <main class="content">
+        <section class="panel active" id="overview">
+          <div class="panel-heading">
+            <div><span class="eyebrow">Overview</span><h2>School Content Dashboard</h2></div>
+            <p>This is a demo dashboard preview. Final version requires backend/database setup.</p>
+          </div>
+          <div class="stat-grid">
+            <article class="stat-card blue"><span>Total News</span><strong>6</strong></article>
+            <article class="stat-card yellow"><span>Gallery Photos</span><strong>9</strong></article>
+            <article class="stat-card green"><span>Programs</span><strong>6</strong></article>
+            <article class="stat-card purple"><span>New Inquiries</span><strong>3</strong></article>
+          </div>
+          <div class="card">
+            <h3>Quick Actions</h3>
+            <div class="actions">
+              <button class="btn" data-open-modal="news">Add News</button>
+              <button class="btn sky" data-demo-message="Demo only. Final dashboard will support real image upload.">Upload Photo</button>
+              <button class="btn green" data-open-modal="program">Edit Program</button>
+              <button class="btn purple" data-panel-link="inquiries">View Inquiries</button>
+            </div>
+          </div>
+          <div class="notice">This admin dashboard is a front-end demo only. A real version requires backend, database, hosting/server, user authentication, and file storage.</div>
+        </section>
+
+        <section class="panel" id="news">
+          <div class="panel-heading">
+            <div><span class="eyebrow">Content</span><h2>News & Events</h2></div>
+            <button class="btn" data-open-modal="news">Add News</button>
+          </div>
+          <div class="table-card">
+            <table>
+              <thead><tr><th>Title</th><th>Category</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody>
+                <tr><td>School Assembly</td><td>Activities</td><td><span class="status published">Published</span></td><td><button data-open-modal="news">Edit</button><button data-demo-message="Demo only. Final dashboard can delete this item after backend setup.">Delete</button></td></tr>
+                <tr><td>Student Speaking Activity</td><td>Activities</td><td><span class="status published">Published</span></td><td><button data-open-modal="news">Edit</button><button data-demo-message="Demo only. Final dashboard can delete this item after backend setup.">Delete</button></td></tr>
+                <tr><td>Classroom Learning</td><td>Classroom</td><td><span class="status draft">Draft</span></td><td><button data-open-modal="news">Edit</button><button data-demo-message="Demo only. Final dashboard can delete this item after backend setup.">Delete</button></td></tr>
+                <tr><td>Award Presentation</td><td>Awards</td><td><span class="status published">Published</span></td><td><button data-open-modal="news">Edit</button><button data-demo-message="Demo only. Final dashboard can delete this item after backend setup.">Delete</button></td></tr>
+                <tr><td>School Community Event</td><td>Community</td><td><span class="status draft">Draft</span></td><td><button data-open-modal="news">Edit</button><button data-demo-message="Demo only. Final dashboard can delete this item after backend setup.">Delete</button></td></tr>
+                <tr><td>Student Learning Moment</td><td>Classroom</td><td><span class="status published">Published</span></td><td><button data-open-modal="news">Edit</button><button data-demo-message="Demo only. Final dashboard can delete this item after backend setup.">Delete</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel" id="gallery">
+          <div class="panel-heading">
+            <div><span class="eyebrow">Media</span><h2>Gallery Management</h2></div>
+            <button class="btn" data-demo-message="Demo only. Final dashboard will support real image upload.">Upload Image</button>
+          </div>
+          <div class="filter-tabs">
+            <button class="active" data-gallery-filter="all">All</button>
+            <button data-gallery-filter="classroom">Classroom</button>
+            <button data-gallery-filter="activities">Activities</button>
+            <button data-gallery-filter="awards">Awards</button>
+            <button data-gallery-filter="community">School Community</button>
+          </div>
+          <div class="gallery-grid">
+            <article data-category="activities"><img src="../assets/image-01.png" alt="School assembly"><div><button data-demo-message="Demo only. Final dashboard can edit captions after backend setup.">Edit Caption</button><button data-demo-message="Demo only. Final dashboard can delete this photo after backend setup.">Delete</button></div></article>
+            <article data-category="community"><img src="../assets/image-02.png" alt="School community"><div><button data-demo-message="Demo only. Final dashboard can edit captions after backend setup.">Edit Caption</button><button data-demo-message="Demo only. Final dashboard can delete this photo after backend setup.">Delete</button></div></article>
+            <article data-category="classroom"><img src="../assets/image-03.png" alt="Classroom learning"><div><button data-demo-message="Demo only. Final dashboard can edit captions after backend setup.">Edit Caption</button><button data-demo-message="Demo only. Final dashboard can delete this photo after backend setup.">Delete</button></div></article>
+            <article data-category="awards"><img src="../assets/image-04.png" alt="Certificate photo"><div><button data-demo-message="Demo only. Final dashboard can edit captions after backend setup.">Edit Caption</button><button data-demo-message="Demo only. Final dashboard can delete this photo after backend setup.">Delete</button></div></article>
+            <article data-category="classroom"><img src="../assets/image-05.png" alt="Teacher presenting"><div><button data-demo-message="Demo only. Final dashboard can edit captions after backend setup.">Edit Caption</button><button data-demo-message="Demo only. Final dashboard can delete this photo after backend setup.">Delete</button></div></article>
+            <article data-category="classroom"><img src="../assets/image-06.png" alt="Student writing"><div><button data-demo-message="Demo only. Final dashboard can edit captions after backend setup.">Edit Caption</button><button data-demo-message="Demo only. Final dashboard can delete this photo after backend setup.">Delete</button></div></article>
+            <article data-category="awards"><img src="../assets/image-07.png" alt="Award photo"><div><button data-demo-message="Demo only. Final dashboard can edit captions after backend setup.">Edit Caption</button><button data-demo-message="Demo only. Final dashboard can delete this photo after backend setup.">Delete</button></div></article>
+            <article data-category="awards community"><img src="../assets/image-08.png" alt="Staff achievement"><div><button data-demo-message="Demo only. Final dashboard can edit captions after backend setup.">Edit Caption</button><button data-demo-message="Demo only. Final dashboard can delete this photo after backend setup.">Delete</button></div></article>
+            <article data-category="activities"><img src="../assets/image-09.png" alt="Student speaking"><div><button data-demo-message="Demo only. Final dashboard can edit captions after backend setup.">Edit Caption</button><button data-demo-message="Demo only. Final dashboard can delete this photo after backend setup.">Delete</button></div></article>
+          </div>
+        </section>
+
+        <section class="panel" id="programs">
+          <div class="panel-heading"><div><span class="eyebrow">Programs</span><h2>Program Content</h2></div></div>
+          <div class="program-grid">
+            <article><span>Visible</span><h3>Kindergarten / Early Learning</h3><p>Early confidence, classroom routines, and playful learning.</p><button class="btn" data-open-modal="program">Edit Content</button></article>
+            <article><span>Visible</span><h3>Primary Learning</h3><p>Core subject support for growing learners.</p><button class="btn" data-open-modal="program">Edit Content</button></article>
+            <article><span>Visible</span><h3>English Program</h3><p>Language practice through listening, speaking, and activities.</p><button class="btn" data-open-modal="program">Edit Content</button></article>
+            <article><span>Visible</span><h3>Khmer Program</h3><p>Khmer learning support can be detailed after confirmation.</p><button class="btn" data-open-modal="program">Edit Content</button></article>
+            <article><span>Visible</span><h3>Student Activities</h3><p>Classroom and school life activities for participation.</p><button class="btn" data-open-modal="program">Edit Content</button></article>
+            <article><span>Visible</span><h3>Character & Confidence Building</h3><p>Good habits, respect, confidence, and teamwork.</p><button class="btn" data-open-modal="program">Edit Content</button></article>
+          </div>
+        </section>
+
+        <section class="panel" id="staff">
+          <div class="panel-heading"><div><span class="eyebrow">Team</span><h2>Staff / Teachers</h2></div></div>
+          <div class="program-grid">
+            <article><h3>School Leadership</h3><p>Leadership profile details to be confirmed.</p><button class="btn sky" data-demo-message="Staff names and profiles can be added after school confirms official information.">Edit Group</button></article>
+            <article><h3>Teaching Team</h3><p>Teacher names and class roles can be added later.</p><button class="btn sky" data-demo-message="Staff names and profiles can be added after school confirms official information.">Edit Group</button></article>
+            <article><h3>Support Team</h3><p>Support staff details to be confirmed by the school.</p><button class="btn sky" data-demo-message="Staff names and profiles can be added after school confirms official information.">Edit Group</button></article>
+            <article><h3>Student Activity Support</h3><p>Activity support information can be updated after review.</p><button class="btn sky" data-demo-message="Staff names and profiles can be added after school confirms official information.">Edit Group</button></article>
+          </div>
+          <div class="notice">Staff names and profiles can be added after school confirms official information.</div>
+        </section>
+
+        <section class="panel" id="school-info">
+          <div class="panel-heading"><div><span class="eyebrow">School Info</span><h2>Editable School Details</h2></div></div>
+          <form class="info-form" data-demo-form>
+            <label>School Name<input value="Bright Brain School"></label>
+            <label>Phone<input value="010 362 015 / 071 2 255 858"></label>
+            <label>Address<input value="Phnom Penh, Cambodia"></label>
+            <label>Opening Time<input value="Mon - Sat | 8:00 AM - 5:00 PM"></label>
+            <label>Facebook URL<input value="To be confirmed"></label>
+            <label>Map Link<input value="To be confirmed"></label>
+            <button class="btn green" type="submit">Save Changes</button>
+          </form>
+        </section>
+
+        <section class="panel" id="inquiries">
+          <div class="panel-heading"><div><span class="eyebrow">Messages</span><h2>Inquiry Messages</h2></div></div>
+          <div class="message-list">
+            <article><strong>Parent interested in Kindergarten</strong><span class="status new">New</span><p>Name: Demo Parent<br>Phone: 010 000 000<br>Interest: Kindergarten<br>Message: I would like to know more about early learning.</p><button class="btn green" data-demo-message="Demo only. Final dashboard can update inquiry status after backend setup.">Mark as Replied</button></article>
+            <article><strong>Parent asking about English Program</strong><span class="status new">New</span><p>Name: Demo Parent<br>Phone: 071 000 000<br>Interest: English Program<br>Message: Please share more information about English classes.</p><button class="btn green" data-demo-message="Demo only. Final dashboard can update inquiry status after backend setup.">Mark as Replied</button></article>
+            <article><strong>Parent asking for school location</strong><span class="status replied">Replied</span><p>Name: Demo Parent<br>Phone: 012 000 000<br>Interest: School location<br>Message: Where is the school located?</p><button class="btn green" data-demo-message="Demo only. Final dashboard can update inquiry status after backend setup.">Mark as Replied</button></article>
+          </div>
+        </section>
+
+        <section class="panel" id="settings">
+          <div class="panel-heading"><div><span class="eyebrow">Settings</span><h2>Demo Settings</h2></div></div>
+          <div class="settings-grid">
+            <article class="card"><h3>Admin Account Demo</h3><p>Profile and account settings are shown for interface preview only.</p></article>
+            <article class="card"><h3>Website Content Management</h3><p>Final dashboard can manage approved school content after backend setup.</p></article>
+            <article class="card"><h3>Backup / Export Note</h3><p>Backup and export tools can be planned during real development.</p></article>
+            <article class="card"><h3>Backend Requirement</h3><p>This admin dashboard is a front-end demo only. A real version requires backend, database, hosting/server, user authentication, and file storage.</p></article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+
+  <div class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" type="button" aria-label="Close form">×</button>
+      <h2 id="modalTitle">Demo Form</h2>
+      <form id="modalForm"></form>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
