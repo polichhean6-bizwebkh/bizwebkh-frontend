@@ -915,6 +915,46 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
   .promo-card,.promo-card.is-visible{opacity:1;transform:none;}
   .promo-cta .btn:hover{transform:none;}
 }
+/* ===== PROMOTION POPUP ===== */
+.promo-popup-overlay{position:fixed;inset:0;z-index:4000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(7,28,61,.34);backdrop-filter:blur(10px);opacity:0;pointer-events:none;transition:opacity .38s ease;}
+.promo-popup-overlay.is-open{opacity:1;pointer-events:auto;}
+.promo-popup-overlay.is-closing{opacity:0;pointer-events:none;}
+.promo-popup{position:relative;width:min(900px,100%);overflow:hidden;border-radius:24px;border:1px solid rgba(29,123,255,.20);background:linear-gradient(135deg,#F6FAFF 0%,#FFFFFF 48%,#E9F7FF 100%);box-shadow:0 28px 90px rgba(7,28,61,.28);transform:translateY(18px) scale(.96);opacity:0;transition:transform .42s cubic-bezier(.2,.8,.2,1),opacity .34s ease;}
+.promo-popup-overlay.is-open .promo-popup{transform:translateY(0) scale(1);opacity:1;}
+.promo-popup-overlay.is-closing .promo-popup{transform:translateY(10px) scale(.97);opacity:0;}
+.promo-popup::before{content:'';position:absolute;inset:-40% -18% auto auto;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(24,200,255,.34),rgba(29,123,255,.08),transparent 68%);pointer-events:none;}
+.promo-popup::after{content:'';position:absolute;inset:auto auto -42% -16%;width:330px;height:330px;border-radius:50%;background:radial-gradient(circle,rgba(255,138,61,.18),transparent 70%);pointer-events:none;}
+.promo-popup-inner{position:relative;z-index:1;display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;padding:34px 36px;}
+.promo-popup-icon{width:70px;height:70px;border-radius:22px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(29,123,255,.14),rgba(24,200,255,.12));border:1px solid rgba(29,123,255,.18);box-shadow:0 18px 42px rgba(29,123,255,.14);font-size:32px;animation:promoGiftFloat 4s ease-in-out infinite;}
+.promo-popup-copy{min-width:0;}
+.promo-popup-badge{display:inline-flex;align-items:center;gap:7px;border-radius:999px;background:rgba(29,123,255,.09);border:1px solid rgba(29,123,255,.16);color:#1D7BFF;font-size:12px;font-weight:800;padding:6px 12px;margin-bottom:12px;}
+.promo-popup-title{font-size:clamp(22px,3vw,34px);line-height:1.2;font-weight:800;color:#071C3D;margin-bottom:10px;}
+.promo-popup-offer{display:flex;align-items:flex-start;gap:9px;font-size:clamp(15px,1.8vw,18px);line-height:1.55;font-weight:800;color:#0F2F5F;margin-bottom:10px;}
+.promo-popup-offer svg{flex:0 0 18px;margin-top:3px;color:#18B889;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:2.2;}
+.promo-popup-desc{font-size:14px;line-height:1.75;color:#4A5B7A;max-width:560px;}
+.promo-popup-note{font-size:12px;color:#6B7A99;margin-top:8px;}
+.promo-popup-actions{display:flex;flex-direction:column;align-items:flex-end;gap:10px;min-width:220px;}
+.promo-popup-cta{position:relative;overflow:hidden;isolation:isolate;width:100%;justify-content:center;padding:13px 18px;border-radius:14px;box-shadow:0 16px 36px rgba(29,123,255,.26);}
+.promo-popup-cta::before{content:'';position:absolute;inset:-30% auto -30% -48%;width:44%;background:linear-gradient(110deg,transparent,rgba(255,255,255,.44),transparent);transform:skewX(-18deg);animation:promoBtnShimmer 4.2s ease-in-out infinite;z-index:0;}
+.promo-popup-cta>*{position:relative;z-index:1;}
+.promo-popup-cta:hover{transform:translateY(-2px);box-shadow:0 20px 42px rgba(29,123,255,.34);}
+.promo-popup-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:999px;border:1px solid rgba(29,123,255,.18);background:rgba(255,255,255,.78);color:#071C3D;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .22s ease,visibility .22s ease,transform .22s ease,background .2s ease;}
+.promo-popup-close:hover{background:#FFFFFF;color:#1D7BFF;}
+.promo-popup-overlay.is-close-ready .promo-popup-close{opacity:1;visibility:visible;transform:translateY(0);}
+.promo-popup-close svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;}
+@media(max-width:768px){
+  .promo-popup-overlay{padding:16px;}
+  .promo-popup{width:92vw;border-radius:20px;}
+  .promo-popup-inner{grid-template-columns:1fr;gap:16px;padding:28px 20px 22px;text-align:left;}
+  .promo-popup-icon{width:58px;height:58px;border-radius:18px;font-size:27px;}
+  .promo-popup-actions{align-items:stretch;min-width:0;width:100%;}
+  .promo-popup-cta{width:100%;padding:13px 14px;white-space:normal;text-align:center;}
+}
+@media(prefers-reduced-motion:reduce){
+  .promo-popup-overlay,.promo-popup,.promo-popup-close,.promo-popup-icon,.promo-popup-cta,.promo-popup-cta::before{animation:none!important;transition:none!important;}
+  .promo-popup-overlay.is-open .promo-popup,.promo-popup-overlay.is-closing .promo-popup{transform:none;}
+  .promo-popup-cta:hover{transform:none;}
+}
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6QKJFRHY7M"></script>
@@ -2029,6 +2069,34 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
       </button>
     </div>
     <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- Promotion popup: temporary launch offer, shown once per session -->
+<div class="promo-popup-overlay" id="promo-popup" role="dialog" aria-modal="true" aria-labelledby="promo-popup-title" aria-hidden="true">
+  <div class="promo-popup" role="document">
+    <button class="promo-popup-close" id="promo-popup-close" type="button" aria-label="Close promotion">
+      <svg width="17" height="17"><use href="#i-x"/></svg>
+    </button>
+    <div class="promo-popup-inner">
+      <div class="promo-popup-icon" aria-hidden="true">🎁</div>
+      <div class="promo-popup-copy">
+        <div class="promo-popup-badge">🎁 ប្រូម៉ូសិនពិសេស</div>
+        <h2 class="promo-popup-title" id="promo-popup-title">ប្រូម៉ូសិនបើកដំណើរ</h2>
+        <div class="promo-popup-offer">
+          <svg width="18" height="18"><use href="#i-check"/></svg>
+          <span>ទទួលបានការប្រើប្រាស់ Hosting 1 ឆ្នាំ ដោយឥតគិតថ្លៃ</span>
+        </div>
+        <p class="promo-popup-desc">សម្រាប់អតិថិជនដំបូងៗរបស់ BizWeb KH ដែលរៀបចំវេបសាយអាជីវកម្មជាមួយយើង។</p>
+        <p class="promo-popup-note">សម្រាប់គម្រោងដែលបញ្ជាក់ក្នុងរយៈពេលប្រូម៉ូសិន</p>
+      </div>
+      <div class="promo-popup-actions">
+        <a class="btn btn-primary promo-popup-cta" href="https://t.me/BizWebKH" target="_blank" rel="noopener" data-contact="telegram">
+          <svg width="16" height="16"><use href="#i-send"/></svg>
+          <span>ទាក់ទងមកយើងតាម Telegram</span>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -3405,12 +3473,62 @@ function initProjectAnimation(){
   cards.forEach(card=>observer.observe(card));
 }
 
+function initPromoPopup(){
+  const popup=document.getElementById('promo-popup');
+  if(!popup)return;
+  const closeBtn=document.getElementById('promo-popup-close');
+  const cta=popup.querySelector('.promo-popup-cta');
+  let closeReady=false;
+  let closeTimer=null;
+  let autoTimer=null;
+
+  try{
+    if(sessionStorage.getItem('bizwebPromoSeen')==='1')return;
+    sessionStorage.setItem('bizwebPromoSeen','1');
+    /* For testing: run sessionStorage.removeItem('bizwebPromoSeen') in the browser console. */
+  }catch(e){}
+
+  const closePopup=()=>{
+    if(!popup.classList.contains('is-open'))return;
+    clearTimeout(closeTimer);
+    clearTimeout(autoTimer);
+    popup.classList.add('is-closing');
+    popup.classList.remove('is-close-ready');
+    popup.setAttribute('aria-hidden','true');
+    setTimeout(()=>{
+      popup.classList.remove('is-open','is-closing');
+    },420);
+  };
+
+  requestAnimationFrame(()=>{
+    popup.classList.add('is-open');
+    popup.setAttribute('aria-hidden','false');
+  });
+
+  closeTimer=setTimeout(()=>{
+    closeReady=true;
+    popup.classList.add('is-close-ready');
+  },2000);
+
+  autoTimer=setTimeout(closePopup,5000);
+
+  if(closeBtn)closeBtn.addEventListener('click',closePopup);
+  if(cta)cta.addEventListener('click',closePopup);
+  popup.addEventListener('click',event=>{
+    if(closeReady&&event.target===popup)closePopup();
+  });
+  document.addEventListener('keydown',event=>{
+    if(closeReady&&event.key==='Escape')closePopup();
+  });
+}
+
 initTheme();
 initLang();
 initHeroTyping();
 initPromoAnimation();
 initProjectAnimation();
 applyContactConfig();
+initPromoPopup();
 renderCards();
 
 </script>
