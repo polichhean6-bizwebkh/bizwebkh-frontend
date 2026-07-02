@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="km">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Melvin Dental Care website draft for client review." />
+    <title>Melvin Dental Care</title>
+    <script>
+      try {
+        if (localStorage.getItem("melvin-theme") === "dark") {
+          document.documentElement.dataset.theme = "dark";
+        }
+      } catch (error) {
+        document.documentElement.dataset.theme = "light";
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Kantumruy+Pro:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header" id="top">
+      <div class="top-strip">
+        <div class="container strip-inner">
+          <a href="tel:093789138">093 789 138</a>
+          <a href="mailto:contact@melvindentalcare.com">contact@melvindentalcare.com</a>
+          <a href="https://maps.google.com/maps?q=11.518671,104.922308&ll=11.518671,104.922308&z=16" target="_blank" rel="noreferrer" data-i18n="topLocation">Phnom Penh Clinic Location</a>
+        </div>
+      </div>
+      <nav class="container nav-shell" aria-label="Main navigation">
+        <a class="brand" href="#home" aria-label="Melvin Dental Care home">
+          <img src="assets/selected-logo.png" alt="Melvin Dental Care logo" />
+        </a>
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-panel">
+          <div class="nav-links">
+            <a href="#home" data-i18n="navHome">Home</a>
+            <a href="#services" data-i18n="navServices">Services</a>
+            <a href="#promotions" data-i18n="navPromotions">Promotions</a>
+            <a href="#about" data-i18n="navAbout">About</a>
+            <a href="#contact" data-i18n="navContact">Contact</a>
+          </div>
+          <div class="language-switch" aria-label="Language switcher">
+            <button class="lang-btn active" type="button" data-lang="kh">KH</button>
+            <button class="lang-btn" type="button" data-lang="en">EN</button>
+            <button class="lang-btn" type="button" data-lang="cn">CN</button>
+          </div>
+          <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+            <span class="theme-icon" aria-hidden="true">☾</span>
+            <span class="theme-text">Dark</span>
+          </button>
+          <a class="btn btn-primary nav-cta" href="#contact" data-i18n="book">Book Appointment</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero section-pad" id="home">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <h1 data-i18n="heroTitle">ស្នាមញញឹមស្រស់ស្អាត ចាប់ផ្តើមពីការថែទាំមាត់ធ្មេញត្រឹមត្រូវ</h1>
+            <p class="hero-text" data-i18n="heroText">Melvin Dental Care provides specialized oral health care, including clear aligner, dental implant, teeth whitening, cleaning, general care, and consultation.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#contact" data-i18n="book">Book Appointment</a>
+              <a class="btn btn-soft" href="#services" data-i18n="viewServices">View Services</a>
+              <a class="btn btn-outline" href="tel:093789138" data-i18n="callNow">Call Now</a>
+            </div>
+            <div class="hero-badges">
+              <span data-i18n="since">Since 2018</span>
+              <span data-i18n="consult">Friendly Consultation</span>
+              <span data-i18n="comfort">Patient Comfort</span>
+            </div>
+          </div>
+          <div class="hero-visual reveal">
+            <img class="hero-photo" src="assets/hero-dental-care.png" alt="Professional dental care at Melvin Dental Care" />
+          </div>
+        </div>
+      </section>
+
+      <section class="about section-pad" id="about">
+        <div class="container two-col">
+          <div class="clinic-card image-card reveal">
+            <img src="assets/friendly-consultation.png" alt="Friendly dental consultation at Melvin Dental Care" />
+          </div>
+          <div class="section-copy reveal">
+            <p class="eyebrow" data-i18n="aboutEyebrow">About the Clinic</p>
+            <h2 data-i18n="aboutTitle">About Melvin Dental Care</h2>
+            <p class="about-slogan" data-i18n="slogan">Melvin! Your Specialized Oral Health Care Provider.</p>
+            <p data-i18n="aboutText">Melvin Dental Care is a specialized oral health care provider established since 2018, focused on professional dental care, friendly consultation, healthy smiles, and patient comfort.</p>
+            <div class="trust-list">
+              <div><span class="icon tech-icon"></span><strong data-i18n="trust1">Modern dental equipment and technology</strong></div>
+              <div><span class="icon shield-icon"></span><strong data-i18n="trust2">Patient safety and infection control</strong></div>
+              <div><span class="icon heart-icon"></span><strong data-i18n="trust3">Gentle care for children and nervous patients</strong></div>
+              <div><span class="icon map-icon"></span><strong data-i18n="trust4">Convenient Phnom Penh location</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="doctor-section section-pad mint-band" id="lead-dentist">
+        <div class="container doctor-grid">
+          <button class="doctor-photo-card reveal" type="button" data-doctor-modal aria-label="View Dr. Nam Chamnan profile">
+            <img src="assets/dr-chamnan.png" alt="Dr. Nam Chamnan" />
+          </button>
+          <div class="section-copy reveal">
+            <p class="eyebrow" data-i18n="doctorEyebrow">Lead Dentist</p>
+            <h2 data-i18n="doctorTitle">Meet Our Lead Dentist</h2>
+            <h3 class="doctor-name" data-i18n="doctorName">Dr. Nam Chamnan, DDS, AIC, FICCDE</h3>
+            <p data-i18n="doctorIntro">Dr. Nam Chamnan is the co-founder of Melvin Dental Care and an experienced dentist with more than 18 years of clinical expertise. Her primary focus is orthodontics, comprehensive dentistry, and gentle patient care for children and adults.</p>
+            <div class="doctor-highlights">
+              <span data-i18n="doctorFocus1">Orthodontics</span>
+              <span data-i18n="doctorFocus2">Comprehensive Dentistry</span>
+              <span data-i18n="doctorFocus3">Gentle Patient Care</span>
+            </div>
+            <button class="btn btn-primary" type="button" data-doctor-modal data-i18n="doctorButton">View Full Profile</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="services section-pad" id="services">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow" data-i18n="servicesEyebrow">Dental Services</p>
+            <h2 data-i18n="servicesTitle">Main Services</h2>
+            <p data-i18n="servicesIntro">Focused dental care options based on Melvin Dental Care client materials.</p>
+          </div>
+          <div class="treatment-showcase">
+            <figure class="treatment-image reveal">
+              <img src="assets/implant-consultation.png" alt="Dental implant consultation at Melvin Dental Care" />
+              <figcaption data-i18n="showImplant">Dental Implant Consultation</figcaption>
+            </figure>
+            <figure class="treatment-image reveal">
+              <img src="assets/smile-whitening.png" alt="Smile whitening care at Melvin Dental Care" />
+              <figcaption data-i18n="showWhitening">Smile Whitening Care</figcaption>
+            </figure>
+          </div>
+          <div class="service-grid">
+            <article class="service-card reveal"><span class="icon sparkle-icon"></span><h3 data-i18n="svcWhitening">Teeth Whitening</h3><p data-i18n="svcWhiteningText">Professional whitening care for a brighter, fresher smile.</p><a href="#contact" data-i18n="learn">Get Consultation</a></article>
+            <article class="service-card reveal"><span class="icon aligner-icon"></span><h3 data-i18n="svcOrtho">Orthodontics</h3><p data-i18n="svcOrthoText">Teeth alignment consultation for improved smile balance.</p><a href="#contact" data-i18n="learn">Get Consultation</a></article>
+            <article class="service-card reveal"><span class="icon shield-icon"></span><h3 data-i18n="svcPreventive">Preventive Dentistry</h3><p data-i18n="svcPreventiveText">Preventive care, cleaning guidance, and oral health support.</p><a href="#contact" data-i18n="learn">Get Consultation</a></article>
+            <article class="service-card reveal"><span class="icon tooth-icon"></span><h3 data-i18n="svcRestorative">Restorative Dentistry</h3><p data-i18n="svcRestorativeText">Dental restoration care focused on comfort, health, and smile appearance.</p><a href="#contact" data-i18n="learn">Get Consultation</a></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="tourist-package section-pad" id="tourist-package">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow" data-i18n="touristEyebrow">Dental Care for Visitors</p>
+            <h2 data-i18n="touristTitle">Tourist Dental Care Package</h2>
+            <p data-i18n="touristIntro">Staying in Cambodia for a few weeks or months? Melvin Dental Care offers convenient dental care packages for tourists and long-stay visitors who want trusted treatment, clear consultation, and comfortable care during their time in Cambodia.</p>
+          </div>
+          <div class="package-grid">
+            <article class="package-card reveal">
+              <span class="icon clipboard-icon"></span>
+              <h3 data-i18n="pkgCheckTitle">Dental Check-up & Cleaning</h3>
+              <p data-i18n="pkgCheckText">Best for tourists who want a quick oral health check and professional cleaning during their stay.</p>
+              <ul>
+                <li data-i18n="pkgCheck1">Oral examination</li>
+                <li data-i18n="pkgCheck2">Scaling and polishing</li>
+                <li data-i18n="pkgCheck3">Basic dental advice</li>
+                <li data-i18n="pkgCheck4">Treatment recommendation if needed</li>
+              </ul>
+            </article>
+            <article class="package-card reveal">
+              <span class="icon sparkle-icon"></span>
+              <h3 data-i18n="pkgSmileTitle">Smile & Whitening Consultation</h3>
+              <p data-i18n="pkgSmileText">Best for visitors who want to improve their smile before traveling or returning home.</p>
+              <ul>
+                <li data-i18n="pkgSmile1">Smile assessment</li>
+                <li data-i18n="pkgSmile2">Whitening consultation</li>
+                <li data-i18n="pkgSmile3">Cosmetic dental advice</li>
+                <li data-i18n="pkgSmile4">Personalized treatment suggestion</li>
+              </ul>
+            </article>
+            <article class="package-card reveal">
+              <span class="icon calendar-icon"></span>
+              <h3 data-i18n="pkgLongTitle">Long-Stay Dental Treatment Plan</h3>
+              <p data-i18n="pkgLongText">Best for expats, remote workers, or long-stay tourists who have enough time for planned dental treatment.</p>
+              <ul>
+                <li data-i18n="pkgLong1">Detailed consultation</li>
+                <li data-i18n="pkgLong2">Treatment planning</li>
+                <li data-i18n="pkgLong3">Appointment scheduling</li>
+                <li data-i18n="pkgLong4">Follow-up care during stay</li>
+              </ul>
+            </article>
+          </div>
+          <div class="package-cta reveal">
+            <div>
+              <h3 data-i18n="touristCtaTitle">Plan Your Dental Visit in Cambodia</h3>
+              <p data-i18n="touristCtaText">Contact the clinic for consultation availability and a suitable care plan during your stay.</p>
+            </div>
+            <a class="btn btn-primary" href="tel:093789138" data-i18n="touristCtaButton">Contact Us on Telegram</a>
+            <a class="btn btn-soft" href="#contact" data-i18n="touristAltButton">Book a Consultation</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="promotions section-pad mint-band" id="promotions">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow" data-i18n="promoEyebrow">Current Promotions</p>
+            <h2 data-i18n="promoTitle">Current Promotions</h2>
+            <p data-i18n="promoNote">Promotion details can be updated based on clinic confirmation.</p>
+          </div>
+          <div class="promo-grid">
+            <button class="promo-card reveal" type="button" data-lightbox="assets/photo_2026-06-25_19-15-47.jpg"><img src="assets/photo_2026-06-25_19-15-47.jpg" alt="Angel Aligner 20 percent off promotion" /><span data-i18n="promoAligner">Angel Aligner 20% OFF</span></button>
+            <button class="promo-card reveal" type="button" data-lightbox="assets/photo_2026-06-25_19-15-39.jpg"><img src="assets/photo_2026-06-25_19-15-39.jpg" alt="Dental Implant 5 percent off promotion" /><span data-i18n="promoImplant">Dental Implant 5% OFF</span></button>
+            <button class="promo-card reveal" type="button" data-lightbox="assets/photo_2026-06-25_19-15-42.jpg"><img src="assets/photo_2026-06-25_19-15-42.jpg" alt="Teeth Whitening 20 percent off promotion" /><span data-i18n="promoWhitening">Teeth Whitening 20% OFF</span></button>
+            <button class="promo-card reveal" type="button" data-lightbox="assets/photo_2026-06-25_19-15-44.jpg"><img src="assets/photo_2026-06-25_19-15-44.jpg" alt="Dental cleaning and check-up promotion" /><span data-i18n="promoCleaning">Cleaning / Check-up Promotion</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="why section-pad">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow" data-i18n="whyEyebrow">Why Choose Us</p>
+            <h2 data-i18n="whyTitle">Care Built Around Your Smile</h2>
+          </div>
+          <div class="why-grid">
+            <div class="why-item reveal"><span class="check"></span><p data-i18n="why1">Specialized oral health care</p></div>
+            <div class="why-item reveal"><span class="check"></span><p data-i18n="why2">Friendly consultation</p></div>
+            <div class="why-item reveal"><span class="check"></span><p data-i18n="why3">Modern dental service presentation</p></div>
+            <div class="why-item reveal"><span class="check"></span><p data-i18n="why4">Clear treatment explanation</p></div>
+            <div class="why-item reveal"><span class="check"></span><p data-i18n="why5">Patient-focused care</p></div>
+            <div class="why-item reveal"><span class="check"></span><p data-i18n="why6">Convenient contact and location</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="care section-pad">
+        <div class="container care-grid">
+          <div class="care-image reveal">
+            <img src="assets/clear-aligner-care.png" alt="Clear aligner care at Melvin Dental Care" />
+          </div>
+          <div class="section-copy reveal">
+            <p class="eyebrow" data-i18n="careEyebrow">Smile Care</p>
+            <h2 data-i18n="careTitle">Healthy smile care with a clean, calm experience</h2>
+            <p data-i18n="careText">From consultation to selected treatments, the clinic can present clear options for aligner, implant, whitening, cleaning, and daily oral care support.</p>
+            <a class="btn btn-primary" href="#contact" data-i18n="book">Book Appointment</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact section-pad mint-band" id="contact">
+        <div class="container contact-grid">
+          <div class="section-copy reveal">
+            <p class="eyebrow" data-i18n="contactEyebrow">Appointment</p>
+            <h2 data-i18n="contactTitle">Book an Appointment</h2>
+            <p data-i18n="contactText">Choose your preferred date and time, then send your appointment request directly to Melvin Dental Care.</p>
+            <div class="appointment-intro">
+              <span class="icon calendar-icon"></span>
+              <h3 data-i18n="appointmentIntroTitle">Plan Your Dental Visit with Ease</h3>
+              <p data-i18n="appointmentIntroText">Book a consultation or dental visit request in just a few steps. Our team will review your request and confirm the appointment time with you.</p>
+              <div class="appointment-highlights">
+                <div><span class="check"></span><p data-i18n="appointmentPoint1">Easy appointment request</p></div>
+                <div><span class="check"></span><p data-i18n="appointmentPoint2">Suitable for local and international patients</p></div>
+                <div><span class="check"></span><p data-i18n="appointmentPoint3">Friendly support from the clinic team</p></div>
+              </div>
+            </div>
+          </div>
+          <form class="appointment-form reveal" id="appointmentForm">
+            <label><span data-i18n="formName">Full Name</span><input type="text" name="name" autocomplete="name" required data-i18n-placeholder="placeholderName" placeholder="Your full name" /></label>
+            <label><span data-i18n="formPhone">Phone Number</span><input type="tel" name="phone" autocomplete="tel" required data-i18n-placeholder="placeholderPhone" placeholder="Your phone number" /></label>
+            <label><span data-i18n="formService">Preferred Service</span><select name="service" required><option value="" data-i18n="servicePlaceholder">Select a service</option><option data-i18n="serviceGeneral">General Dental Check-up</option><option data-i18n="serviceScaling">Scaling & Polishing</option><option data-i18n="serviceOrtho">Orthodontic Consultation</option><option data-i18n="serviceWhitening">Teeth Whitening Consultation</option><option data-i18n="serviceImplant">Implant Consultation</option><option data-i18n="serviceChild">Child Dental Care</option><option data-i18n="serviceTourist">Tourist Dental Care</option><option data-i18n="serviceOther">Other</option></select></label>
+            <div class="form-row">
+              <label><span data-i18n="formDate">Preferred Date</span><input type="date" name="date" required /></label>
+              <label><span data-i18n="formTime">Preferred Time</span><input type="time" name="time" required /></label>
+            </div>
+            <label><span data-i18n="formMessage">Message / Notes</span><textarea name="message" rows="4" data-i18n-placeholder="placeholderMessage" placeholder="Tell us more about your dental concern or preferred appointment time."></textarea></label>
+            <button class="btn btn-primary appointment-submit" type="submit"><span class="icon send-icon" aria-hidden="true"></span><span data-i18n="sendRequest">Send Appointment via Telegram</span></button>
+            <p class="appointment-note" data-i18n="appointmentNote">Our team will confirm your appointment after receiving your request.</p>
+            <p class="form-result" id="formResult" role="status"></p>
+          </form>
+          <div class="map-card reveal">
+            <div class="map-copy">
+              <p class="eyebrow" data-i18n="mapEyebrow">Location</p>
+              <h2 data-i18n="mapTitle">Find Melvin Dental Care</h2>
+              <p data-i18n="mapSubtitle">Conveniently located in Phnom Penh, Cambodia.</p>
+              <a class="btn btn-primary" href="https://maps.google.com/maps?q=11.518671,104.922308&ll=11.518671,104.922308&z=16" target="_blank" rel="noreferrer" data-i18n="openMaps">Open in Google Maps</a>
+            </div>
+            <iframe title="Melvin Dental Care Google Map" src="https://maps.google.com/maps?q=11.518671,104.922308&amp;ll=11.518671,104.922308&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <img src="assets/selected-logo.png" alt="Melvin Dental Care logo" />
+          <h2 data-i18n="businessName">Melvin Dental Care</h2>
+          <p data-i18n="slogan">Melvin! Your Specialized Oral Health Care Provider.</p>
+        </div>
+        <div><h3 data-i18n="quickLinks">Quick Links</h3><a href="#home" data-i18n="navHome">Home</a><a href="#services" data-i18n="navServices">Services</a><a href="#promotions" data-i18n="navPromotions">Promotions</a><a href="#about" data-i18n="navAbout">About</a><a href="#contact" data-i18n="navContact">Contact</a></div>
+        <div><h3 data-i18n="navServices">Services</h3><p data-i18n="footerServices">Aligner, Implant, Whitening, Cleaning, General Care, Cosmetic Care, Consultation</p></div>
+        <div><h3 data-i18n="navContact">Contact</h3><p><a href="tel:093789138"><span data-i18n="hotlineLabel">Hotline</span>: 093 789 138</a><a href="mailto:contact@melvindentalcare.com">contact@melvindentalcare.com</a></p><a href="https://www.facebook.com/share/1DtxotBK9q/?mibextid=wwXIfr" target="_blank" rel="noreferrer" data-i18n="facebookPage">Facebook Page</a><p data-i18n="address">#144, St. The Commercial, Sangkat Chak Angrae Leu, Khan Mean Chey, Phnom Penh, Cambodia.</p><p><span data-i18n="hoursWeekdays">Monday - Saturday</span><br /><span data-i18n="hoursWeekdayTime">8:30am - 12:00pm / 1:00pm - 6:00pm</span><br /><span data-i18n="hoursSunday">Sunday: 9:00am - 4:00pm</span></p><a href="https://maps.google.com/maps?q=11.518671,104.922308&ll=11.518671,104.922308&z=16" target="_blank" rel="noreferrer" data-i18n="openMaps">Open in Google Maps</a><a href="https://www.melvindentalcare.com/">melvindentalcare.com</a></div>
+      </div>
+      <div class="container footer-bottom">© 2026 Melvin Dental Care. <span data-i18n="websiteCredit">Website by BizWeb KH.</span></div>
+    </footer>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button type="button" class="lightbox-close" aria-label="Close preview">×</button>
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Poster preview" />
+    </div>
+
+    <div class="profile-modal" id="doctorModal" aria-hidden="true">
+      <div class="profile-dialog" role="dialog" aria-modal="true" aria-labelledby="doctorModalTitle">
+        <button type="button" class="profile-close" aria-label="Close profile">×</button>
+        <div class="profile-media">
+          <img src="assets/dr-chamnan.png" alt="Dr. Nam Chamnan" />
+        </div>
+        <div class="profile-content">
+          <p class="eyebrow" data-i18n="doctorEyebrow">Lead Dentist</p>
+          <h2 id="doctorModalTitle" data-i18n="doctorName">Dr. Nam Chamnan, DDS, AIC, FICCDE</h2>
+          <div class="profile-bio">
+            <p data-i18n="doctorBio1">Dr. Chamnan Nam, the co-founder of Melvin Dental Care, is an experienced, skilled, and highly dedicated dentist with a passion for both her profession and business. She earned her Doctor of Dental Surgery (DDS) from the University of Health Sciences in 2007 and a degree in Business Administration from Paññāsāstra University of Cambodia (PUC) in 2009. She is also a Post Graduate Resident, Master in Orthodontics at the University of Puthisastra, Cambodia.</p>
+            <p data-i18n="doctorBio2">She has more than 18 years of clinical experience working in numerous private practices. Committed to staying at the forefront of dental advancements, she regularly pursues professional training and education both locally and internationally.</p>
+            <p data-i18n="doctorBio3">Orthodontics is her primary focus. From 2013 to 2015, she completed the two-year Progressive Orthodontic Seminars (POS) live seminar course in Thailand. Her dedication led her to become a POS translator for Cambodian courses until the present day.</p>
+            <p data-i18n="doctorBio4">Driven by a desire to tackle complex aesthetic and dento-facial orthodontic treatment, she advanced to higher levels of orthodontics, demonstrating her commitment to providing high international standards of quality orthodontic care.</p>
+            <p data-i18n="doctorBio5">Dr. Chamnan is also the local trainer and mentor for American Orthodontics (AO), helping inspire the next generation of Cambodian orthodontic practitioners.</p>
+            <p data-i18n="doctorBio6">Dr. Nam's practice embraces comprehensive dentistry, incorporating her gentle communication and experience with children and nervous customers of all ages, helping them feel less anxious from the moment they step through the door. She is also certified in advanced IV sedation, expanding her ability to help patients with dental phobia.</p>
+          </div>
+          <div class="profile-lists">
+            <div>
+              <h3 data-i18n="credentialsTitle">Credentials</h3>
+              <ul>
+                <li data-i18n="credential1">Post Graduate Resident Master of Orthodontics, University of Puthisastra, Cambodia</li>
+                <li data-i18n="credential2">Doctor of Dental Surgery, University of Health Sciences, Cambodia</li>
+              </ul>
+            </div>
+            <div>
+              <h3 data-i18n="certificationsTitle">Certifications</h3>
+              <ul>
+                <li data-i18n="cert1">Advanced Dento-Facial Progressive Orthodontic Seminars (POS), Thailand</li>
+                <li data-i18n="cert2">International College of Continuing Dental Education (ICCDE)</li>
+                <li data-i18n="cert3">Angel Aligner Provider (KOL in Cambodia)</li>
+                <li data-i18n="cert4">Implantology, Ankylos Dentsply, Cambodia</li>
+              </ul>
+            </div>
+            <div>
+              <h3 data-i18n="membershipsTitle">Memberships</h3>
+              <ul>
+                <li data-i18n="member1">Cambodian Dental Association</li>
+                <li data-i18n="member2">Cambodian Association of Orthodontists</li>
+                <li data-i18n="member3">Dental Council</li>
+                <li data-i18n="member4">President of the Cambodian Orthodontic Association, 2021-2023</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
