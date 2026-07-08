@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="km">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Login | SE4HC Cambodia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Khmer:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/images/logo-se4hc.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/images/logo-se4hc.png" alt="SE4HC logo">
+        <span><span class="brand-title">SE4HC Cambodia</span></span>
+      </a>
+      <nav class="nav"><a href="index.html" data-i18n data-kh="ត្រឡប់ទៅទំព័រដើម" data-en="Back to Home">ត្រឡប់ទៅទំព័រដើម</a></nav>
+      <div class="header-actions"><div class="lang-switch"><button class="lang-btn" data-lang="kh" type="button">KH</button><button class="lang-btn" data-lang="en" type="button">EN</button></div></div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div class="container login-hero">
+      <div class="login-panel">
+        <img src="assets/images/logo-se4hc.png" alt="SE4HC logo">
+        <h1>SE4HC Admin Dashboard</h1>
+        <p data-i18n data-kh="ប្រព័ន្ធគ្រប់គ្រងសំណើសាកល្បងសម្រាប់ការពិនិត្យ ឯកសារ ស្ថានភាព ពិន្ទុ និងការនាំចេញទិន្នន័យ។" data-en="Demo proposal management system for review, files, status, scoring, and export.">ប្រព័ន្ធគ្រប់គ្រងសំណើសាកល្បងសម្រាប់ការពិនិត្យ ឯកសារ ស្ថានភាព ពិន្ទុ និងការនាំចេញទិន្នន័យ។</p>
+        <div class="login-preview">
+          <div><strong>Total Proposals</strong><span>259 schools</span></div>
+          <div><strong>Review Workflow</strong><span>New → Approved</span></div>
+          <div><strong>Documents</strong><span>PDF / Excel</span></div>
+        </div>
+      </div>
+      <form id="loginForm" class="form-card">
+        <div class="page-title">
+          <h1 data-i18n data-kh="ចូលប្រើ Dashboard" data-en="Dashboard Login">ចូលប្រើ Dashboard</h1>
+          <p data-i18n data-kh="ប្រើគណនីសាកល្បងខាងក្រោមសម្រាប់ client review។" data-en="Use the demo account below for client review.">ប្រើគណនីសាកល្បងខាងក្រោមសម្រាប់ client review។</p>
+        </div>
+        <div class="field"><label for="username" data-i18n data-kh="អ៊ីមែល / ឈ្មោះអ្នកប្រើ" data-en="Email / Username">អ៊ីមែល / ឈ្មោះអ្នកប្រើ</label><input id="username" autocomplete="username" required></div>
+        <div class="field" style="margin-top:14px"><label for="password" data-i18n data-kh="ពាក្យសម្ងាត់" data-en="Password">ពាក្យសម្ងាត់</label><input id="password" type="password" autocomplete="current-password" required></div>
+        <div class="demo-card">
+          <strong data-i18n data-kh="ព័ត៌មានចូលសាកល្បង" data-en="Demo login info">ព័ត៌មានចូលសាកល្បង</strong>
+          <p>Username: admin<br>Password: admin123</p>
+        </div>
+        <div class="notice" data-i18n data-kh="Demo login only. ប្រព័ន្ធផលិតកម្មត្រូវការការផ្ទៀងផ្ទាត់សុវត្ថិភាពតាម backend។" data-en="Demo login only. Production system will require secure backend authentication.">Demo login only. ប្រព័ន្ធផលិតកម្មត្រូវការការផ្ទៀងផ្ទាត់សុវត្ថិភាពតាម backend។</div>
+        <div id="loginError" class="error"></div>
+        <button class="btn btn-primary" type="submit" data-i18n data-kh="ចូល Dashboard" data-en="Login to Dashboard">ចូល Dashboard</button>
+      </form>
+    </div>
+  </main>
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      if (username === "admin" && password === "admin123") {
+        localStorage.setItem("se4hcAdminDemoLoggedIn", "true");
+        window.location.href = "admin-dashboard.html";
+      } else {
+        document.getElementById("loginError").textContent = "Invalid demo username or password.";
+      }
+    });
+  </script>
+</body>
+</html>

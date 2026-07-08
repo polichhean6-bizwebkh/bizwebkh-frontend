@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="km">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Submit Proposal | SE4HC Cambodia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Khmer:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/images/logo-se4hc.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/images/logo-se4hc.png" alt="SE4HC logo">
+        <span><span class="brand-title">SE4HC Cambodia</span></span>
+      </a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html" data-i18n data-kh="ត្រឡប់ទៅទំព័រដើម" data-en="Back to Home">ត្រឡប់ទៅទំព័រដើម</a>
+        <a href="admin-login.html" data-i18n data-kh="ចូលគ្រប់គ្រង" data-en="Admin Login">ចូលគ្រប់គ្រង</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-switch"><button class="lang-btn" data-lang="kh" type="button">KH</button><button class="lang-btn" data-lang="en" type="button">EN</button></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <div class="container">
+      <div class="page-title">
+        <h1 data-i18n data-kh="ដាក់សំណើគម្រោង" data-en="Submit Proposal">ដាក់សំណើគម្រោង</h1>
+        <p data-i18n data-kh="សូមបំពេញព័ត៌មានសាលា ព័ត៌មានគម្រោង និងបញ្ចូលឯកសារ PDF ឬ Excel។" data-en="Complete school information, project details, and upload PDF or Excel documents.">សូមបំពេញព័ត៌មានសាលា ព័ត៌មានគម្រោង និងបញ្ចូលឯកសារ PDF ឬ Excel។</p>
+      </div>
+      <div class="notice" data-i18n data-kh="នេះជាការដាក់សំណើសាកល្បង។ ទិន្នន័យ និងឯកសារត្រូវបានរក្សាទុកនៅក្នុងកម្មវិធីរុករកនេះប៉ុណ្ណោះសម្រាប់ការពិនិត្យ។" data-en="This is a demo submission. Data and files are stored in this browser only for preview.">នេះជាការដាក់សំណើសាកល្បង។ ទិន្នន័យ និងឯកសារត្រូវបានរក្សាទុកនៅក្នុងកម្មវិធីរុករកនេះប៉ុណ្ណោះសម្រាប់ការពិនិត្យ។</div>
+
+      <form id="proposalForm" class="form-card">
+        <div class="step-indicator" aria-label="Proposal steps">
+          <span data-i18n data-kh="1. ព័ត៌មានសាលា" data-en="1. School Info">1. ព័ត៌មានសាលា</span>
+          <span data-i18n data-kh="2. ព័ត៌មានគម្រោង" data-en="2. Project Info">2. ព័ត៌មានគម្រោង</span>
+          <span data-i18n data-kh="3. ឯកសារ" data-en="3. Upload Documents">3. ឯកសារ</span>
+          <span data-i18n data-kh="4. បញ្ជាក់" data-en="4. Confirmation">4. បញ្ជាក់</span>
+        </div>
+        <section class="form-section">
+          <h2 data-i18n data-kh="ព័ត៌មានសាលា" data-en="School Information">ព័ត៌មានសាលា</h2>
+          <div class="form-grid">
+            <div class="field"><label for="schoolName" data-i18n data-kh="ឈ្មោះសាលា" data-en="School Name">ឈ្មោះសាលា</label><input id="schoolName" required></div>
+            <div class="field"><label for="schoolCode" data-i18n data-kh="លេខកូដសាលា" data-en="School Code">លេខកូដសាលា</label><input id="schoolCode" required></div>
+            <div class="field"><label for="province" data-i18n data-kh="ខេត្ត / រាជធានី" data-en="Province / Capital">ខេត្ត / រាជធានី</label><input id="province" required></div>
+            <div class="field"><label for="district" data-i18n data-kh="ស្រុក / ក្រុង" data-en="District / City">ស្រុក / ក្រុង</label><input id="district" required></div>
+            <div class="field"><label for="directorName" data-i18n data-kh="ឈ្មោះនាយកសាលា" data-en="School Director Name">ឈ្មោះនាយកសាលា</label><input id="directorName" required></div>
+            <div class="field"><label for="phone" data-i18n data-kh="លេខទូរស័ព្ទ" data-en="Phone Number">លេខទូរស័ព្ទ</label><input id="phone" required></div>
+            <div class="field full"><label for="email" data-i18n data-kh="អ៊ីមែល" data-en="Email">អ៊ីមែល</label><input id="email" type="email" required></div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2 data-i18n data-kh="ព័ត៌មានគម្រោង" data-en="Project Information">ព័ត៌មានគម្រោង</h2>
+          <div class="form-grid">
+            <div class="field full"><label for="projectTitle" data-i18n data-kh="ចំណងជើងគម្រោង" data-en="Project Title">ចំណងជើងគម្រោង</label><input id="projectTitle" required></div>
+            <div class="field"><label for="projectType" data-i18n data-kh="ប្រភេទគម្រោង" data-en="Project Type">ប្រភេទគម្រោង</label><select id="projectType" required><option value="">--</option><option>STEM Project / Action Research</option><option>Remedial Program</option><option>Student Study Club / Peer Support</option><option>Combined Project</option></select></div>
+            <div class="field"><label for="requestedBudget" data-i18n data-kh="ថវិកាស្នើសុំ USD" data-en="Requested Budget USD">ថវិកាស្នើសុំ USD</label><input id="requestedBudget" type="number" min="0" max="3000" step="1" required></div>
+            <div class="field"><label for="implementationYear" data-i18n data-kh="ឆ្នាំអនុវត្ត" data-en="Implementation Year">ឆ្នាំអនុវត្ត</label><select id="implementationYear" required><option>2027</option><option>2028</option><option>2029</option></select></div>
+            <div class="field full"><label for="summary" data-i18n data-kh="សង្ខេបគម្រោង" data-en="Short Project Summary">សង្ខេបគម្រោង</label><textarea id="summary" required></textarea></div>
+            <div class="field full"><label for="expectedResults" data-i18n data-kh="លទ្ធផលរំពឹងទុក" data-en="Expected Results">លទ្ធផលរំពឹងទុក</label><textarea id="expectedResults" required></textarea></div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2 data-i18n data-kh="បញ្ចូលឯកសារ" data-en="Upload Documents">បញ្ចូលឯកសារ</h2>
+          <div class="form-grid">
+            <div class="field file-card"><label for="proposalFile" data-i18n data-kh="ឯកសារសំណើ" data-en="Proposal File">ឯកសារសំណើ</label><input id="proposalFile" type="file" accept=".pdf,.xls,.xlsx,application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" required><span class="help">PDF, XLS, XLSX. Max 10MB.</span><span id="proposalFileName" class="file-name">No file selected</span></div>
+            <div class="field file-card"><label for="supportingFile" data-i18n data-kh="ឯកសារគាំទ្រ (ជម្រើស)" data-en="Supporting File (Optional)">ឯកសារគាំទ្រ (ជម្រើស)</label><input id="supportingFile" type="file" accept=".pdf,.xls,.xlsx,application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"><span class="help">PDF, XLS, XLSX. Max 10MB.</span><span id="supportingFileName" class="file-name">No file selected</span></div>
+            <div class="field full"><label class="checkbox-line"><input id="confirm" type="checkbox" required><span data-i18n data-kh="ខ្ញុំបញ្ជាក់ថាព័ត៌មានបានផ្តល់ត្រឹមត្រូវ និងបានអនុម័តដោយគណៈគ្រប់គ្រងសាលា។" data-en="I confirm that the information provided is correct and approved by the school management.">ខ្ញុំបញ្ជាក់ថាព័ត៌មានបានផ្តល់ត្រឹមត្រូវ និងបានអនុម័តដោយគណៈគ្រប់គ្រងសាលា។</span></label></div>
+          </div>
+          <div id="formError" class="error" role="alert"></div>
+          <div class="hero-actions"><button class="btn btn-primary" type="submit" data-i18n data-kh="ដាក់សំណើ" data-en="Submit Proposal">ដាក់សំណើ</button></div>
+        </section>
+      </form>
+
+      <div id="successBox" class="success-box" role="status">
+        <h2 data-i18n data-kh="បានដាក់សំណើដោយជោគជ័យ" data-en="Your proposal has been submitted successfully.">បានដាក់សំណើដោយជោគជ័យ</h2>
+        <div class="receipt-grid">
+          <div><strong>Proposal ID</strong><br><span id="proposalCode"></span></div>
+          <div><strong>School</strong><br><span id="receiptSchool">-</span></div>
+          <div><strong>Project</strong><br><span id="receiptProject">-</span></div>
+          <div><strong>Status</strong><br><span class="status-badge status-New">New</span></div>
+          <div><strong>Submitted</strong><br><span id="receiptDate">-</span></div>
+        </div>
+        <p data-i18n data-kh="Email notification demo: ប្រព័ន្ធផលិតកម្មនឹងជូនដំណឹងទៅក្រុមការងារ SE4HC។" data-en="Email notification demo: The system would notify the SE4HC admin team in the production version.">Email notification demo: ប្រព័ន្ធផលិតកម្មនឹងជូនដំណឹងទៅក្រុមការងារ SE4HC។</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="admin-login.html" data-i18n data-kh="មើល Admin Dashboard Demo" data-en="View Admin Dashboard Demo">មើល Admin Dashboard Demo</a><button id="anotherBtn" class="btn btn-secondary" type="button" data-i18n data-kh="ដាក់សំណើផ្សេងទៀត" data-en="Submit Another Proposal">ដាក់សំណើផ្សេងទៀត</button></div>
+      </div>
+    </div>
+  </main>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/proposal-db.js"></script>
+  <script src="assets/js/submit-proposal.js"></script>
+</body>
+</html>

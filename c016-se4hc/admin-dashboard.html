@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="km">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard | SE4HC Cambodia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Khmer:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/images/logo-se4hc.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="dashboard-body">
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html">
+        <img src="assets/images/logo-se4hc.png" alt="SE4HC logo">
+        <span><span class="brand-title">SE4HC Cambodia</span></span>
+      </a>
+      <nav class="side-nav">
+        <a class="active" href="#dashboard" data-i18n data-kh="Dashboard" data-en="Dashboard">Dashboard</a>
+        <a href="#proposals" data-i18n data-kh="សំណើ" data-en="Proposals">សំណើ</a>
+        <a href="#approved" data-status-link="Approved" data-i18n data-kh="អនុម័ត" data-en="Approved">អនុម័ត</a>
+        <a href="#revise" data-status-link="Revise" data-i18n data-kh="ត្រូវកែសម្រួល" data-en="Need Revision">ត្រូវកែសម្រួល</a>
+        <a href="#settings" data-i18n data-kh="ការកំណត់ Demo" data-en="Settings Demo">ការកំណត់ Demo</a>
+        <button id="logoutBtn" type="button" data-i18n data-kh="ចាកចេញ" data-en="Logout">ចាកចេញ</button>
+      </nav>
+    </aside>
+
+    <main class="dashboard-main">
+      <div class="topbar">
+        <div>
+          <h1 data-i18n data-kh="ផ្ទាំងគ្រប់គ្រងសំណើ" data-en="SE4HC Proposal Dashboard">ផ្ទាំងគ្រប់គ្រងសំណើ</h1>
+          <p class="section-lead" data-i18n data-kh="Notification: Demo only. ទិន្នន័យត្រូវបានរក្សាទុកក្នុង browser នេះ។" data-en="Notification: Demo only. Data is stored in this browser.">Notification: Demo only. ទិន្នន័យត្រូវបានរក្សាទុកក្នុង browser នេះ។</p>
+        </div>
+        <div class="header-actions">
+          <div class="lang-switch"><button class="lang-btn" data-lang="kh" type="button">KH</button><button class="lang-btn" data-lang="en" type="button">EN</button></div>
+        </div>
+      </div>
+
+      <section id="dashboard" class="dashboard-summary-grid">
+        <div class="card metric"><h3 id="totalCount">0</h3><p data-i18n data-kh="សំណើសរុប" data-en="Total Proposals">សំណើសរុប</p></div>
+        <div class="card metric"><h3 id="newCount">0</h3><p data-i18n data-kh="ថ្មី" data-en="New">ថ្មី</p></div>
+        <div class="card metric"><h3 id="reviewingCount">0</h3><p data-i18n data-kh="កំពុងពិនិត្យ" data-en="Reviewing">កំពុងពិនិត្យ</p></div>
+        <div class="card metric"><h3 id="reviseCount">0</h3><p data-i18n data-kh="ត្រូវកែសម្រួល" data-en="Need Revision">ត្រូវកែសម្រួល</p></div>
+        <div class="card metric"><h3 id="approvedCount">0</h3><p data-i18n data-kh="អនុម័ត" data-en="Approved">អនុម័ត</p></div>
+        <div class="card metric"><h3 id="rejectedCount">0</h3><p data-i18n data-kh="បដិសេធ" data-en="Rejected">បដិសេធ</p></div>
+      </section>
+      <section class="analytics-grid" aria-label="Dashboard analytics">
+        <div class="card"><h3 id="budgetTotal">$0</h3><p data-i18n data-kh="ថវិកាស្នើសុំសរុប" data-en="Total Requested Budget">ថវិកាស្នើសុំសរុប</p></div>
+        <div class="card"><h3 id="docsCompleteCount">0</h3><p data-i18n data-kh="ឯកសារគ្រប់" data-en="Complete Documents">ឯកសារគ្រប់</p></div>
+        <div class="card"><h3 id="avgScore">-</h3><p data-i18n data-kh="ពិន្ទុមធ្យម" data-en="Average Score">ពិន្ទុមធ្យម</p></div>
+        <div class="card"><h3 id="provinceCount">0</h3><p data-i18n data-kh="ខេត្តដែលបានដាក់" data-en="Provinces Represented">ខេត្តដែលបានដាក់</p></div>
+      </section>
+
+      <section class="workflow-card">
+        <div>
+          <h2 data-i18n data-kh="ដំណើរការពិនិត្យសំណើ" data-en="Proposal Review Workflow">ដំណើរការពិនិត្យសំណើ</h2>
+          <p data-i18n data-kh="បានដាក់សំណើ → ពិនិត្យឯកសារ → កំពុងពិនិត្យ → កែសម្រួល / អនុម័ត / បដិសេធ" data-en="Submitted → Screening → Reviewing → Revise / Approved / Rejected">បានដាក់សំណើ → ពិនិត្យឯកសារ → កំពុងពិនិត្យ → កែសម្រួល / អនុម័ត / បដិសេធ</p>
+        </div>
+        <div class="workflow workflow-compact">
+          <span class="active" data-i18n data-kh="បានដាក់សំណើ" data-en="Submitted">បានដាក់សំណើ</span>
+          <span class="active" data-i18n data-kh="ពិនិត្យឯកសារ" data-en="Screening">ពិនិត្យឯកសារ</span>
+          <span class="active" data-i18n data-kh="កំពុងពិនិត្យ" data-en="Reviewing">កំពុងពិនិត្យ</span>
+          <span data-i18n data-kh="សេចក្តីសម្រេច" data-en="Decision">សេចក្តីសម្រេច</span>
+        </div>
+      </section>
+
+      <section id="proposals" style="margin-top:24px">
+        <div class="filter-card">
+          <div class="filter-row filter-row-search">
+            <input id="searchInput" type="search" data-i18n-placeholder data-kh-placeholder="ស្វែងរកលេខសំណើ សាលា ឬចំណងជើងគម្រោង" data-en-placeholder="Search proposal ID, school, project title" placeholder="ស្វែងរកលេខសំណើ សាលា ឬចំណងជើងគម្រោង">
+            <button id="exportBtn" class="btn btn-green" type="button" data-i18n data-kh="នាំចេញរបាយការណ៍" data-en="Export Report">នាំចេញរបាយការណ៍</button>
+            <button id="seedBtn" class="btn btn-secondary" type="button" data-i18n data-kh="បញ្ចូលទិន្នន័យគំរូ" data-en="Load Sample Data">បញ្ចូលទិន្នន័យគំរូ</button>
+          </div>
+          <div class="filter-row">
+            <select id="statusFilter"><option value="">All Status</option><option>New</option><option>Reviewing</option><option>Approved</option><option>Revise</option><option>Rejected</option></select>
+            <select id="typeFilter"><option value="">All Types</option><option>STEM Project / Action Research</option><option>Remedial Program</option><option>Student Study Club / Peer Support</option><option>Combined Project</option></select>
+            <input id="provinceFilter" data-i18n-placeholder data-kh-placeholder="ខេត្ត" data-en-placeholder="Province" placeholder="ខេត្ត">
+            <select id="yearFilter"><option value="">All Years</option><option>2027</option><option>2028</option><option>2029</option></select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Proposal ID</th><th>School</th><th>Project Type</th><th>Budget</th><th>Status</th><th>Review Progress</th><th>Submitted</th><th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="proposalRows"></tbody>
+          </table>
+          <div id="emptyState" class="empty-state" style="display:none">
+            <p data-i18n data-kh="មិនទាន់មានសំណើបានដាក់នៅឡើយ។" data-en="No proposals submitted yet.">មិនទាន់មានសំណើបានដាក់នៅឡើយ។</p>
+            <a class="btn btn-primary" href="submit-proposal.html" data-i18n data-kh="ទៅកាន់ Submit Proposal Demo" data-en="Go to Submit Proposal Demo">ទៅកាន់ Submit Proposal Demo</a>
+          </div>
+        </div>
+      </section>
+
+      <p class="dashboard-note" data-i18n data-kh="This dashboard is a static demo. ប្រព័ន្ធផលិតកម្មចុងក្រោយត្រូវការ backend, database, secure file storage, real authentication, និង email notification។" data-en="This dashboard is a static demo. The final production system will require backend, database, secure file storage, real authentication, and email notification.">This dashboard is a static demo. ប្រព័ន្ធផលិតកម្មចុងក្រោយត្រូវការ backend, database, secure file storage, real authentication, និង email notification។</p>
+    </main>
+  </div>
+
+  <div id="detailModal" class="modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="modal-head"><h2 id="modalTitle">Proposal</h2><button id="closeModal" class="icon-btn" type="button" aria-label="Close">X</button></div>
+      <div id="modalBody" class="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    if (localStorage.getItem("se4hcAdminDemoLoggedIn") !== "true") window.location.href = "admin-login.html";
+  </script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/proposal-db.js"></script>
+  <script src="assets/js/admin-dashboard.js"></script>
+</body>
+</html>
