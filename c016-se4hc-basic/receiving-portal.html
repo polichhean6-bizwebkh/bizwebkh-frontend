@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="km">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SE4HC Basic Proposal Receiving Portal</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+Khmer:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="icon" href="assets/images/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <script>if (localStorage.getItem("se4hcBasicAdminLoggedIn") !== "true") window.location.href = "admin-login.html";</script>
+  <div class="portal-layout">
+    <aside class="sidebar">
+      <a class="brand" href="index.html"><img src="assets/images/logo-se4hc.png" alt="SE4HC logo"><strong>SE4HC</strong></a>
+      <nav class="side-nav"><a class="active" href="#dashboard" data-i18n data-kh="Dashboard" data-en="Dashboard">Dashboard</a><a href="#submissions" data-i18n data-kh="Received Proposals" data-en="Received Proposals">Received Proposals</a><button id="logoutBtn" type="button" data-i18n data-kh="ចាកចេញ" data-en="Logout">ចាកចេញ</button></nav>
+    </aside>
+    <main class="portal-main">
+      <div class="topbar"><div><span class="basic-label">Demo Only</span><h1>SE4HC Basic Proposal Receiving Portal</h1><p class="section-lead" data-i18n data-kh="Receive, view and download only." data-en="Receive, view and download only.">Receive, view and download only.</p></div><div class="lang-switch"><button class="lang-btn" data-lang="kh" type="button">KH</button><button class="lang-btn" data-lang="en" type="button">EN</button></div></div>
+      <div class="notice" data-i18n data-kh="Demo only: Data is stored in this browser. The production version will use a backend, database, secure file storage and protected administrator authentication." data-en="Demo only: Data is stored in this browser. The production version will use a backend, database, secure file storage and protected administrator authentication.">Demo only: Data is stored in this browser. The production version will use a backend, database, secure file storage and protected administrator authentication.</div>
+      <section id="dashboard" class="summary-grid">
+        <div class="summary-card"><h3 id="totalCount">0</h3><p data-i18n data-kh="Total Received" data-en="Total Received">Total Received</p></div>
+        <div class="summary-card"><h3 id="newCount">0</h3><p data-i18n data-kh="New" data-en="New">New</p></div>
+        <div class="summary-card"><h3 id="receivedCount">0</h3><p data-i18n data-kh="Received" data-en="Received">Received</p></div>
+      </section>
+      <section id="submissions">
+        <div class="toolbar"><input id="searchInput" type="search" data-i18n-placeholder data-kh-placeholder="ស្វែងរក Proposal ID ឬឈ្មោះសាលា" data-en-placeholder="Search proposal ID or school name" placeholder="ស្វែងរក Proposal ID ឬឈ្មោះសាលា"><button id="sampleBtn" class="btn btn-secondary" type="button" data-i18n data-kh="Load Sample Submissions" data-en="Load Sample Submissions">Load Sample Submissions</button><button id="clearBtn" class="btn btn-danger" type="button" data-i18n data-kh="Clear Demo Data" data-en="Clear Demo Data">Clear Demo Data</button></div>
+        <div class="table-wrap"><table><thead><tr><th>Proposal ID</th><th>School Name</th><th>Project Title</th><th>Province</th><th>Submitted Date</th><th>Status</th><th>Action</th></tr></thead><tbody id="proposalRows"></tbody></table><div id="emptyState" class="empty-state" style="display:none">No submissions yet.</div></div>
+      </section>
+    </main>
+  </div>
+  <div id="detailModal" class="modal-backdrop" role="dialog" aria-modal="true"><div class="modal"><div class="modal-head"><h2 id="modalTitle">Submission</h2><button id="closeModal" class="icon-btn" type="button">X</button></div><div id="modalBody" class="modal-body"></div></div></div>
+  <script src="assets/js/app.js"></script><script src="assets/js/basic-proposal-db.js"></script><script src="assets/js/receiving-portal.js"></script>
+</body>
+</html>

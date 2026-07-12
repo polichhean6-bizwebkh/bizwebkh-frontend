@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="km">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Login | SE4HC Basic Receiving Portal</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+Khmer:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <link rel="icon" href="assets/images/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header"><div class="container header-inner"><a class="brand" href="index.html"><img src="assets/images/logo-se4hc.png" alt="SE4HC logo"><strong>SE4HC Cambodia</strong></a><nav class="nav"><a href="index.html" data-i18n data-kh="ទំព័រដើម" data-en="Home">ទំព័រដើម</a><a href="submit-proposal.html" data-i18n data-kh="ដាក់សំណើ" data-en="Submit Proposal">ដាក់សំណើ</a></nav><div class="header-actions"><div class="lang-switch"><button class="lang-btn" data-lang="kh" type="button">KH</button><button class="lang-btn" data-lang="en" type="button">EN</button></div></div></div></header>
+  <main class="page-shell">
+    <div class="container login-layout">
+      <div class="login-info">
+        <span class="basic-label">Demo Only</span>
+        <h1 data-i18n data-kh="Basic Receiving Portal" data-en="Basic Receiving Portal">Basic Receiving Portal</h1>
+        <p data-i18n data-kh="Demo សាមញ្ញសម្រាប់ទទួល មើល និងទាញយកសំណើ។ Demo login only." data-en="A simple demo to receive, view, and download proposals. Demo login only.">Demo សាមញ្ញសម្រាប់ទទួល មើល និងទាញយកសំណើ។ Demo login only.</p>
+        <div class="phase-card">
+          <strong>BASIC PHASE 1 INCLUDES:</strong>
+          <ul><li>Receive proposals</li><li>Receive PDF / Excel files</li><li>View submissions</li><li>Download files</li><li>Mark as received</li></ul>
+        </div>
+        <div class="phase-card">
+          <strong>STATIC DEMO NOTICE:</strong>
+          <p>This is a static demo. The final system will require a backend, database, secure file storage and protected administrator authentication.</p>
+        </div>
+      </div>
+      <form id="loginForm" class="login-card">
+        <h2 data-i18n data-kh="ចូលប្រើ Portal" data-en="Portal Login">ចូលប្រើ Portal</h2>
+        <div class="field"><label for="username">Username</label><input id="username" autocomplete="username" required></div>
+        <div class="field" style="margin-top:14px"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required></div>
+        <div class="notice" style="margin-top:16px">Username: admin<br>Password: admin123<br><span data-i18n data-kh="Demo login only. Production requires protected administrator authentication." data-en="Demo login only. Production requires protected administrator authentication.">Demo login only. Production requires protected administrator authentication.</span></div>
+        <div id="loginError" class="error"></div>
+        <div class="hero-actions"><button class="btn btn-primary" type="submit" data-i18n data-kh="ចូល Basic Receiving Portal" data-en="Login to Basic Receiving Portal">ចូល Basic Receiving Portal</button></div>
+      </form>
+    </div>
+  </main>
+  <script src="assets/js/app.js"></script>
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (document.getElementById("username").value.trim() === "admin" && document.getElementById("password").value === "admin123") {
+        localStorage.setItem("se4hcBasicAdminLoggedIn", "true");
+        window.location.href = "receiving-portal.html";
+      } else {
+        document.getElementById("loginError").textContent = "Invalid demo username or password.";
+      }
+    });
+  </script>
+</body>
+</html>
