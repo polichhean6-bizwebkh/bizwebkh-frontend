@@ -1,5 +1,0 @@
-# ODOM Phnom Penh GitHub Pages demo
-User-agent: *
-Allow: /
-
-# Add the final production sitemap URL after the live domain is confirmed.
