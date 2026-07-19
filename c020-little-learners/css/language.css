@@ -1,0 +1,20 @@
+/* Language control only. Shared layout remains in style.css. */
+.language-switcher{display:flex;align-items:center;gap:2px;padding:3px;border:1px solid #f3dce5;border-radius:999px;background:#fff7fa;flex:0 0 auto}.language-switcher button{border:0;border-radius:999px;padding:6px 8px;background:transparent;color:#7a6670;font:700 .7rem Nunito,"Kantumruy Pro",sans-serif;cursor:pointer;transition:background .2s,color .2s,transform .2s}.language-switcher button.selected{background:var(--pink);color:#fff}.language-switcher button:hover:not(.selected){color:var(--darkpink);background:#ffe6ef}
+
+/* English keeps the original Little Learners typography. */
+html[lang="en"] body{font-family:Nunito,"Kantumruy Pro",sans-serif}html[lang="en"] h1,html[lang="en"] h2,html[lang="en"] h3,html[lang="en"] .button{font-family:"Baloo 2",Nunito,sans-serif}
+
+/* Khmer typography is deliberately scoped to readable text, not decorative glyphs or images. */
+html[lang="km"] body{font-family:"Kantumruy Pro","Noto Sans Khmer",sans-serif;line-height:1.75}html[lang="km"] h1,html[lang="km"] h2{font-family:"Kantumruy Pro","Noto Sans Khmer",sans-serif;font-weight:600;line-height:1.35;letter-spacing:0}html[lang="km"] h3{font-family:"Kantumruy Pro","Noto Sans Khmer",sans-serif;font-weight:600;line-height:1.45;letter-spacing:0}html[lang="km"] p,html[lang="km"] li{line-height:1.8;word-break:normal;overflow-wrap:break-word}html[lang="km"] label,html[lang="km"] input,html[lang="km"] select,html[lang="km"] textarea,html[lang="km"] button,html[lang="km"] .nav-links a{font-family:"Kantumruy Pro","Noto Sans Khmer",sans-serif;font-weight:500}html[lang="km"] .button{line-height:1.5;white-space:nowrap;font-weight:600}html[lang="km"] .eyebrow,html[lang="km"] .card-kicker{letter-spacing:.2px}
+
+/* Khmer copy can occupy the same generous layout space as English. */
+html[lang="km"] .center-head{max-width:850px}html[lang="km"] .center-head h2,html[lang="km"] .section-head>div,html[lang="km"] .hero-copy,html[lang="km"] .team-copy{max-width:100%;min-width:0}html[lang="km"] .hero-copy h1,html[lang="km"] .care-copy h2,html[lang="km"] .team-copy h2{letter-spacing:0}html[lang="km"] .program-body>p:not(.card-kicker){min-height:0}
+
+/* Keep the activity cards at their intended balanced width. */
+.development-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.development-grid article{width:100%;min-width:0;max-width:none}.development-grid h3,.development-grid p{width:auto;max-width:none;word-break:normal;overflow-wrap:break-word}
+
+@media(min-width:851px) and (max-width:1220px){html[lang="km"] .nav-links{gap:14px}html[lang="km"] .nav-links a{font-size:.78rem;white-space:nowrap}html[lang="km"] .nav{gap:18px}}
+@media(min-width:851px) and (max-width:1120px){html[lang="km"] .menu-toggle{display:block}html[lang="km"] .nav-links{display:none}html[lang="km"] .nav-links.open{display:flex;position:absolute;left:22px;right:22px;top:82px;padding:20px;flex-direction:column;align-items:stretch;background:#fff;border-radius:15px;box-shadow:var(--shadow)}html[lang="km"] .nav-links.open .language-switcher{order:9;align-self:flex-start}html[lang="km"] .nav-links.open .button.yellow{order:10}}
+@media(min-width:561px) and (max-width:850px){.development-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:850px){.language-switcher{align-self:center}.nav-links.open .language-switcher{order:9;align-self:flex-start}.nav-links.open .button.yellow{order:10}html[lang="km"] .nav-links.open a{line-height:1.55}}
+@media(max-width:560px){.language-switcher button{padding:6px 9px}html[lang="km"] .hero h1{font-size:2.45rem;line-height:1.32}html[lang="km"] .hero-chips span{font-size:.72rem}.development-grid{grid-template-columns:1fr}}

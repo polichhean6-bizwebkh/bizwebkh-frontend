@@ -1,0 +1,4 @@
+/* Keep the information bar evenly balanced after removing its duplicate CTA. */
+.top-inner{justify-content:space-between}
+@media(max-width:850px){.top-inner{justify-content:space-between;gap:12px}.top-inner span:nth-child(2){margin-left:0}}
+@media(max-width:560px){.top-inner{justify-content:flex-end}.top-inner span:nth-child(2){margin-left:0}}
