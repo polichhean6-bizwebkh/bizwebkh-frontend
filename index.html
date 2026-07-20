@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Website Design for Cambodian SMEs from $99 | BizWeb KH</title>
-<meta name="description" content="BizWeb KH builds affordable Khmer + English business websites for Cambodian SMEs. Choose a demo style and get a mobile-ready website from $99.">
+<meta name="description" content="Affordable Khmer and English website design for Cambodian SMEs. Explore website demos and selected completed projects by BizWeb KH, with packages starting from $99.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.bizwebkh.com/">
 <link rel="icon" type="image/png" href="favicon.png">
@@ -471,18 +471,47 @@ html[data-theme="light"] .lang-btn.active{background:#1D7BFF;color:#fff;}
 .care-text{font-size:13px;color:var(--text-2);line-height:1.65;}
 .care-points{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;}
 .care-points span{font-size:11px;color:var(--text-2);border:1px solid var(--border);border-radius:999px;padding:4px 9px;background:rgba(255,255,255,0.025);}
+.booking-addon{margin-top:32px;padding:28px;border:1px solid rgba(24,200,255,.28);border-radius:18px;background:linear-gradient(135deg,rgba(29,123,255,.10),rgba(24,200,255,.06));box-shadow:0 20px 52px rgba(7,28,61,.10);}
+.booking-addon-header{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:24px;align-items:center;}
+.booking-addon-main{display:flex;align-items:flex-start;gap:16px;min-width:0;}
+.booking-addon-icon{width:58px;height:58px;flex:0 0 58px;display:flex;align-items:center;justify-content:center;border-radius:16px;background:rgba(29,123,255,.12);border:1px solid rgba(29,123,255,.20);color:var(--accent-2);}
+.booking-addon-icon svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.booking-addon-badge{display:inline-flex;margin-bottom:8px;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:800;color:var(--accent-2);background:rgba(29,123,255,.10);border:1px solid rgba(29,123,255,.22);}
+.booking-addon h3{font-size:20px;line-height:1.35;color:var(--text);margin-bottom:6px;}
+.booking-addon-desc{font-size:13px;line-height:1.7;color:var(--text-2);max-width:620px;}
+.booking-addon-price{min-width:150px;text-align:center;}
+.booking-addon-price small,.booking-addon-price span{display:block;font-size:11px;color:var(--text-3);line-height:1.5;}
+.booking-addon-price strong{display:block;font-size:30px;line-height:1.15;color:var(--accent-2);}
+.booking-feature-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:24px;}
+.booking-feature-group{padding:18px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.035);}
+.booking-feature-group h4{margin-bottom:12px;font-size:14px;color:var(--text);}
+.booking-feature-group ul{list-style:none;display:grid;gap:8px;}
+.booking-feature-group li{display:flex;gap:8px;font-size:12px;line-height:1.5;color:var(--text-2);}
+.booking-feature-group svg{flex:0 0 13px;margin-top:2px;fill:none;stroke:var(--green);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.booking-notice{margin-top:16px;padding:13px 15px;border:1px solid rgba(255,194,71,.22);border-radius:10px;background:rgba(255,194,71,.06);font-size:12px;line-height:1.65;color:var(--text-2);}
+.booking-combinations{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px;}
+.booking-combinations article{padding:14px;text-align:center;border:1px solid var(--border);border-radius:10px;background:var(--ink-3);}
+.booking-combinations span,.booking-combinations small,.booking-combinations strong{display:block;}
+.booking-combinations span{font-size:13px;font-weight:700;color:var(--text);}
+.booking-combinations small{margin:4px 0;font-size:12px;color:var(--text-3);}
+.booking-combinations strong{font-size:16px;color:var(--accent-2);}
+.booking-final-note{margin-top:12px;text-align:center;font-size:12px;line-height:1.6;color:var(--text-3);}
+.form-estimate{grid-column:1 / -1;padding:14px 16px;border:1px solid rgba(24,200,255,.22);border-radius:var(--radius-sm);background:rgba(24,200,255,.05);display:grid;gap:4px;}
+.form-estimate strong{font-size:13px;color:var(--text);}
+.form-estimate-value{font-size:19px;font-weight:800;color:var(--accent-2);}
+.form-estimate small{font-size:11px;color:var(--text-3);}
 
 /* ============================================================
    RECENT PROJECTS
 ============================================================ */
 .projects-section{background:radial-gradient(circle at 50% 0,rgba(0,212,255,0.07),transparent 32%),var(--ink-2);}
-.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;max-width:1040px;margin:0 auto;}
-.project-card{position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.025));border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 18px 48px rgba(0,0,0,.16);opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease,border-color .25s ease,box-shadow .25s ease;}
+.project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;max-width:1200px;margin:0 auto;}
+.project-card{position:relative;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.025));border:1px solid var(--border);border-radius:var(--radius);box-shadow:0 18px 48px rgba(0,0,0,.16);opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease,border-color .25s ease,box-shadow .25s ease;}
 .project-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 0,rgba(0,212,255,.08),transparent 38%);pointer-events:none;}
 .project-card.is-visible{opacity:1;transform:translateY(0);}
 .project-card.is-visible:nth-child(2){transition-delay:.08s;}
 .project-card:hover{transform:translateY(-5px);border-color:var(--border-hi);box-shadow:0 24px 62px rgba(0,0,0,.24),0 0 34px rgba(0,212,255,.08);}
-.project-preview{position:relative;padding:18px;background:linear-gradient(135deg,#07152f,#103f86 58%,#18c8ff);overflow:hidden;}
+.project-preview{position:relative;padding:14px;background:linear-gradient(135deg,#07152f,#103f86 58%,#18c8ff);overflow:hidden;}
 .project-preview::before{content:'';position:absolute;right:-18%;top:-35%;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,.18);filter:blur(10px);}
 .project-preview::after{content:'';position:absolute;left:-20%;bottom:-45%;width:260px;height:260px;border-radius:50%;background:rgba(255,138,61,.16);filter:blur(16px);}
 .project-browser-frame{position:relative;z-index:1;overflow:hidden;border-radius:16px;background:#fff;box-shadow:0 22px 54px rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.55);}
@@ -494,15 +523,21 @@ html[data-theme="light"] .lang-btn.active{background:#1D7BFF;color:#fff;}
 .project-thumb-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,21,47,0),rgba(7,21,47,.10));pointer-events:none;}
 .project-thumb{width:100%;height:100%;display:block;object-fit:cover;object-position:top center;transition:transform .45s ease;}
 .project-card:hover .project-thumb{transform:scale(1.025);}
-.project-body{position:relative;z-index:1;padding:22px;}
+.project-body{position:relative;z-index:1;display:flex;flex:1;flex-direction:column;height:100%;padding:22px;}
 .project-meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;}
 .project-badge,.project-category{display:inline-flex;align-items:center;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700;line-height:1.2;}
-.project-badge{background:rgba(0,229,160,.1);border:1px solid rgba(0,229,160,.2);color:var(--green);}
+.project-badge{gap:5px;background:rgba(0,229,160,.1);border:1px solid rgba(0,229,160,.2);color:var(--green);}
+.project-badge svg{fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
 .project-category{background:rgba(61,123,255,.12);border:1px solid rgba(99,140,255,.22);color:var(--accent-2);}
-.project-card h3{font-size:22px;font-weight:800;color:#fff;margin-bottom:9px;}
-.project-card p{font-size:14px;line-height:1.7;color:var(--text-2);margin-bottom:18px;}
-.project-btn{justify-content:center;}
+.project-card h3{font-size:21px;line-height:1.3;font-weight:800;color:#fff;margin-bottom:9px;}
+.project-card p{flex:1;font-size:13.5px;line-height:1.7;color:var(--text-2);margin-bottom:18px;}
+.project-btn{width:100%;min-height:42px;margin-top:auto;justify-content:center;}
 .project-btn svg{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:2;}
+.project-selected-count{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12px;font-weight:700;color:var(--green);}
+.project-selected-count svg{fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.projects-cta{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin:34px auto 0;text-align:center;}
+.projects-cta p{font-size:15px;font-weight:700;color:var(--text-2);}
+.projects-cta .btn{min-height:44px;}
 
 /* ============================================================
    BEFORE AFTER
@@ -734,6 +769,10 @@ html[data-theme="light"] .pricing-features li .check-ico{color:#18B889;}
 html[data-theme="light"] .pricing-note,html[data-theme="light"] .care-addon{background:rgba(29,123,255,.05);border-color:rgba(29,123,255,.14);}
 html[data-theme="light"] .care-title{color:#071C3D;}
 html[data-theme="light"] .care-price{color:#1D7BFF;}
+html[data-theme="light"] .booking-addon{background:linear-gradient(135deg,rgba(29,123,255,.07),rgba(24,200,255,.05));border-color:rgba(29,123,255,.22);}
+html[data-theme="light"] .booking-feature-group,html[data-theme="light"] .booking-combinations article{background:#FFFFFF;border-color:rgba(29,123,255,.14);}
+html[data-theme="light"] .booking-notice{background:rgba(255,138,61,.07);border-color:rgba(255,138,61,.22);}
+html[data-theme="light"] .form-estimate{background:rgba(29,123,255,.05);border-color:rgba(29,123,255,.18);}
 html[data-theme="light"] .projects-section{background:linear-gradient(180deg,#EEF6FF,#FFFFFF);}
 html[data-theme="light"] .project-card{background:#FFFFFF;border-color:rgba(29,123,255,.14);box-shadow:0 18px 50px rgba(29,72,125,.09);}
 html[data-theme="light"] .project-card:hover{border-color:rgba(29,123,255,.28);box-shadow:0 24px 64px rgba(29,72,125,.14);}
@@ -782,10 +821,18 @@ html[data-theme="light"] .back-to-top:hover{background:#1D7BFF;border-color:#1D7
   .steps::before{display:none;}
   .stats-inner{grid-template-columns:1fr 1fr;}
   .why-grid{grid-template-columns:1fr 1fr;}
-  .compare-grid,.project-grid{grid-template-columns:1fr;}
+  .compare-grid{grid-template-columns:1fr;}
   .pricing-grid{grid-template-columns:repeat(2,minmax(260px,1fr));}
   .stat-item:nth-child(2){border-right:none;}
   .care-addon{grid-template-columns:1fr;align-items:flex-start;}
+  .booking-addon-header{grid-template-columns:1fr;}
+  .booking-addon-price{text-align:left;}
+  .booking-addon-header .btn{width:100%;justify-content:center;}
+  .booking-feature-groups,.booking-combinations{grid-template-columns:1fr;}
+}
+@media(max-width:1000px){
+  .project-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .project-card:last-child{grid-column:1 / -1;max-width:520px;width:100%;justify-self:center;}
 }
 @media(max-width:768px){
   nav{padding:0 14px;gap:8px;}
@@ -807,6 +854,7 @@ html[data-theme="light"] .back-to-top:hover{background:#1D7BFF;border-color:#1D7
   .project-preview{padding:14px;}
   .project-browser-frame{border-radius:14px;}
   .project-body{padding:20px 18px;}
+  .project-card:last-child{grid-column:auto;max-width:none;}
   .value-item{padding:15px 16px;align-items:flex-start;}
   .card-thumb{height:auto;aspect-ratio:16/10;flex:0 0 auto;}
   .card-thumb.live-thumb{height:auto;aspect-ratio:16/10;padding:8px;}
@@ -827,6 +875,7 @@ html[data-theme="light"] .back-to-top:hover{background:#1D7BFF;border-color:#1D7
   .form-wrap{padding:24px 18px;border-radius:14px;}
   .care-addon{grid-template-columns:1fr;align-items:stretch;padding:18px;}
   .care-addon .btn{width:100%;}
+  .booking-addon{padding:22px 18px;}
   .contact-grid{max-width:420px;}
   .contact-btn{padding:20px 16px;}
   footer{padding:28px 18px 30px;}
@@ -845,6 +894,8 @@ html[data-theme="light"] .back-to-top:hover{background:#1D7BFF;border-color:#1D7
   .live-preview-frame iframe{transform:scale(0.215);}
 }
 @media(max-width:700px){
+  .project-grid{grid-template-columns:1fr !important;}
+  .project-card:last-child{grid-column:auto;max-width:none;}
 }
 @media(max-width:520px){
   .contact-grid{grid-template-columns:1fr;max-width:320px;}
@@ -858,6 +909,11 @@ html[data-theme="light"] .back-to-top:hover{background:#1D7BFF;border-color:#1D7
   .nav-logo-img{width:clamp(138px,41vw,176px);}
   .nav-actions{gap:5px;}
   .lang-btn{min-width:29px;padding-left:7px;padding-right:7px;}
+  .booking-addon{padding:20px 16px;}
+  .booking-addon-main{gap:12px;}
+  .booking-addon-icon{width:50px;height:50px;flex-basis:50px;border-radius:14px;}
+  .booking-addon h3{font-size:18px;}
+  .booking-addon-price strong{font-size:28px;}
 }
 @media(max-width:768px){
   html[data-theme="light"] .hero{padding-top:calc(var(--nav-h) + 32px);padding-bottom:44px;min-height:auto;height:auto;}
@@ -865,6 +921,10 @@ html[data-theme="light"] .back-to-top:hover{background:#1D7BFF;border-color:#1D7
   html[data-theme="light"] .included-section{padding-top:44px;padding-bottom:56px;}
   html[data-theme="light"] .card-body{background:#FFFFFF;}
   html[data-theme="light"] .filter-clear{background:#FFFFFF;}
+}
+@media(min-width:701px) and (max-width:768px){
+  .project-grid{grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+  .project-card:last-child{grid-column:1 / -1;max-width:520px;width:100%;justify-self:center;}
 }
 /* ===== PROMO SECTION ===== */
 .promo-section{padding:0 0 8px;}
@@ -1067,6 +1127,7 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
   <ul class="nav-links">
     <li><a href="#demos" data-i18n="nav.demos">គំរូ</a></li>
     <li><a href="#styles" data-i18n="nav.styles">រចនាប័ទ្ម</a></li>
+    <li><a href="#projects" data-i18n="nav.projects">គម្រោង</a></li>
     <li><a href="#pricing" data-i18n="nav.pricing">តម្លៃ</a></li>
     <li><a href="#how" data-i18n="nav.how">របៀបដំណើរការ</a></li>
     <li><a href="#request" data-i18n="nav.preview">ព្រីវ្យូឥតគិតថ្លៃ</a></li>
@@ -1100,6 +1161,7 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
 <div class="mobile-menu" id="mobile-menu">
   <a href="#demos"    onclick="closeMobileMenu()" data-i18n="nav.demos">គំរូ</a>
   <a href="#styles"   onclick="closeMobileMenu()" data-i18n="nav.styles">រចនាប័ទ្ម</a>
+  <a href="#projects" onclick="closeMobileMenu()" data-i18n="nav.projects">គម្រោង</a>
   <a href="#pricing"  onclick="closeMobileMenu()" data-i18n="nav.pricing">តម្លៃ</a>
   <a href="#how"      onclick="closeMobileMenu()" data-i18n="nav.how">របៀបដំណើរការ</a>
   <a href="#request"  onclick="closeMobileMenu()" data-i18n="nav.preview">ព្រីវ្យូឥតគិតថ្លៃ</a>
@@ -1671,6 +1733,63 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
 
     </div>
     <div class="pricing-note" data-i18n="pricing.note">កញ្ចប់ទាំងអស់ប្រើ Demo Style ដែលអ្នកជ្រើស។ ចំនួនទំព័រ និងផ្នែកចុងក្រោយអាស្រ័យលើមាតិកា និងតម្រូវការ។</div>
+    <section class="booking-addon" aria-labelledby="booking-addon-title">
+      <div class="booking-addon-header">
+        <div class="booking-addon-main">
+          <div class="booking-addon-icon"><svg width="28" height="28" aria-hidden="true"><use href="#i-calendar"/></svg></div>
+          <div>
+            <span class="booking-addon-badge" data-i18n="bookingAddon.badge">មុខងារបន្ថែមជាជម្រើស</span>
+            <h3 id="booking-addon-title" data-i18n="bookingAddon.title">ប្រព័ន្ធកក់ និងផ្ទាំងគ្រប់គ្រង Admin មូលដ្ឋាន</h3>
+            <p class="booking-addon-desc" data-i18n="bookingAddon.desc">បន្ថែមការស្នើកក់តាមអនឡាញ ការផ្ទៀងផ្ទាត់ SMS OTP ការគ្រប់គ្រង Booking កំណត់ត្រាបុគ្គលិក និងរបាយការណ៍មូលដ្ឋានទៅលើកញ្ចប់វេបសាយណាមួយ។</p>
+          </div>
+        </div>
+        <div class="booking-addon-price">
+          <small data-i18n="bookingAddon.startingFrom">ចាប់ពី</small>
+          <strong>+$300</strong>
+          <span data-i18n="bookingAddon.addedToPackage">បន្ថែមលើកញ្ចប់វេបសាយណាមួយ</span>
+        </div>
+        <button class="btn btn-primary" type="button" onclick="chooseBookingAddon()"><svg width="15" height="15"><use href="#i-calendar"/></svg><span data-i18n="bookingAddon.button">បន្ថែមប្រព័ន្ធកក់</span></button>
+      </div>
+
+      <div class="booking-feature-groups">
+        <div class="booking-feature-group">
+          <h4 data-i18n="bookingAddon.customerTitle">ការកក់របស់អតិថិជន</h4>
+          <ul>
+            <li><svg width="13" height="13"><use href="#i-check"/></svg><span data-i18n="bookingAddon.customer1">ទម្រង់ស្នើកក់ ឬណាត់ជួប</span></li>
+            <li><svg width="13" height="13"><use href="#i-check"/></svg><span data-i18n="bookingAddon.customer2">ផ្ទៀងផ្ទាត់លេខទូរស័ព្ទតាម SMS OTP</span></li>
+            <li><svg width="13" height="13"><use href="#i-check"/></svg><span data-i18n="bookingAddon.customer3">លេខយោង Booking និងស្ថានភាពរង់ចាំបញ្ជាក់</span></li>
+            <li><svg width="13" height="13"><use href="#i-check"/></svg><span data-i18n="bookingAddon.customer4">មិនត្រូវការគណនីអតិថិជន</span></li>
+          </ul>
+        </div>
+        <div class="booking-feature-group">
+          <h4 data-i18n="bookingAddon.adminTitle">ការគ្រប់គ្រងដោយ Admin</h4>
+          <ul>
+            <li><svg width="13" height="13"><use href="#i-check"/></svg><span data-i18n="bookingAddon.admin1">ចូលប្រើ Admin ដែលបានការពារ</span></li>
+            <li><svg width="13" height="13"><use href="#i-check"/></svg><span data-i18n="bookingAddon.admin2">បញ្ជី និងព័ត៌មានលម្អិត Booking</span></li>
+            <li><svg width="13" height="13"><use href="#i-check"/></svg><span data-i18n="bookingAddon.admin3">ស្វែងរកតាមលេខយោង ឈ្មោះ ឬទូរស័ព្ទ</span></li>
+            <li><svg width="13" height="13"><use href="#i-check"/></svg><span data-i18n="bookingAddon.admin4">តម្រងតាមស្ថានភាព សេវា និងកាលបរិច្ឆេទ</span></li>
+            <li><svg width="13" height="13"><use href="#i-check"/></svg><span data-i18n="bookingAddon.admin5">កែស្ថានភាព និងកំណត់ត្រាផ្ទៃក្នុង</span></li>
+          </ul>
+        </div>
+        <div class="booking-feature-group">
+          <h4 data-i18n="bookingAddon.reportingTitle">របាយការណ៍ និងការរៀបចំ</h4>
+          <ul>
+            <li><svg width="13" height="13"><use href="#i-check"/></svg><span data-i18n="bookingAddon.reporting1">របាយការណ៍រយៈពេលជ្រើសរើស រហូតដល់ 3 ខែ</span></li>
+            <li><svg width="13" height="13"><use href="#i-check"/></svg><span data-i18n="bookingAddon.reporting2">នាំចេញ CSV</span></li>
+            <li><svg width="13" height="13"><use href="#i-check"/></svg><span data-i18n="bookingAddon.reporting3">រៀបចំ Backend API និង Database</span></li>
+            <li><svg width="13" height="13"><use href="#i-check"/></svg><span data-i18n="bookingAddon.reporting4">រួមបញ្ចូលគណនី Admin មួយ</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="booking-notice" data-i18n="bookingAddon.smsNotice">ថ្លៃ SMS OTP និងថ្លៃប្រើប្រាស់ Provider មិនរួមបញ្ចូលក្នុងតម្លៃនេះទេ។ មុខងារបន្ថែមដូចជា Online Payment, Customer Account, Appointment Reminder, Calendar Sync, Multi-branch Management និង Advanced Analytics ត្រូវស្នើតម្លៃដោយឡែក។</p>
+      <div class="booking-combinations">
+        <article><span data-i18n="bookingAddon.starterCombination">Starter + Booking</span><small>$99 + $300</small><strong data-i18n="bookingAddon.starterPrice">ចាប់ពី $399</strong></article>
+        <article><span data-i18n="bookingAddon.proCombination">Pro + Booking</span><small>$199 + $300</small><strong data-i18n="bookingAddon.proPrice">ចាប់ពី $499</strong></article>
+        <article><span data-i18n="bookingAddon.proMaxCombination">Pro Max + Booking</span><small>$299 + $300</small><strong data-i18n="bookingAddon.proMaxPrice">ចាប់ពី $599</strong></article>
+      </div>
+      <p class="booking-final-note" data-i18n="bookingAddon.finalPriceNote">តម្លៃចុងក្រោយនឹងបញ្ជាក់បន្ទាប់ពីពិនិត្យលំហូរការកក់ដែលត្រូវការ។ តម្លៃចាប់ពីនេះគ្របដណ្តប់លើ Booking Workflow មូលដ្ឋានសម្រាប់អាជីវកម្មមួយ និងគណនី Admin មួយប៉ុណ្ណោះ។</p>
+    </section>
     <div class="care-addon">
       <div>
         <div class="care-title" data-i18n="care.title">Monthly Care Add-on</div>
@@ -1691,14 +1810,14 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
 </section>
 
 <!-- ========== RECENT PROJECTS ========== -->
-<!-- Recent Website Projects section temporarily hidden until more public projects are ready. Remove is-hidden to re-enable. -->
-<section class="section projects-section is-hidden" id="projects" aria-hidden="true">
+<section class="section projects-section" id="projects">
   <div class="section-inner">
     <div class="section-header" style="justify-content:center;text-align:center">
       <div>
-        <p class="section-label" data-i18n="projects.label">// គម្រោងថ្មីៗ</p>
-        <h2 class="section-title" data-i18n="projects.title">គម្រោងវេបសាយថ្មីៗ</h2>
-        <p class="section-sub" data-i18n="projects.sub">គំរូគម្រោងដែល BizWeb KH បានរៀបចំសម្រាប់អាជីវកម្ម និងស្ថាប័នក្នុងស្រុក។</p>
+        <p class="section-label" data-i18n="projects.label">// គម្រោងអតិថិជនថ្មីៗ</p>
+        <h2 class="section-title" data-i18n="projects.title">វេបសាយដែលយើងបានរៀបចំសម្រាប់អាជីវកម្មកម្ពុជា</h2>
+        <p class="section-sub" data-i18n="projects.sub">មើលគម្រោងវេបសាយមួយចំនួនដែល BizWeb KH បានរៀបចំរួចសម្រាប់អាជីវកម្ម និងស្ថាប័ននៅកម្ពុជា។</p>
+        <p class="project-selected-count"><svg width="14" height="14" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="projects.selectedCount">គម្រោងបានបញ្ចប់ដែលបានជ្រើសរើស ៣</span></p>
       </div>
     </div>
 
@@ -1712,19 +1831,19 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
               <span class="project-dot"></span>
             </div>
             <div class="project-thumb-wrap">
-              <img class="project-thumb" src="assets/projects/iia-education-thumbnail.jpg" alt="IIA Education website thumbnail" loading="lazy">
+              <img class="project-thumb" src="assets/projects/ceo-center-thumbnail.webp" alt="CEO Center website designed by BizWeb KH" loading="lazy" width="1200" height="675">
             </div>
           </div>
         </div>
         <div class="project-body">
           <div class="project-meta-row">
-            <span class="project-badge" data-i18n="projects.real">គម្រោងពិត</span>
-            <span class="project-category" data-i18n="projects.iia.category">សាលារៀន / អប់រំ</span>
+            <span class="project-badge"><svg width="13" height="13" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="projects.completed">គម្រោងបានបញ្ចប់</span></span>
+            <span class="project-category" data-i18n="projects.ceo.category">មជ្ឈមណ្ឌលអាជីវកម្ម / សេវាវិជ្ជាជីវៈ</span>
           </div>
-          <h3>IIA Education</h3>
-          <p data-i18n="projects.iia.desc">វេបសាយសម្រាប់សាលារៀន ដើម្បីបង្ហាញកម្មវិធីសិក្សា ព័ត៌មានចុះឈ្មោះ សកម្មភាពសិស្ស ព័ត៌មានទំនាក់ទំនង និងការសាកសួរពីអាណាព្យាបាល។</p>
-          <a class="btn btn-outline project-btn" href="https://iia-edu.com/" target="_blank" rel="noopener">
-            <span data-i18n="projects.iia.btn">មើលវេបសាយ</span>
+          <h3>CEO Center</h3>
+          <p data-i18n="projects.ceo.desc">វេបសាយអាជីវកម្មវិជ្ជាជីវៈ សម្រាប់បង្ហាញសេវាកម្ម កន្លែងប្រើប្រាស់ ព័ត៌មានក្រុមហ៊ុន និងជម្រើសទំនាក់ទំនងច្បាស់លាស់សម្រាប់អតិថិជន។</p>
+          <a class="btn btn-outline project-btn" href="https://ceocentercambodia.com/" target="_blank" rel="noopener noreferrer">
+            <span data-i18n="projects.ceo.btn">មើលវេបសាយ</span>
             <svg width="15" height="15"><path d="M5 3h7v7"/><path d="M12 3 4 11"/></svg>
           </a>
         </div>
@@ -1739,23 +1858,55 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
               <span class="project-dot"></span>
             </div>
             <div class="project-thumb-wrap">
-              <img class="project-thumb" src="assets/projects/safemove-thumbnail.jpg" alt="SAFEMOVE EXPRESS website thumbnail" loading="lazy">
+              <img class="project-thumb" src="assets/projects/safemove-thumbnail.webp" alt="SAFEMOVE EXPRESS website designed by BizWeb KH" loading="lazy" width="1200" height="675">
             </div>
           </div>
         </div>
         <div class="project-body">
           <div class="project-meta-row">
-            <span class="project-badge" data-i18n="projects.real">គម្រោងពិត</span>
+            <span class="project-badge"><svg width="13" height="13" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="projects.completed">គម្រោងបានបញ្ចប់</span></span>
             <span class="project-category" data-i18n="projects.safe.category">ដឹកជញ្ជូន / Logistics</span>
           </div>
           <h3>SAFEMOVE EXPRESS</h3>
-          <p data-i18n="projects.safe.desc">វេបសាយសម្រាប់អាជីវកម្មដឹកជញ្ជូន ដើម្បីបង្ហាញសេវាដឹកជញ្ជូន COD, EV Delivery, Parcel Drop-off Services, Live Tracking និងភាពជឿទុកចិត្តរបស់អាជីវកម្ម។</p>
-          <a class="btn btn-outline project-btn" href="https://www.bizwebkh.com/c008-safemove/" target="_blank" rel="noopener">
-            <span data-i18n="projects.safe.btn">មើលគម្រោង</span>
+          <p data-i18n="projects.safe.desc">វេបសាយទំនើបសម្រាប់អាជីវកម្មដឹកជញ្ជូន បង្ហាញសេវា COD, EV Delivery, Parcel Drop-off ព័ត៌មាន Live Tracking និងជម្រើសទំនាក់ទំនងច្បាស់លាស់។</p>
+          <a class="btn btn-outline project-btn" href="https://www.bizwebkh.com/c008-safemove/" target="_blank" rel="noopener noreferrer">
+            <span data-i18n="projects.safe.btn">មើលវេបសាយ</span>
             <svg width="15" height="15"><path d="M5 3h7v7"/><path d="M12 3 4 11"/></svg>
           </a>
         </div>
       </article>
+
+      <article class="project-card">
+        <div class="project-preview">
+          <div class="project-browser-frame">
+            <div class="project-browser-bar">
+              <span class="project-dot"></span>
+              <span class="project-dot"></span>
+              <span class="project-dot"></span>
+            </div>
+            <div class="project-thumb-wrap">
+              <img class="project-thumb" src="assets/projects/iia-education-thumbnail.webp" alt="IIA Education website designed by BizWeb KH" loading="lazy" width="1200" height="675">
+            </div>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta-row">
+            <span class="project-badge"><svg width="13" height="13" aria-hidden="true"><use href="#i-check"/></svg><span data-i18n="projects.completed">គម្រោងបានបញ្ចប់</span></span>
+            <span class="project-category" data-i18n="projects.iia.category">សាលារៀន / អប់រំ</span>
+          </div>
+          <h3>IIA Education</h3>
+          <p data-i18n="projects.iia.desc">វេបសាយសម្រាប់សាលារៀន បង្ហាញកម្មវិធីសិក្សា ព័ត៌មានចុះឈ្មោះ សកម្មភាពសិស្ស ព័ត៌មានទំនាក់ទំនង និងជម្រើសសាកសួរសម្រាប់អាណាព្យាបាល។</p>
+          <a class="btn btn-outline project-btn" href="https://iia-edu.com/" target="_blank" rel="noopener noreferrer">
+            <span data-i18n="projects.iia.btn">មើលវេបសាយ</span>
+            <svg width="15" height="15"><path d="M5 3h7v7"/><path d="M12 3 4 11"/></svg>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <div class="projects-cta">
+      <p data-i18n="projects.ctaText">ត្រូវការវេបសាយសម្រាប់អាជីវកម្មរបស់អ្នកមែនទេ?</p>
+      <a class="btn btn-primary" href="#request"><svg width="15" height="15" aria-hidden="true"><use href="#i-sparkles"/></svg><span data-i18n="projects.ctaButton">ស្នើព្រីវ្យូ Homepage ឥតគិតថ្លៃ</span></a>
     </div>
   </div>
 </section>
@@ -1888,12 +2039,22 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
         </div>
         <div class="form-group">
           <label class="form-label" for="f-package" data-i18n="form.field.package">កញ្ចប់</label>
-          <select id="f-package" class="form-select">
+          <select id="f-package" class="form-select" onchange="updateBookingEstimate()">
             <option value="" data-i18n-opt="form.select">ជ្រើស...</option>
             <option>Starter Website</option>
             <option>Pro Website</option>
             <option>Pro Max Website</option>
             <option data-i18n-opt="form.notSure">មិនទាន់ប្រាកដ</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-addon" data-i18n="form.field.addon">មុខងារបន្ថែម</label>
+          <select id="f-addon" class="form-select" onchange="updateBookingEstimate()">
+            <option value="none" data-i18n-opt="form.addon.none">មិនជ្រើសមុខងារបន្ថែម</option>
+            <option value="booking" data-i18n-opt="form.addon.booking">ប្រព័ន្ធកក់ និងផ្ទាំងគ្រប់គ្រង Admin មូលដ្ឋាន — ចាប់ពី +$300</option>
+            <option value="monthly-care" data-i18n-opt="form.addon.monthlyCare">Monthly Care — ចាប់ពី $15/ខែ</option>
+            <option value="booking-care" data-i18n-opt="form.addon.bookingAndCare">ប្រព័ន្ធកក់ + Monthly Care</option>
+            <option value="not-sure" data-i18n-opt="form.addon.notSure">មិនទាន់ប្រាកដ — ត្រូវការណែនាំ</option>
           </select>
         </div>
         <div class="form-group">
@@ -1904,6 +2065,11 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
             <option data-i18n-opt="form.domain.no">មិនទាន់មាន ត្រូវការជំនួយ</option>
             <option data-i18n-opt="form.notSure">មិនទាន់ប្រាកដ</option>
           </select>
+        </div>
+        <div class="form-estimate" aria-live="polite">
+          <strong data-i18n="form.estimatedTotal">តម្លៃគម្រោងប៉ាន់ស្មានចាប់ពី</strong>
+          <span class="form-estimate-value" id="f-estimate-value" data-i18n="form.estimatePending">សូមជ្រើសកញ្ចប់</span>
+          <small data-i18n="form.finalQuoteNote">តម្លៃចុងក្រោយនឹងបញ្ជាក់បន្ទាប់ពីពិនិត្យតម្រូវការ។</small>
         </div>
         <div class="form-group full">
           <label class="form-label" for="f-assets" data-i18n="form.field.assets">មាន Logo / រូបថតហើយឬនៅ?</label>
@@ -2054,6 +2220,7 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
   </div>
   <ul class="footer-links">
     <li><a href="#demos" data-i18n="nav.demos">គំរូ</a></li>
+    <li><a href="#projects" data-i18n="nav.projects">គម្រោង</a></li>
     <li><a href="#pricing" data-i18n="nav.pricing">តម្លៃ</a></li>
     <li><a href="#how" data-i18n="nav.how">របៀបដំណើរការ</a></li>
     <li><a href="#request" data-i18n="nav.preview">ព្រីវ្យូឥតគិតថ្លៃ</a></li>
@@ -2126,6 +2293,7 @@ const LANG_DATA = {
   kh: {
     'nav.demos': 'គំរូ',
     'nav.styles': 'រចនាប័ទ្ម',
+    'nav.projects': 'គម្រោង',
     'nav.pricing': 'តម្លៃ',
     'nav.how': 'របៀបដំណើរការ',
     'nav.preview': 'ព្រីវ្យូឥតគិតថ្លៃ',
@@ -2306,6 +2474,36 @@ const LANG_DATA = {
     'care.p3': 'ជួយប្ដូរមាតិកា',
     'care.p4': 'ពិនិត្យសុខភាពវេបសាយ',
     'care.btn': 'សួរ Monthly Care',
+    'bookingAddon.badge': 'មុខងារបន្ថែមជាជម្រើស',
+    'bookingAddon.title': 'ប្រព័ន្ធកក់ និងផ្ទាំងគ្រប់គ្រង Admin មូលដ្ឋាន',
+    'bookingAddon.desc': 'បន្ថែមការស្នើកក់តាមអនឡាញ ការផ្ទៀងផ្ទាត់ SMS OTP ការគ្រប់គ្រង Booking កំណត់ត្រាបុគ្គលិក និងរបាយការណ៍មូលដ្ឋានទៅលើកញ្ចប់វេបសាយណាមួយ។',
+    'bookingAddon.startingFrom': 'ចាប់ពី',
+    'bookingAddon.addedToPackage': 'បន្ថែមលើកញ្ចប់វេបសាយណាមួយ',
+    'bookingAddon.button': 'បន្ថែមប្រព័ន្ធកក់',
+    'bookingAddon.customerTitle': 'ការកក់របស់អតិថិជន',
+    'bookingAddon.customer1': 'ទម្រង់ស្នើកក់ ឬណាត់ជួប',
+    'bookingAddon.customer2': 'ផ្ទៀងផ្ទាត់លេខទូរស័ព្ទតាម SMS OTP',
+    'bookingAddon.customer3': 'លេខយោង Booking និងស្ថានភាពរង់ចាំបញ្ជាក់',
+    'bookingAddon.customer4': 'មិនត្រូវការគណនីអតិថិជន',
+    'bookingAddon.adminTitle': 'ការគ្រប់គ្រងដោយ Admin',
+    'bookingAddon.admin1': 'ចូលប្រើ Admin ដែលបានការពារ',
+    'bookingAddon.admin2': 'បញ្ជី និងព័ត៌មានលម្អិត Booking',
+    'bookingAddon.admin3': 'ស្វែងរកតាមលេខយោង ឈ្មោះ ឬទូរស័ព្ទ',
+    'bookingAddon.admin4': 'តម្រងតាមស្ថានភាព សេវា និងកាលបរិច្ឆេទ',
+    'bookingAddon.admin5': 'កែស្ថានភាព និងកំណត់ត្រាផ្ទៃក្នុង',
+    'bookingAddon.reportingTitle': 'របាយការណ៍ និងការរៀបចំ',
+    'bookingAddon.reporting1': 'របាយការណ៍រយៈពេលជ្រើសរើស រហូតដល់ 3 ខែ',
+    'bookingAddon.reporting2': 'នាំចេញ CSV',
+    'bookingAddon.reporting3': 'រៀបចំ Backend API និង Database',
+    'bookingAddon.reporting4': 'រួមបញ្ចូលគណនី Admin មួយ',
+    'bookingAddon.smsNotice': 'ថ្លៃ SMS OTP និងថ្លៃប្រើប្រាស់ Provider មិនរួមបញ្ចូលក្នុងតម្លៃនេះទេ។ មុខងារបន្ថែមដូចជា Online Payment, Customer Account, Appointment Reminder, Calendar Sync, Multi-branch Management និង Advanced Analytics ត្រូវស្នើតម្លៃដោយឡែក។',
+    'bookingAddon.starterCombination': 'Starter + Booking',
+    'bookingAddon.proCombination': 'Pro + Booking',
+    'bookingAddon.proMaxCombination': 'Pro Max + Booking',
+    'bookingAddon.starterPrice': 'ចាប់ពី $399',
+    'bookingAddon.proPrice': 'ចាប់ពី $499',
+    'bookingAddon.proMaxPrice': 'ចាប់ពី $599',
+    'bookingAddon.finalPriceNote': 'តម្លៃចុងក្រោយនឹងបញ្ជាក់បន្ទាប់ពីពិនិត្យលំហូរការកក់ដែលត្រូវការ។ តម្លៃចាប់ពីនេះគ្របដណ្តប់លើ Booking Workflow មូលដ្ឋានសម្រាប់អាជីវកម្មមួយ និងគណនី Admin មួយប៉ុណ្ណោះ។ Complex Scheduling, Payment, Customer Account, Multiple Branches, Automated Reminders និង Advanced Integration ត្រូវស្នើតម្លៃដោយឡែក។',
     'compare.label': '// អាប់ដេតអាជីវកម្ម',
     'compare.title': 'ពី Facebook ទៅជាវេបសាយផ្លូវការ',
     'compare.sub': 'ផ្ដល់ឱ្យអតិថិជននូវព័ត៌មានច្បាស់ តំណចែករំលែកងាយ និងទំនុកចិត្តជាងមុន។',
@@ -2345,6 +2543,7 @@ const LANG_DATA = {
     'form.field.fb': 'Facebook Page',
     'form.field.demo': 'Demo Style',
     'form.field.package': 'កញ្ចប់',
+    'form.field.addon': 'មុខងារបន្ថែម',
     'form.field.domain': 'មាន Domain ហើយឬនៅ?',
     'form.field.assets': 'មាន Logo / រូបថតហើយឬនៅ?',
     'form.field.msg': 'ព័ត៌មានបន្ថែម',
@@ -2356,6 +2555,14 @@ const LANG_DATA = {
     'form.ph.msg': 'ប្រាប់យើងពីអាជីវកម្ម ឬអ្វីដែលអ្នកចង់បាន...',
     'form.select': 'ជ្រើស...',
     'form.notSure': 'មិនទាន់ប្រាកដ',
+    'form.addon.none': 'មិនជ្រើសមុខងារបន្ថែម',
+    'form.addon.booking': 'ប្រព័ន្ធកក់ និងផ្ទាំងគ្រប់គ្រង Admin មូលដ្ឋាន — ចាប់ពី +$300',
+    'form.addon.monthlyCare': 'Monthly Care — ចាប់ពី $15/ខែ',
+    'form.addon.bookingAndCare': 'ប្រព័ន្ធកក់ + Monthly Care',
+    'form.addon.notSure': 'មិនទាន់ប្រាកដ — ត្រូវការណែនាំ',
+    'form.estimatedTotal': 'តម្លៃគម្រោងប៉ាន់ស្មានចាប់ពី',
+    'form.estimatePending': 'សូមជ្រើសកញ្ចប់',
+    'form.finalQuoteNote': 'តម្លៃចុងក្រោយនឹងបញ្ជាក់បន្ទាប់ពីពិនិត្យតម្រូវការ។',
     'form.domain.yes': 'មាន Domain ហើយ',
     'form.domain.no': 'មិនទាន់មាន ត្រូវការជំនួយ',
     'form.assets.yes': 'មាន Logo រូបថត និងមាតិកា',
@@ -2409,22 +2616,28 @@ const LANG_DATA = {
     'promo.desc': 'កក់គម្រោងវេបសាយក្នុងខែនេះ ហើយទទួលបានការរៀបចំ Hosting 1 ឆ្នាំ ដោយឥតគិតថ្លៃ ដើម្បីជួយឱ្យអាជីវកម្មបើកដំណើរការវេបសាយបានរលូន។',
     'promo.note': 'សម្រាប់គម្រោងថ្មីដែលបើកដំណើរការក្នុងខែ',
     'promo.btn': 'ទទួលយកប្រូម៉ូសិនតាម Telegram',
-    'projects.label': '// គម្រោងថ្មីៗ',
-    'projects.title': 'គម្រោងវេបសាយថ្មីៗ',
-    'projects.sub': 'គំរូគម្រោងដែល BizWeb KH បានរៀបចំសម្រាប់អាជីវកម្ម និងស្ថាប័នក្នុងស្រុក។',
-    'projects.real': 'គម្រោងពិត',
-    'projects.iia.preview': 'សាលារៀន',
+    'projects.label': '// គម្រោងអតិថិជនថ្មីៗ',
+    'projects.title': 'វេបសាយដែលយើងបានរៀបចំសម្រាប់អាជីវកម្មកម្ពុជា',
+    'projects.sub': 'មើលគម្រោងវេបសាយមួយចំនួនដែល BizWeb KH បានរៀបចំរួចសម្រាប់អាជីវកម្ម និងស្ថាប័ននៅកម្ពុជា។',
+    'projects.completed': 'គម្រោងបានបញ្ចប់',
+    'projects.selectedCount': 'គម្រោងបានបញ្ចប់ដែលបានជ្រើសរើស ៣',
+    'projects.ceo.category': 'មជ្ឈមណ្ឌលអាជីវកម្ម / សេវាវិជ្ជាជីវៈ',
+    'projects.ceo.desc': 'វេបសាយអាជីវកម្មវិជ្ជាជីវៈ សម្រាប់បង្ហាញសេវាកម្ម កន្លែងប្រើប្រាស់ ព័ត៌មានក្រុមហ៊ុន និងជម្រើសទំនាក់ទំនងច្បាស់លាស់សម្រាប់អតិថិជន។',
+    'projects.ceo.btn': 'មើលវេបសាយ',
     'projects.iia.category': 'សាលារៀន / អប់រំ',
-    'projects.iia.desc': 'វេបសាយសម្រាប់សាលារៀន ដើម្បីបង្ហាញកម្មវិធីសិក្សា ព័ត៌មានចុះឈ្មោះ សកម្មភាពសិស្ស ព័ត៌មានទំនាក់ទំនង និងការសាកសួរពីអាណាព្យាបាល។',
+    'projects.iia.desc': 'វេបសាយសម្រាប់សាលារៀន បង្ហាញកម្មវិធីសិក្សា ព័ត៌មានចុះឈ្មោះ សកម្មភាពសិស្ស ព័ត៌មានទំនាក់ទំនង និងជម្រើសសាកសួរសម្រាប់អាណាព្យាបាល។',
     'projects.iia.btn': 'មើលវេបសាយ',
-    'projects.safe.preview': 'ដឹកជញ្ជូន',
     'projects.safe.category': 'ដឹកជញ្ជូន / Logistics',
-    'projects.safe.desc': 'វេបសាយសម្រាប់អាជីវកម្មដឹកជញ្ជូន ដើម្បីបង្ហាញសេវាដឹកជញ្ជូន COD, EV Delivery, Parcel Drop-off Services, Live Tracking និងភាពជឿទុកចិត្តរបស់អាជីវកម្ម។',
-    'projects.safe.btn': 'មើលគម្រោង'
+    'projects.safe.desc': 'វេបសាយទំនើបសម្រាប់អាជីវកម្មដឹកជញ្ជូន បង្ហាញសេវា COD, EV Delivery, Parcel Drop-off ព័ត៌មាន Live Tracking និងជម្រើសទំនាក់ទំនងច្បាស់លាស់។',
+    'projects.safe.btn': 'មើលវេបសាយ',
+    'projects.ctaText': 'ត្រូវការវេបសាយសម្រាប់អាជីវកម្មរបស់អ្នកមែនទេ?',
+    'projects.ctaButton': 'ស្នើព្រីវ្យូ Homepage ឥតគិតថ្លៃ',
+    'projects.linkComingSoon': 'តំណវេបសាយនឹងដាក់បន្ថែមឆាប់ៗ'
   },
   en: {
     'nav.demos': 'Demos',
     'nav.styles': 'Styles',
+    'nav.projects': 'Projects',
     'nav.pricing': 'Pricing',
     'nav.how': 'How It Works',
     'nav.preview': 'Free Preview',
@@ -2605,6 +2818,36 @@ const LANG_DATA = {
     'care.p3': 'Content change support',
     'care.p4': 'Website health check',
     'care.btn': 'Ask about monthly care',
+    'bookingAddon.badge': 'Optional Add-on',
+    'bookingAddon.title': 'Booking System + Basic Admin Dashboard',
+    'bookingAddon.desc': 'Add online appointment requests, SMS OTP verification, booking management, staff notes, and basic reports to any website package.',
+    'bookingAddon.startingFrom': 'Starting from',
+    'bookingAddon.addedToPackage': 'added to any website package',
+    'bookingAddon.button': 'Add Booking System',
+    'bookingAddon.customerTitle': 'Customer Booking',
+    'bookingAddon.customer1': 'Appointment request form',
+    'bookingAddon.customer2': 'Cambodian phone verification by SMS OTP',
+    'bookingAddon.customer3': 'Booking reference and Pending Confirmation status',
+    'bookingAddon.customer4': 'No customer login required',
+    'bookingAddon.adminTitle': 'Admin Management',
+    'bookingAddon.admin1': 'Protected admin access',
+    'bookingAddon.admin2': 'Booking list and details',
+    'bookingAddon.admin3': 'Search by reference, customer name, or phone',
+    'bookingAddon.admin4': 'Filter by status, service, and date',
+    'bookingAddon.admin5': 'Status updates and internal notes',
+    'bookingAddon.reportingTitle': 'Reports and Setup',
+    'bookingAddon.reporting1': 'Reports for a selected period up to three months',
+    'bookingAddon.reporting2': 'CSV export',
+    'bookingAddon.reporting3': 'Backend API and database setup',
+    'bookingAddon.reporting4': 'One admin account included',
+    'bookingAddon.smsNotice': 'SMS OTP credits and provider usage fees are not included. Advanced features such as online payment, customer accounts, appointment reminders, calendar synchronization, multi-branch management, and advanced analytics require a separate quotation.',
+    'bookingAddon.starterCombination': 'Starter + Booking',
+    'bookingAddon.proCombination': 'Pro + Booking',
+    'bookingAddon.proMaxCombination': 'Pro Max + Booking',
+    'bookingAddon.starterPrice': 'From $399',
+    'bookingAddon.proPrice': 'From $499',
+    'bookingAddon.proMaxPrice': 'From $599',
+    'bookingAddon.finalPriceNote': 'Final pricing is confirmed after reviewing the required booking workflow. Starting price covers a basic single-business booking workflow with one admin account. Complex scheduling, payment, customer accounts, multiple branches, automated reminders, or advanced integrations are quoted separately.',
     'compare.label': '// business upgrade',
     'compare.title': 'From Facebook-only to professional website',
     'compare.sub': 'Give customers one clear place to understand your business and contact you.',
@@ -2644,6 +2887,7 @@ const LANG_DATA = {
     'form.field.fb': 'Facebook Page Link',
     'form.field.demo': 'Selected Demo Style',
     'form.field.package': 'Preferred Package',
+    'form.field.addon': 'Optional Add-ons',
     'form.field.domain': 'Do you already have a domain?',
     'form.field.assets': 'Do you have logo / photos / content?',
     'form.field.msg': 'Message',
@@ -2655,6 +2899,14 @@ const LANG_DATA = {
     'form.ph.msg': 'Tell us about your business, what your customers need, or what you love about a specific demo style\u2026',
     'form.select': 'Select\u2026',
     'form.notSure': 'Not sure yet',
+    'form.addon.none': 'No add-on',
+    'form.addon.booking': 'Booking System + Basic Admin Dashboard — From +$300',
+    'form.addon.monthlyCare': 'Monthly Care — From $15/month',
+    'form.addon.bookingAndCare': 'Booking System + Monthly Care',
+    'form.addon.notSure': 'Not sure — Need recommendation',
+    'form.estimatedTotal': 'Estimated starting project total',
+    'form.estimatePending': 'Choose a package',
+    'form.finalQuoteNote': 'Final quotation is confirmed after requirement review.',
     'form.domain.yes': 'Yes, I already have a domain',
     'form.domain.no': 'No, I need help choosing one',
     'form.assets.yes': 'Yes, I have logo, photos, and content',
@@ -2708,18 +2960,23 @@ const LANG_DATA = {
     'promo.desc': 'Book your website project this month and get free hosting setup for 1 year to help your business launch smoothly.',
     'promo.note': 'For new projects launching this month',
     'promo.btn': 'Claim This Offer on Telegram',
-    'projects.label': '// recent projects',
-    'projects.title': 'Recent Website Projects',
-    'projects.sub': 'A few recent website projects prepared by BizWeb KH for local businesses and institutions.',
-    'projects.real': 'Real project',
-    'projects.iia.preview': 'School website',
-    'projects.iia.category': 'School / Education Website',
-    'projects.iia.desc': 'A school website designed to present programs, admissions information, student activities, contact details, and parent inquiries clearly.',
+    'projects.label': 'RECENT CLIENT PROJECTS',
+    'projects.title': 'Websites We\'ve Built for Cambodian Businesses',
+    'projects.sub': 'Explore selected websites completed by BizWeb KH for businesses and organizations in Cambodia.',
+    'projects.completed': 'Completed Project',
+    'projects.selectedCount': '3 selected completed projects',
+    'projects.ceo.category': 'Business Center / Professional Services',
+    'projects.ceo.desc': 'A professional corporate website presenting CEO Center\'s business services, facilities, company information, and clear contact options for prospective clients.',
+    'projects.ceo.btn': 'View Website',
+    'projects.iia.category': 'School / Education',
+    'projects.iia.desc': 'A school website presenting academic programs, enrollment information, student activities, contact details, and inquiry options for parents.',
     'projects.iia.btn': 'View Website',
-    'projects.safe.preview': 'Logistics website',
-    'projects.safe.category': 'Delivery / Logistics Website',
-    'projects.safe.desc': 'A logistics website designed to highlight delivery services, COD support, EV delivery, parcel drop-off services, live tracking, and business credibility.',
-    'projects.safe.btn': 'View Project'
+    'projects.safe.category': 'Delivery / Logistics',
+    'projects.safe.desc': 'A modern logistics website presenting delivery services, COD, EV delivery, parcel drop-off, live tracking information, and clear customer contact options.',
+    'projects.safe.btn': 'View Website',
+    'projects.ctaText': 'Need a website for your business?',
+    'projects.ctaButton': 'Request Your Free Homepage Preview',
+    'projects.linkComingSoon': 'Website Link Coming Soon'
   }
 };
 
@@ -2776,6 +3033,7 @@ function applyLang(lang) {
   if (footerSub) footerSub.textContent = t('footer.sub');
   const footerCopy = document.querySelector('.footer-copy');
   if (footerCopy) footerCopy.textContent = t('footer.copy');
+  if (typeof updateBookingEstimate === 'function') updateBookingEstimate();
   if (typeof renderCards === 'function') renderCards();
   if (typeof window._heroTypingRestart === 'function') window._heroTypingRestart();
 }
@@ -3133,18 +3391,35 @@ function useStyle(name){
 
 function choosePackage(name){
   const packageField=document.getElementById('f-package');
+  const addonField=document.getElementById('f-addon');
   if(['Starter Website','Pro Website','Pro Max Website'].includes(name)){
     packageField.value=name;
-  }else{
-    const msg=document.getElementById('f-msg');
-    const line='Interested add-on: '+name;
-    const current=msg.value.trim();
-    msg.value=current
-      ? (current.includes('Interested add-on:') ? current.replace(/Interested add-on: .*/,line) : line+'\n'+current)
-      : line;
+  }else if(name==='Monthly Care Add-on'&&addonField){
+    addonField.value='monthly-care';
   }
+  updateBookingEstimate();
   document.getElementById('request').scrollIntoView({behavior:'smooth'});
   showToast(name + t('toast.selected'));
+}
+
+function chooseBookingAddon(){
+  const addonField=document.getElementById('f-addon');
+  if(addonField)addonField.value='booking';
+  updateBookingEstimate();
+  document.getElementById('request')?.scrollIntoView({behavior:'smooth'});
+  showToast(t('bookingAddon.title') + t('toast.selected'));
+}
+
+function updateBookingEstimate(){
+  const packageField=document.getElementById('f-package');
+  const addonField=document.getElementById('f-addon');
+  const output=document.getElementById('f-estimate-value');
+  if(!packageField||!addonField||!output)return;
+  const basePrices={'Starter Website':99,'Pro Website':199,'Pro Max Website':299};
+  const base=basePrices[packageField.value];
+  if(!base){output.textContent=t('form.estimatePending');return;}
+  const booking=addonField.value==='booking'||addonField.value==='booking-care';
+  output.textContent='$'+(base+(booking?300:0));
 }
 
 /* =====================================================
@@ -3156,9 +3431,13 @@ function submitForm(){
   const phone=document.getElementById('f-phone').value.trim();
   if(!name||!phone){showToast(t('toast.enterInfo'));return;}
   const valueOrFallback=id=>{
-    const value=document.getElementById(id).value.trim();
+    const field=document.getElementById(id);
+    const value=field.tagName==='SELECT'
+      ? field.options[field.selectedIndex]?.text.trim()
+      : field.value.trim();
     return value||(currentLang==='kh'?'មិនបានបញ្ជាក់':'Not provided');
   };
+  const estimatedTotal=document.getElementById('f-estimate-value').textContent.trim();
   let message;
   if(currentLang==='kh'){
     message=[
@@ -3171,6 +3450,8 @@ function submitForm(){
       'Facebook: '+valueOrFallback('f-fb'),
       'Demo Style: '+valueOrFallback('f-demo'),
       'កញ្ចប់: '+valueOrFallback('f-package'),
+      'មុខងារបន្ថែម: '+valueOrFallback('f-addon'),
+      'តម្លៃប៉ាន់ស្មានចាប់ពី: '+estimatedTotal,
       'Domain: '+valueOrFallback('f-domain'),
       'Logo/រូបថត: '+valueOrFallback('f-assets'),
       '',
@@ -3190,6 +3471,8 @@ function submitForm(){
       'Facebook Page: '+valueOrFallback('f-fb'),
       'Selected Demo Style: '+valueOrFallback('f-demo'),
       'Preferred Package: '+valueOrFallback('f-package'),
+      'Optional Add-ons: '+valueOrFallback('f-addon'),
+      'Estimated Starting Total: '+estimatedTotal,
       'Already Have Domain: '+valueOrFallback('f-domain'),
       'Have Logo / Photos / Content: '+valueOrFallback('f-assets'),
       '',
