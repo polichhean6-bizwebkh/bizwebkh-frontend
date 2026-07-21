@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Prototype Gallery · SafeMove Express</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <main class="gallery">
+    <header class="gallery-head">
+      <div>
+        <img class="logo" src="assets/brand/safemove-logo.webp" alt="SafeMove Express">
+        <h1>Prototype gallery</h1>
+        <p style="color:#557086">All customer-facing prototype screens in mobile previews.</p>
+      </div>
+      <a class="btn btn-primary" style="width:auto" href="index.html">Back to presentation</a>
+    </header>
+    <section class="gallery-grid" id="galleryGrid" aria-label="SafeMove prototype screens"></section>
+  </main>
+  <script>
+    const screens = [
+      ['login', 'Sign in'],
+      ['register', 'Create account'],
+      ['forgot-password', 'Reset password'],
+      ['home', 'Home'],
+      ['express-delivery', 'Express delivery'],
+      ['item-details', 'Item details'],
+      ['order-review', 'Order review'],
+      ['order-confirmation', 'Order confirmation'],
+      ['tracking', 'Tracking'],
+      ['orders', 'Orders'],
+      ['promotions', 'Promotions'],
+      ['alerts', 'Alerts'],
+      ['profile', 'Profile'],
+      ['laundry', 'Laundry'],
+      ['mart', 'Mart'],
+      ['food', 'Food']
+    ];
+
+    document.getElementById('galleryGrid').innerHTML = screens.map(([file, label]) => `
+      <article class="gallery-item">
+        <iframe title="${label} prototype screen" src="${file}.html" loading="lazy"></iframe>
+        <p>${label}</p>
+      </article>
+    `).join('');
+  </script>
+</body>
+</html>

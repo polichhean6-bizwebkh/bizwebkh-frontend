@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" href="favicon.png"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <title>Home · SafeMove Express Prototype</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/home-header.css">
+</head>
+<body>
+<main class="phone">
+  <script src="assets/js/components.js"></script>
+
+  <header class="home-header">
+    <div class="home-header-top">
+      <div class="brand">
+        <img class="home-logo" src="assets/brand/safemove-logo.webp" alt="SafeMove Express">
+      </div>
+      <div class="home-header-actions">
+        <button class="home-action-button" onclick="toast('QR scan demo')" aria-label="Scan QR">
+          <script>document.write(icon('scan'))</script>
+        </button>
+        <a class="home-action-button" href="alerts.html" aria-label="Alerts">
+          <script>document.write(icon('bell'))</script>
+        </a>
+      </div>
+    </div>
+
+    <div class="home-header-copy">
+      <p class="home-greeting">Good morning, Sokha</p>
+      <h1 class="home-title">Ready to move something?</h1>
+      <p class="home-location">
+        <script>document.write(icon('pin'))</script>
+        <span>BKK1, Phnom Penh</span>
+      </p>
+    </div>
+  </header>
+
+  <div class="page"><section class="card" style="padding:12px"><div class="services"><a class="service" href="express-delivery.html"><span class="service-icon express"><script>document.write(icon('express'))</script></span>Express</a><a class="service" href="laundry.html"><span class="service-icon laundry"><script>document.write(icon('laundry'))</script></span>Laundry</a><a class="service" href="mart.html"><span class="service-icon mart"><script>document.write(icon('mart'))</script></span>Mart</a><a class="service" href="food.html"><span class="service-icon food"><script>document.write(icon('food'))</script></span>Food</a></div></section><section class="section card order-strip active-order"><span class="mini-icon"><script>document.write(icon('express'))</script></span><div><b>SM-2026-003</b><p class="subtle" style="margin:4px 0 0">Central Market → Toul Tom Poung</p><small class="subtle">ETA 18 min</small></div><span class="status">In transit</span><a class="arr" href="tracking.html"><script>document.write(icon('chevron'))</script></a></section><section class="section"><div class="section-title"><h2>Offers for you</h2><a class="link" href="promotions.html">See all</a></div><div class="promo-row"><a class="promo express-photo" href="promotions.html"><h2>First delivery free</h2><p>Your first express move is on us.</p><span class="pill">SAFEFIRST</span></a><a class="promo purple laundry-photo" href="promotions.html"><h2>Laundry combo</h2><p>Save 30% on your fourth wash.</p><span class="pill">WASH3GET1</span></a></div></section><section class="section"><div class="section-title"><h2>Recent orders</h2><a class="link" href="orders.html">View all</a></div><div class="card order-strip"><span class="mini-icon"><script>document.write(icon('express'))</script></span><div><b>SM-2026-001</b><p class="subtle" style="margin:4px 0">BKK1 → Riverside · 18 Jul</p></div><b>$4.50</b></div></section></div>
+</main>
+<script src="assets/js/app.js"></script>
+<script>document.write(nav('home'))</script>
+</body>
+</html>

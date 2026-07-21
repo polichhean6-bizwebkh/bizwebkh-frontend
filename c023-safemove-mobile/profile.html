@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Profile · SafeMove Express Prototype</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<main class="phone">
+  <div class="page">
+    <script src="assets/js/components.js"></script>
+    <script>document.write(head('Profile',false))</script>
+    <section class="card profile-top">
+      <div class="avatar">SC</div>
+      <div>
+        <h2 style="margin:0">Sokha Chea</h2>
+        <p class="subtle" style="margin:5px 0">+855 12 345 678</p>
+      </div>
+    </section>
+    <section class="section card">
+      <button type="button" class="setting setting-button" onclick="toast('Saved addresses opened')">
+        <span class="mini-icon"><script>document.write(icon('saved-addresses'))</script></span><b>Saved addresses</b><span class="arr"><script>document.write(icon('chevron'))</script></span>
+      </button>
+      <button type="button" class="setting setting-button" onclick="toast('Payment methods opened')">
+        <span class="mini-icon"><script>document.write(icon('payment'))</script></span><b>Payment methods</b><span class="arr"><script>document.write(icon('chevron'))</script></span>
+      </button>
+      <button type="button" class="setting setting-button" onclick="toast('Language selector opened')">
+        <span class="mini-icon"><script>document.write(icon('language'))</script></span><b>Language</b><span class="subtle" style="margin-left:auto">English</span>
+      </button>
+      <button type="button" class="setting setting-button" onclick="toast('Notification preferences opened')">
+        <span class="mini-icon"><script>document.write(icon('bell'))</script></span><b>Notifications</b><span class="arr"><script>document.write(icon('chevron'))</script></span>
+      </button>
+    </section>
+    <section class="section card">
+      <button type="button" class="setting setting-button" onclick="toast('Help center opened')">
+        <span class="mini-icon"><script>document.write(icon('help'))</script></span><b>Help center</b><span class="arr"><script>document.write(icon('chevron'))</script></span>
+      </button>
+      <button type="button" class="setting setting-button" onclick="toast('Terms and privacy opened')">
+        <span class="mini-icon"><script>document.write(icon('terms'))</script></span><b>Terms &amp; privacy</b><span class="arr"><script>document.write(icon('chevron'))</script></span>
+      </button>
+    </section>
+    <button id="logout" class="btn btn-outline" style="margin-top:22px;color:var(--red);border-color:#f5c3c3">
+      <script>document.write(icon('logout'))</script>Log out
+    </button>
+  </div>
+</main>
+<script src="assets/js/app.js"></script>
+<script>document.write(nav('profile'))</script>
+</body>
+</html>
