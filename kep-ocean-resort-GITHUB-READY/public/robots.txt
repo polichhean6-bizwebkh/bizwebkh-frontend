@@ -1,0 +1,8 @@
+# DEMO STAGE — this deployment is a private client-review demo, not the
+# official published Kep Ocean Resort website.
+# Remove this Disallow rule (and index.html's noindex meta tag) once the
+# client approves the design and the official site is ready to launch.
+# See README.md → "Removing Demo noindex After Approval".
+
+User-agent: *
+Disallow: /
