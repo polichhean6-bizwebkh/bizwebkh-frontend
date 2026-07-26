@@ -1,0 +1,13 @@
+const header = document.querySelector('.site-header');
+const toggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 12), {passive:true});
+toggle.addEventListener('click', () => { const open = header.classList.toggle('menu-open'); toggle.setAttribute('aria-expanded', open); });
+document.querySelectorAll('nav a').forEach(a => a.addEventListener('click', () => header.classList.remove('menu-open')));
+const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible'); observer.unobserve(e.target)}}), {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+const links = [...document.querySelectorAll('nav a')];
+const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const navObserver = new IntersectionObserver(entries => entries.forEach(e => {if(e.isIntersecting){links.forEach(a=>a.classList.toggle('active', a.getAttribute('href') === '#'+e.target.id))}}), {rootMargin:'-35% 0px -55%'});
+sections.forEach(s => navObserver.observe(s));
+document.querySelector('.inquiry-form').addEventListener('submit', e => {e.preventDefault(); const msg=e.currentTarget.querySelector('.form-message'); msg.textContent='Thank you. This is a demo inquiry form. Please contact Luminara International School directly to complete your inquiry.'; e.currentTarget.reset();});
