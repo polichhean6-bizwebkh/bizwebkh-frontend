@@ -1,0 +1,2358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dr Ly Cheng Huy — App Demo | BizWeb KH</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ===================== BASE / RESET ===================== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  height: 100%;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #e7edf5;
+  color: #14213d;
+}
+:root{
+  --deep-blue-1: #0b3d91;
+  --deep-blue-2: #1565c0;
+  --deep-blue-3: #1e88e5;
+  --bg-light: #f4f8fc;
+  --card-bg: #ffffff;
+  --text-dark: #14213d;
+  --text-muted: #64748b;
+  --border-soft: #e3ecf7;
+  --success: #22a366;
+  --danger: #e5484d;
+  --warn: #f5a623;
+  --radius-lg: 20px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --shadow-card: 0 6px 20px rgba(11, 61, 145, 0.10);
+  --shadow-btn: 0 8px 18px rgba(21, 101, 192, 0.35);
+}
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; border: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* ===================== PAGE LAYOUT ===================== */
+.page-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+  padding: 40px 24px;
+  background: radial-gradient(circle at 20% 10%, #eef3fb 0%, #dbe6f5 45%, #cddcef 100%);
+}
+
+/* ===================== PHONE FRAME ===================== */
+.phone-shell {
+  position: sticky;
+  top: 40px;
+  width: 375px;
+  height: 812px;
+  background: #0d0f14;
+  border-radius: 52px;
+  padding: 14px;
+  box-shadow: 0 40px 80px rgba(11, 30, 70, 0.35), 0 10px 30px rgba(0,0,0,0.25);
+  flex-shrink: 0;
+}
+.phone-screen-area {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 38px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.05);
+}
+.phone-notch {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 26px;
+  background: #0d0f14;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  z-index: 500;
+}
+.status-bar {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  position: relative;
+  z-index: 400;
+  flex-shrink: 0;
+}
+.status-bar.dark { color: #14213d; }
+
+/* ===================== SCREENS ===================== */
+.screen {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-light);
+  position: relative;
+  overflow: hidden;
+}
+.screen.active { display: flex; }
+.screen-scroll {
+  flex: 1;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.screen-scroll::-webkit-scrollbar { display: none; }
+.screen-content { padding: 16px 20px 100px; }
+.screen-content.no-tab-pad { padding-bottom: 24px; }
+
+/* gradient variants for status bar over blue screens */
+.bg-gradient-blue {
+  background: linear-gradient(160deg, var(--deep-blue-1) 0%, var(--deep-blue-2) 55%, var(--deep-blue-3) 100%);
+}
+
+/* ===================== TYPOGRAPHY HELPERS ===================== */
+h1.scr-title { font-size: 26px; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; }
+h2.section-title { font-size: 18px; font-weight: 700; color: var(--text-dark); margin: 22px 0 12px; display:flex; align-items:center; justify-content:space-between; }
+p.muted { color: var(--text-muted); font-size: 13px; line-height: 1.5; }
+.see-all { font-size: 12px; color: var(--deep-blue-2); font-weight: 700; }
+
+/* ===================== BUTTONS ===================== */
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  text-align: center;
+  background: linear-gradient(135deg, var(--deep-blue-1), var(--deep-blue-3));
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-btn);
+  transition: transform .15s ease;
+}
+.btn-primary:active { transform: scale(0.97); }
+.btn-secondary {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  background: #fff;
+  color: var(--deep-blue-2);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--deep-blue-2);
+}
+.btn-ghost {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  text-align: center;
+  background: transparent;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 13px;
+}
+.btn-danger-outline {
+  padding: 13px;
+  text-align: center;
+  background: #fff;
+  color: var(--danger);
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--danger);
+}
+.btn-sm {
+  padding: 9px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 10px;
+  background: var(--deep-blue-2);
+  color: #fff;
+}
+.btn-row { display: flex; gap: 10px; }
+.btn-row > * { flex: 1; }
+
+/* ===================== FORM ELEMENTS ===================== */
+.field-group { margin-bottom: 16px; }
+.field-label { font-size: 12px; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; display: block; }
+.field-input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-soft);
+  background: #fff;
+  font-size: 14px;
+  color: var(--text-dark);
+  font-family: inherit;
+}
+.field-input:focus { outline: none; border-color: var(--deep-blue-3); }
+textarea.field-input { resize: none; min-height: 90px; }
+.field-icon-wrap { position: relative; }
+.field-icon-wrap .field-input { padding-left: 42px; }
+.field-icon-wrap .fi-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 16px; opacity: .55; }
+
+/* ===================== AUTH SCREENS ===================== */
+.auth-hero {
+  padding: 50px 28px 30px;
+  color: #fff;
+  text-align: center;
+}
+.auth-hero .logo-badge {
+  width: 64px; height: 64px; border-radius: 18px;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+  font-size: 30px;
+}
+.auth-hero h1 { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+.auth-hero p { font-size: 12.5px; opacity: .85; }
+.auth-card {
+  background: #fff;
+  margin-top: -22px;
+  border-radius: 26px 26px 0 0;
+  flex: 1;
+  padding: 28px 22px 24px;
+}
+.divider-row { display: flex; align-items: center; gap: 10px; margin: 18px 0; }
+.divider-row .line { flex: 1; height: 1px; background: var(--border-soft); }
+.divider-row span { font-size: 11px; color: var(--text-muted); font-weight: 600; }
+.social-row { display: flex; gap: 10px; margin-bottom: 4px; }
+.social-btn {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px; border-radius: var(--radius-sm); border: 1.5px solid var(--border-soft);
+  font-weight: 700; font-size: 13px; background: #fff;
+}
+.link-center { text-align: center; font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+.link-center b { color: var(--deep-blue-2); }
+.forgot-link { text-align: right; font-size: 12px; color: var(--deep-blue-2); font-weight: 700; margin: -8px 0 18px; display:block; }
+
+/* ===================== SPLASH ===================== */
+#screen-splash {
+  align-items: center; justify-content: center; text-align: center; color: #fff;
+}
+.splash-cross {
+  width: 84px; height: 84px; border-radius: 24px;
+  background: rgba(255,255,255,0.16);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.splash-cross svg { width: 44px; height: 44px; }
+.splash-title { font-size: 24px; font-weight: 800; letter-spacing: .3px; }
+.splash-sub { font-size: 12.5px; opacity: .8; margin-top: 6px; letter-spacing: 1px; text-transform: uppercase; }
+.splash-loader { margin-top: 40px; display: flex; gap: 6px; justify-content: center; }
+.splash-loader span {
+  width: 8px; height: 8px; border-radius: 50%; background: #fff; opacity: .4;
+  animation: pulse 1.2s infinite ease-in-out;
+}
+.splash-loader span:nth-child(2) { animation-delay: .15s; }
+.splash-loader span:nth-child(3) { animation-delay: .3s; }
+@keyframes pulse { 0%,80%,100%{opacity:.25; transform: scale(0.8);} 40%{opacity:1; transform: scale(1);} }
+
+/* ===================== ONBOARDING ===================== */
+#screen-onboarding { color: #fff; align-items: stretch; justify-content: space-between; }
+.ob-skip { text-align: right; padding: 18px 20px 0; font-size: 13px; font-weight: 700; opacity: .85; }
+.ob-slide { display: none; flex: 1; flex-direction: column; align-items: center; justify-content: center; padding: 10px 34px; text-align: center; }
+.ob-slide.active { display: flex; }
+.ob-icon-circle {
+  width: 130px; height: 130px; border-radius: 50%;
+  background: rgba(255,255,255,0.14);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 58px; margin-bottom: 30px;
+}
+.ob-slide h2 { font-size: 21px; font-weight: 800; margin-bottom: 10px; }
+.ob-slide p { font-size: 13.5px; opacity: .85; line-height: 1.6; }
+.ob-dots { display: flex; gap: 7px; justify-content: center; padding: 20px 0; }
+.ob-dots span { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.35); transition: all .2s; }
+.ob-dots span.active { background: #fff; width: 20px; border-radius: 4px; }
+.ob-footer { padding: 0 24px 30px; }
+
+/* ===================== HOME / DASHBOARD ===================== */
+.home-header { padding: 20px 20px 26px; color: #fff; border-bottom-left-radius: 28px; border-bottom-right-radius: 28px; }
+.home-header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.home-greet-name { font-size: 20px; font-weight: 800; }
+.home-greet-sub { font-size: 12px; opacity: .8; }
+.home-icon-btn { width: 38px; height: 38px; border-radius: 12px; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 16px; position: relative; }
+.home-icon-btn .dot { position: absolute; top: 6px; right: 6px; width: 7px; height: 7px; border-radius: 50%; background: #ff5a5f; border: 1.5px solid var(--deep-blue-1); }
+.home-search { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.16); border-radius: 14px; padding: 12px 14px; font-size: 13px; color: rgba(255,255,255,0.85); }
+
+.quick-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: -20px; padding: 0 20px; }
+.qa-card { background: #fff; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); padding: 14px 8px; text-align: center; }
+.qa-card .qa-emoji { font-size: 22px; margin-bottom: 6px; }
+.qa-card .qa-label { font-size: 10.5px; font-weight: 700; color: var(--text-dark); }
+
+.hscroll { display: flex; gap: 14px; overflow-x: auto; padding: 4px 20px 10px; scrollbar-width: none; }
+.hscroll::-webkit-scrollbar { display: none; }
+.feature-card { flex: 0 0 220px; border-radius: var(--radius-md); overflow: hidden; background: #fff; box-shadow: var(--shadow-card); }
+.feature-card img { width: 100%; height: 110px; object-fit: cover; }
+.feature-card .fc-body { padding: 10px 12px 12px; }
+.feature-card .fc-tag { font-size: 9.5px; font-weight: 800; color: var(--deep-blue-2); text-transform: uppercase; letter-spacing: .4px; }
+.feature-card .fc-title { font-size: 13px; font-weight: 700; margin-top: 4px; line-height: 1.35; }
+
+.doctor-spotlight { margin: 6px 20px 0; background: linear-gradient(135deg, var(--deep-blue-1), var(--deep-blue-2)); border-radius: var(--radius-lg); padding: 18px; color: #fff; display: flex; gap: 14px; align-items: center; box-shadow: var(--shadow-card); }
+.doctor-spotlight img { width: 66px; height: 66px; border-radius: 16px; object-fit: cover; border: 2px solid rgba(255,255,255,0.5); }
+.doctor-spotlight .ds-name { font-size: 14.5px; font-weight: 800; }
+.doctor-spotlight .ds-role { font-size: 11px; opacity: .8; margin-bottom: 8px; }
+.doctor-spotlight .ds-btn { display: inline-block; padding: 7px 14px; background: #fff; color: var(--deep-blue-2); font-size: 11px; font-weight: 800; border-radius: 20px; }
+
+/* ===================== TAB BAR ===================== */
+.tab-bar {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 78px; background: #fff;
+  border-top: 1px solid var(--border-soft);
+  display: flex; align-items: flex-start; padding-top: 10px;
+  box-shadow: 0 -6px 18px rgba(11,61,145,0.06);
+  z-index: 300;
+}
+.tab-item { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; color: var(--text-muted); }
+.tab-item .tab-ic { font-size: 19px; }
+.tab-item.tab-active { color: var(--deep-blue-2); }
+
+/* ===================== CARDS GENERIC ===================== */
+.card { background: #fff; border-radius: var(--radius-md); box-shadow: var(--shadow-card); padding: 16px; }
+.top-bar { display: flex; align-items: center; gap: 12px; padding: 18px 20px 6px; }
+.back-btn { width: 36px; height: 36px; border-radius: 12px; background: #fff; box-shadow: var(--shadow-card); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.top-bar-title { font-size: 16px; font-weight: 800; }
+
+/* ===================== DOCTOR PROFILE ===================== */
+.doc-hero { text-align: center; padding: 10px 24px 20px; }
+.doc-hero img { width: 118px; height: 118px; border-radius: 30px; object-fit: cover; margin: 0 auto 14px; box-shadow: var(--shadow-card); }
+.doc-hero h1 { font-size: 20px; font-weight: 800; }
+.doc-hero .doc-role { font-size: 12.5px; color: var(--text-muted); margin: 4px 0 10px; }
+.doc-rating { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 13px; font-weight: 700; }
+.doc-rating .stars { color: #f5a623; }
+.tag-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
+.tag-chip { background: #eaf2fd; color: var(--deep-blue-2); font-size: 11px; font-weight: 700; padding: 7px 12px; border-radius: 20px; }
+.stat-row { display: flex; justify-content: space-around; margin: 18px 20px; background: #fff; border-radius: var(--radius-md); box-shadow: var(--shadow-card); padding: 16px 0; }
+.stat-item { text-align: center; }
+.stat-item .num { font-size: 16px; font-weight: 800; color: var(--deep-blue-1); }
+.stat-item .lbl { font-size: 10.5px; color: var(--text-muted); }
+
+/* ===================== CONSULTATION INTRO ===================== */
+.intro-hero-icon { width: 90px; height: 90px; border-radius: 24px; background: linear-gradient(135deg, var(--deep-blue-1), var(--deep-blue-3)); display:flex; align-items:center; justify-content:center; font-size: 40px; margin: 10px auto 18px; color:#fff; }
+.benefit-item { display: flex; gap: 14px; align-items: flex-start; background: #fff; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); padding: 14px; margin-bottom: 12px; }
+.benefit-item .b-ic { width: 40px; height: 40px; border-radius: 12px; background: #eaf2fd; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.benefit-item .b-title { font-size: 13.5px; font-weight: 700; }
+.benefit-item .b-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
+
+/* ===================== BOOKING WIZARD ===================== */
+.step-indicator { display: flex; align-items: center; padding: 4px 20px 18px; }
+.step-dot-wrap { display: flex; align-items: center; flex: 1; }
+.step-dot { width: 28px; height: 28px; border-radius: 50%; background: #dbe6f5; color: var(--text-muted); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-dot.done { background: var(--success); color: #fff; }
+.step-dot.current { background: var(--deep-blue-2); color: #fff; box-shadow: 0 0 0 4px rgba(21,101,192,0.18); }
+.step-line { flex: 1; height: 3px; background: #dbe6f5; margin: 0 4px; }
+.step-line.done { background: var(--success); }
+.wizard-step { display: none; }
+.wizard-step.active { display: block; }
+.day-picker { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+.day-chip { flex: 0 0 54px; text-align: center; padding: 10px 0; border-radius: 14px; background: #fff; box-shadow: var(--shadow-card); font-size: 12px; font-weight: 700; border: 1.5px solid transparent; }
+.day-chip .dow { font-size: 9.5px; color: var(--text-muted); font-weight: 700; display:block; margin-bottom:4px; }
+.day-chip .dnum { font-size: 15px; }
+.day-chip.selected { background: var(--deep-blue-2); border-color: var(--deep-blue-2); color: #fff; }
+.day-chip.selected .dow { color: rgba(255,255,255,0.8); }
+.time-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.time-chip { text-align: center; padding: 11px 0; border-radius: 12px; background: #fff; box-shadow: var(--shadow-card); font-size: 12.5px; font-weight: 700; border: 1.5px solid transparent; }
+.time-chip.disabled { opacity: .35; pointer-events: none; }
+.time-chip.selected { background: var(--deep-blue-2); color: #fff; }
+.type-card-row { display: flex; flex-direction: column; gap: 10px; }
+.type-card { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: var(--radius-sm); background: #fff; box-shadow: var(--shadow-card); border: 1.5px solid transparent; }
+.type-card .tc-ic { width: 42px; height: 42px; border-radius: 12px; background: #eaf2fd; display: flex; align-items: center; justify-content: center; font-size: 19px; }
+.type-card .tc-title { font-size: 13.5px; font-weight: 700; }
+.type-card .tc-sub { font-size: 11px; color: var(--text-muted); }
+.type-card.selected { border-color: var(--deep-blue-2); background: #f2f8ff; }
+.summary-row { display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px dashed var(--border-soft); font-size: 13px; }
+.summary-row:last-child { border-bottom: none; }
+.summary-row .s-label { color: var(--text-muted); }
+.summary-row .s-val { font-weight: 700; }
+
+/* ===================== PAYMENT ===================== */
+.pay-method-card { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: var(--radius-sm); background: #fff; box-shadow: var(--shadow-card); margin-bottom: 10px; border: 1.5px solid transparent; }
+.pay-method-card.selected { border-color: var(--deep-blue-2); background: #f2f8ff; }
+.pay-method-card .pm-ic { width: 40px; height: 40px; border-radius: 10px; background: #eaf2fd; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.pay-method-card .pm-name { font-size: 13.5px; font-weight: 700; }
+.pay-method-card .pm-radio { margin-left: auto; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--border-soft); }
+.pay-method-card.selected .pm-radio { border-color: var(--deep-blue-2); background: radial-gradient(circle, var(--deep-blue-2) 0 40%, #fff 45%); }
+
+/* ===================== SUCCESS ===================== */
+.success-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px 30px; }
+.check-circle { width: 96px; height: 96px; border-radius: 50%; background: linear-gradient(135deg, var(--success), #45c483); display: flex; align-items: center; justify-content: center; margin-bottom: 22px; animation: pop .5s ease; box-shadow: 0 10px 30px rgba(34,163,102,0.35); }
+.check-circle svg { width: 46px; height: 46px; }
+@keyframes pop { 0%{ transform: scale(0);} 70%{ transform: scale(1.12);} 100%{ transform: scale(1);} }
+.success-wrap h1 { font-size: 21px; font-weight: 800; margin-bottom: 6px; }
+.success-wrap p { font-size: 13px; color: var(--text-muted); margin-bottom: 22px; }
+.recap-card { width: 100%; background: #fff; border-radius: var(--radius-md); box-shadow: var(--shadow-card); padding: 16px; text-align: left; margin-bottom: 22px; }
+
+/* ===================== APPOINTMENTS ===================== */
+.seg-tabs { display: flex; background: #e7edf7; border-radius: 14px; padding: 4px; margin: 6px 20px 16px; }
+.seg-tabs .seg-item { flex: 1; text-align: center; padding: 9px 0; font-size: 12.5px; font-weight: 700; color: var(--text-muted); border-radius: 11px; }
+.seg-tabs .seg-item.active { background: #fff; color: var(--deep-blue-2); box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+.appt-card { display: flex; gap: 12px; background: #fff; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); padding: 14px; margin-bottom: 12px; align-items: center; }
+.appt-card img { width: 52px; height: 52px; border-radius: 12px; object-fit: cover; }
+.appt-card .ac-doc { font-size: 13.5px; font-weight: 700; }
+.appt-card .ac-meta { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
+.status-badge { font-size: 9.5px; font-weight: 800; padding: 5px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: .3px; }
+.status-badge.upcoming { background: #e6f4ea; color: var(--success); }
+.status-badge.pending { background: #fff4e0; color: var(--warn); }
+.status-badge.completed { background: #eaf0fb; color: var(--deep-blue-2); }
+.status-badge.cancelled { background: #fde8e8; color: var(--danger); }
+
+/* ===================== ARTICLES / VIDEOS / EBOOKS GRIDS ===================== */
+.article-card { display: flex; gap: 12px; background: #fff; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); padding: 10px; margin-bottom: 12px; align-items: center; }
+.article-card img { width: 74px; height: 74px; border-radius: 12px; object-fit: cover; flex-shrink: 0; }
+.article-card .cat-tag { font-size: 9.5px; font-weight: 800; color: var(--deep-blue-2); text-transform: uppercase; }
+.article-card .art-title { font-size: 13px; font-weight: 700; margin: 3px 0; line-height: 1.3; }
+.article-card .art-meta { font-size: 10.5px; color: var(--text-muted); }
+
+.video-grid, .ebook-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.video-card { background: #fff; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow-card); }
+.video-thumb { position: relative; height: 100px; background-size: cover; background-position: center; }
+.video-thumb .play-ov { position: absolute; inset: 0; background: rgba(11,20,40,0.28); display: flex; align-items: center; justify-content: center; }
+.video-thumb .play-ov .p-btn { width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.92); display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--deep-blue-2); }
+.video-thumb .duration { position: absolute; bottom: 6px; right: 6px; background: rgba(0,0,0,0.65); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 6px; }
+.video-card .vc-title { font-size: 11.5px; font-weight: 700; padding: 8px 10px 10px; line-height: 1.3; }
+
+.book-cover { height: 140px; border-radius: var(--radius-sm) var(--radius-sm) 0 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #fff; text-align: center; padding: 12px; }
+.book-cover .bc-emoji { font-size: 30px; margin-bottom: 8px; }
+.book-cover .bc-title { font-size: 12px; font-weight: 800; line-height: 1.3; }
+.ebook-card { background: #fff; border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow-card); }
+.ebook-card .ec-body { padding: 10px; }
+.ebook-card .ec-author { font-size: 10px; color: var(--text-muted); }
+.ebook-card .ec-price { font-size: 12.5px; font-weight: 800; color: var(--deep-blue-1); margin-top: 4px; }
+
+/* ===================== ARTICLE / VIDEO DETAIL ===================== */
+.detail-hero { width: 100%; height: 210px; object-fit: cover; }
+.detail-body { padding: 20px; }
+.detail-body h1 { font-size: 20px; font-weight: 800; line-height: 1.35; margin-bottom: 10px; }
+.author-row { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.author-row img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+.author-row .a-name { font-size: 12.5px; font-weight: 700; }
+.author-row .a-meta { font-size: 10.5px; color: var(--text-muted); }
+.article-text p { font-size: 13.5px; line-height: 1.85; color: #33415c; margin-bottom: 14px; }
+.article-text h3 { font-size: 14.5px; font-weight: 800; margin: 18px 0 8px; }
+
+.video-hero-wrap { position: relative; height: 220px; }
+.video-hero-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.video-hero-wrap .big-play { position: absolute; inset: 0; background: rgba(11,20,40,0.35); display: flex; align-items: center; justify-content: center; }
+.video-hero-wrap .big-play .p-circle { width: 62px; height: 62px; border-radius: 50%; background: rgba(255,255,255,0.94); display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--deep-blue-2); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+
+/* ===================== EBOOK DETAIL / PURCHASE ===================== */
+.ebook-detail-hero { display: flex; gap: 16px; padding: 20px; align-items: flex-start; }
+.ebook-detail-hero .book-cover { width: 120px; height: 160px; border-radius: 16px; flex-shrink: 0; }
+.review-card { background: #fff; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); padding: 12px 14px; margin-bottom: 10px; }
+.review-card .rc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.review-card .rc-name { font-size: 12.5px; font-weight: 700; }
+.review-card .rc-stars { color: #f5a623; font-size: 11px; }
+.review-card .rc-text { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+
+/* ===================== SUBSCRIPTION ===================== */
+.plan-card { border-radius: var(--radius-lg); padding: 20px; margin-bottom: 14px; position: relative; border: 2px solid var(--border-soft); background: #fff; }
+.plan-card.featured { border-color: var(--deep-blue-2); background: linear-gradient(135deg, #0b3d91, #1565c0); color: #fff; }
+.plan-card .best-badge { position: absolute; top: -11px; right: 18px; background: var(--warn); color: #4a2e00; font-size: 10px; font-weight: 800; padding: 5px 12px; border-radius: 20px; }
+.plan-card .p-name { font-size: 14px; font-weight: 700; opacity: .85; }
+.plan-card .p-price { font-size: 26px; font-weight: 800; margin: 4px 0 2px; }
+.plan-card .p-price span { font-size: 12px; font-weight: 600; opacity: .7; }
+.feature-check { display: flex; align-items: center; gap: 8px; font-size: 12.5px; padding: 8px 20px; }
+.feature-check .fc-mark { color: var(--success); font-weight: 900; }
+
+/* ===================== MY LIBRARY ===================== */
+.lib-card { background: #fff; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); overflow: hidden; }
+.lib-card .book-cover { height: 110px; }
+.lib-card .lc-body { padding: 10px; }
+.lib-card .lc-title { font-size: 11.5px; font-weight: 700; line-height: 1.3; margin-bottom: 8px; }
+.progress-track { height: 6px; background: #e3ecf7; border-radius: 6px; overflow: hidden; margin-bottom: 8px; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--deep-blue-1), var(--deep-blue-3)); border-radius: 6px; }
+.lib-card .lc-pct { font-size: 9.5px; color: var(--text-muted); margin-bottom: 8px; }
+.continue-btn { display: block; width: 100%; text-align: center; padding: 8px; border-radius: 9px; background: #eaf2fd; color: var(--deep-blue-2); font-size: 10.5px; font-weight: 800; }
+
+/* ===================== NOTIFICATIONS ===================== */
+.notif-item { display: flex; gap: 12px; padding: 14px; background: #fff; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); margin-bottom: 10px; position: relative; }
+.notif-item.unread { background: #f2f8ff; }
+.notif-item .n-ic { width: 40px; height: 40px; border-radius: 12px; background: #eaf2fd; display: flex; align-items: center; justify-content: center; font-size: 17px; flex-shrink: 0; }
+.notif-item .n-title { font-size: 12.5px; font-weight: 700; }
+.notif-item .n-sub { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; line-height: 1.4; }
+.notif-item .n-time { font-size: 10px; color: #a3b2c9; margin-top: 5px; }
+.notif-item .n-dot { position: absolute; top: 14px; right: 14px; width: 8px; height: 8px; border-radius: 50%; background: var(--deep-blue-2); }
+
+/* ===================== PROFILE ===================== */
+.profile-header { text-align: center; padding: 30px 20px 24px; color: #fff; border-bottom-left-radius: 28px; border-bottom-right-radius: 28px; }
+.profile-header img { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,0.6); margin: 0 auto 10px; }
+.profile-header .p-name { font-size: 18px; font-weight: 800; }
+.profile-header .p-email { font-size: 12px; opacity: .8; margin-bottom: 12px; }
+.profile-header .edit-btn { display: inline-block; padding: 8px 18px; background: rgba(255,255,255,0.18); border-radius: 20px; font-size: 11.5px; font-weight: 700; }
+.menu-list { margin: 18px 20px; background: #fff; border-radius: var(--radius-md); box-shadow: var(--shadow-card); overflow: hidden; }
+.menu-item { display: flex; align-items: center; gap: 12px; padding: 15px 16px; border-bottom: 1px solid var(--border-soft); }
+.menu-item:last-child { border-bottom: none; }
+.menu-item .m-ic { width: 34px; height: 34px; border-radius: 10px; background: #eaf2fd; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+.menu-item .m-label { font-size: 13.5px; font-weight: 600; flex: 1; }
+.menu-item .m-arrow { color: #b7c3d6; }
+.menu-item.danger .m-label { color: var(--danger); }
+.menu-item.danger .m-ic { background: #fde8e8; }
+
+/* ===================== SETTINGS ===================== */
+.settings-section { margin: 0 20px 22px; }
+.settings-section .ss-label { font-size: 11px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px; }
+.settings-row { display: flex; align-items: center; justify-content: space-between; background: #fff; padding: 14px 16px; border-bottom: 1px solid var(--border-soft); }
+.settings-row:first-child { border-radius: var(--radius-sm) var(--radius-sm) 0 0; }
+.settings-row:last-child { border-bottom: none; border-radius: 0 0 var(--radius-sm) var(--radius-sm); }
+.settings-row .sr-label { font-size: 13px; font-weight: 600; }
+.settings-row .sr-sub { font-size: 10.5px; color: var(--text-muted); margin-top: 2px; }
+.toggle-switch { width: 42px; height: 24px; border-radius: 20px; background: #d4dfec; position: relative; flex-shrink: 0; transition: background .2s; }
+.toggle-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); transition: transform .2s; }
+.toggle-switch.on { background: var(--deep-blue-2); }
+.toggle-switch.on::after { transform: translateX(18px); }
+.lang-choice { display: flex; gap: 10px; }
+.lang-pill { flex: 1; text-align: center; padding: 12px; border-radius: 12px; background: #fff; border: 1.5px solid var(--border-soft); font-size: 12.5px; font-weight: 700; }
+.lang-pill.selected { border-color: var(--deep-blue-2); background: #eaf2fd; color: var(--deep-blue-2); }
+
+/* ===================== QUICK JUMP SIDEBAR ===================== */
+.jump-panel {
+  width: 250px; background: #fff; border-radius: 18px; box-shadow: var(--shadow-card);
+  padding: 18px; max-height: 812px; overflow-y: auto; flex-shrink: 0; position: sticky; top: 40px;
+}
+.jump-panel h3 { font-size: 14px; font-weight: 800; margin-bottom: 4px; color: var(--deep-blue-1); }
+.jump-panel .jp-sub { font-size: 11px; color: var(--text-muted); margin-bottom: 14px; }
+.jump-panel .jp-group-label { font-size: 10px; font-weight: 800; color: #a3b2c9; text-transform: uppercase; letter-spacing: .5px; margin: 14px 0 6px; }
+.jump-panel .jp-group-label:first-of-type { margin-top: 0; }
+.jump-btn {
+  display: block; width: 100%; text-align: left; padding: 9px 10px; border-radius: 9px;
+  font-size: 12px; font-weight: 600; color: var(--text-dark); background: transparent; margin-bottom: 2px;
+}
+.jump-btn:hover { background: #eaf2fd; color: var(--deep-blue-2); }
+.jump-btn .jn { color: #a3b2c9; font-weight: 800; margin-right: 6px; }
+
+@media (max-width: 760px) {
+  .page-wrap { flex-direction: column; align-items: center; }
+  .jump-panel { position: relative; top: 0; width: 375px; order: 2; }
+}
+
+/* ===================== ATTACHMENT STEP (BOOKING) ===================== */
+.attach-card { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: var(--radius-sm); background: #fff; box-shadow: var(--shadow-card); border: 1.5px solid transparent; margin-bottom: 10px; position: relative; }
+.attach-card .at-ic { width: 40px; height: 40px; border-radius: 12px; background: #eaf2fd; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+.attach-card .at-title { font-size: 13px; font-weight: 700; }
+.attach-card .at-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.attach-card.selected { border-color: var(--success); background: #f2fbf6; }
+.attach-card .at-check { margin-left: auto; width: 22px; height: 22px; border-radius: 50%; background: #e3ecf7; color: transparent; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; flex-shrink: 0; }
+.attach-card.selected .at-check { background: var(--success); color: #fff; }
+.attach-card input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.demo-toast { font-size: 10.5px; color: var(--success); font-weight: 700; margin-top: 3px; display: none; }
+.attach-card.selected .demo-toast { display: block; }
+
+/* ===================== COUNTDOWN / JOIN CALL ===================== */
+.countdown-box { background: linear-gradient(135deg, var(--deep-blue-1), var(--deep-blue-2)); border-radius: var(--radius-md); padding: 16px 18px; color: #fff; text-align: center; margin-bottom: 16px; }
+.countdown-box .cb-label { font-size: 10.5px; opacity: .8; font-weight: 700; text-transform: uppercase; letter-spacing: .4px; }
+.countdown-box .cb-value { font-size: 19px; font-weight: 800; margin-top: 4px; }
+.btn-primary[disabled], .btn-primary.is-disabled { opacity: .45; pointer-events: none; box-shadow: none; }
+.helper-note { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 8px; line-height: 1.5; }
+.demo-open-btn { display: block; width: 100%; text-align: center; padding: 13px; margin-top: 10px; border-radius: var(--radius-sm); background: #fff4e0; color: #8a5a00; font-weight: 700; font-size: 12.5px; border: 1.5px dashed var(--warn); }
+.demo-label-strip { font-size: 10px; color: rgba(255,255,255,0.65); text-align: center; padding: 6px 16px; line-height: 1.5; }
+
+/* ===================== WAITING ROOM ===================== */
+.wr-doc-card { text-align: center; padding: 22px 24px 6px; color: #fff; }
+.wr-doc-card img { width: 84px; height: 84px; border-radius: 22px; object-fit: cover; margin: 0 auto 10px; border: 2px solid rgba(255,255,255,0.5); }
+.wr-doc-card .wr-name { font-size: 16px; font-weight: 800; }
+.wr-doc-card .wr-role { font-size: 11.5px; opacity: .8; margin-top: 2px; }
+.wr-doc-card .wr-time { font-size: 12px; opacity: .9; margin-top: 10px; background: rgba(255,255,255,0.16); display: inline-block; padding: 6px 14px; border-radius: 20px; }
+.check-list { background: #fff; border-radius: var(--radius-md); box-shadow: var(--shadow-card); overflow: hidden; margin: 16px 0; }
+.check-row { display: flex; align-items: center; gap: 12px; padding: 13px 16px; border-bottom: 1px solid var(--border-soft); }
+.check-row:last-child { border-bottom: none; }
+.check-row .cr-ic { font-size: 17px; width: 30px; }
+.check-row .cr-label { flex: 1; font-size: 13px; font-weight: 600; }
+.check-row .cr-status { font-size: 11.5px; font-weight: 800; color: var(--success); display: flex; align-items: center; gap: 4px; }
+.check-row .cr-status.off { color: var(--danger); }
+.privacy-note { display: flex; align-items: center; gap: 8px; font-size: 11.5px; color: var(--text-muted); background: #f2f8ff; padding: 12px 14px; border-radius: var(--radius-sm); margin-bottom: 16px; }
+.wr-ctrl-row { display: flex; gap: 10px; margin-bottom: 16px; }
+.wr-ctrl-btn { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 13px 6px; border-radius: var(--radius-sm); background: #fff; box-shadow: var(--shadow-card); font-size: 10.5px; font-weight: 700; color: var(--text-dark); }
+.wr-ctrl-btn svg { width: 20px; height: 20px; }
+.wr-ctrl-btn.is-off { background: #fde8e8; color: var(--danger); }
+.wr-ctrl-btn.is-off svg { stroke: var(--danger); }
+.speaker-test-label { text-align: center; font-size: 11px; color: var(--deep-blue-2); font-weight: 700; margin-top: -8px; margin-bottom: 14px; display: none; }
+.speaker-test-label.show { display: block; }
+
+/* ===================== ACTIVE VIDEO CALL ===================== */
+#screen-video-call { background: #0b0f1a; }
+.vc-stage { position: relative; flex: 1; overflow: hidden; background: #0b0f1a; }
+.vc-doc-feed { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.82); }
+.vc-top-overlay { position: absolute; top: 0; left: 0; right: 0; padding: 40px 16px 14px; background: linear-gradient(180deg, rgba(0,0,0,0.65), transparent); z-index: 20; color: #fff; }
+.vc-top-row { display: flex; align-items: center; justify-content: space-between; }
+.vc-doc-name { font-size: 14.5px; font-weight: 800; }
+.vc-secure-badge { font-size: 9.5px; font-weight: 800; background: rgba(34,163,102,0.9); padding: 4px 9px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; }
+.vc-timer-pill { font-size: 12.5px; font-weight: 800; background: rgba(255,255,255,0.16); padding: 6px 12px; border-radius: 20px; display: flex; align-items: center; gap: 6px; }
+.vc-quality-row { display: flex; align-items: center; gap: 6px; font-size: 10px; opacity: .85; margin-top: 8px; }
+.vc-bars { display: flex; align-items: flex-end; gap: 2px; height: 10px; }
+.vc-bars span { width: 3px; background: #4ade80; border-radius: 1px; }
+.vc-bars span:nth-child(1) { height: 4px; } .vc-bars span:nth-child(2) { height: 6px; } .vc-bars span:nth-child(3) { height: 8px; } .vc-bars span:nth-child(4) { height: 10px; }
+.vc-ref { font-size: 9.5px; opacity: .7; margin-top: 2px; }
+.vc-self-view { position: absolute; top: 118px; right: 14px; width: 88px; height: 118px; border-radius: 14px; overflow: hidden; box-shadow: 0 6px 18px rgba(0,0,0,0.5); border: 2px solid rgba(255,255,255,0.3); z-index: 25; background: #1c2333; display: flex; align-items: center; justify-content: center; }
+.vc-self-view img { width: 100%; height: 100%; object-fit: cover; }
+.vc-self-view .cam-off-label { color: #fff; font-size: 9.5px; font-weight: 700; text-align: center; padding: 0 6px; }
+.vc-self-view.minimized { width: 44px; height: 58px; }
+.vc-demo-strip { position: absolute; bottom: 168px; left: 0; right: 0; text-align: center; z-index: 20; }
+.vc-bottom-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 14px 16px 20px; background: linear-gradient(0deg, rgba(0,0,0,0.75), transparent); z-index: 20; }
+.vc-secondary-row { display: flex; gap: 8px; margin-bottom: 12px; }
+.vc-secondary-btn { flex: 1; text-align: center; padding: 8px 4px; border-radius: 10px; background: rgba(255,255,255,0.14); color: #fff; font-size: 9.5px; font-weight: 700; }
+.vc-secondary-btn.active-state { background: rgba(21,101,192,0.85); }
+.vc-controls-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.vc-ctrl { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.16); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.vc-ctrl svg { width: 22px; height: 22px; stroke: #fff; }
+.vc-ctrl.muted, .vc-ctrl.off { background: #fff; }
+.vc-ctrl.muted svg, .vc-ctrl.off svg { stroke: #0b0f1a; }
+.vc-ctrl.end-call { background: var(--danger); width: 58px; }
+.vc-ctrl.end-call svg { stroke: #fff; }
+.vc-panel-note { background: #fff; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); padding: 12px 14px; font-size: 11.5px; color: var(--text-dark); margin: 0 16px 12px; position: relative; z-index: 30; }
+
+/* ---- chat side panel ---- */
+.vc-chat-panel { position: absolute; top: 0; right: 0; bottom: 0; width: 78%; max-width: 300px; background: #fff; z-index: 60; transform: translateX(100%); transition: transform .25s ease; display: flex; flex-direction: column; box-shadow: -8px 0 24px rgba(0,0,0,0.3); }
+.vc-chat-panel.open { transform: translateX(0); }
+.vc-chat-head { padding: 16px; border-bottom: 1px solid var(--border-soft); display: flex; align-items: center; justify-content: space-between; font-weight: 800; font-size: 13.5px; }
+.vc-chat-head .close-x { font-size: 18px; color: var(--text-muted); }
+.vc-chat-body { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.chat-bubble { max-width: 80%; padding: 9px 12px; border-radius: 14px; font-size: 12px; line-height: 1.4; }
+.chat-bubble.them { background: #eaf2fd; align-self: flex-start; border-bottom-left-radius: 4px; }
+.chat-bubble.me { background: var(--deep-blue-2); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+.vc-chat-input-row { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--border-soft); }
+.vc-chat-input-row input { flex: 1; border: 1.5px solid var(--border-soft); border-radius: 20px; padding: 10px 14px; font-size: 12px; background: #f4f8fc; }
+.vc-chat-input-row button { width: 36px; height: 36px; border-radius: 50%; background: var(--deep-blue-2); color: #fff; font-size: 14px; flex-shrink: 0; }
+
+/* ---- end call modal ---- */
+.vc-modal-overlay { position: absolute; inset: 0; background: rgba(11,15,26,0.7); z-index: 80; display: none; align-items: center; justify-content: center; padding: 30px; }
+.vc-modal-overlay.show { display: flex; }
+.vc-modal-box { background: #fff; border-radius: var(--radius-lg); padding: 24px 20px; width: 100%; text-align: center; }
+.vc-modal-box h3 { font-size: 15.5px; font-weight: 800; margin-bottom: 8px; }
+.vc-modal-box p { font-size: 12px; color: var(--text-muted); margin-bottom: 18px; line-height: 1.5; }
+
+/* ===================== CALL ENDED / FEEDBACK ===================== */
+.stars-input { display: flex; gap: 8px; justify-content: center; margin: 18px 0; }
+.stars-input .st { font-size: 34px; color: #dbe6f5; }
+.stars-input .st.filled { color: #f5a623; }
+.feedback-thanks { display: none; text-align: center; padding: 10px 0; }
+.feedback-thanks.show { display: block; }
+.followup-row { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ============================================================ -->
+  <!-- CLIENT DEMO TOOLBAR (outside phone frame — demo navigation only,
+       not part of the production app design) -->
+  <!-- ============================================================ -->
+  <div style="width:100%;max-width:1180px;margin:0 auto 18px;padding:0 16px;box-sizing:border-box;font-family:'Inter',sans-serif;">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid #e4ebf7;border-radius:14px;padding:12px 18px;box-shadow:0 2px 10px rgba(15,32,67,.05);">
+      <a href="https://www.bizwebkh.com/c031-dr-ly-cheng-huy-website-demo/" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#1d4ed8;text-decoration:none;white-space:nowrap;">
+        &larr; Back to Website Demo
+      </a>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;">
+        <a onclick="showScreen('screen-home')" style="cursor:pointer;font-size:12px;font-weight:600;color:#374766;background:#f2f6fd;border:1px solid #dbe4f5;border-radius:999px;padding:6px 12px;">Home</a>
+        <a onclick="showScreen('screen-book-consultation')" style="cursor:pointer;font-size:12px;font-weight:600;color:#374766;background:#f2f6fd;border:1px solid #dbe4f5;border-radius:999px;padding:6px 12px;">Booking</a>
+        <a onclick="showScreen('screen-payment')" style="cursor:pointer;font-size:12px;font-weight:600;color:#374766;background:#f2f6fd;border:1px solid #dbe4f5;border-radius:999px;padding:6px 12px;">Payment</a>
+        <a onclick="showScreen('screen-waiting-room')" style="cursor:pointer;font-size:12px;font-weight:600;color:#374766;background:#f2f6fd;border:1px solid #dbe4f5;border-radius:999px;padding:6px 12px;">Waiting Room</a>
+        <a onclick="showScreen('screen-video-call')" style="cursor:pointer;font-size:12px;font-weight:700;color:#fff;background:linear-gradient(90deg,#2563eb,#3b82f6);border-radius:999px;padding:6px 12px;">Video Call</a>
+        <a onclick="showScreen('screen-ebooks')" style="cursor:pointer;font-size:12px;font-weight:600;color:#374766;background:#f2f6fd;border:1px solid #dbe4f5;border-radius:999px;padding:6px 12px;">E-Books</a>
+        <a onclick="showScreen('screen-subscription')" style="cursor:pointer;font-size:12px;font-weight:600;color:#374766;background:#f2f6fd;border:1px solid #dbe4f5;border-radius:999px;padding:6px 12px;">Subscription</a>
+        <a onclick="showScreen('screen-profile')" style="cursor:pointer;font-size:12px;font-weight:600;color:#374766;background:#f2f6fd;border:1px solid #dbe4f5;border-radius:999px;padding:6px 12px;">Profile</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- PHONE FRAME -->
+  <!-- ============================================================ -->
+  <div class="phone-shell">
+    <div class="phone-screen-area">
+      <div class="phone-notch"></div>
+
+      <!-- ============================================================ -->
+      <!-- 1. SPLASH -->
+      <!-- ============================================================ -->
+      <div class="screen bg-gradient-blue" id="screen-splash">
+        <div class="status-bar"><span>9:41</span><span>●●●●  📶  🔋</span></div>
+        <div class="splash-cross">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M10 3h4v6h6v4h-6v8h-4v-8H4V9h6V3z" fill="#fff"/></svg>
+        </div>
+        <div class="splash-title">Dr Ly Cheng Huy</div>
+        <div class="splash-sub">Health Talk · Trusted Care</div>
+        <div class="splash-loader"><span></span><span></span><span></span></div>
+        <div style="margin-top:60px;">
+          <a class="btn-secondary" style="background:transparent;color:#fff;border-color:rgba(255,255,255,0.5);" onclick="showScreen('screen-onboarding')">Continue to Onboarding →</a>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 2. ONBOARDING -->
+      <!-- ============================================================ -->
+      <div class="screen bg-gradient-blue" id="screen-onboarding">
+        <div class="status-bar"><span>9:41</span><span>●●●●  📶  🔋</span></div>
+        <div class="ob-skip"><a onclick="obSkip()">Skip</a></div>
+
+        <div class="ob-slide active" data-i="0">
+          <div class="ob-icon-circle">🩺</div>
+          <h2>Consult Doctors Online</h2>
+          <p>Connect with Dr Ly Cheng Huy and certified specialists over video, voice or chat — no clinic visit required.</p>
+        </div>
+        <div class="ob-slide" data-i="1">
+          <div class="ob-icon-circle">📚</div>
+          <h2>Read Trusted Health Content</h2>
+          <p>Access articles, videos and e-books written and reviewed by real doctors, in both Khmer and English.</p>
+        </div>
+        <div class="ob-slide" data-i="2">
+          <div class="ob-icon-circle">📈</div>
+          <h2>Track Your Health Journey</h2>
+          <p>Keep your appointment history, reading progress and reminders all in one simple, secure place.</p>
+        </div>
+
+        <div class="ob-dots">
+          <span class="active"></span><span></span><span></span>
+        </div>
+        <div class="ob-footer">
+          <a class="btn-primary" id="ob-next-btn" onclick="obNext()">Next</a>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 3. LOGIN -->
+      <!-- ============================================================ -->
+      <div class="screen bg-gradient-blue" id="screen-login">
+        <div class="status-bar"><span>9:41</span><span>●●●●  📶  🔋</span></div>
+        <div class="auth-hero">
+          <div class="logo-badge">🩺</div>
+          <h1>Welcome Back</h1>
+          <p>Sign in to continue your health journey</p>
+        </div>
+        <div class="auth-card">
+          <div class="field-group">
+            <label class="field-label">Email Address</label>
+            <div class="field-icon-wrap">
+              <span class="fi-icon">✉️</span>
+              <input class="field-input" type="email" placeholder="sokha@email.com" value="sokha@email.com">
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Password</label>
+            <div class="field-icon-wrap">
+              <span class="fi-icon">🔒</span>
+              <input class="field-input" type="password" placeholder="••••••••" value="••••••••">
+            </div>
+          </div>
+          <a class="forgot-link" onclick="showScreen('screen-forgot-password')">Forgot password?</a>
+          <a class="btn-primary" onclick="showScreen('screen-home')">Log In</a>
+          <div class="divider-row"><span class="line"></span><span>OR CONTINUE WITH</span><span class="line"></span></div>
+          <div class="social-row">
+            <a class="social-btn">🔵 Google</a>
+            <a class="social-btn">📘 Facebook</a>
+          </div>
+          <p class="link-center">Don't have an account? <b><a onclick="showScreen('screen-signup')">Sign up</a></b></p>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 4. SIGN UP -->
+      <!-- ============================================================ -->
+      <div class="screen bg-gradient-blue" id="screen-signup">
+        <div class="status-bar"><span>9:41</span><span>●●●●  📶  🔋</span></div>
+        <div class="auth-hero" style="padding-top:34px;">
+          <div class="logo-badge">🩺</div>
+          <h1>Create Account</h1>
+          <p>Join 188K+ people learning healthy habits</p>
+        </div>
+        <div class="auth-card screen-scroll">
+          <div class="field-group">
+            <label class="field-label">Full Name</label>
+            <input class="field-input" type="text" placeholder="Sokha Chan" value="Sokha Chan">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Email Address</label>
+            <input class="field-input" type="email" placeholder="sokha@email.com">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Phone Number</label>
+            <input class="field-input" type="tel" placeholder="+855 12 345 678">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Password</label>
+            <input class="field-input" type="password" placeholder="Create a password">
+          </div>
+          <a class="btn-primary" style="margin-top:6px;" onclick="showScreen('screen-home')">Sign Up</a>
+          <p class="link-center">Already have an account? <b><a onclick="showScreen('screen-login')">Log in</a></b></p>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 5. FORGOT PASSWORD -->
+      <!-- ============================================================ -->
+      <div class="screen bg-gradient-blue" id="screen-forgot-password">
+        <div class="status-bar"><span>9:41</span><span>●●●●  📶  🔋</span></div>
+        <div class="auth-hero">
+          <div class="logo-badge">🔑</div>
+          <h1>Forgot Password?</h1>
+          <p>Enter your email and we'll send you a reset link</p>
+        </div>
+        <div class="auth-card">
+          <div class="field-group">
+            <label class="field-label">Email Address</label>
+            <input class="field-input" type="email" placeholder="sokha@email.com">
+          </div>
+          <a class="btn-primary" onclick="showScreen('screen-login')">Send Reset Link</a>
+          <p class="link-center"><b><a onclick="showScreen('screen-login')">← Back to Login</a></b></p>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 6. HOME DASHBOARD -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-home">
+        <div class="status-bar dark" style="position:absolute; z-index:200; width:100%; color:#fff;"><span>9:41</span><span>●●●●  📶  🔋</span></div>
+        <div class="screen-scroll">
+          <div class="home-header bg-gradient-blue">
+            <div style="height:26px;"></div>
+            <div class="home-header-top">
+              <div>
+                <div class="home-greet-name">Good morning, Sokha 👋</div>
+                <div class="home-greet-sub">Let's take care of your health today</div>
+              </div>
+              <div class="home-icon-btn" onclick="showScreen('screen-notifications')">🔔<span class="dot"></span></div>
+            </div>
+            <div class="home-search">🔍 Search articles, doctors, videos...</div>
+          </div>
+
+          <div class="quick-actions">
+            <div class="qa-card" onclick="showScreen('screen-consultation-intro')"><div class="qa-emoji">🩺</div><div class="qa-label">Book<br>Consultation</div></div>
+            <div class="qa-card" onclick="showScreen('screen-articles')"><div class="qa-emoji">📰</div><div class="qa-label">Browse<br>Articles</div></div>
+            <div class="qa-card" onclick="showScreen('screen-ebooks')"><div class="qa-emoji">📖</div><div class="qa-label">E-Books</div></div>
+          </div>
+
+          <h2 class="section-title" style="padding:0 20px;">Featured for You <a class="see-all" onclick="showScreen('screen-articles')">See all</a></h2>
+          <div class="hscroll">
+            <div class="feature-card" onclick="showScreen('screen-article-detail')">
+              <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&q=80" alt="Blood pressure">
+              <div class="fc-body"><div class="fc-tag">Cardiology</div><div class="fc-title">5 Ways to Manage High Blood Pressure Naturally</div></div>
+            </div>
+            <div class="feature-card" onclick="showScreen('screen-video-detail')">
+              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80" alt="Nutrition">
+              <div class="fc-body"><div class="fc-tag">Nutrition</div><div class="fc-title">Building a Balanced Khmer Family Diet</div></div>
+            </div>
+            <div class="feature-card" onclick="showScreen('screen-article-detail')">
+              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80" alt="Mental health">
+              <div class="fc-body"><div class="fc-tag">Mental Health</div><div class="fc-title">Managing Stress in a Busy Work Life</div></div>
+            </div>
+          </div>
+
+          <div class="doctor-spotlight">
+            <img src="assets/doctor-profile.jpg" alt="Dr Ly Cheng Huy">
+            <div style="flex:1;">
+              <div class="ds-name">Dr Ly Cheng Huy</div>
+              <div class="ds-role">Internal Medicine · 188K followers</div>
+              <a class="ds-btn" onclick="showScreen('screen-doctor-profile')">View Profile</a>
+            </div>
+          </div>
+
+          <h2 class="section-title" style="padding:0 20px;">Popular Videos <a class="see-all" onclick="showScreen('screen-videos')">See all</a></h2>
+          <div class="hscroll">
+            <div class="feature-card" onclick="showScreen('screen-video-detail')">
+              <div class="video-thumb" style="height:110px; background-image:url('https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&q=80');">
+                <div class="play-ov"><div class="p-btn">▶</div></div>
+                <div class="duration">04:12</div>
+              </div>
+              <div class="fc-body"><div class="fc-tag">Preventive Care</div><div class="fc-title">Annual Health Checkup: What to Expect</div></div>
+            </div>
+            <div class="feature-card" onclick="showScreen('screen-video-detail')">
+              <div class="video-thumb" style="height:110px; background-image:url('https://images.unsplash.com/photo-1550831107-1553da8c8464?w=800&q=80');">
+                <div class="play-ov"><div class="p-btn">▶</div></div>
+                <div class="duration">06:45</div>
+              </div>
+              <div class="fc-body"><div class="fc-tag">Family Health</div><div class="fc-title">Vaccination Schedule for Children</div></div>
+            </div>
+          </div>
+          <div style="height:16px;"></div>
+        </div>
+        <div class="tab-bar">
+          <div class="tab-item tab-home tab-active" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span>Home</div>
+          <div class="tab-item tab-consult" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span>Consult</div>
+          <div class="tab-item tab-content" onclick="showScreen('screen-articles')"><span class="tab-ic">📰</span>Content</div>
+          <div class="tab-item tab-library" onclick="showScreen('screen-my-library')"><span class="tab-ic">📚</span>Library</div>
+          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span>Profile</div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 7. DOCTOR PROFILE -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-doctor-profile">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-home')">←</div><div class="top-bar-title">Doctor Profile</div></div>
+        <div class="screen-scroll">
+          <div class="doc-hero">
+            <img src="assets/doctor-profile.jpg" alt="Dr Ly Cheng Huy">
+            <h1>Dr Ly Cheng Huy</h1>
+            <div class="doc-role">MD · Internal Medicine · Phnom Penh</div>
+            <div class="doc-rating"><span class="stars">★★★★★</span> 4.9 <span style="color:var(--text-muted); font-weight:600;">(2,340 reviews)</span></div>
+            <div class="tag-row">
+              <span class="tag-chip">Internal Medicine</span>
+              <span class="tag-chip">Preventive Care</span>
+              <span class="tag-chip">Family Health</span>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-item"><div class="num">12+</div><div class="lbl">Years Exp.</div></div>
+            <div class="stat-item"><div class="num">18K</div><div class="lbl">Patients</div></div>
+            <div class="stat-item"><div class="num">188K</div><div class="lbl">Followers</div></div>
+          </div>
+          <div class="screen-content no-tab-pad" style="padding-top:0;">
+            <h2 class="section-title" style="padding:0;">About</h2>
+            <p class="muted">Dr Ly Cheng Huy is a Cambodian physician and health educator known for "Health Talk with Dr Ly Cheng Huy," a trusted health-education platform followed by over 188,000 people on Facebook. He specializes in internal medicine, preventive care and family health, and is dedicated to making reliable medical knowledge accessible to every Khmer family in both Khmer and English.</p>
+            <h2 class="section-title" style="padding:0;">Specialties</h2>
+            <p class="muted">Hypertension &amp; diabetes management · Preventive health screening · Family & pediatric consultation · Nutrition &amp; lifestyle counselling · Mental wellness guidance</p>
+            <h2 class="section-title" style="padding:0;">Clinic Hours</h2>
+            <p class="muted">Monday – Saturday · 8:00 AM – 6:00 PM<br>Online consultations available daily 8:00 AM – 9:00 PM</p>
+            <div style="height:20px;"></div>
+            <a class="btn-primary" onclick="showScreen('screen-consultation-intro')">Book Consultation</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 8. CONSULTATION INTRO -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-consultation-intro">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-home')">←</div><div class="top-bar-title">Online Consultation</div></div>
+        <div class="screen-scroll">
+          <div class="screen-content no-tab-pad" style="text-align:center;">
+            <div class="intro-hero-icon">🩺</div>
+            <h1 class="scr-title" style="text-align:center;">Talk to a Doctor, Anywhere</h1>
+            <p class="muted" style="margin-bottom:22px;">Get medical advice from Dr Ly Cheng Huy and our certified team without leaving home.</p>
+
+            <div class="benefit-item">
+              <div class="b-ic">⚡</div>
+              <div><div class="b-title">Fast Response</div><div class="b-sub">Connect with a doctor in under 15 minutes</div></div>
+            </div>
+            <div class="benefit-item">
+              <div class="b-ic">🔒</div>
+              <div><div class="b-title">100% Confidential</div><div class="b-sub">Your health data is encrypted and private</div></div>
+            </div>
+            <div class="benefit-item">
+              <div class="b-ic">💵</div>
+              <div><div class="b-title">Affordable Pricing</div><div class="b-sub">Consultations starting from $8 USD</div></div>
+            </div>
+            <div class="benefit-item">
+              <div class="b-ic">🎓</div>
+              <div><div class="b-title">Certified Doctors</div><div class="b-sub">Licensed physicians with verified credentials</div></div>
+            </div>
+            <div style="height:8px;"></div>
+            <a class="btn-primary" onclick="showScreen('screen-book-consultation')">Start Booking</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 9. BOOK CONSULTATION (WIZARD) -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-book-consultation">
+        <div class="top-bar"><div class="back-btn" onclick="bookBack()">←</div><div class="top-bar-title">Book Consultation</div></div>
+        <div class="step-indicator" id="booking-steps">
+          <div class="step-dot current">1</div><div class="step-line"></div>
+          <div class="step-dot">2</div><div class="step-line"></div>
+          <div class="step-dot">3</div><div class="step-line"></div>
+          <div class="step-dot">4</div><div class="step-line"></div>
+          <div class="step-dot">5</div><div class="step-line"></div>
+          <div class="step-dot">6</div>
+        </div>
+        <div class="screen-scroll">
+          <div class="screen-content no-tab-pad" style="padding-top:6px;">
+
+            <!-- STEP 1: CONSULTATION SERVICE TYPE -->
+            <div class="wizard-step active" data-step="1">
+              <h2 class="section-title" style="padding:0;">Choose a Service</h2>
+              <p class="muted" style="margin-bottom:14px;">Select how you'd like to consult Dr Ly Cheng Huy.</p>
+              <div class="type-card-row">
+                <div class="type-card selected" data-type="Video Consultation" onclick="selectType(this)">
+                  <div class="tc-ic">🎥</div>
+                  <div style="flex:1;"><div class="tc-title">Video Consultation</div><div class="tc-sub">Face-to-face — most popular</div></div>
+                  <div style="font-weight:800; color:var(--deep-blue-2);">$15</div>
+                </div>
+                <div class="type-card" data-type="Audio Consultation" onclick="selectType(this)">
+                  <div class="tc-ic">📞</div>
+                  <div style="flex:1;"><div class="tc-title">Audio Consultation</div><div class="tc-sub">Voice-only call</div></div>
+                  <div style="font-weight:800; color:var(--deep-blue-2);">$9</div>
+                </div>
+                <div class="type-card" data-type="In-Person Consultation" onclick="selectType(this)">
+                  <div class="tc-ic">🏥</div>
+                  <div style="flex:1;"><div class="tc-title">In-Person Consultation</div><div class="tc-sub">Visit the clinic in Phnom Penh</div></div>
+                  <div style="font-weight:800; color:var(--deep-blue-2);">$20</div>
+                </div>
+              </div>
+              <div style="height:26px;"></div>
+              <a class="btn-primary" onclick="bookNext()">Continue</a>
+            </div>
+
+            <!-- STEP 2: DATE -->
+            <div class="wizard-step" data-step="2">
+              <h2 class="section-title" style="padding:0;">Choose a Date</h2>
+              <p class="muted" style="margin-bottom:14px;">July 2026</p>
+              <div class="day-picker">
+                <div class="day-chip" onclick="selectDay(this)"><span class="dow">MON</span><span class="dnum">27</span></div>
+                <div class="day-chip" onclick="selectDay(this)"><span class="dow">TUE</span><span class="dnum">28</span></div>
+                <div class="day-chip" onclick="selectDay(this)"><span class="dow">WED</span><span class="dnum">29</span></div>
+                <div class="day-chip selected" onclick="selectDay(this)"><span class="dow">THU</span><span class="dnum">30</span></div>
+                <div class="day-chip" onclick="selectDay(this)"><span class="dow">FRI</span><span class="dnum">31</span></div>
+                <div class="day-chip" onclick="selectDay(this)"><span class="dow">SAT</span><span class="dnum">1</span></div>
+              </div>
+              <div style="height:26px;"></div>
+              <a class="btn-primary" onclick="bookNext()">Continue</a>
+            </div>
+
+            <!-- STEP 3: TIME -->
+            <div class="wizard-step" data-step="3">
+              <h2 class="section-title" style="padding:0;">Choose a Time Slot</h2>
+              <p class="muted" style="margin-bottom:14px;">Thu, Jul 30 · Available times</p>
+              <div class="time-grid">
+                <div class="time-chip" data-time="9:00 AM" onclick="selectTime(this)">9:00 AM</div>
+                <div class="time-chip" data-time="9:30 AM" onclick="selectTime(this)">9:30 AM</div>
+                <div class="time-chip disabled">10:00 AM</div>
+                <div class="time-chip selected" data-time="10:30 AM" onclick="selectTime(this)">10:30 AM</div>
+                <div class="time-chip" data-time="1:00 PM" onclick="selectTime(this)">1:00 PM</div>
+                <div class="time-chip" data-time="1:30 PM" onclick="selectTime(this)">1:30 PM</div>
+                <div class="time-chip disabled">2:00 PM</div>
+                <div class="time-chip" data-time="3:30 PM" onclick="selectTime(this)">3:30 PM</div>
+                <div class="time-chip" data-time="4:00 PM" onclick="selectTime(this)">4:00 PM</div>
+              </div>
+              <div style="height:26px;"></div>
+              <a class="btn-primary" onclick="bookNext()">Continue</a>
+            </div>
+
+            <!-- STEP 4: SYMPTOMS -->
+            <div class="wizard-step" data-step="4">
+              <h2 class="section-title" style="padding:0;">Describe Your Symptoms</h2>
+              <p class="muted" style="margin-bottom:14px;">This helps Dr Ly Cheng Huy prepare for your consultation.</p>
+              <div class="field-group">
+                <label class="field-label">Symptom Notes</label>
+                <textarea class="field-input" id="symptom-note" placeholder="e.g. I've had mild headaches and dizziness for 3 days, especially in the morning...">I've had mild headaches and occasional dizziness for the past 3 days, mostly in the mornings. No fever.</textarea>
+              </div>
+              <div style="height:10px;"></div>
+              <a class="btn-primary" onclick="bookNext()">Continue</a>
+            </div>
+
+            <!-- STEP 5: ATTACHMENTS (optional, demo-only) -->
+            <div class="wizard-step" data-step="5">
+              <h2 class="section-title" style="padding:0;">Add Attachments</h2>
+              <p class="muted" style="margin-bottom:14px;">Optional — help Dr Ly Cheng Huy review your history before the call. (Demo only, no files are uploaded.)</p>
+
+              <div class="attach-card" onclick="attachSelect(this,'report.pdf')">
+                <div class="at-ic">📄</div>
+                <div style="flex:1;">
+                  <div class="at-title">Upload Medical Report</div>
+                  <div class="at-sub">PDF or image, up to 10MB</div>
+                  <div class="demo-toast">Demo only — file selected: report.pdf</div>
+                </div>
+                <div class="at-check">✓</div>
+                <input type="file" tabindex="-1">
+              </div>
+
+              <div class="attach-card" onclick="attachSelect(this,'symptom-photo.jpg')">
+                <div class="at-ic">🖼️</div>
+                <div style="flex:1;">
+                  <div class="at-title">Upload Image</div>
+                  <div class="at-sub">e.g. photo of skin, rash or injury</div>
+                  <div class="demo-toast">Demo only — file selected: symptom-photo.jpg</div>
+                </div>
+                <div class="at-check">✓</div>
+                <input type="file" tabindex="-1">
+              </div>
+
+              <div class="attach-card" onclick="attachSelect(this,'lab-result.pdf')">
+                <div class="at-ic">🧪</div>
+                <div style="flex:1;">
+                  <div class="at-title">Add Previous Test Result</div>
+                  <div class="at-sub">Lab results, prescriptions, scans</div>
+                  <div class="demo-toast">Demo only — file selected: lab-result.pdf</div>
+                </div>
+                <div class="at-check">✓</div>
+                <input type="file" tabindex="-1">
+              </div>
+
+              <div style="height:10px;"></div>
+              <a class="btn-primary" onclick="bookNext()">Continue</a>
+              <a class="btn-ghost" onclick="bookNext()">Skip for now</a>
+            </div>
+
+            <!-- STEP 6: SUMMARY -->
+            <div class="wizard-step" data-step="6">
+              <h2 class="section-title" style="padding:0;">Booking Summary</h2>
+              <div class="card">
+                <div style="display:flex; gap:12px; align-items:center; margin-bottom:14px;">
+                  <img src="assets/doctor-profile.jpg" style="width:48px;height:48px;border-radius:12px;object-fit:cover;">
+                  <div><div style="font-weight:700; font-size:13.5px;">Dr Ly Cheng Huy</div><div style="font-size:11.5px; color:var(--text-muted);">Internal Medicine</div></div>
+                </div>
+                <div class="summary-row"><span class="s-label">Consultation Type</span><span class="s-val" id="sum-type">Video Consultation</span></div>
+                <div class="summary-row"><span class="s-label">Date</span><span class="s-val" id="sum-day">Thu, Jul 30, 2026</span></div>
+                <div class="summary-row"><span class="s-label">Time</span><span class="s-val" id="sum-time">10:30 AM</span></div>
+                <div class="summary-row"><span class="s-label">Duration</span><span class="s-val">30 minutes</span></div>
+                <div class="summary-row"><span class="s-label">Consultation Fee</span><span class="s-val" id="sum-fee">$15.00</span></div>
+              </div>
+              <h2 class="section-title" style="padding:0;">Health Note</h2>
+              <p class="muted" id="sum-note" style="margin-bottom:6px;">I've had mild headaches and occasional dizziness for the past 3 days, mostly in the mornings. No fever.</p>
+              <div style="height:14px;"></div>
+              <a class="btn-primary" onclick="showScreen('screen-payment')">Continue to Payment</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 10. PAYMENT -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-payment">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-book-consultation')">←</div><div class="top-bar-title">Payment</div></div>
+        <div class="screen-scroll">
+          <div class="screen-content no-tab-pad">
+            <h2 class="section-title" style="padding:0;">Order Summary</h2>
+            <div class="card">
+              <div class="summary-row"><span class="s-label">Consultation Fee</span><span class="s-val">$15.00</span></div>
+              <div class="summary-row"><span class="s-label">Service Fee</span><span class="s-val">$1.50</span></div>
+              <div class="summary-row"><span class="s-label" style="font-weight:800; color:var(--text-dark);">Total</span><span class="s-val" style="color:var(--deep-blue-1); font-size:15px;">$16.50</span></div>
+            </div>
+            <h2 class="section-title" style="padding:0;">Payment Method</h2>
+            <div id="pay-methods-consult">
+              <div class="pay-method-card selected" onclick="selectPayMethod(this,'pay-methods-consult')">
+                <div class="pm-ic">💳</div><div class="pm-name">Credit / Debit Card</div><div class="pm-radio"></div>
+              </div>
+              <div class="pay-method-card" onclick="selectPayMethod(this,'pay-methods-consult')">
+                <div class="pm-ic">🅰️</div><div class="pm-name">ABA Pay</div><div class="pm-radio"></div>
+              </div>
+              <div class="pay-method-card" onclick="selectPayMethod(this,'pay-methods-consult')">
+                <div class="pm-ic">🅆</div><div class="pm-name">Wing</div><div class="pm-radio"></div>
+              </div>
+            </div>
+            <div style="height:16px;"></div>
+            <a class="btn-primary" onclick="showScreen('screen-booking-success')">Pay Now — $16.50</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 11. BOOKING SUCCESS -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-booking-success">
+        <div class="success-wrap">
+          <div class="check-circle"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h1>Booking Confirmed!</h1>
+          <p>Your video consultation has been scheduled. A reminder will be sent 30 minutes before your session.</p>
+          <div class="recap-card">
+            <div style="display:flex; gap:12px; align-items:center; margin-bottom:12px;">
+              <img src="assets/doctor-profile.jpg" style="width:44px;height:44px;border-radius:12px;object-fit:cover;">
+              <div><div style="font-weight:700; font-size:13px;">Dr Ly Cheng Huy</div><div style="font-size:11px; color:var(--text-muted);">Internal Medicine</div></div>
+            </div>
+            <div class="summary-row"><span class="s-label">Date</span><span class="s-val">Thu, Jul 30, 2026</span></div>
+            <div class="summary-row"><span class="s-label">Time</span><span class="s-val">10:30 AM</span></div>
+            <div class="summary-row"><span class="s-label">Type</span><span class="s-val">Video Consultation</span></div>
+            <div class="summary-row"><span class="s-label">Booking Reference</span><span class="s-val">DLC-VC-20260730-001</span></div>
+          </div>
+          <div class="btn-row" style="width:100%; margin-bottom:10px;">
+            <a class="btn-secondary">Add to Calendar</a>
+            <a class="btn-primary" onclick="showScreen('screen-my-appointments')">My Appointments</a>
+          </div>
+          <a class="btn-ghost" onclick="showScreen('screen-home')">Back to Home</a>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 12. MY APPOINTMENTS -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-my-appointments">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-home')">←</div><div class="top-bar-title">My Appointments</div></div>
+        <div class="seg-tabs" id="appt-tabs">
+          <div class="seg-item active" onclick="apptTab('upcoming', this)">Upcoming</div>
+          <div class="seg-item" onclick="apptTab('past', this)">Past</div>
+        </div>
+        <div class="screen-scroll">
+          <div class="screen-content" style="padding-top:0;">
+            <div class="appt-panel" id="appt-panel-upcoming">
+              <div class="appt-card" onclick="showScreen('screen-appointment-detail')">
+                <img src="assets/doctor-profile.jpg">
+                <div style="flex:1;"><div class="ac-doc">Dr Ly Cheng Huy</div><div class="ac-meta">Thu, Jul 30 · 10:30 AM · Video Consultation</div></div>
+                <span class="status-badge upcoming">Confirmed</span>
+              </div>
+              <div class="appt-card" onclick="showScreen('screen-appointment-detail')">
+                <img src="assets/doctor-profile.jpg">
+                <div style="flex:1;"><div class="ac-doc">Dr Ly Cheng Huy</div><div class="ac-meta">Fri, Jul 31 · 3:00 PM · Chat</div></div>
+                <span class="status-badge pending">Pending</span>
+              </div>
+            </div>
+            <div class="appt-panel" id="appt-panel-past" style="display:none;">
+              <div class="appt-card" onclick="showScreen('screen-call-ended')">
+                <img src="assets/doctor-profile.jpg">
+                <div style="flex:1;"><div class="ac-doc">Dr Ly Cheng Huy</div><div class="ac-meta">Video Consultation · 30 min · Payment: Paid</div></div>
+                <span class="status-badge completed" style="cursor:pointer;">View Summary</span>
+              </div>
+              <div class="appt-card" onclick="showScreen('screen-appointment-detail')">
+                <img src="assets/doctor-profile.jpg">
+                <div style="flex:1;"><div class="ac-doc">Dr Ly Cheng Huy</div><div class="ac-meta">Jun 14 · 9:00 AM · Voice</div></div>
+                <span class="status-badge completed">Completed</span>
+              </div>
+              <div class="appt-card" onclick="showScreen('screen-appointment-detail')">
+                <img src="assets/doctor-profile.jpg">
+                <div style="flex:1;"><div class="ac-doc">Dr Ly Cheng Huy</div><div class="ac-meta">May 30 · 11:00 AM · Video</div></div>
+                <span class="status-badge completed">Completed</span>
+              </div>
+              <div class="appt-card" onclick="showScreen('screen-appointment-detail')">
+                <img src="assets/doctor-profile.jpg">
+                <div style="flex:1;"><div class="ac-doc">Dr Ly Cheng Huy</div><div class="ac-meta">May 2 · 2:30 PM · Chat</div></div>
+                <span class="status-badge cancelled">Cancelled</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-bar">
+          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span>Home</div>
+          <div class="tab-item tab-consult tab-active" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span>Consult</div>
+          <div class="tab-item tab-content" onclick="showScreen('screen-articles')"><span class="tab-ic">📰</span>Content</div>
+          <div class="tab-item tab-library" onclick="showScreen('screen-my-library')"><span class="tab-ic">📚</span>Library</div>
+          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span>Profile</div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 13. APPOINTMENT DETAIL -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-appointment-detail">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-my-appointments')">←</div><div class="top-bar-title">Appointment Detail</div></div>
+        <div class="screen-scroll">
+          <div class="screen-content no-tab-pad">
+            <div class="card" style="text-align:center; margin-bottom:18px;">
+              <img src="assets/doctor-profile.jpg" style="width:76px;height:76px;border-radius:20px;object-fit:cover; margin:0 auto 10px;">
+              <div style="font-weight:800; font-size:15px;">Dr Ly Cheng Huy</div>
+              <div style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">Internal Medicine · Video Consultation</div>
+              <span class="status-badge upcoming">Confirmed</span>
+            </div>
+
+            <div class="countdown-box">
+              <div class="cb-label">Consultation Starts In</div>
+              <div class="cb-value" id="ad-countdown">Starts in 2 hours 15 minutes</div>
+            </div>
+
+            <div class="card">
+              <div class="summary-row"><span class="s-label">Patient</span><span class="s-val">Sokha Dara</span></div>
+              <div class="summary-row"><span class="s-label">Date</span><span class="s-val">Thursday, Jul 30, 2026</span></div>
+              <div class="summary-row"><span class="s-label">Time</span><span class="s-val">10:30 AM – 11:00 AM</span></div>
+              <div class="summary-row"><span class="s-label">Type</span><span class="s-val">Video Consultation</span></div>
+              <div class="summary-row"><span class="s-label">Duration</span><span class="s-val">30 minutes</span></div>
+              <div class="summary-row"><span class="s-label">Payment Status</span><span class="s-val" style="color:var(--success);">Paid</span></div>
+              <div class="summary-row"><span class="s-label">Booking Status</span><span class="s-val" style="color:var(--success);">Confirmed</span></div>
+              <div class="summary-row"><span class="s-label">Booking Reference</span><span class="s-val">DLC-VC-20260730-001</span></div>
+            </div>
+            <h2 class="section-title" style="padding:0;">Health Note</h2>
+            <p class="muted">I've had mild headaches and occasional dizziness for the past 3 days, mostly in the mornings. No fever.</p>
+            <div style="height:16px;"></div>
+
+            <a class="btn-primary is-disabled" id="join-call-btn" disabled>🎥 Join Call</a>
+            <div class="helper-note">Your consultation room will open 10 minutes before the scheduled time.</div>
+            <a class="demo-open-btn" onclick="showScreen('screen-waiting-room')">🚀 Open Demo Call Now (Reviewer Preview)</a>
+
+            <div style="height:20px;"></div>
+            <div class="btn-row">
+              <a class="btn-secondary">Reschedule</a>
+              <a class="btn-danger-outline">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 14. ARTICLES LIST -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-articles">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-home')">←</div><div class="top-bar-title">Health Articles</div></div>
+        <div class="screen-scroll">
+          <div class="screen-content">
+            <div class="article-card" onclick="showScreen('screen-article-detail')">
+              <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&q=80">
+              <div><div class="cat-tag">Cardiology</div><div class="art-title">5 Ways to Manage High Blood Pressure Naturally</div><div class="art-meta">Dr Ly Cheng Huy · 6 min read</div></div>
+            </div>
+            <div class="article-card" onclick="showScreen('screen-article-detail')">
+              <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&q=80">
+              <div><div class="cat-tag">Nutrition</div><div class="art-title">Building a Balanced Khmer Family Diet</div><div class="art-meta">Dr Ly Cheng Huy · 5 min read</div></div>
+            </div>
+            <div class="article-card" onclick="showScreen('screen-article-detail')">
+              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80">
+              <div><div class="cat-tag">Mental Health</div><div class="art-title">Managing Stress in a Busy Work Life</div><div class="art-meta">Dr Ly Cheng Huy · 7 min read</div></div>
+            </div>
+            <div class="article-card" onclick="showScreen('screen-article-detail')">
+              <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80">
+              <div><div class="cat-tag">Preventive Care</div><div class="art-title">Why Annual Checkups Save Lives</div><div class="art-meta">Dr Ly Cheng Huy · 4 min read</div></div>
+            </div>
+            <div class="article-card" onclick="showScreen('screen-article-detail')">
+              <img src="https://images.unsplash.com/photo-1550572017-edd951b55104?w=800&q=80">
+              <div><div class="cat-tag">Family Health</div><div class="art-title">Vaccination Guide for Young Children</div><div class="art-meta">Dr Ly Cheng Huy · 5 min read</div></div>
+            </div>
+            <div class="article-card" onclick="showScreen('screen-article-detail')">
+              <img src="https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?w=800&q=80">
+              <div><div class="cat-tag">Diabetes</div><div class="art-title">Understanding Type 2 Diabetes Risk Factors</div><div class="art-meta">Dr Ly Cheng Huy · 8 min read</div></div>
+            </div>
+            <div class="article-card" onclick="showScreen('screen-article-detail')">
+              <img src="https://images.unsplash.com/photo-1494599948593-3dafe8338d71?w=800&q=80">
+              <div><div class="cat-tag">Fitness</div><div class="art-title">Simple Home Workouts for Busy Professionals</div><div class="art-meta">Dr Ly Cheng Huy · 6 min read</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-bar">
+          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span>Home</div>
+          <div class="tab-item tab-consult" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span>Consult</div>
+          <div class="tab-item tab-content tab-active" onclick="showScreen('screen-articles')"><span class="tab-ic">📰</span>Content</div>
+          <div class="tab-item tab-library" onclick="showScreen('screen-my-library')"><span class="tab-ic">📚</span>Library</div>
+          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span>Profile</div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 15. ARTICLE DETAIL -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-article-detail">
+        <div class="screen-scroll">
+          <div style="position:relative;">
+            <img class="detail-hero" src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&q=80">
+            <div class="back-btn" style="position:absolute; top:18px; left:18px;" onclick="showScreen('screen-articles')">←</div>
+          </div>
+          <div class="detail-body">
+            <div class="cat-tag" style="margin-bottom:8px; display:inline-block;">Cardiology</div>
+            <h1>5 Ways to Manage High Blood Pressure Naturally</h1>
+            <div class="author-row">
+              <img src="assets/doctor-profile.jpg">
+              <div><div class="a-name">Dr Ly Cheng Huy</div><div class="a-meta">Jul 18, 2026 · 6 min read</div></div>
+            </div>
+            <div class="article-text">
+              <p>High blood pressure, or hypertension, affects nearly one in three adults in Cambodia — yet many people don't realize they have it until a routine checkup reveals the numbers. Left unmanaged, it quietly raises the risk of heart attack, stroke and kidney disease. The good news is that small, consistent lifestyle changes can make a measurable difference within just a few weeks.</p>
+              <h3>1. Reduce Sodium Intake</h3>
+              <p>Traditional Khmer cooking often relies on prahok, fish sauce and MSG-heavy seasonings. Try cutting back gradually and using fresh herbs like lemongrass, ginger and kaffir lime leaves to build flavor instead of salt.</p>
+              <h3>2. Move Your Body Daily</h3>
+              <p>Just 30 minutes of brisk walking, cycling or light housework most days of the week can lower systolic blood pressure by 4-9 points — comparable to some medications. Start small and build the habit gradually.</p>
+              <h3>3. Manage Stress and Sleep</h3>
+              <p>Chronic stress and poor sleep both elevate blood pressure over time. Simple breathing exercises, prayer or meditation, and aiming for 7-8 hours of sleep each night can meaningfully support healthy blood pressure levels.</p>
+              <p>If you have already been diagnosed with hypertension, never stop or adjust medication without consulting your doctor first. Book a consultation with our team any time you have questions about your specific numbers.</p>
+            </div>
+            <h2 class="section-title" style="padding:0;">Related Articles</h2>
+            <div class="article-card" onclick="showScreen('screen-article-detail')">
+              <img src="https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?w=800&q=80">
+              <div><div class="cat-tag">Diabetes</div><div class="art-title">Understanding Type 2 Diabetes Risk Factors</div><div class="art-meta">Dr Ly Cheng Huy · 8 min read</div></div>
+            </div>
+            <div class="article-card" onclick="showScreen('screen-article-detail')">
+              <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80">
+              <div><div class="cat-tag">Preventive Care</div><div class="art-title">Why Annual Checkups Save Lives</div><div class="art-meta">Dr Ly Cheng Huy · 4 min read</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 16. VIDEOS LIST -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-videos">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-home')">←</div><div class="top-bar-title">Health Videos</div></div>
+        <div class="screen-scroll">
+          <div class="screen-content">
+            <div class="video-grid">
+              <div class="video-card" onclick="showScreen('screen-video-detail')">
+                <div class="video-thumb" style="background-image:url('https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&q=80');"><div class="play-ov"><div class="p-btn">▶</div></div><div class="duration">04:12</div></div>
+                <div class="vc-title">Annual Health Checkup: What to Expect</div>
+              </div>
+              <div class="video-card" onclick="showScreen('screen-video-detail')">
+                <div class="video-thumb" style="background-image:url('https://images.unsplash.com/photo-1550831107-1553da8c8464?w=800&q=80');"><div class="play-ov"><div class="p-btn">▶</div></div><div class="duration">06:45</div></div>
+                <div class="vc-title">Vaccination Schedule for Children</div>
+              </div>
+              <div class="video-card" onclick="showScreen('screen-video-detail')">
+                <div class="video-thumb" style="background-image:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80');"><div class="play-ov"><div class="p-btn">▶</div></div><div class="duration">05:30</div></div>
+                <div class="vc-title">Healthy Khmer Meal Prep Basics</div>
+              </div>
+              <div class="video-card" onclick="showScreen('screen-video-detail')">
+                <div class="video-thumb" style="background-image:url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80');"><div class="play-ov"><div class="p-btn">▶</div></div><div class="duration">08:02</div></div>
+                <div class="vc-title">Understanding Diabetes: Q&amp;A with Dr Ly</div>
+              </div>
+              <div class="video-card" onclick="showScreen('screen-video-detail')">
+                <div class="video-thumb" style="background-image:url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80');"><div class="play-ov"><div class="p-btn">▶</div></div><div class="duration">03:47</div></div>
+                <div class="vc-title">5-Minute Morning Stretch Routine</div>
+              </div>
+              <div class="video-card" onclick="showScreen('screen-video-detail')">
+                <div class="video-thumb" style="background-image:url('https://images.unsplash.com/photo-1465101162946-4377e57745c3?w=800&q=80');"><div class="play-ov"><div class="p-btn">▶</div></div><div class="duration">07:15</div></div>
+                <div class="vc-title">Sleep Hygiene Tips for Better Rest</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-bar">
+          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span>Home</div>
+          <div class="tab-item tab-consult" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span>Consult</div>
+          <div class="tab-item tab-content tab-active" onclick="showScreen('screen-articles')"><span class="tab-ic">📰</span>Content</div>
+          <div class="tab-item tab-library" onclick="showScreen('screen-my-library')"><span class="tab-ic">📚</span>Library</div>
+          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span>Profile</div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 17. VIDEO DETAIL -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-video-detail">
+        <div class="screen-scroll">
+          <div class="video-hero-wrap">
+            <img src="https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&q=80">
+            <div class="big-play"><div class="p-circle">▶</div></div>
+            <div class="back-btn" style="position:absolute; top:18px; left:18px;" onclick="showScreen('screen-videos')">←</div>
+          </div>
+          <div class="detail-body">
+            <h1>Annual Health Checkup: What to Expect</h1>
+            <div class="author-row">
+              <img src="assets/doctor-profile.jpg">
+              <div><div class="a-name">Dr Ly Cheng Huy</div><div class="a-meta">42,108 views · Jul 10, 2026</div></div>
+            </div>
+            <p class="muted" style="line-height:1.7; margin-bottom:20px;">In this video, Dr Ly Cheng Huy walks through exactly what happens during a routine annual health checkup — from blood pressure and blood sugar screening to what questions you should ask your doctor. Perfect for anyone who feels nervous about their first visit.</p>
+            <h2 class="section-title" style="padding:0;">Related Videos</h2>
+            <div class="video-grid">
+              <div class="video-card" onclick="showScreen('screen-video-detail')">
+                <div class="video-thumb" style="background-image:url('https://images.unsplash.com/photo-1550831107-1553da8c8464?w=800&q=80');"><div class="play-ov"><div class="p-btn">▶</div></div><div class="duration">06:45</div></div>
+                <div class="vc-title">Vaccination Schedule for Children</div>
+              </div>
+              <div class="video-card" onclick="showScreen('screen-video-detail')">
+                <div class="video-thumb" style="background-image:url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80');"><div class="play-ov"><div class="p-btn">▶</div></div><div class="duration">08:02</div></div>
+                <div class="vc-title">Understanding Diabetes: Q&amp;A</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 18. E-BOOKS LIBRARY -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-ebooks">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-home')">←</div><div class="top-bar-title">E-Book Library</div></div>
+        <div class="screen-scroll">
+          <div class="screen-content">
+            <div class="ebook-grid">
+              <div class="ebook-card" onclick="showScreen('screen-ebook-detail')">
+                <div class="book-cover" style="background:linear-gradient(160deg,#0b3d91,#1e88e5);"><div class="bc-emoji">❤️</div><div class="bc-title">Healthy Heart Handbook</div></div>
+                <div class="ec-body"><div class="ec-author">Dr Ly Cheng Huy</div><div class="ec-price">$4.99</div></div>
+              </div>
+              <div class="ebook-card" onclick="showScreen('screen-ebook-detail')">
+                <div class="book-cover" style="background:linear-gradient(160deg,#0f9b6c,#34d399);"><div class="bc-emoji">🥗</div><div class="bc-title">Khmer Nutrition Guide</div></div>
+                <div class="ec-body"><div class="ec-author">Dr Ly Cheng Huy</div><div class="ec-price">$3.99</div></div>
+              </div>
+              <div class="ebook-card" onclick="showScreen('screen-ebook-detail')">
+                <div class="book-cover" style="background:linear-gradient(160deg,#7c3aed,#a78bfa);"><div class="bc-emoji">🧠</div><div class="bc-title">Mind &amp; Mental Wellness</div></div>
+                <div class="ec-body"><div class="ec-author">Dr Ly Cheng Huy</div><div class="ec-price">$5.49</div></div>
+              </div>
+              <div class="ebook-card" onclick="showScreen('screen-ebook-detail')">
+                <div class="book-cover" style="background:linear-gradient(160deg,#e11d48,#fb7185);"><div class="bc-emoji">🩸</div><div class="bc-title">Managing Diabetes Daily</div></div>
+                <div class="ec-body"><div class="ec-author">Dr Ly Cheng Huy</div><div class="ec-price">$4.49</div></div>
+              </div>
+              <div class="ebook-card" onclick="showScreen('screen-ebook-detail')">
+                <div class="book-cover" style="background:linear-gradient(160deg,#0891b2,#22d3ee);"><div class="bc-emoji">👶</div><div class="bc-title">Family &amp; Child Health</div></div>
+                <div class="ec-body"><div class="ec-author">Dr Ly Cheng Huy</div><div class="ec-price">$3.49</div></div>
+              </div>
+              <div class="ebook-card" onclick="showScreen('screen-ebook-detail')">
+                <div class="book-cover" style="background:linear-gradient(160deg,#ca8a04,#facc15);"><div class="bc-emoji">🏃</div><div class="bc-title">Fitness After 40</div></div>
+                <div class="ec-body"><div class="ec-author">Dr Ly Cheng Huy</div><div class="ec-price">$4.99</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-bar">
+          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span>Home</div>
+          <div class="tab-item tab-consult" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span>Consult</div>
+          <div class="tab-item tab-content tab-active" onclick="showScreen('screen-articles')"><span class="tab-ic">📰</span>Content</div>
+          <div class="tab-item tab-library" onclick="showScreen('screen-my-library')"><span class="tab-ic">📚</span>Library</div>
+          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span>Profile</div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 19. E-BOOK DETAIL -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-ebook-detail">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-ebooks')">←</div><div class="top-bar-title">E-Book Detail</div></div>
+        <div class="screen-scroll">
+          <div class="ebook-detail-hero">
+            <div class="book-cover" style="background:linear-gradient(160deg,#0b3d91,#1e88e5);"><div class="bc-emoji">❤️</div><div class="bc-title">Healthy Heart Handbook</div></div>
+            <div style="flex:1;">
+              <h2 style="font-size:16px; font-weight:800; margin-bottom:4px;">Healthy Heart Handbook</h2>
+              <div style="font-size:11.5px; color:var(--text-muted); margin-bottom:6px;">by Dr Ly Cheng Huy</div>
+              <div class="doc-rating" style="justify-content:flex-start;"><span class="stars">★★★★★</span> 4.8 <span style="color:var(--text-muted); font-weight:600;">(612)</span></div>
+              <div style="font-size:20px; font-weight:800; color:var(--deep-blue-1); margin-top:10px;">$4.99</div>
+            </div>
+          </div>
+          <div class="screen-content no-tab-pad" style="padding-top:0;">
+            <p class="muted" style="margin-bottom:16px;">A practical, easy-to-read guide covering everything from understanding your blood pressure readings to building heart-healthy habits for the whole family — written specifically for a Cambodian audience. 84 pages · Available in Khmer &amp; English.</p>
+            <div class="btn-row" style="margin-bottom:10px;">
+              <a class="btn-secondary" onclick="showScreen('screen-purchase')">Buy Now</a>
+              <a class="btn-primary" onclick="showScreen('screen-subscription')">Unlimited Access</a>
+            </div>
+            <h2 class="section-title" style="padding:0;">Reader Reviews</h2>
+            <div class="review-card">
+              <div class="rc-top"><span class="rc-name">Sreymom P.</span><span class="rc-stars">★★★★★</span></div>
+              <div class="rc-text">Very easy to understand even without medical background. Helped me talk to my dad about his blood pressure.</div>
+            </div>
+            <div class="review-card">
+              <div class="rc-top"><span class="rc-name">Vichet K.</span><span class="rc-stars">★★★★★</span></div>
+              <div class="rc-text">Clear, practical advice with real Khmer food examples. Highly recommend for every household.</div>
+            </div>
+            <div class="review-card">
+              <div class="rc-top"><span class="rc-name">Chanlina R.</span><span class="rc-stars">★★★★☆</span></div>
+              <div class="rc-text">Great content. Would love an audio version for listening during commute.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 20. PURCHASE FLOW -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-purchase">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-ebook-detail')">←</div><div class="top-bar-title">Confirm Purchase</div></div>
+        <div class="screen-scroll">
+          <div class="screen-content no-tab-pad">
+            <h2 class="section-title" style="padding:0;">Order Summary</h2>
+            <div class="card">
+              <div style="display:flex; gap:12px; align-items:center; margin-bottom:14px;">
+                <div class="book-cover" style="width:52px; height:68px; border-radius:10px; background:linear-gradient(160deg,#0b3d91,#1e88e5);"><div class="bc-emoji" style="font-size:18px; margin-bottom:2px;">❤️</div></div>
+                <div><div style="font-weight:700; font-size:13px;">Healthy Heart Handbook</div><div style="font-size:11px; color:var(--text-muted);">Dr Ly Cheng Huy</div></div>
+              </div>
+              <div class="summary-row"><span class="s-label">Item Price</span><span class="s-val">$4.99</span></div>
+              <div class="summary-row"><span class="s-label">Tax</span><span class="s-val">$0.00</span></div>
+              <div class="summary-row"><span class="s-label" style="font-weight:800; color:var(--text-dark);">Total</span><span class="s-val" style="color:var(--deep-blue-1); font-size:15px;">$4.99</span></div>
+            </div>
+            <h2 class="section-title" style="padding:0;">Payment Method</h2>
+            <div id="pay-methods-purchase">
+              <div class="pay-method-card selected" onclick="selectPayMethod(this,'pay-methods-purchase')">
+                <div class="pm-ic">💳</div><div class="pm-name">Credit / Debit Card</div><div class="pm-radio"></div>
+              </div>
+              <div class="pay-method-card" onclick="selectPayMethod(this,'pay-methods-purchase')">
+                <div class="pm-ic">🅰️</div><div class="pm-name">ABA Pay</div><div class="pm-radio"></div>
+              </div>
+              <div class="pay-method-card" onclick="selectPayMethod(this,'pay-methods-purchase')">
+                <div class="pm-ic">🅆</div><div class="pm-name">Wing</div><div class="pm-radio"></div>
+              </div>
+            </div>
+            <div style="height:16px;"></div>
+            <a class="btn-primary" onclick="showScreen('screen-my-library')">Confirm Purchase — $4.99</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 21. SUBSCRIPTION PLANS -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-subscription">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-ebook-detail')">←</div><div class="top-bar-title">Subscription Plans</div></div>
+        <div class="screen-scroll">
+          <div class="screen-content no-tab-pad">
+            <p class="muted" style="margin-bottom:16px; text-align:center;">Unlock every article, video and e-book in the library with one subscription.</p>
+
+            <div class="plan-card">
+              <div class="p-name">Monthly Plan</div>
+              <div class="p-price">$3.99<span>/month</span></div>
+              <p class="muted">Billed monthly. Cancel anytime.</p>
+              <a class="btn-secondary" style="margin-top:14px;" onclick="showScreen('screen-purchase')">Choose Monthly</a>
+            </div>
+
+            <div class="plan-card featured">
+              <div class="best-badge">BEST VALUE</div>
+              <div class="p-name">Yearly Plan</div>
+              <div class="p-price">$29.99<span>/year</span></div>
+              <p style="opacity:.85; font-size:12.5px;">Save 37% — just $2.50/month, billed annually.</p>
+              <a class="btn-primary" style="margin-top:14px; background:#fff; color:var(--deep-blue-2); box-shadow:none;" onclick="showScreen('screen-purchase')">Choose Yearly</a>
+            </div>
+
+            <h2 class="section-title" style="padding:0;">What's Included</h2>
+            <div class="card" style="padding:6px 0;">
+              <div class="feature-check"><span class="fc-mark">✓</span> Unlimited access to all e-books</div>
+              <div class="feature-check"><span class="fc-mark">✓</span> Ad-free article &amp; video reading</div>
+              <div class="feature-check"><span class="fc-mark">✓</span> Priority consultation booking</div>
+              <div class="feature-check"><span class="fc-mark">✓</span> 10% off all video consultations</div>
+              <div class="feature-check"><span class="fc-mark">✓</span> Offline download for e-books</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 22. MY LIBRARY -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-my-library">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-home')">←</div><div class="top-bar-title">My Library</div></div>
+        <div class="screen-scroll">
+          <div class="screen-content">
+            <div class="ebook-grid">
+              <div class="lib-card">
+                <div class="book-cover" style="background:linear-gradient(160deg,#0b3d91,#1e88e5);"><div class="bc-emoji">❤️</div><div class="bc-title">Healthy Heart Handbook</div></div>
+                <div class="lc-body">
+                  <div class="lc-title">Healthy Heart Handbook</div>
+                  <div class="progress-track"><div class="progress-fill" style="width:72%;"></div></div>
+                  <div class="lc-pct">72% complete</div>
+                  <a class="continue-btn" onclick="showScreen('screen-ebook-detail')">Continue Reading</a>
+                </div>
+              </div>
+              <div class="lib-card">
+                <div class="book-cover" style="background:linear-gradient(160deg,#0f9b6c,#34d399);"><div class="bc-emoji">🥗</div><div class="bc-title">Khmer Nutrition Guide</div></div>
+                <div class="lc-body">
+                  <div class="lc-title">Khmer Nutrition Guide</div>
+                  <div class="progress-track"><div class="progress-fill" style="width:35%;"></div></div>
+                  <div class="lc-pct">35% complete</div>
+                  <a class="continue-btn" onclick="showScreen('screen-ebook-detail')">Continue Reading</a>
+                </div>
+              </div>
+              <div class="lib-card">
+                <div class="book-cover" style="background:linear-gradient(160deg,#7c3aed,#a78bfa);"><div class="bc-emoji">🧠</div><div class="bc-title">Mind &amp; Mental Wellness</div></div>
+                <div class="lc-body">
+                  <div class="lc-title">Mind &amp; Mental Wellness</div>
+                  <div class="progress-track"><div class="progress-fill" style="width:100%;"></div></div>
+                  <div class="lc-pct">Completed</div>
+                  <a class="continue-btn" onclick="showScreen('screen-ebook-detail')">Read Again</a>
+                </div>
+              </div>
+              <div class="lib-card">
+                <div class="book-cover" style="background:linear-gradient(160deg,#e11d48,#fb7185);"><div class="bc-emoji">🩸</div><div class="bc-title">Managing Diabetes Daily</div></div>
+                <div class="lc-body">
+                  <div class="lc-title">Managing Diabetes Daily</div>
+                  <div class="progress-track"><div class="progress-fill" style="width:12%;"></div></div>
+                  <div class="lc-pct">12% complete</div>
+                  <a class="continue-btn" onclick="showScreen('screen-ebook-detail')">Continue Reading</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-bar">
+          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span>Home</div>
+          <div class="tab-item tab-consult" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span>Consult</div>
+          <div class="tab-item tab-content" onclick="showScreen('screen-articles')"><span class="tab-ic">📰</span>Content</div>
+          <div class="tab-item tab-library tab-active" onclick="showScreen('screen-my-library')"><span class="tab-ic">📚</span>Library</div>
+          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span>Profile</div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 23. NOTIFICATIONS -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-notifications">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-home')">←</div><div class="top-bar-title">Notifications</div></div>
+        <div class="screen-scroll">
+          <div class="screen-content">
+            <div class="notif-item unread">
+              <div class="n-ic">🩺</div>
+              <div><div class="n-title">Consultation room is now open</div><div class="n-sub">Your video consultation room with Dr Ly Cheng Huy (DLC-VC-20260730-001) is open — join when ready.</div><div class="n-time">Today · 10:20 AM</div></div>
+              <div class="n-dot"></div>
+            </div>
+            <div class="notif-item unread">
+              <div class="n-ic">⏰</div>
+              <div><div class="n-title">Consultation starts in 30 minutes</div><div class="n-sub">Your video consultation with Dr Ly Cheng Huy begins at 10:30 AM today.</div><div class="n-time">Today · 10:00 AM</div></div>
+              <div class="n-dot"></div>
+            </div>
+            <div class="notif-item unread">
+              <div class="n-ic">💳</div>
+              <div><div class="n-title">Payment received</div><div class="n-sub">We received your payment of $16.50 for booking DLC-VC-20260730-001.</div><div class="n-time">Today · 8:32 AM</div></div>
+              <div class="n-dot"></div>
+            </div>
+            <div class="notif-item unread">
+              <div class="n-ic">✅</div>
+              <div><div class="n-title">Video consultation confirmed</div><div class="n-sub">Your video consultation with Dr Ly Cheng Huy on Thu, Jul 30 · 10:30 AM is confirmed.</div><div class="n-time">Today · 8:30 AM</div></div>
+              <div class="n-dot"></div>
+            </div>
+            <div class="notif-item">
+              <div class="n-ic">🩺</div>
+              <div><div class="n-title">Upcoming Consultation Reminder</div><div class="n-sub">Your video call with Dr Ly Cheng Huy starts in 30 minutes.</div><div class="n-time">Today · 10:00 AM</div></div>
+            </div>
+            <div class="notif-item unread">
+              <div class="n-ic">📰</div>
+              <div><div class="n-title">New Article Published</div><div class="n-sub">"5 Ways to Manage High Blood Pressure Naturally" is now live.</div><div class="n-time">Today · 8:15 AM</div></div>
+              <div class="n-dot"></div>
+            </div>
+            <div class="notif-item">
+              <div class="n-ic">💳</div>
+              <div><div class="n-title">Subscription Renewal</div><div class="n-sub">Your yearly subscription renews on Aug 12, 2026.</div><div class="n-time">Yesterday</div></div>
+            </div>
+            <div class="notif-item unread">
+              <div class="n-ic">💬</div>
+              <div><div class="n-title">Dr Ly Cheng Huy Replied</div><div class="n-sub">"Thanks for sharing your symptoms — let's discuss during our call."</div><div class="n-time">Yesterday · 4:22 PM</div></div>
+              <div class="n-dot"></div>
+            </div>
+            <div class="notif-item">
+              <div class="n-ic">📖</div>
+              <div><div class="n-title">Continue Reading</div><div class="n-sub">You're 72% through "Healthy Heart Handbook" — pick up where you left off.</div><div class="n-time">2 days ago</div></div>
+            </div>
+            <div class="notif-item">
+              <div class="n-ic">🎥</div>
+              <div><div class="n-title">New Video Uploaded</div><div class="n-sub">"Understanding Diabetes: Q&amp;A with Dr Ly" is now available.</div><div class="n-time">3 days ago</div></div>
+            </div>
+            <div class="notif-item">
+              <div class="n-ic">✅</div>
+              <div><div class="n-title">Consultation completed</div><div class="n-sub">Your video consultation (DLC-VC-20260730-001) with Dr Ly Cheng Huy has ended. View the summary anytime.</div><div class="n-time">Today · 11:00 AM</div></div>
+            </div>
+            <div class="notif-item">
+              <div class="n-ic">✅</div>
+              <div><div class="n-title">Appointment Completed</div><div class="n-sub">Your consultation on Jun 14 has been marked complete.</div><div class="n-time">Jun 14</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 24. PROFILE -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-profile">
+        <div class="screen-scroll">
+          <div class="profile-header bg-gradient-blue">
+            <div style="height:20px;"></div>
+            <img src="assets/doctor-profile.jpg" style="border-radius:50%;" onerror="this.style.display='none'">
+            <div class="p-name">Sokha Chan</div>
+            <div class="p-email">sokha@email.com</div>
+            <a class="edit-btn">Edit Profile</a>
+          </div>
+          <div class="menu-list">
+            <div class="menu-item" onclick="showScreen('screen-my-appointments')"><div class="m-ic">🩺</div><div class="m-label">My Appointments</div><div class="m-arrow">›</div></div>
+            <div class="menu-item" onclick="showScreen('screen-my-library')"><div class="m-ic">📚</div><div class="m-label">My Library</div><div class="m-arrow">›</div></div>
+            <div class="menu-item" onclick="showScreen('screen-notifications')"><div class="m-ic">🔔</div><div class="m-label">Notifications</div><div class="m-arrow">›</div></div>
+            <div class="menu-item" onclick="showScreen('screen-settings')"><div class="m-ic">⚙️</div><div class="m-label">Settings</div><div class="m-arrow">›</div></div>
+            <div class="menu-item"><div class="m-ic">❓</div><div class="m-label">Help &amp; Support</div><div class="m-arrow">›</div></div>
+            <div class="menu-item danger" onclick="showScreen('screen-login')"><div class="m-ic">🚪</div><div class="m-label">Logout</div><div class="m-arrow">›</div></div>
+          </div>
+          <div style="height:16px;"></div>
+        </div>
+        <div class="tab-bar">
+          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span>Home</div>
+          <div class="tab-item tab-consult" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span>Consult</div>
+          <div class="tab-item tab-content" onclick="showScreen('screen-articles')"><span class="tab-ic">📰</span>Content</div>
+          <div class="tab-item tab-library" onclick="showScreen('screen-my-library')"><span class="tab-ic">📚</span>Library</div>
+          <div class="tab-item tab-profile tab-active" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span>Profile</div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 25. SETTINGS -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-settings">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-profile')">←</div><div class="top-bar-title">Settings</div></div>
+        <div class="screen-scroll">
+          <div class="screen-content no-tab-pad" style="padding-left:0; padding-right:0;">
+
+            <div class="settings-section">
+              <div class="ss-label">Account</div>
+              <div class="settings-row"><div><div class="sr-label">Full Name</div><div class="sr-sub">Sokha Chan</div></div><div class="m-arrow">›</div></div>
+              <div class="settings-row"><div><div class="sr-label">Phone Number</div><div class="sr-sub">+855 12 345 678</div></div><div class="m-arrow">›</div></div>
+              <div class="settings-row"><div><div class="sr-label">Change Password</div></div><div class="m-arrow">›</div></div>
+            </div>
+
+            <div class="settings-section">
+              <div class="ss-label">Notifications</div>
+              <div class="settings-row"><div><div class="sr-label">Appointment Reminders</div></div><div class="toggle-switch on" onclick="toggleSwitch(this)"></div></div>
+              <div class="settings-row"><div><div class="sr-label">New Article Alerts</div></div><div class="toggle-switch on" onclick="toggleSwitch(this)"></div></div>
+              <div class="settings-row"><div><div class="sr-label">Promotions &amp; Offers</div></div><div class="toggle-switch" onclick="toggleSwitch(this)"></div></div>
+            </div>
+
+            <div class="settings-section">
+              <div class="ss-label">Language</div>
+              <div class="lang-choice" id="lang-choice-settings">
+                <div class="lang-pill selected" onclick="selectLang(this,'lang-choice-settings')">English</div>
+                <div class="lang-pill" onclick="selectLang(this,'lang-choice-settings')">ខ្មែរ Khmer</div>
+              </div>
+            </div>
+
+            <div class="settings-section">
+              <div class="ss-label">Payment Methods</div>
+              <div class="settings-row"><div style="display:flex; align-items:center; gap:10px;"><span>💳</span><div class="sr-label">Visa •••• 4821</div></div><div class="m-arrow">›</div></div>
+              <div class="settings-row"><div style="display:flex; align-items:center; gap:10px;"><span>🅰️</span><div class="sr-label">ABA Pay Linked</div></div><div class="m-arrow">›</div></div>
+              <div class="settings-row"><div class="sr-label" style="color:var(--deep-blue-2); font-weight:700;">+ Add Payment Method</div></div>
+            </div>
+
+            <div class="settings-section">
+              <a class="btn-danger-outline" style="display:block; text-align:center;" onclick="showScreen('screen-login')">Log Out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 26. VIDEO WAITING ROOM -->
+      <!-- ============================================================ -->
+      <div class="screen bg-gradient-blue" id="screen-waiting-room">
+        <div class="top-bar" style="color:#fff;"><div class="back-btn" onclick="showScreen('screen-appointment-detail')">←</div><div class="top-bar-title" style="color:#fff;">Waiting Room</div></div>
+        <div class="screen-scroll">
+          <div class="wr-doc-card">
+            <img src="assets/doctor-profile.jpg" alt="Dr Ly Cheng Huy">
+            <div class="wr-name">Dr Ly Cheng Huy</div>
+            <div class="wr-role">Internal Medicine Specialist</div>
+            <div class="wr-time">Thu, Jul 30 · 10:30 AM · 30 min</div>
+          </div>
+          <div class="screen-content no-tab-pad">
+            <div class="check-list">
+              <div class="check-row"><span class="cr-ic">🎥</span><span class="cr-label">Camera</span><span class="cr-status" id="wr-cam-status">✓ Ready</span></div>
+              <div class="check-row"><span class="cr-ic">🎙️</span><span class="cr-label">Microphone</span><span class="cr-status" id="wr-mic-status">✓ Ready</span></div>
+              <div class="check-row"><span class="cr-ic">🔊</span><span class="cr-label">Speaker</span><span class="cr-status" id="wr-spk-status">✓ Ready</span></div>
+            </div>
+
+            <div class="wr-ctrl-row">
+              <div class="wr-ctrl-btn" id="wr-cam-btn" onclick="wrToggleCam()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+                <span id="wr-cam-label">Camera On</span>
+              </div>
+              <div class="wr-ctrl-btn" id="wr-mic-btn" onclick="wrToggleMic()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
+                <span id="wr-mic-label">Unmuted</span>
+              </div>
+              <div class="wr-ctrl-btn" id="wr-spk-btn" onclick="wrTestSpeaker()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+                <span>Test Speaker</span>
+              </div>
+            </div>
+            <div class="speaker-test-label" id="speaker-test-label">🔊 Speaker test playing...</div>
+
+            <div class="privacy-note">🔒 Your consultation is private and secure.</div>
+
+            <a class="btn-primary" onclick="enterVideoCall()">Join Consultation</a>
+            <div class="demo-label-strip" style="color:var(--text-muted); margin-top:12px;">Video consultation demo — live provider integration will be completed during production development.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 27. ACTIVE VIDEO CALL -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-video-call">
+        <div class="vc-stage">
+          <img class="vc-doc-feed" src="assets/doctor-profile.jpg" alt="Dr Ly Cheng Huy — live feed (demo)">
+
+          <div class="vc-top-overlay">
+            <div class="vc-top-row">
+              <div>
+                <div class="vc-doc-name">Dr Ly Cheng Huy</div>
+                <div class="vc-secure-badge">🔒 Secure Consultation</div>
+              </div>
+              <div class="vc-timer-pill">⏱ <span id="vc-timer">00:00</span></div>
+            </div>
+            <div class="vc-quality-row">
+              <div class="vc-bars"><span></span><span></span><span></span><span></span></div>
+              <span>Good connection</span>
+              <span style="margin-left:auto;">Ref: DLC-VC-20260730-001</span>
+            </div>
+          </div>
+
+          <div class="vc-self-view" id="vc-self-view">
+            <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=300&q=80" alt="Patient self-view (placeholder)" id="vc-self-img">
+            <div class="cam-off-label" id="vc-cam-off-label" style="display:none;">Camera Off</div>
+          </div>
+
+          <div class="vc-demo-strip"><span class="demo-label-strip">Video consultation demo — live provider integration will be completed during production development.</span></div>
+
+          <div class="vc-panel-note" id="vc-note-panel" style="display:none;">📝 <b>Shared Medical Note (demo):</b> Mild headaches and occasional dizziness for 3 days, mostly mornings. No fever.</div>
+          <div class="vc-panel-note" id="vc-doc-panel" style="display:none;">📎 <b>Uploaded Document (demo):</b> report.pdf, symptom-photo.jpg, lab-result.pdf</div>
+
+          <div class="vc-bottom-overlay">
+            <div class="vc-secondary-row">
+              <div class="vc-secondary-btn" id="vc-note-btn" onclick="vcTogglePanel('vc-note-panel','vc-note-btn')">Shared Note</div>
+              <div class="vc-secondary-btn" id="vc-doc-btn" onclick="vcTogglePanel('vc-doc-panel','vc-doc-btn')">Document</div>
+              <div class="vc-secondary-btn" id="vc-min-btn" onclick="vcMinimizeSelf()">Minimize Self-View</div>
+            </div>
+            <div class="vc-controls-row">
+              <div class="vc-ctrl" id="vc-mic-ctrl" onclick="vcToggleMic()" title="Microphone">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/></svg>
+              </div>
+              <div class="vc-ctrl" id="vc-cam-ctrl" onclick="vcToggleCam()" title="Camera">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+              </div>
+              <div class="vc-ctrl" id="vc-spk-ctrl" onclick="vcToggleSpeaker()" title="Speaker">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+              </div>
+              <div class="vc-ctrl" onclick="vcSwitchCamera()" title="Switch Camera">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+              </div>
+              <div class="vc-ctrl" onclick="vcOpenChat()" title="Chat">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </div>
+              <div class="vc-ctrl end-call" onclick="vcOpenEndModal()" title="End Call">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.81.31 1.6.57 2.37a2 2 0 0 1-.45 2.11L8.09 9.34a16 16 0 0 0 6.57 6.57l1.14-1.14a2 2 0 0 1 2.11-.45c.77.26 1.56.45 2.37.57A2 2 0 0 1 22 16.92z" transform="rotate(135 12 12)"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat side panel -->
+          <div class="vc-chat-panel" id="vc-chat-panel">
+            <div class="vc-chat-head"><span>Chat with Dr Ly Cheng Huy</span><span class="close-x" onclick="vcCloseChat()">✕</span></div>
+            <div class="vc-chat-body">
+              <div class="chat-bubble them">Hello Sokha, I can see you now. How have the headaches been today?</div>
+              <div class="chat-bubble me">A bit better this morning, thank you Doctor.</div>
+              <div class="chat-bubble them">Good to hear. Let's go through your symptoms together.</div>
+            </div>
+            <div class="vc-chat-input-row">
+              <input type="text" placeholder="Type a message (demo only)" disabled>
+              <button disabled>➤</button>
+            </div>
+          </div>
+
+          <!-- End call confirmation modal -->
+          <div class="vc-modal-overlay" id="vc-end-modal">
+            <div class="vc-modal-box">
+              <h3>End consultation call?</h3>
+              <p>This will end your video consultation with Dr Ly Cheng Huy. You can view a summary afterwards.</p>
+              <div class="btn-row">
+                <a class="btn-secondary" onclick="vcCloseEndModal()">Cancel</a>
+                <a class="btn-primary" style="background:var(--danger); box-shadow:none;" onclick="vcConfirmEndCall()">End Call</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 28. CONSULTATION COMPLETED / CALL ENDED -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-call-ended">
+        <div class="success-wrap">
+          <div class="check-circle"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h1>Consultation Completed</h1>
+          <p>Thank you, Sokha. Your video consultation with Dr Ly Cheng Huy has ended.</p>
+          <div class="recap-card">
+            <div style="display:flex; gap:12px; align-items:center; margin-bottom:12px;">
+              <img src="assets/doctor-profile.jpg" style="width:44px;height:44px;border-radius:12px;object-fit:cover;">
+              <div><div style="font-weight:700; font-size:13px;">Dr Ly Cheng Huy</div><div style="font-size:11px; color:var(--text-muted);">Internal Medicine</div></div>
+            </div>
+            <div class="summary-row"><span class="s-label">Date</span><span class="s-val">Thu, Jul 30, 2026</span></div>
+            <div class="summary-row"><span class="s-label">Time</span><span class="s-val">10:30 AM</span></div>
+            <div class="summary-row"><span class="s-label">Duration</span><span class="s-val">30 minutes</span></div>
+            <div class="summary-row"><span class="s-label">Type</span><span class="s-val">Video Consultation</span></div>
+            <div class="summary-row"><span class="s-label">Payment Status</span><span class="s-val" style="color:var(--success);">Paid</span></div>
+            <div class="summary-row"><span class="s-label">Booking Reference</span><span class="s-val">DLC-VC-20260730-001</span></div>
+          </div>
+          <p class="muted" style="font-size:11px; margin-bottom:14px;">Demo Content Only — no prescription or diagnosis is issued in this prototype.</p>
+          <a class="btn-primary" style="width:100%; margin-bottom:10px;" onclick="showScreen('screen-feedback')">Leave Feedback</a>
+          <a class="btn-ghost" onclick="showScreen('screen-home')">Back to Home</a>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 29. FEEDBACK -->
+      <!-- ============================================================ -->
+      <div class="screen" id="screen-feedback">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-call-ended')">←</div><div class="top-bar-title">Rate Your Consultation</div></div>
+        <div class="screen-scroll">
+          <div class="screen-content no-tab-pad" id="feedback-form-wrap">
+            <div style="text-align:center; padding-top:6px;">
+              <img src="assets/doctor-profile.jpg" style="width:64px;height:64px;border-radius:18px;object-fit:cover; margin:0 auto 10px;">
+              <div style="font-weight:800; font-size:14.5px;">Dr Ly Cheng Huy</div>
+              <div class="muted" style="font-size:12px;">Video Consultation · Thu, Jul 30 · 10:30 AM</div>
+            </div>
+            <div class="stars-input" id="stars-input">
+              <span class="st" data-v="1" onclick="setRating(1)">★</span>
+              <span class="st" data-v="2" onclick="setRating(2)">★</span>
+              <span class="st" data-v="3" onclick="setRating(3)">★</span>
+              <span class="st" data-v="4" onclick="setRating(4)">★</span>
+              <span class="st" data-v="5" onclick="setRating(5)">★</span>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Comments (optional)</label>
+              <textarea class="field-input" id="feedback-comment" placeholder="Tell us about your consultation experience..."></textarea>
+            </div>
+            <a class="btn-primary" onclick="submitFeedback()">Submit Feedback</a>
+          </div>
+
+          <div class="screen-content no-tab-pad feedback-thanks" id="feedback-thanks">
+            <div class="success-wrap" style="padding:10px 0;">
+              <div class="check-circle" style="width:70px;height:70px;"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <h1 style="font-size:17px;">Thank You!</h1>
+              <p style="margin-bottom:6px;">Your feedback helps us improve care for every patient.</p>
+            </div>
+            <h2 class="section-title" style="padding:0;">What's Next?</h2>
+            <div class="followup-row">
+              <a class="btn-secondary" onclick="showScreen('screen-appointment-detail')">View Appointment Details</a>
+              <a class="btn-secondary" onclick="showScreen('screen-consultation-intro')">Book Follow-up</a>
+              <a class="btn-primary" onclick="showScreen('screen-home')">Return Home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- QUICK JUMP SIDEBAR (outside phone frame) -->
+  <!-- ============================================================ -->
+  <div class="jump-panel">
+    <h3>📱 Screen Index</h3>
+    <div class="jp-sub">BizWeb KH · Dr Ly Cheng Huy App Demo — jump to any of the 29 screens</div>
+
+    <div class="jp-group-label">Onboarding &amp; Auth</div>
+    <a class="jump-btn" onclick="showScreen('screen-splash')"><span class="jn">01</span>Splash</a>
+    <a class="jump-btn" onclick="showScreen('screen-onboarding')"><span class="jn">02</span>Onboarding</a>
+    <a class="jump-btn" onclick="showScreen('screen-login')"><span class="jn">03</span>Login</a>
+    <a class="jump-btn" onclick="showScreen('screen-signup')"><span class="jn">04</span>Sign Up</a>
+    <a class="jump-btn" onclick="showScreen('screen-forgot-password')"><span class="jn">05</span>Forgot Password</a>
+
+    <div class="jp-group-label">Home &amp; Doctor</div>
+    <a class="jump-btn" onclick="showScreen('screen-home')"><span class="jn">06</span>Home Dashboard</a>
+    <a class="jump-btn" onclick="showScreen('screen-doctor-profile')"><span class="jn">07</span>Doctor Profile</a>
+
+    <div class="jp-group-label">Consultation Booking</div>
+    <a class="jump-btn" onclick="showScreen('screen-consultation-intro')"><span class="jn">08</span>Consultation Intro</a>
+    <a class="jump-btn" onclick="showScreen('screen-book-consultation')"><span class="jn">09</span>Book Consultation</a>
+    <a class="jump-btn" onclick="showScreen('screen-payment')"><span class="jn">10</span>Payment</a>
+    <a class="jump-btn" onclick="showScreen('screen-booking-success')"><span class="jn">11</span>Booking Success</a>
+    <a class="jump-btn" onclick="showScreen('screen-my-appointments')"><span class="jn">12</span>My Appointments</a>
+    <a class="jump-btn" onclick="showScreen('screen-appointment-detail')"><span class="jn">13</span>Appointment Detail</a>
+
+    <div class="jp-group-label">Content</div>
+    <a class="jump-btn" onclick="showScreen('screen-articles')"><span class="jn">14</span>Articles List</a>
+    <a class="jump-btn" onclick="showScreen('screen-article-detail')"><span class="jn">15</span>Article Detail</a>
+    <a class="jump-btn" onclick="showScreen('screen-videos')"><span class="jn">16</span>Videos List</a>
+    <a class="jump-btn" onclick="showScreen('screen-video-detail')"><span class="jn">17</span>Video Detail</a>
+
+    <div class="jp-group-label">E-Books</div>
+    <a class="jump-btn" onclick="showScreen('screen-ebooks')"><span class="jn">18</span>E-Book Library</a>
+    <a class="jump-btn" onclick="showScreen('screen-ebook-detail')"><span class="jn">19</span>E-Book Detail</a>
+    <a class="jump-btn" onclick="showScreen('screen-purchase')"><span class="jn">20</span>Purchase Flow</a>
+    <a class="jump-btn" onclick="showScreen('screen-subscription')"><span class="jn">21</span>Subscription Plans</a>
+    <a class="jump-btn" onclick="showScreen('screen-my-library')"><span class="jn">22</span>My Library</a>
+
+    <div class="jp-group-label">Account</div>
+    <a class="jump-btn" onclick="showScreen('screen-notifications')"><span class="jn">23</span>Notifications</a>
+    <a class="jump-btn" onclick="showScreen('screen-profile')"><span class="jn">24</span>Profile</a>
+    <a class="jump-btn" onclick="showScreen('screen-settings')"><span class="jn">25</span>Settings</a>
+
+    <div class="jp-group-label">Video Consultation Demo</div>
+    <a class="jump-btn" onclick="showScreen('screen-waiting-room')"><span class="jn">26</span>Waiting Room</a>
+    <a class="jump-btn" onclick="showScreen('screen-video-call')"><span class="jn">27</span>Active Video Call</a>
+    <a class="jump-btn" onclick="showScreen('screen-call-ended')"><span class="jn">28</span>Consultation Completed</a>
+    <a class="jump-btn" onclick="showScreen('screen-feedback')"><span class="jn">29</span>Feedback</a>
+  </div>
+
+</div>
+
+<script>
+/* =========================================================
+   Dr Ly Cheng Huy — Clickable App Demo
+   Screen navigation + interactive widgets
+   ========================================================= */
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(function (s) {
+    s.classList.remove('active');
+  });
+  var target = document.getElementById(id);
+  if (target) {
+    target.classList.add('active');
+    var scroller = target.querySelector('.screen-scroll');
+    if (scroller) scroller.scrollTop = 0;
+  }
+  syncTabBar(id);
+  window.scrollTo({ top: window.scrollY }); // no-op, keeps page position stable
+
+  // Start/stop the active-call timer depending on which screen is shown
+  if (id === 'screen-video-call') {
+    startCallTimer();
+  } else {
+    stopCallTimer();
+  }
+}
+
+/* ---------------- Tab bar sync ---------------- */
+function syncTabBar(activeId) {
+  var tabMap = {
+    'screen-home': 'tab-home',
+    'screen-consultation-intro': 'tab-consult',
+    'screen-book-consultation': 'tab-consult',
+    'screen-my-appointments': 'tab-consult',
+    'screen-articles': 'tab-content',
+    'screen-videos': 'tab-content',
+    'screen-ebooks': 'tab-content',
+    'screen-my-library': 'tab-library',
+    'screen-profile': 'tab-profile'
+  };
+  document.querySelectorAll('.tab-item').forEach(function (t) {
+    t.classList.remove('tab-active');
+  });
+  var key = tabMap[activeId];
+  if (key) {
+    document.querySelectorAll('.' + key).forEach(function (t) {
+      t.classList.add('tab-active');
+    });
+  }
+}
+
+/* ---------------- Onboarding carousel ---------------- */
+var obIndex = 0;
+var obTotal = 3;
+function obGoTo(i) {
+  obIndex = Math.max(0, Math.min(obTotal - 1, i));
+  document.querySelectorAll('.ob-slide').forEach(function (el, idx) {
+    el.classList.toggle('active', idx === obIndex);
+  });
+  document.querySelectorAll('.ob-dots span').forEach(function (el, idx) {
+    el.classList.toggle('active', idx === obIndex);
+  });
+  var nextBtn = document.getElementById('ob-next-btn');
+  if (nextBtn) nextBtn.textContent = (obIndex === obTotal - 1) ? 'Get Started' : 'Next';
+}
+function obNext() {
+  if (obIndex === obTotal - 1) {
+    showScreen('screen-login');
+    obIndex = 0;
+    obGoTo(0);
+  } else {
+    obGoTo(obIndex + 1);
+  }
+}
+function obSkip() {
+  obIndex = 0;
+  obGoTo(0);
+  showScreen('screen-login');
+}
+
+/* ---------------- Booking wizard ---------------- */
+var bookStep = 1;
+var bookTotal = 6;
+var bookChoice = { day: '30', time: '10:30 AM', type: 'Video Consultation', fee: '$15.00' };
+var feeMap = { 'Video Consultation': '$15.00', 'Audio Consultation': '$9.00', 'In-Person Consultation': '$20.00' };
+
+function bookGoStep(step) {
+  bookStep = step;
+  document.querySelectorAll('.wizard-step').forEach(function (el) {
+    el.classList.toggle('active', parseInt(el.dataset.step, 10) === step);
+  });
+  document.querySelectorAll('#booking-steps .step-dot').forEach(function (el, idx) {
+    var n = idx + 1;
+    el.classList.remove('done', 'current');
+    if (n < step) el.classList.add('done');
+    else if (n === step) el.classList.add('current');
+    el.textContent = n < step ? '✓' : n;
+  });
+  document.querySelectorAll('#booking-steps .step-line').forEach(function (el, idx) {
+    el.classList.toggle('done', (idx + 1) < step);
+  });
+  if (step === 6) {
+    document.getElementById('sum-day').textContent = 'Thu, Jul 30, 2026';
+    document.getElementById('sum-time').textContent = bookChoice.time;
+    document.getElementById('sum-type').textContent = bookChoice.type;
+    document.getElementById('sum-fee').textContent = feeMap[bookChoice.type] || bookChoice.fee;
+    var noteEl = document.getElementById('symptom-note');
+    var sumNote = document.getElementById('sum-note');
+    if (noteEl && sumNote) sumNote.textContent = noteEl.value;
+  }
+}
+function bookNext() { if (bookStep < bookTotal) bookGoStep(bookStep + 1); }
+function bookBack() { if (bookStep > 1) bookGoStep(bookStep - 1); else showScreen('screen-consultation-intro'); }
+
+function selectDay(el) {
+  document.querySelectorAll('.day-chip').forEach(function (c) { c.classList.remove('selected'); });
+  el.classList.add('selected');
+}
+function selectTime(el) {
+  if (el.classList.contains('disabled')) return;
+  document.querySelectorAll('.time-chip').forEach(function (c) { c.classList.remove('selected'); });
+  el.classList.add('selected');
+  bookChoice.time = el.dataset.time;
+}
+function selectType(el) {
+  document.querySelectorAll('.type-card').forEach(function (c) { c.classList.remove('selected'); });
+  el.classList.add('selected');
+  bookChoice.type = el.dataset.type;
+  bookChoice.fee = feeMap[el.dataset.type] || bookChoice.fee;
+}
+
+/* ---------------- Attachment step (demo only, no real upload) ---------------- */
+function attachSelect(el, filename) {
+  el.classList.toggle('selected');
+}
+
+/* ---------------- Payment method select ---------------- */
+function selectPayMethod(el, scope) {
+  var group = document.querySelectorAll('#' + scope + ' .pay-method-card');
+  group.forEach(function (c) { c.classList.remove('selected'); });
+  el.classList.add('selected');
+}
+
+/* ---------------- Appointments tabs ---------------- */
+function apptTab(which, el) {
+  document.querySelectorAll('#appt-tabs .seg-item').forEach(function (t) { t.classList.remove('active'); });
+  el.classList.add('active');
+  document.querySelectorAll('.appt-panel').forEach(function (p) { p.style.display = 'none'; });
+  document.getElementById('appt-panel-' + which).style.display = 'block';
+}
+
+/* ---------------- Settings toggles ---------------- */
+function toggleSwitch(el) {
+  el.classList.toggle('on');
+}
+function selectLang(el, scope) {
+  document.querySelectorAll('#' + scope + ' .lang-pill').forEach(function (p) { p.classList.remove('selected'); });
+  el.classList.add('selected');
+}
+
+/* =========================================================
+   VIDEO CONSULTATION DEMO (front-end simulation only)
+   No getUserMedia / WebRTC / real device or payment APIs are
+   used anywhere below — every state change is a local JS
+   variable + classList toggle for demo purposes only.
+   ========================================================= */
+
+/* ---------------- Appointment countdown (demo appointment: Thu Jul 30 2026, 10:30 AM) ---------------- */
+var demoApptDate = new Date('2026-07-30T10:30:00');
+function updateCountdown() {
+  var el = document.getElementById('ad-countdown');
+  var joinBtn = document.getElementById('join-call-btn');
+  if (!el) return;
+  var now = new Date();
+  var diffMs = demoApptDate.getTime() - now.getTime();
+  var openMs = diffMs - (10 * 60000); // room opens 10 min before
+  if (diffMs <= 0) {
+    el.textContent = 'Consultation time has arrived';
+  } else {
+    var totalMin = Math.floor(diffMs / 60000);
+    var hrs = Math.floor(totalMin / 60);
+    var mins = totalMin % 60;
+    el.textContent = 'Starts in ' + (hrs > 0 ? hrs + ' hour' + (hrs !== 1 ? 's' : '') + ' ' : '') + mins + ' minute' + (mins !== 1 ? 's' : '');
+  }
+  if (joinBtn) {
+    if (openMs <= 0) {
+      joinBtn.removeAttribute('disabled');
+      joinBtn.classList.remove('is-disabled');
+    } else {
+      joinBtn.setAttribute('disabled', 'disabled');
+      joinBtn.classList.add('is-disabled');
+    }
+  }
+}
+setInterval(updateCountdown, 30000);
+
+/* ---------------- Waiting room controls ---------------- */
+var wrCamOn = true, wrMicOn = true;
+function wrToggleCam() {
+  wrCamOn = !wrCamOn;
+  document.getElementById('wr-cam-btn').classList.toggle('is-off', !wrCamOn);
+  document.getElementById('wr-cam-label').textContent = wrCamOn ? 'Camera On' : 'Camera Off';
+  var status = document.getElementById('wr-cam-status');
+  status.textContent = wrCamOn ? '✓ Ready' : '✕ Off';
+  status.classList.toggle('off', !wrCamOn);
+}
+function wrToggleMic() {
+  wrMicOn = !wrMicOn;
+  document.getElementById('wr-mic-btn').classList.toggle('is-off', !wrMicOn);
+  document.getElementById('wr-mic-label').textContent = wrMicOn ? 'Unmuted' : 'Muted';
+  var status = document.getElementById('wr-mic-status');
+  status.textContent = wrMicOn ? '✓ Ready' : '✕ Muted';
+  status.classList.toggle('off', !wrMicOn);
+}
+function wrTestSpeaker() {
+  var label = document.getElementById('speaker-test-label');
+  label.classList.add('show');
+  setTimeout(function () { label.classList.remove('show'); }, 2200);
+}
+function enterVideoCall() {
+  showScreen('screen-video-call');
+}
+
+/* ---------------- Active video call controls ---------------- */
+var vcMicOn = true, vcCamOn = true, vcSpeakerOn = true, vcSelfMinimized = false;
+var callTimerInterval = null, callSeconds = 0;
+
+function startCallTimer() {
+  if (callTimerInterval) return;
+  callSeconds = 0;
+  var timerEl = document.getElementById('vc-timer');
+  if (timerEl) timerEl.textContent = '00:00';
+  callTimerInterval = setInterval(function () {
+    callSeconds++;
+    var m = Math.floor(callSeconds / 60);
+    var s = callSeconds % 60;
+    if (timerEl) timerEl.textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+  }, 1000);
+}
+function stopCallTimer() {
+  if (callTimerInterval) { clearInterval(callTimerInterval); callTimerInterval = null; }
+}
+
+function vcToggleMic() {
+  vcMicOn = !vcMicOn;
+  document.getElementById('vc-mic-ctrl').classList.toggle('muted', !vcMicOn);
+}
+function vcToggleCam() {
+  vcCamOn = !vcCamOn;
+  document.getElementById('vc-cam-ctrl').classList.toggle('off', !vcCamOn);
+  document.getElementById('vc-cam-off-label').style.display = vcCamOn ? 'none' : 'flex';
+  document.getElementById('vc-self-img').style.visibility = vcCamOn ? 'visible' : 'hidden';
+}
+function vcToggleSpeaker() {
+  vcSpeakerOn = !vcSpeakerOn;
+  document.getElementById('vc-spk-ctrl').classList.toggle('muted', !vcSpeakerOn);
+}
+function vcSwitchCamera() {
+  // Demo only — visually pulses the self-view to suggest a camera switch
+  var sv = document.getElementById('vc-self-view');
+  sv.style.transform = 'scale(0.92)';
+  setTimeout(function () { sv.style.transform = 'scale(1)'; }, 180);
+}
+function vcMinimizeSelf() {
+  vcSelfMinimized = !vcSelfMinimized;
+  document.getElementById('vc-self-view').classList.toggle('minimized', vcSelfMinimized);
+  document.getElementById('vc-min-btn').textContent = vcSelfMinimized ? 'Expand Self-View' : 'Minimize Self-View';
+  document.getElementById('vc-min-btn').classList.toggle('active-state', vcSelfMinimized);
+}
+function vcTogglePanel(panelId, btnId) {
+  var panel = document.getElementById(panelId);
+  var isOpen = panel.style.display === 'block';
+  document.querySelectorAll('.vc-panel-note').forEach(function (p) { p.style.display = 'none'; });
+  document.querySelectorAll('.vc-secondary-btn').forEach(function (b) { b.classList.remove('active-state'); });
+  if (!isOpen) {
+    panel.style.display = 'block';
+    document.getElementById(btnId).classList.add('active-state');
+  }
+}
+function vcOpenChat() { document.getElementById('vc-chat-panel').classList.add('open'); }
+function vcCloseChat() { document.getElementById('vc-chat-panel').classList.remove('open'); }
+function vcOpenEndModal() { document.getElementById('vc-end-modal').classList.add('show'); }
+function vcCloseEndModal() { document.getElementById('vc-end-modal').classList.remove('show'); }
+function vcConfirmEndCall() {
+  vcCloseEndModal();
+  stopCallTimer();
+  showScreen('screen-call-ended');
+}
+
+/* ---------------- Feedback ---------------- */
+var feedbackRating = 0;
+function setRating(v) {
+  feedbackRating = v;
+  document.querySelectorAll('#stars-input .st').forEach(function (s) {
+    s.classList.toggle('filled', parseInt(s.dataset.v, 10) <= v);
+  });
+}
+function submitFeedback() {
+  document.getElementById('feedback-form-wrap').style.display = 'none';
+  document.getElementById('feedback-thanks').classList.add('show');
+}
+
+/* ---------------- Init ---------------- */
+document.addEventListener('DOMContentLoaded', function () {
+  obGoTo(0);
+  bookGoStep(1);
+  showScreen('screen-splash');
+  updateCountdown();
+  setTimeout(function () {
+    if (document.getElementById('screen-splash').classList.contains('active')) {
+      showScreen('screen-onboarding');
+    }
+  }, 2200);
+});
+
+</script>
+</body>
+</html>

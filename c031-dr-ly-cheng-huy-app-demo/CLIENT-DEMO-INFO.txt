@@ -1,0 +1,14 @@
+C031 — DR LY CHENG HUY MOBILE APP DEMO
+
+Mobile App Demo:
+https://www.bizwebkh.com/c031-dr-ly-cheng-huy-app-demo/
+
+Important:
+- This is a browser-based mobile application demonstration.
+- Video consultation, payment, authentication, SMS/OTP and subscriptions are simulated.
+- Real provider integration will be completed only during production development.
+
+Prepared by BizWeb KH
+Tel: 017 400 044
+Telegram: @BizWebKH
+Website: https://www.bizwebkh.com
