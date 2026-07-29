@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dr Ly Cheng Huy Admin</title>
+<meta name="robots" content="noindex,nofollow">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root{
+    --brand-50:#eff6ff; --brand-100:#dbeafe; --brand-200:#bfdbfe; --brand-500:#2563eb; --brand-600:#1d4ed8; --brand-700:#1e40af; --brand-900:#1e3a8a;
+  }
+  body{ font-family:'Segoe UI', Arial, sans-serif; background:#f4f7fb; }
+  ::-webkit-scrollbar{ width:8px; height:8px; }
+  ::-webkit-scrollbar-thumb{ background:#c7d5ef; border-radius:8px; }
+  .nav-item{ display:flex; align-items:center; gap:.75rem; padding:.65rem .9rem; border-radius:.6rem; color:#4b5c78; font-size:.9rem; font-weight:500; cursor:pointer; transition:.15s; }
+  .nav-item:hover{ background:#eef3fd; color:var(--brand-700); }
+  .nav-item.active{ background:linear-gradient(90deg,var(--brand-600),var(--brand-500)); color:#fff; box-shadow:0 4px 10px rgba(37,99,235,.25); }
+  .nav-item svg{ flex-shrink:0; }
+  .card{ background:#fff; border-radius:1rem; box-shadow:0 1px 3px rgba(15,32,67,.06), 0 1px 2px rgba(15,32,67,.04); border:1px solid #eef1f8; }
+  .stat-card{ background:#fff; border-radius:1rem; padding:1.25rem 1.4rem; box-shadow:0 1px 3px rgba(15,32,67,.06); border:1px solid #eef1f8; }
+  table.admin-table{ width:100%; border-collapse:collapse; font-size:.85rem; }
+  table.admin-table thead th{ text-align:left; font-size:.72rem; text-transform:uppercase; letter-spacing:.04em; color:#6b7a99; padding:.7rem 1rem; border-bottom:1px solid #eef1f8; background:#f8fafd; }
+  table.admin-table tbody td{ padding:.75rem 1rem; border-bottom:1px solid #f1f4fa; color:#2c3a55; }
+  table.admin-table tbody tr:hover{ background:#f6f9fe; }
+  .badge{ display:inline-flex; align-items:center; gap:.3rem; padding:.22rem .65rem; border-radius:999px; font-size:.72rem; font-weight:600; }
+  .badge-green{ background:#dcfce7; color:#15803d; }
+  .badge-yellow{ background:#fef9c3; color:#a16207; }
+  .badge-red{ background:#fee2e2; color:#b91c1c; }
+  .badge-gray{ background:#e5e9f2; color:#4b5c78; }
+  .badge-blue{ background:#dbeafe; color:#1d4ed8; }
+  .badge-teal{ background:#ccfbf1; color:#0f766e; }
+  .btn-primary{ background:linear-gradient(90deg,var(--brand-600),var(--brand-500)); color:#fff; padding:.55rem 1.1rem; border-radius:.6rem; font-size:.85rem; font-weight:600; box-shadow:0 4px 10px rgba(37,99,235,.25); transition:.15s; }
+  .btn-primary:hover{ filter:brightness(1.06); transform:translateY(-1px); }
+  .btn-ghost{ background:#fff; border:1px solid #dbe4f5; color:#374766; padding:.5rem 1rem; border-radius:.6rem; font-size:.85rem; font-weight:500; }
+  .btn-ghost:hover{ background:#f2f6fd; }
+  .icon-btn{ width:2rem; height:2rem; display:inline-flex; align-items:center; justify-content:center; border-radius:.5rem; color:#5a6b8c; border:1px solid #e5eaf5; background:#fff; }
+  .icon-btn:hover{ background:#eef3fd; color:var(--brand-700); }
+  .section-panel{ display:none; }
+  .section-panel.active{ display:block; }
+  .tab-pill{ padding:.45rem 1rem; border-radius:999px; font-size:.83rem; font-weight:600; color:#5a6b8c; cursor:pointer; border:1px solid transparent; }
+  .tab-pill.active{ background:var(--brand-600); color:#fff; }
+  .toggle{ position:relative; display:inline-block; width:42px; height:24px; }
+  .toggle input{ display:none; }
+  .toggle .slider{ position:absolute; inset:0; background:#d7deec; border-radius:999px; transition:.2s; }
+  .toggle .slider:before{ content:''; position:absolute; height:18px; width:18px; left:3px; top:3px; background:#fff; border-radius:50%; transition:.2s; box-shadow:0 1px 2px rgba(0,0,0,.25); }
+  .toggle input:checked + .slider{ background:var(--brand-600); }
+  .toggle input:checked + .slider:before{ transform:translateX(18px); }
+  .gradient-cover-1{ background:linear-gradient(135deg,#2563eb,#60a5fa); }
+  .gradient-cover-2{ background:linear-gradient(135deg,#1e3a8a,#3b82f6); }
+  .gradient-cover-3{ background:linear-gradient(135deg,#0ea5e9,#1d4ed8); }
+  .gradient-cover-4{ background:linear-gradient(135deg,#3b82f6,#0891b2); }
+  .gradient-cover-5{ background:linear-gradient(135deg,#1d4ed8,#38bdf8); }
+  .gradient-cover-6{ background:linear-gradient(135deg,#0f766e,#2563eb); }
+  .drag-handle{ cursor:grab; color:#9aa8c4; }
+  .modal-overlay{ position:fixed; inset:0; background:rgba(15,23,42,.55); display:none; align-items:center; justify-content:center; z-index:60; padding:1.5rem; }
+  .modal-overlay.active{ display:flex; }
+  .modal-panel{ background:#fff; border-radius:1rem; width:100%; max-width:760px; max-height:90vh; overflow-y:auto; box-shadow:0 20px 50px rgba(15,23,42,.25); }
+  .doc-chip{ display:inline-flex; align-items:center; gap:.4rem; background:#eef3fd; color:#1d4ed8; font-size:.78rem; font-weight:600; padding:.35rem .7rem; border-radius:.5rem; border:1px solid #dbe4f5; }
+  .toast{ position:fixed; bottom:1.5rem; right:1.5rem; background:#1e293b; color:#fff; font-size:.85rem; font-weight:600; padding:.7rem 1.1rem; border-radius:.6rem; box-shadow:0 10px 25px rgba(0,0,0,.25); z-index:80; opacity:0; transform:translateY(10px); transition:.25s; pointer-events:none; }
+  .toast.show{ opacity:1; transform:translateY(0); }
+  .call-control-btn{ width:3rem; height:3rem; border-radius:999px; display:inline-flex; align-items:center; justify-content:center; background:#334155; color:#fff; border:none; cursor:pointer; transition:.15s; }
+  .call-control-btn:hover{ background:#475569; }
+  .call-control-btn.off{ background:#dc2626; }
+  .call-control-btn.on-accent{ background:var(--brand-600); }
+</style>
+</head>
+<body class="text-slate-800">
+
+<!-- ================================================================ -->
+<!-- DEMO LOGIN SCREEN (client-review gate — not a real auth backend) -->
+<!-- ================================================================ -->
+<div id="loginScreen" style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#eef4ff 0%,#f8fafd 60%);padding:24px;">
+  <div style="width:100%;max-width:380px;background:#fff;border-radius:1.1rem;box-shadow:0 10px 40px rgba(15,32,67,.10);border:1px solid #eef1f8;padding:2.2rem 2rem;">
+    <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;">
+      <div style="width:42px;height:42px;border-radius:.85rem;background:linear-gradient(135deg,#2563eb,#60a5fa);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.05rem;">Dr</div>
+      <div>
+        <p style="font-weight:700;font-size:.95rem;color:#1e293b;line-height:1.15;">Dr Ly Cheng Huy</p>
+        <p style="font-size:.7rem;color:#94a3b8;line-height:1.15;">Admin Dashboard</p>
+      </div>
+    </div>
+    <h1 style="font-size:1.15rem;font-weight:800;color:#1e293b;margin-bottom:.25rem;">Sign in to Admin</h1>
+    <p style="font-size:.8rem;color:#6b7a99;margin-bottom:1.4rem;">Enter your demo admin credentials to continue.</p>
+
+    <label style="font-size:.72rem;font-weight:600;color:#64748b;">Email</label>
+    <input id="loginEmail" type="email" value="admin@drlychenghuy.com" style="width:100%;margin:.3rem 0 .9rem;border:1px solid #dbe4f5;border-radius:.6rem;padding:.6rem .75rem;font-size:.85rem;box-sizing:border-box;" />
+
+    <label style="font-size:.72rem;font-weight:600;color:#64748b;">Password</label>
+    <input id="loginPassword" type="password" value="demo123" style="width:100%;margin:.3rem 0 .5rem;border:1px solid #dbe4f5;border-radius:.6rem;padding:.6rem .75rem;font-size:.85rem;box-sizing:border-box;" />
+
+    <p id="loginError" style="display:none;color:#b91c1c;font-size:.75rem;margin-bottom:.5rem;">Incorrect email or password. Please use the demo credentials shown below.</p>
+
+    <button onclick="adminLogin()" class="btn-primary" style="width:100%;margin-top:.5rem;border:none;cursor:pointer;">Sign In</button>
+
+    <div style="margin-top:1rem;background:#f6f9fe;border:1px solid #e5eaf5;border-radius:.6rem;padding:.65rem .8rem;font-size:.72rem;color:#5a6b8c;line-height:1.5;">
+      Demo login — Email: <strong>admin@drlychenghuy.com</strong> &middot; Password: <strong>demo123</strong>
+    </div>
+
+    <div style="margin-top:1.1rem;padding-top:1rem;border-top:1px solid #f1f4fa;display:flex;justify-content:center;gap:1.1rem;font-size:.75rem;">
+      <a href="https://www.bizwebkh.com/c031-dr-ly-cheng-huy-website-demo/" style="color:#1d4ed8;font-weight:600;text-decoration:none;">View Website Demo</a>
+      <a href="https://www.bizwebkh.com/c031-dr-ly-cheng-huy-app-demo/" style="color:#1d4ed8;font-weight:600;text-decoration:none;">View App Demo</a>
+    </div>
+  </div>
+</div>
+
+<div id="dashboardApp" class="flex h-screen overflow-hidden" style="display:none;">
+
+  <!-- SIDEBAR -->
+  <aside class="w-64 bg-white border-r border-slate-100 flex flex-col shrink-0">
+    <div class="flex items-center gap-3 px-5 py-5 border-b border-slate-100">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-blue-400 flex items-center justify-center text-white font-bold text-lg shadow-md">Dr</div>
+      <div>
+        <p class="font-bold text-sm leading-tight text-slate-800">Dr Ly Cheng Huy</p>
+        <p class="text-[11px] text-slate-400 leading-tight">Admin Dashboard</p>
+      </div>
+    </div>
+
+    <nav class="flex-1 overflow-y-auto px-3 py-4 space-y-1" id="sidebarNav">
+      <p class="px-3 text-[10px] font-bold tracking-wider text-slate-400 uppercase mb-1">Main</p>
+      <div class="nav-item active" data-section="dashboard" onclick="showSection('dashboard', this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+        <span>Dashboard</span>
+      </div>
+      <div class="nav-item" data-section="users" onclick="showSection('users', this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6.2 6.5-6.2s6.5 2.6 6.5 6.2"/><circle cx="17.5" cy="8.5" r="2.6"/><path d="M15.5 13.8c2.7.3 5 2.5 5 6.2"/></svg>
+        <span>User Management</span>
+      </div>
+      <div class="nav-item" data-section="appointments" onclick="showSection('appointments', this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="M8.5 14l2 2 4-4"/></svg>
+        <span>Consultations</span>
+      </div>
+      <div class="nav-item" data-section="video-consultations" onclick="showSection('video-consultations', this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="6" width="14" height="12" rx="2"/><path d="M16.5 10.8l5-3v8.4l-5-3z"/><circle cx="9.5" cy="11" r="2.2"/></svg>
+        <span>Video Consultations</span>
+      </div>
+      <div class="nav-item" data-section="payments" onclick="showSection('payments', this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 10h19"/><path d="M6 14.5h4"/></svg>
+        <span>Payments</span>
+      </div>
+
+      <p class="px-3 text-[10px] font-bold tracking-wider text-slate-400 uppercase mt-4 mb-1">Content</p>
+      <div class="nav-item" data-section="ebooks" onclick="showSection('ebooks', this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4.5c2.5-1 5.5-1 8 0v15c-2.5-1-5.5-1-8 0z"/><path d="M20 4.5c-2.5-1-5.5-1-8 0v15c2.5-1 5.5-1 8 0z"/></svg>
+        <span>E-Books</span>
+      </div>
+      <div class="nav-item" data-section="subscriptions" onclick="showSection('subscriptions', this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 0 1 13.3-5.9M20 12a8 8 0 0 1-13.3 5.9"/><path d="M17.3 3.5v3h-3M6.7 20.5v-3h3"/></svg>
+        <span>Subscriptions</span>
+      </div>
+      <div class="nav-item" data-section="articles" onclick="showSection('articles', this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M7.5 8h9M7.5 12h9M7.5 16h5.5"/></svg>
+        <span>Articles</span>
+      </div>
+      <div class="nav-item" data-section="videos" onclick="showSection('videos', this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="5" width="14" height="14" rx="2"/><path d="M16.5 10.2l5-2.7v9l-5-2.7z"/></svg>
+        <span>Videos</span>
+      </div>
+      <div class="nav-item" data-section="banners" onclick="showSection('banners', this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 9.5h19M7 14h4"/></svg>
+        <span>Website Content</span>
+      </div>
+
+      <p class="px-3 text-[10px] font-bold tracking-wider text-slate-400 uppercase mt-4 mb-1">System</p>
+      <div class="nav-item" data-section="notifications" onclick="showSection('notifications', this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5h-15S6 13 6 9z"/><path d="M10 18.5a2 2 0 0 0 4 0"/></svg>
+        <span>Announcements</span>
+      </div>
+      <div class="nav-item" data-section="settings" onclick="showSection('settings', this)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 13a7.4 7.4 0 0 0 0-2l2-1.5-2-3.4-2.3.9a7.6 7.6 0 0 0-1.7-1l-.3-2.5H9.9l-.3 2.5a7.6 7.6 0 0 0-1.7 1l-2.3-.9-2 3.4L5.6 11a7.4 7.4 0 0 0 0 2l-2 1.5 2 3.4 2.3-.9c.5.4 1.1.7 1.7 1l.3 2.5h4.2l.3-2.5c.6-.3 1.2-.6 1.7-1l2.3.9 2-3.4z"/></svg>
+        <span>Settings</span>
+      </div>
+    </nav>
+
+    <div class="px-4 py-4 border-t border-slate-100">
+      <div class="flex items-center gap-2 text-[11px] text-slate-400 mb-2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/></svg>
+        <span>BizWeb KH &middot; Demo Build</span>
+      </div>
+      <div class="flex items-center gap-3 text-[10px]">
+        <a href="https://www.bizwebkh.com/c031-dr-ly-cheng-huy-website-demo/" class="text-blue-600 font-semibold">Website Demo</a>
+        <a href="https://www.bizwebkh.com/c031-dr-ly-cheng-huy-app-demo/" class="text-blue-600 font-semibold">App Demo</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="flex-1 flex flex-col min-w-0">
+
+    <!-- TOPBAR -->
+    <header class="h-16 bg-white border-b border-slate-100 flex items-center justify-between px-6 shrink-0">
+      <div class="flex items-center gap-3 w-96 max-w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" placeholder="Search users, bookings, content..." class="bg-transparent outline-none text-sm w-full text-slate-600 placeholder:text-slate-400" />
+      </div>
+      <div class="flex items-center gap-5">
+        <button class="relative icon-btn">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5h-15S6 13 6 9z"/><path d="M10 18.5a2 2 0 0 0 4 0"/></svg>
+          <span class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white text-[9px] rounded-full flex items-center justify-center font-bold">5</span>
+        </button>
+        <div class="w-px h-8 bg-slate-100"></div>
+        <div class="flex items-center gap-2.5 cursor-pointer">
+          <div class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 text-white flex items-center justify-center font-semibold text-sm">SC</div>
+          <div class="leading-tight">
+            <p class="text-sm font-semibold text-slate-700">Sophea Chan</p>
+            <p class="text-[11px] text-slate-400">Platform Admin</p>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="w-px h-8 bg-slate-100"></div>
+        <button onclick="adminLogout()" class="btn-ghost" style="font-size:.78rem;">Logout</button>
+      </div>
+    </header>
+
+    <!-- CONTENT AREA -->
+    <main class="flex-1 overflow-y-auto p-6" id="mainContent">
+
+      <!-- ===================== 1. DASHBOARD ===================== -->
+      <section id="dashboard" class="section-panel active">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <h1 class="text-xl font-bold text-slate-800">Dashboard Overview</h1>
+            <p class="text-sm text-slate-400">Welcome back, Sophea — here's what's happening on the platform today.</p>
+          </div>
+          <button class="btn-ghost flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/></svg>
+            Refresh Data
+          </button>
+        </div>
+
+        <div class="grid grid-cols-4 gap-4 mb-6">
+          <div class="stat-card">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold text-slate-400 uppercase">Total Users</span>
+              <span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.6 2.9-6.2 6.5-6.2s6.5 2.6 6.5 6.2"/></svg></span>
+            </div>
+            <p class="text-2xl font-bold text-slate-800">24,860</p>
+            <p class="text-xs text-green-600 font-semibold mt-1">▲ 8.4% vs last month</p>
+          </div>
+          <div class="stat-card">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold text-slate-400 uppercase">Total Bookings</span>
+              <span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18"/></svg></span>
+            </div>
+            <p class="text-2xl font-bold text-slate-800">6,412</p>
+            <p class="text-xs text-green-600 font-semibold mt-1">▲ 12.1% vs last month</p>
+          </div>
+          <div class="stat-card">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold text-slate-400 uppercase">Consultations</span>
+              <span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span>
+            </div>
+            <p class="text-2xl font-bold text-slate-800">3,905</p>
+            <p class="text-xs text-green-600 font-semibold mt-1">▲ 5.7% vs last month</p>
+          </div>
+          <div class="stat-card">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold text-slate-400 uppercase">Total Revenue</span>
+              <span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="5.5" width="19" height="13" rx="2"/><path d="M2.5 10h19"/></svg></span>
+            </div>
+            <p class="text-2xl font-bold text-slate-800">$182,940</p>
+            <p class="text-xs text-green-600 font-semibold mt-1">▲ 14.9% vs last month</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-4 gap-4 mb-6">
+          <div class="stat-card">
+            <span class="text-xs font-semibold text-slate-400 uppercase">E-Book Sales</span>
+            <p class="text-xl font-bold text-slate-800 mt-1">9,214 <span class="text-xs font-medium text-slate-400">copies</span></p>
+          </div>
+          <div class="stat-card">
+            <span class="text-xs font-semibold text-slate-400 uppercase">Active Subscriptions</span>
+            <p class="text-xl font-bold text-slate-800 mt-1">4,378</p>
+          </div>
+          <div class="stat-card">
+            <span class="text-xs font-semibold text-slate-400 uppercase">Content Library</span>
+            <p class="text-xl font-bold text-slate-800 mt-1">312 <span class="text-xs font-medium text-slate-400">articles + videos</span></p>
+          </div>
+          <div class="stat-card">
+            <span class="text-xs font-semibold text-slate-400 uppercase">Avg. Rating</span>
+            <p class="text-xl font-bold text-slate-800 mt-1">4.8 / 5.0</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 mb-6">
+          <div class="card p-5 col-span-2">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="font-semibold text-slate-700 text-sm">Revenue Trend — Last 6 Months</h3>
+              <span class="badge badge-blue">USD</span>
+            </div>
+            <canvas id="revenueChart" height="110"></canvas>
+          </div>
+          <div class="card p-5">
+            <h3 class="font-semibold text-slate-700 text-sm mb-3">Bookings by Type</h3>
+            <canvas id="bookingsChart" height="180"></canvas>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4">
+          <div class="card p-5 col-span-2">
+            <h3 class="font-semibold text-slate-700 text-sm mb-4">Recent Activity</h3>
+            <div class="space-y-4" id="activityFeed">
+              <div class="flex gap-3">
+                <span class="w-9 h-9 rounded-full bg-green-50 text-green-600 flex items-center justify-center shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span>
+                <div>
+                  <p class="text-sm text-slate-700"><b>Sok Dara</b> completed a video consultation with Dr Ly Cheng Huy</p>
+                  <p class="text-xs text-slate-400">2 minutes ago</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <span class="w-9 h-9 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4.5c2.5-1 5.5-1 8 0v15c-2.5-1-5.5-1-8 0z"/><path d="M20 4.5c-2.5-1-5.5-1-8 0v15c2.5-1 5.5-1 8 0z"/></svg></span>
+                <div>
+                  <p class="text-sm text-slate-700"><b>Chenda Meas</b> purchased e-book "Managing Diabetes Naturally"</p>
+                  <p class="text-xs text-slate-400">18 minutes ago</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <span class="w-9 h-9 rounded-full bg-yellow-50 text-yellow-600 flex items-center justify-center shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4.5" width="18" height="16" rx="2"/></svg></span>
+                <div>
+                  <p class="text-sm text-slate-700"><b>Vibol Heng</b> booked a new appointment for July 31, 10:00 AM</p>
+                  <p class="text-xs text-slate-400">42 minutes ago</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <span class="w-9 h-9 rounded-full bg-red-50 text-red-600 flex items-center justify-center shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 1.5 5.5h-15S6 13 6 9z"/></svg></span>
+                <div>
+                  <p class="text-sm text-slate-700"><b>Announcement</b> "New E-Book: Heart Health After 40" sent to 24,860 users</p>
+                  <p class="text-xs text-slate-400">1 hour ago</p>
+                </div>
+              </div>
+              <div class="flex gap-3">
+                <span class="w-9 h-9 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/></svg></span>
+                <div>
+                  <p class="text-sm text-slate-700"><b>Bopha Sreng</b> upgraded to the Annual Wellness Subscription</p>
+                  <p class="text-xs text-slate-400">2 hours ago</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card p-5">
+            <h3 class="font-semibold text-slate-700 text-sm mb-4">Top Content This Week</h3>
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between"><span class="text-slate-600">10 Signs of High Blood Pressure</span><span class="font-semibold text-slate-700">12.4K</span></div>
+              <div class="flex justify-between"><span class="text-slate-600">Healthy Khmer Diet Guide (video)</span><span class="font-semibold text-slate-700">9.8K</span></div>
+              <div class="flex justify-between"><span class="text-slate-600">Understanding Diabetes Type 2</span><span class="font-semibold text-slate-700">8.1K</span></div>
+              <div class="flex justify-between"><span class="text-slate-600">Mental Health Check-In (video)</span><span class="font-semibold text-slate-700">7.3K</span></div>
+              <div class="flex justify-between"><span class="text-slate-600">Newborn Care Essentials</span><span class="font-semibold text-slate-700">6.6K</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Consultations dashboard extension -->
+        <div class="flex items-center justify-between mt-8 mb-4">
+          <h2 class="text-base font-bold text-slate-800">Video Consultations — Today</h2>
+        </div>
+        <div class="grid grid-cols-5 gap-4 mb-6">
+          <div class="stat-card">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold text-slate-400 uppercase">Today's Video Consults</span>
+              <span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="6" width="14" height="12" rx="2"/><path d="M16.5 10.8l5-3v8.4l-5-3z"/></svg></span>
+            </div>
+            <p class="text-2xl font-bold text-slate-800">14</p>
+          </div>
+          <div class="stat-card">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold text-slate-400 uppercase">Waiting Patients</span>
+              <span class="w-8 h-8 rounded-lg bg-yellow-50 text-yellow-600 flex items-center justify-center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+            </div>
+            <p class="text-2xl font-bold text-slate-800">2</p>
+          </div>
+          <div class="stat-card">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold text-slate-400 uppercase">Calls in Progress</span>
+              <span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="6" width="14" height="12" rx="2"/><path d="M16.5 10.8l5-3v8.4l-5-3z"/></svg></span>
+            </div>
+            <p class="text-2xl font-bold text-slate-800">1</p>
+          </div>
+          <div class="stat-card">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold text-slate-400 uppercase">Completed Consults</span>
+              <span class="w-8 h-8 rounded-lg bg-green-50 text-green-600 flex items-center justify-center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span>
+            </div>
+            <p class="text-2xl font-bold text-slate-800">9</p>
+          </div>
+          <div class="stat-card">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold text-slate-400 uppercase">Missed / Cancelled</span>
+              <span class="w-8 h-8 rounded-lg bg-red-50 text-red-600 flex items-center justify-center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M6 6l12 12"/></svg></span>
+            </div>
+            <p class="text-2xl font-bold text-slate-800">2</p>
+          </div>
+        </div>
+
+        <div class="card overflow-hidden mb-6">
+          <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
+            <h3 class="font-semibold text-slate-700 text-sm">Today's Consultation Schedule</h3>
+            <button class="btn-ghost text-xs" onclick="showSection('video-consultations', document.querySelector('[data-section=video-consultations]'))">View All</button>
+          </div>
+          <table class="admin-table">
+            <thead><tr><th>Patient</th><th>Consultation Type</th><th>Date</th><th>Time</th><th>Payment</th><th>Call Status</th><th>Action</th></tr></thead>
+            <tbody id="dashboardScheduleBody"></tbody>
+          </table>
+        </div>
+
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-base font-bold text-slate-800">Video Consultation Reports</h2>
+          <span class="text-xs text-slate-400">Last 30 days</span>
+        </div>
+        <div class="grid grid-cols-6 gap-4 mb-2">
+          <div class="stat-card"><span class="text-xs font-semibold text-slate-400 uppercase">Total Consults</span><p class="text-xl font-bold text-slate-800 mt-1">386</p></div>
+          <div class="stat-card"><span class="text-xs font-semibold text-slate-400 uppercase">Completed Calls</span><p class="text-xl font-bold text-green-600 mt-1">341</p></div>
+          <div class="stat-card"><span class="text-xs font-semibold text-slate-400 uppercase">Cancelled Calls</span><p class="text-xl font-bold text-red-500 mt-1">28</p></div>
+          <div class="stat-card"><span class="text-xs font-semibold text-slate-400 uppercase">Avg. Call Duration</span><p class="text-xl font-bold text-slate-800 mt-1">27 min</p></div>
+          <div class="stat-card"><span class="text-xs font-semibold text-slate-400 uppercase">Video Revenue</span><p class="text-xl font-bold text-slate-800 mt-1">$9,650</p></div>
+          <div class="stat-card"><span class="text-xs font-semibold text-slate-400 uppercase">Completion Rate</span><p class="text-xl font-bold text-blue-600 mt-1">88.3%</p></div>
+        </div>
+      </section>
+
+      <!-- ===================== 2. USER MANAGEMENT ===================== -->
+      <section id="users" class="section-panel">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <h1 class="text-xl font-bold text-slate-800">User Management</h1>
+            <p class="text-sm text-slate-400">24,860 registered users across web and mobile app.</p>
+          </div>
+          <button class="btn-primary flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Add User
+          </button>
+        </div>
+
+        <div class="card p-4 mb-4 flex flex-wrap items-center gap-3">
+          <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 w-72">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            <input type="text" placeholder="Search by name or email" class="bg-transparent outline-none text-sm w-full" />
+          </div>
+          <select class="border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-600 bg-white">
+            <option>All Status</option><option>Active</option><option>Suspended</option><option>Pending</option>
+          </select>
+          <select class="border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-600 bg-white">
+            <option>All Plans</option><option>Free</option><option>Monthly Subscriber</option><option>Annual Subscriber</option>
+          </select>
+          <button class="btn-ghost ml-auto">Export CSV</button>
+        </div>
+
+        <div class="card overflow-hidden">
+          <table class="admin-table">
+            <thead><tr><th>Name</th><th>Email</th><th>Join Date</th><th>Plan</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="usersTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===================== 3. APPOINTMENTS ===================== -->
+      <section id="appointments" class="section-panel">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <h1 class="text-xl font-bold text-slate-800">Appointment / Consultation Management</h1>
+            <p class="text-sm text-slate-400">Manage online and in-clinic consultation bookings.</p>
+          </div>
+          <button class="btn-primary flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            New Appointment
+          </button>
+        </div>
+
+        <div class="flex gap-2 mb-4" id="apptTabs">
+          <div class="tab-pill active" data-filter="all" onclick="filterAppointments('all', this)">All (48)</div>
+          <div class="tab-pill" data-filter="Upcoming" onclick="filterAppointments('Upcoming', this)">Upcoming (16)</div>
+          <div class="tab-pill" data-filter="Completed" onclick="filterAppointments('Completed', this)">Completed (27)</div>
+          <div class="tab-pill" data-filter="Cancelled" onclick="filterAppointments('Cancelled', this)">Cancelled (5)</div>
+        </div>
+
+        <div class="card overflow-hidden">
+          <table class="admin-table">
+            <thead><tr><th>Patient</th><th>Date &amp; Time</th><th>Type</th><th>Doctor</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="apptTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===================== 3b. VIDEO CONSULTATIONS ===================== -->
+      <section id="video-consultations" class="section-panel">
+        <div class="flex items-center justify-between mb-2">
+          <div>
+            <h1 class="text-xl font-bold text-slate-800">Video Consultations</h1>
+            <p class="text-sm text-slate-400">Manage tele-health video/audio bookings and doctor consultation rooms.</p>
+          </div>
+          <button class="btn-primary flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            New Booking
+          </button>
+        </div>
+        <p class="text-xs text-slate-400 mb-4">Video consultation demo — live provider integration will be completed during production development.</p>
+
+        <div class="card p-4 mb-4 flex flex-wrap items-center gap-3">
+          <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 w-64">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+            <input type="text" id="vcSearchInput" placeholder="Search patient or booking ID" class="bg-transparent outline-none text-sm w-full" oninput="renderVideoConsults()" />
+          </div>
+          <input type="date" id="vcDateFilter" class="border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-600 bg-white" onchange="renderVideoConsults()" />
+          <select id="vcStatusFilter" class="border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-600 bg-white" onchange="renderVideoConsults()">
+            <option value="">All Call Status</option>
+            <option>Scheduled</option><option>Waiting</option><option>Ready to Join</option><option>In Progress</option><option>Completed</option><option>Missed</option><option>Cancelled</option>
+          </select>
+          <select id="vcTypeFilter" class="border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-600 bg-white" onchange="renderVideoConsults()">
+            <option value="">All Types</option><option>Video</option><option>Audio</option><option>In-Person</option>
+          </select>
+          <select id="vcPaymentFilter" class="border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-600 bg-white" onchange="renderVideoConsults()">
+            <option value="">All Payment</option><option>Paid</option><option>Pending</option><option>Refunded</option>
+          </select>
+          <button class="btn-ghost ml-auto" onclick="resetVideoConsultFilters()">Reset Filters</button>
+        </div>
+
+        <div class="card overflow-hidden">
+          <table class="admin-table">
+            <thead><tr><th>Booking ID</th><th>Patient</th><th>Contact</th><th>Date</th><th>Time</th><th>Duration</th><th>Type</th><th>Payment</th><th>Call Status</th><th>Actions</th></tr></thead>
+            <tbody id="vcTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===================== 3c. DOCTOR VIDEO ROOM ===================== -->
+      <section id="video-room" class="section-panel">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h1 class="text-xl font-bold text-slate-800">Doctor Video Room</h1>
+            <p class="text-sm text-slate-400" id="vrApptInfo">Video Consultation · 30 Jul 2026 · 10:30 AM · 30 minutes</p>
+          </div>
+          <button class="btn-ghost flex items-center gap-2" onclick="showSection('video-consultations', document.querySelector('[data-section=video-consultations]'))">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            Back to List
+          </button>
+        </div>
+
+        <div class="grid grid-cols-3 gap-5">
+          <div class="col-span-2 space-y-4">
+            <div class="card overflow-hidden relative" style="background:#0f172a;">
+              <div class="h-96 flex flex-col items-center justify-center text-white relative">
+                <div class="w-28 h-28 rounded-full bg-slate-700 flex items-center justify-center text-3xl font-bold">SD</div>
+                <p class="mt-3 font-semibold" id="vrPatientName">Sokha Dara</p>
+                <p class="text-xs text-slate-400">Patient video feed (placeholder)</p>
+                <span class="absolute top-4 left-4 flex items-center gap-2 bg-black/40 px-3 py-1.5 rounded-full text-xs font-semibold">
+                  <span class="w-2 h-2 rounded-full bg-green-400" id="vrConnDot"></span>
+                  <span id="vrConnStatus">Connected</span>
+                </span>
+                <span class="absolute top-4 right-4 bg-black/40 px-3 py-1.5 rounded-full text-xs font-mono" id="vrTimer">00:00</span>
+                <div class="absolute bottom-4 right-4 w-28 h-20 rounded-lg bg-slate-800 border-2 border-slate-600 flex items-center justify-center text-xs text-slate-300">
+                  Dr. self preview
+                </div>
+                <div id="vrSharingBanner" class="absolute bottom-4 left-4 hidden bg-blue-600 px-3 py-1.5 rounded-full text-xs font-semibold">Sharing document...</div>
+              </div>
+              <div class="flex items-center justify-center gap-3 py-4 bg-slate-900">
+                <button class="call-control-btn on-accent" id="vrMicBtn" onclick="toggleCallControl('mic')" title="Microphone">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 1 3 3v6a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+                </button>
+                <button class="call-control-btn on-accent" id="vrCamBtn" onclick="toggleCallControl('cam')" title="Camera">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="6" width="14" height="12" rx="2"/><path d="M16.5 10.8l5-3v8.4l-5-3z"/></svg>
+                </button>
+                <button class="call-control-btn on-accent" id="vrSpeakerBtn" onclick="toggleCallControl('speaker')" title="Speaker">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M17 9a4 4 0 0 1 0 6"/></svg>
+                </button>
+                <button class="call-control-btn" id="vrShareBtn" onclick="toggleCallControl('share')" title="Share Document">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+                </button>
+                <button class="call-control-btn" id="vrChatBtn" onclick="toggleCallControl('chat')" title="Chat">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.3 0-2.5-.3-3.6-.8L3 20l1-5.9A8.5 8.5 0 1 1 21 11.5z"/></svg>
+                </button>
+                <button class="call-control-btn off" onclick="openEndCallConfirm()" title="End Call">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12c4-5 12-5 16 0M9.5 15.5l-2 2.2M14.5 15.5l2 2.2"/><path d="M3 3l18 18"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="card p-4 hidden" id="vrChatPanel">
+              <h3 class="font-semibold text-slate-700 text-sm mb-3">Chat</h3>
+              <div class="space-y-2 text-sm mb-3">
+                <div class="bg-slate-50 rounded-lg px-3 py-2 max-w-xs">Hi doctor, I'm ready for the call.</div>
+                <div class="bg-blue-50 rounded-lg px-3 py-2 max-w-xs ml-auto text-right">Hello Sokha, thanks for joining — starting the video now.</div>
+              </div>
+              <div class="flex gap-2">
+                <input type="text" placeholder="Type a message (demo only)" class="flex-1 border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none" />
+                <button class="btn-ghost text-xs">Send</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div class="card p-4">
+              <h3 class="font-semibold text-slate-700 text-sm mb-2">Appointment Info</h3>
+              <div class="text-sm text-slate-600 space-y-1">
+                <p><span class="text-slate-400">Patient:</span> Sokha Dara</p>
+                <p><span class="text-slate-400">Booking Ref:</span> DLC-VC-20260730-001</p>
+                <p><span class="text-slate-400">Date:</span> 30 July 2026</p>
+                <p><span class="text-slate-400">Time:</span> 10:30 AM</p>
+                <p><span class="text-slate-400">Duration:</span> 30 minutes</p>
+              </div>
+            </div>
+            <div class="card p-4">
+              <h3 class="font-semibold text-slate-700 text-sm mb-2">Health Note</h3>
+              <p class="text-sm text-slate-600">Mild headache and fatigue for 3 days. No fever reported. Requesting general check-up and advice.</p>
+            </div>
+            <div class="card p-4">
+              <h3 class="font-semibold text-slate-700 text-sm mb-2">Uploaded Documents</h3>
+              <div class="flex flex-wrap gap-2">
+                <span class="doc-chip">📄 lab-report.pdf</span>
+                <span class="doc-chip">🖼️ xray-image.jpg</span>
+              </div>
+            </div>
+            <div class="card p-4">
+              <h3 class="font-semibold text-slate-700 text-sm mb-2">Internal Note (private)</h3>
+              <textarea rows="4" id="vrInternalNote" placeholder="Add a private note during the call..." class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-400"></textarea>
+              <button class="btn-ghost text-xs mt-2 w-full" onclick="showToast('Note saved')">Save Note</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 4. PAYMENTS ===================== -->
+      <section id="payments" class="section-panel">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <h1 class="text-xl font-bold text-slate-800">Payment Management</h1>
+            <p class="text-sm text-slate-400">Track transactions across bookings, e-books and subscriptions.</p>
+          </div>
+          <button class="btn-ghost flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13M7 11l5 5 5-5M5 21h14"/></svg>
+            Export Report
+          </button>
+        </div>
+
+        <div class="grid grid-cols-4 gap-4 mb-6">
+          <div class="stat-card"><span class="text-xs font-semibold text-slate-400 uppercase">Total Revenue</span><p class="text-xl font-bold text-slate-800 mt-1">$182,940</p></div>
+          <div class="stat-card"><span class="text-xs font-semibold text-slate-400 uppercase">This Month</span><p class="text-xl font-bold text-slate-800 mt-1">$24,180</p></div>
+          <div class="stat-card"><span class="text-xs font-semibold text-slate-400 uppercase">Pending</span><p class="text-xl font-bold text-yellow-600 mt-1">$1,240</p></div>
+          <div class="stat-card"><span class="text-xs font-semibold text-slate-400 uppercase">Refunds</span><p class="text-xl font-bold text-red-500 mt-1">$860</p></div>
+        </div>
+
+        <div class="card p-4 mb-4 flex flex-wrap items-center gap-3">
+          <select class="border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-600 bg-white"><option>All Methods</option><option>ABA Pay</option><option>Credit Card</option><option>Wing</option><option>Bakong</option></select>
+          <select class="border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-600 bg-white"><option>All Status</option><option>Completed</option><option>Pending</option><option>Refunded</option><option>Failed</option></select>
+          <input type="date" class="border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-600 bg-white" />
+        </div>
+
+        <div class="card overflow-hidden">
+          <table class="admin-table">
+            <thead><tr><th>Transaction ID</th><th>User</th><th>Amount</th><th>Method</th><th>Status</th><th>Date</th></tr></thead>
+            <tbody id="paymentsTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===================== 5. E-BOOKS ===================== -->
+      <section id="ebooks" class="section-panel">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <h1 class="text-xl font-bold text-slate-800">E-Book Management</h1>
+            <p class="text-sm text-slate-400">One-time purchase and subscription-bundled health e-books.</p>
+          </div>
+          <button class="btn-primary flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Add New Book
+          </button>
+        </div>
+        <div class="grid grid-cols-4 gap-4" id="ebooksGrid"></div>
+      </section>
+
+      <!-- ===================== 6. SUBSCRIPTIONS ===================== -->
+      <section id="subscriptions" class="section-panel">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <h1 class="text-xl font-bold text-slate-800">Subscription Management</h1>
+            <p class="text-sm text-slate-400">Manage recurring wellness membership plans.</p>
+          </div>
+          <button class="btn-primary flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            New Plan
+          </button>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 mb-6">
+          <div class="card p-5 border-2 border-transparent">
+            <p class="text-xs font-semibold text-slate-400 uppercase mb-1">Monthly Plan</p>
+            <p class="text-2xl font-bold text-slate-800">$4.99 <span class="text-sm font-medium text-slate-400">/ month</span></p>
+            <p class="text-sm text-slate-500 mt-2">Unlimited articles, videos, 1 free consult / month</p>
+            <p class="text-sm font-semibold text-blue-600 mt-3">2,940 active subscribers</p>
+          </div>
+          <div class="card p-5 border-2 border-blue-500 relative">
+            <span class="badge badge-blue absolute -top-3 right-4">Most Popular</span>
+            <p class="text-xs font-semibold text-slate-400 uppercase mb-1">Annual Plan</p>
+            <p class="text-2xl font-bold text-slate-800">$49.99 <span class="text-sm font-medium text-slate-400">/ year</span></p>
+            <p class="text-sm text-slate-500 mt-2">Unlimited articles, videos, 3 free consults, e-book library</p>
+            <p class="text-sm font-semibold text-blue-600 mt-3">1,286 active subscribers</p>
+          </div>
+          <div class="card p-5">
+            <p class="text-xs font-semibold text-slate-400 uppercase mb-1">Family Plan</p>
+            <p class="text-2xl font-bold text-slate-800">$79.99 <span class="text-sm font-medium text-slate-400">/ year</span></p>
+            <p class="text-sm text-slate-500 mt-2">Up to 4 members, unlimited consults, e-book library</p>
+            <p class="text-sm font-semibold text-blue-600 mt-3">152 active subscribers</p>
+          </div>
+        </div>
+
+        <div class="card overflow-hidden">
+          <table class="admin-table">
+            <thead><tr><th>Subscriber</th><th>Plan</th><th>Started</th><th>Renews</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="subsTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===================== 7. ARTICLES ===================== -->
+      <section id="articles" class="section-panel">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <h1 class="text-xl font-bold text-slate-800">Article Management</h1>
+            <p class="text-sm text-slate-400">Health education articles published to web and mobile.</p>
+          </div>
+          <button class="btn-primary flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Add Article
+          </button>
+        </div>
+        <div class="card overflow-hidden">
+          <table class="admin-table">
+            <thead><tr><th>Title</th><th>Category</th><th>Author</th><th>Views</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="articlesTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===================== 8. VIDEOS ===================== -->
+      <section id="videos" class="section-panel">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <h1 class="text-xl font-bold text-slate-800">Video Management</h1>
+            <p class="text-sm text-slate-400">"Health Talk with Dr Ly Cheng Huy" video library.</p>
+          </div>
+          <button class="btn-primary flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Upload Video
+          </button>
+        </div>
+        <div class="grid grid-cols-4 gap-4" id="videosGrid"></div>
+      </section>
+
+      <!-- ===================== 9. BANNERS / CONTENT ===================== -->
+      <section id="banners" class="section-panel">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <h1 class="text-xl font-bold text-slate-800">Website Content &amp; Banners</h1>
+            <p class="text-sm text-slate-400">Manage homepage banners and promotional placements. Drag to reorder.</p>
+          </div>
+          <button class="btn-primary flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            Add Banner
+          </button>
+        </div>
+        <div class="space-y-4" id="bannersList"></div>
+      </section>
+
+      <!-- ===================== 10. ANNOUNCEMENTS ===================== -->
+      <section id="notifications" class="section-panel">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <h1 class="text-xl font-bold text-slate-800">Notifications &amp; Announcements</h1>
+            <p class="text-sm text-slate-400">Push updates to users across web and the mobile app.</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-5">
+          <div class="col-span-2 card overflow-hidden">
+            <div class="px-5 py-4 border-b border-slate-100"><h3 class="font-semibold text-slate-700 text-sm">Sent &amp; Scheduled</h3></div>
+            <table class="admin-table">
+              <thead><tr><th>Title</th><th>Audience</th><th>Status</th><th>Date</th></tr></thead>
+              <tbody id="announcementsTableBody"></tbody>
+            </table>
+          </div>
+
+          <div class="card p-5">
+            <h3 class="font-semibold text-slate-700 text-sm mb-4">Create Announcement</h3>
+            <div class="space-y-3">
+              <div>
+                <label class="text-xs font-semibold text-slate-500">Title</label>
+                <input type="text" placeholder="e.g. New E-Book Released!" class="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-400" />
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-slate-500">Message</label>
+                <textarea rows="4" placeholder="Write your announcement message..." class="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-400"></textarea>
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-slate-500">Target Audience</label>
+                <select class="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 text-sm bg-white">
+                  <option>All Users</option>
+                  <option>Subscribers Only</option>
+                  <option>Free Users</option>
+                  <option>Web Platform</option>
+                  <option>Mobile App</option>
+                </select>
+              </div>
+              <div class="flex gap-2 pt-1">
+                <button class="btn-primary flex-1">Send Now</button>
+                <button class="btn-ghost flex-1">Schedule</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 11. SETTINGS ===================== -->
+      <section id="settings" class="section-panel">
+        <div class="mb-5">
+          <h1 class="text-xl font-bold text-slate-800">Settings</h1>
+          <p class="text-sm text-slate-400">Manage account, site configuration and feature flags.</p>
+        </div>
+
+        <div class="grid grid-cols-3 gap-5">
+          <div class="card p-5 col-span-2 space-y-5">
+            <h3 class="font-semibold text-slate-700 text-sm">Account Settings</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div><label class="text-xs font-semibold text-slate-500">Full Name</label><input type="text" value="Sophea Chan" class="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 text-sm" /></div>
+              <div><label class="text-xs font-semibold text-slate-500">Email</label><input type="email" value="sophea.chan@bizwebkh.com" class="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 text-sm" /></div>
+              <div><label class="text-xs font-semibold text-slate-500">Role</label><input type="text" value="Platform Administrator" disabled class="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 text-sm bg-slate-50 text-slate-400" /></div>
+              <div><label class="text-xs font-semibold text-slate-500">Password</label><input type="password" value="••••••••••" class="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 text-sm" /></div>
+            </div>
+
+            <h3 class="font-semibold text-slate-700 text-sm pt-2 border-t border-slate-100">General Site Settings</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div><label class="text-xs font-semibold text-slate-500">Site Name</label><input type="text" value="Dr Ly Cheng Huy — Health Talk" class="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 text-sm" /></div>
+              <div><label class="text-xs font-semibold text-slate-500">Support Email</label><input type="email" value="support@drlychenghuy.com" class="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 text-sm" /></div>
+              <div><label class="text-xs font-semibold text-slate-500">Contact Phone</label><input type="text" value="+855 12 345 678" class="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 text-sm" /></div>
+              <div><label class="text-xs font-semibold text-slate-500">Timezone</label><input type="text" value="Asia/Phnom_Penh (GMT+7)" class="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 text-sm" /></div>
+            </div>
+            <button class="btn-primary">Save Changes</button>
+          </div>
+
+          <div class="card p-5">
+            <h3 class="font-semibold text-slate-700 text-sm mb-4">Feature Flags</h3>
+            <div class="space-y-4 text-sm">
+              <div class="flex items-center justify-between"><span class="text-slate-600">Online Video Consultations</span><label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label></div>
+              <div class="flex items-center justify-between"><span class="text-slate-600">E-Book Store</span><label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label></div>
+              <div class="flex items-center justify-between"><span class="text-slate-600">Subscriptions</span><label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label></div>
+              <div class="flex items-center justify-between"><span class="text-slate-600">Mobile App Push Notifications</span><label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label></div>
+              <div class="flex items-center justify-between"><span class="text-slate-600">Guest Booking (no login)</span><label class="toggle"><input type="checkbox"/><span class="slider"></span></label></div>
+              <div class="flex items-center justify-between"><span class="text-slate-600">Maintenance Mode</span><label class="toggle"><input type="checkbox"/><span class="slider"></span></label></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-5 mt-5">
+          <div class="card p-5 col-span-2 space-y-5">
+            <div>
+              <h3 class="font-semibold text-slate-700 text-sm">Video Consultation Settings</h3>
+              <p class="text-xs text-slate-400 mt-0.5">Video consultation demo — live provider integration will be completed during production development.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="text-xs font-semibold text-slate-500">Default Consultation Duration</label>
+                <select class="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 text-sm bg-white">
+                  <option>15 minutes</option><option selected>30 minutes</option><option>45 minutes</option><option>60 minutes</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-slate-500">Waiting Room Opens</label>
+                <select class="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 text-sm bg-white">
+                  <option>5 minutes before scheduled time</option><option selected>10 minutes before scheduled time</option><option>15 minutes before scheduled time</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-slate-500">Consultation Reminder Timing</label>
+                <select class="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 text-sm bg-white">
+                  <option>15 min before</option><option selected>30 min before</option><option>1 hour before</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-slate-500">Missed-Call Status Handling</label>
+                <select class="w-full mt-1 border border-slate-200 rounded-lg px-3 py-2 text-sm bg-white">
+                  <option selected>Auto-mark as Missed after 10 minutes</option><option>Auto-mark as Missed after 15 minutes</option><option>Manual only</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="pt-2 border-t border-slate-100">
+              <h4 class="text-xs font-semibold text-slate-400 uppercase mb-3">Provider Configuration</h4>
+              <div class="bg-slate-50 border border-dashed border-slate-300 rounded-lg p-4">
+                <p class="text-sm font-semibold text-slate-600">Video Provider: To be configured for production</p>
+                <p class="text-xs text-slate-400 mt-1">Production video calling requires an approved third-party video provider and usage charges may apply.</p>
+              </div>
+            </div>
+            <button class="btn-primary">Save Changes</button>
+          </div>
+
+          <div class="card p-5">
+            <h3 class="font-semibold text-slate-700 text-sm mb-4">Video Feature Toggles</h3>
+            <div class="space-y-4 text-sm">
+              <div class="flex items-center justify-between"><span class="text-slate-600">Enable Video Consultation</span><label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label></div>
+              <div class="flex items-center justify-between"><span class="text-slate-600">Enable Audio Consultation</span><label class="toggle"><input type="checkbox"/><span class="slider"></span></label></div>
+              <div class="flex items-center justify-between"><span class="text-slate-600">Allow Document Upload</span><label class="toggle"><input type="checkbox" checked/><span class="slider"></span></label></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- ===================== CONSULTATION DETAIL MODAL ===================== -->
+<div class="modal-overlay" id="vcDetailModal">
+  <div class="modal-panel">
+    <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 sticky top-0 bg-white">
+      <div>
+        <h3 class="font-bold text-slate-800 text-base">Consultation Detail</h3>
+        <p class="text-xs text-slate-400" id="vcModalBookingId">DLC-VC-20260730-001</p>
+      </div>
+      <button class="icon-btn" onclick="closeVcModal()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="p-6 space-y-5">
+      <div class="grid grid-cols-2 gap-4">
+        <div class="card p-4">
+          <h4 class="text-xs font-semibold text-slate-400 uppercase mb-2">Patient</h4>
+          <p class="font-semibold text-slate-700" id="vcModalPatient">Sokha Dara</p>
+          <p class="text-sm text-slate-500" id="vcModalContact">012 345 678 · sokha.dara@gmail.com</p>
+        </div>
+        <div class="card p-4">
+          <h4 class="text-xs font-semibold text-slate-400 uppercase mb-2">Schedule</h4>
+          <p class="text-sm text-slate-700" id="vcModalSchedule">30 July 2026 · 10:30 AM · 30 minutes</p>
+          <p class="text-sm text-slate-500" id="vcModalType">Video Consultation</p>
+        </div>
+      </div>
+
+      <div class="card p-4">
+        <h4 class="text-xs font-semibold text-slate-400 uppercase mb-2">Symptom / Health Note</h4>
+        <p class="text-sm text-slate-600" id="vcModalNote">Mild headache and fatigue for 3 days.</p>
+      </div>
+
+      <div class="card p-4">
+        <h4 class="text-xs font-semibold text-slate-400 uppercase mb-2">Uploaded Documents</h4>
+        <div class="flex flex-wrap gap-2" id="vcModalDocs"></div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div class="card p-4">
+          <h4 class="text-xs font-semibold text-slate-400 uppercase mb-2">Payment</h4>
+          <p class="text-sm text-slate-700" id="vcModalPayment">$15.00 · ABA Pay · Paid</p>
+        </div>
+        <div class="card p-4">
+          <h4 class="text-xs font-semibold text-slate-400 uppercase mb-2">Call Status</h4>
+          <div id="vcModalStatusBadge" class="mb-1"></div>
+          <p class="text-xs text-slate-400">Call duration: <span id="vcModalDuration">-</span></p>
+        </div>
+      </div>
+
+      <div class="card p-4">
+        <h4 class="text-xs font-semibold text-slate-400 uppercase mb-2">Consultation History</h4>
+        <ul class="text-sm text-slate-600 space-y-1" id="vcModalHistory"></ul>
+      </div>
+
+      <div class="card p-4">
+        <h4 class="text-xs font-semibold text-slate-400 uppercase mb-2">Internal Admin Note</h4>
+        <textarea rows="3" id="vcModalAdminNote" placeholder="Private note visible to admins/doctors only..." class="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-blue-400"></textarea>
+        <button class="btn-ghost text-xs mt-2" onclick="showToast('Note saved')">Save Note</button>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2 pt-1">
+        <button class="btn-primary text-sm" onclick="openVideoRoomFromModal()">Open Video Room</button>
+        <select id="vcModalStatusSelect" class="border border-slate-200 rounded-lg px-3 py-2 text-sm bg-white">
+          <option>Scheduled</option><option>Waiting</option><option>Ready to Join</option><option>In Progress</option><option>Completed</option><option>Missed</option><option>Cancelled</option>
+        </select>
+        <button class="btn-ghost text-sm" onclick="applyVcStatusUpdate()">Update Status</button>
+        <button class="btn-ghost text-sm" onclick="showToast('Reschedule request noted (demo)')">Reschedule</button>
+        <button class="btn-ghost text-sm text-red-500" onclick="cancelVcBooking()">Cancel Appointment</button>
+        <button class="btn-ghost text-sm text-green-600" onclick="markVcCompleted()">Mark Completed</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End Call confirm -->
+<div class="modal-overlay" id="endCallModal">
+  <div class="modal-panel" style="max-width:380px;">
+    <div class="p-6 text-center">
+      <div class="w-14 h-14 rounded-full bg-red-50 text-red-500 flex items-center justify-center mx-auto mb-3">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12c4-5 12-5 16 0M9.5 15.5l-2 2.2M14.5 15.5l2 2.2"/><path d="M3 3l18 18"/></svg>
+      </div>
+      <h3 class="font-bold text-slate-800 mb-1">End this call?</h3>
+      <p class="text-sm text-slate-500 mb-5">This will disconnect the patient and mark the consultation as completed.</p>
+      <div class="flex gap-2">
+        <button class="btn-ghost flex-1" onclick="closeEndCallConfirm()">Cancel</button>
+        <button class="btn-primary flex-1" style="background:#dc2626;" onclick="confirmEndCall()">End Call</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="appToast">Saved</div>
+
+<script>
+/* ---------- Demo login (local state only — no real auth server) ---------- */
+var DEMO_ADMIN_EMAIL = 'admin@drlychenghuy.com';
+var DEMO_ADMIN_PASSWORD = 'demo123';
+
+function adminLogin(){
+  var email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  var pass = document.getElementById('loginPassword').value;
+  var err = document.getElementById('loginError');
+  if(email === DEMO_ADMIN_EMAIL && pass === DEMO_ADMIN_PASSWORD){
+    err.style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboardApp').style.display = 'flex';
+  } else {
+    err.style.display = 'block';
+  }
+}
+
+function adminLogout(){
+  document.getElementById('dashboardApp').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('loginEmail').value = DEMO_ADMIN_EMAIL;
+  document.getElementById('loginPassword').value = DEMO_ADMIN_PASSWORD;
+  document.getElementById('loginError').style.display = 'none';
+}
+
+// Allow pressing Enter in the password field to submit
+document.addEventListener('DOMContentLoaded', function(){
+  var pw = document.getElementById('loginPassword');
+  if(pw){ pw.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ adminLogin(); } }); }
+});
+
+/* ---------- Navigation ---------- */
+function showSection(id, el){
+  document.querySelectorAll('.section-panel').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  if(el) el.classList.add('active');
+  document.getElementById('mainContent').scrollTop = 0;
+}
+
+/* ---------- Helpers ---------- */
+function badge(text, color){ return `<span class="badge badge-${color}">${text}</span>`; }
+function statusColor(s){
+  s = s.toLowerCase();
+  if(['active','completed','published','paid','success'].includes(s)) return 'green';
+  if(['pending','upcoming','scheduled'].includes(s)) return 'yellow';
+  if(['suspended','cancelled','failed','refunded'].includes(s)) return 'red';
+  return 'gray';
+}
+
+/* ---------- Users ---------- */
+const users = [
+  {name:"Sok Dara", email:"sok.dara@gmail.com", join:"Jan 12, 2025", plan:"Annual Subscriber", status:"Active"},
+  {name:"Chenda Meas", email:"chenda.meas@gmail.com", join:"Feb 03, 2025", plan:"Monthly Subscriber", status:"Active"},
+  {name:"Vibol Heng", email:"vibol.heng@yahoo.com", join:"Feb 20, 2025", plan:"Free", status:"Active"},
+  {name:"Bopha Sreng", email:"bopha.sreng@gmail.com", join:"Mar 05, 2025", plan:"Annual Subscriber", status:"Active"},
+  {name:"Ratanak Kim", email:"ratanak.kim@outlook.com", join:"Mar 18, 2025", plan:"Free", status:"Pending"},
+  {name:"Sreymom Prak", email:"sreymom.prak@gmail.com", join:"Apr 02, 2025", plan:"Monthly Subscriber", status:"Suspended"},
+  {name:"Panha Long", email:"panha.long@gmail.com", join:"Apr 21, 2025", plan:"Free", status:"Active"},
+  {name:"Kanha Yem", email:"kanha.yem@gmail.com", join:"May 09, 2025", plan:"Annual Subscriber", status:"Active"},
+  {name:"Sovan Chea", email:"sovan.chea@gmail.com", join:"May 27, 2025", plan:"Free", status:"Active"},
+  {name:"Malis Ouk", email:"malis.ouk@gmail.com", join:"Jun 14, 2025", plan:"Monthly Subscriber", status:"Active"},
+  {name:"Piseth Ly", email:"piseth.ly@gmail.com", join:"Jul 01, 2025", plan:"Free", status:"Active"},
+  {name:"Sreyneang Vong", email:"sreyneang.vong@gmail.com", join:"Jul 15, 2025", plan:"Annual Subscriber", status:"Active"},
+];
+document.getElementById('usersTableBody').innerHTML = users.map(u=>`
+  <tr>
+    <td class="font-medium text-slate-700">${u.name}</td>
+    <td>${u.email}</td>
+    <td>${u.join}</td>
+    <td>${u.plan}</td>
+    <td>${badge(u.status, statusColor(u.status))}</td>
+    <td>
+      <div class="flex gap-1.5">
+        <button class="icon-btn" title="View"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+        <button class="icon-btn" title="Edit"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button>
+        <button class="icon-btn" title="Suspend"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M6 6l12 12"/></svg></button>
+      </div>
+    </td>
+  </tr>`).join('');
+
+/* ---------- Appointments ---------- */
+const appts = [
+  {patient:"Sok Dara", when:"Jul 29, 2026 · 09:00 AM", type:"Video Consultation", doctor:"Dr Ly Cheng Huy", status:"Upcoming"},
+  {patient:"Vibol Heng", when:"Jul 31, 2026 · 10:00 AM", type:"General Checkup", doctor:"Dr Ly Cheng Huy", status:"Upcoming"},
+  {patient:"Sreymom Prak", when:"Aug 02, 2026 · 02:30 PM", type:"Follow-up", doctor:"Dr Ly Cheng Huy", status:"Upcoming"},
+  {patient:"Chenda Meas", when:"Jul 27, 2026 · 11:00 AM", type:"Video Consultation", doctor:"Dr Ly Cheng Huy", status:"Completed"},
+  {patient:"Panha Long", when:"Jul 25, 2026 · 03:00 PM", type:"Nutrition Advice", doctor:"Dr Ly Cheng Huy", status:"Completed"},
+  {patient:"Kanha Yem", when:"Jul 24, 2026 · 09:30 AM", type:"General Checkup", doctor:"Dr Ly Cheng Huy", status:"Completed"},
+  {patient:"Ratanak Kim", when:"Jul 22, 2026 · 01:00 PM", type:"Video Consultation", doctor:"Dr Ly Cheng Huy", status:"Cancelled"},
+  {patient:"Malis Ouk", when:"Jul 20, 2026 · 04:00 PM", type:"Follow-up", doctor:"Dr Ly Cheng Huy", status:"Cancelled"},
+  {patient:"Piseth Ly", when:"Aug 05, 2026 · 10:30 AM", type:"General Checkup", doctor:"Dr Ly Cheng Huy", status:"Upcoming"},
+  {patient:"Sreyneang Vong", when:"Jul 26, 2026 · 08:30 AM", type:"Video Consultation", doctor:"Dr Ly Cheng Huy", status:"Completed"},
+];
+function renderAppts(filter){
+  const rows = appts.filter(a=> filter==='all' || a.status===filter);
+  document.getElementById('apptTableBody').innerHTML = rows.map(a=>`
+    <tr>
+      <td class="font-medium text-slate-700">${a.patient}</td>
+      <td>${a.when}</td>
+      <td>${a.type}</td>
+      <td>${a.doctor}</td>
+      <td>${badge(a.status, statusColor(a.status))}</td>
+      <td>
+        <div class="flex gap-1.5">
+          <button class="icon-btn" title="View"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+          <button class="icon-btn" title="Reschedule"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18"/></svg></button>
+          <button class="icon-btn" title="Cancel"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M6 6l12 12"/></svg></button>
+        </div>
+      </td>
+    </tr>`).join('');
+}
+function filterAppointments(filter, el){
+  document.querySelectorAll('#apptTabs .tab-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  renderAppts(filter);
+}
+renderAppts('all');
+
+/* ---------- Video Consultations ---------- */
+function callStatusColor(s){
+  switch(s){
+    case 'Scheduled': return 'gray';
+    case 'Waiting': return 'yellow';
+    case 'Ready to Join': return 'teal';
+    case 'In Progress': return 'blue';
+    case 'Completed': return 'green';
+    case 'Missed': return 'red';
+    case 'Cancelled': return 'red';
+    default: return 'gray';
+  }
+}
+
+const videoConsults = [
+  {
+    id:"DLC-VC-20260730-001", patient:"Sokha Dara", contact:"012 345 678 · sokha.dara@gmail.com",
+    date:"30 Jul 2026", time:"10:30 AM", duration:"30 min", type:"Video", payment:"Paid",
+    callStatus:"Ready to Join", callDuration:"-", amount:"$15.00", method:"ABA Pay",
+    note:"Mild headache and fatigue for 3 days. No fever reported. Requesting general check-up and advice.",
+    docs:["lab-report.pdf","xray-image.jpg"],
+    history:["12 Jun 2026 — Video Consultation with Dr Ly Cheng Huy (Completed)","03 Mar 2026 — General Checkup (Completed)"]
+  },
+  {
+    id:"DLC-VC-20260730-002", patient:"Vandy Chan", contact:"012 556 213 · vandy.chan@gmail.com",
+    date:"30 Jul 2026", time:"11:00 AM", duration:"30 min", type:"Video", payment:"Paid",
+    callStatus:"Scheduled", callDuration:"-", amount:"$15.00", method:"Bakong",
+    note:"Follow-up on blood pressure medication dosage.",
+    docs:["bp-log.pdf"],
+    history:["02 Jul 2026 — Video Consultation (Completed)"]
+  },
+  {
+    id:"DLC-VC-20260730-003", patient:"Sreypov Nov", contact:"017 884 902 · sreypov.nov@gmail.com",
+    date:"30 Jul 2026", time:"09:45 AM", duration:"15 min", type:"Video", payment:"Paid",
+    callStatus:"Waiting", callDuration:"-", amount:"$10.00", method:"Wing",
+    note:"Skin rash on forearm, mild itching for 2 days.",
+    docs:["rash-photo.jpg"],
+    history:[]
+  },
+  {
+    id:"DLC-VC-20260729-004", patient:"Bunthoeun Sok", contact:"010 223 771 · bunthoeun.sok@gmail.com",
+    date:"29 Jul 2026", time:"03:00 PM", duration:"30 min", type:"Video", payment:"Paid",
+    callStatus:"In Progress", callDuration:"08:42 (ongoing)", amount:"$15.00", method:"Credit Card",
+    note:"Persistent cough for 1 week, mild chest discomfort.",
+    docs:["chest-xray.jpg","lab-report.pdf"],
+    history:["14 Apr 2026 — Video Consultation (Completed)","09 Jan 2026 — Video Consultation (Completed)"]
+  },
+  {
+    id:"DLC-VC-20260729-005", patient:"Chanthy Ros", contact:"011 345 662 · chanthy.ros@gmail.com",
+    date:"29 Jul 2026", time:"01:30 PM", duration:"30 min", type:"Video", payment:"Paid",
+    callStatus:"Completed", callDuration:"29 min", amount:"$15.00", method:"ABA Pay",
+    note:"Routine diabetes follow-up, reviewing glucose readings.",
+    docs:["glucose-log.pdf"],
+    history:["01 Jul 2026 — Video Consultation (Completed)","03 Jun 2026 — Video Consultation (Completed)"]
+  },
+  {
+    id:"DLC-VC-20260728-006", patient:"Dara Pich", contact:"012 998 340 · dara.pich@gmail.com",
+    date:"28 Jul 2026", time:"10:00 AM", duration:"15 min", type:"Audio", payment:"Paid",
+    callStatus:"Completed", callDuration:"14 min", amount:"$10.00", method:"Wing",
+    note:"Prescription renewal for seasonal allergies.",
+    docs:[],
+    history:["10 Feb 2026 — Audio Consultation (Completed)"]
+  },
+  {
+    id:"DLC-VC-20260728-007", patient:"Leakhena Suy", contact:"016 772 415 · leakhena.suy@gmail.com",
+    date:"28 Jul 2026", time:"09:00 AM", duration:"30 min", type:"Video", payment:"Pending",
+    callStatus:"Missed", callDuration:"-", amount:"$15.00", method:"Bakong",
+    note:"Anxiety and difficulty sleeping, wanted to discuss options.",
+    docs:[],
+    history:[]
+  },
+  {
+    id:"DLC-VC-20260727-008", patient:"Sopheak Vann", contact:"015 660 128 · sopheak.vann@gmail.com",
+    date:"27 Jul 2026", time:"02:00 PM", duration:"30 min", type:"Video", payment:"Refunded",
+    callStatus:"Cancelled", callDuration:"-", amount:"$15.00", method:"Credit Card",
+    note:"Patient requested cancellation due to schedule conflict.",
+    docs:[],
+    history:["05 May 2026 — Video Consultation (Completed)"]
+  },
+  {
+    id:"DLC-VC-20260731-009", patient:"Kunthea Meng", contact:"010 445 998 · kunthea.meng@gmail.com",
+    date:"31 Jul 2026", time:"04:00 PM", duration:"45 min", type:"Video", payment:"Paid",
+    callStatus:"Scheduled", callDuration:"-", amount:"$20.00", method:"ABA Pay",
+    note:"First-time consultation, general wellness check.",
+    docs:["intake-form.pdf"],
+    history:[]
+  },
+  {
+    id:"DLC-VC-20260730-010", patient:"Rithy Chhorn", contact:"097 213 884 · rithy.chhorn@gmail.com",
+    date:"30 Jul 2026", time:"01:00 PM", duration:"30 min", type:"In-Person", payment:"Paid",
+    callStatus:"Waiting", callDuration:"-", amount:"$18.00", method:"Cash at Clinic",
+    note:"Pre-scheduled in-clinic visit, arrived early to waiting room.",
+    docs:[],
+    history:["20 Mar 2026 — In-Person Visit (Completed)"]
+  },
+];
+
+function vcActionButtons(id){
+  return `
+    <div class="flex gap-1.5 flex-wrap">
+      <button class="icon-btn" title="View Details" onclick="openVcModal('${id}')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+      <button class="icon-btn" title="Open Consultation Room" onclick="openVideoRoom('${id}')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="6" width="14" height="12" rx="2"/><path d="M16.5 10.8l5-3v8.4l-5-3z"/></svg></button>
+      <button class="icon-btn" title="Reschedule" onclick="showToast('Reschedule request noted (demo)')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18"/></svg></button>
+      <button class="icon-btn" title="Mark Ready" onclick="setVcStatus('${id}','Ready to Join')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.2 2.2 4.8-4.8"/></svg></button>
+      <button class="icon-btn" title="Mark Completed" onclick="setVcStatus('${id}','Completed')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></button>
+      <button class="icon-btn" title="Cancel" onclick="setVcStatus('${id}','Cancelled')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M6 6l12 12"/></svg></button>
+    </div>`;
+}
+
+function renderVideoConsults(){
+  const search = (document.getElementById('vcSearchInput')?.value || '').toLowerCase();
+  const dateVal = document.getElementById('vcDateFilter')?.value || '';
+  const statusVal = document.getElementById('vcStatusFilter')?.value || '';
+  const typeVal = document.getElementById('vcTypeFilter')?.value || '';
+  const paymentVal = document.getElementById('vcPaymentFilter')?.value || '';
+
+  const rows = videoConsults.filter(v=>{
+    if(search && !(v.patient.toLowerCase().includes(search) || v.id.toLowerCase().includes(search))) return false;
+    if(statusVal && v.callStatus !== statusVal) return false;
+    if(typeVal && v.type !== typeVal) return false;
+    if(paymentVal && v.payment !== paymentVal) return false;
+    if(dateVal){
+      const d = new Date(dateVal);
+      const label = d.toLocaleDateString('en-GB', {day:'2-digit', month:'short', year:'numeric'}).replace(/ /g,' ');
+      // v.date format e.g. "30 Jul 2026"
+      if(v.date !== label) return false;
+    }
+    return true;
+  });
+
+  document.getElementById('vcTableBody').innerHTML = rows.map(v=>`
+    <tr>
+      <td class="font-medium text-slate-700">${v.id}</td>
+      <td>${v.patient}</td>
+      <td class="text-xs text-slate-500">${v.contact}</td>
+      <td>${v.date}</td>
+      <td>${v.time}</td>
+      <td>${v.duration}</td>
+      <td>${v.type}</td>
+      <td>${badge(v.payment, statusColor(v.payment))}</td>
+      <td>${badge(v.callStatus, callStatusColor(v.callStatus))}</td>
+      <td>${vcActionButtons(v.id)}</td>
+    </tr>`).join('') || `<tr><td colspan="10" class="text-center text-slate-400 py-8">No consultations match the selected filters.</td></tr>`;
+}
+function resetVideoConsultFilters(){
+  document.getElementById('vcSearchInput').value = '';
+  document.getElementById('vcDateFilter').value = '';
+  document.getElementById('vcStatusFilter').value = '';
+  document.getElementById('vcTypeFilter').value = '';
+  document.getElementById('vcPaymentFilter').value = '';
+  renderVideoConsults();
+}
+function setVcStatus(id, status){
+  const v = videoConsults.find(x=>x.id===id);
+  if(!v) return;
+  v.callStatus = status;
+  renderVideoConsults();
+  renderDashboardSchedule();
+  showToast(`${v.patient} marked as ${status}`);
+}
+
+/* Dashboard "Today's Consultation Schedule" (reuses videoConsults) */
+function renderDashboardSchedule(){
+  const el = document.getElementById('dashboardScheduleBody');
+  if(!el) return;
+  const todays = videoConsults.filter(v=> v.date === '30 Jul 2026');
+  el.innerHTML = todays.map(v=>`
+    <tr>
+      <td class="font-medium text-slate-700">${v.patient}</td>
+      <td>${v.type} Consultation</td>
+      <td>${v.date}</td>
+      <td>${v.time}</td>
+      <td>${badge(v.payment, statusColor(v.payment))}</td>
+      <td>${badge(v.callStatus, callStatusColor(v.callStatus))}</td>
+      <td><button class="icon-btn" title="View Details" onclick="showSection('video-consultations', document.querySelector('[data-section=video-consultations]')); openVcModal('${v.id}')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button></td>
+    </tr>`).join('');
+}
+
+/* ---------- Consultation Detail Modal ---------- */
+let currentVcId = null;
+function openVcModal(id){
+  const v = videoConsults.find(x=>x.id===id);
+  if(!v) return;
+  currentVcId = id;
+  document.getElementById('vcModalBookingId').textContent = v.id;
+  document.getElementById('vcModalPatient').textContent = v.patient;
+  document.getElementById('vcModalContact').textContent = v.contact;
+  document.getElementById('vcModalSchedule').textContent = `${v.date} · ${v.time} · ${v.duration}`;
+  document.getElementById('vcModalType').textContent = `${v.type} Consultation`;
+  document.getElementById('vcModalNote').textContent = v.note;
+  document.getElementById('vcModalDocs').innerHTML = v.docs.length
+    ? v.docs.map(d=>`<span class="doc-chip">📎 ${d}</span>`).join('')
+    : `<span class="text-xs text-slate-400">No documents uploaded.</span>`;
+  document.getElementById('vcModalPayment').textContent = `${v.amount} · ${v.method} · ${v.payment}`;
+  document.getElementById('vcModalStatusBadge').innerHTML = badge(v.callStatus, callStatusColor(v.callStatus));
+  document.getElementById('vcModalDuration').textContent = v.callDuration;
+  document.getElementById('vcModalHistory').innerHTML = v.history.length
+    ? v.history.map(h=>`<li>• ${h}</li>`).join('')
+    : `<li class="text-slate-400">No previous consultations on record.</li>`;
+  document.getElementById('vcModalAdminNote').value = '';
+  document.getElementById('vcModalStatusSelect').value = v.callStatus;
+  document.getElementById('vcDetailModal').classList.add('active');
+}
+function closeVcModal(){ document.getElementById('vcDetailModal').classList.remove('active'); }
+function applyVcStatusUpdate(){
+  if(!currentVcId) return;
+  const val = document.getElementById('vcModalStatusSelect').value;
+  setVcStatus(currentVcId, val);
+  document.getElementById('vcModalStatusBadge').innerHTML = badge(val, callStatusColor(val));
+}
+function cancelVcBooking(){ if(currentVcId){ setVcStatus(currentVcId, 'Cancelled'); closeVcModal(); } }
+function markVcCompleted(){ if(currentVcId){ setVcStatus(currentVcId, 'Completed'); closeVcModal(); } }
+function openVideoRoomFromModal(){ if(currentVcId){ closeVcModal(); openVideoRoom(currentVcId); } }
+
+/* ---------- Doctor Video Room ---------- */
+let callTimerInterval = null;
+let callSeconds = 0;
+function openVideoRoom(id){
+  const v = videoConsults.find(x=>x.id===id) || videoConsults[0];
+  currentVcId = v.id;
+  document.getElementById('vrPatientName').textContent = v.patient;
+  document.getElementById('vrApptInfo').textContent = `${v.type} Consultation · ${v.date} · ${v.time} · ${v.duration}`;
+  document.getElementById('vrInternalNote').value = '';
+  callSeconds = 0;
+  updateCallTimer();
+  if(callTimerInterval) clearInterval(callTimerInterval);
+  callTimerInterval = setInterval(()=>{ callSeconds++; updateCallTimer(); }, 1000);
+  showSection('video-room', null);
+}
+function updateCallTimer(){
+  const m = String(Math.floor(callSeconds/60)).padStart(2,'0');
+  const s = String(callSeconds%60).padStart(2,'0');
+  const el = document.getElementById('vrTimer');
+  if(el) el.textContent = `${m}:${s}`;
+}
+function toggleCallControl(kind){
+  const map = { mic:'vrMicBtn', cam:'vrCamBtn', speaker:'vrSpeakerBtn', share:'vrShareBtn', chat:'vrChatBtn' };
+  const btn = document.getElementById(map[kind]);
+  if(kind==='chat'){
+    document.getElementById('vrChatPanel').classList.toggle('hidden');
+    btn.classList.toggle('on-accent');
+    return;
+  }
+  if(kind==='share'){
+    const sharing = btn.classList.toggle('on-accent');
+    document.getElementById('vrSharingBanner').classList.toggle('hidden', !sharing);
+    return;
+  }
+  btn.classList.toggle('off');
+}
+function openEndCallConfirm(){ document.getElementById('endCallModal').classList.add('active'); }
+function closeEndCallConfirm(){ document.getElementById('endCallModal').classList.remove('active'); }
+function confirmEndCall(){
+  if(callTimerInterval){ clearInterval(callTimerInterval); callTimerInterval = null; }
+  if(currentVcId){ setVcStatus(currentVcId, 'Completed'); }
+  closeEndCallConfirm();
+  showSection('video-consultations', document.querySelector('[data-section=video-consultations]'));
+}
+
+/* ---------- Toast ---------- */
+let toastTimeout = null;
+function showToast(msg){
+  const t = document.getElementById('appToast');
+  t.textContent = msg;
+  t.classList.add('show');
+  if(toastTimeout) clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(()=> t.classList.remove('show'), 2200);
+}
+
+renderVideoConsults();
+renderDashboardSchedule();
+
+/* ---------- Payments ---------- */
+const payments = [
+  {id:"TXN-88213", user:"Sok Dara", amount:"$45.00", method:"ABA Pay", status:"Completed", date:"Jul 29, 2026"},
+  {id:"TXN-88214", user:"Chenda Meas", amount:"$12.99", method:"Credit Card", status:"Completed", date:"Jul 28, 2026"},
+  {id:"TXN-88215", user:"Bopha Sreng", amount:"$49.99", method:"Bakong", status:"Completed", date:"Jul 28, 2026"},
+  {id:"TXN-88216", user:"Ratanak Kim", amount:"$4.99", method:"Wing", status:"Pending", date:"Jul 27, 2026"},
+  {id:"TXN-88217", user:"Sreymom Prak", amount:"$4.99", method:"Credit Card", status:"Refunded", date:"Jul 26, 2026"},
+  {id:"TXN-88218", user:"Panha Long", amount:"$30.00", method:"ABA Pay", status:"Completed", date:"Jul 25, 2026"},
+  {id:"TXN-88219", user:"Kanha Yem", amount:"$79.99", method:"Credit Card", status:"Completed", date:"Jul 24, 2026"},
+  {id:"TXN-88220", user:"Sovan Chea", amount:"$15.99", method:"Bakong", status:"Failed", date:"Jul 23, 2026"},
+  {id:"TXN-88221", user:"Malis Ouk", amount:"$4.99", method:"Wing", status:"Completed", date:"Jul 22, 2026"},
+];
+document.getElementById('paymentsTableBody').innerHTML = payments.map(p=>`
+  <tr>
+    <td class="font-medium text-slate-700">${p.id}</td>
+    <td>${p.user}</td>
+    <td class="font-semibold">${p.amount}</td>
+    <td>${p.method}</td>
+    <td>${badge(p.status, statusColor(p.status))}</td>
+    <td>${p.date}</td>
+  </tr>`).join('');
+
+/* ---------- E-Books ---------- */
+const ebooks = [
+  {title:"Managing Diabetes Naturally", price:"$12.99", sales:1840, grad:1},
+  {title:"Heart Health After 40", price:"$14.99", sales:1520, grad:2},
+  {title:"Healthy Khmer Diet Guide", price:"$9.99", sales:2310, grad:3},
+  {title:"Newborn Care Essentials", price:"$11.99", sales:980, grad:4},
+  {title:"Understanding Hypertension", price:"$10.99", sales:1275, grad:5},
+  {title:"Mental Wellness Handbook", price:"$13.99", sales:1289, grad:6},
+  {title:"Women's Health After 30", price:"$12.99", sales:1004, grad:1},
+  {title:"Child Nutrition Basics", price:"$8.99", sales:996, grad:2},
+];
+document.getElementById('ebooksGrid').innerHTML = ebooks.map(b=>`
+  <div class="card overflow-hidden">
+    <div class="h-36 gradient-cover-${b.grad} flex items-center justify-center text-white text-center px-4">
+      <p class="font-semibold text-sm leading-snug">${b.title}</p>
+    </div>
+    <div class="p-4">
+      <p class="font-semibold text-slate-700 text-sm mb-1">${b.title}</p>
+      <div class="flex items-center justify-between mt-2">
+        <span class="text-blue-600 font-bold">${b.price}</span>
+        <span class="text-xs text-slate-400">${b.sales.toLocaleString()} sold</span>
+      </div>
+      <div class="flex gap-2 mt-3">
+        <button class="btn-ghost flex-1 text-xs py-1.5">Edit</button>
+        <button class="btn-ghost flex-1 text-xs py-1.5 text-red-500">Delete</button>
+      </div>
+    </div>
+  </div>`).join('');
+
+/* ---------- Subscriptions table ---------- */
+const subs = [
+  {user:"Bopha Sreng", plan:"Annual Plan", start:"Mar 05, 2025", renews:"Mar 05, 2027", status:"Active"},
+  {user:"Sok Dara", plan:"Annual Plan", start:"Jan 12, 2025", renews:"Jan 12, 2027", status:"Active"},
+  {user:"Chenda Meas", plan:"Monthly Plan", start:"Feb 03, 2025", renews:"Aug 03, 2026", status:"Active"},
+  {user:"Kanha Yem", plan:"Family Plan", start:"May 09, 2025", renews:"May 09, 2027", status:"Active"},
+  {user:"Sreymom Prak", plan:"Monthly Plan", start:"Apr 02, 2025", renews:"—", status:"Cancelled"},
+  {user:"Malis Ouk", plan:"Monthly Plan", start:"Jun 14, 2025", renews:"Aug 14, 2026", status:"Active"},
+  {user:"Sreyneang Vong", plan:"Annual Plan", start:"Jul 15, 2025", renews:"Jul 15, 2027", status:"Active"},
+];
+document.getElementById('subsTableBody').innerHTML = subs.map(s=>`
+  <tr>
+    <td class="font-medium text-slate-700">${s.user}</td>
+    <td>${s.plan}</td>
+    <td>${s.start}</td>
+    <td>${s.renews}</td>
+    <td>${badge(s.status, statusColor(s.status))}</td>
+    <td>
+      <div class="flex gap-1.5">
+        <button class="icon-btn" title="View"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg></button>
+        <button class="icon-btn" title="Cancel"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M6 6l12 12"/></svg></button>
+      </div>
+    </td>
+  </tr>`).join('');
+
+/* ---------- Articles ---------- */
+const articles = [
+  {title:"10 Signs of High Blood Pressure", cat:"Cardiology", author:"Dr Ly Cheng Huy", views:"12.4K", status:"Published"},
+  {title:"Understanding Diabetes Type 2", cat:"Endocrinology", author:"Dr Ly Cheng Huy", views:"8.1K", status:"Published"},
+  {title:"Newborn Care Essentials", cat:"Pediatrics", author:"Dr Sok Panha", views:"6.6K", status:"Published"},
+  {title:"Mental Health Check-In Guide", cat:"Mental Health", author:"Dr Ly Cheng Huy", views:"5.9K", status:"Published"},
+  {title:"Nutrition Tips for Pregnancy", cat:"Nutrition", author:"Dr Chan Sreyroth", views:"4.2K", status:"Draft"},
+  {title:"Seasonal Flu Prevention", cat:"General Health", author:"Dr Ly Cheng Huy", views:"3.8K", status:"Published"},
+  {title:"Managing Stress at Work", cat:"Mental Health", author:"Dr Sok Panha", views:"2.1K", status:"Draft"},
+];
+document.getElementById('articlesTableBody').innerHTML = articles.map(a=>`
+  <tr>
+    <td class="font-medium text-slate-700">${a.title}</td>
+    <td>${a.cat}</td>
+    <td>${a.author}</td>
+    <td>${a.views}</td>
+    <td>${badge(a.status, statusColor(a.status))}</td>
+    <td>
+      <div class="flex gap-1.5">
+        <button class="icon-btn" title="Edit"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button>
+        <button class="icon-btn" title="Delete"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg></button>
+      </div>
+    </td>
+  </tr>`).join('');
+
+/* ---------- Videos ---------- */
+const videos = [
+  {title:"Healthy Khmer Diet Guide", dur:"12:45", views:"9.8K", grad:3},
+  {title:"Mental Health Check-In", dur:"08:20", views:"7.3K", grad:5},
+  {title:"5 Exercises for Back Pain", dur:"10:15", views:"6.1K", grad:1},
+  {title:"How to Read Your Lab Results", dur:"14:02", views:"5.4K", grad:2},
+  {title:"Q&A: Managing Cholesterol", dur:"22:10", views:"4.9K", grad:4},
+  {title:"Postnatal Recovery Tips", dur:"09:47", views:"4.0K", grad:6},
+  {title:"Diabetes Myths Debunked", dur:"11:30", views:"3.6K", grad:1},
+  {title:"Building Immunity Naturally", dur:"07:58", views:"3.1K", grad:3},
+];
+document.getElementById('videosGrid').innerHTML = videos.map(v=>`
+  <div class="card overflow-hidden">
+    <div class="h-32 gradient-cover-${v.grad} relative flex items-center justify-center">
+      <span class="w-11 h-11 rounded-full bg-white/25 backdrop-blur flex items-center justify-center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+      </span>
+      <span class="absolute bottom-2 right-2 bg-black/60 text-white text-[10px] px-1.5 py-0.5 rounded">${v.dur}</span>
+    </div>
+    <div class="p-4">
+      <p class="font-semibold text-slate-700 text-sm mb-1 leading-snug">${v.title}</p>
+      <p class="text-xs text-slate-400">${v.views} views</p>
+      <div class="flex gap-2 mt-3">
+        <button class="btn-ghost flex-1 text-xs py-1.5">Edit</button>
+        <button class="btn-ghost flex-1 text-xs py-1.5 text-red-500">Delete</button>
+      </div>
+    </div>
+  </div>`).join('');
+
+/* ---------- Banners ---------- */
+const banners = [
+  {title:"Book a Consultation — First Visit 20% Off", sub:"Homepage Hero Banner", grad:1, status:"Active"},
+  {title:"New E-Book: Heart Health After 40", sub:"Store Promo Banner", grad:2, status:"Active"},
+  {title:"Annual Subscription — Save 15%", sub:"Sidebar Promo", grad:5, status:"Active"},
+  {title:"Health Talk Live: Every Friday 7PM", sub:"Homepage Announcement Bar", grad:4, status:"Draft"},
+];
+document.getElementById('bannersList').innerHTML = banners.map(b=>`
+  <div class="card p-4 flex items-center gap-4">
+    <span class="drag-handle"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 6h.01M8 12h.01M8 18h.01M16 6h.01M16 12h.01M16 18h.01"/></svg></span>
+    <div class="w-24 h-16 rounded-lg gradient-cover-${b.grad} shrink-0"></div>
+    <div class="flex-1">
+      <p class="font-semibold text-slate-700 text-sm">${b.title}</p>
+      <p class="text-xs text-slate-400 mt-0.5">${b.sub}</p>
+    </div>
+    ${badge(b.status, statusColor(b.status))}
+    <button class="btn-ghost text-xs">Edit</button>
+  </div>`).join('');
+
+/* ---------- Announcements ---------- */
+const announcements = [
+  {title:"New E-Book: Heart Health After 40", audience:"All Users", status:"Sent", date:"Jul 29, 2026"},
+  {title:"Reminder: Annual Subscription Renewal", audience:"Subscribers Only", status:"Sent", date:"Jul 27, 2026"},
+  {title:"Health Talk Live — This Friday!", audience:"Mobile App", status:"Scheduled", date:"Aug 01, 2026"},
+  {title:"Platform Maintenance Notice", audience:"All Users", status:"Scheduled", date:"Aug 03, 2026"},
+  {title:"Welcome to Dr Ly Cheng Huy Platform", audience:"Free Users", status:"Sent", date:"Jul 20, 2026"},
+];
+document.getElementById('announcementsTableBody').innerHTML = announcements.map(a=>`
+  <tr>
+    <td class="font-medium text-slate-700">${a.title}</td>
+    <td>${a.audience}</td>
+    <td>${badge(a.status, statusColor(a.status))}</td>
+    <td>${a.date}</td>
+  </tr>`).join('');
+
+/* ---------- Charts ---------- */
+new Chart(document.getElementById('revenueChart'), {
+  type:'line',
+  data:{
+    labels:['Feb','Mar','Apr','May','Jun','Jul'],
+    datasets:[{
+      label:'Revenue ($)',
+      data:[21500, 24800, 27200, 29850, 32410, 36180],
+      borderColor:'#2563eb',
+      backgroundColor:'rgba(37,99,235,0.08)',
+      tension:.4, fill:true, pointRadius:4, pointBackgroundColor:'#2563eb'
+    }]
+  },
+  options:{ plugins:{legend:{display:false}}, scales:{ y:{ grid:{color:'#f1f4fa'} }, x:{ grid:{display:false} } } }
+});
+
+new Chart(document.getElementById('bookingsChart'), {
+  type:'doughnut',
+  data:{
+    labels:['Video Consult','General Checkup','Follow-up','Nutrition Advice'],
+    datasets:[{ data:[42, 26, 20, 12], backgroundColor:['#2563eb','#60a5fa','#1d4ed8','#93c5fd'], borderWidth:2, borderColor:'#fff' }]
+  },
+  options:{ plugins:{legend:{position:'bottom', labels:{boxWidth:10, font:{size:10}}}} }
+});
+</script>
+</body>
+</html>
