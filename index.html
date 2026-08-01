@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Website Design for Cambodian SMEs from $99 | BizWeb KH</title>
-<meta name="description" content="Affordable Khmer and English website design for Cambodian SMEs. Explore website demos and selected completed projects by BizWeb KH, with packages starting from $99.">
+<meta name="description" content="Affordable Khmer and English website design for Cambodian SMEs, including booking systems, business dashboards, mobile app development, and custom digital solutions from BizWeb KH.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.bizwebkh.com/">
 <link rel="icon" type="image/png" href="favicon.png">
@@ -502,6 +502,44 @@ html[data-theme="light"] .lang-btn.active{background:#1D7BFF;color:#fff;}
 .form-estimate small{font-size:11px;color:var(--text-3);}
 
 /* ============================================================
+   DIGITAL SOLUTIONS
+============================================================ */
+.digital-solutions-section{background:radial-gradient(circle at 50% 0,rgba(24,200,255,.09),transparent 34%),var(--ink-2);}
+.digital-header-note{max-width:680px;margin-top:12px;font-size:12px;line-height:1.7;color:var(--text-3);}
+.digital-services-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;}
+.digital-service-card{display:flex;min-width:0;flex-direction:column;padding:22px;border:1px solid var(--border);border-radius:var(--radius);background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));box-shadow:0 14px 36px rgba(0,0,0,.12);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;}
+.digital-service-card:hover{transform:translateY(-4px);border-color:var(--border-hi);box-shadow:0 22px 46px rgba(0,0,0,.2),0 0 28px rgba(24,200,255,.06);}
+.digital-card-visual{height:58px;display:flex;align-items:center;margin-bottom:17px;}
+.digital-card-icon{width:52px;height:52px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(24,200,255,.24);border-radius:15px;background:linear-gradient(135deg,rgba(29,123,255,.16),rgba(24,200,255,.12));color:var(--accent-2);}
+.digital-card-icon svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.digital-service-card h3{font-size:17px;line-height:1.35;color:var(--text);margin-bottom:9px;}
+.digital-service-card p{font-size:12.5px;line-height:1.7;color:var(--text-2);margin-bottom:14px;}
+.digital-service-suitable{font-size:11px;line-height:1.55;color:var(--text-3);margin-bottom:13px;}
+.digital-service-suitable strong{color:var(--text-2);}
+.digital-service-features{display:grid;gap:7px;margin:0 0 18px;padding:0;list-style:none;}
+.digital-service-features li{display:flex;gap:7px;font-size:11.5px;line-height:1.45;color:var(--text-2);}
+.digital-service-features svg{flex:0 0 12px;margin-top:2px;fill:none;stroke:var(--green);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.digital-service-card .btn{width:100%;min-height:42px;margin-top:auto;justify-content:center;font-size:12px;}
+.industry-solutions{margin-top:56px;}
+.industry-solutions-header{max-width:700px;margin:0 auto 24px;text-align:center;}
+.industry-solutions-header h3{font-size:22px;color:var(--text);margin-bottom:8px;}
+.industry-solutions-header p{font-size:13px;line-height:1.7;color:var(--text-2);}
+.industry-tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.industry-tab{min-height:38px;padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:var(--ink-3);color:var(--text-2);font:inherit;font-size:12px;font-weight:700;cursor:pointer;transition:color .2s ease,background .2s ease,border-color .2s ease;}
+.industry-tab:hover,.industry-tab:focus-visible{outline:none;color:var(--text);border-color:var(--border-hi);}
+.industry-tab[aria-selected="true"]{color:#fff;border-color:var(--accent);background:linear-gradient(135deg,var(--accent),var(--accent-2));}
+.industry-detail{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:start;max-width:900px;margin:0 auto;padding:22px;border:1px solid var(--border);border-radius:var(--radius);background:rgba(255,255,255,.03);}
+.industry-detail-icon{width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:15px;background:rgba(29,123,255,.13);color:var(--accent-2);}
+.industry-detail-icon svg{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.industry-detail h4{font-size:17px;color:var(--text);margin-bottom:10px;}
+.industry-detail ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px 14px;margin:0;padding:0;list-style:none;}
+.industry-detail li{display:flex;gap:7px;font-size:12px;line-height:1.5;color:var(--text-2);}
+.industry-detail li::before{content:'✓';color:var(--green);font-weight:800;}
+.digital-solutions-cta{display:flex;align-items:center;justify-content:space-between;gap:24px;max-width:1000px;margin:50px auto 0;padding:28px;border:1px solid rgba(24,200,255,.26);border-radius:var(--radius);background:linear-gradient(135deg,rgba(29,123,255,.16),rgba(24,200,255,.08));box-shadow:0 18px 46px rgba(0,0,0,.14);}
+.digital-solutions-cta h3{font-size:21px;color:var(--text);margin-bottom:7px;}.digital-solutions-cta p{max-width:650px;font-size:13px;line-height:1.7;color:var(--text-2);}.digital-solutions-cta small{display:block;margin-top:8px;font-size:11px;line-height:1.55;color:var(--text-3);}
+.digital-solutions-cta-actions{display:flex;flex:0 0 auto;gap:10px;flex-wrap:wrap;}.digital-solutions-cta-actions .btn{min-height:42px;justify-content:center;}
+
+/* ============================================================
    RECENT PROJECTS
 ============================================================ */
 .projects-section{background:radial-gradient(circle at 50% 0,rgba(0,212,255,0.07),transparent 32%),var(--ink-2);}
@@ -773,6 +811,13 @@ html[data-theme="light"] .booking-addon{background:linear-gradient(135deg,rgba(2
 html[data-theme="light"] .booking-feature-group,html[data-theme="light"] .booking-combinations article{background:#FFFFFF;border-color:rgba(29,123,255,.14);}
 html[data-theme="light"] .booking-notice{background:rgba(255,138,61,.07);border-color:rgba(255,138,61,.22);}
 html[data-theme="light"] .form-estimate{background:rgba(29,123,255,.05);border-color:rgba(29,123,255,.18);}
+html[data-theme="light"] .digital-solutions-section{background:linear-gradient(180deg,#FFFFFF,#EEF6FF);}
+html[data-theme="light"] .digital-service-card,html[data-theme="light"] .industry-detail{background:#FFFFFF;border-color:rgba(29,123,255,.14);box-shadow:0 14px 36px rgba(29,72,125,.08);}
+html[data-theme="light"] .digital-service-card:hover{border-color:rgba(29,123,255,.3);box-shadow:0 22px 46px rgba(29,72,125,.13);}
+html[data-theme="light"] .industry-tab{background:#FFFFFF;border-color:rgba(29,123,255,.16);color:#4A5B7A;}
+html[data-theme="light"] .industry-tab:hover,html[data-theme="light"] .industry-tab:focus-visible{color:#071C3D;border-color:#1D7BFF;}
+html[data-theme="light"] .industry-tab[aria-selected="true"]{color:#fff;border-color:#1D7BFF;background:linear-gradient(135deg,#1D7BFF,#18C8FF);}
+html[data-theme="light"] .digital-solutions-cta{background:linear-gradient(135deg,rgba(29,123,255,.10),rgba(24,200,255,.06));border-color:rgba(29,123,255,.22);box-shadow:0 18px 46px rgba(29,72,125,.1);}
 html[data-theme="light"] .projects-section{background:linear-gradient(180deg,#EEF6FF,#FFFFFF);}
 html[data-theme="light"] .project-card{background:#FFFFFF;border-color:rgba(29,123,255,.14);box-shadow:0 18px 50px rgba(29,72,125,.09);}
 html[data-theme="light"] .project-card:hover{border-color:rgba(29,123,255,.28);box-shadow:0 24px 64px rgba(29,72,125,.14);}
@@ -829,6 +874,13 @@ html[data-theme="light"] .back-to-top:hover{background:#1D7BFF;border-color:#1D7
   .booking-addon-price{text-align:left;}
   .booking-addon-header .btn{width:100%;justify-content:center;}
   .booking-feature-groups,.booking-combinations{grid-template-columns:1fr;}
+  .digital-services-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .digital-solutions-cta{align-items:flex-start;flex-direction:column;}
+}
+@media(max-width:1100px){
+  .digital-services-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .nav-links{margin-left:16px;}
+  .nav-links a{padding-left:8px;padding-right:8px;font-size:12px;}
 }
 @media(max-width:1000px){
   .project-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
@@ -876,6 +928,11 @@ html[data-theme="light"] .back-to-top:hover{background:#1D7BFF;border-color:#1D7
   .care-addon{grid-template-columns:1fr;align-items:stretch;padding:18px;}
   .care-addon .btn{width:100%;}
   .booking-addon{padding:22px 18px;}
+  .industry-solutions{margin-top:42px;}
+  .industry-detail{grid-template-columns:1fr;padding:20px;}
+  .industry-detail ul{grid-template-columns:1fr 1fr;}
+  .digital-solutions-cta{margin-top:38px;padding:22px 18px;}
+  .digital-solutions-cta-actions{width:100%;}.digital-solutions-cta-actions .btn{flex:1 1 180px;}
   .contact-grid{max-width:420px;}
   .contact-btn{padding:20px 16px;}
   footer{padding:28px 18px 30px;}
@@ -894,6 +951,7 @@ html[data-theme="light"] .back-to-top:hover{background:#1D7BFF;border-color:#1D7
   .live-preview-frame iframe{transform:scale(0.215);}
 }
 @media(max-width:700px){
+  .digital-services-grid{grid-template-columns:1fr;}
   .project-grid{grid-template-columns:1fr !important;}
   .project-card:last-child{grid-column:auto;max-width:none;}
 }
@@ -914,6 +972,8 @@ html[data-theme="light"] .back-to-top:hover{background:#1D7BFF;border-color:#1D7
   .booking-addon-icon{width:50px;height:50px;flex-basis:50px;border-radius:14px;}
   .booking-addon h3{font-size:18px;}
   .booking-addon-price strong{font-size:28px;}
+  .industry-detail ul{grid-template-columns:1fr;}
+  .digital-solutions-cta-actions{flex-direction:column;}.digital-solutions-cta-actions .btn{width:100%;}
 }
 @media(max-width:768px){
   html[data-theme="light"] .hero{padding-top:calc(var(--nav-h) + 32px);padding-bottom:44px;min-height:auto;height:auto;}
@@ -1127,7 +1187,7 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
   <ul class="nav-links">
     <li><a href="#demos" data-i18n="nav.demos">គំរូ</a></li>
     <li><a href="#styles" data-i18n="nav.styles">រចនាប័ទ្ម</a></li>
-    <li><a href="#projects" data-i18n="nav.projects">គម្រោង</a></li>
+    <li><a href="#digital-solutions" data-i18n="nav.digitalSolutions">ដំណោះស្រាយឌីជីថល</a></li>
     <li><a href="#pricing" data-i18n="nav.pricing">តម្លៃ</a></li>
     <li><a href="#how" data-i18n="nav.how">របៀបដំណើរការ</a></li>
     <li><a href="#request" data-i18n="nav.preview">ព្រីវ្យូឥតគិតថ្លៃ</a></li>
@@ -1161,7 +1221,7 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
 <div class="mobile-menu" id="mobile-menu">
   <a href="#demos"    onclick="closeMobileMenu()" data-i18n="nav.demos">គំរូ</a>
   <a href="#styles"   onclick="closeMobileMenu()" data-i18n="nav.styles">រចនាប័ទ្ម</a>
-  <a href="#projects" onclick="closeMobileMenu()" data-i18n="nav.projects">គម្រោង</a>
+  <a href="#digital-solutions" onclick="closeMobileMenu()" data-i18n="nav.digitalSolutions">ដំណោះស្រាយឌីជីថល</a>
   <a href="#pricing"  onclick="closeMobileMenu()" data-i18n="nav.pricing">តម្លៃ</a>
   <a href="#how"      onclick="closeMobileMenu()" data-i18n="nav.how">របៀបដំណើរការ</a>
   <a href="#request"  onclick="closeMobileMenu()" data-i18n="nav.preview">ព្រីវ្យូឥតគិតថ្លៃ</a>
@@ -1809,6 +1869,114 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
   </div>
 </section>
 
+<!-- ========== DIGITAL SOLUTIONS ========== -->
+<section class="section digital-solutions-section" id="digital-solutions">
+  <div class="section-inner">
+    <div class="section-header">
+      <div>
+        <p class="section-label" data-i18n="digital.label">OTHER DIGITAL SERVICES</p>
+        <h2 class="section-title" data-i18n="digital.title">More Than a Website</h2>
+        <p class="section-sub" data-i18n="digital.sub">Custom digital solutions that help your business manage customers, bookings, operations and growth.</p>
+        <p class="digital-header-note" data-i18n="digital.note">These services are customized and quoted separately according to the required functions, integrations and number of users.</p>
+      </div>
+    </div>
+
+    <div class="digital-services-grid">
+      <article class="digital-service-card">
+        <div class="digital-card-visual"><div class="digital-card-icon"><svg width="25" height="25" aria-hidden="true"><use href="#i-calendar"/></svg></div></div>
+        <h3 data-i18n="digital.booking.title">Online Booking System</h3>
+        <p data-i18n="digital.booking.desc">Let customers select a service, preferred date and time, verify their contact details and submit an appointment request online.</p>
+        <div class="digital-service-suitable" data-i18n="digital.booking.suitable"><strong>Suitable for:</strong> Clinics, salons, hotels, resorts, consultants, training centres and service businesses.</div>
+        <ul class="digital-service-features">
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.booking.f1">Appointment form</span></li>
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.booking.f2">Date and time selection</span></li>
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.booking.f3">Customer verification</span></li>
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.booking.f4">Dashboard and status updates</span></li>
+        </ul>
+        <a class="btn btn-outline" href="#contact"><span data-i18n="digital.card.cta">Get in Touch</span><svg width="14" height="14"><use href="#i-arrow-r"/></svg></a>
+      </article>
+
+      <article class="digital-service-card">
+        <div class="digital-card-visual"><div class="digital-card-icon"><svg width="25" height="25" aria-hidden="true"><use href="#i-trending"/></svg></div></div>
+        <h3 data-i18n="digital.dashboard.title">Business Dashboard &amp; KPI System</h3>
+        <p data-i18n="digital.dashboard.desc">Track performance, sales, customer activity, team progress and important business indicators in one dashboard.</p>
+        <div class="digital-service-suitable" data-i18n="digital.dashboard.suitable"><strong>Suitable for:</strong> Sales teams, schools, clinics, retail companies, service businesses and multi-branch operations.</div>
+        <ul class="digital-service-features">
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.dashboard.f1">Monthly sales tracking</span></li>
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.dashboard.f2">Staff performance</span></li>
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.dashboard.f3">Lead and inquiry tracking</span></li>
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.dashboard.f4">Management reports</span></li>
+        </ul>
+        <a class="btn btn-outline" href="#contact"><span data-i18n="digital.card.cta">Get in Touch</span><svg width="14" height="14"><use href="#i-arrow-r"/></svg></a>
+      </article>
+
+      <article class="digital-service-card">
+        <div class="digital-card-visual"><div class="digital-card-icon"><svg width="25" height="25" aria-hidden="true"><use href="#i-phone"/></svg></div></div>
+        <h3 data-i18n="digital.app.title">Mobile App Development</h3>
+        <p data-i18n="digital.app.desc">Give customers and staff a convenient mobile experience designed around your business services and workflow.</p>
+        <div class="digital-service-suitable" data-i18n="digital.app.suitable"><strong>Suitable for:</strong> Clinics, schools, delivery businesses, restaurants, property and service companies.</div>
+        <ul class="digital-service-features">
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.app.f1">Customer account and support</span></li>
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.app.f2">Service requests or booking</span></li>
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.app.f3">Notifications and loyalty</span></li>
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.app.f4">Staff workflow tools</span></li>
+        </ul>
+        <a class="btn btn-outline" href="#contact"><span data-i18n="digital.card.cta">Get in Touch</span><svg width="14" height="14"><use href="#i-arrow-r"/></svg></a>
+      </article>
+
+      <article class="digital-service-card">
+        <div class="digital-card-visual"><div class="digital-card-icon"><svg width="25" height="25" aria-hidden="true"><use href="#i-layers"/></svg></div></div>
+        <h3 data-i18n="digital.tools.title">Custom Business Tools</h3>
+        <p data-i18n="digital.tools.desc">Replace manual forms, spreadsheets and repetitive processes with a custom digital system designed for your workflow.</p>
+        <div class="digital-service-suitable" data-i18n="digital.tools.suitable"><strong>Suitable for:</strong> Teams that need clearer internal processes, data and daily operations.</div>
+        <ul class="digital-service-features">
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.tools.f1">Inquiry and customer management</span></li>
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.tools.f2">Internal requests and documents</span></li>
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.tools.f3">Inventory or order tracking</span></li>
+          <li><svg width="12" height="12"><use href="#i-check"/></svg><span data-i18n="digital.tools.f4">Membership or partner portal</span></li>
+        </ul>
+        <a class="btn btn-outline" href="#contact"><span data-i18n="digital.card.cta">Get in Touch</span><svg width="14" height="14"><use href="#i-arrow-r"/></svg></a>
+      </article>
+    </div>
+
+    <div class="industry-solutions">
+      <div class="industry-solutions-header">
+        <h3 data-i18n="digital.industries.title">Digital Solutions for Different Businesses</h3>
+        <p data-i18n="digital.industries.sub">See how websites, booking systems, dashboards, mobile apps and custom tools can support different industries.</p>
+      </div>
+      <div class="industry-tabs" role="tablist" aria-label="Digital solution industries">
+        <button class="industry-tab" type="button" role="tab" aria-selected="true" aria-controls="digital-industry-detail" data-industry="clinic" onclick="selectDigitalIndustry('clinic')" onkeydown="handleDigitalIndustryKey(event)"><span data-i18n="digital.industry.clinic.tab">Clinic &amp; Dental</span></button>
+        <button class="industry-tab" type="button" role="tab" aria-selected="false" aria-controls="digital-industry-detail" data-industry="school" onclick="selectDigitalIndustry('school')" onkeydown="handleDigitalIndustryKey(event)"><span data-i18n="digital.industry.school.tab">School &amp; Training</span></button>
+        <button class="industry-tab" type="button" role="tab" aria-selected="false" aria-controls="digital-industry-detail" data-industry="hotel" onclick="selectDigitalIndustry('hotel')" onkeydown="handleDigitalIndustryKey(event)"><span data-i18n="digital.industry.hotel.tab">Hotel &amp; Resort</span></button>
+        <button class="industry-tab" type="button" role="tab" aria-selected="false" aria-controls="digital-industry-detail" data-industry="restaurant" onclick="selectDigitalIndustry('restaurant')" onkeydown="handleDigitalIndustryKey(event)"><span data-i18n="digital.industry.restaurant.tab">Restaurant &amp; Café</span></button>
+        <button class="industry-tab" type="button" role="tab" aria-selected="false" aria-controls="digital-industry-detail" data-industry="delivery" onclick="selectDigitalIndustry('delivery')" onkeydown="handleDigitalIndustryKey(event)"><span data-i18n="digital.industry.delivery.tab">Delivery &amp; Service</span></button>
+        <button class="industry-tab" type="button" role="tab" aria-selected="false" aria-controls="digital-industry-detail" data-industry="retail" onclick="selectDigitalIndustry('retail')" onkeydown="handleDigitalIndustryKey(event)"><span data-i18n="digital.industry.retail.tab">Retail &amp; E-commerce</span></button>
+      </div>
+      <div class="industry-detail" id="digital-industry-detail" role="tabpanel" tabindex="0">
+        <div class="industry-detail-icon"><svg width="24" height="24" aria-hidden="true"><use href="#i-layers"/></svg></div>
+        <div>
+          <h4 id="digital-industry-title" data-i18n="digital.industry.clinic.title">Clinic &amp; Dental</h4>
+          <ul id="digital-industry-list">
+            <li data-i18n="digital.industry.clinic.1">Professional website</li><li data-i18n="digital.industry.clinic.2">Online appointment booking</li><li data-i18n="digital.industry.clinic.3">Patient inquiry management</li><li data-i18n="digital.industry.clinic.4">Consultation mobile app</li><li data-i18n="digital.industry.clinic.5">Appointment dashboard</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="digital-solutions-cta">
+      <div>
+        <h3 data-i18n="digital.cta.title">Not Sure Which Solution Fits Your Business?</h3>
+        <p data-i18n="digital.cta.desc">Tell us how your business currently works and what you want to improve. We will recommend a suitable website, booking system, dashboard, mobile app or custom digital tool.</p>
+        <small data-i18n="digital.cta.note">Advanced systems are quoted separately based on features, users, integrations and technical requirements.</small>
+      </div>
+      <div class="digital-solutions-cta-actions">
+        <a class="btn btn-primary" href="#request"><svg width="15" height="15"><use href="#i-sparkles"/></svg><span data-i18n="digital.cta.primary">Discuss Your Project</span></a>
+        <a class="btn btn-outline" href="#contact"><svg width="15" height="15"><use href="#i-send"/></svg><span data-i18n="digital.cta.secondary">Contact BizWeb KH</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ========== RECENT PROJECTS ========== -->
 <!-- Portfolio section temporarily hidden until thumbnails and project presentation are updated.
 <section class="section projects-section" id="projects">
@@ -2222,7 +2390,7 @@ html[lang="km"] .promo-offer{font-size:clamp(14px,1.4vw,16px);}
   </div>
   <ul class="footer-links">
     <li><a href="#demos" data-i18n="nav.demos">គំរូ</a></li>
-    <li><a href="#projects" data-i18n="nav.projects">គម្រោង</a></li>
+    <li><a href="#digital-solutions" data-i18n="nav.digitalSolutions">ដំណោះស្រាយឌីជីថល</a></li>
     <li><a href="#pricing" data-i18n="nav.pricing">តម្លៃ</a></li>
     <li><a href="#how" data-i18n="nav.how">របៀបដំណើរការ</a></li>
     <li><a href="#request" data-i18n="nav.preview">ព្រីវ្យូឥតគិតថ្លៃ</a></li>
@@ -2296,6 +2464,7 @@ const LANG_DATA = {
     'nav.demos': 'គំរូ',
     'nav.styles': 'រចនាប័ទ្ម',
     'nav.projects': 'គម្រោង',
+    'nav.digitalSolutions': 'ដំណោះស្រាយឌីជីថល',
     'nav.pricing': 'តម្លៃ',
     'nav.how': 'របៀបដំណើរការ',
     'nav.preview': 'ព្រីវ្យូឥតគិតថ្លៃ',
@@ -2506,6 +2675,36 @@ const LANG_DATA = {
     'bookingAddon.proPrice': 'ចាប់ពី $499',
     'bookingAddon.proMaxPrice': 'ចាប់ពី $599',
     'bookingAddon.finalPriceNote': 'តម្លៃចុងក្រោយនឹងបញ្ជាក់បន្ទាប់ពីពិនិត្យលំហូរការកក់ដែលត្រូវការ។ តម្លៃចាប់ពីនេះគ្របដណ្តប់លើ Booking Workflow មូលដ្ឋានសម្រាប់អាជីវកម្មមួយ និងគណនី Admin មួយប៉ុណ្ណោះ។ Complex Scheduling, Payment, Customer Account, Multiple Branches, Automated Reminders និង Advanced Integration ត្រូវស្នើតម្លៃដោយឡែក។',
+    'digital.label': 'សេវាឌីជីថលផ្សេងទៀត',
+    'digital.card.cta': 'ទាក់ទងមកយើង',
+    'digital.title': 'លើសពីវេបសាយ',
+    'digital.sub': 'ដំណោះស្រាយឌីជីថលតាមតម្រូវការ ដែលជួយអាជីវកម្មរបស់អ្នកគ្រប់គ្រងអតិថិជន ការកក់ ប្រតិបត្តិការ និងការរីកចម្រើន។',
+    'digital.note': 'សេវាទាំងនេះរៀបចំតាមតម្រូវការ និងស្នើតម្លៃដោយឡែក អាស្រ័យលើមុខងារ ការភ្ជាប់ប្រព័ន្ធ និងចំនួនអ្នកប្រើប្រាស់។',
+    'digital.booking.title': 'ប្រព័ន្ធកក់តាមអនឡាញ',
+    'digital.booking.desc': 'ឱ្យអតិថិជនជ្រើសសេវា ថ្ងៃ និងម៉ោងដែលចង់បាន ផ្ទៀងផ្ទាត់ព័ត៌មានទំនាក់ទំនង ហើយផ្ញើសំណើណាត់ជួបតាមអនឡាញ។',
+    'digital.booking.suitable': 'សាកសមសម្រាប់៖ គ្លីនិក ធ្មេញ សាឡន ស្ប៉ា សណ្ឋាគារ រីសត អ្នកប្រឹក្សា មជ្ឈមណ្ឌលបណ្តុះបណ្តាល និងអាជីវកម្មសេវាកម្ម។',
+    'digital.booking.f1': 'ទម្រង់ណាត់ជួប', 'digital.booking.f2': 'ជ្រើសថ្ងៃ និងម៉ោង', 'digital.booking.f3': 'ផ្ទៀងផ្ទាត់អតិថិជន', 'digital.booking.f4': 'Dashboard និងកែស្ថានភាព', 'digital.booking.cta': 'មើលគំរូប្រព័ន្ធកក់',
+    'digital.dashboard.title': 'Business Dashboard និង KPI',
+    'digital.dashboard.desc': 'តាមដានលទ្ធផល ការលក់ សកម្មភាពអតិថិជន ការងារក្រុម និងសូចនាករអាជីវកម្មសំខាន់ៗក្នុង Dashboard តែមួយ។',
+    'digital.dashboard.suitable': 'សាកសមសម្រាប់៖ ក្រុមលក់ សាលារៀន គ្លីនិក ហាងលក់រាយ អាជីវកម្មសេវាកម្ម និងអាជីវកម្មច្រើនសាខា។',
+    'digital.dashboard.f1': 'តាមដានការលក់ប្រចាំខែ', 'digital.dashboard.f2': 'លទ្ធផលការងារបុគ្គលិក', 'digital.dashboard.f3': 'តាមដាន Lead និងសំណួរ', 'digital.dashboard.f4': 'របាយការណ៍គ្រប់គ្រង', 'digital.dashboard.cta': 'ពិភាក្សា Dashboard របស់អ្នក',
+    'digital.app.title': 'ការអភិវឌ្ឍ Mobile App',
+    'digital.app.desc': 'ផ្តល់បទពិសោធន៍លើទូរស័ព្ទដ៏ងាយស្រួលសម្រាប់អតិថិជន និងបុគ្គលិក ដែលរៀបចំតាមសេវា និងលំហូរការងាររបស់អាជីវកម្មអ្នក។',
+    'digital.app.suitable': 'សាកសមសម្រាប់៖ គ្លីនិក សាលារៀន អាជីវកម្មដឹកជញ្ជូន ភោជនីយដ្ឋាន អចលនទ្រព្យ និងក្រុមហ៊ុនសេវាកម្ម។',
+    'digital.app.f1': 'គណនីអតិថិជន និងជំនួយ', 'digital.app.f2': 'សំណើសេវា ឬការកក់', 'digital.app.f3': 'ការជូនដំណឹង និង Loyalty', 'digital.app.f4': 'ឧបករណ៍លំហូរការងារបុគ្គលិក', 'digital.app.cta': 'រៀបចំគម្រោង Mobile App',
+    'digital.tools.title': 'ឧបករណ៍អាជីវកម្មតាមតម្រូវការ',
+    'digital.tools.desc': 'ប្តូរទម្រង់ការងារដោយដៃ Spreadsheet និងដំណើរការដដែលៗ ទៅជាប្រព័ន្ធឌីជីថលដែលរៀបចំសម្រាប់លំហូរការងាររបស់អ្នក។',
+    'digital.tools.suitable': 'សាកសមសម្រាប់៖ ក្រុមការងារដែលត្រូវការដំណើរការផ្ទៃក្នុង ទិន្នន័យ និងប្រតិបត្តិការប្រចាំថ្ងៃច្បាស់លាស់ជាងមុន។',
+    'digital.tools.f1': 'គ្រប់គ្រងសំណួរ និងអតិថិជន', 'digital.tools.f2': 'សំណើ និងឯកសារផ្ទៃក្នុង', 'digital.tools.f3': 'តាមដានស្តុក ឬការបញ្ជាទិញ', 'digital.tools.f4': 'Membership ឬ Partner Portal', 'digital.tools.cta': 'ប្រាប់យើងពីតម្រូវការរបស់អ្នក',
+    'digital.industries.title': 'ដំណោះស្រាយឌីជីថលសម្រាប់អាជីវកម្មផ្សេងៗ',
+    'digital.industries.sub': 'មើលរបៀបដែលវេបសាយ ប្រព័ន្ធកក់ Dashboard Mobile App និងឧបករណ៍តាមតម្រូវការ អាចជួយឧស្សាហកម្មផ្សេងៗ។',
+    'digital.industry.clinic.tab': 'គ្លីនិក និងធ្មេញ', 'digital.industry.clinic.title': 'គ្លីនិក និងធ្មេញ', 'digital.industry.clinic.1': 'វេបសាយវិជ្ជាជីវៈ', 'digital.industry.clinic.2': 'ការកក់ណាត់ជួបតាមអនឡាញ', 'digital.industry.clinic.3': 'គ្រប់គ្រងសំណួរអ្នកជំងឺ', 'digital.industry.clinic.4': 'Mobile App សម្រាប់ប្រឹក្សា', 'digital.industry.clinic.5': 'Dashboard គ្រប់គ្រងការណាត់ជួប',
+    'digital.industry.school.tab': 'សាលា និងបណ្តុះបណ្តាល', 'digital.industry.school.title': 'សាលា និងមជ្ឈមណ្ឌលបណ្តុះបណ្តាល', 'digital.industry.school.1': 'វេបសាយសាលារៀន', 'digital.industry.school.2': 'ទម្រង់សំណួរសិស្ស', 'digital.industry.school.3': 'ចុះឈ្មោះវគ្គសិក្សា', 'digital.industry.school.4': 'App មាតិកាសិក្សា', 'digital.industry.school.5': 'Dashboard វត្តមាន ឬលទ្ធផល',
+    'digital.industry.hotel.tab': 'សណ្ឋាគារ និងរីសត', 'digital.industry.hotel.title': 'សណ្ឋាគារ និងរីសត', 'digital.industry.hotel.1': 'វេបសាយសណ្ឋាគារ', 'digital.industry.hotel.2': 'សំណួរ ឬការកក់បន្ទប់', 'digital.industry.hotel.3': 'Dashboard ភាពទំនេរ', 'digital.industry.hotel.4': 'App ព័ត៌មានភ្ញៀវ', 'digital.industry.hotel.5': 'ឧបករណ៍ប្រតិបត្តិការបុគ្គលិក',
+    'digital.industry.restaurant.tab': 'ភោជនីយដ្ឋាន និងកាហ្វេ', 'digital.industry.restaurant.title': 'ភោជនីយដ្ឋាន និងកាហ្វេ', 'digital.industry.restaurant.1': 'វេបសាយ និង Menu ឌីជីថល', 'digital.industry.restaurant.2': 'កក់តុ', 'digital.industry.restaurant.3': 'ប្រព័ន្ធសំណួរការបញ្ជាទិញ', 'digital.industry.restaurant.4': 'Loyalty App', 'digital.industry.restaurant.5': 'Dashboard ការលក់',
+    'digital.industry.delivery.tab': 'ដឹកជញ្ជូន និងសេវាកម្ម', 'digital.industry.delivery.title': 'អាជីវកម្មដឹកជញ្ជូន និងសេវាកម្ម', 'digital.industry.delivery.1': 'វេបសាយអាជីវកម្ម', 'digital.industry.delivery.2': 'ទម្រង់ស្នើសេវា', 'digital.industry.delivery.3': 'តាមដានការបញ្ជាទិញ', 'digital.industry.delivery.4': 'Mobile App អតិថិជន', 'digital.industry.delivery.5': 'Dashboard ប្រតិបត្តិការ',
+    'digital.industry.retail.tab': 'លក់រាយ និង E-commerce', 'digital.industry.retail.title': 'អាជីវកម្មលក់រាយ និង E-commerce', 'digital.industry.retail.1': 'វេបសាយផលិតផល', 'digital.industry.retail.2': 'ប្រព័ន្ធសំណួរ ឬការបញ្ជាទិញ', 'digital.industry.retail.3': 'Dashboard ស្តុក', 'digital.industry.retail.4': 'Loyalty App', 'digital.industry.retail.5': 'របាយការណ៍ការលក់ និងអតិថិជន',
+    'digital.cta.title': 'មិនទាន់ប្រាកដថាដំណោះស្រាយណាសមនឹងអាជីវកម្មអ្នក?', 'digital.cta.desc': 'ប្រាប់យើងពីរបៀបដែលអាជីវកម្មអ្នកកំពុងដំណើរការ និងអ្វីដែលអ្នកចង់កែលម្អ។ យើងនឹងណែនាំវេបសាយ ប្រព័ន្ធកក់ Dashboard Mobile App ឬឧបករណ៍ឌីជីថលតាមតម្រូវការ។', 'digital.cta.note': 'ប្រព័ន្ធកម្រិតខ្ពស់ស្នើតម្លៃដោយឡែក អាស្រ័យលើមុខងារ ចំនួនអ្នកប្រើប្រាស់ ការភ្ជាប់ និងតម្រូវការបច្ចេកទេស។', 'digital.cta.primary': 'ពិភាក្សាគម្រោងរបស់អ្នក', 'digital.cta.secondary': 'ទាក់ទង BizWeb KH',
     'compare.label': '// អាប់ដេតអាជីវកម្ម',
     'compare.title': 'ពី Facebook ទៅជាវេបសាយផ្លូវការ',
     'compare.sub': 'ផ្ដល់ឱ្យអតិថិជននូវព័ត៌មានច្បាស់ តំណចែករំលែកងាយ និងទំនុកចិត្តជាងមុន។',
@@ -2640,6 +2839,7 @@ const LANG_DATA = {
     'nav.demos': 'Demos',
     'nav.styles': 'Styles',
     'nav.projects': 'Projects',
+    'nav.digitalSolutions': 'Digital Solutions',
     'nav.pricing': 'Pricing',
     'nav.how': 'How It Works',
     'nav.preview': 'Free Preview',
@@ -2850,6 +3050,23 @@ const LANG_DATA = {
     'bookingAddon.proPrice': 'From $499',
     'bookingAddon.proMaxPrice': 'From $599',
     'bookingAddon.finalPriceNote': 'Final pricing is confirmed after reviewing the required booking workflow. Starting price covers a basic single-business booking workflow with one admin account. Complex scheduling, payment, customer accounts, multiple branches, automated reminders, or advanced integrations are quoted separately.',
+    'digital.label': 'OTHER DIGITAL SERVICES',
+    'digital.card.cta': 'Get in Touch',
+    'digital.title': 'More Than a Website',
+    'digital.sub': 'Custom digital solutions that help your business manage customers, bookings, operations and growth.',
+    'digital.note': 'These services are customized and quoted separately according to the required functions, integrations and number of users.',
+    'digital.booking.title': 'Online Booking System', 'digital.booking.desc': 'Let customers select a service, preferred date and time, verify their contact details and submit an appointment request online.', 'digital.booking.suitable': 'Suitable for: Clinics, dental practices, salons, spas, hotels, resorts, consultants, training centres and service businesses.', 'digital.booking.f1': 'Appointment form', 'digital.booking.f2': 'Date and time selection', 'digital.booking.f3': 'Customer verification', 'digital.booking.f4': 'Dashboard and status updates', 'digital.booking.cta': 'View Booking System Demo',
+    'digital.dashboard.title': 'Business Dashboard & KPI System', 'digital.dashboard.desc': 'Track performance, sales, customer activity, team progress and important business indicators in one dashboard.', 'digital.dashboard.suitable': 'Suitable for: Sales teams, insurance companies, schools, clinics, retail companies, service businesses and multi-branch operations.', 'digital.dashboard.f1': 'Monthly sales tracking', 'digital.dashboard.f2': 'Staff performance', 'digital.dashboard.f3': 'Lead and inquiry tracking', 'digital.dashboard.f4': 'Management reports', 'digital.dashboard.cta': 'Discuss Your Dashboard',
+    'digital.app.title': 'Mobile App Development', 'digital.app.desc': 'Give customers and staff a convenient mobile experience designed around your business services and workflow.', 'digital.app.suitable': 'Suitable for: Clinics, schools, delivery businesses, restaurants, membership services, property businesses and service companies.', 'digital.app.f1': 'Customer account and support', 'digital.app.f2': 'Service requests or booking', 'digital.app.f3': 'Notifications and loyalty', 'digital.app.f4': 'Staff workflow tools', 'digital.app.cta': 'Plan Your Mobile App',
+    'digital.tools.title': 'Custom Business Tools', 'digital.tools.desc': 'Replace manual forms, spreadsheets and repetitive processes with a custom digital system designed for your workflow.', 'digital.tools.suitable': 'Suitable for: Teams that need clearer internal processes, data and daily operations.', 'digital.tools.f1': 'Inquiry and customer management', 'digital.tools.f2': 'Internal requests and documents', 'digital.tools.f3': 'Inventory or order tracking', 'digital.tools.f4': 'Membership or partner portal', 'digital.tools.cta': 'Tell Us What You Need',
+    'digital.industries.title': 'Digital Solutions for Different Businesses', 'digital.industries.sub': 'See how websites, booking systems, dashboards, mobile apps and custom tools can support different industries.',
+    'digital.industry.clinic.tab': 'Clinic & Dental', 'digital.industry.clinic.title': 'Clinic & Dental', 'digital.industry.clinic.1': 'Professional website', 'digital.industry.clinic.2': 'Online appointment booking', 'digital.industry.clinic.3': 'Patient inquiry management', 'digital.industry.clinic.4': 'Consultation mobile app', 'digital.industry.clinic.5': 'Appointment dashboard',
+    'digital.industry.school.tab': 'School & Training', 'digital.industry.school.title': 'School & Training Centre', 'digital.industry.school.1': 'School website', 'digital.industry.school.2': 'Student inquiry form', 'digital.industry.school.3': 'Course registration', 'digital.industry.school.4': 'Learning content app', 'digital.industry.school.5': 'Attendance or performance dashboard',
+    'digital.industry.hotel.tab': 'Hotel & Resort', 'digital.industry.hotel.title': 'Hotel & Resort', 'digital.industry.hotel.1': 'Hotel website', 'digital.industry.hotel.2': 'Room inquiry or booking', 'digital.industry.hotel.3': 'Availability dashboard', 'digital.industry.hotel.4': 'Guest information app', 'digital.industry.hotel.5': 'Staff operations tool',
+    'digital.industry.restaurant.tab': 'Restaurant & Café', 'digital.industry.restaurant.title': 'Restaurant & Café', 'digital.industry.restaurant.1': 'Website and digital menu', 'digital.industry.restaurant.2': 'Table reservation', 'digital.industry.restaurant.3': 'Order inquiry system', 'digital.industry.restaurant.4': 'Loyalty app', 'digital.industry.restaurant.5': 'Sales dashboard',
+    'digital.industry.delivery.tab': 'Delivery & Service', 'digital.industry.delivery.title': 'Delivery & Service Business', 'digital.industry.delivery.1': 'Business website', 'digital.industry.delivery.2': 'Service request form', 'digital.industry.delivery.3': 'Order tracking', 'digital.industry.delivery.4': 'Customer mobile app', 'digital.industry.delivery.5': 'Operations dashboard',
+    'digital.industry.retail.tab': 'Retail & E-commerce', 'digital.industry.retail.title': 'Retail & E-commerce', 'digital.industry.retail.1': 'Product website', 'digital.industry.retail.2': 'Inquiry or order system', 'digital.industry.retail.3': 'Inventory dashboard', 'digital.industry.retail.4': 'Loyalty app', 'digital.industry.retail.5': 'Sales and customer reports',
+    'digital.cta.title': 'Not Sure Which Solution Fits Your Business?', 'digital.cta.desc': 'Tell us how your business currently works and what you want to improve. We will recommend a suitable website, booking system, dashboard, mobile app or custom digital tool.', 'digital.cta.note': 'Advanced systems are quoted separately based on features, users, integrations and technical requirements.', 'digital.cta.primary': 'Discuss Your Project', 'digital.cta.secondary': 'Contact BizWeb KH',
     'compare.label': '// business upgrade',
     'compare.title': 'From Facebook-only to professional website',
     'compare.sub': 'Give customers one clear place to understand your business and contact you.',
@@ -3036,6 +3253,7 @@ function applyLang(lang) {
   const footerCopy = document.querySelector('.footer-copy');
   if (footerCopy) footerCopy.textContent = t('footer.copy');
   if (typeof updateBookingEstimate === 'function') updateBookingEstimate();
+  if (typeof renderDigitalIndustry === 'function') renderDigitalIndustry();
   if (typeof renderCards === 'function') renderCards();
   if (typeof window._heroTypingRestart === 'function') window._heroTypingRestart();
 }
@@ -3052,6 +3270,48 @@ function initLang() {
     if (saved !== 'en') saved = 'kh';
   } catch(e) {}
   applyLang(saved);
+}
+
+let currentDigitalIndustry = 'clinic';
+const DIGITAL_INDUSTRY_IDS = ['clinic', 'school', 'hotel', 'restaurant', 'delivery', 'retail'];
+
+function renderDigitalIndustry(){
+  const title=document.getElementById('digital-industry-title');
+  const list=document.getElementById('digital-industry-list');
+  if(!title||!list)return;
+  const prefix='digital.industry.'+currentDigitalIndustry;
+  title.textContent=t(prefix+'.title');
+  list.replaceChildren(...[1,2,3,4,5].map(index=>{
+    const item=document.createElement('li');
+    item.textContent=t(prefix+'.'+index);
+    return item;
+  }));
+  document.querySelectorAll('.industry-tab').forEach(tab=>{
+    const selected=tab.dataset.industry===currentDigitalIndustry;
+    tab.setAttribute('aria-selected',String(selected));
+    tab.tabIndex=selected?0:-1;
+  });
+}
+
+function selectDigitalIndustry(industry){
+  if(!DIGITAL_INDUSTRY_IDS.includes(industry))return;
+  currentDigitalIndustry=industry;
+  renderDigitalIndustry();
+}
+
+function handleDigitalIndustryKey(event){
+  const tabs=[...document.querySelectorAll('.industry-tab')];
+  const current=tabs.indexOf(event.currentTarget);
+  if(current<0)return;
+  let next=current;
+  if(event.key==='ArrowRight')next=(current+1)%tabs.length;
+  else if(event.key==='ArrowLeft')next=(current-1+tabs.length)%tabs.length;
+  else if(event.key==='Home')next=0;
+  else if(event.key==='End')next=tabs.length-1;
+  else return;
+  event.preventDefault();
+  tabs[next].focus();
+  selectDigitalIndustry(tabs[next].dataset.industry);
 }
 
 /* =====================================================
