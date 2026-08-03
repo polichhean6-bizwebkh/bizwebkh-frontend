@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop All Products — Sokha Beauty & Wellness (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="shop">
+
+<div id="site-header"></div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Shop</div>
+    <h1 id="shopTitle">Shop All Products</h1>
+    <div class="text-muted" id="shopSub" style="font-size:.9rem">Browse our full catalogue of skincare, makeup, vitamins &amp; supplements</div>
+  </div>
+</div>
+
+<div class="container section">
+  <div class="shop-layout">
+    <aside class="filter-panel">
+      <h4>Category</h4>
+      <div id="filterCategory"></div>
+      <h4>Price Range</h4>
+      <input type="range" id="filterPrice" min="0" max="80" value="80">
+      <div style="display:flex; justify-content:space-between; font-size:.75rem; color:var(--color-muted)"><span>$0</span><span id="filterPriceLabel">$80+</span></div>
+      <h4>Brand</h4>
+      <div id="filterBrand"></div>
+      <h4>Product Type</h4>
+      <label><input type="checkbox" value="standard" class="filterType"> Standard</label>
+      <label><input type="checkbox" value="preorder" class="filterType"> Pre-Order</label>
+      <h4>Availability</h4>
+      <label><input type="checkbox" id="filterInStock"> In Stock Only</label>
+      <label><input type="checkbox" id="filterPromo"> On Promotion</label>
+      <h4>Rating</h4>
+      <div id="filterRating"></div>
+      <button class="btn btn-outline btn-block mt-16" id="clearFilters">Clear Filters</button>
+    </aside>
+    <div>
+      <div class="shop-toolbar">
+        <div class="result-count" id="resultCount">0 products</div>
+        <select id="sortSelect">
+          <option value="featured">Sort: Featured</option>
+          <option value="newest">Newest</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="bestselling">Best Selling</option>
+        </select>
+      </div>
+      <div class="prod-grid" id="shopGrid"></div>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+function qparam(name){ return new URLSearchParams(window.location.search).get(name); }
+
+function renderFilterControls(){
+  document.getElementById('filterCategory').innerHTML = CATEGORIES.map(c=>`<label><input type="checkbox" class="filterCat" value="${c.key}"> ${c.name}</label>`).join('');
+  document.getElementById('filterBrand').innerHTML = BRANDS.map(b=>`<label><input type="checkbox" class="filterBrandBox" value="${b}"> ${b}</label>`).join('');
+  document.getElementById('filterRating').innerHTML = [4,3].map(r=>`<label><input type="radio" name="filterRatingRadio" value="${r}"> ${r}★ &amp; up</label>`).join('') + `<label><input type="radio" name="filterRatingRadio" value="0" checked> Any rating</label>`;
+}
+function currentFilters(){
+  return {
+    cats: Array.from(document.querySelectorAll('.filterCat:checked')).map(c=>c.value),
+    brands: Array.from(document.querySelectorAll('.filterBrandBox:checked')).map(c=>c.value),
+    types: Array.from(document.querySelectorAll('.filterType:checked')).map(c=>c.value),
+    maxPrice: parseFloat(document.getElementById('filterPrice').value),
+    inStock: document.getElementById('filterInStock').checked,
+    promo: document.getElementById('filterPromo').checked,
+    minRating: (document.querySelector('input[name=filterRatingRadio]:checked')||{}).value ? parseFloat(document.querySelector('input[name=filterRatingRadio]:checked').value) : 0
+  };
+}
+let searchTerm = (qparam('q')||'').toLowerCase();
+function applyFilters(){
+  let list = PRODUCTS.slice();
+  const f = currentFilters();
+  if(f.cats.length) list = list.filter(p=>f.cats.includes(p.category));
+  if(f.brands.length) list = list.filter(p=>f.brands.includes(p.brand));
+  if(f.types.length) list = list.filter(p=>f.types.includes(p.type));
+  if(f.maxPrice<80) list = list.filter(p=>(p.promoPrice||p.price)<=f.maxPrice);
+  if(f.inStock) list = list.filter(p=>p.stock>0 || p.type==='preorder');
+  if(f.promo) list = list.filter(p=>!!p.promoPrice);
+  if(f.minRating) list = list.filter(p=>p.rating>=f.minRating);
+  if(searchTerm) list = list.filter(p=>p.name.toLowerCase().includes(searchTerm) || CAT_NAME[p.category].toLowerCase().includes(searchTerm) || p.brand.toLowerCase().includes(searchTerm));
+
+  const sortVal = document.getElementById('sortSelect').value;
+  if(sortVal==='price-asc') list.sort((a,b)=>(a.promoPrice||a.price)-(b.promoPrice||b.price));
+  if(sortVal==='price-desc') list.sort((a,b)=>(b.promoPrice||b.price)-(a.promoPrice||a.price));
+  if(sortVal==='newest') list = list.filter(p=>p.badges&&p.badges.includes('new')).concat(list.filter(p=>!(p.badges&&p.badges.includes('new'))));
+  if(sortVal==='bestselling') list.sort((a,b)=>b.reviews-a.reviews);
+
+  document.getElementById('resultCount').textContent = list.length + ' products';
+  renderGrid('shopGrid', list);
+}
+['input','change'].forEach(evt=>document.addEventListener(evt, e=>{
+  if(e.target.matches('.filterCat, .filterBrandBox, .filterType, #filterInStock, #filterPromo, input[name=filterRatingRadio], #sortSelect')) applyFilters();
+  if(e.target.id==='filterPrice'){ document.getElementById('filterPriceLabel').textContent = e.target.value>=80?'$80+':'$'+e.target.value; applyFilters(); }
+}));
+document.getElementById('clearFilters').addEventListener('click', ()=>{
+  document.querySelectorAll('.filterCat, .filterBrandBox, .filterType, #filterInStock, #filterPromo').forEach(cb=>cb.checked=false);
+  document.getElementById('filterPrice').value=80; document.getElementById('filterPriceLabel').textContent='$80+';
+  document.querySelector('input[name=filterRatingRadio][value="0"]').checked = true;
+  applyFilters();
+});
+
+/* Init from URL params */
+renderFilterControls();
+const urlFilter = qparam('filter'); const urlCat = qparam('cat');
+if(urlCat){ document.querySelectorAll('.filterCat').forEach(cb=>{ if(cb.value===urlCat) cb.checked=true; }); document.getElementById('shopTitle').textContent = CAT_NAME[urlCat] || 'Shop'; }
+if(urlFilter==='new'){ document.getElementById('sortSelect').value='newest'; document.getElementById('shopTitle').textContent='New Arrivals'; }
+if(urlFilter==='preorder'){ document.querySelectorAll('.filterType').forEach(cb=>{ if(cb.value==='preorder') cb.checked=true; }); document.getElementById('shopTitle').textContent='Pre-Order Products'; }
+if(urlFilter==='promo'){ document.getElementById('filterPromo').checked=true; document.getElementById('shopTitle').textContent='On Promotion'; }
+if(urlFilter==='best'){ document.getElementById('sortSelect').value='bestselling'; document.getElementById('shopTitle').textContent='Best Sellers'; }
+if(searchTerm){ document.getElementById('shopTitle').textContent = 'Search results for "'+qparam('q')+'"'; }
+applyFilters();
+</script>
+</body>
+</html>

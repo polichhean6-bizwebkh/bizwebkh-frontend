@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sokha Beauty & Wellness — Home (C033 Front-End Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="home">
+
+<div id="site-header"></div>
+
+<main>
+  <div class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="hero-tag">Cambodia's Premium Beauty &amp; Wellness Marketplace</span>
+        <h1>Feel radiant. Live nourished. Everyday wellness, delivered.</h1>
+        <p class="lead">Curated skincare, cosmetics, vitamins and supplements from trusted brands — with fast delivery across Phnom Penh and all provinces.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="shop.html">Shop Now <i class="bi bi-arrow-right"></i></a>
+          <a class="btn btn-outline" href="loyalty.html">Join Loyalty Programme</a>
+        </div>
+      </div>
+      <div class="hero-img" style="position:relative">
+        <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=80" alt="Skincare products" onerror="imgFallback(this,'skincare')">
+        <div class="hero-float-card"><i class="bi bi-truck"></i><div><b>Nationwide Delivery</b><span>Demo delivery-zone calculation</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container section">
+    <div class="section-head"><div><h2>Shop by Category</h2><div class="sub">Explore our curated collections</div></div><a class="link-more" href="shop.html">View all <i class="bi bi-arrow-right"></i></a></div>
+    <div class="cat-grid" id="categoryGrid"></div>
+  </div>
+
+  <div class="container section">
+    <div class="section-head"><div><h2>Featured Products</h2><div class="sub">Hand-picked favourites this week</div></div><a class="link-more" href="shop.html">Shop all <i class="bi bi-arrow-right"></i></a></div>
+    <div class="prod-grid" id="featuredGrid"></div>
+  </div>
+
+  <div class="container section">
+    <div class="section-head"><div><h2>New Arrivals</h2><div class="sub">Freshly added to our catalogue</div></div><a class="link-more" href="shop.html?filter=new">View all <i class="bi bi-arrow-right"></i></a></div>
+    <div class="prod-grid" id="newGrid"></div>
+  </div>
+
+  <div class="container section">
+    <div class="section-head"><div><h2>Best Sellers</h2><div class="sub">Loved by our customers</div></div><a class="link-more" href="shop.html?filter=best">View all <i class="bi bi-arrow-right"></i></a></div>
+    <div class="prod-grid" id="bestGrid"></div>
+  </div>
+
+  <div class="container section">
+    <div class="section-head"><div><h2>Pre-Order Products</h2><div class="sub">Reserve upcoming arrivals ahead of stock</div></div><a class="link-more" href="shop.html?filter=preorder">View all <i class="bi bi-arrow-right"></i></a></div>
+    <div class="prod-grid" id="preorderGrid"></div>
+  </div>
+
+  <div class="container section">
+    <div class="promo-banner">
+      <div><h3>Beauty Month Promotion</h3><span>Up to 30% off selected skincare &amp; makeup — sample demo pricing</span></div>
+      <a class="btn btn-gold" href="shop.html?filter=promo">See Promotions</a>
+    </div>
+  </div>
+
+  <div class="container section">
+    <div class="section-head"><div><h2>Sokha Loyalty Programme</h2><div class="sub">Earn points on every purchase — sample demo logic: 1 point per $1 spent, 100 points = $1 discount</div></div></div>
+    <div class="loyalty-strip">
+      <div class="loyalty-tier-card"><i class="bi bi-award"></i><h4>Member</h4><span>0 – 499 pts</span></div>
+      <div class="loyalty-tier-card"><i class="bi bi-award-fill"></i><h4>Silver</h4><span>500 – 1,499 pts</span></div>
+      <div class="loyalty-tier-card"><i class="bi bi-gem"></i><h4>Gold</h4><span>1,500 – 3,999 pts</span></div>
+      <div class="loyalty-tier-card"><i class="bi bi-trophy"></i><h4>Platinum</h4><span>4,000+ pts</span></div>
+    </div>
+  </div>
+
+  <div class="container section">
+    <div class="section-head"><div><h2>Why Shop With Us</h2></div></div>
+    <div class="why-grid">
+      <div class="why-card"><i class="bi bi-patch-check"></i><h4>Curated Quality</h4><p>Genuine, carefully selected wellness &amp; beauty brands.</p></div>
+      <div class="why-card"><i class="bi bi-truck"></i><h4>Nationwide Delivery</h4><p>Reaching Phnom Penh and all provinces of Cambodia.</p></div>
+      <div class="why-card"><i class="bi bi-shield-check"></i><h4>Secure Checkout</h4><p>KHQR, cards and cash-on-delivery options (demo).</p></div>
+      <div class="why-card"><i class="bi bi-gem"></i><h4>Loyalty Rewards</h4><p>Earn points on every order, redeem for discounts.</p></div>
+    </div>
+  </div>
+
+  <div class="container section">
+    <div class="section-head"><div><h2>Customer Reviews</h2></div></div>
+    <div class="review-grid">
+      <div class="review-card"><div class="review-stars">★★★★★</div><p>"Lovely packaging and the skincare set arrived quickly. Will order again."</p><div class="review-name"><div class="review-avatar">SR</div><div><b>Sreymom R.</b><div class="text-muted" style="font-size:.72rem">Phnom Penh</div></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><p>"Great range of vitamins, easy to track my order status."</p><div class="review-name"><div class="review-avatar">DP</div><div><b>Dara P.</b><div class="text-muted" style="font-size:.72rem">Siem Reap</div></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★☆</div><p>"Loyalty points made my next purchase cheaper — nice touch!"</p><div class="review-name"><div class="review-avatar">CV</div><div><b>Chenda V.</b><div class="text-muted" style="font-size:.72rem">Kandal</div></div></div></div>
+    </div>
+  </div>
+
+  <div class="container section">
+    <div class="newsletter">
+      <h3>Stay in the glow</h3>
+      <p class="text-muted">Subscribe for new arrivals and demo promotions (front-end demo only, no email is sent).</p>
+      <form id="newsletterForm"><input type="email" placeholder="you@example.com" required><button class="btn btn-primary" type="submit">Subscribe</button></form>
+    </div>
+  </div>
+
+  <div class="container section" id="about">
+    <div class="section-head"><div><h2>About Sokha Beauty &amp; Wellness</h2></div></div>
+    <div class="two-col">
+      <div>
+        <p>Sokha Beauty &amp; Wellness is a demo concept e-commerce brand created for presentation purposes for BizWeb KH client project C033. We imagine a curated marketplace bringing skincare, cosmetics, vitamins and supplements to shoppers across Cambodia, combining premium presentation with accessible nationwide delivery.</p>
+        <p>This storefront and its accompanying admin dashboard are front-end prototypes intended to demonstrate look, feel and user flows. No real products are sold and no real transactions are processed.</p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" style="border-radius:22px" onerror="imgFallback(this,'about')">
+    </div>
+  </div>
+
+  <div class="container section" id="contact">
+    <div class="section-head"><div><h2>Contact Us</h2></div></div>
+    <div class="two-col">
+      <form id="contactForm">
+        <div class="form-row"><label>Full Name <span class="req">*</span></label><input type="text" required></div>
+        <div class="form-row"><label>Email <span class="req">*</span></label><input type="email" required></div>
+        <div class="form-row"><label>Message <span class="req">*</span></label><textarea rows="4" required></textarea></div>
+        <button class="btn btn-primary" type="submit">Send Message (Demo)</button>
+      </form>
+      <div class="summary-box">
+        <p><i class="bi bi-geo-alt"></i> #12, Street 214, Phnom Penh, Cambodia (Demo Address)</p>
+        <p><i class="bi bi-telephone"></i> +855 12 345 678 (Demo Number)</p>
+        <p><i class="bi bi-envelope"></i> hello@sokhabeauty-demo.com (Demo Email)</p>
+        <p class="mb-0"><i class="bi bi-clock"></i> Mon–Sat, 8:00–18:00</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+  renderGrid('featuredGrid', PRODUCTS.slice(0,4));
+  renderGrid('newGrid', PRODUCTS.filter(p=>p.badges&&p.badges.includes('new')).slice(0,4));
+  renderGrid('bestGrid', PRODUCTS.filter(p=>p.badges&&p.badges.includes('best')).slice(0,4));
+  renderGrid('preorderGrid', PRODUCTS.filter(p=>p.type==='preorder').slice(0,4));
+  document.getElementById('categoryGrid').innerHTML = CATEGORIES.map(c=>
+    `<a href="shop.html?cat=${c.key}" class="cat-card"><div class="cat-icon"><i class="bi ${c.icon}"></i></div><h4>${c.name}</h4><span>${PRODUCTS.filter(p=>p.category===c.key).length} items</span></a>`
+  ).join('');
+  document.getElementById('newsletterForm').addEventListener('submit', e=>{ e.preventDefault(); toast('Subscribed! (Demo only)','bi-envelope-check'); e.target.reset(); });
+  document.getElementById('contactForm').addEventListener('submit', e=>{ e.preventDefault(); toast('Message sent! (Demo only)','bi-envelope-check'); e.target.reset(); });
+</script>
+</body>
+</html>

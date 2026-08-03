@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile — Sokha Beauty & Wellness (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="account">
+
+<div id="site-header"></div>
+
+<div class="page-hero"><div class="container"><div class="breadcrumb"><a href="index.html">Home</a> / My Account</div><h1>My Account</h1></div></div>
+
+<div class="container section">
+  <div id="notLoggedIn" class="hidden">
+    <div class="notice-box"><i class="bi bi-info-circle"></i> You're not logged in on this demo session. <a href="login.html">Login here</a> using customer@c033demo.com / demo123 to view account details, or continue browsing below with sample data.</div>
+  </div>
+  <div class="account-layout">
+    <ul class="account-menu" id="accountMenu">
+      <li><a href="#" data-acc="profile" class="active"><i class="bi bi-person"></i> Profile</a></li>
+      <li><a href="#" data-acc="addresses"><i class="bi bi-geo-alt"></i> Saved Addresses</a></li>
+      <li><a href="#" data-acc="wishlist"><i class="bi bi-heart"></i> Wishlist</a></li>
+      <li><a href="orders.html"><i class="bi bi-bag-check"></i> My Orders</a></li>
+      <li><a href="tracking.html"><i class="bi bi-truck"></i> Track Order</a></li>
+      <li><a href="loyalty.html"><i class="bi bi-gem"></i> Loyalty Points</a></li>
+      <li><a href="#" id="logoutLink"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+    </ul>
+    <div id="accountContent"></div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+function qparam(name){ return new URLSearchParams(window.location.search).get(name); }
+document.getElementById('notLoggedIn').classList.toggle('hidden', auth.loggedIn);
+
+document.getElementById('logoutLink').addEventListener('click', e=>{
+  e.preventDefault(); auth = {loggedIn:false, name:'', email:''}; persistState();
+  toast('Logged out (demo)','bi-box-arrow-right'); document.getElementById('notLoggedIn').classList.remove('hidden');
+});
+document.getElementById('accountMenu').addEventListener('click', e=>{
+  const a = e.target.closest('a[data-acc]'); if(!a) return; e.preventDefault();
+  document.querySelectorAll('#accountMenu a').forEach(x=>x.classList.remove('active')); a.classList.add('active');
+  renderSection(a.dataset.acc);
+});
+function renderSection(section){
+  const c = document.getElementById('accountContent');
+  const name = auth.loggedIn ? auth.name : 'Demo Customer';
+  const email = auth.loggedIn ? auth.email : DEMO_CUSTOMER.email;
+  if(section==='profile'){
+    c.innerHTML = `<div class="summary-box"><h4>Profile</h4>
+      <div class="form-row"><label>Name</label><input value="${name}"></div>
+      <div class="form-row"><label>Email</label><input value="${email}"></div>
+      <div class="form-row"><label>Phone</label><input value="012 345 678"></div>
+      <button class="btn btn-primary">Save Changes (Demo)</button></div>`;
+  } else if(section==='addresses'){
+    c.innerHTML = `<h4>Saved Addresses</h4>` + addresses.map(a=>`
+      <div class="summary-box mt-16"><b>${a.label}</b><p class="text-muted mb-0" style="font-size:.85rem">${a.name} · ${a.phone}<br>${a.address}, ${a.commune}, ${a.district}, ${a.province}</p></div>`).join('')
+      + `<button class="btn btn-outline mt-16" id="addAddrBtn">Add New Address (Demo)</button>`;
+    document.getElementById('addAddrBtn').onclick = ()=>{
+      addresses.push({label:'New Address', name, phone:'012 000 000', address:'#00, St 000', province:'Phnom Penh', district:'', commune:'', zone:'pp-central'});
+      persistState(); toast('Address added (demo)','bi-geo-alt-fill'); renderSection('addresses');
+    };
+  } else if(section==='wishlist'){
+    const items = wishlist.map(findProduct).filter(Boolean);
+    c.innerHTML = `<h4>Wishlist</h4><div class="prod-grid">${items.map(productCard).join('') || '<div class="empty-state"><i class="bi bi-heart"></i>No items saved yet. <a href="shop.html" class="link-more">Browse products</a></div>'}</div>`;
+  }
+}
+renderSection(qparam('tab') || 'profile');
+if(qparam('tab')){ document.querySelectorAll('#accountMenu a').forEach(x=>x.classList.toggle('active', x.dataset.acc===qparam('tab'))); }
+</script>
+</body>
+</html>

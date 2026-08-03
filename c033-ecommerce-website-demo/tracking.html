@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Your Order — Sokha Beauty & Wellness (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="tracking">
+
+<div id="site-header"></div>
+
+<div class="page-hero"><div class="container"><div class="breadcrumb"><a href="index.html">Home</a> / Track Order</div><h1>Track Your Order</h1><div class="text-muted" style="font-size:.9rem">Enter your order number to view demo tracking status</div></div></div>
+
+<div class="container section">
+  <div class="two-col">
+    <div>
+      <div class="form-row"><label>Order Number</label><input type="text" id="trackOrderInput" placeholder="e.g. C033-20260803-001"></div>
+      <button class="btn btn-primary" id="trackOrderBtn">Track Order</button>
+      <p class="text-muted mt-16" style="font-size:.8rem">Try the sample order: <b>C033-20260803-001</b></p>
+    </div>
+    <div id="trackResultBox"></div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+function qparam(name){ return new URLSearchParams(window.location.search).get(name); }
+const TL_STEPS = ['placed','confirmed','processing','packed','shipped','outfordelivery','delivered'];
+const TL_LABELS = {placed:'Order Placed', confirmed:'Payment Confirmed', processing:'Processing', packed:'Packed', shipped:'Shipped', outfordelivery:'Out for Delivery', delivered:'Delivered'};
+function trackOrder(orderNo){
+  const o = orders.find(x=>x.orderNo.toLowerCase()===orderNo.trim().toLowerCase());
+  const box = document.getElementById('trackResultBox');
+  if(!o){ box.innerHTML = `<div class="empty-state"><i class="bi bi-search"></i>No order found for "${orderNo}". Try C033-20260803-001.</div>`; return; }
+  let currentIdx = -1;
+  TL_STEPS.forEach((k,i)=>{ if(o.timeline[k]) currentIdx=i; });
+  box.innerHTML = `
+    <div class="summary-box">
+      <div class="info-grid">
+        <div class="info-item"><label>Order Number</label><b>${o.orderNo}</b></div>
+        <div class="info-item"><label>Customer</label><b>${o.customer}</b></div>
+        <div class="info-item"><label>Delivery Address</label><b>${o.address}</b></div>
+        <div class="info-item"><label>Courier</label><b>${o.courier}</b></div>
+        <div class="info-item"><label>Tracking Code</label><b>${o.trackingCode}</b></div>
+        <div class="info-item"><label>Estimated Arrival</label><b>${o.eta}</b></div>
+      </div>
+      <h4 class="mt-16">Current Status: <span style="color:var(--color-gold-dark)">${o.status}</span></h4>
+      <div class="tl-timeline">
+        ${TL_STEPS.map((k,i)=>`<div class="tl-step ${i<currentIdx?'done':''} ${i===currentIdx?'current':''}"><div class="dot"><i class="bi ${i<=currentIdx?'bi-check':'bi-circle'}"></i></div><span>${TL_LABELS[k]}</span></div>`).join('')}
+      </div>
+    </div>`;
+}
+document.getElementById('trackOrderBtn').addEventListener('click', ()=>trackOrder(document.getElementById('trackOrderInput').value || SAMPLE_ORDER_NO));
+if(qparam('order')){ document.getElementById('trackOrderInput').value = qparam('order'); trackOrder(qparam('order')); }
+</script>
+</body>
+</html>

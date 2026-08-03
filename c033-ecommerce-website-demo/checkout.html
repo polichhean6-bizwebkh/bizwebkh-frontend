@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Sokha Beauty & Wellness (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="cart">
+
+<div id="site-header"></div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / <a href="cart.html">Cart</a> / Checkout</div>
+    <h1>Checkout</h1>
+  </div>
+</div>
+
+<div class="container section">
+  <div class="checkout-steps">
+    <div class="step active" id="cstep-1">1. Delivery</div>
+    <div class="step" id="cstep-2">2. Payment</div>
+    <div class="step" id="cstep-3">3. Confirmation</div>
+  </div>
+  <div id="checkoutStepContent"></div>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+if(!cart.length){ window.location.href='cart.html'; }
+let checkoutState = { zone: sessionStorage.getItem('c033w_checkout_zone') || 'pp-central', payment:'khqr', redeemPts:0, discount:0, promoApplied:false };
+
+function setStepUI(step){
+  ['1','2','3'].forEach(n=>{
+    const el = document.getElementById('cstep-'+n); el.classList.remove('active','done');
+    if(+n<step) el.classList.add('done'); if(+n===step) el.classList.add('active');
+  });
+}
+function renderStep1(){
+  setStepUI(1);
+  const addr = addresses[0] || {};
+  document.getElementById('checkoutStepContent').innerHTML = `
+    <h3>Customer &amp; Delivery Information</h3>
+    <div class="form-grid-2">
+      <div class="form-row" id="f-name"><label>Full Name <span class="req">*</span></label><input id="ckName" value="${addr.name||''}"><div class="field-error">Full name is required.</div></div>
+      <div class="form-row" id="f-phone"><label>Phone Number <span class="req">*</span></label><input id="ckPhone" value="${addr.phone||''}"><div class="field-error">Phone number is required.</div></div>
+    </div>
+    <div class="form-row"><label>Email</label><input id="ckEmail" type="email" value="${auth.email||''}"></div>
+    <div class="form-row" id="f-address"><label>Delivery Address <span class="req">*</span></label><input id="ckAddress" value="${addr.address||''}"><div class="field-error">Delivery address is required.</div></div>
+    <div class="form-grid-2">
+      <div class="form-row" id="f-province"><label>Province/City <span class="req">*</span></label>
+        <select id="ckProvince"><option value="">Select...</option>${['Phnom Penh','Kandal','Siem Reap','Battambang','Sihanoukville','Kampong Cham','Other Province'].map(pv=>`<option ${addr.province===pv?'selected':''}>${pv}</option>`).join('')}</select>
+        <div class="field-error">Province/City is required.</div></div>
+      <div class="form-row"><label>District</label><input id="ckDistrict" value="${addr.district||''}"></div>
+    </div>
+    <div class="form-grid-2">
+      <div class="form-row"><label>Commune</label><input id="ckCommune" value="${addr.commune||''}"></div>
+      <div class="form-row" id="f-zone"><label>Delivery Zone <span class="req">*</span></label>
+        <select id="ckZone">${ZONES.map(z=>`<option value="${z.key}" ${checkoutState.zone===z.key?'selected':''}>${z.name}</option>`).join('')}</select>
+        <div class="field-error">Delivery zone is required.</div></div>
+    </div>
+    <div class="form-row"><label>Delivery Note</label><textarea id="ckNote" rows="2" placeholder="e.g. Call before arrival"></textarea></div>
+    <button class="btn btn-primary" id="toStep2">Continue to Payment <i class="bi bi-arrow-right"></i></button>
+  `;
+  document.getElementById('toStep2').onclick = ()=>{
+    let valid = true;
+    [['ckName','f-name'],['ckPhone','f-phone'],['ckAddress','f-address'],['ckProvince','f-province'],['ckZone','f-zone']].forEach(([inputId,rowId])=>{
+      const el = document.getElementById(inputId); const row = document.getElementById(rowId);
+      if(!el.value.trim()){ row.classList.add('invalid'); valid=false; } else row.classList.remove('invalid');
+    });
+    if(!valid){ toast('Please complete all required fields','bi-exclamation-triangle'); return; }
+    checkoutState.zone = document.getElementById('ckZone').value;
+    checkoutState.customer = {
+      name:document.getElementById('ckName').value, phone:document.getElementById('ckPhone').value, email:document.getElementById('ckEmail').value,
+      address:document.getElementById('ckAddress').value, province:document.getElementById('ckProvince').value,
+      district:document.getElementById('ckDistrict').value, commune:document.getElementById('ckCommune').value, note:document.getElementById('ckNote').value
+    };
+    renderStep2();
+  };
+}
+function renderStep2(){
+  setStepUI(2);
+  document.getElementById('checkoutStepContent').innerHTML = `
+    <h3>Payment Method</h3>
+    <div class="pay-method-grid">
+      <div class="pay-method ${checkoutState.payment==='khqr'?'active':''}" data-pay="khqr"><i class="bi bi-qr-code"></i>KHQR</div>
+      <div class="pay-method ${checkoutState.payment==='visa'?'active':''}" data-pay="visa"><i class="bi bi-credit-card"></i>Visa</div>
+      <div class="pay-method ${checkoutState.payment==='mastercard'?'active':''}" data-pay="mastercard"><i class="bi bi-credit-card-2-front"></i>Mastercard</div>
+      <div class="pay-method ${checkoutState.payment==='cod'?'active':''}" data-pay="cod"><i class="bi bi-cash-coin"></i>Cash on Delivery</div>
+    </div>
+    <div class="summary-box">
+      <div class="form-grid-2">
+        <div class="form-row"><label>Promo / Discount Code</label><input id="promoInput" placeholder="e.g. WELCOME10"></div>
+        <div class="form-row"><label>&nbsp;</label><button class="btn btn-light btn-block" id="applyPromo">Apply Code</button></div>
+      </div>
+      <label style="font-size:.78rem; font-weight:700">Redeem Loyalty Points (Balance: ${loyalty.points} pts)</label>
+      <div class="form-grid-2 mt-16">
+        <input type="number" id="redeemInput" min="0" max="${loyalty.points}" step="100" value="0" placeholder="Points to redeem (multiples of 100)">
+        <button class="btn btn-light" id="applyRedeem">Apply</button>
+      </div>
+      <p class="text-muted" style="font-size:.75rem">100 points = $1 discount (sample demo logic)</p>
+    </div>
+    <div class="summary-box mt-16" id="checkoutSummary"></div>
+    <div class="pdp-cta-row mt-16">
+      <button class="btn btn-outline" id="backStep1">Back</button>
+      <button class="btn btn-primary" id="toStep3">Continue to Confirmation <i class="bi bi-arrow-right"></i></button>
+    </div>`;
+  renderSummary();
+  document.querySelectorAll('.pay-method').forEach(el=>el.addEventListener('click', ()=>{
+    checkoutState.payment = el.dataset.pay;
+    document.querySelectorAll('.pay-method').forEach(x=>x.classList.remove('active')); el.classList.add('active');
+  }));
+  document.getElementById('applyPromo').onclick = ()=>{
+    const code = document.getElementById('promoInput').value.trim().toUpperCase();
+    if(code==='WELCOME10'){ checkoutState.discount = +(cartSubtotal()*0.10).toFixed(2); checkoutState.promoApplied=true; toast('Promo code applied: 10% off (demo)','bi-tag-fill'); }
+    else if(code){ checkoutState.discount = 0; toast('Invalid demo promo code. Try WELCOME10.','bi-exclamation-triangle'); }
+    renderSummary();
+  };
+  document.getElementById('applyRedeem').onclick = ()=>{
+    let v = parseInt(document.getElementById('redeemInput').value)||0; v = Math.floor(v/100)*100;
+    if(v>loyalty.points) v = Math.floor(loyalty.points/100)*100;
+    checkoutState.redeemPts = v; renderSummary();
+    toast(v>0 ? `Applied ${v} points (-$${(v/100).toFixed(2)})` : 'Redemption cleared', 'bi-gem');
+  };
+  document.getElementById('backStep1').onclick = renderStep1;
+  document.getElementById('toStep3').onclick = renderStep3;
+}
+function renderSummary(){
+  const c = shippingCalc(checkoutState.zone, checkoutState.redeemPts, checkoutState.discount);
+  document.getElementById('checkoutSummary').innerHTML = `
+    <div class="cart-summary-row"><span>Product Subtotal</span><span>${fmt(c.subtotal)}</span></div>
+    <div class="cart-summary-row"><span>Total Weight</span><span>${c.weight.toFixed(2)} kg</span></div>
+    <div class="cart-summary-row"><span>Weight-Based Shipping Fee</span><span>${fmt(c.weightFee)}</span></div>
+    <div class="cart-summary-row"><span>Delivery-Zone Fee (${c.zone.name})</span><span>${c.freeApplied?'FREE':fmt(c.zoneFee)}</span></div>
+    <div class="cart-summary-row"><span>Discount</span><span>−${fmt(checkoutState.discount)}</span></div>
+    <div class="cart-summary-row"><span>Loyalty Redemption</span><span>−${fmt(c.loyaltyDiscount)}</span></div>
+    <div class="cart-summary-row total"><span>Grand Total</span><span>${fmt(c.total)}</span></div>
+    <span class="tag-demo mt-16" style="display:inline-block">DEMO CALCULATION: Product Price + Weight Fee + Zone Fee − Discount − Loyalty</span>`;
+}
+function renderStep3(){
+  setStepUI(3);
+  const c = shippingCalc(checkoutState.zone, checkoutState.redeemPts, checkoutState.discount);
+  const method = checkoutState.payment;
+  const ref = 'TXN'+Math.floor(100000+Math.random()*900000);
+  let payHTML = '';
+  if(method==='khqr'){
+    payHTML = `<div class="qr-box"><div class="qr-placeholder"><i class="bi bi-qr-code"></i></div><p><b>Amount:</b> ${fmt(c.total)}</p>
+      <p class="text-muted" style="font-size:.8rem">Transaction Reference: ${ref}</p>
+      <p class="text-muted" style="font-size:.75rem">Sample QR placeholder — not connected to a real KHQR network.</p></div>`;
+  } else if(method==='visa' || method==='mastercard'){
+    payHTML = `<div class="form-row"><label>Cardholder Name</label><input id="cardName" placeholder="NAME ON CARD"></div>
+      <div class="form-row"><label>Card Number</label><input id="cardNum" placeholder="4111 1111 1111 1111" maxlength="19"></div>
+      <div class="form-grid-2"><div class="form-row"><label>Expiry</label><input id="cardExp" placeholder="MM/YY"></div><div class="form-row"><label>CVV</label><input id="cardCvv" placeholder="123" maxlength="3"></div></div>`;
+  } else {
+    payHTML = `<div class="notice-box"><i class="bi bi-cash-coin"></i> Cash on Delivery selected. Pay the courier ${fmt(c.total)} upon delivery (demo content).</div>`;
+  }
+  document.getElementById('checkoutStepContent').innerHTML = `
+    <h3>Confirm &amp; Pay</h3>
+    <div class="notice-box"><i class="bi bi-info-circle"></i> Demo payment only. No real payment will be processed.</div>
+    ${payHTML}
+    <div class="summary-box mt-16"><div class="cart-summary-row total"><span>Amount Due</span><span>${fmt(c.total)}</span></div></div>
+    <div class="pdp-cta-row mt-16"><button class="btn btn-outline" id="backStep2">Back</button><button class="btn btn-primary" id="simulatePay">Simulate Successful Payment</button></div>`;
+  document.getElementById('backStep2').onclick = renderStep2;
+  document.getElementById('simulatePay').onclick = ()=>completeOrder(c, ref);
+}
+function completeOrder(calc, ref){
+  const orderNo = 'C033-'+dateStr()+'-'+String(orders.length+1).padStart(3,'0');
+  const lines = cartLines();
+  const pointsEarned = Math.round(calc.subtotal);
+  const zone = calc.zone;
+  const order = {
+    orderNo, date:new Date().toISOString().slice(0,10), customer:checkoutState.customer.name, phone:checkoutState.customer.phone,
+    address:`${checkoutState.customer.address}, ${checkoutState.customer.district||''} ${checkoutState.customer.province}`.trim(),
+    courier:'Demo Express Logistics', trackingCode:'DEMO-TRK-'+Math.floor(10000+Math.random()*89999),
+    eta: addDays(new Date(), zone.key==='pp-central'?2:zone.key==='remote'?7:4),
+    status:'Payment Confirmed', paymentMethod:checkoutState.payment.toUpperCase(), paymentStatus:'Paid',
+    items: lines.map(l=>({name:l.p.name, qty:l.qty, price:l.p.promoPrice||l.p.price})),
+    subtotal:calc.subtotal, shipping:calc.weightFee+calc.zoneFee, discount:calc.loyaltyDiscount+checkoutState.discount, total:calc.total, pointsEarned,
+    timeline:{placed:true, confirmed:true, processing:false, packed:false, shipped:false, outfordelivery:false, delivered:false}
+  };
+  orders.push(order);
+  loyalty.points += pointsEarned; loyalty.points -= checkoutState.redeemPts;
+  loyalty.history.push({date:order.date, desc:'Purchase — Order '+orderNo, pts:'+'+pointsEarned});
+  if(checkoutState.redeemPts>0) loyalty.history.push({date:order.date, desc:'Redeemed at checkout — Order '+orderNo, pts:'-'+checkoutState.redeemPts});
+  cart = [];
+  persistState(); refreshHeaderBadges();
+  document.getElementById('checkoutStepContent').innerHTML = `
+    <div class="order-success">
+      <i class="bi bi-check-circle-fill big-check"></i>
+      <h2>Order Placed Successfully!</h2>
+      <p class="text-muted">Thank you — this is a simulated demo order confirmation.</p>
+      <div class="summary-box" style="text-align:left; max-width:420px; margin:20px auto">
+        <div class="cart-summary-row"><span>Order Reference</span><b>${orderNo}</b></div>
+        <div class="cart-summary-row"><span>Payment Status</span><b style="color:var(--color-success)">Paid (Demo)</b></div>
+        <div class="cart-summary-row"><span>Loyalty Points Earned</span><b>${pointsEarned} pts</b></div>
+        <div class="cart-summary-row total"><span>Total Paid</span><span>${fmt(calc.total)}</span></div>
+      </div>
+      <a class="btn btn-primary" href="tracking.html?order=${orderNo}">Track This Order</a>
+      <a class="btn btn-outline" href="index.html">Continue Shopping</a>
+    </div>`;
+}
+renderStep1();
+</script>
+</body>
+</html>

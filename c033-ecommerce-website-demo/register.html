@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register — Sokha Beauty & Wellness (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="account">
+
+<div id="site-header"></div>
+
+<div class="container">
+  <div class="auth-wrap">
+    <h2>Create Your Account</h2>
+    <div class="sub">Join Sokha Beauty &amp; Wellness (demo registration)</div>
+    <div class="form-row"><label>Full Name <span class="req">*</span></label><input id="regName" placeholder="Your name"></div>
+    <div class="form-row"><label>Email <span class="req">*</span></label><input id="regEmail" type="email" placeholder="you@example.com"></div>
+    <div class="form-row"><label>Phone Number</label><input id="regPhone" placeholder="012 345 678"></div>
+    <div class="form-row"><label>Password <span class="req">*</span></label><input id="regPassword" type="password" placeholder="Choose a password"></div>
+    <button class="btn btn-primary btn-block" id="registerBtn">Create Account (Demo)</button>
+    <p class="auth-switch">Already have an account? <a href="login.html">Login here</a></p>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+document.getElementById('registerBtn').addEventListener('click', ()=>{
+  const name = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  if(!name || !email){ toast('Please fill in name and email','bi-exclamation-triangle'); return; }
+  toast('Demo registration successful — please login with the demo credentials on the Login page.','bi-person-plus-fill');
+  setTimeout(()=>window.location.href='login.html', 900);
+});
+</script>
+</body>
+</html>

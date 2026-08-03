@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart — Sokha Beauty & Wellness (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="cart">
+
+<div id="site-header"></div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Cart</div>
+    <h1>Your Cart</h1>
+  </div>
+</div>
+
+<div class="container section">
+  <div class="cart-layout">
+    <div>
+      <table class="cart-table" id="cartTable">
+        <thead><tr><th>Product</th><th>Price</th><th>Quantity</th><th>Weight</th><th>Subtotal</th><th></th></tr></thead>
+        <tbody id="cartTableBody"></tbody>
+      </table>
+      <div class="empty-state hidden" id="cartEmpty"><i class="bi bi-bag"></i>Your cart is empty. <a href="shop.html" class="link-more">Continue shopping</a></div>
+      <a href="shop.html" class="btn btn-outline mt-16"><i class="bi bi-arrow-left"></i> Continue Shopping</a>
+    </div>
+    <div class="summary-box">
+      <h4>Order Summary</h4>
+      <div class="cart-summary-row"><span>Product Subtotal</span><span id="sumSubtotal">$0.00</span></div>
+      <div class="cart-summary-row"><span>Total Weight</span><span id="sumWeight">0.00 kg</span></div>
+      <div class="form-row mt-16"><label>Estimate Delivery Zone</label>
+        <select id="zoneSelect"></select>
+      </div>
+      <div class="cart-summary-row"><span>Weight-Based Shipping Fee</span><span id="sumWeightFee">$0.00</span></div>
+      <div class="cart-summary-row"><span>Delivery-Zone Fee</span><span id="sumZoneFee">$0.00</span></div>
+      <div class="cart-summary-row total"><span>Estimated Total</span><span id="sumTotal">$0.00</span></div>
+      <span class="tag-demo">DEMO CALCULATION</span>
+      <button class="btn btn-primary btn-block mt-16" id="toCheckoutBtn">Proceed to Checkout</button>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/layout.js"></script>
+<script>
+const zoneSelect = document.getElementById('zoneSelect');
+zoneSelect.innerHTML = ZONES.map(z=>`<option value="${z.key}">${z.name} (${z.eta})</option>`).join('');
+
+function renderCartPage(){
+  const lines = cartLines();
+  document.getElementById('cartEmpty').classList.toggle('hidden', lines.length>0);
+  document.getElementById('cartTable').classList.toggle('hidden', lines.length===0);
+  document.getElementById('cartTableBody').innerHTML = lines.map(l=>`
+    <tr data-id="${l.p.id}">
+      <td><div class="cart-row-prod"><img src="${l.p.images[0]}" onerror="imgFallback(this,'${CAT_NAME[l.p.category]}')"><div><b>${l.p.name}</b><div class="text-muted" style="font-size:.76rem">${CAT_NAME[l.p.category]}</div></div></div></td>
+      <td>${fmt(l.p.promoPrice||l.p.price)}</td>
+      <td><div class="cart-item-qty"><button data-qty="-1">−</button><span>${l.qty}</span><button data-qty="1">+</button></div></td>
+      <td>${(l.p.weight*l.qty).toFixed(2)} kg</td>
+      <td>${fmt((l.p.promoPrice||l.p.price)*l.qty)}</td>
+      <td><button class="cart-remove" data-remove>Remove</button></td>
+    </tr>`).join('');
+  updateSummary();
+}
+function updateSummary(){
+  const calc = shippingCalc(zoneSelect.value, 0, 0);
+  document.getElementById('sumSubtotal').textContent = fmt(calc.subtotal);
+  document.getElementById('sumWeight').textContent = calc.weight.toFixed(2) + ' kg';
+  document.getElementById('sumWeightFee').textContent = fmt(calc.weightFee);
+  document.getElementById('sumZoneFee').textContent = calc.freeApplied ? 'FREE' : fmt(calc.zoneFee);
+  document.getElementById('sumTotal').textContent = fmt(calc.total);
+}
+document.getElementById('cartTableBody').addEventListener('click', e=>{
+  const tr = e.target.closest('tr'); if(!tr) return;
+  const id = tr.dataset.id;
+  if(e.target.matches('[data-qty]')){
+    const delta = parseInt(e.target.dataset.qty);
+    const line = cart.find(c=>c.id===id);
+    if(line){ line.qty += delta; if(line.qty<=0) cart = cart.filter(c=>c.id!==id); }
+    persistState(); refreshHeaderBadges(); renderCartPage();
+  }
+  if(e.target.matches('[data-remove]')){
+    cart = cart.filter(c=>c.id!==id); persistState(); refreshHeaderBadges(); renderCartPage(); toast('Item removed from cart','bi-trash');
+  }
+});
+zoneSelect.addEventListener('change', updateSummary);
+document.getElementById('toCheckoutBtn').addEventListener('click', ()=>{
+  if(!cart.length){ toast('Your cart is empty','bi-exclamation-circle'); return; }
+  sessionStorage.setItem('c033w_checkout_zone', zoneSelect.value);
+  window.location.href = 'checkout.html';
+});
+renderCartPage();
+</script>
+</body>
+</html>
