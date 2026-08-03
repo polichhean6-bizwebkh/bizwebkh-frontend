@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings — Sokha Admin Dashboard (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<div id="admin-root"></div>
+<script src="assets/js/admin-data.js"></script>
+<script src="assets/js/admin-layout.js"></script>
+<script>
+function onAdminReady(){
+  document.getElementById('content').innerHTML = `
+    <div class="page-title-row"><div><h2>Settings</h2><div class="sub">Store configuration (demo, non-functional in this prototype)</div></div></div>
+    <div class="two-col">
+      <div class="panel">
+        <h4>Store Information</h4>
+        <div class="form-row"><label>Store Name</label><input id="setStoreName" value="${STORE_SETTINGS.name}"></div>
+        <div class="form-row"><label>Currency</label><select id="setCurrency"><option ${STORE_SETTINGS.currency==='USD ($)'?'selected':''}>USD ($)</option><option ${STORE_SETTINGS.currency==='KHR (៛)'?'selected':''}>KHR (៛)</option></select></div>
+        <div class="form-row"><label>Support Email</label><input id="setEmail" value="${STORE_SETTINGS.supportEmail}"></div>
+        <div class="form-row"><label>Support Phone</label><input id="setPhone" value="${STORE_SETTINGS.supportPhone}"></div>
+        <div class="form-row"><label>Branding / Logo</label><input type="file" accept="image/*"><p class="text-muted" style="font-size:.75rem">Demo only — uploaded files are not stored.</p></div>
+        <button class="btn btn-primary" id="saveStoreInfo">Save (Demo)</button>
+      </div>
+      <div class="panel">
+        <h4>Delivery Settings</h4>
+        <div class="form-row"><label>Default Delivery Zone</label><select>${ZONES.map(z=>`<option>${z.name}</option>`).join('')}</select></div>
+        <div class="form-row"><label>Enable Weight-Based Shipping Fee</label><select><option>Enabled</option><option>Disabled</option></select></div>
+        <h4 class="mt-16">Loyalty Settings</h4>
+        <div class="form-grid-2">
+          <div class="form-row"><label>Points per $1 Spent</label><input id="setLoyaltyEarn" value="${STORE_SETTINGS.loyaltyPerDollar}"></div>
+          <div class="form-row"><label>Points Required for $1 Discount</label><input id="setLoyaltyRedeem" value="${STORE_SETTINGS.loyaltyRedeemRate}"></div>
+        </div>
+        <h4 class="mt-16">Payment Methods</h4>
+        <label style="display:block; padding:4px 0"><input type="checkbox" id="payKhqr" ${STORE_SETTINGS.paymentMethods.khqr?'checked':''}> KHQR</label>
+        <label style="display:block; padding:4px 0"><input type="checkbox" id="payVisa" ${STORE_SETTINGS.paymentMethods.visa?'checked':''}> Visa</label>
+        <label style="display:block; padding:4px 0"><input type="checkbox" id="payMastercard" ${STORE_SETTINGS.paymentMethods.mastercard?'checked':''}> Mastercard</label>
+        <label style="display:block; padding:4px 0"><input type="checkbox" id="payCod" ${STORE_SETTINGS.paymentMethods.cod?'checked':''}> Cash on Delivery (optional)</label>
+        <button class="btn btn-primary mt-16" id="saveOtherSettings">Save (Demo)</button>
+      </div>
+    </div>`;
+  document.getElementById('saveStoreInfo').addEventListener('click', ()=>{
+    STORE_SETTINGS.name = document.getElementById('setStoreName').value;
+    STORE_SETTINGS.supportEmail = document.getElementById('setEmail').value;
+    STORE_SETTINGS.supportPhone = document.getElementById('setPhone').value;
+    persistAll(); toast('Store information saved (demo)', 'bi-check-circle-fill');
+  });
+  document.getElementById('saveOtherSettings').addEventListener('click', ()=>{
+    STORE_SETTINGS.loyaltyPerDollar = +document.getElementById('setLoyaltyEarn').value||1;
+    STORE_SETTINGS.loyaltyRedeemRate = +document.getElementById('setLoyaltyRedeem').value||100;
+    STORE_SETTINGS.paymentMethods = {khqr:document.getElementById('payKhqr').checked, visa:document.getElementById('payVisa').checked, mastercard:document.getElementById('payMastercard').checked, cod:document.getElementById('payCod').checked};
+    persistAll(); toast('Settings saved (demo)', 'bi-check-circle-fill');
+  });
+}
+renderAdminShell('settings');
+</script>
+</body>
+</html>

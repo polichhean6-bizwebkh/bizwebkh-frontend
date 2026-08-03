@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loyalty Management — Sokha Admin Dashboard (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<div id="admin-root"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="assets/js/admin-data.js"></script>
+<script src="assets/js/admin-layout.js"></script>
+<script>
+let chartInstances = {};
+function makeChart(id, config){ if(chartInstances[id]) chartInstances[id].destroy(); const ctx=document.getElementById(id); if(!ctx) return; chartInstances[id]=new Chart(ctx, config); }
+
+function onAdminReady(){
+  document.getElementById('content').innerHTML = `
+    <div class="page-title-row"><div><h2>Loyalty Management</h2><div class="sub">Sample demo logic — earn 1 point per $1 spent, 100 points = $1 discount</div></div></div>
+    <div class="stat-grid" id="loyaltyStats"></div>
+    <div class="chart-grid cols-2">
+      <div class="panel"><h4>Points Issued vs Redeemed (14 days)</h4><canvas id="chartLoyaltyFlow"></canvas></div>
+      <div class="panel"><h4>Top Loyalty Customers</h4><canvas id="chartTopLoyalty"></canvas></div>
+    </div>
+    <div class="panel mt-16">
+      <h4>Point Rules</h4>
+      <div class="form-grid-2">
+        <div class="form-row"><label>Points Earned per $1 Spent</label><input id="ruleEarnRate" value="${STORE_SETTINGS.loyaltyPerDollar}"></div>
+        <div class="form-row"><label>Points Required for $1 Discount</label><input id="ruleRedeemRate" value="${STORE_SETTINGS.loyaltyRedeemRate}"></div>
+      </div>
+      <div class="form-grid-3">
+        <div class="form-row"><label>Silver Tier Threshold</label><input value="500" disabled></div>
+        <div class="form-row"><label>Gold Tier Threshold</label><input value="1500" disabled></div>
+        <div class="form-row"><label>Platinum Tier Threshold</label><input value="4000" disabled></div>
+      </div>
+      <button class="btn btn-primary" id="saveRulesBtn">Save Rules (Demo)</button>
+    </div>
+    <div class="panel mt-16">
+      <h4>Manual Points Adjustment (Demo)</h4>
+      <div class="form-grid-3">
+        <div class="form-row"><label>Customer</label><select id="adjCustomer">${CUSTOMERS.map(c=>`<option value="${c.id}">${c.name}</option>`).join('')}</select></div>
+        <div class="form-row"><label>Points (+/-)</label><input type="number" id="adjPoints" placeholder="e.g. 50 or -50"></div>
+        <div class="form-row"><label>Reason</label><input id="adjReason" placeholder="e.g. Goodwill gesture"></div>
+      </div>
+      <button class="btn btn-primary" id="applyAdjustment">Apply Adjustment</button>
+    </div>
+    <div class="table-wrap mt-16"><table class="data-table"><thead><tr><th>Date</th><th>Customer</th><th>Description</th><th>Points</th></tr></thead><tbody id="loyaltyTxnBody"></tbody></table></div>`;
+
+  document.getElementById('saveRulesBtn').addEventListener('click', ()=>{
+    STORE_SETTINGS.loyaltyPerDollar = +document.getElementById('ruleEarnRate').value||1;
+    STORE_SETTINGS.loyaltyRedeemRate = +document.getElementById('ruleRedeemRate').value||100;
+    persistAll(); toast('Loyalty rules updated (demo)', 'bi-check-circle-fill');
+  });
+  document.getElementById('applyAdjustment').addEventListener('click', ()=>{
+    const custId = document.getElementById('adjCustomer').value;
+    const pts = parseInt(document.getElementById('adjPoints').value);
+    const reason = document.getElementById('adjReason').value || 'Manual adjustment';
+    if(!custId || !pts){ toast('Select a customer and enter points', 'bi-exclamation-triangle'); return; }
+    const c = CUSTOMERS.find(x=>x.id===custId); c.points = Math.max(0, c.points+pts);
+    LOYALTY_TXNS.push({date:todayISO(), customer:c.name, desc:reason, pts:(pts>0?'+':'')+pts});
+    persistAll(); renderLoyaltyPage(); toast('Loyalty points adjusted (demo)', 'bi-gem');
+  });
+  renderLoyaltyPage();
+}
+function renderLoyaltyPage(){
+  const issued = CUSTOMERS.reduce((s,c)=>s+c.points,0); const redeemed = Math.round(issued*0.28);
+  document.getElementById('loyaltyStats').innerHTML = [
+    {icon:'bi-gem', lbl:'Points Issued', val:issued}, {icon:'bi-arrow-repeat', lbl:'Points Redeemed', val:redeemed},
+    {icon:'bi-graph-up', lbl:'Redemption Conversion', val:STORE_SETTINGS.loyaltyRedeemRate+' pts = $1'}, {icon:'bi-flag', lbl:'Expiring Points (30d)', val:Math.round(issued*0.04)}
+  ].map(s=>`<div class="stat-card"><div class="icon"><i class="bi ${s.icon}"></i></div><div class="val">${s.val}</div><div class="lbl">${s.lbl}</div></div>`).join('');
+  const days = Array.from({length:14},(_,i)=>{ const d=new Date(); d.setDate(d.getDate()-(13-i)); return d.toLocaleDateString('en-GB',{day:'2-digit',month:'short'}); });
+  makeChart('chartLoyaltyFlow', {type:'line', data:{labels:days, datasets:[
+    {label:'Issued', data:days.map(()=>rand(80,260)), borderColor:'#4C7C59', backgroundColor:'rgba(76,124,89,.15)', fill:true, tension:.3},
+    {label:'Redeemed', data:days.map(()=>rand(20,120)), borderColor:'#B4463B', backgroundColor:'rgba(180,70,59,.12)', fill:true, tension:.3}
+  ]}, options:{plugins:{legend:{position:'bottom'}}}});
+  const topLoyal = CUSTOMERS.slice().sort((a,b)=>b.points-a.points).slice(0,6);
+  makeChart('chartTopLoyalty', {type:'bar', data:{labels:topLoyal.map(c=>c.name), datasets:[{label:'Points', data:topLoyal.map(c=>c.points), backgroundColor:'#C6A25D'}]}, options:{plugins:{legend:{display:false}}, indexAxis:'y'}});
+  document.getElementById('loyaltyTxnBody').innerHTML = LOYALTY_TXNS.slice().reverse().map(t=>`<tr><td>${t.date}</td><td>${t.customer}</td><td>${t.desc}</td><td>${t.pts}</td></tr>`).join('');
+}
+renderAdminShell('loyalty');
+</script>
+</body>
+</html>

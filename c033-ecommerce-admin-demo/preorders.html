@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-Orders — Sokha Admin Dashboard (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<div id="admin-root"></div>
+<script src="assets/js/admin-data.js"></script>
+<script src="assets/js/admin-layout.js"></script>
+<script>
+function onAdminReady(){
+  document.getElementById('content').innerHTML = `
+    <div class="page-title-row"><div><h2>Pre-Order Management</h2><div class="sub">Track reservations, deposits &amp; fulfilment separate from normal orders</div></div></div>
+    <div class="table-toolbar"><div class="filters"><select id="preorderStatusFilter"><option value="">All Status</option>${PREORDER_STATUS.map(s=>`<option>${s}</option>`).join('')}</select></div></div>
+    <div class="table-wrap"><table class="data-table">
+      <thead><tr><th>Product</th><th>Customer</th><th>Open Date</th><th>Close Date</th><th>Expected Stock</th><th>Reservations</th><th>Qty Reserved</th><th>Deposit / Payment Status</th><th>Remaining Balance</th><th>Status</th></tr></thead>
+      <tbody id="preorderTableBody"></tbody></table></div>`;
+  document.getElementById('preorderStatusFilter').addEventListener('change', renderPreorderTable);
+  renderPreorderTable();
+}
+function renderPreorderTable(){
+  const status = document.getElementById('preorderStatusFilter').value;
+  const list = PREORDERS.filter(p=>!status || p.status===status);
+  document.getElementById('preorderTableBody').innerHTML = list.map(p=>`
+    <tr><td>${p.product}</td><td>${p.customer}</td><td>${p.open}</td><td>${p.close}</td><td>${p.expectedStock}</td><td>${p.reservations}</td><td>${p.qtyReserved}</td>
+    <td>${fmt(p.depositCollected)} collected</td><td>${fmt(p.remainingBalance)}</td><td><span class="status-pill pill-${slugPill(p.status)}">${p.status}</span></td></tr>
+  `).join('') || `<tr><td colspan="10" style="text-align:center; padding:30px" class="text-muted">No pre-orders for this filter.</td></tr>`;
+}
+renderAdminShell('preorders');
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reports — Sokha Admin Dashboard (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<div id="admin-root"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="assets/js/admin-data.js"></script>
+<script src="assets/js/admin-layout.js"></script>
+<script>
+let chartInstances = {};
+function makeChart(id, config){ if(chartInstances[id]) chartInstances[id].destroy(); const ctx=document.getElementById(id); if(!ctx) return; chartInstances[id]=new Chart(ctx, config); }
+let currentRange = '7d';
+function rangeMultiplier(){ return {today:0.15, '7d':1, '30d':4, month:3.6, custom:1.3}[currentRange] || 1; }
+
+function onAdminReady(){
+  document.getElementById('content').innerHTML = `
+    <div class="page-title-row"><div><h2>Reports</h2><div class="sub">Sales summary, orders, payment summary &amp; customer metrics with date-range filtering</div></div>
+      <button class="btn btn-light" id="exportReportCsv"><i class="bi bi-download"></i> Export Demo CSV</button></div>
+    <div class="daterange-bar" id="dateRangeBar">
+      <button data-range="today">Today</button><button data-range="7d" class="active">Last 7 Days</button><button data-range="30d">Last 30 Days</button>
+      <button data-range="month">This Month</button><button data-range="custom">Custom Range</button>
+      <span id="customRangeInputs" class="hidden"><input type="date" id="customFrom"> <input type="date" id="customTo"> <button class="btn btn-sm btn-primary" id="applyCustomRange">Apply</button></span>
+    </div>
+    <div class="tab-row" id="reportTabs">
+      <div class="tab active" data-report="sales">Sales</div><div class="tab" data-report="orders">Orders</div><div class="tab" data-report="product">Product Performance</div>
+      <div class="tab" data-report="category">Category Performance</div><div class="tab" data-report="customer">Customer</div><div class="tab" data-report="loyalty">Loyalty</div>
+      <div class="tab" data-report="preorder">Pre-Order</div><div class="tab" data-report="payment">Payment</div><div class="tab" data-report="shipping">Shipping</div>
+    </div>
+    <div class="stat-grid" id="reportStats"></div>
+    <div class="panel"><h4 id="reportChartTitle">Chart</h4><canvas id="reportChart"></canvas></div>
+    <div class="table-wrap mt-16"><table class="data-table" id="reportTable"><thead></thead><tbody></tbody></table></div>`;
+
+  document.getElementById('dateRangeBar').addEventListener('click', e=>{
+    const btn = e.target.closest('button[data-range]'); if(!btn) return;
+    document.querySelectorAll('#dateRangeBar button[data-range]').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
+    currentRange = btn.dataset.range; document.getElementById('customRangeInputs').classList.toggle('hidden', currentRange!=='custom');
+    if(currentRange!=='custom') renderReport();
+  });
+  document.getElementById('applyCustomRange').addEventListener('click', renderReport);
+  document.getElementById('reportTabs').addEventListener('click', e=>{
+    const t = e.target.closest('.tab'); if(!t) return;
+    document.querySelectorAll('#reportTabs .tab').forEach(x=>x.classList.remove('active')); t.classList.add('active');
+    currentReport = t.dataset.report; renderReport();
+  });
+  renderReport();
+}
+let currentReport = 'sales';
+function renderReport(){
+  const m = rangeMultiplier();
+  const cfg = {
+    sales:{title:'Sales Trend', stats:[['Total Sales',fmt(4820*m)],['Orders',Math.round(126*m)],['AOV',fmt(38.3)],['Refund Rate','2.1%']], table:['Date','Orders','Sales'], rows:Array.from({length:7},(_,i)=>{const d=new Date();d.setDate(d.getDate()-i);return [d.toISOString().slice(0,10), rand(10,25), fmt(200+Math.random()*400)];})},
+    orders:{title:'Orders by Status', stats:[['Total Orders',ORDERS.length],['Delivered',ORDERS.filter(o=>o.status==='Delivered').length],['Cancelled',ORDERS.filter(o=>o.status==='Cancelled').length],['Pending',ORDERS.filter(o=>o.status==='Pending').length]], table:['Status','Count'], rows:ALL_ORDER_STATUS.map(s=>[s, ORDERS.filter(o=>o.status===s).length])},
+    product:{title:'Product Performance', stats:[['Total SKUs',PRODUCTS.length],['Active',PRODUCTS.filter(p=>p.status==='Active').length],['Low Stock',PRODUCTS.filter(p=>p.stock<=p.lowStockAlert&&p.type!=='Pre-Order').length],['Archived',PRODUCTS.filter(p=>p.status==='Archived').length]], table:['Product','Units Sold','Revenue'], rows:PRODUCTS.slice(0,10).map(p=>[p.name, rand(10,150), fmt(rand(100,2000))])},
+    category:{title:'Category Performance', stats:[['Categories',CATEGORIES.length],['Top Category','Skincare'],['Growth','+9.2%'],['Share','24%']], table:['Category','Orders','Revenue'], rows:CATEGORIES.map(c=>[c, rand(10,120), fmt(rand(200,3000))])},
+    customer:{title:'Customer Report', stats:[['Total Customers',CUSTOMERS.length],['Active',CUSTOMERS.filter(c=>c.status==='Active').length],['New This Period',Math.round(6*m)],['Avg Spend',fmt(CUSTOMERS.reduce((s,c)=>s+c.spending,0)/CUSTOMERS.length)]], table:['Customer','Orders','Spending'], rows:CUSTOMERS.map(c=>[c.name,c.orders,fmt(c.spending)])},
+    loyalty:{title:'Loyalty Report', stats:[['Issued',CUSTOMERS.reduce((s,c)=>s+c.points,0)],['Redeemed',Math.round(CUSTOMERS.reduce((s,c)=>s+c.points,0)*0.28)],['Active Members',CUSTOMERS.length],['Top Tier','Platinum']], table:['Customer','Points','Tier'], rows:CUSTOMERS.map(c=>[c.name,c.points,c.tier])},
+    preorder:{title:'Pre-Order Report', stats:[['Reservations',PREORDERS.reduce((s,p)=>s+p.reservations,0)],['Deposits',fmt(PREORDERS.reduce((s,p)=>s+p.depositCollected,0))],['Awaiting Stock',PREORDERS.filter(p=>p.status==='Awaiting Stock').length],['Completed',PREORDERS.filter(p=>p.status==='Completed').length]], table:['Product','Status','Reservations'], rows:PREORDERS.map(p=>[p.product,p.status,p.reservations])},
+    payment:{title:'Payment Report', stats:[['Paid',ORDERS.filter(o=>o.payStatus==='Paid').length],['Failed',ORDERS.filter(o=>o.payStatus==='Failed').length],['Refunded',ORDERS.filter(o=>o.payStatus==='Refunded').length],['Total Volume',fmt(ORDERS.reduce((s,o)=>s+o.total,0))]], table:['Method','Count','Volume'], rows:PAY_METHODS.map(mth=>[mth, ORDERS.filter(o=>o.payment===mth).length, fmt(ORDERS.filter(o=>o.payment===mth).reduce((s,o)=>s+o.total,0))])},
+    shipping:{title:'Shipping Report', stats:[['Zones',ZONES.length],['Avg Fee',fmt(ZONES.reduce((s,z)=>s+z.baseFee,0)/ZONES.length)],['Orders Shipped',ORDERS.filter(o=>['Shipped','Delivered','Out for Delivery'].includes(o.status)).length],['On-Time Rate','94%']], table:['Zone','Orders','Total Fees'], rows:ZONES.map(z=>[z.name, ORDERS.filter(o=>o.zone===z.name).length, fmt(ORDERS.filter(o=>o.zone===z.name).reduce((s,o)=>s+o.fee,0))])}
+  }[currentReport];
+  document.getElementById('reportChartTitle').textContent = cfg.title;
+  document.getElementById('reportStats').innerHTML = cfg.stats.map(([lbl,val])=>`<div class="stat-card"><div class="val">${val}</div><div class="lbl">${lbl}</div></div>`).join('');
+  makeChart('reportChart', {type: currentReport==='sales'?'line':'bar', data:{labels:cfg.rows.map(r=>r[0]), datasets:[{label:cfg.table[1], data:cfg.rows.map(r=>typeof r[1]==='number'?r[1]:parseFloat(String(r[2]||r[1]).replace('$',''))||0), backgroundColor:'#C6A25D', borderColor:'#C6A25D', fill:currentReport==='sales', tension:.3}]}, options:{plugins:{legend:{display:false}}}});
+  const table = document.getElementById('reportTable');
+  table.querySelector('thead').innerHTML = `<tr>${cfg.table.map(h=>`<th>${h}</th>`).join('')}</tr>`;
+  table.querySelector('tbody').innerHTML = cfg.rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('');
+  document.getElementById('exportReportCsv').onclick = ()=>downloadCSV(`C033_${currentReport}_report_demo.csv`, [cfg.table, ...cfg.rows]);
+}
+renderAdminShell('reports');
+</script>
+</body>
+</html>

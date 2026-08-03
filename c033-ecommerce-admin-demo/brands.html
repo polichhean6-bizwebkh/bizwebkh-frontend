@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brands — Sokha Admin Dashboard (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<div id="admin-root"></div>
+<script src="assets/js/admin-data.js"></script>
+<script src="assets/js/admin-layout.js"></script>
+<script>
+function onAdminReady(){
+  document.getElementById('content').innerHTML = `
+    <div class="page-title-row"><div><h2>Brands</h2><div class="sub">Brands represented in the catalogue</div></div>
+      <button class="btn btn-primary" id="addBrandBtn"><i class="bi bi-plus-lg"></i> Add Brand</button></div>
+    <div class="table-wrap"><table class="data-table"><thead><tr><th>Brand</th><th>Products</th><th>Status</th><th>Actions</th></tr></thead><tbody id="brandTableBody"></tbody></table></div>`;
+  document.getElementById('addBrandBtn').addEventListener('click', ()=>toast('Demo only — new brands are illustrative in this prototype.', 'bi-award'));
+  document.getElementById('brandTableBody').innerHTML = BRANDS.map(b=>{
+    const n = PRODUCTS.filter(p=>p.brand===b).length;
+    return `<tr><td>${b}</td><td>${n}</td><td>${statusPillHTML('Active')}</td><td><button class="icon-btn" title="Edit"><i class="bi bi-pencil"></i></button></td></tr>`;
+  }).join('');
+}
+renderAdminShell('brands');
+</script>
+</body>
+</html>

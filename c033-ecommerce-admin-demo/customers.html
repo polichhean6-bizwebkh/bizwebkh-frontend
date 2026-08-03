@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customers — Sokha Admin Dashboard (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<div id="admin-root"></div>
+
+<div class="modal-overlay" id="customerModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="customerModal"><i class="bi bi-x-lg"></i></button>
+    <div class="modal-header"><h3>Customer Detail</h3></div>
+    <div class="modal-body" id="customerModalBody"></div>
+  </div>
+</div>
+
+<script src="assets/js/admin-data.js"></script>
+<script src="assets/js/admin-layout.js"></script>
+<script>
+function onAdminReady(){
+  document.getElementById('content').innerHTML = `
+    <div class="page-title-row"><div><h2>Customers</h2><div class="sub">Customer accounts &amp; activity</div></div></div>
+    <div class="table-toolbar"><div class="table-search"><i class="bi bi-search"></i><input id="customerSearch" placeholder="Search name, phone, email..."></div></div>
+    <div class="table-wrap"><table class="data-table">
+      <thead><tr><th>ID</th><th>Name</th><th>Phone</th><th>Email</th><th>Total Orders</th><th>Total Spend</th><th>Points</th><th>Tier</th><th>Last Order</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody id="customerTableBody"></tbody></table></div>`;
+  document.addEventListener('input', e=>{ if(e.target.id==='customerSearch') renderCustomerTable(); });
+  document.getElementById('customerTableBody').addEventListener('click', e=>{
+    const btn = e.target.closest('button[data-act]'); if(!btn) return;
+    openCustomerModal(CUSTOMERS.find(x=>x.id===btn.closest('tr').dataset.id));
+  });
+  renderCustomerTable();
+}
+function renderCustomerTable(){
+  const search = (document.getElementById('customerSearch').value||'').toLowerCase();
+  const list = CUSTOMERS.filter(c=>!search || c.name.toLowerCase().includes(search) || c.phone.includes(search) || c.email.toLowerCase().includes(search));
+  document.getElementById('customerTableBody').innerHTML = list.map(c=>`
+    <tr data-id="${c.id}"><td>${c.id}</td><td>${c.name}</td><td>${c.phone}</td><td>${c.email}</td><td>${c.orders}</td><td>${fmt(c.spending)}</td>
+    <td>${c.points}</td><td>${c.tier}</td><td>${c.lastOrder}</td><td><span class="status-pill pill-${slugPill(c.status)}">${c.status}</span></td>
+    <td><button class="icon-btn" data-act="view" title="View"><i class="bi bi-eye"></i></button></td></tr>`).join('');
+}
+function openCustomerModal(c){
+  const custOrders = ORDERS.filter(o=>o.customer===c.name);
+  document.getElementById('customerModalBody').innerHTML = `
+    <div class="kpi-row">
+      <div class="kpi-chip"><b>${c.name}</b>Customer</div><div class="kpi-chip"><b>${c.tier}</b>Loyalty Tier</div>
+      <div class="kpi-chip"><b>${c.points}</b>Points</div><div class="kpi-chip"><b>${fmt(c.spending)}</b>Total Spend</div>
+    </div>
+    <div class="form-row"><label>Contact</label><input value="${c.phone} · ${c.email}" disabled></div>
+    <div class="form-row"><label>Address</label><input value="${c.address}" disabled></div>
+    <div class="tab-row">
+      <div class="tab active" data-ctab="orders">Orders</div>
+      <div class="tab" data-ctab="preorders">Pre-Orders</div>
+      <div class="tab" data-ctab="loyalty">Loyalty History</div>
+      <div class="tab" data-ctab="notes">Notes</div>
+    </div>
+    <div class="tab-panel active" data-cpanel="orders"><table class="data-table"><thead><tr><th>Order #</th><th>Date</th><th>Total</th><th>Status</th></tr></thead>
+      <tbody>${custOrders.map(o=>`<tr><td>${o.orderNo}</td><td>${o.date}</td><td>${fmt(o.total)}</td><td>${statusPillHTML(o.status)}</td></tr>`).join('') || '<tr><td colspan="4" class="text-muted">No orders yet.</td></tr>'}</tbody></table></div>
+    <div class="tab-panel" data-cpanel="preorders"><p class="text-muted">${PREORDERS.filter(p=>p.customer===c.name).map(p=>`${p.product} — ${statusPillHTML(p.status)}`).join('<br>') || 'No pre-order reservations linked.'}</p></div>
+    <div class="tab-panel" data-cpanel="loyalty"><table class="data-table"><thead><tr><th>Date</th><th>Description</th><th>Points</th></tr></thead>
+      <tbody>${LOYALTY_TXNS.filter(t=>t.customer===c.name).map(t=>`<tr><td>${t.date}</td><td>${t.desc}</td><td>${t.pts}</td></tr>`).join('') || '<tr><td colspan="3" class="text-muted">No loyalty history yet.</td></tr>'}</tbody></table></div>
+    <div class="tab-panel" data-cpanel="notes"><textarea rows="4" placeholder="Internal note (demo only)"></textarea></div>
+    <div class="form-row mt-16"><label>Account Status</label><select id="custStatusSel"><option ${c.status==='Active'?'selected':''}>Active</option><option ${c.status==='Inactive'?'selected':''}>Inactive</option></select></div>
+    <button class="btn btn-primary" id="saveCustStatus">Save (Demo)</button>`;
+  document.querySelectorAll('[data-ctab]').forEach(t=>t.addEventListener('click', ()=>{
+    document.querySelectorAll('[data-ctab]').forEach(x=>x.classList.remove('active')); document.querySelectorAll('[data-cpanel]').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active'); document.querySelector(`[data-cpanel="${t.dataset.ctab}"]`).classList.add('active');
+  }));
+  document.getElementById('saveCustStatus').onclick = ()=>{ c.status = document.getElementById('custStatusSel').value; persistAll(); renderCustomerTable(); closeModal('customerModal'); toast('Customer updated (demo)','bi-check-circle-fill'); };
+  openModal('customerModal');
+}
+renderAdminShell('customers');
+</script>
+</body>
+</html>

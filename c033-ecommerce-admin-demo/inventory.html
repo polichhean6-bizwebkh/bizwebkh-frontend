@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventory — Sokha Admin Dashboard (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<div id="admin-root"></div>
+<script src="assets/js/admin-data.js"></script>
+<script src="assets/js/admin-layout.js"></script>
+<script>
+function onAdminReady(){
+  document.getElementById('content').innerHTML = `
+    <div class="page-title-row"><div><h2>Inventory</h2><div class="sub">Stock levels &amp; low-stock alerts (demo)</div></div></div>
+    <div class="kpi-row" id="inventoryKpis"></div>
+    <div class="table-wrap"><table class="data-table"><thead><tr><th>Product</th><th>SKU</th><th>Category</th><th>Stock Quantity</th><th>Low-Stock Alert</th><th>Inventory Status</th></tr></thead><tbody id="inventoryTableBody"></tbody></table></div>`;
+  const low = PRODUCTS.filter(p=>p.type!=='Pre-Order' && p.stock>0 && p.stock<=p.lowStockAlert);
+  const out = PRODUCTS.filter(p=>p.type!=='Pre-Order' && p.stock<=0);
+  document.getElementById('inventoryKpis').innerHTML = `
+    <div class="kpi-chip"><b>${PRODUCTS.length}</b>Total SKUs</div>
+    <div class="kpi-chip"><b>${low.length}</b>Low Stock</div>
+    <div class="kpi-chip"><b>${out.length}</b>Out of Stock</div>
+    <div class="kpi-chip"><b>${PRODUCTS.reduce((s,p)=>s+(p.stock||0),0)}</b>Total Units</div>`;
+  document.getElementById('inventoryTableBody').innerHTML = PRODUCTS.map(p=>{
+    const s = p.type==='Pre-Order' ? {cls:'pill-open', text:'Pre-Order'} : p.stock<=0 ? {cls:'pill-outstock', text:'Out of Stock'} : p.stock<=p.lowStockAlert ? {cls:'pill-lowstock', text:'Low Stock'} : {cls:'pill-instock', text:'In Stock'};
+    return `<tr><td>${p.name}</td><td>${p.sku}</td><td>${p.category}</td><td>${p.type==='Pre-Order'?'—':p.stock}</td><td>${p.lowStockAlert}</td><td><span class="status-pill ${s.cls}">${s.text}</span></td></tr>`;
+  }).join('');
+}
+renderAdminShell('inventory');
+</script>
+</body>
+</html>

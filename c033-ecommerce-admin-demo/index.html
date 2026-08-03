@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Overview — Sokha Admin Dashboard (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<div id="admin-root"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="assets/js/admin-data.js"></script>
+<script src="assets/js/admin-layout.js"></script>
+<script>
+let chartInstances = {};
+function destroyChart(id){ if(chartInstances[id]){ chartInstances[id].destroy(); delete chartInstances[id]; } }
+function makeChart(id, config){ destroyChart(id); const ctx = document.getElementById(id); if(!ctx) return; chartInstances[id] = new Chart(ctx, config); }
+let currentRange = '7d';
+function rangeMultiplier(){ return {today:0.15, '7d':1, '30d':4, month:3.6, custom:1.3}[currentRange] || 1; }
+
+function onAdminReady(){
+  document.getElementById('content').innerHTML = `
+    <div class="page-title-row"><div><h2>Overview</h2><div class="sub">Dashboard summary — demo analytics</div></div></div>
+    <div class="daterange-bar" id="dateRangeBar">
+      <button data-range="today">Today</button>
+      <button data-range="7d" class="active">Last 7 Days</button>
+      <button data-range="30d">Last 30 Days</button>
+      <button data-range="month">This Month</button>
+      <button data-range="custom">Custom Range</button>
+      <span id="customRangeInputs" class="hidden"><input type="date" id="customFrom"> <input type="date" id="customTo"> <button class="btn btn-sm btn-primary" id="applyCustomRange">Apply</button></span>
+    </div>
+    <div class="stat-grid" id="overviewStats"></div>
+    <div class="chart-grid">
+      <div class="panel"><h4>Sales Trend</h4><canvas id="chartSalesTrend"></canvas></div>
+      <div class="panel"><h4>Orders by Status</h4><canvas id="chartOrdersStatus"></canvas></div>
+    </div>
+    <div class="chart-grid cols-3">
+      <div class="panel"><h4>Sales by Category</h4><canvas id="chartCategorySales"></canvas></div>
+      <div class="panel"><h4>Payment Methods</h4><canvas id="chartPaymentMethods"></canvas></div>
+      <div class="panel"><h4>Delivery Zones</h4><canvas id="chartDeliveryZones"></canvas></div>
+    </div>
+    <div class="panel"><h4>Top-Selling Products</h4><canvas id="chartTopProducts"></canvas></div>
+  `;
+  document.getElementById('dateRangeBar').addEventListener('click', e=>{
+    const btn = e.target.closest('button[data-range]'); if(!btn) return;
+    document.querySelectorAll('#dateRangeBar button[data-range]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active'); currentRange = btn.dataset.range;
+    document.getElementById('customRangeInputs').classList.toggle('hidden', currentRange!=='custom');
+    if(currentRange!=='custom') renderOverview();
+  });
+  document.getElementById('applyCustomRange').addEventListener('click', renderOverview);
+  renderOverview();
+}
+
+function renderOverview(){
+  const m = rangeMultiplier();
+  const totalSales = 4820*m, totalOrders = Math.round(126*m), aov = totalSales/Math.max(totalOrders,1);
+  const stats = [
+    {icon:'bi-cash-stack', lbl:'Total Sales', val:fmt(totalSales), delta:'+12.4% vs prior period', up:true},
+    {icon:'bi-receipt', lbl:'Total Orders', val:totalOrders, delta:'+8.1% vs prior period', up:true},
+    {icon:'bi-graph-up', lbl:'Average Order Value', val:fmt(aov), delta:'+3.2% vs prior period', up:true},
+    {icon:'bi-people', lbl:'Total Customers', val:CUSTOMERS.length, delta:'+2 new', up:true},
+    {icon:'bi-person-plus', lbl:'New Customers', val:Math.round(6*m), delta:'this period', up:true},
+    {icon:'bi-hourglass-split', lbl:'Pending Orders', val:ORDERS.filter(o=>o.status==='Pending').length, delta:'needs action', up:false},
+    {icon:'bi-bookmark-star', lbl:'Pre-Orders', val:PREORDERS.reduce((s,p)=>s+p.reservations,0), delta:'total reservations', up:true},
+    {icon:'bi-exclamation-triangle', lbl:'Low-Stock Products', val:PRODUCTS.filter(p=>p.stock>0 && p.stock<=p.lowStockAlert).length, delta:'below threshold', up:false},
+    {icon:'bi-gem', lbl:'Loyalty Points Issued', val:Math.round(3200*m), delta:'this period', up:true},
+    {icon:'bi-arrow-repeat', lbl:'Loyalty Points Redeemed', val:Math.round(940*m), delta:'this period', up:true}
+  ];
+  document.getElementById('overviewStats').innerHTML = stats.map(s=>`<div class="stat-card"><div class="icon"><i class="bi ${s.icon}"></i></div><div class="val">${s.val}</div><div class="lbl">${s.lbl}</div><div class="delta ${s.up?'delta-up':'delta-down'}"><i class="bi ${s.up?'bi-arrow-up-right':'bi-arrow-down-right'}"></i> ${s.delta}</div></div>`).join('');
+
+  const days = currentRange==='30d'||currentRange==='month' ? 30 : 7;
+  const labels = Array.from({length:days},(_,i)=>{ const d=new Date(); d.setDate(d.getDate()-(days-1-i)); return d.toLocaleDateString('en-GB',{day:'2-digit',month:'short'}); });
+  makeChart('chartSalesTrend', {type:'line', data:{labels, datasets:[{label:'Sales ($)', data:labels.map(()=>Math.round(300+Math.random()*500)), borderColor:'#C6A25D', backgroundColor:'rgba(198,162,93,.15)', fill:true, tension:.35}]}, options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true}}}});
+  makeChart('chartOrdersStatus', {type:'doughnut', data:{labels:ALL_ORDER_STATUS, datasets:[{data:ALL_ORDER_STATUS.map(s=>ORDERS.filter(o=>o.status===s).length), backgroundColor:['#E9D48A','#9FC6E3','#B8AEE0','#9BD1AE','#8FC7E8','#F0B37E','#7FCB8F','#E0A7A2','#D2A6DA']}]}, options:{plugins:{legend:{position:'bottom', labels:{font:{size:9}}}}}});
+  makeChart('chartCategorySales', {type:'bar', data:{labels:CATEGORIES, datasets:[{label:'Sales ($)', data:CATEGORIES.map(()=>Math.round(300+Math.random()*1200)), backgroundColor:'#C99A96'}]}, options:{plugins:{legend:{display:false}}, indexAxis:'y'}});
+  makeChart('chartPaymentMethods', {type:'pie', data:{labels:PAY_METHODS, datasets:[{data:PAY_METHODS.map(m2=>ORDERS.filter(o=>o.payment===m2).length), backgroundColor:['#C6A25D','#4A5A8A','#B4463B','#4C7C59']}]}, options:{plugins:{legend:{position:'bottom'}}}});
+  makeChart('chartDeliveryZones', {type:'bar', data:{labels:ZONES.map(z=>z.name), datasets:[{label:'Orders', data:ZONES.map(z=>ORDERS.filter(o=>o.zone===z.name).length), backgroundColor:'#8FB39B'}]}, options:{plugins:{legend:{display:false}}}});
+  const topProducts = PRODUCTS.slice().sort(()=>Math.random()-0.5).slice(0,6);
+  makeChart('chartTopProducts', {type:'bar', data:{labels:topProducts.map(p=>p.name), datasets:[{label:'Units Sold', data:topProducts.map(()=>rand(20,140)), backgroundColor:'#C6A25D'}]}, options:{plugins:{legend:{display:false}}}});
+}
+
+renderAdminShell('overview');
+</script>
+</body>
+</html>

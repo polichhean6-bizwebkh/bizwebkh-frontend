@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Content — Sokha Admin Dashboard (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<div id="admin-root"></div>
+<script src="assets/js/admin-data.js"></script>
+<script src="assets/js/admin-layout.js"></script>
+<script>
+function onAdminReady(){
+  document.getElementById('content').innerHTML = `
+    <div class="page-title-row"><div><h2>Website Content</h2><div class="sub">Manage homepage banners, promotions, featured products, testimonials &amp; footer content (demo)</div></div></div>
+    <div class="tab-row">
+      <div class="tab active" data-content="banners">Homepage Banners</div>
+      <div class="tab" data-content="featured">Featured Products</div>
+      <div class="tab" data-content="testimonials">Testimonials</div>
+      <div class="tab" data-content="footer">Footer Content</div>
+    </div>
+    <div id="contentPanelArea"></div>`;
+  document.querySelectorAll('.tab-row .tab').forEach(t=>t.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-row .tab').forEach(x=>x.classList.remove('active')); t.classList.add('active'); renderPanel(t.dataset.content);
+  }));
+  renderPanel('banners');
+}
+function renderPanel(section){
+  const area = document.getElementById('contentPanelArea');
+  if(section==='banners'){
+    area.innerHTML = `<div class="panel"><h4>Homepage Hero Banner</h4>
+      <div class="form-row"><label>Hero Headline</label><input value="Feel radiant. Live nourished. Everyday wellness, delivered."></div>
+      <div class="form-row"><label>Hero Subtext</label><textarea rows="2">Curated skincare, cosmetics, vitamins and supplements from trusted brands.</textarea></div>
+      <div class="form-row"><label>Announcement Bar Text</label><input value="✨ Free shipping in Phnom Penh Central for orders over $35 — Demo Promotion"></div>
+      <button class="btn btn-primary">Save Banner (Demo)</button></div>`;
+  } else if(section==='featured'){
+    area.innerHTML = `<div class="panel"><h4>Featured Products Selection</h4><p class="text-muted">Toggle which demo products appear in the storefront's Featured Products homepage section.</p>
+      ${PRODUCTS.slice(0,8).map(p=>`<label style="display:block; padding:6px 0"><input type="checkbox" checked> ${p.name}</label>`).join('')}
+      <button class="btn btn-primary mt-16">Save Selection (Demo)</button></div>`;
+  } else if(section==='testimonials'){
+    area.innerHTML = `<div class="panel"><h4>Testimonials</h4>
+      <div class="form-row"><label>Customer Name</label><input value="Sreymom R."></div>
+      <div class="form-row"><label>Review Text</label><textarea rows="2">Lovely packaging and the skincare set arrived quickly.</textarea></div>
+      <button class="btn btn-primary">Add Testimonial (Demo)</button></div>`;
+  } else {
+    area.innerHTML = `<div class="panel"><h4>Footer Content</h4>
+      <div class="form-row"><label>Contact Address</label><input value="#12, Street 214, Phnom Penh, Cambodia (Demo)"></div>
+      <div class="form-row"><label>Contact Phone</label><input value="+855 12 345 678 (Demo)"></div>
+      <div class="form-row"><label>Contact Email</label><input value="hello@sokhabeauty-demo.com"></div>
+      <div class="form-row"><label>Social Links</label><input value="Facebook, Instagram, Telegram"></div>
+      <button class="btn btn-primary">Save Footer (Demo)</button></div>`;
+  }
+}
+renderAdminShell('content');
+</script>
+</body>
+</html>

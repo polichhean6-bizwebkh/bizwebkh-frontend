@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shipping Zones — Sokha Admin Dashboard (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<div id="admin-root"></div>
+<script src="assets/js/admin-data.js"></script>
+<script src="assets/js/admin-layout.js"></script>
+<script>
+function onAdminReady(){
+  document.getElementById('content').innerHTML = `
+    <div class="page-title-row"><div><h2>Shipping Zones</h2><div class="sub">Zone name, base fee, weight-based extra fee &amp; delivery estimate configuration</div></div></div>
+    <div class="table-wrap"><table class="data-table">
+      <thead><tr><th>Zone Name</th><th>Provinces / Areas</th><th>Base Fee</th><th>Weight-Based Extra Fee (per kg)</th><th>Free-Shipping Threshold</th><th>Delivery Estimate</th><th>Status</th><th>Actions</th></tr></thead>
+      <tbody id="shippingTableBody"></tbody></table></div>
+    <div class="panel mt-16">
+      <h4>Shipping Calculation Preview</h4>
+      <p class="text-muted" style="font-size:.82rem">Demo formula: Final Price = Product Price + Weight-Based Shipping Fee + Delivery-Zone Fee</p>
+      <div class="form-grid-3">
+        <div class="form-row"><label>Product Subtotal ($)</label><input type="number" id="calcSubtotal" value="45"></div>
+        <div class="form-row"><label>Total Weight (kg)</label><input type="number" id="calcWeight" value="1.2"></div>
+        <div class="form-row"><label>Delivery Zone</label><select id="calcZone">${ZONES.map(z=>`<option value="${z.key}">${z.name}</option>`).join('')}</select></div>
+      </div>
+      <button class="btn btn-primary" id="calcPreviewBtn">Calculate</button>
+      <div id="calcPreviewResult" class="mt-16"></div>
+    </div>`;
+  document.getElementById('shippingTableBody').innerHTML = ZONES.map(z=>`
+    <tr><td>${z.name}</td><td>${z.areas}</td><td>${fmt(z.baseFee)}</td><td>${fmt(z.perKg)}</td><td>${z.freeThreshold?fmt(z.freeThreshold):'—'}</td><td>${z.eta}</td><td>${statusPillHTML(z.status)}</td>
+    <td><button class="icon-btn" title="Edit"><i class="bi bi-pencil"></i></button></td></tr>`).join('');
+  document.getElementById('calcPreviewBtn').addEventListener('click', ()=>{
+    const subtotal = +document.getElementById('calcSubtotal').value||0, weight = +document.getElementById('calcWeight').value||0;
+    const zone = ZONES.find(z=>z.key===document.getElementById('calcZone').value);
+    const weightFee = +(weight*zone.perKg).toFixed(2);
+    let zoneFee = zone.baseFee, free=false;
+    if(zone.freeThreshold && subtotal>=zone.freeThreshold){ zoneFee=0; free=true; }
+    const total = +(subtotal+weightFee+zoneFee).toFixed(2);
+    document.getElementById('calcPreviewResult').innerHTML = `
+      <div class="kpi-row">
+        <div class="kpi-chip"><b>${fmt(subtotal)}</b>Product Subtotal</div>
+        <div class="kpi-chip"><b>${fmt(weightFee)}</b>Weight-Based Fee</div>
+        <div class="kpi-chip"><b>${free?'FREE':fmt(zoneFee)}</b>Zone Fee</div>
+        <div class="kpi-chip"><b>${fmt(total)}</b>Final Total</div>
+      </div><span class="tag-demo">DEMO CALCULATION</span>`;
+  });
+}
+renderAdminShell('shipping');
+</script>
+</body>
+</html>

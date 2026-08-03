@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orders — Sokha Admin Dashboard (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<div id="admin-root"></div>
+
+<div class="modal-overlay" id="orderModal">
+  <div class="modal-box">
+    <button class="modal-close" data-close="orderModal"><i class="bi bi-x-lg"></i></button>
+    <div class="modal-header"><h3>Order Detail</h3></div>
+    <div class="modal-body" id="orderModalBody"></div>
+  </div>
+</div>
+
+<script src="assets/js/admin-data.js"></script>
+<script src="assets/js/admin-layout.js"></script>
+<script>
+function qparam(name){ return new URLSearchParams(window.location.search).get(name); }
+function onAdminReady(){
+  document.getElementById('content').innerHTML = `
+    <div class="page-title-row"><div><h2>Orders</h2><div class="sub">Manage customer orders</div></div>
+      <button class="btn btn-light" id="exportOrdersCsv"><i class="bi bi-download"></i> Export CSV</button></div>
+    <div class="table-toolbar">
+      <div class="table-search"><i class="bi bi-search"></i><input id="orderSearch" placeholder="Search order #, customer, phone..."></div>
+      <div class="filters"><select id="orderStatusFilter"><option value="">All Status</option>${ALL_ORDER_STATUS.map(s=>`<option>${s}</option>`).join('')}</select><input type="date" id="orderDateFilter"></div>
+    </div>
+    <div class="table-wrap"><table class="data-table">
+      <thead><tr><th>Order #</th><th>Date</th><th>Customer</th><th>Phone</th><th>Products</th><th>Payment</th><th>Pay Status</th><th>Zone</th><th>Fee</th><th>Total</th><th>Status</th><th>Tracking</th><th>Actions</th></tr></thead>
+      <tbody id="orderTableBody"></tbody>
+    </table></div>`;
+  if(qparam('q')) document.getElementById('orderSearch').value = qparam('q');
+  ['input','change'].forEach(evt=>document.addEventListener(evt, e=>{ if(e.target.matches('#orderSearch, #orderStatusFilter, #orderDateFilter')) renderOrdersTable(); }));
+  document.getElementById('orderTableBody').addEventListener('click', e=>{
+    const btn = e.target.closest('button[data-act]'); if(!btn) return;
+    const o = ORDERS.find(x=>x.orderNo===btn.closest('tr').dataset.order);
+    if(btn.dataset.act==='view') openOrderModal(o);
+    if(btn.dataset.act==='print') toast('Order summary sent to print preview (demo)', 'bi-printer');
+  });
+  document.getElementById('exportOrdersCsv').addEventListener('click', ()=>{
+    const rows = [['Order #','Date','Customer','Phone','Payment','Pay Status','Zone','Fee','Total','Status','Tracking']];
+    ORDERS.forEach(o=>rows.push([o.orderNo,o.date,o.customer,o.phone,o.payment,o.payStatus,o.zone,o.fee,o.total,o.status,o.tracking]));
+    downloadCSV('C033_orders_demo.csv', rows);
+  });
+  renderOrdersTable();
+}
+function renderOrdersTable(){
+  const search = (document.getElementById('orderSearch').value||'').toLowerCase();
+  const status = document.getElementById('orderStatusFilter').value;
+  const date = document.getElementById('orderDateFilter').value;
+  let list = ORDERS.filter(o=>(!search || o.orderNo.toLowerCase().includes(search) || o.customer.toLowerCase().includes(search) || o.phone.includes(search)) && (!status||o.status===status) && (!date||o.date===date))
+    .slice().sort((a,b)=>b.date.localeCompare(a.date));
+  document.getElementById('orderTableBody').innerHTML = list.slice(0,150).map(o=>`
+    <tr data-order="${o.orderNo}"><td>${o.orderNo}</td><td>${o.date}</td><td>${o.customer}</td><td>${o.phone}</td><td>${o.items} item(s)</td><td>${o.payment}</td>
+    <td><span class="status-pill pill-${slugPill(o.payStatus)}">${o.payStatus}</span></td><td>${o.zone}</td><td>${fmt(o.fee)}</td><td>${fmt(o.total)}</td>
+    <td><span class="status-pill pill-${slugPill(o.status)}">${o.status}</span></td><td>${o.tracking}</td>
+    <td><button class="icon-btn" data-act="view" title="View"><i class="bi bi-eye"></i></button><button class="icon-btn" data-act="print" title="Print"><i class="bi bi-printer"></i></button></td></tr>`).join('')
+    || `<tr><td colspan="13" style="text-align:center; padding:30px" class="text-muted">No orders found.</td></tr>`;
+}
+function openOrderModal(o){
+  document.getElementById('orderModalBody').innerHTML = `
+    <div class="kpi-row">
+      <div class="kpi-chip"><b>${o.orderNo}</b>Order Number</div>
+      <div class="kpi-chip"><b>${o.customer}</b>Customer</div>
+      <div class="kpi-chip"><b>${o.phone}</b>Phone</div>
+      <div class="kpi-chip"><b>${fmt(o.total)}</b>Total</div>
+    </div>
+    <div class="form-grid-2">
+      <div class="form-row"><label>Payment Method</label><input value="${o.payment}" disabled></div>
+      <div class="form-row"><label>Payment Status</label><input value="${o.payStatus}" disabled></div>
+    </div>
+    <div class="form-grid-2">
+      <div class="form-row"><label>Delivery Zone</label><input value="${o.zone}" disabled></div>
+      <div class="form-row"><label>Shipping Fee</label><input value="${fmt(o.fee)}" disabled></div>
+    </div>
+    <h4 class="mt-16">Status History</h4>
+    <table class="data-table"><thead><tr><th>Status</th><th>Date</th></tr></thead><tbody>${(o.history||[]).map(h=>`<tr><td>${statusPillHTML(h.status)}</td><td>${h.date}</td></tr>`).join('') || '<tr><td colspan="2" class="text-muted">No history recorded.</td></tr>'}</tbody></table>
+    <div class="form-row mt-16"><label>Update Order Status</label><select id="orderStatusUpdate">${ALL_ORDER_STATUS.map(s=>`<option ${o.status===s?'selected':''}>${s}</option>`).join('')}</select></div>
+    <div class="form-row"><label>Tracking Code</label><input id="orderTrackingUpdate" value="${o.tracking}"></div>
+    <div class="form-row"><label>Internal Note (Admin Only)</label><textarea id="orderNoteUpdate" rows="2">${o.note||''}</textarea></div>
+    <div class="pdp-cta-row"><button class="btn btn-primary" id="saveOrderUpdate">Save Changes</button><button class="btn btn-light" id="printOrderBtn"><i class="bi bi-printer"></i> Print Summary</button></div>`;
+  document.getElementById('printOrderBtn').onclick = ()=>toast('Order summary sent to print preview (demo)', 'bi-printer');
+  document.getElementById('saveOrderUpdate').onclick = ()=>{
+    const newStatus = document.getElementById('orderStatusUpdate').value;
+    if(newStatus!==o.status){ o.history = (o.history||[]).concat([{status:newStatus, date:todayISO()}]); o.status = newStatus; }
+    o.tracking = document.getElementById('orderTrackingUpdate').value; o.note = document.getElementById('orderNoteUpdate').value;
+    persistAll(); renderOrdersTable(); closeModal('orderModal'); toast('Order updated (demo)', 'bi-check-circle-fill');
+  };
+  openModal('orderModal');
+}
+renderAdminShell('orders');
+</script>
+</body>
+</html>

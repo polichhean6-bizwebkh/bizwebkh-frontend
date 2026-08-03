@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payments — Sokha Admin Dashboard (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<div id="admin-root"></div>
+<script src="assets/js/admin-data.js"></script>
+<script src="assets/js/admin-layout.js"></script>
+<script>
+function onAdminReady(){
+  document.getElementById('content').innerHTML = `
+    <div class="page-title-row"><div><h2>Payments</h2><div class="sub">Sample payment methods overview — all transactions are demo data</div></div></div>
+    <div class="stat-grid" id="paymentStats"></div>
+    <div class="table-toolbar"><div class="filters"><select id="paymentStatusFilter"><option value="">All Status</option><option>Pending</option><option>Paid</option><option>Failed</option><option>Refunded</option><option>Partially Refunded</option></select></div></div>
+    <div class="table-wrap"><table class="data-table">
+      <thead><tr><th>Payment Reference</th><th>Order #</th><th>Customer</th><th>Method</th><th>Amount</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+      <tbody id="paymentTableBody"></tbody></table></div>`;
+  const paid = ORDERS.filter(o=>o.payStatus==='Paid').length, failed = ORDERS.filter(o=>o.payStatus==='Failed').length, refunded = ORDERS.filter(o=>o.payStatus==='Refunded').length;
+  document.getElementById('paymentStats').innerHTML = [
+    {icon:'bi-qr-code', lbl:'KHQR Transactions', val:ORDERS.filter(o=>o.payment==='KHQR').length},
+    {icon:'bi-credit-card', lbl:'Card Transactions', val:ORDERS.filter(o=>o.payment==='Visa'||o.payment==='Mastercard').length},
+    {icon:'bi-cash-coin', lbl:'Cash on Delivery', val:ORDERS.filter(o=>o.payment==='Cash on Delivery').length},
+    {icon:'bi-check-circle', lbl:'Paid', val:paid}, {icon:'bi-x-circle', lbl:'Failed / Refunded', val:failed+refunded}
+  ].map(s=>`<div class="stat-card"><div class="icon"><i class="bi ${s.icon}"></i></div><div class="val">${s.val}</div><div class="lbl">${s.lbl}</div></div>`).join('');
+  document.getElementById('paymentStatusFilter').addEventListener('change', renderPaymentsTable);
+  document.getElementById('paymentTableBody').addEventListener('click', e=>{
+    const btn = e.target.closest('[data-refund]'); if(!btn) return;
+    const o = ORDERS.find(x=>x.orderNo===btn.dataset.refund); o.payStatus='Refunded'; persistAll(); renderPaymentsTable(); toast('Payment marked refunded (demo)', 'bi-arrow-counterclockwise');
+  });
+  renderPaymentsTable();
+}
+function renderPaymentsTable(){
+  const filter = document.getElementById('paymentStatusFilter').value;
+  const list = ORDERS.filter(o=>!filter || o.payStatus===filter);
+  document.getElementById('paymentTableBody').innerHTML = list.slice(0,150).map(o=>`
+    <tr><td>PMT-${o.orderNo.slice(-3)}</td><td>${o.orderNo}</td><td>${o.customer}</td><td>${o.payment}</td><td>${fmt(o.total)}</td>
+    <td><span class="status-pill pill-${slugPill(o.payStatus)}">${o.payStatus}</span></td><td>${o.date}</td>
+    <td><button class="icon-btn" title="Mark Refunded" data-refund="${o.orderNo}"><i class="bi bi-arrow-counterclockwise"></i></button></td></tr>`).join('');
+}
+renderAdminShell('payments');
+</script>
+</body>
+</html>

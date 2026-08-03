@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promotions — Sokha Admin Dashboard (C033 Demo)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<div id="admin-root"></div>
+<script src="assets/js/admin-data.js"></script>
+<script src="assets/js/admin-layout.js"></script>
+<script>
+function onAdminReady(){
+  document.getElementById('content').innerHTML = `
+    <div class="page-title-row"><div><h2>Promotions</h2><div class="sub">Promo codes, discount campaigns &amp; banner/featured product promotion (demo)</div></div>
+      <button class="btn btn-primary" id="addPromoBtn"><i class="bi bi-plus-lg"></i> Add Promotion</button></div>
+    <div class="table-wrap"><table class="data-table"><thead><tr><th>Promotion</th><th>Promo Code</th><th>Discount</th><th>Start</th><th>End</th><th>Status</th><th>Actions</th></tr></thead><tbody id="promoTableBody"></tbody></table></div>
+    <div class="panel mt-16">
+      <h4>Banner &amp; Featured Product Promotion</h4>
+      <p class="text-muted" style="font-size:.85rem">Toggle which promotions are highlighted on the storefront homepage banner (demo — visual only).</p>
+      <label style="display:block; padding:6px 0"><input type="checkbox" checked> Show "Beauty Month Sale" on homepage banner</label>
+      <label style="display:block; padding:6px 0"><input type="checkbox"> Feature "New Customer Welcome" in header announcement bar</label>
+      <button class="btn btn-outline mt-16">Save Banner Settings (Demo)</button>
+    </div>`;
+  document.getElementById('addPromoBtn').addEventListener('click', ()=>{
+    const name = prompt('Promotion name (demo):','New Promotion'); if(!name) return;
+    PROMOTIONS.push({name, code:name.substring(0,8).toUpperCase().replace(/\s/g,''), discount:'10% off', start:todayISO(), end:todayISO(), status:'Active'});
+    persistAll(); renderPromoTable(); toast('Promotion added (demo)', 'bi-plus-circle');
+  });
+  document.getElementById('promoTableBody').addEventListener('click', e=>{
+    const btn = e.target.closest('button[data-act]'); if(!btn) return; const i = +btn.dataset.i;
+    if(btn.dataset.act==='toggle') PROMOTIONS[i].status = PROMOTIONS[i].status==='Active'?'Expired':'Active';
+    if(btn.dataset.act==='delpromo') PROMOTIONS.splice(i,1);
+    persistAll(); renderPromoTable(); toast('Promotions updated (demo)', 'bi-megaphone');
+  });
+  renderPromoTable();
+}
+function renderPromoTable(){
+  document.getElementById('promoTableBody').innerHTML = PROMOTIONS.map((p,i)=>`
+    <tr><td>${p.name}</td><td><code>${p.code}</code></td><td>${p.discount}</td><td>${p.start}</td><td>${p.end}</td><td>${statusPillHTML(p.status)}</td>
+    <td><button class="icon-btn" data-act="toggle" data-i="${i}" title="Toggle Status"><i class="bi bi-toggle2-on"></i></button><button class="icon-btn" data-act="delpromo" data-i="${i}" title="Delete"><i class="bi bi-trash"></i></button></td></tr>`).join('');
+}
+renderAdminShell('promotions');
+</script>
+</body>
+</html>
