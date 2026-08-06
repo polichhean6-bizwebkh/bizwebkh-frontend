@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 160" role="img" aria-labelledby="logoTitle">
+<title id="logoTitle">IMRCHA - Islamic Medical Relief for Cambodia Humanity Association</title>
+<g transform="translate(6,6)">
+  <circle cx="70" cy="74" r="68" fill="#0F5B3F"/>
+  <path d="M70 18 A56 56 0 1 0 70 130 A44 44 0 1 1 70 18 Z" fill="#F6F4EE" opacity="0.95"/>
+  <g transform="translate(88,74)">
+    <rect x="-7" y="-26" width="14" height="52" rx="4" fill="#D4AF37"/>
+    <rect x="-26" y="-7" width="52" height="14" rx="4" fill="#D4AF37"/>
+  </g>
+</g>
+<g transform="translate(160,42)" font-family="Georgia, 'Times New Roman', serif">
+  <text x="0" y="24" font-size="30" font-weight="700" fill="#0F5B3F" letter-spacing="1">IMRCHA</text>
+  <text x="0" y="50" font-size="13.5" fill="#1F3A3D" font-family="Arial, sans-serif" letter-spacing="0.2">Islamic Medical Relief for Cambodia</text>
+  <text x="0" y="68" font-size="13.5" fill="#1F3A3D" font-family="Arial, sans-serif" letter-spacing="0.2">Humanity Association</text>
+</g>
+</svg>
