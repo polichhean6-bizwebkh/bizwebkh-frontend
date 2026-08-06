@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.bizwebkh.com/c035-imrcha/sitemap.xml
