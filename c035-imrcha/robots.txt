@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://c035.bizwebkh.com/sitemap.xml
