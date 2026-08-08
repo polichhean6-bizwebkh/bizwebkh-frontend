@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard Demo — C037 NGO CMS</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Khmer:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="demo-banner">Admin Dashboard Demo – Sample Data Only</div>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="mark">NGO</div>
+      CMS Admin
+      <span class="side-badge">DEMO</span>
+    </div>
+    <div id="sidebarNav"></div>
+  </aside>
+
+  <div class="main-col">
+    <div class="topbar">
+      <div class="topbar-left">
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        <div class="page-heading" id="pageHeading">Dashboard</div>
+      </div>
+      <div class="topbar-left" style="justify-content:flex-end;">
+        <div class="search-box"><span>🔍</span><input id="globalSearch" placeholder="Search pages, projects, news..."></div>
+      </div>
+      <div class="topbar-right">
+        <div class="lang-switch">
+          <button data-lang="en" class="active">EN</button>
+          <button data-lang="km">ខ្មែរ</button>
+        </div>
+        <button class="icon-btn" id="notifBtn">🔔<span class="dot"></span></button>
+        <div class="profile-chip">
+          <img src="https://ui-avatars.com/api/?name=Kerena+Khun&background=0f5c52&color=fff&rounded=true" alt="profile">
+          <div>
+            <div class="pname" id="profileName">Kerena Khun</div>
+            <div class="prole">Super Admin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content" id="content"></div>
+  </div>
+</div>
+
+<div id="modalRoot"></div>
+<div id="confirmRoot"></div>
+<div class="toast" id="toast"></div>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
