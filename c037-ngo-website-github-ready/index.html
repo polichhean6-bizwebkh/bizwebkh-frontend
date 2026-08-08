@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NGO Website Demo — C037 Client Review</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Khmer:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="demo-banner" id="demoBanner">Website Demo for Client Review — Sample Content Only</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">NGO</div>
+      <span id="brandName">NGO Website Demo</span>
+    </div>
+    <nav class="main-nav" id="mainNav"></nav>
+    <div class="header-actions">
+      <div class="lang-switch">
+        <button data-lang="en" class="active">EN</button>
+        <button data-lang="km">ខ្មែរ</button>
+      </div>
+      <a class="btn btn-primary btn-sm" data-page="contact">Contact Us</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobileNav"></div>
+</header>
+
+<main>
+  <div class="page" id="page-home"></div>
+  <div class="page" id="page-about"></div>
+  <div class="page" id="page-programs"></div>
+  <div class="page" id="page-projects"></div>
+  <div class="page" id="page-news"></div>
+  <div class="page" id="page-publications"></div>
+  <div class="page" id="page-team"></div>
+  <div class="page" id="page-gallery"></div>
+  <div class="page" id="page-partners"></div>
+  <div class="page" id="page-contact"></div>
+</main>
+
+<footer class="site-footer">
+  <div class="container" id="footerContent"></div>
+</footer>
+
+<div id="modalRoot"></div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
+  <img id="lightboxImg" src="" alt="Gallery image" loading="lazy" onerror="this.onerror=null;this.src=FALLBACK_IMG;">
+  <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
+  <div class="lightbox-cap" id="lightboxCap"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
