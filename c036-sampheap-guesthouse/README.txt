@@ -33,18 +33,30 @@ DEPLOYMENT NOTES (GitHub Pages subfolder)
   already managed by the main bizwebkh-frontend repository — do not add
   a CNAME here.
 
-INCLUDED
---------
-- Accommodation presentation (hero, about, rooms & facilities)
-- Stay packages (Standard / Premium)
-- Travel packages (Silver / Gold / Platinum)
-- Transportation & extra services
-- Explore Stung Treng destination section
-- 2-day sample itinerary
-- Photo gallery with lightbox
-- Direct inquiry form with WhatsApp and email buttons
-- English / Khmer language switch (saved in browser localStorage)
-- robots.txt and sitemap.xml for search engines
+INCLUDED — CLIENT-APPROVED CONTENT FLOW
+-------------------------------------------
+1. Home
+2. About Sampheap Guesthouse
+3. Rooms (with "Check Availability" CTA to Contact & Booking)
+4. Stay Packages (Standard / Premium + an "Optional Travel Experiences"
+   subsection for Silver / Gold / Platinum add-ons)
+5. Café & Night Bar (new section — coffee, light meals, evening drinks,
+   relaxed social space; generic demo content only)
+6. Explore Stung Treng (destination cards + a "Local Travel Support"
+   subsection for rentals/transfers + a collapsible sample 2-day itinerary)
+7. Gallery with lightbox
+8. Guest Reviews (clearly marked sample reviews — not real testimonials)
+9. Contact & Booking (merged contact info + demo booking inquiry form,
+   WhatsApp button, and email button)
+10. Footer
+
+English / Khmer language switch (saved in browser localStorage).
+robots.txt and sitemap.xml for search engines.
+
+The previous standalone "Travel Services", "Sample Itinerary", "Direct
+Inquiry", and "Location & Contact" sections have been merged into the
+flow above per the client-approved structure — they no longer exist as
+separate sections.
 
 NOT INCLUDED (by design — demo only)
 ---------------------------------------
@@ -69,7 +81,11 @@ client before this goes fully live:
 6. Final room information (number of rooms, confirmed features, real
    room photos if available)
 7. Final service details (rental rates, transfer pricing, boat rates)
-8. Any real certifications, ratings, or social media links to add
+8. Café & Night Bar details (menu items, prices, opening hours — none
+   are shown on the site; only generic demo descriptions are used)
+9. Real guest reviews (Sample Guest Review cards will be replaced once
+   the client provides actual reviews/ratings)
+10. Any real certifications, ratings, or social media links to add
 
 FOLDER CONTENTS
 -----------------
