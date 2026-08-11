@@ -1,0 +1,43 @@
+const menu=document.querySelector('.menu-toggle'),links=document.querySelector('.nav-links'),back=document.querySelector('.back-top');
+menu.addEventListener('click',()=>{const open=menu.getAttribute('aria-expanded')==='true';menu.setAttribute('aria-expanded',!open);const km=window.littleLearnersLanguage==='km';menu.setAttribute('aria-label',km?(open?'បើកម៉ឺនុយ':'បិទម៉ឺនុយ'):(open?'Open menu':'Close menu'));links.classList.toggle('open')});
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');menu.setAttribute('aria-expanded','false')}));
+document.querySelectorAll('.accordion button').forEach(button=>button.addEventListener('click',()=>{const was=button.getAttribute('aria-expanded')==='true';document.querySelectorAll('.accordion button').forEach(b=>{b.setAttribute('aria-expanded','false');b.querySelector('.accordion-symbol').textContent='+'});button.setAttribute('aria-expanded',!was);button.querySelector('.accordion-symbol').textContent=was?'+':'-'}));
+/* Enroll form submit (validate + build the Telegram inquiry + open the
+   selected branch's Telegram chat) is fully handled in js/language.js,
+   since it needs the current language to build the message text. */
+window.addEventListener('scroll',()=>back.classList.toggle('show',scrollY>600));back.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const lightbox=document.querySelector('.lightbox');document.querySelectorAll('.gallery-item').forEach(item=>item.addEventListener('click',e=>{e.preventDefault();lightbox.querySelector('img').src=item.href;lightbox.querySelector('img').alt=item.querySelector('img').alt;lightbox.classList.add('open');lightbox.setAttribute('aria-hidden','false')}));lightbox.addEventListener('click',e=>{if(e.target===lightbox||e.target.tagName==='BUTTON'){lightbox.classList.remove('open');lightbox.setAttribute('aria-hidden','true')}});document.addEventListener('keydown',e=>{if(e.key==='Escape')lightbox.classList.remove('open')});
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('seen')}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+/* Activities gallery "View More / Show Less": every photo already exists in the
+   DOM (so the lightbox's prev/next always has the full set), the extra photos
+   are just hidden with display:none + loading="lazy" until expanded, so they
+   are not fetched over the network until the visitor asks to see them. */
+const galleryMoreBtn=document.querySelector('.gallery-more-btn'),galleryEl=document.querySelector('.client-gallery');
+if(galleryMoreBtn&&galleryEl){
+  galleryMoreBtn.addEventListener('click',()=>{
+    const expanded=galleryMoreBtn.getAttribute('aria-expanded')==='true';
+    galleryMoreBtn.setAttribute('aria-expanded',String(!expanded));
+    galleryEl.classList.toggle('expanded',!expanded);
+    if(expanded){document.getElementById('activities')?.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+}
+
+/* Nav auto-fit: guarantees no nav label ever wraps to a second line, in
+   either language. Measures the real rendered width of the nav labels and
+   falls back to the hamburger menu the moment they would no longer fit on
+   one row, instead of relying on a guessed breakpoint. Re-checked on load,
+   on resize, and after every language switch (Khmer/English text widths
+   differ). */
+const siteHeader=document.querySelector('.site-header');
+window.fitNav=()=>{
+  if(!siteHeader||!links) return;
+  if(window.innerWidth<=850) return; // the native mobile menu already owns this range
+  siteHeader.classList.remove('nav-compact');
+  const overflowing=links.scrollWidth>links.clientWidth+1;
+  siteHeader.classList.toggle('nav-compact',overflowing);
+  if(!overflowing){links.classList.remove('open');menu.setAttribute('aria-expanded','false')}
+};
+window.addEventListener('resize',()=>window.fitNav());
+window.addEventListener('load',()=>window.fitNav());
+window.fitNav();

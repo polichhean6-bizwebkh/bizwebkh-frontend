@@ -1,0 +1,41 @@
+/* Keep the information bar evenly balanced after removing its duplicate CTA. */
+.top-inner{justify-content:space-between}
+@media(max-width:850px){.top-inner{justify-content:space-between;gap:12px}.top-inner span:nth-child(2){margin-left:0}}
+@media(max-width:560px){.top-inner{justify-content:flex-end}.top-inner span:nth-child(2){margin-left:0}}
+
+/* ==========================================================================
+   Navigation: keep every label on a single line at every width. The nav now
+   has more items (Home, CEO Message, Programs, Curriculum, Activities,
+   Roadmap, Fees, Partners, Contact) than the original 7-item menu, so the
+   spacing/size is tightened here, labels are forced to nowrap, and a
+   `.nav-compact` class (toggled by js/main.js after measuring the actual
+   rendered width) makes the header fall back to the hamburger menu instead
+   of ever letting a label wrap to two lines — in either language.
+   ========================================================================== */
+.nav-links{gap:16px;font-size:.82rem}
+.nav{min-height:76px}
+.nav-links>a,.nav-links .button.yellow.small{white-space:nowrap}
+/* Premium pill CTA: ~48-54px tall on desktop, generous horizontal padding, bold label. */
+.nav-links .button.yellow.small{padding:16px 28px;font-weight:700;border-radius:999px}
+/* Font is set per-language with matching selector weight on both sides so
+   neither rule can win by specificity alone — English always gets the
+   playful display font, Khmer always gets a proper Khmer Unicode font,
+   including the CTA pill itself (this exact spot previously showed broken
+   Khmer glyphs because a plain, unconditioned rule above forced Baloo 2 on
+   the button and out-specified the old Khmer override). */
+html[lang="en"] .nav-links>a,html[lang="en"] .nav-links .button.yellow.small,
+body.lang-en .nav-links>a,body.lang-en .nav-links .button.yellow.small{font-family:"Baloo 2",Nunito,sans-serif}
+html[lang="km"] .nav-links>a,html[lang="km"] .nav-links .button.yellow.small,
+body.lang-kh .nav-links>a,body.lang-kh .nav-links .button.yellow.small{font-family:"Noto Sans Khmer","Kantumruy Pro",sans-serif}
+.language-switcher button{white-space:nowrap}
+.language-switcher button[data-language="km"]{font-family:"Noto Sans Khmer","Kantumruy Pro",sans-serif}
+
+.site-header.nav-compact .nav-links{display:none}
+.site-header.nav-compact .menu-toggle{display:block}
+.site-header.nav-compact .nav-links.open{display:flex;position:absolute;left:22px;right:22px;top:82px;padding:20px;flex-direction:column;align-items:stretch;background:#fff;border-radius:15px;box-shadow:var(--shadow);gap:14px}
+.site-header.nav-compact .nav-links.open>a{font-size:.95rem}
+.site-header.nav-compact .nav-links.open .language-switcher{order:9;align-self:flex-start}
+.site-header.nav-compact .nav-links.open .button.yellow{order:10;align-self:stretch;justify-content:center}
+
+@media(min-width:851px) and (max-width:1260px){.nav-links{gap:10px;font-size:.74rem}.nav{gap:16px}}
+@media(max-width:850px){.nav-links.open .button.yellow.small{padding:14px 24px}}
