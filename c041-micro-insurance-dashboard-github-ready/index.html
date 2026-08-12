@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Micro Insurance – Admin Portal</title>
+<meta name="description" content="MicroSure Cambodia Basic Content Management Dashboard — demo build for client presentation.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230b3d63%22/><text x=%2250%22 y=%2265%22 font-size=%2255%22 fill=%22white%22 text-anchor=%22middle%22 font-family=%22Arial%22>M</text></svg>">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ============ LOGIN SCREEN ============ -->
+<div class="login-wrap" id="login-screen">
+  <div class="login-card">
+    <div class="login-brand">
+      <div class="logo-mark">M</div>
+      <div><strong>Micro Insurance</strong><span>Admin Portal</span></div>
+    </div>
+    <h2>Sign in to manage your website</h2>
+    <p class="sub">Basic Content Management Dashboard — demo build for client presentation.</p>
+    <div class="login-error" id="login-error"></div>
+    <form id="login-form">
+      <div class="form-group"><label>Username</label><input type="text" id="login-username" placeholder="admin" autocomplete="username" required></div>
+      <div class="form-group"><label>Password</label><input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" required></div>
+      <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+    </form>
+    <div class="demo-account-box">
+      <strong>Demo account</strong><br>
+      Username: <code>admin</code> &nbsp; Password: <code>demo123</code><br>
+      This is a front-end simulation only — no real account system is connected.
+    </div>
+  </div>
+</div>
+
+<!-- ============ APP SHELL ============ -->
+<div class="app-shell" id="app-shell">
+  <div class="nav-scrim-d" id="nav-scrim"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="logo-mark">M</div><div>Micro Insurance<small>Admin Portal</small></div></div>
+    <nav>
+      <button data-view="dashboard" data-label="Dashboard" class="active"><span class="ic">📊</span> Dashboard</button>
+      <button data-view="pages" data-label="Pages"><span class="ic">📄</span> Pages</button>
+      <button data-view="products" data-label="Insurance Products"><span class="ic">🛡️</span> Insurance Products</button>
+      <button data-view="promotions" data-label="Promotions"><span class="ic">🏷️</span> Promotions</button>
+      <button data-view="news" data-label="News / Updates"><span class="ic">📰</span> News / Updates</button>
+      <button data-view="faq" data-label="FAQ"><span class="ic">❓</span> FAQ</button>
+      <button data-view="gallery" data-label="Gallery"><span class="ic">🖼️</span> Gallery</button>
+      <button data-view="homepage" data-label="Homepage"><span class="ic">🏠</span> Homepage</button>
+      <button data-view="media" data-label="Media Library"><span class="ic">🗂️</span> Media Library</button>
+      <button data-view="contact" data-label="Contact Information"><span class="ic">☎️</span> Contact Information</button>
+      <button data-view="settings" data-label="Settings"><span class="ic">⚙️</span> Settings</button>
+    </nav>
+    <div class="logout-btn"><button id="logout-btn">⎋ Logout</button></div>
+  </aside>
+
+  <div class="main-col">
+    <div class="demo-mode-banner">Demo Mode — changes are stored only in this browser (localStorage). No live server or database is connected.</div>
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:14px;">
+        <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+        <h1 id="view-title">Dashboard</h1>
+      </div>
+      <div class="topbar-right">
+        <span class="demo-pill">Demo Mode</span>
+        <div class="admin-chip"><div class="av">A</div> admin</div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- DASHBOARD HOME -->
+      <section class="view active" id="view-dashboard">
+        <div class="summary-grid">
+          <div class="summary-card"><div class="ic" style="background:#eaf4fc;color:var(--blue);">🛡️</div><div class="num" id="stat-products">0</div><div class="lbl">Insurance Products</div></div>
+          <div class="summary-card"><div class="ic" style="background:var(--green-light);color:var(--green);">📰</div><div class="num" id="stat-news">0</div><div class="lbl">Published News</div></div>
+          <div class="summary-card"><div class="ic" style="background:var(--amber-light);color:var(--amber);">🏷️</div><div class="num" id="stat-promotions">0</div><div class="lbl">Active Promotions</div></div>
+          <div class="summary-card"><div class="ic" style="background:#f1ecfb;color:#7a4fd1;">❓</div><div class="num" id="stat-faq">0</div><div class="lbl">FAQ Articles</div></div>
+          <div class="summary-card"><div class="ic" style="background:var(--red-light);color:var(--red);">🖼️</div><div class="num" id="stat-gallery">0</div><div class="lbl">Gallery Images</div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>Recent Content Updates</h3></div>
+          <div id="activity-list"></div>
+        </div>
+        <div class="panel" style="border-left:4px solid var(--amber);">
+          <h3>Future Expansion — Not Included in Current Package</h3>
+          <p style="font-size:.87rem;">Online policy purchase, checkout/payment, customer accounts, claims submission &amp; tracking, and other advanced insurance system features are outside the scope of this Basic CMS package and are not part of this demo.</p>
+        </div>
+      </section>
+
+      <!-- PAGES -->
+      <section class="view" id="view-pages">
+        <div class="panel">
+          <div class="panel-head"><h3>Pages Management</h3></div>
+          <table>
+            <thead><tr><th>Page</th><th>Status</th><th>Last Updated</th><th>Action</th></tr></thead>
+            <tbody id="pages-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- PRODUCTS -->
+      <section class="view" id="view-products">
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Insurance Products Management</h3>
+            <div class="toolbar">
+              <input type="search" id="product-search" placeholder="Search products...">
+              <button class="btn btn-primary btn-sm" id="add-product-btn">+ Add Product</button>
+            </div>
+          </div>
+          <table>
+            <thead><tr><th>Image</th><th>Name</th><th>Category</th><th>Short Description</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="products-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- PROMOTIONS -->
+      <section class="view" id="view-promotions">
+        <div class="panel">
+          <div class="panel-head"><h3>Promotions Management</h3><button class="btn btn-primary btn-sm" id="add-promotion-btn">+ Add Promotion</button></div>
+          <table>
+            <thead><tr><th>Image</th><th>Title</th><th>Start</th><th>End</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="promotions-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- NEWS -->
+      <section class="view" id="view-news">
+        <div class="panel">
+          <div class="panel-head"><h3>News Management</h3><button class="btn btn-primary btn-sm" id="add-news-btn">+ Add Article</button></div>
+          <table>
+            <thead><tr><th>Image</th><th>Title</th><th>Category</th><th>Published</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="news-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="view" id="view-faq">
+        <div class="panel">
+          <div class="panel-head"><h3>FAQ Management</h3><button class="btn btn-primary btn-sm" id="add-faq-btn">+ Add FAQ</button></div>
+          <table>
+            <thead><tr><th>Question</th><th>Category</th><th>Status</th><th>Actions</th></tr></thead>
+            <tbody id="faq-table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="view" id="view-gallery">
+        <div class="panel">
+          <div class="panel-head"><h3>Gallery Management</h3><button class="btn btn-primary btn-sm" id="add-gallery-btn">+ Upload Image</button></div>
+          <div class="gallery-manage-grid" id="gallery-manage-grid"></div>
+        </div>
+      </section>
+
+      <!-- HOMEPAGE -->
+      <section class="view" id="view-homepage">
+        <div class="panel">
+          <div class="panel-head"><h3>Homepage Settings</h3></div>
+          <p style="font-size:.85rem;">Basic homepage controls only, as included in the quoted Basic CMS scope.</p>
+          <form id="homepage-form" class="editor-grid">
+            <div>
+              <div class="form-group"><label>Hero Title</label><input id="hp-title"></div>
+              <div class="form-group"><label>Hero Subtitle</label><textarea id="hp-subtitle" rows="2"></textarea></div>
+              <div class="form-group"><label>Hero Image URL</label><input id="hp-image"></div>
+              <div class="form-group"><label>CTA Text</label><input id="hp-cta"></div>
+              <div class="form-group"><label>Featured Promotion</label><select id="hp-featured-promo"></select></div>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+            <div>
+              <img class="thumb-preview" id="hp-preview" src="">
+              <div class="panel" style="padding:14px;">
+                <h4 style="font-size:.9rem;">Featured Products</h4>
+                <div id="hp-featured-products"></div>
+              </div>
+              <div class="panel" style="padding:14px;">
+                <h4 style="font-size:.9rem;">Featured News</h4>
+                <div id="hp-featured-news"></div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- MEDIA LIBRARY -->
+      <section class="view" id="view-media">
+        <div class="panel">
+          <div class="panel-head"><h3>Media Library</h3><button class="btn btn-primary btn-sm" id="media-upload-btn">+ Upload Image</button></div>
+          <div class="media-grid" id="media-grid"></div>
+        </div>
+      </section>
+
+      <!-- CONTACT INFO -->
+      <section class="view" id="view-contact">
+        <div class="panel">
+          <div class="panel-head"><h3>Contact Information</h3></div>
+          <form id="contact-info-form" class="editor-grid">
+            <div>
+              <div class="form-row2">
+                <div class="form-group"><label>Company Name</label><input id="ci-name"></div>
+                <div class="form-group"><label>Phone</label><input id="ci-phone"></div>
+              </div>
+              <div class="form-row2">
+                <div class="form-group"><label>Telegram</label><input id="ci-telegram"></div>
+                <div class="form-group"><label>Email</label><input id="ci-email"></div>
+              </div>
+              <div class="form-group"><label>Address</label><textarea id="ci-address" rows="2"></textarea></div>
+              <div class="form-group"><label>Office Hours</label><input id="ci-hours"></div>
+            </div>
+            <div>
+              <div class="form-group"><label>Google Maps URL</label><input id="ci-maps"></div>
+              <div class="form-group"><label>Facebook</label><input id="ci-facebook"></div>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="view" id="view-settings">
+        <div class="panel">
+          <div class="panel-head"><h3>Settings</h3></div>
+          <form id="settings-form" class="editor-grid">
+            <div>
+              <div class="form-group"><label>Website Name</label><input id="st-website-name"></div>
+              <div class="form-group"><label>Default Language</label>
+                <select id="st-default-lang"><option>English</option><option>Khmer</option></select>
+              </div>
+              <div class="toggle-row"><span>Khmer Language Available</span><label class="switch"><input type="checkbox" id="st-khmer"><span class="slider"></span></label></div>
+              <div class="toggle-row"><span>English Language Available</span><label class="switch"><input type="checkbox" id="st-english"><span class="slider"></span></label></div>
+            </div>
+            <div>
+              <div class="form-group"><label>Logo Upload</label><input type="file" disabled title="Demo only"></div>
+              <div class="form-group"><label>Favicon</label><input type="file" disabled title="Demo only"></div>
+              <div class="form-group"><label>Basic SEO Title</label><input id="st-seo-title"></div>
+              <div class="form-group"><label>Meta Description</label><textarea id="st-meta-desc" rows="2"></textarea></div>
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- Editor Modal -->
+<div class="modal-overlay" id="editor-modal">
+  <div class="modal-box">
+    <div class="modal-head"><h3>Edit</h3><button class="modal-close">&times;</button></div>
+    <div class="modal-body"></div>
+    <div class="modal-foot">
+      <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-primary modal-save">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

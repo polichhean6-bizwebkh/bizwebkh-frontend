@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eaf7f0"/>
+      <stop offset="100%" stop-color="#d9f0e4"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="700" fill="url(#sky)"/>
+  
+  <path d="M0,504 C 225,455 675,574 900,490 L 900,700 L 0,700 Z" fill="#eaf4fc"/>
+  <rect x="408.0" y="534.0" width="10*3.0" height="1" fill="none"/>
+<rect x="408.0" y="540.0" width="33.0" height="102.0" rx="15.0" fill="#082a46"/>
+<rect x="459.0" y="540.0" width="33.0" height="102.0" rx="15.0" fill="#082a46"/>
+<rect x="390.0" y="414.0" width="120.0" height="138.0" rx="48.0" fill="#1470b8"/>
+<rect x="360.0" y="426.0" width="36.0" height="96.0" rx="18.0" fill="#1470b8"/>
+<rect x="504.0" y="426.0" width="36.0" height="96.0" rx="18.0" fill="#1470b8"/>
+<circle cx="378.0" cy="528.0" r="18.0" fill="#d9a066"/>
+<circle cx="522.0" cy="528.0" r="18.0" fill="#d9a066"/>
+<rect x="432.0" y="378.0" width="36.0" height="42.0" fill="#d9a066"/>
+<circle cx="450.0" cy="336.0" r="60.0" fill="#d9a066"/>
+<path d="M 390.0 330.0 A 60.0 60.0 0 0 1 510.0 330.0 L 510.0 306.0 A 60.0 60.0 0 0 0 390.0 306.0 Z" fill="#082a46"/><path d="M 378.0 336.0 A 72.0 72.0 0 0 1 522.0 336.0" stroke="#082a46" stroke-width="12.0" fill="none"/><rect x="504.0" y="372.0" width="24.0" height="42.0" rx="9.0" fill="#082a46"/><circle cx="516.0" cy="414.0" r="12.0" fill="#2fb380"/>
+</svg>
