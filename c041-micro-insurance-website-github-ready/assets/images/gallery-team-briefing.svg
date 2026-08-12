@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 900" width="700" height="900">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eaf4fc"/>
+      <stop offset="100%" stop-color="#d7ecfa"/>
+    </linearGradient>
+  </defs>
+  <rect width="700" height="900" fill="url(#sky)"/>
+  
+  <path d="M0,648 C 175,585 525,738 700,630 L 700,900 L 0,900 Z" fill="#eaf7f0"/>
+  <rect x="313.6" y="658.8" width="10*2.6" height="1" fill="none"/>
+<rect x="313.6" y="664.0" width="28.6" height="88.4" rx="13.0" fill="#082a46"/>
+<rect x="357.8" y="664.0" width="28.6" height="88.4" rx="13.0" fill="#082a46"/>
+<rect x="298.0" y="554.8" width="104.0" height="119.6" rx="41.6" fill="#1470b8"/>
+<rect x="272.0" y="565.2" width="31.2" height="83.2" rx="15.6" fill="#1470b8"/>
+<rect x="396.8" y="565.2" width="31.2" height="83.2" rx="15.6" fill="#1470b8"/>
+<circle cx="287.6" cy="653.6" r="15.6" fill="#f2c19a"/>
+<circle cx="412.4" cy="653.6" r="15.6" fill="#f2c19a"/>
+<rect x="334.4" y="523.6" width="31.2" height="36.4" fill="#f2c19a"/>
+<circle cx="350.0" cy="487.2" r="52.0" fill="#f2c19a"/>
+<path d="M 298.0 482.0 A 52.0 52.0 0 0 1 402.0 482.0 L 402.0 461.2 A 52.0 52.0 0 0 0 298.0 461.2 Z" fill="#082a46"/><rect x="322.0" y="776.0" width="10*2.0" height="1" fill="none"/>
+<rect x="322.0" y="780.0" width="22.0" height="68.0" rx="10.0" fill="#082a46"/>
+<rect x="356.0" y="780.0" width="22.0" height="68.0" rx="10.0" fill="#082a46"/>
+<rect x="310.0" y="696.0" width="80.0" height="92.0" rx="32.0" fill="#2fb380"/>
+<rect x="290.0" y="704.0" width="24.0" height="64.0" rx="12.0" fill="#2fb380"/>
+<rect x="386.0" y="704.0" width="24.0" height="64.0" rx="12.0" fill="#2fb380"/>
+<circle cx="302.0" cy="772.0" r="12.0" fill="#c78a5c"/>
+<circle cx="398.0" cy="772.0" r="12.0" fill="#c78a5c"/>
+<rect x="338.0" y="672.0" width="24.0" height="28.0" fill="#c78a5c"/>
+<circle cx="350.0" cy="644.0" r="40.0" fill="#c78a5c"/>
+<path d="M 310.0 640.0 A 40.0 40.0 0 0 1 390.0 640.0 L 390.0 624.0 A 40.0 40.0 0 0 0 310.0 624.0 Z" fill="#082a46"/>
+</svg>

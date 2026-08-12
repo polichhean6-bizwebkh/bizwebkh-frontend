@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eaf4fc"/>
+      <stop offset="100%" stop-color="#dff1fb"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="700" fill="url(#sky)"/>
+  
+  <path d="M0,504 C 225,455 675,574 900,490 L 900,700 L 0,700 Z" fill="#eaf7f0"/>
+  <rect x="272.4" y="525.2" width="10*2.4" height="1" fill="none"/>
+<rect x="272.4" y="530.0" width="26.4" height="81.6" rx="12.0" fill="#082a46"/>
+<rect x="313.2" y="530.0" width="26.4" height="81.6" rx="12.0" fill="#082a46"/>
+<rect x="258.0" y="429.2" width="96.0" height="110.4" rx="38.4" fill="#1470b8"/>
+<rect x="234.0" y="438.8" width="28.8" height="76.8" rx="14.4" fill="#1470b8"/>
+<rect x="349.2" y="438.8" width="28.8" height="76.8" rx="14.4" fill="#1470b8"/>
+<circle cx="248.4" cy="520.4" r="14.4" fill="#f2c19a"/>
+<circle cx="363.6" cy="520.4" r="14.4" fill="#f2c19a"/>
+<rect x="291.6" y="400.4" width="28.8" height="33.6" fill="#f2c19a"/>
+<circle cx="306.0" cy="366.8" r="48.0" fill="#f2c19a"/>
+<path d="M 258.0 362.0 A 48.0 48.0 0 0 1 354.0 362.0 L 354.0 342.8 A 48.0 48.0 0 0 0 258.0 342.8 Z" fill="#082a46"/><rect x="423.4" y="534.2" width="10*1.9" height="1" fill="none"/>
+<rect x="423.4" y="538.0" width="20.9" height="64.6" rx="9.5" fill="#082a46"/>
+<rect x="455.7" y="538.0" width="20.9" height="64.6" rx="9.5" fill="#082a46"/>
+<rect x="412.0" y="458.2" width="76.0" height="87.4" rx="30.4" fill="#e0724a"/>
+<rect x="393.0" y="465.8" width="22.8" height="60.8" rx="11.4" fill="#e0724a"/>
+<rect x="484.2" y="465.8" width="22.8" height="60.8" rx="11.4" fill="#e0724a"/>
+<circle cx="404.4" cy="530.4" r="11.4" fill="#d9a066"/>
+<circle cx="495.6" cy="530.4" r="11.4" fill="#d9a066"/>
+<rect x="438.6" y="435.4" width="22.8" height="26.6" fill="#d9a066"/>
+<circle cx="450.0" cy="408.8" r="38.0" fill="#d9a066"/>
+<path d="M 412.0 405.0 A 38.0 38.0 0 0 1 488.0 405.0 L 488.0 389.8 A 38.0 38.0 0 0 0 412.0 389.8 Z" fill="#082a46"/><rect x="548.8" y="455.4" width="10*1.3" height="1" fill="none"/>
+<rect x="548.8" y="458.0" width="14.3" height="44.2" rx="6.5" fill="#082a46"/>
+<rect x="570.9" y="458.0" width="14.3" height="44.2" rx="6.5" fill="#082a46"/>
+<rect x="541.0" y="403.4" width="52.0" height="59.8" rx="20.8" fill="#2fb380"/>
+<rect x="528.0" y="408.6" width="15.6" height="41.6" rx="7.8" fill="#2fb380"/>
+<rect x="590.4" y="408.6" width="15.6" height="41.6" rx="7.8" fill="#2fb380"/>
+<circle cx="535.8" cy="452.8" r="7.8" fill="#c78a5c"/>
+<circle cx="598.2" cy="452.8" r="7.8" fill="#c78a5c"/>
+<rect x="559.2" y="387.8" width="15.6" height="18.2" fill="#c78a5c"/>
+<circle cx="567.0" cy="369.6" r="26.0" fill="#c78a5c"/>
+<path d="M 541.0 367.0 A 26.0 26.0 0 0 1 593.0 367.0 L 593.0 356.6 A 26.0 26.0 0 0 0 541.0 356.6 Z" fill="#082a46"/><g>
+    <rect x="705.0" y="385.00000000000006" width="66.0" height="44.0" fill="#0b3d63"/>
+    <path d="M 698.4 385.00000000000006 L 738.0 356.40000000000003 L 777.6 385.00000000000006 Z" fill="#082a46"/>
+    <rect x="729.2" y="402.6000000000001" width="17.6" height="26.400000000000002" fill="#082a46"/>
+  </g>
+</svg>

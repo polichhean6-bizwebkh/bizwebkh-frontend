@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eaf7ee"/>
+      <stop offset="100%" stop-color="#d8f0e0"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="700" fill="url(#sky)"/>
+  
+  <path d="M0,504 C 225,455 675,574 900,490 L 900,700 L 0,700 Z" fill="#bfe3c8"/>
+  <path d="M 135.0 417.00000000000006 Q 154.2 333.80000000000007 135.0 269.80000000000007" stroke="#2fb380" stroke-width="12.8" fill="none" stroke-linecap="round"/>
+<path d="M 261.0 417.00000000000006 Q 280.2 333.80000000000007 261.0 269.80000000000007" stroke="#2fb380" stroke-width="12.8" fill="none" stroke-linecap="round"/>
+<path d="M 387.0 417.00000000000006 Q 406.2 333.80000000000007 387.0 269.80000000000007" stroke="#2fb380" stroke-width="12.8" fill="none" stroke-linecap="round"/>
+<path d="M 513.0 417.00000000000006 Q 532.2 333.80000000000007 513.0 269.80000000000007" stroke="#2fb380" stroke-width="12.8" fill="none" stroke-linecap="round"/>
+<path d="M 639.0 417.00000000000006 Q 658.2 333.80000000000007 639.0 269.80000000000007" stroke="#2fb380" stroke-width="12.8" fill="none" stroke-linecap="round"/>
+<path d="M 765.0 417.00000000000006 Q 784.2 333.80000000000007 765.0 269.80000000000007" stroke="#2fb380" stroke-width="12.8" fill="none" stroke-linecap="round"/><rect x="413.6" y="532.8" width="10*2.6" height="1" fill="none"/>
+<rect x="413.6" y="538.0" width="28.6" height="88.4" rx="13.0" fill="#082a46"/>
+<rect x="457.8" y="538.0" width="28.6" height="88.4" rx="13.0" fill="#082a46"/>
+<rect x="398.0" y="428.8" width="104.0" height="119.6" rx="41.6" fill="#c98a1c"/>
+<rect x="372.0" y="439.2" width="31.2" height="83.2" rx="15.6" fill="#c98a1c"/>
+<rect x="496.8" y="439.2" width="31.2" height="83.2" rx="15.6" fill="#c98a1c"/>
+<circle cx="387.6" cy="527.6" r="15.6" fill="#d9a066"/>
+<circle cx="512.4" cy="527.6" r="15.6" fill="#d9a066"/>
+<rect x="434.4" y="397.6" width="31.2" height="36.4" fill="#d9a066"/>
+<circle cx="450.0" cy="361.2" r="52.0" fill="#d9a066"/>
+<path d="M 398.0 356.0 A 52.0 52.0 0 0 1 502.0 356.0 L 502.0 335.2 A 52.0 52.0 0 0 0 398.0 335.2 Z" fill="#082a46"/>
+<ellipse cx="450.0" cy="314.4" rx="67.6" ry="18.2" fill="#c98a1c"/>
+<path d="M 408.4 314.4 Q 450.0 252.0 491.6 314.4 Z" fill="#e0a83c"/>
+</svg>

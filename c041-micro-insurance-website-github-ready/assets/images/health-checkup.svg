@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fdecec"/>
+      <stop offset="100%" stop-color="#fbdada"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="700" fill="url(#sky)"/>
+  
+  <path d="M0,504 C 225,455 675,574 900,490 L 900,700 L 0,700 Z" fill="#eaf7f0"/>
+  <path d="M 450.0 376.4 C 348.0 294.8 395.6 220.0 450.0 274.4 C 504.4 220.0 552.0 294.8 450.0 376.4 Z" fill="#e0724a"/>
+  <path d="M 402.4 315.2 L 436.4 315.2 L 450.0 288.0 L 470.4 342.4 L 484.0 315.2 L 504.4 315.2" stroke="#fff" stroke-width="10.2" fill="none" stroke-linejoin="round" stroke-linecap="round"/><rect x="243.4" y="534.2" width="10*1.9" height="1" fill="none"/>
+<rect x="243.4" y="538.0" width="20.9" height="64.6" rx="9.5" fill="#082a46"/>
+<rect x="275.7" y="538.0" width="20.9" height="64.6" rx="9.5" fill="#082a46"/>
+<rect x="232.0" y="458.2" width="76.0" height="87.4" rx="30.4" fill="#ffffff"/>
+<rect x="213.0" y="465.8" width="22.8" height="60.8" rx="11.4" fill="#ffffff"/>
+<rect x="304.2" y="465.8" width="22.8" height="60.8" rx="11.4" fill="#ffffff"/>
+<circle cx="224.4" cy="530.4" r="11.4" fill="#c78a5c"/>
+<circle cx="315.6" cy="530.4" r="11.4" fill="#c78a5c"/>
+<rect x="258.6" y="435.4" width="22.8" height="26.6" fill="#c78a5c"/>
+<circle cx="270.0" cy="408.8" r="38.0" fill="#c78a5c"/>
+<path d="M 232.0 405.0 A 38.0 38.0 0 0 1 308.0 405.0 L 308.0 389.8 A 38.0 38.0 0 0 0 232.0 389.8 Z" fill="#082a46"/><rect x="603.4" y="534.2" width="10*1.9" height="1" fill="none"/>
+<rect x="603.4" y="538.0" width="20.9" height="64.6" rx="9.5" fill="#082a46"/>
+<rect x="635.7" y="538.0" width="20.9" height="64.6" rx="9.5" fill="#082a46"/>
+<rect x="592.0" y="458.2" width="76.0" height="87.4" rx="30.4" fill="#1470b8"/>
+<rect x="573.0" y="465.8" width="22.8" height="60.8" rx="11.4" fill="#1470b8"/>
+<rect x="664.2" y="465.8" width="22.8" height="60.8" rx="11.4" fill="#1470b8"/>
+<circle cx="584.4" cy="530.4" r="11.4" fill="#f2c19a"/>
+<circle cx="675.6" cy="530.4" r="11.4" fill="#f2c19a"/>
+<rect x="618.6" y="435.4" width="22.8" height="26.6" fill="#f2c19a"/>
+<circle cx="630.0" cy="408.8" r="38.0" fill="#f2c19a"/>
+<path d="M 592.0 405.0 A 38.0 38.0 0 0 1 668.0 405.0 L 668.0 389.8 A 38.0 38.0 0 0 0 592.0 389.8 Z" fill="#082a46"/>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eef6fb"/>
+      <stop offset="100%" stop-color="#dcedf7"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="700" fill="url(#sky)"/>
+  
+  <path d="M0,504 C 225,455 675,574 900,490 L 900,700 L 0,700 Z" fill="#f4ede1"/>
+  <rect x="293.2" y="503.6" width="10*2.2" height="1" fill="none"/>
+<rect x="293.2" y="508.0" width="24.2" height="74.8" rx="11.0" fill="#082a46"/>
+<rect x="330.6" y="508.0" width="24.2" height="74.8" rx="11.0" fill="#082a46"/>
+<rect x="280.0" y="415.6" width="88.0" height="101.2" rx="35.2" fill="#0b3d63"/>
+<rect x="258.0" y="424.4" width="26.4" height="70.4" rx="13.2" fill="#0b3d63"/>
+<rect x="363.6" y="424.4" width="26.4" height="70.4" rx="13.2" fill="#0b3d63"/>
+<circle cx="271.2" cy="499.2" r="13.2" fill="#f2c19a"/>
+<circle cx="376.8" cy="499.2" r="13.2" fill="#f2c19a"/>
+<rect x="310.8" y="389.2" width="26.4" height="30.8" fill="#f2c19a"/>
+<circle cx="324.0" cy="358.4" r="44.0" fill="#f2c19a"/>
+<path d="M 280.0 354.0 A 44.0 44.0 0 0 1 368.0 354.0 L 368.0 336.4 A 44.0 44.0 0 0 0 280.0 336.4 Z" fill="#082a46"/><rect x="545.2" y="503.6" width="10*2.2" height="1" fill="none"/>
+<rect x="545.2" y="508.0" width="24.2" height="74.8" rx="11.0" fill="#082a46"/>
+<rect x="582.6" y="508.0" width="24.2" height="74.8" rx="11.0" fill="#082a46"/>
+<rect x="532.0" y="415.6" width="88.0" height="101.2" rx="35.2" fill="#2fb380"/>
+<rect x="510.0" y="424.4" width="26.4" height="70.4" rx="13.2" fill="#2fb380"/>
+<rect x="615.6" y="424.4" width="26.4" height="70.4" rx="13.2" fill="#2fb380"/>
+<circle cx="523.2" cy="499.2" r="13.2" fill="#c78a5c"/>
+<circle cx="628.8" cy="499.2" r="13.2" fill="#c78a5c"/>
+<rect x="562.8" y="389.2" width="26.4" height="30.8" fill="#c78a5c"/>
+<circle cx="576.0" cy="358.4" r="44.0" fill="#c78a5c"/>
+<path d="M 532.0 354.0 A 44.0 44.0 0 0 1 620.0 354.0 L 620.0 336.4 A 44.0 44.0 0 0 0 532.0 336.4 Z" fill="#082a46"/><rect x="402.0" y="233.2" width="96.0" height="121.60000000000001" rx="9.600000000000001" fill="#fff" stroke="#1470b8" stroke-width="4.800000000000001"/><rect x="418.0" y="262.0" width="16.0" height="16.0" rx="3.2" fill="#2fb380"/><rect x="443.6" y="266.8" width="57.6" height="6.4" fill="#082a46" opacity="0.5"/><rect x="418.0" y="290.8" width="16.0" height="16.0" rx="3.2" fill="#2fb380"/><rect x="443.6" y="295.6" width="57.6" height="6.4" fill="#082a46" opacity="0.5"/><rect x="418.0" y="319.6" width="16.0" height="16.0" rx="3.2" fill="#2fb380"/><rect x="443.6" y="324.40000000000003" width="57.6" height="6.4" fill="#082a46" opacity="0.5"/>
+</svg>
