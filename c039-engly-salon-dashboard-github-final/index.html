@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salon Admin Dashboard — Ms. Engly Khun Salon</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Battambang:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/css/dashboard.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
+</head>
+<body>
+
+<!-- ============ LOGIN SCREEN ============ -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="login-brand">
+      <span class="brand-mark">EK</span>
+      <div class="brand-text">
+        <strong>Engly Khun</strong>
+        <small data-i18n="login.subtitle">Salon Admin Login</small>
+      </div>
+    </div>
+
+    <form id="loginForm" class="login-form">
+      <div class="form-field">
+        <label data-i18n="login.username">Username</label>
+        <input type="text" id="loginUsername" autocomplete="username" required>
+      </div>
+      <div class="form-field">
+        <label data-i18n="login.password">Password</label>
+        <input type="password" id="loginPassword" autocomplete="current-password" required>
+      </div>
+      <div class="login-error" id="loginError" style="display:none;" data-i18n="login.error">Invalid username or password.</div>
+      <button type="submit" class="btn-primary login-submit" data-i18n="login.submit">Log In</button>
+    </form>
+
+    <div class="login-hint">
+      <div class="login-hint-title" data-i18n="login.hintTitle">Demo accounts</div>
+      <div class="login-hint-row"><span data-i18n="settings.owner">Owner</span><code>owner / demo123</code></div>
+      <div class="login-hint-row"><span data-i18n="settings.cashier">Cashier / Admin</span><code>cashier / demo123</code></div>
+    </div>
+  </div>
+</div>
+
+<div class="app" id="appRoot" style="display:none;">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <span class="brand-mark">EK</span>
+      <div class="brand-text">
+        <strong>Engly Khun</strong>
+        <small id="sidebarRoleText">Salon Admin</small>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-item active" data-page="overview">
+        <span class="nav-icon">◫</span><span data-i18n="nav.overview">Dashboard</span>
+      </button>
+      <button class="nav-item" data-page="new-deal">
+        <span class="nav-icon">✚</span><span data-i18n="nav.newDeal">New Deal</span>
+      </button>
+      <button class="nav-item" data-page="transactions">
+        <span class="nav-icon">▤</span><span data-i18n="nav.transactions">Transactions</span>
+      </button>
+      <button class="nav-item" data-page="customers">
+        <span class="nav-icon">☺</span><span data-i18n="nav.customers">Customers</span>
+      </button>
+      <button class="nav-item" data-page="staff" id="navStaff">
+        <span class="nav-icon">👤</span><span data-i18n="nav.staff">Staff Management</span>
+      </button>
+      <button class="nav-item" data-page="services">
+        <span class="nav-icon">❖</span><span data-i18n="nav.services">Services</span>
+      </button>
+      <button class="nav-item" data-page="reports">
+        <span class="nav-icon">📊</span><span data-i18n="nav.reports">Reports</span>
+      </button>
+      <button class="nav-item" data-page="settings">
+        <span class="nav-icon">⚙</span><span data-i18n="nav.settings">Settings</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-foot">
+      <button type="button" class="sidebar-logout" id="logoutBtn" data-i18n="nav.logout">⎋ Logout</button>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <button class="hamburger" id="hamburger">☰</button>
+      <h1 class="page-title" id="pageTitle" data-i18n="nav.overview">Dashboard</h1>
+
+      <div class="topbar-right">
+        <div class="role-pill" id="rolePill">
+          <span data-i18n="topbar.role">Role</span><span data-i18n="topbar.colon">:</span> <strong id="roleLabel">Owner</strong>
+        </div>
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="km">ខ្មែរ</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="content" id="content">
+
+      <!-- ===== DASHBOARD OVERVIEW ===== -->
+      <section class="page active" id="page-overview">
+        <div class="kpi-grid kpi-grid-5" id="kpiGrid"></div>
+
+        <div class="overview-row2">
+          <div class="panel overview-recent">
+            <div class="panel-head">
+              <h3 data-i18n="overview.recentTransactions">Recent Transactions</h3>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table" id="recentTransactionsTable">
+                <thead></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="panel overview-staff-activity">
+            <div class="panel-head">
+              <h3 data-i18n="overview.staffActivity">Today's Staff Activity</h3>
+            </div>
+            <div id="staffActivityList" class="staff-activity-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== NEW DEAL PAGE ===== -->
+      <section class="page" id="page-new-deal">
+
+        <!-- Active Deal Tabs -->
+        <div class="deal-tabs-bar">
+          <div class="deal-tabs-count" id="dealTabsCount">0 Active Deals</div>
+          <div class="deal-tabs-scroll" id="dealTabsScroll"></div>
+          <button type="button" class="deal-tab-add" id="addDealTabBtn" data-i18n="deal.newDeal">+ New Deal</button>
+        </div>
+
+        <div class="panel panel-form deal-panel">
+          <div class="panel-head"><h3 data-i18n="deal.customerInfo">Customer Information</h3></div>
+          <form id="dealForm" class="dash-form">
+            <div class="form-row">
+              <div class="form-field autocomplete-field">
+                <label data-i18n="form.customerName">Customer Name</label>
+                <input type="text" id="dCustName" autocomplete="off" required>
+                <div class="suggest-dropdown" id="nameSuggest"></div>
+              </div>
+              <div class="form-field autocomplete-field">
+                <label data-i18n="form.phone">Phone</label>
+                <input type="tel" id="dPhone" autocomplete="off" required>
+                <div class="suggest-dropdown" id="phoneSuggest"></div>
+              </div>
+            </div>
+
+            <div class="customer-history-badge" id="customerHistoryBadge" style="display:none;">
+              <span class="chb-icon">★</span>
+              <div class="chb-text">
+                <strong data-i18n="history.returning">Returning Customer</strong>
+                <span id="chbVisits"></span> · <span id="chbLastVisit"></span>
+                <span class="chb-extra" id="chbSpending"></span>
+                <span class="chb-extra" id="chbPreferred"></span>
+              </div>
+              <button type="button" class="chb-clear" id="chbClear" title="Clear">×</button>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field form-field-secondary">
+                <label data-i18n="form.customerSource">Customer Source <span class="optional-tag" data-i18n="form.optional">(optional)</span></label>
+                <select id="dSource">
+                  <option value="">—</option>
+                  <option value="Walk-in">Walk-in</option>
+                  <option value="Facebook">Facebook</option>
+                  <option value="TikTok">TikTok</option>
+                  <option value="Telegram">Telegram</option>
+                  <option value="Referral">Referral</option>
+                  <option value="Existing Customer">Existing Customer</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label data-i18n="form.notes">Notes</label>
+                <input type="text" id="dNotes">
+              </div>
+            </div>
+          </form>
+
+          <div class="panel-head deal-services-head">
+            <h3 data-i18n="deal.salesInfo">Sales Information</h3>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label data-i18n="deal.salesStaff">Sales Staff <span class="optional-tag" data-i18n="form.optional">(optional)</span></label>
+              <select id="dSalesStaff">
+                <option value="">—</option>
+              </select>
+            </div>
+            <div class="form-field" id="dVipBalanceFieldWrap" style="display:none;">
+              <label data-i18n="vip.balanceLabel">VIP Balance</label>
+              <input type="text" id="dVipBalanceReadout" disabled>
+            </div>
+          </div>
+
+          <div class="panel-head deal-services-head">
+            <h3 data-i18n="deal.services">Services</h3>
+          </div>
+
+          <div class="deal-rows-labels" id="dealRowsLabels">
+            <span data-i18n="deal.colService">Service</span>
+            <span data-i18n="deal.colPrice">Price</span>
+            <span data-i18n="deal.colQty">Qty</span>
+            <span data-i18n="deal.colStaff">Staff</span>
+            <span data-i18n="deal.colIncentive">Incentive</span>
+            <span></span>
+          </div>
+          <div id="dealServiceRows" class="deal-rows"></div>
+          <button type="button" class="add-rule-btn" id="addServiceRowBtn" data-i18n="deal.addService">+ Add More Service</button>
+
+          <div class="deal-summary">
+            <div class="form-row">
+              <div class="form-field">
+                <label data-i18n="deal.discount">Discount</label>
+                <div class="discount-input-group">
+                  <select id="dDiscountType" class="discount-type-select">
+                    <option value="amount">$</option>
+                    <option value="percent">%</option>
+                  </select>
+                  <input type="number" id="dDiscount" min="0" step="0.5" value="0">
+                </div>
+              </div>
+              <div class="form-field">
+                <label data-i18n="deal.paymentMethod">Payment Method</label>
+                <select id="dPayment">
+                  <option value="Cash">Cash</option>
+                  <option value="ABA">ABA</option>
+                  <option value="ACLEDA">ACLEDA</option>
+                  <option value="Credit Card">Credit Card</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row" id="dRemainingPaymentRow" style="display:none;">
+              <div class="form-field">
+                <label data-i18n="vip.remainingPaymentMethod">Remaining Payment Method</label>
+                <select id="dRemainingPayment">
+                  <option value="Cash">Cash</option>
+                  <option value="ABA">ABA</option>
+                  <option value="ACLEDA">ACLEDA</option>
+                  <option value="Credit Card">Credit Card</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="deal-totals">
+              <div class="deal-total-line vip-balance-line" id="dealVipBalanceLine" style="display:none;"><span data-i18n="vip.balanceAvailable">VIP Balance Available</span><strong id="dealVipBalance">$0.00</strong></div>
+              <div class="deal-total-line"><span data-i18n="deal.subtotal">Subtotal</span><strong id="dealSubtotal">$0.00</strong></div>
+              <div class="deal-total-line"><span data-i18n="deal.discountLine">Discount</span><strong id="dealDiscountLine">-$0.00</strong></div>
+              <div class="deal-total-line grand"><span data-i18n="deal.grandTotal">Grand Total</span><strong id="dealGrandTotal">$0.00</strong></div>
+              <div class="deal-total-line incentive"><span data-i18n="deal.totalIncentive">Total Staff Incentive</span><strong id="dealTotalIncentive">$0.00</strong></div>
+              <div class="deal-total-line vip-split-line" id="dealVipSplitLine" style="display:none;"><span data-i18n="vip.remainingToPay">Remaining to Pay</span><strong id="dealVipRemaining">$0.00</strong></div>
+            </div>
+
+            <div class="deal-actions">
+              <span class="deal-autosave-note" data-i18n="deal.autosaveNote">Changes are kept automatically while you switch tabs</span>
+              <button type="button" class="btn-primary" id="saveCompleteBtn" data-i18n="deal.saveComplete">Complete &amp; Save Transaction</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== TRANSACTIONS PAGE ===== -->
+      <section class="page" id="page-transactions">
+        <div class="tx-search-bar">
+          <input type="search" id="txSearch" class="tx-search-input" data-i18n-placeholder="transactions.searchPlaceholder" placeholder="Search customer name or phone number">
+        </div>
+        <div class="filter-bar" id="txFilters">
+          <input type="date" id="filterTxDate" class="filter-input">
+          <select id="filterTxStaff" class="filter-input"></select>
+          <select id="filterTxService" class="filter-input"></select>
+          <select id="filterTxStatus" class="filter-input"></select>
+          <select id="filterTxPayment" class="filter-input"></select>
+          <button class="btn-mini" id="clearTxFilters" data-i18n="filters.clear">Clear</button>
+        </div>
+        <div class="panel">
+          <div class="table-wrap">
+            <table class="data-table" id="transactionsTable">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CUSTOMERS PAGE ===== -->
+      <section class="page" id="page-customers">
+        <div class="panel">
+          <div class="panel-head">
+            <h3 data-i18n="customers.title">Customers</h3>
+            <div class="panel-head-actions">
+              <button class="btn-mini" id="sellVipBtn" data-i18n="vip.sellTopUp">$ Sell / Top-Up VIP Package</button>
+              <button class="btn-mini primary" id="addCustomerBtn" data-i18n="customers.addNew">+ Add Customer</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table" id="customersTable">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== STAFF MANAGEMENT PAGE (Owner-only) ===== -->
+      <section class="page" id="page-staff">
+        <div class="panel">
+          <div class="panel-head">
+            <h3 data-i18n="staff.title">Staff Management</h3>
+            <button class="btn-mini primary" id="addStaffBtn" data-i18n="staff.addNew">+ Add Staff</button>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table" id="staffTable">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SERVICES PAGE ===== -->
+      <section class="page" id="page-services">
+        <div class="panel">
+          <div class="panel-head">
+            <h3 data-i18n="services.title">Service Catalog</h3>
+            <button class="btn-mini" id="addServiceCatalogBtn" data-i18n="services.addNew">+ Add Service</button>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table" id="servicesTable">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== REPORTS PAGE ===== -->
+      <section class="page" id="page-reports">
+        <div class="filter-bar" id="reportFilters">
+          <select id="repRange" class="filter-input">
+            <option value="today" data-i18n="filters.today">Today</option>
+            <option value="last7" selected data-i18n="filters.last7">Last 7 Days</option>
+            <option value="last30" data-i18n="filters.last30">Last 30 Days</option>
+            <option value="custom" data-i18n="filters.custom">Custom Range</option>
+          </select>
+          <input type="date" id="repFrom" class="filter-input" style="display:none;">
+          <input type="date" id="repTo" class="filter-input" style="display:none;">
+          <select id="repStaff" class="filter-input"></select>
+          <select id="repService" class="filter-input"></select>
+          <select id="repPayment" class="filter-input"></select>
+          <select id="repCustomerType" class="filter-input">
+            <option value="" data-i18n="reports.allCustomerTypes">All Customer Types</option>
+            <option value="normal" data-i18n="customerType.normal">Normal</option>
+            <option value="vip" data-i18n="customerType.vip">VIP</option>
+          </select>
+          <button type="button" class="btn-mini" id="clearRepFilters" data-i18n="filters.clear">Clear</button>
+          <select id="repSource" class="filter-input filter-input-secondary">
+            <option value="" data-i18n="reports.sourceOptional">Customer Source (optional)</option>
+          </select>
+          <button type="button" class="btn-mini primary btn-export-excel" id="exportReportExcelBtn" data-i18n="reports.exportExcel">Export Excel</button>
+        </div>
+
+        <div class="report-tabs" id="reportTabs">
+          <button class="report-tab active" data-report-tab="overview" data-i18n="reports.tabOverview">Overview</button>
+          <button class="report-tab" data-report-tab="sales" data-i18n="reports.tabSales">Sales &amp; Payment</button>
+          <button class="report-tab" data-report-tab="customers" data-i18n="reports.tabCustomers">Customers</button>
+          <button class="report-tab" data-report-tab="staff" data-i18n="reports.tabStaff">Staff &amp; Incentive</button>
+        </div>
+
+        <!-- ===== OVERVIEW TAB ===== -->
+        <div class="report-tab-content active" id="reportTab-overview">
+          <div class="kpi-grid kpi-grid-6" id="reportKpiGrid"></div>
+          <div class="panel-grid panel-grid-3">
+            <div class="panel">
+              <div class="panel-head"><h3 data-i18n="overview.salesTrend">Sales Trend</h3></div>
+              <div id="chartSalesTrend" class="chart-box"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><h3 data-i18n="overview.popularServices">Popular Services</h3></div>
+              <div id="chartPopularServices" class="chart-box"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><h3 data-i18n="reports.revenueBreakdown">Revenue Breakdown</h3></div>
+              <div id="reportRevenueBreakdown" class="report-block"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== SALES & PAYMENT TAB ===== -->
+        <div class="report-tab-content" id="reportTab-sales">
+          <div class="kpi-grid kpi-grid-3" id="reportSalesKpiGrid"></div>
+          <div class="panel-grid panel-grid-3">
+            <div class="panel">
+              <div class="panel-head"><h3 data-i18n="overview.salesTrend">Sales Trend</h3></div>
+              <div id="chartSalesTrendSales" class="chart-box"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><h3 data-i18n="reports.salesByService">Sales by Service</h3></div>
+              <div id="reportSalesByService" class="report-block"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><h3 data-i18n="reports.salesByStaff">Sales by Staff</h3></div>
+              <div id="reportSalesByStaff" class="report-block"></div>
+            </div>
+          </div>
+          <div class="panel-grid panel-grid-1">
+            <div class="panel">
+              <div class="panel-head"><h3 data-i18n="reports.paymentMethod">Payment Method Breakdown</h3></div>
+              <div id="reportPaymentMethod" class="report-block"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== CUSTOMERS TAB ===== -->
+        <div class="report-tab-content" id="reportTab-customers">
+          <div class="kpi-grid kpi-grid-6" id="reportCustomersKpiGrid"></div>
+          <div class="panel-grid panel-grid-3">
+            <div class="panel">
+              <div class="panel-head"><h3 data-i18n="reports.newVsReturning">New vs Returning Customers</h3></div>
+              <div id="reportNewVsReturning" class="report-block"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><h3 data-i18n="reports.visitFrequency">Customer Visit Frequency</h3></div>
+              <div id="reportVisitFrequency" class="report-block"></div>
+            </div>
+            <div class="panel">
+              <div class="panel-head"><h3 data-i18n="reports.topCustomers">Top Customers by Spending</h3></div>
+              <div id="reportTopCustomers" class="report-block"></div>
+            </div>
+          </div>
+          <div class="panel-grid panel-grid-1">
+            <div class="panel">
+              <div class="panel-head"><h3 data-i18n="reports.vipBalanceSummary">VIP Balance Summary</h3></div>
+              <div id="reportVipBalanceSummary" class="report-block"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== STAFF & INCENTIVE TAB ===== -->
+        <div class="report-tab-content" id="reportTab-staff">
+          <div class="kpi-grid kpi-grid-3" id="reportStaffKpiGrid"></div>
+          <div class="panel">
+            <div class="panel-head"><h3 data-i18n="reports.serviceIncentiveSummary">Service Incentive Summary</h3></div>
+            <div class="table-wrap"><table class="data-table" id="reportServiceIncentiveTable"><thead></thead><tbody></tbody></table></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3 data-i18n="reports.salesIncentiveSummary">Sales Incentive Summary</h3></div>
+            <div class="table-wrap"><table class="data-table" id="reportSalesIncentiveTable"><thead></thead><tbody></tbody></table></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head"><h3 data-i18n="reports.combinedStaffSummary">Combined Staff Summary</h3></div>
+            <div class="table-wrap"><table class="data-table" id="reportCombinedStaffTable"><thead></thead><tbody></tbody></table></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SETTINGS PAGE ===== -->
+      <section class="page" id="page-settings">
+        <div class="panel panel-form">
+          <div class="panel-head"><h3 data-i18n="settings.title">Settings</h3></div>
+
+          <div class="settings-row">
+            <span data-i18n="settings.language">Language</span>
+            <div class="lang-switch">
+              <button class="lang-btn active" data-lang="km">ខ្មែរ</button>
+              <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+          </div>
+
+          <div class="settings-row">
+            <span data-i18n="settings.loggedInAs">Logged in as</span>
+            <strong id="settingsLoggedInAs"></strong>
+          </div>
+        </div>
+
+        <div class="panel panel-form settings-demo-panel" id="settingsDemoPanel">
+          <div class="panel-head"><h3 data-i18n="settings.demoTesting">Demo / Testing</h3></div>
+          <div class="settings-row">
+            <span data-i18n="settings.resetData">Reset Demo Data</span>
+            <button class="btn-danger" id="resetDataBtn" data-i18n="settings.resetBtn">Reset All Data</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL (view / edit transaction / customer / staff detail) ============ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalBox">
+    <div class="modal-head">
+      <h3 id="modalTitle">Detail</h3>
+      <button class="modal-close" id="modalClose">×</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- ============ RECEIPT PRINT AREA (hidden, used only for printing) ============ -->
+<div id="receiptPrintArea" class="receipt-print-area"></div>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="toast"></div>
+
+<script src="./assets/js/dashboard.js"></script>
+</body>
+</html>
