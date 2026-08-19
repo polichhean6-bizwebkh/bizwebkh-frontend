@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login — Thearith Home & Living</title>
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="login-page">
+
+<div class="login-card">
+  <div class="login-logo">
+    <img src="assets/logo.svg" alt="Thearith Home & Living">
+    <h1>Thearith Home &amp; Living</h1>
+    <p>Admin Login</p>
+  </div>
+
+  <div class="login-error" id="loginError">Invalid email or password. (Demo hint below)</div>
+
+  <form id="loginForm">
+    <div class="form-group">
+      <label for="loginEmail">Email / Username</label>
+      <input type="text" id="loginEmail" placeholder="admin@thearithhl.com" value="admin@thearithhl.com" autocomplete="username">
+    </div>
+    <div class="form-group">
+      <label for="loginPassword">Password</label>
+      <input type="password" id="loginPassword" placeholder="••••••••" value="admin123" autocomplete="current-password">
+    </div>
+    <button type="submit" class="btn btn-primary btn-block" style="padding:12px;">Login</button>
+  </form>
+
+  <p class="login-hint">Demo only — no real authentication.<br>Use <code>admin@thearithhl.com</code> / <code>admin123</code></p>
+</div>
+
+<script>
+  document.getElementById("loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const email = document.getElementById("loginEmail").value.trim();
+    const pass = document.getElementById("loginPassword").value.trim();
+    const errorBox = document.getElementById("loginError");
+    // Demo-only check — NOT real authentication.
+    if (email === "admin@thearithhl.com" && pass === "admin123") {
+      sessionStorage.setItem("thl_admin_demo_logged_in", "1");
+      window.location.href = "dashboard.html";
+    } else {
+      errorBox.classList.add("show");
+    }
+  });
+</script>
+</body>
+</html>

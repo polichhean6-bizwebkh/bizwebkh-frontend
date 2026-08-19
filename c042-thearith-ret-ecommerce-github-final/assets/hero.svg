@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700" role="img" aria-label="Household products hero banner">
+  <defs>
+    <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f766e"/>
+      <stop offset="55%" stop-color="#0d9488"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="url(#heroGrad)"/>
+  <circle cx="1030" cy="140" r="220" fill="#ffffff" opacity="0.08"/>
+  <circle cx="120" cy="600" r="260" fill="#ffffff" opacity="0.07"/>
+  <circle cx="880" cy="560" r="140" fill="#ffffff" opacity="0.10"/>
+
+  <g opacity="0.95">
+    <rect x="150" y="220" width="230" height="230" rx="26" fill="#ffffff" opacity="0.14"/>
+    <circle cx="265" cy="335" r="62" fill="none" stroke="#fff" stroke-width="10"/>
+    <path d="M225 295 L305 375 M305 295 L225 375" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+  </g>
+
+  <g opacity="0.95">
+    <rect x="470" y="150" width="230" height="230" rx="26" fill="#ffffff" opacity="0.16"/>
+    <path d="M585 190 v100" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+    <path d="M540 290 h90 l12 45 a16 16 0 0 1 -16 20 h-82 a16 16 0 0 1 -16 -20 z" fill="none" stroke="#fff" stroke-width="9" stroke-linejoin="round"/>
+  </g>
+
+  <g opacity="0.95">
+    <rect x="770" y="260" width="230" height="230" rx="26" fill="#ffffff" opacity="0.14"/>
+    <path d="M830 340 L885 305 L940 340 L940 415 L885 450 L830 415 Z" fill="none" stroke="#fff" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M830 340 L885 375 L940 340 M885 375 V450" stroke="#fff" stroke-width="8" stroke-linejoin="round"/>
+  </g>
+
+  <g opacity="0.9">
+    <circle cx="1000" cy="120" r="46" fill="none" stroke="#fff" stroke-width="8"/>
+    <path d="M1000 120 V96 M1000 120 L1020 133" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+  </g>
+</svg>

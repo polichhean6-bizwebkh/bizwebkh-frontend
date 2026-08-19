@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450" role="img" aria-label="Soap Dispenser">
+  <title>Soap Dispenser</title>
+  <defs>
+    <linearGradient id="g-p12" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00C9A7"/>
+      <stop offset="100%" stop-color="#00B4D8"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" fill="url(#g-p12)"/>
+  <circle cx="60" cy="400" r="120" fill="#ffffff" opacity="0.07"/>
+  <circle cx="560" cy="40" r="90" fill="#ffffff" opacity="0.08"/>
+  <circle cx="300" cy="225" r="105" fill="#ffffff" opacity="0.14"/>
+  <g>
+        <rect x="265" y="195" width="70" height="105" rx="14" fill="none" stroke="#fff" stroke-width="10"/>
+        <path d="M285 195 v-20 h30 v20" stroke="#fff" stroke-width="9" stroke-linejoin="round"/>
+        <path d="M315 175 h30 l-8 -14" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+</svg>

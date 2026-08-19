@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450" role="img" aria-label="Oil Dispenser Bottle">
+  <title>Oil Dispenser Bottle</title>
+  <defs>
+    <linearGradient id="g-p04" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9966"/>
+      <stop offset="100%" stop-color="#FF5E62"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" fill="url(#g-p04)"/>
+  <circle cx="60" cy="400" r="120" fill="#ffffff" opacity="0.07"/>
+  <circle cx="560" cy="40" r="90" fill="#ffffff" opacity="0.08"/>
+  <circle cx="300" cy="225" r="105" fill="#ffffff" opacity="0.14"/>
+  <g>
+        <path d="M280 160 h40 v30 l20 20 v130 a10 10 0 0 1 -10 10 h-60 a10 10 0 0 1 -10 -10 v-130 l20 -20 z"
+              fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round"/>
+        <path d="M278 150 h44 v20 h-44 z" fill="none" stroke="#fff" stroke-width="8"/>
+        <path d="M270 280 H330" stroke="#fff" stroke-width="6" stroke-dasharray="4 10"/>
+    </g>
+</svg>

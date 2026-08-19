@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thearith Home & Living — Household Products for Everyday Life</title>
+<meta name="description" content="Practical household products for easier everyday living. Kitchen, cleaning, storage, bathroom & more. Order easily via Telegram or Facebook.">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- =============== HEADER =============== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+
+    <a href="#home" class="brand">
+      <img src="assets/logo.svg" alt="Thearith Home & Living logo">
+      <span>Thearith Home &amp; Living<small>Household Products</small></span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="#home" class="active">Home</a>
+      <a href="#products">Products</a>
+      <a href="#categories">Categories</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="header-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="headerSearch" placeholder="Search products…" aria-label="Search products">
+      </div>
+      <button class="icon-btn" id="cartBtn" aria-label="View my order">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-badge" id="cartBadge">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop"></div>
+  <div class="mobile-nav-panel">
+    <div class="mobile-nav-head">
+      <a href="#home" class="brand"><img src="assets/logo.svg" alt="logo"><span>Thearith HL</span></a>
+      <button class="drawer-close" id="mobileNavClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div style="position:relative;margin-bottom:16px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:#6b7280;"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="mobileSearch" placeholder="Search products…" style="width:100%;padding:10px 12px 10px 36px;border-radius:8px;border:1.5px solid #f3f4f6;background:#f9fafb;font-size:14px;">
+    </div>
+    <a href="#home" class="mnav-link">Home</a>
+    <a href="#products" class="mnav-link">Products</a>
+    <a href="#categories" class="mnav-link">Categories</a>
+    <a href="#about" class="mnav-link">About</a>
+    <a href="#contact" class="mnav-link">Contact</a>
+    <div class="mobile-nav-contact">
+      <a href="tel:+85512345678">📞 +855 12 345 678</a>
+      <a href="#" id="mobileTelegramLink">✈️ Order via Telegram</a>
+      <a href="#" id="mobileFacebookLink">💬 Order via Facebook</a>
+    </div>
+  </div>
+</div>
+
+<!-- =============== HERO =============== -->
+<section class="hero" id="home">
+  <div class="container hero-inner">
+    <div>
+      <span class="hero-eyebrow">🏠 Trusted by 1,000+ Cambodian households</span>
+      <h1>Everything You Need for Your Home</h1>
+      <p>Practical household products for easier everyday living — kitchen, cleaning, storage, bathroom and more, at honest prices.</p>
+      <div class="hero-actions">
+        <a href="#products" class="btn btn-primary btn-lg">Shop Products</a>
+        <a href="#categories" class="btn btn-secondary btn-lg">View Categories</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>150+</strong><span>Products (full catalog)</span></div>
+        <div><strong>8</strong><span>Categories</span></div>
+        <div><strong>4.8★</strong><span>Customer rating</span></div>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="assets/hero.svg" alt="Household products illustration">
+    </div>
+  </div>
+</section>
+
+<!-- =============== CATEGORIES =============== -->
+<section class="section" id="categories">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Browse</span>
+        <h2>Shop by Category</h2>
+        <p>Find exactly what your home needs, organized for quick browsing.</p>
+      </div>
+      <a href="#products" class="section-link" id="viewAllCatsLink">View all products →</a>
+    </div>
+    <div class="category-grid" id="categoryGrid"></div>
+  </div>
+</section>
+
+<!-- =============== PRODUCTS =============== -->
+<section class="section section-alt" id="products">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Catalog</span>
+        <h2>Our Products</h2>
+        <p>Showing a curated selection — the full store will feature 100–200 products.</p>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <div class="toolbar-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="productSearch" placeholder="Search by product name…">
+      </div>
+      <select id="filterCategory">
+        <option value="all">All Categories</option>
+      </select>
+      <select id="filterPrice">
+        <option value="all">Any Price</option>
+        <option value="0-10">Under $10</option>
+        <option value="10-20">$10 – $20</option>
+        <option value="20-50">$20 – $50</option>
+      </select>
+      <select id="filterAvailability">
+        <option value="all">All Availability</option>
+        <option value="in">In Stock</option>
+        <option value="low">Low Stock</option>
+      </select>
+      <select id="sortBy">
+        <option value="latest">Sort: Latest</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="popular">Sort: Popular</option>
+      </select>
+      <button class="toolbar-reset" id="resetFilters">Reset</button>
+      <span class="toolbar-count" id="resultCount"></span>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<!-- =============== BEST SELLERS =============== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Popular</span>
+        <h2>Best Sellers</h2>
+        <p>Customer favorites, restocked often.</p>
+      </div>
+    </div>
+    <div class="product-grid" id="bestSellerGrid"></div>
+  </div>
+</section>
+
+<!-- =============== PROMO BANNER =============== -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="promo-banner">
+      <div>
+        <h3>🎉 New Arrivals Just Landed</h3>
+        <p>Fresh household picks added this week — check them out before they sell out.</p>
+      </div>
+      <a href="#newArrivals" class="btn btn-primary btn-lg">Shop New Arrivals</a>
+    </div>
+  </div>
+</section>
+
+<!-- =============== NEW ARRIVALS =============== -->
+<section class="section" id="newArrivals">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Fresh Stock</span>
+        <h2>New Arrivals</h2>
+        <p>The latest additions to our catalog.</p>
+      </div>
+    </div>
+    <div class="product-grid" id="newArrivalGrid"></div>
+  </div>
+</section>
+
+<!-- =============== WHY SHOP WITH US =============== -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Our Promise</span>
+        <h2>Why Shop With Us</h2>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7z"/></svg></div>
+        <h3>Quality Products</h3>
+        <p>Carefully selected household items built to last.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>Affordable Prices</h3>
+        <p>Honest, everyday pricing with no hidden costs.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <h3>Easy Ordering</h3>
+        <p>Select what you need, then order via Telegram or Facebook.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3>Fast Customer Support</h3>
+        <p>Quick replies to your questions and order requests.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== ABOUT =============== -->
+<section class="section" id="about">
+  <div class="container about-grid">
+    <div class="about-media"><img src="assets/about-store.svg" alt="About Thearith Home & Living"></div>
+    <div class="about-copy">
+      <span class="eyebrow">About Us</span>
+      <h2>About Thearith Home &amp; Living</h2>
+      <p>Thearith Home &amp; Living is a Phnom Penh–based household products store helping Cambodian families make everyday home life simpler. From kitchen tools to cleaning gear and storage solutions, we bring practical, reliable products to your doorstep.</p>
+      <p>We keep ordering simple — browse online, select what you need, and send your order directly through Telegram or Facebook. No complicated checkout, no accounts, just a quick chat with our team.</p>
+      <ul class="about-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg> Reliable product quality</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg> Simple ordering process</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg> Friendly customer support</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/></svg> Fast order confirmation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- =============== CONTACT =============== -->
+<section class="section section-alt" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Get In Touch</span>
+        <h2>Contact Us</h2>
+        <p>Have a question before ordering? Reach us anytime.</p>
+      </div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div><h4>Call or Message</h4><p>+855 12 345 678</p><a href="tel:+85512345678">Call now →</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+        <div><h4>Chat With Us</h4><p>Telegram &amp; Facebook Messenger</p><a href="#" id="contactTelegramLink">Message us →</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><h4>Visit Our Store</h4><p>St. 271, Sen Sok, Phnom Penh, Cambodia</p></div>
+      </div>
+      <div class="contact-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div><h4>Business Hours</h4><p>Mon – Sat, 8:00 AM – 6:00 PM</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============== FOOTER =============== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-brand"><img src="assets/logo.svg" alt="logo"><span>Thearith Home &amp; Living</span></div>
+      <p>Practical household products for easier everyday living. Kitchen, cleaning, storage, bathroom &amp; more — delivered with care.</p>
+      <div class="social-row">
+        <a href="#" id="footerTelegramLink" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.03 15.47l-.38 5.32c.54 0 .78-.23 1.07-.51l2.56-2.44 5.31 3.87c.97.54 1.67.26 1.93-.9L23.9 3.86h.01c.31-1.44-.52-2-1.46-1.66L1.11 10.28c-1.4.55-1.38 1.33-.24 1.68l5.5 1.71 12.77-8.05c.6-.4 1.15-.18.7.22"/></svg></a>
+        <a href="#" id="footerFacebookLink" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12"/></svg></a>
+      </div>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul><li><a href="#home">Home</a></li><li><a href="#products">Products</a></li><li><a href="#categories">Categories</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul>
+    </div>
+    <div>
+      <h4>Categories</h4>
+      <ul id="footerCategoryList"></ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li>📞 +855 12 345 678</li>
+        <li>📍 St. 271, Sen Sok, Phnom Penh</li>
+        <li>🕗 Mon – Sat, 8:00 AM – 6:00 PM</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 Thearith Home &amp; Living. All rights reserved.</span>
+    <span>Demo website by BizWeb KH — for client presentation purposes only.</span>
+  </div>
+</footer>
+
+<!-- =============== QUICK ORDER FAB (mobile) =============== -->
+<button class="quick-order-fab" id="fabCartBtn" aria-label="View my order">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+  <span class="cart-badge" id="fabCartBadge">0</span>
+</button>
+
+<!-- =============== ORDER DRAWER =============== -->
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="order-drawer" id="orderDrawer" aria-label="My order">
+  <div class="drawer-head">
+    <h3 id="drawerTitle">My Order (0)</h3>
+    <button class="drawer-close" id="drawerCloseBtn" aria-label="Close order drawer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="drawer-body" id="drawerBody"></div>
+  <div class="drawer-footer" id="drawerFooter" style="display:none;">
+    <div class="total-row"><span>Estimated Total</span><strong id="drawerTotal">$0.00</strong></div>
+    <p class="order-note">Not an online checkout — send your order to confirm availability &amp; delivery.</p>
+    <div class="order-channel-btns">
+      <button class="btn btn-telegram" id="orderTelegramBtn">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9.03 15.47l-.38 5.32c.54 0 .78-.23 1.07-.51l2.56-2.44 5.31 3.87c.97.54 1.67.26 1.93-.9L23.9 3.86h.01c.31-1.44-.52-2-1.46-1.66L1.11 10.28c-1.4.55-1.38 1.33-.24 1.68l5.5 1.71 12.77-8.05c.6-.4 1.15-.18.7.22"/></svg>
+        Order via Telegram
+      </button>
+      <button class="btn btn-facebook" id="orderFacebookBtn">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.1 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12"/></svg>
+        Order via Facebook
+      </button>
+    </div>
+  </div>
+</aside>
+
+<!-- =============== ORDER SUMMARY MODAL =============== -->
+<div class="modal-overlay" id="orderSummaryModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 id="orderSummaryTitle">Order Summary</h3>
+      <button class="drawer-close" id="orderSummaryClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:13.5px;color:#6b7280;margin-bottom:10px;">This is the message that will be sent — it includes every selected product, quantity and the estimated total.</p>
+      <div class="order-text-box" id="orderTextBox"></div>
+      <div class="copy-feedback" id="copyFeedback"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M9 11l3 3L22 4"/></svg> Order text copied!</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" id="copyOrderBtn">📋 Copy Order Text</button>
+      <button class="btn btn-telegram" id="goTelegramBtn" style="display:none;">Open Telegram →</button>
+      <button class="btn btn-facebook" id="goFacebookBtn" style="display:none;">Open Facebook →</button>
+    </div>
+  </div>
+</div>
+
+<!-- =============== PRODUCT DETAIL MODAL =============== -->
+<div class="modal-overlay pd-modal" id="productDetailModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Product Details</h3>
+      <button class="drawer-close" id="pdModalClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="pd-grid" id="pdGrid"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+  <span id="toastMsg">Added to order</span>
+</div>
+
+<script src="js/products-data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450" role="img" aria-label="Digital Desk Clock">
+  <title>Digital Desk Clock</title>
+  <defs>
+    <linearGradient id="g-p16" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F857A6"/>
+      <stop offset="100%" stop-color="#FF5858"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="450" fill="url(#g-p16)"/>
+  <circle cx="60" cy="400" r="120" fill="#ffffff" opacity="0.07"/>
+  <circle cx="560" cy="40" r="90" fill="#ffffff" opacity="0.08"/>
+  <circle cx="300" cy="225" r="105" fill="#ffffff" opacity="0.14"/>
+  <g>
+        <circle cx="300" cy="230" r="68" fill="none" stroke="#fff" stroke-width="10"/>
+        <path d="M300 230 V190 M300 230 L330 250" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+        <path d="M270 150 h60" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+    </g>
+</svg>

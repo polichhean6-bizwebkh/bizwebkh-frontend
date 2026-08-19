@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — Thearith Home & Living</title>
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+<div class="dash-shell">
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <img src="assets/logo.svg" alt="logo">
+      <div><span>Thearith HL</span><small>Admin Panel</small></div>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#" data-view="dashboard" class="active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+        Dashboard
+      </a>
+      <a href="#" data-view="products">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        Products
+      </a>
+      <a href="#" data-view="categories">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Categories
+      </a>
+      <a href="#" data-view="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">TR</div>
+        <div><span>Thearith Ret</span><small>Store Admin</small></div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" id="logoutBtn" class="logout">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Logout
+        </a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <div class="dash-main">
+    <header class="topbar">
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div>
+        <h1 id="topbarTitle">Dashboard</h1>
+        <div class="topbar-sub">Welcome back, Thearith — here's what's happening with your store.</div>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-date" id="topbarDate"></span>
+      </div>
+    </header>
+
+    <div class="dash-content">
+
+      <!-- ============ DASHBOARD VIEW ============ -->
+      <section class="view" id="view-dashboard">
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-icon teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+            <div class="stat-info"><strong id="statTotalProducts">0</strong><span>Total Products</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+            <div class="stat-info"><strong id="statCategories">0</strong><span>Categories</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <div class="stat-info"><strong id="statActive">0</strong><span>Active Products</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+            <div class="stat-info"><strong id="statOutOfStock">0</strong><span>Out of Stock</span></div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="panel">
+            <div class="panel-head">
+              <div><h3>Recently Added Products</h3><p>Latest items added to the catalog</p></div>
+            </div>
+            <div class="panel-body">
+              <div class="table-wrap">
+                <table class="data-table" id="recentProductsTable">
+                  <thead><tr><th>Product</th><th>Category</th><th>Price</th><th>Added</th></tr></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <div><h3>Low Stock Products</h3><p>Items that may need restocking soon</p></div>
+            </div>
+            <div class="panel-body">
+              <div class="table-wrap">
+                <table class="data-table" id="lowStockTable">
+                  <thead><tr><th>Product</th><th>Category</th><th>Stock</th><th>Status</th></tr></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PRODUCTS VIEW ============ -->
+      <section class="view" id="view-products" style="display:none;">
+        <div class="admin-toolbar">
+          <div class="admin-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="productAdminSearch" placeholder="Search products by name or SKU…">
+          </div>
+          <select id="productAdminCategoryFilter"><option value="all">All Categories</option></select>
+          <select id="productAdminStatusFilter">
+            <option value="all">All Status</option>
+            <option value="active">Active</option>
+            <option value="hidden">Hidden</option>
+          </select>
+          <button class="btn btn-primary" id="openAddProductBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Product
+          </button>
+        </div>
+
+        <div class="panel">
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr><th>Image</th><th>Product Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr>
+              </thead>
+              <tbody id="productTableBody"></tbody>
+            </table>
+          </div>
+          <div class="pagination-note" id="productCountNote"></div>
+        </div>
+      </section>
+
+      <!-- ============ CATEGORIES VIEW ============ -->
+      <section class="view" id="view-categories" style="display:none;">
+        <div class="admin-toolbar">
+          <div>
+            <strong style="font-size:14px;">Product Categories</strong>
+            <p style="font-size:12.5px;color:var(--ink-500);margin-top:2px;">Used to organize products across the website.</p>
+          </div>
+          <button class="btn btn-primary" id="openAddCategoryBtn" style="margin-left:auto;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Category
+          </button>
+        </div>
+        <div class="cat-admin-grid" id="categoryAdminGrid"></div>
+      </section>
+
+      <!-- ============ SETTINGS VIEW ============ -->
+      <section class="view" id="view-settings" style="display:none;">
+        <div class="panel" style="max-width:640px;">
+          <div class="panel-head">
+            <div><h3>Store Settings</h3><p>Configure store info and the ordering channels used by the website.</p></div>
+          </div>
+          <div class="panel-body" style="padding:22px 24px 24px;">
+            <form id="settingsForm">
+              <div class="form-group"><label for="setStoreName">Store Name</label><input type="text" id="setStoreName"></div>
+              <div class="form-row">
+                <div class="form-group"><label for="setPhone">Phone Number</label><input type="text" id="setPhone"></div>
+                <div class="form-group"><label for="setHours">Business Hours</label><input type="text" id="setHours"></div>
+              </div>
+              <div class="form-group"><label for="setTelegram">Telegram Link</label><input type="text" id="setTelegram"><small class="hint">Used by the "Order via Telegram" button on the website.</small></div>
+              <div class="form-group"><label for="setFacebook">Facebook Page / Messenger Link</label><input type="text" id="setFacebook"><small class="hint">Used by the "Order via Facebook" button on the website.</small></div>
+              <div class="form-group"><label for="setAddress">Address</label><textarea id="setAddress" rows="2"></textarea></div>
+              <button type="submit" class="btn btn-primary">Save Settings</button>
+              <span id="settingsSavedMsg" style="display:none;color:#15803d;font-weight:600;font-size:13px;margin-left:10px;">✓ Settings saved</span>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============ ADD/EDIT PRODUCT MODAL ============ -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 id="productModalTitle">Add Product</h3>
+      <button class="modal-close" id="productModalClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <form id="productForm">
+      <div class="modal-body">
+        <input type="hidden" id="pfId">
+        <div class="form-group"><label for="pfName">Product Name</label><input type="text" id="pfName" required></div>
+        <div class="form-row">
+          <div class="form-group"><label for="pfSku">Product Code / SKU</label><input type="text" id="pfSku" required></div>
+          <div class="form-group"><label for="pfCategory">Category</label><select id="pfCategory" required></select></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label for="pfPrice">Price ($)</label><input type="number" id="pfPrice" min="0" step="0.01" required></div>
+          <div class="form-group"><label for="pfOldPrice">Old Price ($) – optional</label><input type="number" id="pfOldPrice" min="0" step="0.01"></div>
+        </div>
+        <div class="form-group"><label for="pfStock">Stock Quantity</label><input type="number" id="pfStock" min="0" step="1" required></div>
+        <div class="form-group"><label for="pfDescription">Product Description</label><textarea id="pfDescription" rows="3"></textarea></div>
+        <div class="form-group"><label for="pfFeatures">Key Features (one per line)</label><textarea id="pfFeatures" rows="3" placeholder="Rust resistant&#10;Strong construction&#10;Easy installation"></textarea></div>
+        <div class="form-group">
+          <label>Product Images</label>
+          <div class="image-upload-row" id="pfImageRow"></div>
+          <small class="hint">Demo preview only — click a thumbnail to set it as the main image.</small>
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <div class="status-toggle">
+            <label><input type="radio" name="pfStatus" value="active" checked><span>● Active</span></label>
+            <label><input type="radio" name="pfStatus" value="hidden"><span>● Hidden</span></label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" id="productCancelBtn">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Product</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============ VIEW PRODUCT MODAL ============ -->
+<div class="modal-overlay" id="viewProductModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>Product Details</h3>
+      <button class="modal-close" id="viewProductClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body" id="viewProductBody"></div>
+  </div>
+</div>
+
+<!-- ============ ADD/EDIT CATEGORY MODAL ============ -->
+<div class="modal-overlay" id="categoryModal">
+  <div class="modal-box modal-sm">
+    <div class="modal-head">
+      <h3 id="categoryModalTitle">Add Category</h3>
+      <button class="modal-close" id="categoryModalClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <form id="categoryForm">
+      <div class="modal-body">
+        <input type="hidden" id="cfId">
+        <div class="form-group"><label for="cfName">Category Name</label><input type="text" id="cfName" required></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" id="categoryCancelBtn">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Category</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ============ CONFIRM DELETE MODAL ============ -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box modal-sm">
+    <div class="modal-head">
+      <h3 id="confirmTitle">Confirm Delete</h3>
+      <button class="modal-close" id="confirmClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body"><p class="confirm-text" id="confirmText">Are you sure you want to delete this item?</p></div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline" id="confirmCancelBtn">Cancel</button>
+      <button type="button" class="btn btn-danger" id="confirmOkBtn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+  <span id="toastMsg">Saved successfully</span>
+</div>
+
+<script src="js/products-data.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

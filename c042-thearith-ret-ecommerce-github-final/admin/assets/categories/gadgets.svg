@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Gadgets">
+  <title>Gadgets</title>
+  <defs>
+    <linearGradient id="cg-gadgets" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F857A6"/>
+      <stop offset="100%" stop-color="#FF5858"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="100" fill="url(#cg-gadgets)"/>
+  <g>
+        <path d="M105 55 L75 100 h20 l-10 40 40 -50 h-20 z" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/>
+    </g>
+</svg>

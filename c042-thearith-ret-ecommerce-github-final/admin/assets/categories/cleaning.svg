@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Cleaning">
+  <title>Cleaning</title>
+  <defs>
+    <linearGradient id="cg-cleaning" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#36D1DC"/>
+      <stop offset="100%" stop-color="#5B86E5"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="100" fill="url(#cg-cleaning)"/>
+  <g>
+        <path d="M100 55 V110" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
+        <path d="M78 110 h44 l8 26 a10 10 0 0 1 -10 12 h-40 a10 10 0 0 1 -10 -12 z" fill="none" stroke="#fff" stroke-width="6" stroke-linejoin="round"/>
+    </g>
+</svg>
