@@ -935,7 +935,7 @@ body.role-cashier .owner-note{display:block;}
 
 .deal-rows-labels{
   display:grid;
-  grid-template-columns:2fr 0.85fr 0.55fr 1.2fr 1.3fr 32px;
+  grid-template-columns:2fr 0.85fr 0.55fr 1.3fr 32px;
   gap:10px;
   padding:0 2px;
   margin-bottom:6px;
@@ -948,7 +948,7 @@ body.role-cashier .owner-note{display:block;}
 .deal-rows{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;}
 .deal-row{
   display:grid;
-  grid-template-columns:2fr 0.85fr 0.55fr 1.2fr 1.3fr 32px;
+  grid-template-columns:2fr 0.85fr 0.55fr 1.3fr 32px;
   gap:10px;
   align-items:center;
   background:var(--bg);
@@ -967,14 +967,8 @@ body.role-cashier .owner-note{display:block;}
   color:var(--text);
   box-sizing:border-box;
 }
-.deal-incentive-wrap{display:flex;gap:6px;}
-.deal-incentive-wrap .deal-incentive-type{flex:0 0 58px;padding:0 4px;text-align:center;}
-.deal-incentive-wrap .deal-incentive-amount{flex:1;}
-.deal-incentive-readout{display:flex;align-items:center;min-height:38px;padding:0 4px;}
-.incentive-readout{font-size:12.5px;line-height:1.3;}
-.incentive-readout.incentive-value{color:var(--text);font-weight:600;}
-.incentive-readout.incentive-none{color:#B7ABA0;font-style:italic;}
 .incentive-setup-summary{font-size:12.5px;color:var(--text);}
+.incentive-field-hint{font-size:11.5px;color:var(--text-soft);margin:4px 0 0;line-height:1.4;}
 .deal-row-remove{
   width:32px;height:32px;
   border-radius:50%;
@@ -1042,6 +1036,53 @@ body.role-cashier .owner-note{display:block;}
   color:var(--text-soft);
   margin:16px 0 6px;
 }
+/* Used only in the Customer Detail modal (requirement E) for clearer section dividers,
+   scoped so other modals using .modal-section-label keep their existing spacing. */
+#modalBody .customer-detail-view .modal-section-label{padding-top:14px;border-top:1px solid var(--border);}
+#modalBody .customer-detail-view .modal-section-label.modal-section-label-first{margin-top:0;padding-top:0;border-top:none;}
+
+/* ============ CUSTOMER DETAIL MODAL (2-col summary grid + compact history tables) ============ */
+.detail-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 20px;
+}
+.detail-grid .detail-row{
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  padding:8px 0;
+  border-bottom:1px solid var(--border);
+  font-size:13.5px;
+}
+.detail-grid .detail-row strong{color:var(--text-soft);font-weight:600;flex-shrink:0;}
+.detail-grid .detail-row span{text-align:right;}
+@media (max-width:600px){
+  .detail-grid{grid-template-columns:1fr;}
+}
+.detail-table-wrap{
+  overflow-x:auto;
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+}
+.detail-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+.detail-table th{
+  text-align:left;
+  padding:8px 10px;
+  background:var(--bg);
+  color:var(--text-soft);
+  font-weight:700;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.3px;
+  white-space:nowrap;
+  border-bottom:1px solid var(--border);
+}
+.detail-table td{
+  padding:8px 10px;
+  border-bottom:1px solid var(--border);
+  vertical-align:top;
+}
+.detail-table tr:last-child td{border-bottom:none;}
+.detail-table-empty{text-align:center;color:#B7ABA0;padding:16px;}
 
 .filter-input-secondary{
   opacity:.85;

@@ -55,38 +55,19 @@
   ];
 
   // staff.type: "sales" (closes package/product sales), "service" (performs salon services), or "both"
-  // staff.salesIncentive: default { type:"percent"|"fixed", rate:Number } used when this staff closes a sale (VIP package purchase/top-up)
+  // Incentive model (function-based, not per-service): each staff member has a flat
+  // serviceIncentiveRate (%) applied to any service they perform, and/or a flat
+  // salesIncentiveRate (%) applied to any VIP package sale they close as Sales Staff.
+  // Only the field(s) relevant to staff.type are used - see computeIncentiveForRow / computeSalesIncentive.
   const SEED_STAFF = [
-    { id: "sokha", name: "Sokha", phone: "012 111 001", role: "Senior Stylist", specialty: "Hair Styling", type: "service", active: true },
-    { id: "dara", name: "Dara", phone: "012 111 002", role: "Hair Color Specialist", specialty: "Hair Coloring / Treatment", type: "both", active: true, salesIncentive: { type: "percent", rate: 5 } },
-    { id: "sreyneang", name: "Sreyneang", phone: "012 111 003", role: "Nail Artist", specialty: "Nail Care", type: "service", active: true },
-    { id: "ratha", name: "Ratha", phone: "012 111 004", role: "Makeup Artist", specialty: "Makeup", type: "service", active: true },
-    { id: "lina", name: "Lina", phone: "012 111 005", role: "Beauty Therapist", specialty: "Facial", type: "service", active: true },
-    { id: "sokunthea", name: "Sokunthea", phone: "012 111 006", role: "Front Desk / Sales", specialty: "VIP Package Sales", type: "sales", active: true, salesIncentive: { type: "fixed", rate: 5 } },
-    { id: "momo", name: "Momo", phone: "012 111 007", role: "Sales Consultant", specialty: "VIP Package Sales", type: "sales", active: true, salesIncentive: { type: "percent", rate: 5 } }
+    { id: "sokha", name: "Sokha", phone: "012 111 001", role: "Senior Stylist", specialty: "Hair Styling", type: "service", active: true, serviceIncentiveRate: 10 },
+    { id: "dara", name: "Dara", phone: "012 111 002", role: "Hair Color Specialist", specialty: "Hair Coloring / Treatment", type: "both", active: true, serviceIncentiveRate: 10, salesIncentiveRate: 5 },
+    { id: "sreyneang", name: "Sreyneang", phone: "012 111 003", role: "Nail Artist", specialty: "Nail Care", type: "service", active: true, serviceIncentiveRate: 15 },
+    { id: "ratha", name: "Ratha", phone: "012 111 004", role: "Makeup Artist", specialty: "Makeup", type: "service", active: true, serviceIncentiveRate: 10 },
+    { id: "lina", name: "Lina", phone: "012 111 005", role: "Beauty Therapist", specialty: "Facial", type: "service", active: true, serviceIncentiveRate: 10 },
+    { id: "sokunthea", name: "Sokunthea", phone: "012 111 006", role: "Front Desk / Sales", specialty: "VIP Package Sales", type: "sales", active: true, salesIncentiveRate: 5 },
+    { id: "momo", name: "Momo", phone: "012 111 007", role: "Sales Consultant", specialty: "VIP Package Sales", type: "sales", active: true, salesIncentiveRate: 5 }
   ];
-
-  // Service Incentive rules are keyed by exact SERVICE NAME (not category) so each service can
-  // have its own rate, e.g. "Nail Gel" can differ from "Manicure" even though both are Nail Care.
-  const SEED_SCHEMES = {
-    sokha: [{ service: "Hair Cut & Styling", type: "percent", rate: 10 }],
-    dara: [
-      { service: "Hair Coloring", type: "percent", rate: 10 },
-      { service: "Hair Treatment", type: "fixed", rate: 2 },
-      { service: "Hair Wash & Dry", type: "fixed", rate: 2 }
-    ],
-    sreyneang: [
-      { service: "Manicure", type: "percent", rate: 15 },
-      { service: "Pedicure", type: "percent", rate: 15 },
-      { service: "Nail Gel", type: "percent", rate: 8 }
-    ],
-    ratha: [{ service: "Makeup", type: "percent", rate: 10 }],
-    lina: [
-      { service: "Facial", type: "percent", rate: 10 },
-      { service: "Lash / Brow Beauty", type: "percent", rate: 10 },
-      { service: "Hair Treatment", type: "fixed", rate: 2 }
-    ]
-  };
 
   // customer.type: "normal" (pays per visit) or "vip" (prepaid package balance)
   // customer.vipBalance: current remaining prepaid balance (VIP only)
@@ -168,9 +149,9 @@
     { id: "TX-006", customerId: "CUS-006", date: daysAgo(5), time: "14:00", payment: "VIP Balance", discount: 5, status: "Completed",
       txType: "service", vipDeduction: 50,
       services: [
-        row("Hair Wash & Dry", "Dara", 12, 1, { type: "fixed", rate: 2, amount: 2 }),
-        row("Nail Gel", "Sreyneang", 18, 1, { type: "fixed", rate: 3, amount: 3 }),
-        row("Facial", "Lina", 25, 1, { type: "fixed", rate: 4, amount: 4 })
+        row("Hair Wash & Dry", "Dara", 12, 1),
+        row("Nail Gel", "Sreyneang", 18, 1),
+        row("Facial", "Lina", 25, 1)
       ] },
     { id: "TX-007", customerId: "CUS-007", date: daysAgo(0), time: "16:00", payment: "Cash", discount: 0, status: "Open",
       services: [row("Makeup", "", 20, 1)] },
@@ -263,31 +244,32 @@
 
   function computeLineTotal(r) { return (r.price || 0) * (r.qty || 1); }
 
-  // Source of truth for Service Incentive = Staff Management -> Incentive Setup (SEED_SCHEMES / KEY_SCHEMES),
-  // matched by the EXACT service name performed. If no rule is configured for this staff/service
-  // combination, no incentive is calculated (configured: false, amount: 0) - New Deal displays
-  // "No incentive configured" in that case rather than guessing a default rate.
+  // Source of truth for Service Incentive = Staff Management -> Incentive Setup, one flat
+  // percentage per staff member (staff.serviceIncentiveRate), applied to ANY service that staff
+  // performs - not configured per individual service. Uses the FINAL transaction price entered in
+  // New Deal (price x qty), before the overall transaction discount. If the assigned staff has no
+  // serviceIncentiveRate configured (or isn't a Service/Both type), no incentive is calculated
+  // (configured: false, amount: 0) - New Deal displays "No incentive configured" in that case.
   function computeIncentiveForRow(staffName, serviceName, price, qty) {
-    const schemes = load(KEY_SCHEMES, SEED_SCHEMES);
     const staffList = load(KEY_STAFF, SEED_STAFF);
     const staffObj = staffList.find((s) => s.name === staffName);
     const lineTotal = (price || 0) * (qty || 1);
-    if (!staffObj) return { type: null, rate: 0, amount: 0, configured: false };
-    const rules = schemes[staffObj.id] || [];
-    const rule = rules.find((r) => r.service === serviceName);
-    if (!rule) return { type: null, rate: 0, amount: 0, configured: false };
-    const amount = rule.type === "fixed" ? +(rule.rate * (qty || 1)).toFixed(2) : +(lineTotal * (rule.rate / 100)).toFixed(2);
-    return { type: rule.type, rate: rule.rate, amount, configured: true };
+    if (!staffObj || typeof staffObj.serviceIncentiveRate !== "number") return { type: null, rate: 0, amount: 0, configured: false };
+    const rate = staffObj.serviceIncentiveRate;
+    const amount = +(lineTotal * (rate / 100)).toFixed(2);
+    return { type: "percent", rate, amount, configured: true };
   }
 
-  // Sales Incentive = based on a package/product SALE closed by staff (separate from Service Incentive)
+  // Sales Incentive = a flat percentage (staff.salesIncentiveRate) applied when this staff member
+  // closes a VIP package purchase/top-up as Sales Staff. Kept completely separate from Service
+  // Incentive - never calculated on a package sale where no salon service was performed.
   function computeSalesIncentive(staffName, saleAmount) {
     const staffList = load(KEY_STAFF, SEED_STAFF);
     const staffObj = staffList.find((s) => s.name === staffName);
-    if (!staffObj || !staffObj.salesIncentive) return { type: "percent", rate: 0, amount: 0 };
-    const { type, rate } = staffObj.salesIncentive;
-    const amount = type === "fixed" ? +rate.toFixed(2) : +((saleAmount || 0) * (rate / 100)).toFixed(2);
-    return { type, rate, amount };
+    if (!staffObj || typeof staffObj.salesIncentiveRate !== "number") return { type: "percent", rate: 0, amount: 0, configured: false };
+    const rate = staffObj.salesIncentiveRate;
+    const amount = +((saleAmount || 0) * (rate / 100)).toFixed(2);
+    return { type: "percent", rate, amount, configured: true };
   }
 
   function buildSeedTransactions() {
@@ -379,10 +361,53 @@
     return records;
   }
 
+  // ------------------------------------------------------------------------
+  // ONE-TIME MIGRATION: old per-service incentive rule model -> new flat
+  // function-based model (staff.serviceIncentiveRate / staff.salesIncentiveRate).
+  // Runs once per browser; existing customers/transactions/package history/services
+  // are never touched. Only staff records are updated, and the old per-service
+  // "incentive schemes" storage key is retired afterward.
+  // ------------------------------------------------------------------------
+  const KEY_INCENTIVE_MODEL_VERSION = "c039_incentive_model_version";
+  function migrateToFunctionBasedIncentives() {
+    if (localStorage.getItem(KEY_INCENTIVE_MODEL_VERSION) === "2") return;
+    const staffList = load(KEY_STAFF, null);
+    if (staffList) {
+      let legacySchemes = {};
+      try { legacySchemes = JSON.parse(localStorage.getItem(KEY_SCHEMES) || "{}") || {}; } catch (e) { legacySchemes = {}; }
+      staffList.forEach((s) => {
+        if (typeof s.serviceIncentiveRate !== "number") {
+          const rules = legacySchemes[s.id] || [];
+          if (rules.length) {
+            // Approximate a single flat % from the old per-service rules: percent rules use their
+            // own rate directly; old fixed-$ rules are approximated against a $20 average ticket
+            // (demo-only baseline) so every staff member ends up with one representative rate.
+            const rates = rules.map((r) => (r.type === "percent" ? r.rate : Math.round((r.rate / 20) * 100)));
+            s.serviceIncentiveRate = Math.round(rates.reduce((a, b) => a + b, 0) / rates.length);
+          } else if (s.type === "service" || s.type === "both") {
+            s.serviceIncentiveRate = 0;
+          }
+        }
+        if (typeof s.salesIncentiveRate !== "number") {
+          if (s.salesIncentive) {
+            // Old fixed-$ sales incentives are approximated against a $100 baseline VIP package.
+            s.salesIncentiveRate = s.salesIncentive.type === "percent" ? s.salesIncentive.rate : Math.round((s.salesIncentive.rate / 100) * 100);
+            delete s.salesIncentive;
+          } else if (s.type === "sales" || s.type === "both") {
+            s.salesIncentiveRate = 0;
+          }
+        }
+      });
+      save(KEY_STAFF, staffList);
+    }
+    localStorage.removeItem(KEY_SCHEMES); // legacy per-service rule storage retired
+    localStorage.setItem(KEY_INCENTIVE_MODEL_VERSION, "2");
+  }
+
   function initData() {
     if (!localStorage.getItem(KEY_SERVICES)) save(KEY_SERVICES, SEED_SERVICES);
     if (!localStorage.getItem(KEY_STAFF)) save(KEY_STAFF, SEED_STAFF);
-    if (!localStorage.getItem(KEY_SCHEMES)) save(KEY_SCHEMES, SEED_SCHEMES);
+    migrateToFunctionBasedIncentives();
     if (!localStorage.getItem(KEY_CUSTOMERS)) save(KEY_CUSTOMERS, SEED_CUSTOMERS);
     if (!localStorage.getItem(KEY_TRANSACTIONS)) {
       const txs = buildSeedTransactions();
@@ -541,6 +566,9 @@
       "th.totalSpending": "ចំណាយសរុប",
       "th.mostUsedService": "សេវាកម្មប្រើញឹកញាប់",
       "th.source": "ប្រភព",
+      "th.amount": "ចំនួនទឹកប្រាក់",
+      "th.type": "ប្រភេទ",
+      "th.serviceTransaction": "សេវាកម្ម/ប្រតិបត្តិការ",
       "th.servicesCompleted": "សេវាកម្មបានបញ្ចប់",
       "th.salesValue": "តម្លៃលក់",
       "th.incentiveEarned": "កម្រៃជើងសារទទួលបាន",
@@ -610,6 +638,9 @@
       "modal.save": "រក្សាទុក",
       "modal.cancel": "បោះបង់",
 
+      "customerModal.summaryTitle": "ព័ត៌មានសង្ខេបអតិថិជន",
+      "customerModal.vipSummaryTitle": "សង្ខេបកញ្ចប់ VIP",
+
       "toast.saved": "រក្សាទុកបានជោគជ័យ",
       "toast.dealSaved": "រក្សាទុកប្រតិបត្តិការបានជោគជ័យ",
       "toast.dealSavedOpen": "រក្សាទុកជាមិនទាន់បិទ — សូមកំណត់បុគ្គលិកគ្រប់សេវាកម្មដើម្បីបិទ",
@@ -644,8 +675,12 @@
       "vip.remainingPaymentMethod": "វិធីបង់ប្រាក់សម្រាប់ចំនួនសល់",
       "vip.used": "VIP ប្រើប្រាស់",
       "vip.custom": "កំណត់ដោយខ្លួនឯង",
+      "vip.customerMode": "ប្រភេទអតិថិជន",
+      "vip.existingCustomer": "អតិថិជនចាស់",
+      "vip.newCustomer": "អតិថិជនថ្មី",
       "staff.title": "គ្រប់គ្រងបុគ្គលិក",
       "staff.addNew": "+ បន្ថែមបុគ្គលិក",
+      "staff.name": "ឈ្មោះបុគ្គលិក",
       "staff.type": "ប្រភេទបុគ្គលិក",
       "staff.position": "តួនាទី / មុខតំណែង",
       "staff.defaultIncentive": "កម្រៃជើងសារលំនាំដើម",
@@ -655,14 +690,18 @@
       "staff.addIncentiveRule": "+ បន្ថែមច្បាប់កម្រៃជើងសារ",
       "staff.saveIncentive": "រក្សាទុកកម្រៃជើងសារ",
       "staff.noRulesYet": "មិនទាន់កំណត់",
+      "staff.serviceIncentivePercent": "កម្រៃជើងសារសេវាកម្ម (%)",
+      "staff.salesIncentivePercent": "កម្រៃជើងសារការលក់ (%)",
+      "staff.serviceIncentiveHint": "អនុវត្តលើគ្រប់សេវាកម្មទាំងអស់ដែលបុគ្គលិកនេះបំពេញ គិតលើតម្លៃចុងក្រោយក្នុងប្រតិបត្តិការ។",
+      "staff.salesIncentiveHint": "អនុវត្តតែពេលបុគ្គលិកនេះជាបុគ្គលិកលក់បិទការទិញ/បញ្ចូលទឹកប្រាក់កញ្ចប់ VIP ប៉ុណ្ណោះ។",
       "staff.incentiveSetupHint": "ការកំណត់កម្រៃជើងសារអាចធ្វើបានពី \"គ្រប់គ្រងកម្រៃជើងសារ\" បន្ទាប់ពីរក្សាទុកបុគ្គលិកនេះ។",
       "staff.status": "ស្ថានភាព",
       "staff.active": "សកម្ម",
       "staff.inactive": "អសកម្ម",
       "staff.activate": "ធ្វើឲ្យសកម្ម",
       "staff.deactivate": "បិទសកម្មភាព",
-      "staff.confirmActivate": "ធ្វើឲ្យបុគ្គលិកនេះសកម្មឬ?",
-      "staff.confirmDeactivate": "បិទសកម្មភាពបុគ្គលិកនេះឬ?",
+      "staff.confirmActivate": "តើអ្នកប្រាកដថាចង់ធ្វើឲ្យបុគ្គលិកនេះសកម្មឬ?",
+      "staff.confirmDeactivate": "តើអ្នកប្រាកដថាចង់បិទសកម្មភាពបុគ្គលិកនេះឬ?",
       "staff.salesClosed": "ការលក់បានបិទ",
       "staff.salesIncentiveEarned": "កម្រៃជើងសារលក់ទទួលបាន",
       "staff.totalIncentive": "កម្រៃជើងសាររួម",
@@ -676,6 +715,7 @@
       "reports.serviceRevenue": "ចំណូលពីសេវាកម្ម",
       "reports.vipPackageSales": "លក់កញ្ចប់ VIP",
       "reports.vipBalanceOutstanding": "សមតុល្យ VIP នៅសល់",
+      "reports.vipBalanceUsed": "សមតុល្យ VIP បានប្រើ (មិនមែនចំណូល)",
       "reports.normalCustomers": "អតិថិជនធម្មតា",
       "reports.vipCustomers": "អតិថិជន VIP",
       "reports.newVipCustomers": "អតិថិជន VIP ថ្មី",
@@ -688,7 +728,7 @@
       "reports.tabStaff": "បុគ្គលិក & កម្រៃជើងសារ",
       "reports.revenueBreakdown": "ការបំបែកចំណូល",
       "reports.totalRevenue": "ចំណូលសរុប",
-      "reports.topCustomers": "អតិថិជនកំពូលតាមការចំណាយ",
+      "reports.topCustomers": "អតិថិជនកំពូលតាមចំណូលរួមចំណែក",
       "reports.vipBalanceSummary": "សង្ខេបសមតុល្យ VIP",
       "reports.serviceIncentiveSummary": "សង្ខេបកម្រៃជើងសារសេវាកម្ម",
       "reports.salesIncentiveSummary": "សង្ខេបកម្រៃជើងសារលក់",
@@ -704,7 +744,7 @@
       "reports.totalServiceIncentive": "កម្រៃជើងសារសេវាកម្មសរុប",
       "reports.totalSalesIncentive": "កម្រៃជើងសារលក់សរុប",
       "reports.totalIncentive": "កម្រៃជើងសាររួម",
-      "th.serviceSales": "លក់សេវាកម្ម",
+      "th.serviceSales": "តម្លៃសេវាកម្មដែលបានធ្វើ",
       "th.incentiveEarned": "កម្រៃជើងសារទទួលបាន",
       "th.salesStaff": "បុគ្គលិកលក់",
       "th.salesClosed": "ការលក់បានសម្រេច",
@@ -883,6 +923,9 @@
       "modal.save": "Save",
       "modal.cancel": "Cancel",
 
+      "customerModal.summaryTitle": "Customer Summary",
+      "customerModal.vipSummaryTitle": "VIP Package Summary",
+
       "toast.saved": "Saved successfully",
       "toast.dealSaved": "Transaction saved successfully",
       "toast.dealSavedOpen": "Saved as Open — assign staff to every service to complete",
@@ -917,8 +960,12 @@
       "vip.remainingPaymentMethod": "Payment Method for Remaining Amount",
       "vip.used": "VIP Balance Used",
       "vip.custom": "Custom",
+      "vip.customerMode": "Customer",
+      "vip.existingCustomer": "Existing Customer",
+      "vip.newCustomer": "New Customer",
       "staff.title": "Staff Management",
       "staff.addNew": "+ Add Staff",
+      "staff.name": "Staff Name",
       "staff.type": "Staff Type",
       "staff.position": "Position / Role",
       "staff.defaultIncentive": "Default Incentive",
@@ -928,14 +975,18 @@
       "staff.addIncentiveRule": "+ Add Incentive Rule",
       "staff.saveIncentive": "Save Incentive",
       "staff.noRulesYet": "Not configured",
+      "staff.serviceIncentivePercent": "Service Incentive (%)",
+      "staff.salesIncentivePercent": "Sales Incentive (%)",
+      "staff.serviceIncentiveHint": "Applies to every service this staff member performs, based on the final price used in the transaction.",
+      "staff.salesIncentiveHint": "Applies only when this staff member is the Sales Staff who closes a VIP Package Purchase or Top-Up.",
       "staff.incentiveSetupHint": "Incentive rules can be configured from \"Manage Incentive\" after this staff member is saved.",
       "staff.status": "Status",
       "staff.active": "Active",
       "staff.inactive": "Inactive",
       "staff.activate": "Activate",
       "staff.deactivate": "Deactivate",
-      "staff.confirmActivate": "Activate this staff member?",
-      "staff.confirmDeactivate": "Deactivate this staff member?",
+      "staff.confirmActivate": "Are you sure you want to activate this staff member?",
+      "staff.confirmDeactivate": "Are you sure you want to deactivate this staff member?",
       "staff.salesClosed": "Sales Closed",
       "staff.salesIncentiveEarned": "Sales Incentive Earned",
       "staff.totalIncentive": "Total Incentive",
@@ -949,6 +1000,7 @@
       "reports.serviceRevenue": "Service Revenue",
       "reports.vipPackageSales": "VIP Package Sales",
       "reports.vipBalanceOutstanding": "VIP Balance Outstanding",
+      "reports.vipBalanceUsed": "VIP Balance Used (not revenue)",
       "reports.normalCustomers": "Normal Customers",
       "reports.vipCustomers": "VIP Customers",
       "reports.newVipCustomers": "New VIP Customers",
@@ -961,7 +1013,7 @@
       "reports.tabStaff": "Staff & Incentive",
       "reports.revenueBreakdown": "Revenue Breakdown",
       "reports.totalRevenue": "Total Revenue",
-      "reports.topCustomers": "Top Customers by Spending",
+      "reports.topCustomers": "Top Customers by Revenue Contribution",
       "reports.vipBalanceSummary": "VIP Balance Summary",
       "reports.serviceIncentiveSummary": "Service Incentive Summary",
       "reports.salesIncentiveSummary": "Sales Incentive Summary",
@@ -977,7 +1029,7 @@
       "reports.totalServiceIncentive": "Total Service Incentive",
       "reports.totalSalesIncentive": "Total Sales Incentive",
       "reports.totalIncentive": "Total Incentive",
-      "th.serviceSales": "Service Sales",
+      "th.serviceSales": "Service Value Performed",
       "th.incentiveEarned": "Incentive Earned",
       "th.salesStaff": "Sales Staff",
       "th.salesClosed": "Sales Closed",
@@ -1061,6 +1113,22 @@
     return true;
   }
   function fmt(n) { return "$" + (Number(n) || 0).toFixed(2); }
+
+  // NEW REVENUE ACCOUNTING RULE: VIP Package Balance redemption is NOT new daily income - that
+  // amount was already recognized as revenue at the moment the VIP package was purchased/topped
+  // up (recorded separately as a vip_purchase/vip_topup transaction with its own grandTotal).
+  // For any transaction, "new revenue" = grandTotal minus whatever portion was paid from an
+  // existing VIP balance (tx.vipDeduction). VIP Package Purchase/Top-Up transactions always have
+  // vipDeduction = 0, so their full grandTotal is counted as new revenue as usual. A split payment
+  // (e.g. $20 VIP Balance + $30 Cash on a $50 total) correctly nets to just the $30 new-revenue
+  // portion. Value is derived live from existing transaction fields - no historical record is
+  // rewritten, so this recomputes correctly for both new and already-seeded demo transactions.
+  function revenueOf(tx) { return +Math.max(0, (tx.grandTotal || 0) - (tx.vipDeduction || 0)).toFixed(2); }
+
+  // A "visit" is a completed salon SERVICE transaction. VIP Package Purchase / VIP Top-Up
+  // transactions are sales events, not service visits, so they must never be counted toward
+  // Total Visits, Average Visits, Visit Frequency, or New/Returning customer logic.
+  function isServiceTx(tx) { return (tx.txType || "service") === "service"; }
 
   /* ============================================================
      NAVIGATION
@@ -1198,7 +1266,7 @@
     const completed = txs.filter((tx) => tx.status === "Completed");
     const completedToday = completed.filter((tx) => isToday(tx.date));
 
-    const todaySales = completedToday.reduce((s, tx) => s + tx.grandTotal, 0);
+    const todaySales = completedToday.reduce((s, tx) => s + revenueOf(tx), 0);
     const todayCustomerIds = new Set(txs.filter((tx) => isToday(tx.date)).map((tx) => tx.customerId));
     const servicesCompletedToday = completedToday.reduce((s, tx) => s + tx.services.length, 0);
     const incentiveMonth = records.filter((r) => isThisMonth(r.date)).reduce((s, r) => s + r.incentiveAmount, 0);
@@ -1473,19 +1541,23 @@
     sel.value = current;
   }
 
-  // Payment options a Cashier/Owner may manually pick from. "VIP Balance" is never a manual
-  // choice - it is applied automatically whenever the selected customer is an active VIP/package
-  // customer with a balance, per the VIP payment rules below.
+  // Payment options a Cashier/Owner may manually pick from (Cash/ABA/ACLEDA/Credit Card/Other).
+  // "VIP Balance" is an ADDITIONAL choice offered on top of these whenever the selected customer
+  // is an active VIP/package customer with a balance - it is never forced. See updateVipBalanceUI().
   const MANUAL_PAYMENT_OPTIONS = ["Cash", "ABA", "ACLEDA", "Credit Card", "Other"];
   function manualPaymentOptionsHtml(selected) {
     return MANUAL_PAYMENT_OPTIONS.map((p) => `<option value="${p}" ${p === selected ? "selected" : ""}>${p}</option>`).join("");
   }
+  function vipPaymentOptionsHtml(selected) {
+    return `<option value="VIP Balance" ${selected === "VIP Balance" ? "selected" : ""}>${t("vip.paymentLocked")}</option>` + manualPaymentOptionsHtml(selected);
+  }
 
-  // Reflects the active deal's customer VIP balance in the New Deal totals area, and enforces the
-  // VIP payment rules: if the customer is VIP with a balance > 0, the Payment Method field is
-  // locked to "VIP Package Balance" (the user cannot opt out); if the balance fully covers the
-  // Grand Total no other payment method is shown; if it doesn't, only the REMAINING amount gets a
-  // manual payment-method choice. Never lets VIP balance go negative (deduction is capped downstream).
+  // Reflects the active deal's customer VIP balance in the New Deal totals area. NEW RULE: VIP
+  // customers are never forced to pay from their balance - "VIP Package Balance" is offered as an
+  // extra option alongside Cash/ABA/ACLEDA/Credit Card/Other, and the cashier/owner freely chooses
+  // per transaction. Deduction/split only happens if "VIP Package Balance" is the option actually
+  // selected; choosing any other method leaves the VIP balance untouched. Never lets VIP balance
+  // go negative (deduction is capped downstream in completeActiveDeal()).
   function updateVipBalanceUI() {
     const deal = getActiveDeal();
     const bannerRow = document.getElementById("dealVipBalanceLine");
@@ -1502,7 +1574,7 @@
     if (deal && deal.customerId) cust = load(KEY_CUSTOMERS, []).find((c) => c.id === deal.customerId);
     const isVip = !!(cust && cust.type === "vip");
     const vipAvailable = isVip ? (cust.vipBalance || 0) : 0;
-    const vipActive = isVip && vipAvailable > 0;
+    const vipOfferable = isVip && vipAvailable > 0;
 
     bannerRow.style.display = isVip ? "" : "none";
     bannerVal.textContent = fmt(vipAvailable);
@@ -1511,16 +1583,24 @@
 
     const grandTotal = parseFloat((document.getElementById("dealGrandTotal").textContent || "$0").replace(/[^0-9.]/g, "")) || 0;
 
-    if (vipActive) {
-      // Lock the Payment Method field to "VIP Package Balance" - it becomes read-only and the
-      // user cannot opt out of using the VIP balance while it is available.
-      if (paymentSelect && paymentSelect.dataset.vipLocked !== "true") {
-        paymentSelect.dataset.vipLocked = "true";
-        paymentSelect.innerHTML = `<option value="VIP Balance">${t("vip.paymentLocked")}</option>`;
-        paymentSelect.value = "VIP Balance";
-        paymentSelect.disabled = true;
+    // Only rebuild the <select> options when the available option SET changes (VIP-offerable vs
+    // manual-only) - never on every keystroke/recalc, so an already-made manual choice (e.g. the
+    // cashier picked "Cash" for a VIP customer) is preserved instead of being reset each time.
+    const desiredMode = vipOfferable ? "vip" : "manual";
+    if (paymentSelect && paymentSelect.dataset.mode !== desiredMode) {
+      const pending = paymentSelect.dataset.pendingValue || paymentSelect.value;
+      paymentSelect.dataset.mode = desiredMode;
+      paymentSelect.disabled = false;
+      if (desiredMode === "vip") {
+        paymentSelect.innerHTML = vipPaymentOptionsHtml(["VIP Balance", ...MANUAL_PAYMENT_OPTIONS].includes(pending) ? pending : "VIP Balance");
+      } else {
+        paymentSelect.innerHTML = manualPaymentOptionsHtml(MANUAL_PAYMENT_OPTIONS.includes(pending) ? pending : "Cash");
       }
+      delete paymentSelect.dataset.pendingValue;
+    }
 
+    const usingVip = vipOfferable && paymentSelect && paymentSelect.value === "VIP Balance";
+    if (usingVip) {
       if (vipAvailable >= grandTotal) {
         remainingRow.style.display = "none";
         splitLine.style.display = "none";
@@ -1530,12 +1610,6 @@
         splitVal.textContent = fmt(Math.max(0, grandTotal - vipAvailable));
       }
     } else {
-      // Normal customer (or VIP with a fully-used balance): free choice of a real payment method.
-      if (paymentSelect && paymentSelect.dataset.vipLocked === "true") {
-        paymentSelect.dataset.vipLocked = "false";
-        paymentSelect.disabled = false;
-        paymentSelect.innerHTML = manualPaymentOptionsHtml("Cash");
-      }
       remainingRow.style.display = "none";
       splitLine.style.display = "none";
     }
@@ -1550,12 +1624,12 @@
     document.getElementById("dNotes").value = deal.notes || "";
     document.getElementById("dDiscountType").value = deal.discountType || "amount";
     document.getElementById("dDiscount").value = deal.discountValue || 0;
-    // Only restore a manual payment method here; if the customer turns out to be an active VIP
-    // customer, updateVipBalanceUI() (called via recalcDealTotals() below) will lock/override this.
+    // Force updateVipBalanceUI() (called via recalcDealTotals() below) to rebuild the Payment
+    // Method options fresh for this specific deal tab, preferring whatever payment value was
+    // saved on it (which may be "VIP Balance" or a manual method).
     const paymentSelect = document.getElementById("dPayment");
-    paymentSelect.dataset.vipLocked = "false";
-    paymentSelect.disabled = false;
-    paymentSelect.innerHTML = manualPaymentOptionsHtml(MANUAL_PAYMENT_OPTIONS.includes(deal.payment) ? deal.payment : "Cash");
+    paymentSelect.dataset.mode = "";
+    paymentSelect.dataset.pendingValue = deal.payment || "Cash";
     renderSalesStaffOptions();
     document.getElementById("dSalesStaff").value = deal.salesStaff || "";
     dealRows = deal.services;
@@ -1611,7 +1685,6 @@
           <option value="">${t("common.any")}</option>
           ${staff.map((s) => `<option value="${s.name}" ${s.name === r.staff ? "selected" : ""}>${s.name}</option>`).join("")}
         </select>
-        <div class="deal-incentive-wrap deal-incentive-readonly">${incentiveDisplayHtml(r)}</div>
         <button type="button" class="deal-row-remove" data-idx="${idx}" title="${t("deal.removeRow")}">×</button>
       </div>
     `).join("");
@@ -1680,11 +1753,9 @@
     const discountValue = parseFloat(document.getElementById("dDiscount").value) || 0;
     const discountAmount = computeDiscountAmount(subtotal, discountType, discountValue);
     const grandTotal = Math.max(0, subtotal - discountAmount);
-    const totalIncentive = dealRows.reduce((sum, r) => sum + (r.incentiveAmount || 0), 0);
     document.getElementById("dealSubtotal").textContent = fmt(subtotal);
     document.getElementById("dealDiscountLine").textContent = "-" + fmt(discountAmount) + (discountType === "percent" && discountValue ? ` (${discountValue}%)` : "");
     document.getElementById("dealGrandTotal").textContent = fmt(grandTotal);
-    document.getElementById("dealTotalIncentive").textContent = fmt(totalIncentive);
     updateVipBalanceUI();
     syncFormIntoActiveDeal();
   }
@@ -2412,44 +2483,77 @@
     document.getElementById("sellVipBtn").onclick = () => openVipSellTopUpModal();
   }
 
+  // Requirement E: VIP customer detail modal is organized into 4 clean sections —
+  // (1) Customer Summary (2-col grid), (2) VIP Package Summary, (3) Package History table,
+  // (4) Visit/Transaction History table. Modal keeps default max-height + internal scroll
+  // (see .modal{max-height:85vh;overflow-y:auto;} in dashboard.css) so the outer page never
+  // scrolls awkwardly even with long history.
   function openCustomerModal(c) {
-    document.getElementById("modalTitle").textContent = t("modal.customerDetail");
     const historyRows = [...c.custTxs].sort((a, b) => b.date.localeCompare(a.date)).map((tx) => {
       const label = tx.txType === "vip_purchase" ? t("vip.purchaseLabel") : tx.txType === "vip_topup" ? t("vip.topupLabel") : tx.services.map((r) => `${r.service} (${r.staff || t("common.any")})`).join(", ");
+      const staffNames = tx.txType === "vip_purchase" || tx.txType === "vip_topup" ? (tx.salesStaff || t("common.none")) : [...new Set(tx.services.map((r) => r.staff).filter(Boolean))].join(", ") || t("common.none");
       return `
-      <div class="detail-row">
-        <strong>${tx.date} — ${label}</strong>
-        <span>${fmt(tx.grandTotal)}${tx.vipDeduction ? ` · ${t("vip.used")}: ${fmt(tx.vipDeduction)}` : ""} · <span class="badge ${statusBadgeClass(tx.status)}">${t("status." + tx.status)}</span></span>
-      </div>`;
-    }).join("") || `<p class="scheme-empty">—</p>`;
+      <tr>
+        <td>${tx.date}</td>
+        <td>${label}</td>
+        <td>${fmt(tx.grandTotal)}${tx.vipDeduction ? ` <span class="tx-row-staff">(${t("vip.used")}: ${fmt(tx.vipDeduction)})</span>` : ""}</td>
+        <td>${tx.payment}</td>
+        <td>${staffNames}</td>
+        <td><span class="badge ${statusBadgeClass(tx.status)}">${t("status." + tx.status)}</span></td>
+      </tr>`;
+    }).join("");
 
     const packageRows = (c.packageHistory || []).slice().sort((a, b) => b.date.localeCompare(a.date)).map((p) => `
-      <div class="detail-row">
-        <strong>${p.date} — ${p.type === "topup" ? t("vip.topupLabel") : t("vip.purchaseLabel")}</strong>
-        <span>${fmt(p.amount)} · ${p.paymentMethod} · ${t("deal.salesStaff")}: ${p.salesStaff || t("common.none")}</span>
-      </div>
-    `).join("") || `<p class="scheme-empty">—</p>`;
+      <tr>
+        <td>${p.date}</td>
+        <td>${p.type === "topup" ? t("vip.topupLabel") : t("vip.purchaseLabel")}</td>
+        <td>${fmt(p.amount)}</td>
+        <td>${p.paymentMethod}</td>
+        <td>${p.salesStaff || t("common.none")}</td>
+      </tr>
+    `).join("");
 
     const vipSection = c.type === "vip" ? `
-      <div class="detail-row"><strong>${t("vip.totalPurchased")}</strong><span>${fmt((c.packageHistory || []).reduce((s, p) => s + p.amount, 0))}</span></div>
-      <div class="detail-row"><strong>${t("vip.balanceAvailable")}</strong><span><strong>${fmt(c.vipBalance || 0)}</strong></span></div>
+      <div class="modal-section-label">${t("customerModal.vipSummaryTitle")}</div>
+      <div class="detail-grid">
+        <div class="detail-row"><strong>${t("vip.totalPurchased")}</strong><span>${fmt((c.packageHistory || []).reduce((s, p) => s + p.amount, 0))}</span></div>
+        <div class="detail-row"><strong>${t("vip.balanceAvailable")}</strong><span><strong>${fmt(c.vipBalance || 0)}</strong></span></div>
+      </div>
       <div class="modal-section-label">${t("vip.packageHistory")}</div>
-      ${packageRows}
+      <div class="detail-table-wrap">
+        <table class="detail-table">
+          <thead><tr><th>${t("th.date")}</th><th>${t("th.type")}</th><th>${t("th.amount")}</th><th>${t("th.payment")}</th><th>${t("th.salesStaff")}</th></tr></thead>
+          <tbody>${packageRows || `<tr><td colspan="5" class="detail-table-empty">—</td></tr>`}</tbody>
+        </table>
+      </div>
     ` : "";
 
     document.getElementById("modalTitle").textContent = `${t("modal.customerDetail")} — ${c.name}`;
     document.getElementById("modalBody").innerHTML = `
-      <div class="detail-row"><strong>${t("th.customer")}</strong><span>${c.name}</span></div>
-      <div class="detail-row"><strong>${t("th.phone")}</strong><span>${c.phone}</span></div>
-      <div class="detail-row"><strong>${t("th.customerType")}</strong><span>${c.type === "vip" ? "VIP" : t("customerType.normal")}</span></div>
-      <div class="detail-row"><strong>${t("th.source")}</strong><span>${c.source || t("common.none")}</span></div>
-      <div class="detail-row"><strong>${t("th.totalVisits")}</strong><span>${c.totalVisits}</span></div>
-      <div class="detail-row"><strong>${t("th.totalSpending")}</strong><span>${fmt(c.totalSpending)}</span></div>
-      <div class="detail-row"><strong>${t("th.lastVisit")}</strong><span>${c.lastVisit || t("common.none")}</span></div>
+    <div class="customer-detail-view">
+      <div class="modal-section-label modal-section-label-first">${t("customerModal.summaryTitle")}</div>
+      <div class="detail-grid">
+        <div class="detail-row"><strong>${t("th.customer")}</strong><span>${c.name}</span></div>
+        <div class="detail-row"><strong>${t("th.phone")}</strong><span>${c.phone}</span></div>
+        <div class="detail-row"><strong>${t("th.customerType")}</strong><span>${c.type === "vip" ? "VIP" : t("customerType.normal")}</span></div>
+        <div class="detail-row"><strong>${t("th.source")}</strong><span>${c.source || t("common.none")}</span></div>
+        <div class="detail-row"><strong>${t("th.totalVisits")}</strong><span>${c.totalVisits}</span></div>
+        <div class="detail-row"><strong>${t("th.lastVisit")}</strong><span>${c.lastVisit || t("common.none")}</span></div>
+        <div class="detail-row"><strong>${t("th.totalSpending")}</strong><span>${fmt(c.totalSpending)}</span></div>
+        <div class="detail-row"><strong>${t("th.mostUsedService")}</strong><span>${c.mostUsed}</span></div>
+      </div>
       ${vipSection}
       <div class="modal-section-label">${t("customers.history")}</div>
-      ${historyRows}
+      <div class="detail-table-wrap">
+        <table class="detail-table">
+          <thead><tr><th>${t("th.date")}</th><th>${t("th.serviceTransaction")}</th><th>${t("th.amount")}</th><th>${t("th.payment")}</th><th>${t("th.staff")}</th><th>${t("th.status")}</th></tr></thead>
+          <tbody>${historyRows || `<tr><td colspan="6" class="detail-table-empty">—</td></tr>`}</tbody>
+        </table>
+      </div>
+    </div>
     `;
+    const box = document.getElementById("modalBox");
+    if (box) box.classList.add("modal-wide");
     openModal();
   }
 
@@ -2592,16 +2696,42 @@
     return tx;
   }
 
+  // Sell / Top-Up VIP Package - works for an existing customer (reused record, balance added to
+  // their existing total, no duplicate) OR a brand-new customer who does not need any prior
+  // Normal-customer transaction first: choosing "New Customer" creates the customer record as
+  // part of this same VIP sale.
   function openVipSellTopUpModal() {
     document.getElementById("modalTitle").textContent = t("vip.sellTopUp");
     const customers = load(KEY_CUSTOMERS, []);
     document.getElementById("modalBody").innerHTML = `
       <div class="form-field">
+        <label>${t("vip.customerMode")}</label>
+        <select id="vipTxMode">
+          <option value="existing">${t("vip.existingCustomer")}</option>
+          <option value="new">${t("vip.newCustomer")}</option>
+        </select>
+      </div>
+      <div id="vipTxExistingWrap" class="form-field">
         <label>${t("th.customer")}</label>
         <select id="vipTxCustomer">
           <option value="">—</option>
           ${customers.map((c) => `<option value="${c.id}">${c.name} (${c.phone})${c.type === "vip" ? " · VIP $" + (c.vipBalance || 0).toFixed(2) : ""}</option>`).join("")}
         </select>
+      </div>
+      <div id="vipTxNewWrap" style="display:none;">
+        <div class="form-field"><label>${t("form.customerName")}</label><input type="text" id="vipTxNewName"></div>
+        <div class="form-field"><label>${t("form.phone")}</label><input type="tel" id="vipTxNewPhone"></div>
+        <div class="form-field"><label>${t("form.customerSource")} <span class="optional-tag">${t("form.optional")}</span></label>
+          <select id="vipTxNewSource">
+            <option value="">—</option>
+            <option value="Walk-in">Walk-in</option>
+            <option value="Facebook">Facebook</option>
+            <option value="TikTok">TikTok</option>
+            <option value="Telegram">Telegram</option>
+            <option value="Referral">Referral</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
       </div>
       <div class="form-field">
         <label>${t("vip.packageAmount")}</label>
@@ -2618,16 +2748,40 @@
     `;
     openModal();
     wireVipAmountPicker("vipTxAmount");
+    document.getElementById("vipTxMode").addEventListener("change", (e) => {
+      const isNew = e.target.value === "new";
+      document.getElementById("vipTxExistingWrap").style.display = isNew ? "none" : "";
+      document.getElementById("vipTxNewWrap").style.display = isNew ? "" : "none";
+    });
     document.getElementById("saveVipTxBtn").addEventListener("click", () => {
-      const custId = document.getElementById("vipTxCustomer").value;
+      const mode = document.getElementById("vipTxMode").value;
       const amount = parseFloat(document.getElementById("vipTxAmount").value) || 0;
-      if (!custId || amount <= 0) { showToast(getSettings().lang === "km" ? "សូមជ្រើសរើសអតិថិជន និងចំនួនទឹកប្រាក់" : "Please select a customer and amount", "error"); return; }
+      if (amount <= 0) { showToast(getSettings().lang === "km" ? "សូមបញ្ចូលចំនួនទឹកប្រាក់" : "Please enter an amount", "error"); return; }
       const payment = document.getElementById("vipTxPayment").value;
       const salesStaff = document.getElementById("vipTxSalesStaff").value;
-      const customers = load(KEY_CUSTOMERS, []);
-      const idx = customers.findIndex((c) => c.id === custId);
-      if (idx < 0) return;
-      const cust = customers[idx];
+      const customersNow = load(KEY_CUSTOMERS, []);
+
+      let cust;
+      if (mode === "new") {
+        const name = document.getElementById("vipTxNewName").value.trim();
+        const phone = document.getElementById("vipTxNewPhone").value.trim();
+        if (!name || !phone) { showToast(getSettings().lang === "km" ? "សូមបញ្ចូលឈ្មោះ និងលេខទូរស័ព្ទ" : "Please enter customer name and phone", "error"); return; }
+        if (customersNow.some((c) => c.phone === phone)) { showToast(getSettings().lang === "km" ? "អតិថិជននេះមានរួចហើយ" : "A customer with this phone already exists", "error"); return; }
+        const source = document.getElementById("vipTxNewSource").value;
+        const nextNum = customersNow.reduce((max, c) => {
+          const m = /CUS-(\d+)/.exec(c.id || "");
+          return m ? Math.max(max, parseInt(m[1], 10)) : max;
+        }, 0) + 1;
+        cust = { id: "CUS-" + String(nextNum).padStart(3, "0"), name, phone, source, notes: "", type: "normal", vipBalance: 0, packageHistory: [] };
+        customersNow.push(cust);
+      } else {
+        const custId = document.getElementById("vipTxCustomer").value;
+        if (!custId) { showToast(getSettings().lang === "km" ? "សូមជ្រើសរើសអតិថិជន" : "Please select a customer", "error"); return; }
+        const idx = customersNow.findIndex((c) => c.id === custId);
+        if (idx < 0) return;
+        cust = customersNow[idx];
+      }
+
       const isFirstPurchase = cust.type !== "vip";
       const txType = isFirstPurchase ? "vip_purchase" : "vip_topup";
       const inc = computeSalesIncentive(salesStaff, amount);
@@ -2635,8 +2789,7 @@
       cust.vipBalance = +((cust.vipBalance || 0) + amount).toFixed(2);
       cust.packageHistory = cust.packageHistory || [];
       cust.packageHistory.push({ id: "PKG-" + Date.now(), amount, paymentMethod: payment, salesStaff, salesIncentiveAmount: inc.amount, date: daysAgo(0), type: isFirstPurchase ? "purchase" : "topup" });
-      customers[idx] = cust;
-      save(KEY_CUSTOMERS, customers);
+      save(KEY_CUSTOMERS, customersNow);
       recordVipPackageTransaction(cust, amount, txType, payment, salesStaff, inc.amount, daysAgo(0));
       closeModal();
       showToast(t("toast.saved"), "success");
@@ -2649,21 +2802,15 @@
      Cashier may view/select staff but cannot add, delete, or modify incentive setup)
      Staff Incentive setup now lives here - there is no separate "Staff Incentive" page/nav item.
      ============================================================ */
+  // Function-based incentive summary shown in the Staff Management table, e.g.
+  // "Service: 10% · Sales: 5%" for a "Both" staff member, or just one side for Service/Sales-only staff.
   function incentiveSetupSummary(s) {
-    const schemes = load(KEY_SCHEMES, SEED_SCHEMES);
-    const rules = schemes[s.id] || [];
     const parts = [];
     if (s.type === "service" || s.type === "both") {
-      if (rules.length) {
-        const first = rules[0];
-        const firstLabel = `${first.service} ${first.type === "fixed" ? fmt(first.rate) : first.rate + "%"}`;
-        parts.push(rules.length > 1 ? `${firstLabel} +${rules.length - 1}` : firstLabel);
-      } else {
-        parts.push(t("staff.noRulesYet"));
-      }
+      parts.push(`${t("incentiveType.service")}: ${typeof s.serviceIncentiveRate === "number" ? s.serviceIncentiveRate + "%" : t("staff.noRulesYet")}`);
     }
     if (s.type === "sales" || s.type === "both") {
-      parts.push(`${t("incentiveType.sales")}: ${s.salesIncentive ? (s.salesIncentive.type === "fixed" ? fmt(s.salesIncentive.rate) : s.salesIncentive.rate + "%") : t("common.none")}`);
+      parts.push(`${t("incentiveType.sales")}: ${typeof s.salesIncentiveRate === "number" ? s.salesIncentiveRate + "%" : t("staff.noRulesYet")}`);
     }
     return parts.join(" · ");
   }
@@ -2723,147 +2870,67 @@
   // button that triggers it isn't even rendered for Cashier in renderStaffPage()).
   function openManageIncentiveModal(s) {
     if (getSettings().role !== "owner") return; // defense in depth - Owner-only feature
-    const schemes = load(KEY_SCHEMES, SEED_SCHEMES);
-    const services = load(KEY_SERVICES, SEED_SERVICES);
-    const rules = schemes[s.id] || [];
-    // Any unexpected/missing staff.type still shows the Service Incentive section by default
+    // Any unexpected/missing staff.type still shows the Service Incentive field by default
     // (matches the type badge fallback used elsewhere), so the modal is never left empty.
     const showService = s.type !== "sales";
     const showSales = s.type === "sales" || s.type === "both";
 
-    function serviceRuleRowHtml(r, idx) {
-      const type = (r && r.type) || "percent";
-      const rate = r && r.rate !== undefined ? r.rate : "";
-      const serviceOptions = services.map((sv) => `<option value="${sv.name}" ${r && sv.name === r.service ? "selected" : ""}>${sv.name}</option>`).join("");
-      return `
-      <div class="scheme-row" data-idx="${idx}">
-        <select class="rule-service">${serviceOptions}</select>
-        <select class="rule-type">
-          <option value="percent" ${type === "percent" ? "selected" : ""}>${t("incentiveScheme.percent")}</option>
-          <option value="fixed" ${type === "fixed" ? "selected" : ""}>${t("incentiveScheme.fixed")}</option>
-        </select>
-        <div class="rule-value-wrap">
-          <input type="number" class="rule-rate" value="${rate}" min="0" ${type === "percent" ? 'max="100"' : ""} step="0.5">
-          <span class="rule-unit">${type === "fixed" ? "$" : "%"}</span>
-        </div>
-        <button type="button" class="icon-btn" data-action="remove-rule" data-idx="${idx}" title="${t("actions.remove")}">×</button>
-      </div>`;
-    }
-
     function renderModalBody() {
-      const serviceRowsHtml = rules.map((r, idx) => serviceRuleRowHtml(r, idx)).join("");
+      const serviceHtml = showService ? `
+        <div class="modal-section-label">${t("incentiveType.service")}</div>
+        <div class="form-field">
+          <label>${t("staff.serviceIncentivePercent")}</label>
+          <input type="number" id="mgrServiceRate" min="0" max="100" step="0.5" value="${typeof s.serviceIncentiveRate === "number" ? s.serviceIncentiveRate : 10}">
+          <p class="incentive-field-hint">${t("staff.serviceIncentiveHint")}</p>
+        </div>
+      ` : "";
       const salesHtml = showSales ? `
         <div class="modal-section-label">${t("incentiveType.sales")}</div>
-        <div class="form-row">
-          <div class="form-field">
-            <label>${t("incentiveScheme.colType")}</label>
-            <select id="mgrSalesType">
-              <option value="percent" ${(!s.salesIncentive || s.salesIncentive.type === "percent") ? "selected" : ""}>${t("incentiveScheme.percent")}</option>
-              <option value="fixed" ${(s.salesIncentive && s.salesIncentive.type === "fixed") ? "selected" : ""}>${t("incentiveScheme.fixed")}</option>
-            </select>
-          </div>
-          <div class="form-field">
-            <label>${t("incentiveScheme.colValue")}</label>
-            <input type="number" id="mgrSalesRate" min="0" step="0.5" value="${s.salesIncentive ? s.salesIncentive.rate : 5}">
-          </div>
+        <div class="form-field">
+          <label>${t("staff.salesIncentivePercent")}</label>
+          <input type="number" id="mgrSalesRate" min="0" max="100" step="0.5" value="${typeof s.salesIncentiveRate === "number" ? s.salesIncentiveRate : 5}">
+          <p class="incentive-field-hint">${t("staff.salesIncentiveHint")}</p>
         </div>
       ` : "";
 
       document.getElementById("modalTitle").textContent = `${t("staff.manageIncentive")} — ${s.name}${s.role ? " – " + s.role : ""}`;
       document.getElementById("modalBody").innerHTML = `
-        ${showService ? `
-          <div class="modal-section-label">${t("incentiveScheme.serviceRulesTitle")}</div>
-          ${rules.length ? `<div class="scheme-col-labels"><span>${t("incentiveScheme.colService")}</span><span>${t("incentiveScheme.colType")}</span><span>${t("incentiveScheme.colValue")}</span></div>` : ""}
-          <div class="scheme-rows" id="mgrServiceRows">${serviceRowsHtml || `<p class="scheme-empty">${t("staff.noRulesYet")}</p>`}</div>
-          <button type="button" class="add-rule-btn" id="mgrAddRuleBtn">${t("staff.addIncentiveRule")}</button>
-        ` : ""}
+        ${serviceHtml}
         ${salesHtml}
         <div class="modal-actions">
           <button type="button" class="btn-outline-mini" id="mgrCancelBtn">${t("modal.cancel")}</button>
           <button type="button" class="btn-primary" id="mgrSaveBtn">${t("staff.saveIncentive")}</button>
         </div>
       `;
-      wireModalEvents();
-    }
-
-    function wireModalEvents() {
-      document.querySelectorAll("#mgrServiceRows .scheme-row").forEach((rowEl) => {
-        const typeSelect = rowEl.querySelector(".rule-type");
-        const rateInput = rowEl.querySelector(".rule-rate");
-        const unitEl = rowEl.querySelector(".rule-unit");
-        typeSelect.addEventListener("change", () => {
-          unitEl.textContent = typeSelect.value === "fixed" ? "$" : "%";
-          if (typeSelect.value === "percent") rateInput.setAttribute("max", "100"); else rateInput.removeAttribute("max");
-        });
-      });
-      document.querySelectorAll('[data-action="remove-rule"]').forEach((btn) => {
-        btn.addEventListener("click", () => {
-          rules.splice(parseInt(btn.dataset.idx, 10), 1);
-          renderModalBody();
-        });
-      });
-      const addRuleBtn = document.getElementById("mgrAddRuleBtn");
-      if (addRuleBtn) {
-        addRuleBtn.addEventListener("click", () => {
-          const usedServices = new Set(rules.map((r) => r.service));
-          const nextService = services.find((sv) => !usedServices.has(sv.name));
-          if (!nextService) { showToast(getSettings().lang === "km" ? "គ្រប់សេវាកម្មទាំងអស់ត្រូវបានកំណត់រួចហើយ" : "All services already have a rule for this staff member", "error"); return; }
-          rules.push({ service: nextService.name, type: "percent", rate: 10 });
-          renderModalBody();
-        });
-      }
       document.getElementById("mgrCancelBtn").addEventListener("click", closeModal);
       document.getElementById("mgrSaveBtn").addEventListener("click", handleSave);
     }
 
     function handleSave() {
-      let newRules = [];
+      let newServiceRate = null;
       if (showService) {
-        const rowEls = [...document.querySelectorAll("#mgrServiceRows .scheme-row")];
-        newRules = rowEls.map((rowEl) => ({
-          service: rowEl.querySelector(".rule-service").value,
-          type: rowEl.querySelector(".rule-type").value,
-          rate: parseFloat(rowEl.querySelector(".rule-rate").value)
-        }));
-
-        // ---- Validation: no blank service, no blank/negative value, no duplicate service, sensible % range ----
-        for (const r of newRules) {
-          if (!r.service) { showToast(getSettings().lang === "km" ? "សូមជ្រើសរើសសេវាកម្មសម្រាប់រាល់ជួរ" : "Please select a service for every rule", "error"); return; }
-          if (isNaN(r.rate)) { showToast(getSettings().lang === "km" ? "សូមបញ្ចូលតម្លៃកម្រៃជើងសារ" : "Please enter an incentive value", "error"); return; }
-          if (r.rate < 0) { showToast(getSettings().lang === "km" ? "កម្រៃជើងសារមិនអាចអវិជ្ជមានទេ" : "Incentive value cannot be negative", "error"); return; }
-          if (r.type === "percent" && r.rate > 100) { showToast(getSettings().lang === "km" ? "ភាគរយត្រូវនៅចន្លោះ 0-100" : "Percentage must be between 0 and 100", "error"); return; }
-        }
-        const seen = new Set();
-        for (const r of newRules) {
-          if (seen.has(r.service)) { showToast(getSettings().lang === "km" ? `មានច្បាប់កម្រៃជើងសារស្ទួនសម្រាប់សេវាកម្ម "${r.service}"` : `Duplicate incentive rule for service "${r.service}"`, "error"); return; }
-          seen.add(r.service);
-        }
+        newServiceRate = parseFloat(document.getElementById("mgrServiceRate").value);
+        if (isNaN(newServiceRate)) { showToast(getSettings().lang === "km" ? "សូមបញ្ចូលភាគរយកម្រៃជើងសារសេវាកម្ម" : "Please enter a Service Incentive percentage", "error"); return; }
+        if (newServiceRate < 0 || newServiceRate > 100) { showToast(getSettings().lang === "km" ? "ភាគរយត្រូវនៅចន្លោះ 0-100" : "Percentage must be between 0 and 100", "error"); return; }
       }
 
-      let newSalesIncentive = null;
+      let newSalesRate = null;
       if (showSales) {
-        const salesType = document.getElementById("mgrSalesType").value;
-        const salesRate = parseFloat(document.getElementById("mgrSalesRate").value);
-        if (isNaN(salesRate)) { showToast(getSettings().lang === "km" ? "សូមបញ្ចូលតម្លៃកម្រៃជើងសារលក់" : "Please enter a sales incentive value", "error"); return; }
-        if (salesRate < 0) { showToast(getSettings().lang === "km" ? "កម្រៃជើងសារមិនអាចអវិជ្ជមានទេ" : "Incentive value cannot be negative", "error"); return; }
-        if (salesType === "percent" && salesRate > 100) { showToast(getSettings().lang === "km" ? "ភាគរយត្រូវនៅចន្លោះ 0-100" : "Percentage must be between 0 and 100", "error"); return; }
-        newSalesIncentive = { type: salesType, rate: salesRate };
+        newSalesRate = parseFloat(document.getElementById("mgrSalesRate").value);
+        if (isNaN(newSalesRate)) { showToast(getSettings().lang === "km" ? "សូមបញ្ចូលភាគរយកម្រៃជើងសារលក់" : "Please enter a Sales Incentive percentage", "error"); return; }
+        if (newSalesRate < 0 || newSalesRate > 100) { showToast(getSettings().lang === "km" ? "ភាគរយត្រូវនៅចន្លោះ 0-100" : "Percentage must be between 0 and 100", "error"); return; }
       }
 
-      // ---- Persist: rules apply immediately to localStorage/demo data - New Deal always reads
-      // this live via computeIncentiveForRow()/KEY_SCHEMES, so no page refresh is required. ----
-      if (showService) {
-        const schemesNow = load(KEY_SCHEMES, SEED_SCHEMES);
-        schemesNow[s.id] = newRules;
-        save(KEY_SCHEMES, schemesNow);
-      }
-      if (showSales) {
-        const staffList = load(KEY_STAFF, SEED_STAFF);
-        const idx = staffList.findIndex((x) => x.id === s.id);
-        if (idx >= 0) {
-          staffList[idx] = { ...staffList[idx], salesIncentive: newSalesIncentive };
-          save(KEY_STAFF, staffList);
-        }
+      // ---- Persist: applies immediately to localStorage/demo data - New Deal always reads this
+      // live via computeIncentiveForRow()/computeSalesIncentive(), so no page refresh is required. ----
+      const staffList = load(KEY_STAFF, SEED_STAFF);
+      const idx = staffList.findIndex((x) => x.id === s.id);
+      if (idx >= 0) {
+        const updated = { ...staffList[idx] };
+        if (showService) updated.serviceIncentiveRate = newServiceRate;
+        if (showSales) updated.salesIncentiveRate = newSalesRate;
+        staffList[idx] = updated;
+        save(KEY_STAFF, staffList);
       }
 
       closeModal();
@@ -2871,7 +2938,6 @@
       renderStaffPage();
     }
 
-    document.getElementById("modalBox").classList.add("modal-wide");
     renderModalBody();
     openModal();
   }
@@ -2879,9 +2945,9 @@
   function openStaffModal(staffMember) {
     const isEdit = !!staffMember;
     document.getElementById("modalTitle").textContent = isEdit ? t("actions.edit") + " — " + staffMember.name : t("staff.addNew");
-    const s = staffMember || { name: "", phone: "", role: "", type: "service", active: true, salesIncentive: { type: "percent", rate: 5 } };
+    const s = staffMember || { name: "", phone: "", role: "", type: "service", active: true };
     document.getElementById("modalBody").innerHTML = `
-      <div class="form-field"><label>${t("form.customerName")}</label><input type="text" id="stfName" value="${s.name}"></div>
+      <div class="form-field"><label>${t("staff.name")}</label><input type="text" id="stfName" value="${s.name}"></div>
       <div class="form-field"><label>${t("th.phone")}</label><input type="tel" id="stfPhone" value="${s.phone || ""}"></div>
       <div class="form-field"><label>${t("staff.position")}</label><input type="text" id="stfRole" value="${s.role || ""}"></div>
       <div class="form-field">
@@ -2891,9 +2957,6 @@
           <option value="sales" ${s.type === "sales" ? "selected" : ""}>${t("staffType.sales")}</option>
           <option value="both" ${s.type === "both" ? "selected" : ""}>${t("staffType.both")}</option>
         </select>
-      </div>
-      <div class="form-field">
-        <label><input type="checkbox" id="stfActive" ${s.active ? "checked" : ""}> ${t("staff.active")}</label>
       </div>
       <p class="owner-note">${t("staff.incentiveSetupHint")}</p>
       <div class="modal-actions"><button class="btn-primary" id="saveStaffBtn">${t("modal.save")}</button></div>
@@ -2905,15 +2968,18 @@
       const phone = document.getElementById("stfPhone").value.trim();
       const role = document.getElementById("stfRole").value.trim();
       const type = document.getElementById("stfType").value;
-      const active = document.getElementById("stfActive").checked;
 
       const staffList = load(KEY_STAFF, SEED_STAFF);
       if (isEdit) {
         const idx = staffList.findIndex((x) => x.id === staffMember.id);
-        if (idx >= 0) staffList[idx] = { ...staffList[idx], name, phone, role, type, active, salesIncentive: staffList[idx].salesIncentive || { type: "percent", rate: 5 } };
+        // Active/Inactive status is managed ONLY via the Deactivate/Activate action in Staff
+        // Management (toggle-staff) - Edit Staff never reads or writes staffList[idx].active,
+        // so the existing status is preserved untouched here.
+        if (idx >= 0) staffList[idx] = { ...staffList[idx], name, phone, role, type };
       } else {
         const id = "stf-" + Date.now();
-        staffList.push({ id, name, phone, role, specialty: role, type, active, salesIncentive: { type: "percent", rate: 5 } });
+        // Service/Sales incentive rates default to 0 and are configured afterward via "Manage Incentive".
+        staffList.push({ id, name, phone, role, specialty: role, type, active: true, serviceIncentiveRate: type !== "sales" ? 0 : undefined, salesIncentiveRate: type !== "service" ? 0 : undefined });
       }
       save(KEY_STAFF, staffList);
       closeModal();
@@ -3069,20 +3135,34 @@
     if (custTypeF) txs = txs.filter((tx) => customerTypeById[tx.customerId] === custTypeF);
 
     const allRows = [];
-    txs.forEach((tx) => tx.services.forEach((r) => {
-      if (staffF && r.staff !== staffF) return;
-      if (serviceF && r.service !== serviceF) return;
-      allRows.push({ ...r, txId: tx.id, payment: tx.payment, customerId: tx.customerId });
-    }));
+    txs.forEach((tx) => {
+      // Proportional share of this transaction's line amounts that counts as new revenue (i.e.
+      // excludes whatever fraction was paid from an existing VIP balance) - used only for the
+      // money figures in the Sales & Payment breakdowns below, never for incentive math.
+      const revenueRatio = tx.grandTotal > 0 ? revenueOf(tx) / tx.grandTotal : 1;
+      tx.services.forEach((r) => {
+        if (staffF && r.staff !== staffF) return;
+        if (serviceF && r.service !== serviceF) return;
+        allRows.push({ ...r, txId: tx.id, payment: tx.payment, customerId: tx.customerId, revenueRatio });
+      });
+    });
 
-    const totalSales = txs.reduce((sum, tx) => sum + tx.grandTotal, 0);
+    // Revenue rule: VIP Package Balance redemption is NOT new income (already recognized as
+    // revenue when the package was purchased/topped up) - see revenueOf(). VIP Package Purchase
+    // and VIP Top-Up transactions always have vipDeduction = 0, so they still count in full.
+    const totalSales = txs.reduce((sum, tx) => sum + revenueOf(tx), 0);
     const numCustomers = new Set(txs.map((tx) => tx.customerId)).size;
-    const numVisits = txs.length;
 
     const serviceTxs = txs.filter((tx) => (tx.txType || "service") === "service");
+    // A "visit" is a completed salon SERVICE transaction only - VIP Package Purchase/Top-Up alone
+    // does not create a visit.
+    const numVisits = serviceTxs.length;
     const vipTxs = txs.filter((tx) => tx.txType === "vip_purchase" || tx.txType === "vip_topup");
-    const serviceRevenue = serviceTxs.reduce((sum, tx) => sum + tx.grandTotal, 0);
-    const vipPackageSales = vipTxs.reduce((sum, tx) => sum + (tx.grandTotal || 0), 0);
+    const serviceRevenue = serviceTxs.reduce((sum, tx) => sum + revenueOf(tx), 0);
+    const vipPackageSales = vipTxs.reduce((sum, tx) => sum + revenueOf(tx), 0);
+    // Operational metric only - value of services paid using an existing VIP balance. Never added
+    // to revenue totals above; shown separately so Owner can see redemption activity.
+    const vipBalanceUsed = txs.reduce((sum, tx) => sum + (tx.vipDeduction || 0), 0);
 
     const customersForVipBalance = custTypeF ? allCustomers.filter((c) => c.type === custTypeF) : allCustomers;
     const vipBalanceOutstanding = customersForVipBalance.filter((c) => c.type === "vip").reduce((sum, c) => sum + (c.vipBalance || 0), 0);
@@ -3100,7 +3180,8 @@
     document.getElementById("reportRevenueBreakdown").innerHTML =
       reportLineHtml(t("reports.serviceRevenue"), fmt(serviceRevenue)) +
       reportLineHtml(t("reports.vipPackageSales"), fmt(vipPackageSales)) +
-      reportLineHtml(t("reports.totalRevenue"), fmt(serviceRevenue + vipPackageSales), "revenue-total");
+      reportLineHtml(t("reports.totalRevenue"), fmt(serviceRevenue + vipPackageSales), "revenue-total") +
+      reportLineHtml(t("reports.vipBalanceUsed"), fmt(vipBalanceUsed), "vip-balance-used-line");
 
     renderBarChart("chartSalesTrend", buildSalesTrend(from, to, allTxsEver, custTypeF, customerTypeById));
 
@@ -3113,12 +3194,13 @@
     /* ---------------- SALES & PAYMENT TAB ---------------- */
     document.getElementById("reportSalesKpiGrid").innerHTML = kpiGridHtml([
       { label: t("reports.serviceRevenue"), value: fmt(serviceRevenue) },
-      { label: t("reports.vipPackageSales"), value: fmt(vipPackageSales), gold: true }
+      { label: t("reports.vipPackageSales"), value: fmt(vipPackageSales) },
+      { label: t("reports.totalRevenue"), value: fmt(serviceRevenue + vipPackageSales), gold: true }
     ]);
     renderBarChart("chartSalesTrendSales", buildSalesTrend(from, to, allTxsEver, custTypeF, customerTypeById));
 
     const byService = {};
-    allRows.forEach((r) => { byService[r.service] = (byService[r.service] || 0) + r.price * r.qty; });
+    allRows.forEach((r) => { byService[r.service] = (byService[r.service] || 0) + r.price * r.qty * r.revenueRatio; });
     document.getElementById("reportSalesByService").innerHTML = reportLinesOrNone(
       Object.entries(byService).sort((a, b) => b[1] - a[1]).map(([name, val]) => reportLineHtml(name, fmt(val)))
     );
@@ -3126,14 +3208,14 @@
     const bySalesStaff = {};
     allRows.forEach((r) => {
       if (!r.staff) return;
-      bySalesStaff[r.staff] = (bySalesStaff[r.staff] || 0) + r.price * r.qty;
+      bySalesStaff[r.staff] = (bySalesStaff[r.staff] || 0) + r.price * r.qty * r.revenueRatio;
     });
     document.getElementById("reportSalesByStaff").innerHTML = reportLinesOrNone(
       Object.entries(bySalesStaff).sort((a, b) => b[1] - a[1]).map(([name, val]) => reportLineHtml(name, fmt(val)))
     );
 
     const byPayment = {};
-    txs.forEach((tx) => { byPayment[tx.payment || "—"] = (byPayment[tx.payment || "—"] || 0) + tx.grandTotal; });
+    txs.forEach((tx) => { byPayment[tx.payment || "—"] = (byPayment[tx.payment || "—"] || 0) + revenueOf(tx); });
     document.getElementById("reportPaymentMethod").innerHTML = reportLinesOrNone(
       Object.entries(byPayment).sort((a, b) => b[1] - a[1]).map(([name, val]) => reportLineHtml(name, fmt(val)))
     );
@@ -3149,20 +3231,24 @@
     const days = [];
     const start = from || daysAgo(6);
     const end = to || daysAgo(0);
-    let d = new Date(start + "T00:00:00");
-    const endD = new Date(end + "T00:00:00");
+    // Parse/iterate in UTC (matching how daysAgo()/tx.date strings are generated via
+    // toISOString()) instead of local-midnight + toISOString(), which previously shifted every
+    // date back by one day in timezones ahead of UTC (e.g. UTC+7) - causing "today" to silently
+    // drop off the trend and undercounting revenue that was actually recorded today.
+    let d = new Date(start + "T00:00:00Z");
+    const endD = new Date(end + "T00:00:00Z");
     if (isNaN(d) || isNaN(endD) || d > endD) {
       for (let i = 6; i >= 0; i--) days.push(daysAgo(i));
     } else {
       while (d <= endD && days.length < 31) {
         days.push(d.toISOString().slice(0, 10));
-        d.setDate(d.getDate() + 1);
+        d.setUTCDate(d.getUTCDate() + 1);
       }
     }
     const completed = allTxsEver.filter((tx) => tx.status === "Completed" && (!custTypeF || customerTypeById[tx.customerId] === custTypeF));
     return days.map((dt) => ({
       label: dt.slice(5),
-      value: +completed.filter((tx) => tx.date === dt).reduce((s, tx) => s + tx.grandTotal, 0).toFixed(2),
+      value: +completed.filter((tx) => tx.date === dt).reduce((s, tx) => s + revenueOf(tx), 0).toFixed(2),
       isMoney: true
     }));
   }
@@ -3176,7 +3262,11 @@
     const normalCustomers = customersFiltered.filter((c) => c.type !== "vip").length;
     const vipCustomers = customersFiltered.filter((c) => c.type === "vip").length;
     const newVipCustomers = customersFiltered.filter((c) => c.type === "vip" && (c.packageHistory || []).some((p) => p.type === "purchase" && inRange(p.date, from, to))).length;
-    const visitsInRange = txs.filter((tx) => filteredIds.has(tx.customerId));
+    // "Visit" = a completed salon SERVICE transaction only - VIP Package Purchase/Top-Up alone is
+    // not a visit. revenueVisitsInRange (all completed tx types) is kept separately below for
+    // Top Customers by Revenue Contribution, which SHOULD include VIP purchases/top-ups.
+    const revenueVisitsInRange = txs.filter((tx) => filteredIds.has(tx.customerId));
+    const visitsInRange = revenueVisitsInRange.filter(isServiceTx);
     const totalVisits = visitsInRange.length;
     const avgVisits = totalCustomers ? (totalVisits / totalCustomers) : 0;
 
@@ -3193,7 +3283,8 @@
     let newCount = 0, returningCount = 0;
     const customersWithVisit = new Set(visitsInRange.map((tx) => tx.customerId));
     customersWithVisit.forEach((cid) => {
-      const custAllTxs = allTxsEver.filter((tx) => tx.customerId === cid && tx.status === "Completed").sort((a, b) => a.date.localeCompare(b.date));
+      // "First visit" = earliest completed SERVICE transaction (VIP purchase/top-up never counts).
+      const custAllTxs = allTxsEver.filter((tx) => tx.customerId === cid && tx.status === "Completed" && isServiceTx(tx)).sort((a, b) => a.date.localeCompare(b.date));
       const firstDate = custAllTxs.length ? custAllTxs[0].date : null;
       if (firstDate && inRange(firstDate, from, to)) newCount++; else returningCount++;
     });
@@ -3201,10 +3292,10 @@
       reportLineHtml(t("reports.newCustomers"), newCount) +
       reportLineHtml(t("reports.returningCustomers"), returningCount);
 
-    // Visit frequency buckets (all-time visit count, for customers in the filtered type)
+    // Visit frequency buckets (all-time SERVICE visit count only, for customers in the filtered type)
     let bucket1 = 0, bucket2to3 = 0, bucket4plus = 0;
     customersFiltered.forEach((c) => {
-      const count = allTxsEver.filter((tx) => tx.customerId === c.id && tx.status === "Completed").length;
+      const count = allTxsEver.filter((tx) => tx.customerId === c.id && tx.status === "Completed" && isServiceTx(tx)).length;
       if (count <= 0) return;
       if (count === 1) bucket1++;
       else if (count <= 3) bucket2to3++;
@@ -3215,9 +3306,12 @@
       reportLineHtml(t("reports.visitFreq2to3"), bucket2to3) +
       reportLineHtml(t("reports.visitFreq4plus"), bucket4plus);
 
-    // Top customers by spending (within date range, filtered)
+    // Top Customers by Revenue Contribution (within date range, filtered) - new money paid only:
+    // service payments via cash/bank/card/etc PLUS VIP Package Purchase/Top-Up, excluding any
+    // later VIP balance redemption (see revenueOf()). Uses revenueVisitsInRange (all completed
+    // transaction types) since VIP purchases/top-ups ARE revenue even though they aren't "visits".
     const spendById = {};
-    visitsInRange.forEach((tx) => { spendById[tx.customerId] = (spendById[tx.customerId] || 0) + tx.grandTotal; });
+    revenueVisitsInRange.forEach((tx) => { spendById[tx.customerId] = (spendById[tx.customerId] || 0) + revenueOf(tx); });
     const topCustomers = Object.entries(spendById).sort((a, b) => b[1] - a[1]).slice(0, 5)
       .map(([cid, val]) => {
         const c = allCustomers.find((x) => x.id === cid);
@@ -3260,7 +3354,10 @@
       { label: t("reports.totalIncentive"), value: fmt(serviceIncentiveTotal + salesIncentiveTotal), gold: true }
     ]);
 
-    // Service Incentive Summary: Staff | Services Completed | Service Sales | Incentive Earned
+    // Service Incentive Summary: Staff | Services Completed | Service Value Performed (full line
+    // value regardless of payment method - VIP-balance-paid services still count here since the
+    // service WAS performed; this is intentionally different from "Sales by Service" revenue,
+    // which excludes VIP balance redemption) | Incentive Earned
     const svcByStaff = {};
     serviceRecords.forEach((r) => {
       if (!svcByStaff[r.staff]) svcByStaff[r.staff] = { count: 0, sales: 0, incentive: 0 };
@@ -3327,20 +3424,26 @@
     if (custTypeF) txs = txs.filter((tx) => customerTypeById[tx.customerId] === custTypeF);
 
     const allRows = [];
-    txs.forEach((tx) => tx.services.forEach((r) => {
-      if (staffF && r.staff !== staffF) return;
-      if (serviceF && r.service !== serviceF) return;
-      allRows.push({ ...r, txId: tx.id, payment: tx.payment, customerId: tx.customerId });
-    }));
+    txs.forEach((tx) => {
+      const revenueRatio = tx.grandTotal > 0 ? revenueOf(tx) / tx.grandTotal : 1;
+      tx.services.forEach((r) => {
+        if (staffF && r.staff !== staffF) return;
+        if (serviceF && r.service !== serviceF) return;
+        allRows.push({ ...r, txId: tx.id, payment: tx.payment, customerId: tx.customerId, revenueRatio });
+      });
+    });
 
     /* ---- Overview ---- */
-    const totalSales = txs.reduce((sum, tx) => sum + tx.grandTotal, 0);
+    // Revenue rule: VIP Package Balance redemption is NOT new income - see revenueOf().
+    const totalSales = txs.reduce((sum, tx) => sum + revenueOf(tx), 0);
     const numCustomers = new Set(txs.map((tx) => tx.customerId)).size;
-    const numVisits = txs.length;
     const serviceTxs = txs.filter((tx) => (tx.txType || "service") === "service");
     const vipTxs = txs.filter((tx) => tx.txType === "vip_purchase" || tx.txType === "vip_topup");
-    const serviceRevenue = serviceTxs.reduce((sum, tx) => sum + tx.grandTotal, 0);
-    const vipPackageSales = vipTxs.reduce((sum, tx) => sum + (tx.grandTotal || 0), 0);
+    // "Visit" = completed SERVICE transaction only - VIP Package Purchase/Top-Up alone is not a visit.
+    const numVisits = serviceTxs.length;
+    const serviceRevenue = serviceTxs.reduce((sum, tx) => sum + revenueOf(tx), 0);
+    const vipPackageSales = vipTxs.reduce((sum, tx) => sum + revenueOf(tx), 0);
+    const vipBalanceUsed = txs.reduce((sum, tx) => sum + (tx.vipDeduction || 0), 0);
     const customersForBalance = custTypeF ? allCustomers.filter((c) => c.type === custTypeF) : allCustomers;
     const vipBalanceOutstanding = customersForBalance.filter((c) => c.type === "vip").reduce((sum, c) => sum + (c.vipBalance || 0), 0);
     const salesTrend = buildSalesTrend(from, to, allTxsEver, custTypeF, customerTypeById);
@@ -3349,9 +3452,9 @@
     const popularServices = Object.entries(popularCount).sort((a, b) => b[1] - a[1]).slice(0, 5).map(([name, count]) => ({ name, count }));
 
     const overview = {
-      totalSales, serviceRevenue, vipPackageSales, numCustomers, numVisits, vipBalanceOutstanding,
+      totalSales, serviceRevenue, vipPackageSales, numCustomers, numVisits, vipBalanceOutstanding, vipBalanceUsed,
       salesTrend, popularServices,
-      revenueBreakdown: { serviceRevenue, vipPackageSales, total: serviceRevenue + vipPackageSales }
+      revenueBreakdown: { serviceRevenue, vipPackageSales, total: serviceRevenue + vipPackageSales, vipBalanceUsed }
     };
 
     /* ---- Sales & Payment (one row per transaction) ---- */
@@ -3367,8 +3470,9 @@
         services: servicesStr || (isVip ? (tx.txType === "vip_topup" ? "VIP Top-Up" : "VIP Package Purchase") : "—"),
         serviceStaff: serviceStaffList.join(", ") || "—",
         salesStaff: tx.salesStaff || "—",
-        serviceRevenue: isService ? tx.grandTotal : 0,
-        vipPackageSale: isVip ? (tx.grandTotal || 0) : 0,
+        serviceRevenue: isService ? revenueOf(tx) : 0,
+        vipPackageSale: isVip ? revenueOf(tx) : 0,
+        vipBalanceUsed: tx.vipDeduction || 0,
         payment: tx.payment || "—",
         total: tx.grandTotal || 0
       };
@@ -3379,16 +3483,19 @@
     const customersForExport = allCustomers.filter((c) => filteredCustomerIds.has(c.id));
     const customerRows = customersForExport.map((c) => {
       const custTxsFiltered = txs.filter((tx) => tx.customerId === c.id);
-      const totalVisits = custTxsFiltered.length;
+      // Completed Service Visits only - VIP Package Purchase/Top-Up alone is not a visit.
+      const totalVisits = custTxsFiltered.filter(isServiceTx).length;
       const lastVisit = custTxsFiltered.reduce((max, tx) => (tx.date > max ? tx.date : max), "");
-      const totalSpending = custTxsFiltered.reduce((sum, tx) => sum + tx.grandTotal, 0);
+      // Revenue Contribution = new money paid (service payments + VIP purchase/top-up), excluding
+      // any later VIP balance redemption - see revenueOf().
+      const revenueContribution = custTxsFiltered.reduce((sum, tx) => sum + revenueOf(tx), 0);
       const vipPurchased = (c.packageHistory || []).filter((p) => p.type === "purchase" && inRange(p.date, from, to)).reduce((sum, p) => sum + (p.amount || 0), 0);
       return {
         name: c.name, phone: c.phone, type: c.type === "vip" ? "VIP" : "Normal",
-        totalVisits, lastVisit: lastVisit || "—", totalSpending,
+        totalVisits, lastVisit: lastVisit || "—", revenueContribution,
         vipPurchased, vipBalance: c.type === "vip" ? (c.vipBalance || 0) : null
       };
-    }).sort((a, b) => b.totalSpending - a.totalSpending);
+    }).sort((a, b) => b.revenueContribution - a.revenueContribution);
 
     /* ---- Staff & Incentive ---- */
     const staffList = load(KEY_STAFF, SEED_STAFF);
@@ -3471,7 +3578,8 @@
         ["VIP Package Sales", data.overview.vipPackageSales, true],
         ["Number of Customers", data.overview.numCustomers, false],
         ["Number of Visits", data.overview.numVisits, false],
-        ["VIP Balance Outstanding", data.overview.vipBalanceOutstanding, true]
+        ["VIP Balance Outstanding", data.overview.vipBalanceOutstanding, true],
+        ["VIP Balance Used (not counted as revenue)", data.overview.vipBalanceUsed, true]
       ].forEach(([metric, value, isCurrency]) => {
         const r = kpiSheet.addRow({ metric, value });
         if (isCurrency) r.getCell("value").numFmt = CURRENCY_FMT;
@@ -3496,7 +3604,8 @@
       [
         ["Service Revenue", data.overview.revenueBreakdown.serviceRevenue],
         ["VIP Package Sales", data.overview.revenueBreakdown.vipPackageSales],
-        ["Total Revenue", data.overview.revenueBreakdown.total]
+        ["Total Revenue", data.overview.revenueBreakdown.total],
+        ["VIP Balance Used (operational only, not revenue)", data.overview.revenueBreakdown.vipBalanceUsed]
       ].forEach(([cat, amt]) => {
         const r = revSheet.addRow({ cat, amt });
         r.getCell("amt").numFmt = CURRENCY_FMT;
@@ -3515,6 +3624,7 @@
         { header: "Sales Staff", key: "salesStaff", width: 18 },
         { header: "Service Revenue", key: "serviceRevenue", width: 16 },
         { header: "VIP Package Sale", key: "vipPackageSale", width: 16 },
+        { header: "VIP Balance Used", key: "vipBalanceUsed", width: 16 },
         { header: "Payment Method", key: "payment", width: 16 },
         { header: "Total", key: "total", width: 14 }
       ];
@@ -3523,6 +3633,7 @@
         const r = sheet.addRow(row);
         r.getCell("serviceRevenue").numFmt = CURRENCY_FMT;
         r.getCell("vipPackageSale").numFmt = CURRENCY_FMT;
+        r.getCell("vipBalanceUsed").numFmt = CURRENCY_FMT;
         r.getCell("total").numFmt = CURRENCY_FMT;
       });
       if (!data.salesRows.length) sheet.addRow({ date: "—" });
@@ -3534,16 +3645,16 @@
         { header: "Customer Name", key: "name", width: 22 },
         { header: "Phone", key: "phone", width: 16 },
         { header: "Customer Type", key: "type", width: 14 },
-        { header: "Total Visits", key: "totalVisits", width: 12 },
+        { header: "Completed Service Visits", key: "totalVisits", width: 18 },
         { header: "Last Visit", key: "lastVisit", width: 14 },
-        { header: "Total Spending", key: "totalSpending", width: 16 },
+        { header: "Revenue Contribution", key: "revenueContribution", width: 18 },
         { header: "VIP Package Purchased", key: "vipPurchased", width: 20 },
         { header: "VIP Remaining Balance", key: "vipBalance", width: 20 }
       ];
       styleHeaderRow(sheet);
       data.customerRows.forEach((row) => {
         const r = sheet.addRow({ ...row, vipBalance: row.vipBalance === null ? "—" : row.vipBalance });
-        r.getCell("totalSpending").numFmt = CURRENCY_FMT;
+        r.getCell("revenueContribution").numFmt = CURRENCY_FMT;
         r.getCell("vipPurchased").numFmt = CURRENCY_FMT;
         if (row.vipBalance !== null) r.getCell("vipBalance").numFmt = CURRENCY_FMT;
       });
@@ -3556,7 +3667,7 @@
         { header: "Staff Name", key: "name", width: 20 },
         { header: "Staff Type", key: "type", width: 12 },
         { header: "Services Completed", key: "servicesCompleted", width: 16 },
-        { header: "Service Sales Value", key: "serviceSales", width: 16 },
+        { header: "Service Value Performed", key: "serviceSales", width: 18 },
         { header: "Service Incentive", key: "serviceIncentive", width: 16 },
         { header: "Sales Closed", key: "salesClosed", width: 14 },
         { header: "Sales Value", key: "salesValue", width: 14 },

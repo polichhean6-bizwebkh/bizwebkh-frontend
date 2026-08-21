@@ -24,11 +24,33 @@ FEATURES INCLUDED IN THIS DEMO
 - Customer search & autofill by name or phone
 - Customer visit count and history
 - Multiple services per transaction, with a different staff per service
-- Sales Staff vs Service Staff incentive logic (kept separate)
-- Staff Management combined with Incentive Setup (Owner-only)
-- Owner-only staff add / edit / deactivate / incentive setup
-- New Deal incentive is read-only and auto-loaded from Staff Management
-- VIP payment method is applied automatically when the VIP balance covers the transaction
+- Function-based staff incentives: one Service Incentive % and one Sales
+  Incentive % per staff member (instead of per-service rules)
+- Staff Management combined with Incentive Setup (Owner-only, Cashier
+  cannot view/change percentages)
+- Owner-only staff add / edit / deactivate-reactivate (with confirmation
+  prompts) / incentive setup; deactivated staff are kept in history and
+  simply removed from New Deal staff selection, never deleted
+- New Deal incentive is calculated automatically in the background and
+  shown in Transactions/Reports (not displayed on the New Deal screen itself)
+- VIP customers can pay with VIP Package Balance OR Cash/ABA/ACLEDA/Credit
+  Card/Other for each transaction - VIP Balance is never forced, and only
+  deducts when it is the option actually chosen (with automatic split if
+  the balance doesn't cover the full amount)
+- New customers can purchase a VIP package directly from Customers > Sell/
+  Top-Up VIP Package, without any prior Normal-customer transaction
+- Redesigned VIP customer detail view with clear summary, package history,
+  and visit history sections
+- Accurate revenue accounting: paying with an existing VIP Package Balance
+  is treated as balance redemption, not new income (it was already counted
+  as revenue when the package was purchased/topped up) - Dashboard, Reports,
+  revenue charts and Excel export all reflect this consistently, with VIP
+  Balance Used shown separately as an operational (non-revenue) figure
+- Reports use a consistent Total Revenue / Service Revenue / VIP Package
+  Sales / VIP Balance Used model across Overview, Sales & Payment, Customers
+  (Top Customers by Revenue Contribution), Staff & Incentive (Service Value
+  Performed), the Sales Trend chart, and the Excel export; only completed
+  salon services count as customer "visits" (VIP purchases/top-ups do not)
 - Transaction search by customer name or phone
 - Completed transaction editing with full audit / edit history
 - Reports reorganized into 4 tabs: Overview, Sales & Payment, Customers, Staff & Incentive
