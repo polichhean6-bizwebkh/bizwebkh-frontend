@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KHQR Payment — Kanharoth Shop Demo</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  body{background:var(--bg);}
+  .pay-page{min-height:calc(100vh - 200px);display:flex;align-items:center;justify-content:center;padding:40px 16px;}
+</style>
+</head>
+<body>
+
+<div id="site-header" data-root="../" data-active="checkout"></div>
+
+<div class="pay-page">
+  <div class="qr-modal" style="max-width:420px;">
+    <span class="demo-flag" data-i18n="khqr_demo_flag">Demo KHQR</span>
+    <div class="khqr-logo">📲 KHQR</div>
+    <div class="merchant"><span data-i18n="khqr_merchant">Merchant</span>: <b>Kanharoth Shop</b></div>
+    <div class="order-no"><span data-i18n="khqr_order_no">Order Number</span>: <b id="p-order-id"></b></div>
+
+    <div class="qr-frame" id="qr-frame"></div>
+
+    <div class="qr-amount" id="p-amount"></div>
+    <div id="qr-status-wrap"><span class="qr-status" id="qr-status"><span class="dot"></span><span data-i18n="khqr_waiting">Waiting for Payment</span></span></div>
+    <p style="font-size:.76rem;color:var(--ink-faint);margin-bottom:18px;" data-i18n="khqr_scan_note">Scan this code with any banking app or wallet (Demo QR)</p>
+
+    <div class="qr-actions" id="qr-actions">
+      <button class="btn btn-outline btn-block" id="btn-cancel" data-i18n="khqr_cancel">Cancel</button>
+      <button class="btn btn-primary btn-block" id="btn-paid" data-i18n="khqr_i_paid">I Have Paid</button>
+    </div>
+
+    <p style="font-size:.68rem;margin-top:10px;">
+      <a href="#" id="simulate-fail" style="color:var(--ink-faint);text-decoration:underline;">Presenter: simulate failed payment</a>
+    </p>
+
+    <p class="qr-note" data-i18n="khqr_footer_note">This is a demo payment for presentation only. No real bank transaction occurs.</p>
+  </div>
+</div>
+
+<div id="site-footer" data-root="../"></div>
+
+<script src="../js/i18n.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/layout.js"></script>
+<script>
+let order = null;
+
+function drawQr(){
+  // Purely decorative demo QR pattern (NOT a real KHQR / EMV payload). For presentation only.
+  const size = 21, cell = 9;
+  let cells = "";
+  const seed = order ? order.id : "DEMO";
+  let seedNum = 0; for (const c of seed) seedNum += c.charCodeAt(0);
+  let rnd = seedNum;
+  function next(){ rnd = (rnd*9301+49297)%233280; return rnd/233280; }
+  for (let y=0;y<size;y++){
+    for (let x=0;x<size;x++){
+      const finder = (x<7&&y<7)||(x>size-8&&y<7)||(x<7&&y>size-8);
+      let on;
+      if (finder){
+        const lx = x<7?x:(x>size-8?x-(size-7):x), ly = y<7?y:y;
+        on = true; // simplified block; refined below
+      }
+      if (finder){
+        const inBlock = (localX,localY)=> localX>=0&&localX<7&&localY>=0&&localY<7 && (localX===0||localX===6||localY===0||localY===6||(localX>=2&&localX<=4&&localY>=2&&localY<=4));
+        let lx=-1, ly=-1;
+        if (x<7&&y<7){lx=x;ly=y;}
+        else if (x>size-8&&y<7){lx=x-(size-7);ly=y;}
+        else if (x<7&&y>size-8){lx=x;ly=y-(size-7);}
+        on = inBlock(lx,ly);
+      } else {
+        on = next() > 0.58;
+      }
+      cells += on ? `<rect x="${x*cell}" y="${y*cell}" width="${cell}" height="${cell}" fill="#1f2430"/>` : "";
+    }
+  }
+  document.getElementById("qr-frame").innerHTML = `<svg viewBox="0 0 ${size*cell} ${size*cell}" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100%" height="100%" fill="#ffffff"/>${cells}
+    <rect x="${(size*cell)/2-24}" y="${(size*cell)/2-24}" width="48" height="48" fill="#fff" stroke="#d97a34" stroke-width="2"/>
+    <text x="${(size*cell)/2}" y="${(size*cell)/2+6}" font-size="14" text-anchor="middle" font-family="Arial" fill="#d97a34" font-weight="bold">KHQR</text>
+  </svg>`;
+}
+
+function render(){
+  const id = qparam("order");
+  order = getDemoOrder(id);
+  if (!order){ location.href = "../checkout/index.html"; return; }
+  document.getElementById("p-order-id").textContent = order.id;
+  document.getElementById("p-amount").textContent = money(order.total);
+  drawQr();
+  applyI18n();
+}
+
+function setStatus(state){
+  const el = document.getElementById("qr-status");
+  el.className = "qr-status " + state;
+  if (state==="checking") el.innerHTML = `<span class="dot"></span><span>${t("khqr_checking")}</span>`;
+  if (state==="waiting") el.innerHTML = `<span class="dot"></span><span>${t("khqr_waiting")}</span>`;
+  if (state==="success") el.innerHTML = `<span>✅</span><span>${t("khqr_success")}</span>`;
+  if (state==="failed") el.innerHTML = `<span>⚠️</span><span>${t("khqr_failed")}</span>`;
+}
+
+function simulate(outcome){
+  document.getElementById("qr-actions").style.display = "none";
+  document.getElementById("simulate-fail").style.display = "none";
+  setStatus("checking");
+  setTimeout(()=>{
+    if (outcome === "success"){
+      order.paymentStatus = "paid";
+      order.status = "confirmed";
+      persistOrderUpdate(order);
+      saveCart([]);
+      setStatus("success");
+      setTimeout(()=> location.href = "../order-success/index.html?order=" + order.id, 900);
+    } else {
+      order.paymentStatus = "failed";
+      persistOrderUpdate(order);
+      setStatus("failed");
+      const actions = document.getElementById("qr-actions");
+      actions.style.display = "flex";
+      actions.innerHTML = `<a href="../checkout/index.html" class="btn btn-outline btn-block" data-i18n="khqr_cancel"></a>
+        <button class="btn btn-primary btn-block" id="retry-btn" data-i18n="khqr_try_again"></button>`;
+      applyI18n();
+      document.getElementById("retry-btn").onclick = ()=>{
+        order.paymentStatus = "pending";
+        persistOrderUpdate(order);
+        document.getElementById("qr-actions").innerHTML = `<button class="btn btn-outline btn-block" id="btn-cancel" data-i18n="khqr_cancel"></button><button class="btn btn-primary btn-block" id="btn-paid" data-i18n="khqr_i_paid"></button>`;
+        document.getElementById("simulate-fail").style.display = "inline";
+        applyI18n();
+        bindButtons();
+        setStatus("waiting");
+      };
+    }
+  }, 1400);
+}
+
+function persistOrderUpdate(updated){
+  const list = getDemoOrders().map(o=> o.id===updated.id ? updated : o);
+  localStorage.setItem(ORDERS_KEY, JSON.stringify(list));
+}
+
+function bindButtons(){
+  const paidBtn = document.getElementById("btn-paid");
+  const cancelBtn = document.getElementById("btn-cancel");
+  if (paidBtn) paidBtn.onclick = ()=> simulate("success");
+  if (cancelBtn) cancelBtn.onclick = ()=> location.href = "../checkout/index.html";
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+  render();
+  bindButtons();
+  document.getElementById("simulate-fail").addEventListener("click", e=>{ e.preventDefault(); simulate("failed"); });
+});
+document.addEventListener("langchanged", render);
+</script>
+</body>
+</html>
