@@ -51,6 +51,20 @@ FEATURES INCLUDED IN THIS DEMO
   (Top Customers by Revenue Contribution), Staff & Incentive (Service Value
   Performed), the Sales Trend chart, and the Excel export; only completed
   salon services count as customer "visits" (VIP purchases/top-ups do not)
+- Customers page search (by name or phone) and Customer Type filter (All/Normal/
+  VIP), with a Clear button and a "No customers found" message when nothing matches
+- Owner-only Edit Customer function from the Customer Detail view - name, phone,
+  customer type, and source can be updated; visit history, spending, VIP balance
+  and package history stay system-calculated and are never edited directly
+- Duplicate phone protection when editing a customer, and a safeguard that blocks
+  changing a VIP customer back to Normal while they still have a VIP balance
+  (VIP history and balance are never deleted); switching Normal to VIP keeps the
+  VIP balance at $0 until an actual package purchase/top-up is recorded
+- Transactions date filter with Today / Last 7 Days / Last 30 Days / Custom Range
+  presets (defaults to Today), a small "period" indicator showing the exact dates in
+  use, future dates blocked in the date pickers, From/To range validation, and a
+  clean "No transactions found for the selected period" message - kept consistent
+  with the same date-range logic already used in Reports
 - Transaction search by customer name or phone
 - Completed transaction editing with full audit / edit history
 - Reports reorganized into 4 tabs: Overview, Sales & Payment, Customers, Staff & Incentive

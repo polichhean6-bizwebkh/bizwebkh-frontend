@@ -543,7 +543,17 @@
       "form.notes": "កំណត់ចំណាំ",
 
       "filters.clear": "សម្អាតតម្រង",
+      "filters.search": "ស្វែងរក",
+      "filters.allCustomerType": "ទាំងអស់ - ប្រភេទអតិថិជន",
       "transactions.searchPlaceholder": "ស្វែងរកឈ្មោះអតិថិជន ឬលេខទូរស័ព្ទ",
+      "customers.searchPlaceholder": "ស្វែងរកឈ្មោះអតិថិជន ឬលេខទូរស័ព្ទ",
+      "customers.noResults": "រកមិនឃើញអតិថិជន",
+      "customers.editCustomer": "កែសម្រួលអតិថិជន",
+      "customers.saveChanges": "រក្សាទុកការផ្លាស់ប្តូរ",
+      "customers.updateSuccess": "ព័ត៌មានអតិថិជនត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ",
+      "customers.duplicatePhone": "លេខទូរស័ព្ទនេះមានអតិថិជនផ្សេងប្រើរួចហើយ",
+      "customers.vipBalanceWarning": "អតិថិជននេះនៅមានសមតុល្យ VIP។ សូមប្រើប្រាស់ ឬកែសមតុល្យឱ្យស្មើ០ មុននឹងផ្លាស់ប្តូរប្រភេទអតិថិជន។",
+      "customers.confirmVipToNormal": "អតិថិជននេះមានប្រវត្តិ/សមតុល្យ VIP។ តើអ្នកប្រាកដថាចង់ផ្លាស់ប្តូរប្រភេទអតិថិជនឬ?",
       "filters.all": "ទាំងអស់",
       "filters.today": "ថ្ងៃនេះ",
       "filters.week": "សប្តាហ៍នេះ",
@@ -551,6 +561,13 @@
       "filters.last7": "៧ថ្ងៃចុងក្រោយ",
       "filters.last30": "៣០ថ្ងៃចុងក្រោយ",
       "filters.custom": "កំណត់ចន្លោះកាលបរិច្ឆេទ",
+      "filters.fromDate": "ពីថ្ងៃទី",
+      "filters.toDate": "ដល់ថ្ងៃទី",
+      "filters.startAfterEnd": "កាលបរិច្ឆេទចាប់ផ្តើមមិនអាចយឺតជាងកាលបរិច្ឆេទបញ្ចប់បានទេ",
+      "filters.futureDateBlocked": "មិនអនុញ្ញាតឱ្យជ្រើសរើសកាលបរិច្ឆេទនាពេលអនាគតទេ",
+      "transactions.noResultsForPeriod": "រកមិនឃើញប្រតិបត្តិការសម្រាប់រយៈពេលដែលបានជ្រើសរើសទេ។",
+      "transactions.periodToday": "ថ្ងៃនេះ — {d}",
+      "transactions.periodRange": "{label} — {from}–{to}",
 
       "th.customer": "អតិថិជន",
       "th.phone": "លេខទូរស័ព្ទ",
@@ -831,13 +848,30 @@
       "form.notes": "Notes",
 
       "filters.clear": "Clear",
+      "filters.search": "Search",
+      "filters.allCustomerType": "All - Customer Type",
       "transactions.searchPlaceholder": "Search customer name or phone number",
+      "customers.searchPlaceholder": "Search customer name or phone number",
+      "customers.noResults": "No customers found.",
+      "customers.editCustomer": "Edit Customer",
+      "customers.saveChanges": "Save Changes",
+      "customers.updateSuccess": "Customer information updated successfully.",
+      "customers.duplicatePhone": "Another customer already uses this phone number.",
+      "customers.vipBalanceWarning": "Customer still has VIP balance. Please use or adjust the balance before changing customer type.",
+      "customers.confirmVipToNormal": "This customer currently has VIP history/balance. Are you sure you want to change customer type?",
       "filters.all": "All",
       "filters.today": "Today",
       "filters.week": "This Week",
       "filters.month": "This Month",
       "filters.last7": "Last 7 Days",
       "filters.last30": "Last 30 Days",
+      "filters.fromDate": "From Date",
+      "filters.toDate": "To Date",
+      "filters.startAfterEnd": "Start date cannot be later than end date.",
+      "filters.futureDateBlocked": "Future dates are not allowed.",
+      "transactions.noResultsForPeriod": "No transactions found for the selected period.",
+      "transactions.periodToday": "Today — {d}",
+      "transactions.periodRange": "{label} — {from}–{to}",
       "filters.custom": "Custom Range",
 
       "th.customer": "Customer",
@@ -1353,14 +1387,14 @@
     `;
   }
 
-  function renderTransactionsTable(tableId, list, showActions) {
+  function renderTransactionsTable(tableId, list, showActions, emptyMessage) {
     const table = document.getElementById(tableId);
     const headers = ["th.customer", "th.phone", "th.services", "th.total", "th.payment", "th.date", "th.status"];
     let headHtml = headers.map((h) => `<th>${t(h)}</th>`).join("");
     if (showActions) headHtml += `<th>${t("th.actions")}</th>`;
     table.querySelector("thead").innerHTML = `<tr>${headHtml}</tr>`;
     table.querySelector("tbody").innerHTML = list.map((tx) => transactionRowHtml(tx, showActions)).join("") ||
-      `<tr><td colspan="${headers.length + (showActions ? 1 : 0)}" style="text-align:center;color:#B7ABA0;padding:24px;">—</td></tr>`;
+      `<tr><td colspan="${headers.length + (showActions ? 1 : 0)}" style="text-align:center;color:#B7ABA0;padding:24px;">${emptyMessage || "—"}</td></tr>`;
     if (showActions) {
       table.querySelectorAll("[data-action]").forEach((btn) => {
         btn.addEventListener("click", () => handleTxAction(btn.dataset.action, btn.dataset.id));
@@ -2109,21 +2143,77 @@
 
   function renderTransactionsPage() {
     populateTxFilterOptions();
+    const fromEl = document.getElementById("filterTxDateFrom");
+    const toEl = document.getElementById("filterTxDateTo");
+    const today = daysAgo(0);
+    if (fromEl) fromEl.max = today;
+    if (toEl) toEl.max = today;
     applyTxFilters();
+  }
+
+  // Same Today / Last 7 Days / Last 30 Days / Custom Range logic as Reports (getReportDateRange),
+  // kept consistent so both pages compute date ranges the same way. Returns { from, to } as
+  // "YYYY-MM-DD" strings (inclusive on both ends), or { from: "", to: "" } if incomplete/invalid.
+  function getTxDateRange() {
+    const range = document.getElementById("filterTxDateRange").value;
+    const fromEl = document.getElementById("filterTxDateFrom");
+    const toEl = document.getElementById("filterTxDateTo");
+    fromEl.style.display = range === "custom" ? "" : "none";
+    toEl.style.display = range === "custom" ? "" : "none";
+    const today = daysAgo(0);
+    if (range === "today") return { from: today, to: today };
+    if (range === "last7") return { from: daysAgo(6), to: today };
+    if (range === "last30") return { from: daysAgo(29), to: today };
+    if (range === "custom") {
+      let from = fromEl.value;
+      let to = toEl.value;
+      // Defense-in-depth: never allow a future date through, even if entered manually
+      // bypassing the native date-picker's max attribute.
+      if (from && from > today) { from = ""; fromEl.value = ""; showToast(t("filters.futureDateBlocked"), "error"); }
+      if (to && to > today) { to = ""; toEl.value = ""; showToast(t("filters.futureDateBlocked"), "error"); }
+      if (from && to && from > to) {
+        showToast(t("filters.startAfterEnd"), "error");
+        return { from: "", to: "", invalid: true };
+      }
+      return { from, to };
+    }
+    return { from: "", to: "" };
+  }
+
+  function formatDisplayDate(iso) {
+    if (!iso) return "";
+    const [y, m, d] = iso.split("-");
+    return `${d} ${["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][parseInt(m, 10) - 1]} ${y}`;
+  }
+
+  function renderTxPeriodLabel(range, from, to) {
+    const el = document.getElementById("txPeriodLabel");
+    if (!el) return;
+    if (!from || !to) { el.textContent = ""; return; }
+    if (range === "today") {
+      el.textContent = t("transactions.periodToday").replace("{d}", formatDisplayDate(from));
+      return;
+    }
+    const labelKey = range === "last7" ? "filters.last7" : range === "last30" ? "filters.last30" : "filters.custom";
+    el.textContent = t("transactions.periodRange")
+      .replace("{label}", t(labelKey))
+      .replace("{from}", formatDisplayDate(from))
+      .replace("{to}", formatDisplayDate(to));
   }
 
   function applyTxFilters() {
     let txs = load(KEY_TRANSACTIONS, []);
     const searchEl = document.getElementById("txSearch");
     const search = searchEl ? searchEl.value.trim().toLowerCase() : "";
-    const date = document.getElementById("filterTxDate").value;
+    const range = document.getElementById("filterTxDateRange").value;
+    const { from, to, invalid } = getTxDateRange();
     const staff = document.getElementById("filterTxStaff").value;
     const service = document.getElementById("filterTxService").value;
     const status = document.getElementById("filterTxStatus").value;
     const payment = document.getElementById("filterTxPayment").value;
 
     // Search matches partial/full customer name OR partial/full phone number, works alongside
-    // all other filters (date/staff/service/status/payment) rather than replacing them.
+    // all other filters (date range/staff/service/status/payment) rather than replacing them.
     if (search) {
       const searchDigits = search.replace(/\D/g, "");
       txs = txs.filter((tx) => {
@@ -2133,25 +2223,40 @@
         return nameMatch || phoneMatch;
       });
     }
-    if (date) txs = txs.filter((tx) => tx.date === date);
+    if (invalid) {
+      txs = [];
+    } else if (from && to) {
+      txs = txs.filter((tx) => tx.date >= from && tx.date <= to);
+    } else if (range === "custom") {
+      // Custom Range selected but From/To not both filled in yet - don't show all
+      // transactions by accident, just wait for the user to complete the range.
+      txs = [];
+    }
     if (staff) txs = txs.filter((tx) => tx.services.some((r) => r.staff === staff));
     if (service) txs = txs.filter((tx) => tx.services.some((r) => r.service === service));
     if (status) txs = txs.filter((tx) => tx.status === status);
     if (payment) txs = txs.filter((tx) => tx.payment === payment);
 
     txs.sort((a, b) => (b.date + b.time).localeCompare(a.date + a.time));
-    renderTransactionsTable("transactionsTable", txs, true);
+    renderTransactionsTable("transactionsTable", txs, true, t("transactions.noResultsForPeriod"));
+    renderTxPeriodLabel(range, from, to);
   }
 
   function setupTxFilters() {
     const searchEl = document.getElementById("txSearch");
     if (searchEl) searchEl.addEventListener("input", applyTxFilters);
-    ["filterTxDate", "filterTxStaff", "filterTxService", "filterTxStatus", "filterTxPayment"].forEach((id) => {
+    const today = daysAgo(0);
+    const fromEl = document.getElementById("filterTxDateFrom");
+    const toEl = document.getElementById("filterTxDateTo");
+    if (fromEl) fromEl.max = today;
+    if (toEl) toEl.max = today;
+    ["filterTxDateRange", "filterTxDateFrom", "filterTxDateTo", "filterTxStaff", "filterTxService", "filterTxStatus", "filterTxPayment"].forEach((id) => {
       document.getElementById(id).addEventListener("change", applyTxFilters);
     });
     document.getElementById("clearTxFilters").addEventListener("click", () => {
       if (searchEl) searchEl.value = "";
-      ["filterTxDate", "filterTxStaff", "filterTxService", "filterTxStatus", "filterTxPayment"].forEach((id) => { document.getElementById(id).value = ""; });
+      document.getElementById("filterTxDateRange").value = "today";
+      ["filterTxDateFrom", "filterTxDateTo", "filterTxStaff", "filterTxService", "filterTxStatus", "filterTxPayment"].forEach((id) => { document.getElementById(id).value = ""; });
       applyTxFilters();
     });
   }
@@ -2454,9 +2559,34 @@
   }
 
   function renderCustomersPage() {
+    document.getElementById("addCustomerBtn").onclick = () => openAddCustomerModal();
+    document.getElementById("sellVipBtn").onclick = () => openVipSellTopUpModal();
+    applyCustomerFilters();
+  }
+
+  // Search by name (partial, case-insensitive) and/or phone (partial digits), plus an optional
+  // Customer Type filter (All/Normal/VIP). Filtering only affects what's shown in the table -
+  // customer data itself is never modified. Table columns/order are unchanged.
+  function applyCustomerFilters() {
     const customers = load(KEY_CUSTOMERS, []);
     const txs = load(KEY_TRANSACTIONS, []);
-    const rows = customers.map((c) => customerRowStats(c, txs));
+    let rows = customers.map((c) => customerRowStats(c, txs));
+
+    const searchEl = document.getElementById("custSearch");
+    const search = searchEl ? searchEl.value.trim().toLowerCase() : "";
+    const typeEl = document.getElementById("filterCustType");
+    const typeF = typeEl ? typeEl.value : "";
+
+    if (search) {
+      const searchDigits = search.replace(/\D/g, "");
+      rows = rows.filter((c) => {
+        const nameMatch = (c.name || "").toLowerCase().includes(search);
+        const phoneDigits = (c.phone || "").replace(/\D/g, "");
+        const phoneMatch = searchDigits && phoneDigits.includes(searchDigits);
+        return nameMatch || phoneMatch;
+      });
+    }
+    if (typeF) rows = rows.filter((c) => (typeF === "vip" ? c.type === "vip" : c.type !== "vip"));
 
     const table = document.getElementById("customersTable");
     const headers = ["th.customer", "th.phone", "th.customerType", "th.lastVisit", "th.totalVisits", "th.totalSpending", "th.vipBalance", "th.mostUsedService"];
@@ -2473,14 +2603,29 @@
         <td>${c.mostUsed}</td>
         <td><button class="icon-btn" data-action="view-customer" data-id="${c.id}">${t("actions.view")}</button></td>
       </tr>
-    `).join("") || `<tr><td colspan="9" style="text-align:center;color:#B7ABA0;padding:24px;">—</td></tr>`;
+    `).join("") || `<tr><td colspan="9" style="text-align:center;color:#B7ABA0;padding:24px;">${t("customers.noResults")}</td></tr>`;
 
     table.querySelectorAll('[data-action="view-customer"]').forEach((btn) => {
       btn.addEventListener("click", () => openCustomerModal(rows.find((c) => c.id === btn.dataset.id)));
     });
+  }
 
-    document.getElementById("addCustomerBtn").onclick = () => openAddCustomerModal();
-    document.getElementById("sellVipBtn").onclick = () => openVipSellTopUpModal();
+  function setupCustomerFilters() {
+    const searchEl = document.getElementById("custSearch");
+    if (searchEl) {
+      searchEl.addEventListener("input", applyCustomerFilters);
+      searchEl.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); applyCustomerFilters(); } });
+    }
+    const typeEl = document.getElementById("filterCustType");
+    if (typeEl) typeEl.addEventListener("change", applyCustomerFilters);
+    const searchBtn = document.getElementById("custSearchBtn");
+    if (searchBtn) searchBtn.addEventListener("click", applyCustomerFilters);
+    const clearBtn = document.getElementById("clearCustFilters");
+    if (clearBtn) clearBtn.addEventListener("click", () => {
+      if (searchEl) searchEl.value = "";
+      if (typeEl) typeEl.value = "";
+      applyCustomerFilters();
+    });
   }
 
   // Requirement E: VIP customer detail modal is organized into 4 clean sections —
@@ -2528,10 +2673,14 @@
       </div>
     ` : "";
 
+    const isOwner = getSettings().role === "owner";
     document.getElementById("modalTitle").textContent = `${t("modal.customerDetail")} — ${c.name}`;
     document.getElementById("modalBody").innerHTML = `
     <div class="customer-detail-view">
-      <div class="modal-section-label modal-section-label-first">${t("customerModal.summaryTitle")}</div>
+      <div class="modal-section-actions modal-section-label-first">
+        <div class="modal-section-label" style="margin:0;padding:0;border:none;">${t("customerModal.summaryTitle")}</div>
+        ${isOwner ? `<button type="button" class="btn-outline-mini" id="editCustomerBtn">${t("customers.editCustomer")}</button>` : ""}
+      </div>
       <div class="detail-grid">
         <div class="detail-row"><strong>${t("th.customer")}</strong><span>${c.name}</span></div>
         <div class="detail-row"><strong>${t("th.phone")}</strong><span>${c.phone}</span></div>
@@ -2555,6 +2704,101 @@
     const box = document.getElementById("modalBox");
     if (box) box.classList.add("modal-wide");
     openModal();
+
+    if (isOwner) {
+      const editBtn = document.getElementById("editCustomerBtn");
+      if (editBtn) editBtn.addEventListener("click", () => openEditCustomerModal(c));
+    }
+  }
+
+  // Requirement: Owner can edit only Name / Phone / Customer Type / Customer Source from the
+  // Customer Detail modal. Total Visits, Total Spending, Last Visit, Most-Used Service, VIP
+  // Balance, Package History and Visit History remain system-calculated/historical and are never
+  // editable here. Cashier never sees the "Edit Customer" button (not rendered in openCustomerModal
+  // for non-owners); this function also re-checks the role itself as defense in depth.
+  function openEditCustomerModal(c) {
+    if (getSettings().role !== "owner") return;
+    document.getElementById("modalTitle").textContent = `${t("customers.editCustomer")} — ${c.name}`;
+    document.getElementById("modalBody").innerHTML = `
+      <div class="form-field"><label>${t("form.customerName")}</label><input type="text" id="editCustName" value="${c.name}"></div>
+      <div class="form-field"><label>${t("form.phone")}</label><input type="tel" id="editCustPhone" value="${c.phone}"></div>
+      <div class="form-field">
+        <label>${t("th.customerType")}</label>
+        <select id="editCustType">
+          <option value="normal" ${c.type !== "vip" ? "selected" : ""}>${t("customerType.normal")}</option>
+          <option value="vip" ${c.type === "vip" ? "selected" : ""}>${t("customerType.vip")}</option>
+        </select>
+      </div>
+      <div class="form-field"><label>${t("form.customerSource")} <span class="optional-tag">${t("form.optional")}</span></label>
+        <select id="editCustSource">
+          <option value="">—</option>
+          <option value="Walk-in" ${c.source === "Walk-in" ? "selected" : ""}>Walk-in</option>
+          <option value="Facebook" ${c.source === "Facebook" ? "selected" : ""}>Facebook</option>
+          <option value="TikTok" ${c.source === "TikTok" ? "selected" : ""}>TikTok</option>
+          <option value="Telegram" ${c.source === "Telegram" ? "selected" : ""}>Telegram</option>
+          <option value="Referral" ${c.source === "Referral" ? "selected" : ""}>Referral</option>
+          <option value="Existing Customer" ${c.source === "Existing Customer" ? "selected" : ""}>Existing Customer</option>
+          <option value="Other" ${c.source === "Other" ? "selected" : ""}>Other</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-outline-mini" id="editCustCancelBtn">${t("modal.cancel")}</button>
+        <button type="button" class="btn-primary" id="editCustSaveBtn">${t("customers.saveChanges")}</button>
+      </div>
+    `;
+    const box = document.getElementById("modalBox");
+    if (box) box.classList.remove("modal-wide");
+    openModal();
+
+    function reopenDetail() {
+      const customersNow = load(KEY_CUSTOMERS, []);
+      const txsNow = load(KEY_TRANSACTIONS, []);
+      const fresh = customersNow.find((x) => x.id === c.id);
+      if (fresh) openCustomerModal(customerRowStats(fresh, txsNow));
+    }
+
+    document.getElementById("editCustCancelBtn").addEventListener("click", reopenDetail);
+
+    document.getElementById("editCustSaveBtn").addEventListener("click", () => {
+      if (getSettings().role !== "owner") return;
+      const name = document.getElementById("editCustName").value.trim();
+      const phone = document.getElementById("editCustPhone").value.trim();
+      const newType = document.getElementById("editCustType").value;
+      const source = document.getElementById("editCustSource").value;
+      if (!name || !phone) { showToast(getSettings().lang === "km" ? "សូមបញ្ចូលឈ្មោះ និងលេខទូរស័ព្ទ" : "Please enter customer name and phone", "error"); return; }
+
+      const customersNow = load(KEY_CUSTOMERS, []);
+      // Duplicate phone check - never create/allow a second customer record with the same phone.
+      const dupe = customersNow.some((x) => x.id !== c.id && x.phone === phone);
+      if (dupe) { showToast(t("customers.duplicatePhone"), "error"); return; }
+
+      const idx = customersNow.findIndex((x) => x.id === c.id);
+      if (idx < 0) { closeModal(); return; }
+      const current = customersNow[idx];
+      const wasVip = current.type === "vip";
+      const balance = current.vipBalance || 0;
+
+      if (wasVip && newType === "normal") {
+        // VIP -> Normal is blocked outright while a balance remains, to prevent losing track of
+        // prepaid money the customer hasn't used yet. VIP history/package data is never deleted.
+        if (balance > 0) {
+          showToast(t("customers.vipBalanceWarning"), "error");
+          return;
+        }
+        // Balance is already $0 - still confirm, since this customer has VIP purchase history.
+        if (!confirm(t("customers.confirmVipToNormal"))) return;
+      }
+      // Normal -> VIP: per spec, do NOT auto-create a balance. The customer simply becomes
+      // eligible for VIP flows; vipBalance stays at whatever it currently is (0 for a customer
+      // that has never purchased a package) until an actual VIP package purchase/top-up is made.
+
+      customersNow[idx] = { ...current, name, phone, type: newType, source };
+      save(KEY_CUSTOMERS, customersNow);
+      showToast(t("customers.updateSuccess"), "success");
+      renderCustomersPage();
+      const txsNow = load(KEY_TRANSACTIONS, []);
+      openCustomerModal(customerRowStats(customersNow[idx], txsNow));
+    });
   }
 
   function vipAmountPickerHtml(inputId) {
@@ -3774,6 +4018,7 @@
     setupNewDealForm();
     setupCustomerAutocomplete();
     setupTxFilters();
+    setupCustomerFilters();
     setupReportFilters();
     setupSettings();
     setupLogin();
