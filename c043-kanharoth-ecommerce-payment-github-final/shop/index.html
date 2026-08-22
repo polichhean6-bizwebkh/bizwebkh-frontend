@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — Kanharoth Shop Demo</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div id="site-header" data-root="../" data-active="shop"></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="../index.html" data-i18n="foot_link_home">Home</a> / <span data-i18n="shop_breadcrumb">Shop</span>
+  </div>
+</div>
+
+<section class="container" style="padding-bottom:60px;">
+  <h1 data-i18n="shop_title" style="font-size:1.6rem;margin-bottom:18px;">All Products</h1>
+
+  <div class="filter-bar">
+    <input type="text" id="f-search" data-i18n-ph="search_ph" placeholder="Search products..." style="flex:1;min-width:180px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);">
+    <select id="f-cat">
+      <option value="" data-i18n="filter_all_cat">All Categories</option>
+    </select>
+    <select id="f-sort">
+      <option value="popular" data-i18n="sort_popular">Most Popular</option>
+      <option value="price_low" data-i18n="sort_price_low">Price: Low to High</option>
+      <option value="price_high" data-i18n="sort_price_high">Price: High to Low</option>
+      <option value="newest" data-i18n="sort_newest">Newest</option>
+    </select>
+    <span id="f-count" style="margin-left:auto;font-size:.82rem;color:var(--ink-faint);"></span>
+  </div>
+
+  <div class="grid-products" id="product-grid"></div>
+  <p id="no-results" class="empty-state" style="display:none;" data-i18n="no_results">No products match your filters</p>
+</section>
+
+<div id="site-footer" data-root="../"></div>
+
+<script src="../js/i18n.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/layout.js"></script>
+<script>
+const catSelect = document.getElementById("f-cat");
+CATEGORIES.forEach(c=>{
+  const o = document.createElement("option");
+  o.value = c.id; o.setAttribute("data-i18n", c.key); o.textContent = c.id;
+  catSelect.appendChild(o);
+});
+
+function renderCard(p){
+  const wrap = document.createElement("div");
+  wrap.className = "product-card";
+  const badge = badgeLabel(p.badge);
+  const stock = stockInfo(p.stock);
+  const name = getLang()==="km" ? p.nameKm : p.name;
+  wrap.innerHTML = `
+    <a href="../product/index.html?id=${p.id}" class="thumb">
+      <img src="${p.img}" alt="${p.name}" loading="lazy">
+      ${badge ? `<span class="tag ${badge.cls}">${badge.text}</span>` : ""}
+    </a>
+    <div class="body">
+      <span class="cat" data-i18n="cat_${p.category}"></span>
+      <a href="../product/index.html?id=${p.id}" class="title">${name}</a>
+      <p class="desc">${(getLang()==="km"? "" : p.desc).slice(0,60)}</p>
+      <div class="price-row">
+        <span class="price">${money(p.sale || p.price)}</span>
+        ${p.sale ? `<span class="price-old">${money(p.price)}</span>` : ""}
+      </div>
+      <span class="stock ${stock.cls}">${stock.text}</span>
+    </div>
+    <div class="actions">
+      <button class="btn btn-outline" onclick="addToCart('${p.id}',1); this.textContent='✓'; setTimeout(()=>{this.innerHTML=t('add_to_cart')},1200)" ${p.stock<=0?'disabled':''} data-i18n="add_to_cart"></button>
+      <a href="../product/index.html?id=${p.id}" class="btn btn-primary" data-i18n="view_details"></a>
+    </div>`;
+  return wrap;
+}
+
+function applyFilters(){
+  let list = [...PRODUCTS];
+  const q = (document.getElementById("f-search").value || "").toLowerCase();
+  const cat = document.getElementById("f-cat").value;
+  const sort = document.getElementById("f-sort").value;
+  if (q) list = list.filter(p=> p.name.toLowerCase().includes(q) || p.nameKm.includes(q));
+  if (cat) list = list.filter(p=> p.category===cat);
+  if (sort==="price_low") list.sort((a,b)=> (a.sale||a.price)-(b.sale||b.price));
+  if (sort==="price_high") list.sort((a,b)=> (b.sale||b.price)-(a.sale||a.price));
+  if (sort==="newest") list = list.filter(p=>p.badge==="new").concat(list.filter(p=>p.badge!=="new"));
+  const grid = document.getElementById("product-grid");
+  grid.innerHTML = "";
+  list.forEach(p=> grid.appendChild(renderCard(p)));
+  document.getElementById("no-results").style.display = list.length ? "none" : "block";
+  document.getElementById("f-count").textContent = list.length + " " + t("results_count");
+  applyI18n();
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+  const params = new URLSearchParams(location.search);
+  if (params.get("cat")) document.getElementById("f-cat").value = params.get("cat");
+  if (params.get("q")) document.getElementById("f-search").value = params.get("q");
+  if (params.get("sale")) document.getElementById("f-sort").value = "price_low";
+  if (params.get("sort")==="popular") document.getElementById("f-sort").value = "popular";
+
+  document.getElementById("f-search").addEventListener("input", applyFilters);
+  document.getElementById("f-cat").addEventListener("change", applyFilters);
+  document.getElementById("f-sort").addEventListener("change", applyFilters);
+
+  applyFilters();
+});
+document.addEventListener("langchanged", applyFilters);
+</script>
+</body>
+</html>

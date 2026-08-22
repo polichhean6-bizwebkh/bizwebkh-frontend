@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Kanharoth Shop Demo</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div id="site-header" data-root="../" data-active="checkout"></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="../index.html" data-i18n="foot_link_home">Home</a> /
+    <a href="../cart/index.html" data-i18n="cart_breadcrumb">Cart</a> /
+    <span data-i18n="checkout_breadcrumb">Checkout</span>
+  </div>
+</div>
+
+<section class="container" style="padding-bottom:60px;">
+  <h1 data-i18n="checkout_title" style="font-size:1.6rem;margin-bottom:20px;">Checkout</h1>
+
+  <form id="checkout-form" class="checkout-wrap">
+    <div>
+      <div class="form-card">
+        <h3>👤 <span data-i18n="ci_title">Customer Information</span></h3>
+        <div class="form-row">
+          <div class="form-group full">
+            <label data-i18n="full_name">Full Name</label>
+            <input type="text" id="c-name" required>
+          </div>
+          <div class="form-group">
+            <label data-i18n="phone">Phone Number</label>
+            <input type="tel" id="c-phone" required placeholder="0XX XXX XXX">
+          </div>
+          <div class="form-group">
+            <label data-i18n="email_optional">Email (optional)</label>
+            <input type="email" id="c-email">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3>🚚 <span data-i18n="di_title">Delivery Information</span></h3>
+        <div class="form-row">
+          <div class="form-group full">
+            <label data-i18n="address">Address</label>
+            <input type="text" id="c-address" required>
+          </div>
+          <div class="form-group full">
+            <label data-i18n="province">Province / City</label>
+            <select id="c-province" required></select>
+          </div>
+          <div class="form-group full">
+            <label data-i18n="delivery_note">Delivery Note (optional)</label>
+            <textarea id="c-note" rows="2"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3>💳 <span data-i18n="pm_title">Payment Method</span></h3>
+
+        <label class="pay-option recommended">
+          <input type="radio" name="pm" value="khqr" checked>
+          <span class="icon">📱</span>
+          <span style="flex:1;">
+            <span class="label" data-i18n="pm_khqr">Pay with KHQR<span class="pill recommend" data-i18n="recommended" style="margin-left:6px;"></span><span class="pill demo" data-i18n="demo" style="margin-left:4px;"></span></span>
+            <div class="desc" data-i18n="pm_khqr_desc">Scan the QR and pay instantly from any bank or wallet app</div>
+          </span>
+        </label>
+
+        <label class="pay-option">
+          <input type="radio" name="pm" value="cod">
+          <span class="icon">💵</span>
+          <span style="flex:1;">
+            <span class="label" data-i18n="pm_cod">Cash on Delivery (COD)</span>
+            <div class="desc" data-i18n="pm_cod_desc">Pay with cash when your order arrives</div>
+          </span>
+        </label>
+
+        <label class="pay-option">
+          <input type="radio" name="pm" value="bank">
+          <span class="icon">🏦</span>
+          <span style="flex:1;">
+            <span class="label" data-i18n="pm_bank">Bank Transfer<span class="pill demo" data-i18n="demo" style="margin-left:6px;"></span></span>
+            <div class="desc" data-i18n="pm_bank_desc">Transfer to our store's bank account and send us the receipt</div>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <div class="summary-card">
+        <h3 style="margin-bottom:12px;" data-i18n="order_summary">Order Summary</h3>
+        <div id="mini-cart"></div>
+        <div class="summary-row"><span data-i18n="summary_subtotal">Subtotal</span><span id="ck-subtotal"></span></div>
+        <div class="summary-row"><span data-i18n="summary_delivery">Delivery Fee</span><span id="ck-delivery"></span></div>
+        <div class="summary-row total"><span data-i18n="summary_total">Total</span><span id="ck-total"></span></div>
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:14px;padding:14px;" data-i18n="place_order">Place Order & Pay</button>
+        <p style="font-size:.72rem;color:var(--ink-faint);margin:12px 0 0;" data-i18n="checkout_secure_note">Your information is safe. This is a demo for presentation only.</p>
+      </div>
+    </div>
+  </form>
+</section>
+
+<div id="site-footer" data-root="../"></div>
+
+<script src="../js/i18n.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/layout.js"></script>
+<script>
+function render(){
+  const items = cartDetailed();
+  if (!items.length){ location.href = "../cart/index.html"; return; }
+
+  const provinceSel = document.getElementById("c-province");
+  provinceSel.innerHTML = PROVINCES.map(p=>`<option>${p}</option>`).join("");
+
+  const mini = document.getElementById("mini-cart");
+  mini.innerHTML = items.map(i=>{
+    const name = getLang()==="km" ? i.product.nameKm : i.product.name;
+    return `<div class="mini-cart-item"><span>${name} <span class="q">×${i.qty}</span></span><span>${money((i.product.sale||i.product.price)*i.qty)}</span></div>`;
+  }).join("");
+
+  const subtotal = cartSubtotal();
+  updateDeliveryFee();
+  document.getElementById("ck-subtotal").textContent = money(subtotal);
+  applyI18n();
+}
+
+function updateDeliveryFee(){
+  const pm = document.querySelector('input[name="pm"]:checked').value;
+  const subtotal = cartSubtotal();
+  const delivery = pm==="cod" ? 1.5 : 1.0;
+  document.getElementById("ck-delivery").textContent = money(delivery);
+  document.getElementById("ck-total").textContent = money(subtotal+delivery);
+  return delivery;
+}
+
+document.addEventListener("DOMContentLoaded", ()=>{
+  render();
+  document.querySelectorAll('input[name="pm"]').forEach(r=> r.addEventListener("change", ()=>{
+    document.querySelectorAll(".pay-option").forEach(o=>o.classList.remove("recommended"));
+    if (r.checked && r.value==="khqr") r.closest(".pay-option").classList.add("recommended");
+    updateDeliveryFee();
+  }));
+
+  document.getElementById("checkout-form").addEventListener("submit", e=>{
+    e.preventDefault();
+    const name = document.getElementById("c-name").value.trim();
+    const phone = document.getElementById("c-phone").value.trim();
+    const address = document.getElementById("c-address").value.trim();
+    if (!name || !phone || !address){ alert(t("field_required")); return; }
+
+    const items = cartDetailed();
+    const subtotal = cartSubtotal();
+    const pm = document.querySelector('input[name="pm"]:checked').value;
+    const delivery = updateDeliveryFee();
+    const total = +(subtotal+delivery).toFixed(2);
+    const order = {
+      id: nextOrderId(),
+      customer: name,
+      phone,
+      email: document.getElementById("c-email").value.trim(),
+      province: document.getElementById("c-province").value,
+      address,
+      note: document.getElementById("c-note").value.trim(),
+      items: items.map(i=>({id:i.product.id, name:i.product.name, nameKm:i.product.nameKm, qty:i.qty, price:i.product.sale||i.product.price, img:i.product.img})),
+      subtotal: +subtotal.toFixed(2),
+      delivery,
+      total,
+      payment: pm,
+      paymentStatus: pm==="khqr" ? "pending" : "pending",
+      status: "new",
+      date: new Date().toISOString()
+    };
+    saveDemoOrder(order);
+
+    if (pm === "khqr"){
+      location.href = "../payment/index.html?order=" + order.id;
+    } else {
+      saveCart([]);
+      location.href = "../order-success/index.html?order=" + order.id;
+    }
+  });
+});
+document.addEventListener("langchanged", render);
+</script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanharoth Shop — Demo E-Commerce</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="site-header" data-root="" data-active="home"></div>
+
+<section class="hero">
+  <div class="container">
+    <div>
+      <span class="eyebrow" data-i18n="hero_eyebrow">A trusted online store for Cambodian families</span>
+      <h1 data-i18n="hero_title">Shop everyday essentials, made easy with KHQR payment</h1>
+      <p class="lead" data-i18n="hero_desc">Quality products at fair prices, fast delivery to all 25 provinces. Pay securely with KHQR.</p>
+      <div class="hero-cta">
+        <a href="shop/index.html" class="btn btn-primary" data-i18n="hero_shop_now">Shop Now</a>
+        <a href="shop/index.html?promo=1" class="btn btn-outline" data-i18n="hero_view_promo">View Promotions</a>
+      </div>
+      <div class="hero-badges">
+        <div class="badge-item">🔒 <span data-i18n="hero_badge_secure">Secure Checkout</span></div>
+        <div class="badge-item">📱 <span data-i18n="hero_badge_khqr">KHQR Supported</span></div>
+        <div class="badge-item">🇰🇭 <span data-i18n="hero_badge_support">Khmer-speaking Support</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="frame" id="hero-imgs"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 data-i18n="sec_categories">Shop by Category</h2>
+        <p class="sub" data-i18n="sec_categories_sub">Find what you need, faster</p>
+      </div>
+    </div>
+    <div class="grid-cats" id="cat-grid"></div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 data-i18n="sec_featured">Featured Products</h2>
+        <p class="sub" data-i18n="sec_featured_sub">Hand-picked by our team</p>
+      </div>
+      <a href="shop/index.html" class="btn btn-outline" data-i18n="sec_view_all">View All</a>
+    </div>
+    <div class="grid-products" id="featured-grid"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2 data-i18n="sec_promo">Special Promotions</h2>
+        <p class="sub" data-i18n="sec_promo_sub">Don't miss these limited deals</p>
+      </div>
+    </div>
+    <div class="promo-grid">
+      <a href="shop/index.html?cat=home" class="promo-card p1">
+        <span class="eyebrow" data-i18n="promo1_tag">New Arrival</span>
+        <h3 data-i18n="promo1_title">Summer Collection 2026</h3>
+        <p style="color:#fff;opacity:.9;margin:0;" data-i18n="promo1_desc">Fresh new products just landed</p>
+      </a>
+      <a href="shop/index.html?sort=popular" class="promo-card p2">
+        <span class="eyebrow" data-i18n="promo2_tag">Best Seller</span>
+        <h3 data-i18n="promo2_title">Customer Favorites</h3>
+        <p style="color:#fff;opacity:.9;margin:0;" data-i18n="promo2_desc">Our most loved products by shoppers</p>
+      </a>
+      <a href="shop/index.html?sale=1" class="promo-card p3">
+        <span class="eyebrow" data-i18n="promo3_tag">Discount</span>
+        <h3 data-i18n="promo3_title">Save up to 30%</h3>
+        <p style="color:#fff;opacity:.9;margin:0;" data-i18n="promo3_desc">Special deals on selected items</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:#fff;border-top:1px solid var(--line);">
+  <div class="container">
+    <div class="section-head"><h2 data-i18n="sec_why">Why Shop With Us</h2></div>
+    <div class="trust-grid">
+      <div class="trust-item"><div class="icon">🔒</div><h4 data-i18n="why1_title">Secure Checkout</h4><p data-i18n="why1_desc">KHQR payments are safe, encrypted and fast</p></div>
+      <div class="trust-item"><div class="icon">🇰🇭</div><h4 data-i18n="why2_title">Local Support</h4><p data-i18n="why2_desc">Khmer-speaking support team ready to help</p></div>
+      <div class="trust-item"><div class="icon">📲</div><h4 data-i18n="why3_title">KHQR Payment</h4><p data-i18n="why3_desc">Scan and pay instantly from any bank app</p></div>
+      <div class="trust-item"><div class="icon">🚚</div><h4 data-i18n="why4_title">Fast Order Processing</h4><p data-i18n="why4_desc">Orders prepared and shipped quickly</p></div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer" data-root=""></div>
+
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/layout.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", ()=>{
+  // hero mini gallery
+  const heroImgs = document.getElementById("hero-imgs");
+  PRODUCTS.slice(0,4).forEach(p=>{
+    const img = document.createElement("img");
+    img.src = p.img; img.alt = p.name;
+    heroImgs.appendChild(img);
+  });
+
+  // categories
+  const catGrid = document.getElementById("cat-grid");
+  CATEGORIES.forEach(c=>{
+    const count = PRODUCTS.filter(p=>p.category===c.id).length;
+    const a = document.createElement("a");
+    a.href = "shop/index.html?cat="+c.id;
+    a.className = "cat-card";
+    a.innerHTML = `<div class="icon">${c.icon}</div><div class="name" data-i18n="${c.key}"></div><div class="count">${count} <span>items</span></div>`;
+    catGrid.appendChild(a);
+  });
+
+  // featured products (first 8)
+  const featured = document.getElementById("featured-grid");
+  PRODUCTS.slice(0,8).forEach(p=> featured.appendChild(renderProductCard(p)));
+
+  applyI18n();
+});
+
+function renderProductCard(p){
+  const wrap = document.createElement("div");
+  wrap.className = "product-card";
+  const badge = badgeLabel(p.badge);
+  const stock = stockInfo(p.stock);
+  const name = getLang()==="km" ? p.nameKm : p.name;
+  wrap.innerHTML = `
+    <a href="product/index.html?id=${p.id}" class="thumb">
+      <img src="${p.img}" alt="${p.name}" loading="lazy">
+      ${badge ? `<span class="tag ${badge.cls}">${badge.text}</span>` : ""}
+    </a>
+    <div class="body">
+      <span class="cat" data-i18n="cat_${p.category}"></span>
+      <a href="product/index.html?id=${p.id}" class="title">${name}</a>
+      <div class="price-row">
+        <span class="price">${money(p.sale || p.price)}</span>
+        ${p.sale ? `<span class="price-old">${money(p.price)}</span>` : ""}
+      </div>
+      <span class="stock ${stock.cls}">${stock.text}</span>
+    </div>
+    <div class="actions">
+      <button class="btn btn-outline" onclick="addToCart('${p.id}',1); this.textContent='✓'; setTimeout(()=>{this.innerHTML=t('add_to_cart')},1200)" ${p.stock<=0?'disabled':''} data-i18n="add_to_cart"></button>
+      <a href="product/index.html?id=${p.id}" class="btn btn-primary" data-i18n="view_details"></a>
+    </div>`;
+  return wrap;
+}
+document.addEventListener("langchanged", ()=>{
+  const featured = document.getElementById("featured-grid");
+  if (featured){ featured.innerHTML=""; PRODUCTS.slice(0,8).forEach(p=> featured.appendChild(renderProductCard(p))); applyI18n(); }
+  const catGrid = document.getElementById("cat-grid");
+  if (catGrid) applyI18n();
+});
+</script>
+</body>
+</html>

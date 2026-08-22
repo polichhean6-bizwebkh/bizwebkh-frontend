@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — Kanharoth Shop Demo</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<div class="demo-banner"><b>DEMO ADMIN</b> — <span data-i18n="admin_login_note">Demo mode - no password required</span></div>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="brand">
+      <span class="mark">KS</span>
+      <span>Kanharoth <span style="opacity:.6;font-weight:600;">Admin</span></span>
+    </div>
+    <nav class="admin-nav" id="admin-nav">
+      <button data-panel="dashboard" class="active">📊 <span data-i18n="admin_dashboard">Dashboard</span></button>
+      <button data-panel="products">📦 <span data-i18n="admin_products">Products</span></button>
+      <button data-panel="categories">🗂️ <span data-i18n="admin_categories">Categories</span></button>
+      <button data-panel="orders">🧾 <span data-i18n="admin_orders">Orders</span></button>
+      <button data-panel="payments">💳 <span data-i18n="admin_payments">Payments</span></button>
+      <button data-panel="settings">⚙️ <span data-i18n="admin_settings">Settings</span></button>
+    </nav>
+    <div class="foot">
+      <div class="lang-switch" style="margin-bottom:10px;background:rgba(255,255,255,.1);width:fit-content;">
+        <button data-lang="km">ខ្មែរ</button><button data-lang="en">EN</button>
+      </div>
+      C043 · Demo Admin Panel
+    </div>
+  </aside>
+
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <div class="flex items-center gap-12">
+        <button class="icon-btn show-mobile" id="sidebar-toggle">☰</button>
+        <h2 id="panel-title" data-i18n="admin_dashboard">Dashboard</h2>
+      </div>
+      <a href="../index.html" class="btn btn-outline btn-sm" data-i18n="admin_view_site">View Website</a>
+    </div>
+    <div class="admin-content" id="admin-content">
+
+      <!-- ================= DASHBOARD ================= -->
+      <section id="panel-dashboard" class="admin-panel-section">
+        <div class="kpi-grid" id="kpi-grid"></div>
+        <div class="two-col">
+          <div class="admin-panel">
+            <div class="panel-head"><h3 data-i18n="recent_orders">Recent Orders</h3></div>
+            <div class="panel-body table-scroll"><table class="data-table" id="dash-orders"><thead></thead><tbody></tbody></table></div>
+          </div>
+          <div class="admin-panel">
+            <div class="panel-head"><h3 data-i18n="recent_payments">Recent Payments</h3></div>
+            <div class="panel-body table-scroll"><table class="data-table" id="dash-payments"><thead></thead><tbody></tbody></table></div>
+          </div>
+        </div>
+        <div class="admin-panel">
+          <div class="panel-head"><h3 data-i18n="low_stock">Low Stock Products</h3></div>
+          <div class="panel-body table-scroll"><table class="data-table" id="dash-lowstock"><thead></thead><tbody></tbody></table></div>
+        </div>
+      </section>
+
+      <!-- ================= PRODUCTS ================= -->
+      <section id="panel-products" class="admin-panel-section admin-hidden">
+        <div class="admin-panel">
+          <div class="panel-head">
+            <div class="flex items-center gap-12">
+              <div class="search-mini">🔍<input type="text" id="pr-search" placeholder="Search products..." data-i18n-ph="search_ph_admin"></div>
+              <select class="select-mini" id="pr-cat-filter"><option value="" data-i18n="filter_all_cat">All Categories</option></select>
+            </div>
+            <button class="btn btn-primary btn-sm" id="pr-add-btn" data-i18n="add_product">Add Product</button>
+          </div>
+          <div class="panel-body table-scroll"><table class="data-table" id="products-table"><thead></thead><tbody></tbody></table></div>
+        </div>
+      </section>
+
+      <!-- ================= CATEGORIES ================= -->
+      <section id="panel-categories" class="admin-panel-section admin-hidden">
+        <div class="admin-panel">
+          <div class="panel-head"><h3 data-i18n="admin_categories">Categories</h3><button class="btn btn-primary btn-sm" id="cat-add-btn" data-i18n="add_category">Add Category</button></div>
+          <div class="panel-body table-scroll"><table class="data-table" id="categories-table"><thead></thead><tbody></tbody></table></div>
+        </div>
+      </section>
+
+      <!-- ================= ORDERS ================= -->
+      <section id="panel-orders" class="admin-panel-section admin-hidden">
+        <div class="admin-panel">
+          <div class="panel-head">
+            <div class="flex items-center gap-12">
+              <div class="search-mini">🔍<input type="text" id="or-search" placeholder="Search orders..." data-i18n-ph="search_ph_admin"></div>
+              <select class="select-mini" id="or-status-filter"><option value="">All Status</option></select>
+              <select class="select-mini" id="or-pay-filter"><option value="">All Payment</option></select>
+            </div>
+          </div>
+          <div class="panel-body table-scroll"><table class="data-table" id="orders-table"><thead></thead><tbody></tbody></table></div>
+        </div>
+      </section>
+
+      <!-- ================= PAYMENTS ================= -->
+      <section id="panel-payments" class="admin-panel-section admin-hidden">
+        <div class="admin-panel">
+          <div class="panel-head">
+            <div class="flex items-center gap-12">
+              <div class="search-mini">🔍<input type="text" id="pa-search" placeholder="Search payments..." data-i18n-ph="search_ph_admin"></div>
+              <select class="select-mini" id="pa-method-filter"><option value="">All Methods</option></select>
+              <select class="select-mini" id="pa-status-filter"><option value="">All Status</option></select>
+            </div>
+          </div>
+          <div class="panel-body table-scroll"><table class="data-table" id="payments-table"><thead></thead><tbody></tbody></table></div>
+        </div>
+      </section>
+
+      <!-- ================= SETTINGS ================= -->
+      <section id="panel-settings" class="admin-panel-section admin-hidden">
+        <div class="two-col">
+          <div class="form-card">
+            <h3 data-i18n="settings_store_info">Store Information</h3>
+            <div class="form-group" style="margin-bottom:12px;"><label>Store Name</label><input type="text" id="set-store-name" value="Kanharoth Shop"></div>
+            <div class="form-group" style="margin-bottom:12px;"><label data-i18n="settings_delivery_fee">Default Delivery Fee ($)</label><input type="number" id="set-delivery-fee" value="1.00" step="0.1"></div>
+          </div>
+          <div class="form-card">
+            <h3 data-i18n="settings_contact">Contact</h3>
+            <div class="form-group" style="margin-bottom:12px;"><label>Phone</label><input type="text" id="set-phone" value="016 234 567"></div>
+            <div class="form-group" style="margin-bottom:12px;"><label>Telegram</label><input type="text" id="set-telegram" value="@kanharothshop"></div>
+            <div class="form-group" style="margin-bottom:12px;"><label>Facebook</label><input type="text" id="set-fb" value="facebook.com/kanharothshop"></div>
+          </div>
+        </div>
+        <div class="form-card">
+          <h3 data-i18n="settings_khqr_section">KHQR Settings</h3>
+          <div class="form-row">
+            <div class="form-group"><label data-i18n="settings_khqr_merchant">Business / Merchant Name</label><input type="text" id="set-khqr-merchant" value="Kanharoth Shop"></div>
+            <div class="form-group"><label data-i18n="settings_khqr_provider">Payment Provider</label><input type="text" id="set-khqr-provider" value="Bakong KHQR (Not Connected)" disabled></div>
+            <div class="form-group full">
+              <label data-i18n="settings_khqr_status">KHQR Status</label>
+              <span class="badge b-pending" style="width:fit-content;padding:8px 14px;" data-i18n="khqr_status_demo">Demo / Not Connected</span>
+            </div>
+          </div>
+          <div class="future-note">⚠️ For the production system: this requires a licensed payment provider / bank API integration, secure backend, webhook payment verification, and transaction logging. No real credentials are used in this demo.</div>
+        </div>
+        <button class="btn btn-primary" id="settings-save-btn" data-i18n="save">Save</button>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- Generic modal -->
+<div class="modal-backdrop admin-hidden" id="modal-backdrop">
+  <div class="modal-box" id="modal-box"></div>
+</div>
+
+<script src="../js/i18n.js"></script>
+<script src="../js/data.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/admin.js"></script>
+</body>
+</html>
