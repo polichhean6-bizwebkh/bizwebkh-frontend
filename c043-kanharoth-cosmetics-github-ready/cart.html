@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart — Kanharoth Cosmetics Demo</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="site-header" data-active=""></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="index.html" data-i18n="nav_home">Home</a>
+    <span>/</span>
+    <span data-i18n="cart_breadcrumb">Cart</span>
+  </div>
+</div>
+
+<section class="section tight cart-page">
+  <div class="container">
+    <div class="section-head left">
+      <div><h2 data-i18n="cart_title">Your Cart</h2></div>
+      <a href="products.html" class="btn btn-outline btn-sm" data-i18n="cart_continue">Continue Shopping</a>
+    </div>
+
+    <div id="cart-empty" class="empty-state" style="display:none;">
+      <div class="icon" id="empty-cart-icon"></div>
+      <h3 data-i18n="cart_empty_title" style="margin-bottom:8px;">Your cart is empty</h3>
+      <p data-i18n="cart_empty_desc" style="margin-bottom:22px;">Browse our products and add items to your cart</p>
+      <a href="products.html" class="btn btn-primary" data-i18n="cart_shop_now">Start Shopping</a>
+    </div>
+
+    <div id="cart-filled" class="cart-wrap" style="display:none;">
+      <div>
+        <div id="cart-items"></div>
+      </div>
+      <div>
+        <div class="summary-card">
+          <h3 data-i18n="summary_title">Order Summary</h3>
+          <div class="summary-row"><span data-i18n="summary_items">Items</span><span id="sum-items"></span></div>
+          <div class="summary-row total"><span data-i18n="summary_subtotal">Total</span><span id="sum-subtotal"></span></div>
+          <p class="checkout-note" data-i18n="summary_note">Your order will be confirmed with our team via Telegram.</p>
+
+          <div class="checkout-divider"></div>
+          <div class="checkout-form">
+            <h3 data-i18n="ci_title">Customer Information</h3>
+            <div class="form-group full" style="margin-bottom:14px;">
+              <label data-i18n="full_name">Full Name</label>
+              <input type="text" id="c-name">
+            </div>
+            <div class="form-group full" style="margin-bottom:14px;">
+              <label data-i18n="phone_telegram">Phone / Telegram username</label>
+              <input type="text" id="c-phone">
+            </div>
+            <div class="form-group full" style="margin-bottom:14px;">
+              <label data-i18n="address_optional">Delivery Address (optional)</label>
+              <input type="text" id="c-address">
+            </div>
+            <div class="form-group full">
+              <label data-i18n="note_optional">Note (optional)</label>
+              <textarea id="c-note" rows="2"></textarea>
+            </div>
+            <p id="field-required-msg" style="color:var(--primary);font-size:.78rem;font-weight:600;display:none;margin-top:8px;" data-i18n="field_required"></p>
+          </div>
+
+          <button type="button" class="btn btn-telegram btn-block checkout-submit" id="tg-order-btn">
+            <span id="tg-order-icon"></span><span data-i18n="order_via_telegram">Order via Telegram</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/icons.js"></script>
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/telegram.js"></script>
+<script src="js/app.js"></script>
+<script src="js/layout.js"></script>
+<script>
+function renderCartItem(i){
+  const wrap = document.createElement("div");
+  wrap.className = "cart-item";
+  const name = getLang()==="km" ? i.product.nameKm : i.product.name;
+  const price = i.product.sale || i.product.price;
+  wrap.innerHTML = `
+    <img src="${i.product.img}" alt="${i.product.name}">
+    <div>
+      <div class="name"><a href="product-detail.html?id=${i.product.id}" style="color:inherit;">${name}</a></div>
+      <div class="cat" data-i18n="cat_${i.product.category}"></div>
+      <div class="price">${money(price)}</div>
+    </div>
+    <div class="qty-selector">
+      <button type="button" class="ci-minus" data-id="${i.product.id}" aria-label="Minus">−</button>
+      <input type="text" value="${i.qty}" readonly>
+      <button type="button" class="ci-plus" data-id="${i.product.id}" aria-label="Plus">+</button>
+    </div>
+    <div style="text-align:right;">
+      <div class="price" style="margin-bottom:8px;">${money(price*i.qty)}</div>
+      <button type="button" class="remove ci-remove" data-id="${i.product.id}">${icon("trash")} <span data-i18n="delete">Remove</span></button>
+    </div>`;
+  return wrap;
+}
+
+function getCustomerInfo(){
+  return {
+    name: document.getElementById("c-name").value.trim(),
+    phone: document.getElementById("c-phone").value.trim(),
+    address: document.getElementById("c-address").value.trim(),
+    note: document.getElementById("c-note").value.trim()
+  };
+}
+
+function renderCartPage(){
+  document.body.classList.add("cart-page-active");
+  document.body.classList.remove("has-floating-cart");
+  const items = cartDetailed();
+  const empty = document.getElementById("cart-empty");
+  const filled = document.getElementById("cart-filled");
+  const emptyIcon = document.getElementById("empty-cart-icon");
+  if (emptyIcon) emptyIcon.innerHTML = icon("cart");
+
+  if (!items.length){
+    empty.style.display = "block";
+    filled.style.display = "none";
+    document.getElementById("cart-items").innerHTML = "";
+    applyI18n();
+    return;
+  }
+  empty.style.display = "none";
+  filled.style.display = "grid";
+
+  const list = document.getElementById("cart-items");
+  list.innerHTML = "";
+  items.forEach(i=> list.appendChild(renderCartItem(i)));
+
+  document.getElementById("sum-items").textContent = cartCount();
+  document.getElementById("sum-subtotal").textContent = money(cartSubtotal());
+
+  document.getElementById("tg-order-icon").innerHTML = icon("send");
+  applyI18n();
+}
+
+document.addEventListener("click", e=>{
+  const minus = e.target.closest(".ci-minus");
+  if (minus){
+    const cart = getCart();
+    const item = cart.find(x=>x.id===minus.dataset.id);
+    if (item){ if (item.qty<=1){ removeFromCart(minus.dataset.id); } else { setCartQty(minus.dataset.id, item.qty-1); } }
+    renderCartPage();
+    return;
+  }
+  const plus = e.target.closest(".ci-plus");
+  if (plus){
+    const cart = getCart();
+    const item = cart.find(x=>x.id===plus.dataset.id);
+    if (item){ setCartQty(plus.dataset.id, item.qty+1); }
+    renderCartPage();
+    return;
+  }
+  const remove = e.target.closest(".ci-remove");
+  if (remove){
+    removeFromCart(remove.dataset.id);
+    renderCartPage();
+    return;
+  }
+  if (e.target.closest("#tg-order-btn")){
+    const customer = getCustomerInfo();
+    const required = document.getElementById("field-required-msg");
+    if (!customer.name || !customer.phone){
+      required.style.display = "block";
+      return;
+    }
+    required.style.display = "none";
+    const summary = buildOrderSummaryText(customer, cartDetailed());
+    copyOrderAndOpenTelegram(summary);
+  }
+});
+
+document.addEventListener("input", e=>{
+  if (["c-name","c-phone","c-address","c-note"].includes(e.target.id)){
+    document.getElementById("field-required-msg").style.display = "none";
+  }
+});
+
+document.addEventListener("DOMContentLoaded", renderCartPage);
+document.addEventListener("langchanged", renderCartPage);
+</script>
+</body>
+</html>

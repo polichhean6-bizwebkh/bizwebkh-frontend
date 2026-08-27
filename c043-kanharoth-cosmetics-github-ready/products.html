@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products — Kanharoth Cosmetics Demo</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="site-header" data-active="products"></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="index.html" data-i18n="nav_home">Home</a>
+    <span>/</span>
+    <span data-i18n="products_breadcrumb">Products</span>
+  </div>
+</div>
+
+<section class="section tight">
+  <div class="container">
+    <div class="section-head left">
+      <div>
+        <h2 data-i18n="products_title">All Products</h2>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <select id="f-category">
+        <option value="" data-i18n="filter_all_cat">All Categories</option>
+      </select>
+      <select id="f-sort">
+        <option value="popular" data-i18n="sort_popular">Most Popular</option>
+        <option value="price-low" data-i18n="sort_price_low">Price: Low to High</option>
+        <option value="price-high" data-i18n="sort_price_high">Price: High to Low</option>
+        <option value="newest" data-i18n="sort_newest">Newest</option>
+      </select>
+      <span id="results-count" style="margin-left:auto;font-size:.82rem;color:var(--ink-faint);font-weight:600;"></span>
+    </div>
+
+    <div class="grid-products" id="products-grid"></div>
+    <div class="empty-state" id="empty-state" style="display:none;">
+      <div class="icon" id="empty-icon"></div>
+      <p data-i18n="no_results">No products match your filters</p>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/icons.js"></script>
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/telegram.js"></script>
+<script src="js/app.js"></script>
+<script src="js/layout.js"></script>
+<script>
+function handleAddToCartClick(btn, productId){
+  addToCart(productId, 1);
+  const original = btn.innerHTML;
+  btn.innerHTML = icon("check") + `<span>${t("added_to_cart")}</span>`;
+  setTimeout(()=>{ btn.innerHTML = original; }, 1200);
+}
+function renderProductCard(p){
+  const wrap = document.createElement("div");
+  wrap.className = "product-card";
+  const badge = badgeLabel(p.badge);
+  const name = getLang()==="km" ? p.nameKm : p.name;
+  wrap.innerHTML = `
+    <a href="product-detail.html?id=${p.id}" class="thumb">
+      <img src="${p.img}" alt="${p.name}" loading="lazy">
+      ${badge ? `<span class="tag ${badge.cls==='sale'?'sale':''}">${badge.text}</span>` : ""}
+    </a>
+    <div class="body">
+      <span class="cat" data-i18n="cat_${p.category}"></span>
+      <a href="product-detail.html?id=${p.id}" class="title">${name}</a>
+      <div class="price-row">
+        <span class="price">${money(p.sale || p.price)}</span>
+        ${p.sale ? `<span class="price-old">${money(p.price)}</span>` : ""}
+      </div>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn btn-ghost add-cart-btn" data-i18n="add_to_cart"></button>
+      <a href="product-detail.html?id=${p.id}" class="btn btn-primary" data-i18n="view_details"></a>
+    </div>`;
+  wrap.querySelector(".add-cart-btn").addEventListener("click", function(){ handleAddToCartClick(this, p.id); });
+  return wrap;
+}
+
+function populateCategoryFilter(){
+  const sel = document.getElementById("f-category");
+  while (sel.options.length > 1) sel.remove(1);
+  CATEGORIES.forEach(c=>{
+    const opt = document.createElement("option");
+    opt.value = c.id;
+    opt.textContent = getLang()==="km" ? I18N.km[c.key] : I18N.en[c.key];
+    sel.appendChild(opt);
+  });
+}
+
+function currentFilters(){
+  return {
+    cat: document.getElementById("f-category").value,
+    sort: document.getElementById("f-sort").value,
+    q: (qparam("q") || "").toLowerCase()
+  };
+}
+
+function renderProducts(){
+  populateCategoryFilter();
+  const catFromUrl = qparam("cat");
+  if (catFromUrl && !document.getElementById("f-category")._touched){
+    document.getElementById("f-category").value = catFromUrl;
+  }
+  const f = currentFilters();
+  let list = PRODUCTS.slice();
+  if (f.cat) list = list.filter(p=>p.category===f.cat);
+  if (f.q) list = list.filter(p=> (p.name+" "+p.nameKm).toLowerCase().includes(f.q));
+
+  if (f.sort === "price-low") list.sort((a,b)=> (a.sale||a.price) - (b.sale||b.price));
+  else if (f.sort === "price-high") list.sort((a,b)=> (b.sale||b.price) - (a.sale||a.price));
+  else if (f.sort === "newest") list.sort((a,b)=> (b.badge==="new") - (a.badge==="new"));
+  else list.sort((a,b)=> (b.badge==="best") - (a.badge==="best"));
+
+  const grid = document.getElementById("products-grid");
+  grid.innerHTML = "";
+  list.forEach(p=> grid.appendChild(renderProductCard(p)));
+
+  document.getElementById("empty-state").style.display = list.length ? "none" : "block";
+  const emptyIcon = document.getElementById("empty-icon");
+  if (emptyIcon) emptyIcon.innerHTML = icon("package");
+
+  const countEl = document.getElementById("results-count");
+  countEl.textContent = list.length + " " + t("results_count");
+
+  applyI18n();
+}
+
+document.addEventListener("change", e=>{
+  if (e.target.id === "f-category"){ e.target._touched = true; renderProducts(); }
+  if (e.target.id === "f-sort") renderProducts();
+});
+document.addEventListener("DOMContentLoaded", renderProducts);
+document.addEventListener("langchanged", renderProducts);
+</script>
+</body>
+</html>

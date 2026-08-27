@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Kanharoth Cosmetics Demo</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="site-header" data-active="about"></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="index.html" data-i18n="nav_home">Home</a>
+    <span>/</span>
+    <span data-i18n="nav_about">About</span>
+  </div>
+</div>
+
+<section class="hero" style="border-radius:0;">
+  <div class="container" style="grid-template-columns:1fr;text-align:center;padding:56px 24px;">
+    <div>
+      <span class="eyebrow" data-i18n="sec_story_eyebrow">Our Story</span>
+      <h1 style="font-size:2.3rem;" data-i18n="about_hero_title">Beauty Rooted in Honest Care</h1>
+      <p class="lead" style="margin:0 auto;" data-i18n="about_hero_desc">Kanharoth Cosmetics was founded with one simple goal — to make quality skincare and beauty essentials accessible for everyday routines.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="story">
+      <div class="frame" id="about-img"></div>
+      <div class="content">
+        <span class="eyebrow" data-i18n="about_sub_eyebrow">Who We Are</span>
+        <h2 data-i18n="about_sub_title">Curated Products, Trusted by Our Community</h2>
+        <p data-i18n="about_sub_body">We carefully select every product in our collection — from gentle cleansers to nourishing hair care — so our customers can build simple, effective routines they can trust. Every item is chosen with real skin and hair needs in mind, not trends.</p>
+        <div class="stats">
+          <div class="stat"><b id="about-stat-products">24</b><span data-i18n="stat_products">Products</span></div>
+          <div class="stat"><b id="about-stat-categories">4</b><span data-i18n="stat_categories">Categories</span></div>
+          <div class="stat"><b>500+</b><span data-i18n="stat_customers">Happy Customers</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section tight" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="section-head"><h2 data-i18n="sec_why">Why Shop With Us</h2></div>
+    <div class="trust-grid">
+      <div class="trust-item"><div class="icon" id="about-why-1"></div><h4 data-i18n="why1_title">Quality Products</h4><p data-i18n="why1_desc">Carefully selected items suited to a range of skin and hair types</p></div>
+      <div class="trust-item"><div class="icon" id="about-why-2"></div><h4 data-i18n="why2_title">Easy Ordering</h4><p data-i18n="why2_desc">Browse, select, and send your order via Telegram in just a few taps</p></div>
+      <div class="trust-item"><div class="icon" id="about-why-3"></div><h4 data-i18n="why3_title">Direct Telegram Support</h4><p data-i18n="why3_desc">Our team responds quickly to help you find the right products</p></div>
+      <div class="trust-item"><div class="icon" id="about-why-4"></div><h4 data-i18n="why4_title">Fast Response</h4><p data-i18n="why4_desc">Orders are confirmed and prepared quickly by our team</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section tight">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <h2 data-i18n="cta_title">Ready to start shopping?</h2>
+        <p data-i18n="cta_desc">Message us on Telegram to ask about products or start an order right away.</p>
+      </div>
+      <a href="#" id="about-cta-telegram" class="btn btn-primary" data-i18n="cta_button">Chat on Telegram</a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/icons.js"></script>
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/telegram.js"></script>
+<script src="js/app.js"></script>
+<script src="js/layout.js"></script>
+<script>
+function renderAbout(){
+  document.getElementById("about-img").innerHTML = `<img class="ph" src="${ABOUT_GROUP_IMAGE}" alt="Kanharoth Cosmetics products" style="width:100%;height:100%;object-fit:cover;">`;
+  document.getElementById("about-stat-products").textContent = PRODUCTS.length;
+  document.getElementById("about-stat-categories").textContent = CATEGORIES.length;
+  document.getElementById("about-why-1").innerHTML = icon("sparkles");
+  document.getElementById("about-why-2").innerHTML = icon("package");
+  document.getElementById("about-why-3").innerHTML = icon("send");
+  document.getElementById("about-why-4").innerHTML = icon("clock");
+  const tgLink = telegramDirectLink("Hi! I'd like to ask about your products.");
+  const cta = document.getElementById("about-cta-telegram");
+  cta.href = tgLink; cta.target = "_blank"; cta.rel = "noopener";
+  applyI18n();
+}
+document.addEventListener("DOMContentLoaded", renderAbout);
+document.addEventListener("langchanged", renderAbout);
+</script>
+</body>
+</html>

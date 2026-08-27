@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanharoth Cosmetics — Beauty & Skincare Demo</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="site-header" data-active="home"></div>
+
+<section class="hero">
+  <div class="container">
+    <div>
+      <span class="eyebrow" data-i18n="hero_eyebrow">Clean beauty for everyday confidence</span>
+      <h1 data-i18n="hero_title">Beauty Products Designed for Everyday Confidence</h1>
+      <p class="lead" data-i18n="hero_desc">Discover skincare and hair care essentials crafted with quality ingredients — simple routines, real results.</p>
+      <div class="hero-cta">
+        <a href="products.html" class="btn btn-primary" data-i18n="hero_shop_products">Shop Products</a>
+        <a href="products.html?sort=popular" class="btn btn-outline" data-i18n="hero_explore">Explore Collection</a>
+      </div>
+      <div class="hero-badges">
+        <div class="badge-item" id="badge-quality"><span data-i18n="hero_badge_quality">Quality Products</span></div>
+        <div class="badge-item" id="badge-easy"><span data-i18n="hero_badge_easy">Easy Ordering</span></div>
+        <div class="badge-item" id="badge-telegram"><span data-i18n="hero_badge_telegram">Direct Telegram Support</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="frame"><img id="hero-image" class="hero-image" src="images/img01.jpg" alt="Kanharoth Cosmetics collection"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="sec_categories">Shop by Category</h2>
+      <p data-i18n="sec_categories_sub">Find what suits your skin and hair care routine</p>
+    </div>
+    <div class="grid-cats" id="cat-grid"></div>
+  </div>
+</section>
+
+<section class="section tight" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="container">
+    <div class="section-head left">
+      <div>
+        <h2 data-i18n="sec_featured">Best Sellers</h2>
+        <p data-i18n="sec_featured_sub" style="margin:6px 0 0;">Customer favorites, hand-picked for you</p>
+      </div>
+      <a href="products.html" class="btn btn-outline btn-sm" data-i18n="sec_view_all">View All</a>
+    </div>
+    <div class="grid-products" id="featured-grid"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="story">
+      <div class="frame" id="story-img"></div>
+      <div class="content">
+        <span class="eyebrow" data-i18n="sec_story_eyebrow">Our Story</span>
+        <h2 data-i18n="sec_story_title">Beauty That Starts With Honest Care</h2>
+        <p data-i18n="sec_story_body">Kanharoth Cosmetics believes real beauty comes from consistent, quality care. We carefully select every product in our collection so our customers can feel confident in their everyday skincare and hair care routine.</p>
+        <div class="stats">
+          <div class="stat"><b id="stat-products">24</b><span data-i18n="stat_products">Products</span></div>
+          <div class="stat"><b id="stat-categories">4</b><span data-i18n="stat_categories">Categories</span></div>
+          <div class="stat"><b>500+</b><span data-i18n="stat_customers">Happy Customers</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section tight" style="background:#fff;border-top:1px solid var(--line);">
+  <div class="container">
+    <div class="section-head"><h2 data-i18n="sec_why">Why Shop With Us</h2></div>
+    <div class="trust-grid">
+      <div class="trust-item"><div class="icon" id="why-icon-1"></div><h4 data-i18n="why1_title">Quality Products</h4><p data-i18n="why1_desc">Carefully selected items suited to a range of skin and hair types</p></div>
+      <div class="trust-item"><div class="icon" id="why-icon-2"></div><h4 data-i18n="why2_title">Easy Ordering</h4><p data-i18n="why2_desc">Browse, select, and send your order via Telegram in just a few taps</p></div>
+      <div class="trust-item"><div class="icon" id="why-icon-3"></div><h4 data-i18n="why3_title">Direct Telegram Support</h4><p data-i18n="why3_desc">Our team responds quickly to help you find the right products</p></div>
+      <div class="trust-item"><div class="icon" id="why-icon-4"></div><h4 data-i18n="why4_title">Fast Response</h4><p data-i18n="why4_desc">Orders are confirmed and prepared quickly by our team</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h2 data-i18n="sec_faq">Frequently Asked Questions</h2></div>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary><span data-i18n="faq1_q">How do I place an order?</span><span class="faq-chevron" id="faq-icon-1"></span></summary>
+        <div class="faq-body" data-i18n="faq1_a">Add products to your cart, fill in your contact details, then click "Order via Telegram" to send your order summary directly to our team.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq2_q">How does delivery work?</span><span class="faq-chevron" id="faq-icon-2"></span></summary>
+        <div class="faq-body" data-i18n="faq2_a">Once our team confirms your order on Telegram, we prepare and deliver it to the address you provided.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq3_q">How can I contact support?</span><span class="faq-chevron" id="faq-icon-3"></span></summary>
+        <div class="faq-body" data-i18n="faq3_a">You can message our team directly on Telegram any time to ask about products or check your order status.</div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq4_q">How is my order confirmed?</span><span class="faq-chevron" id="faq-icon-4"></span></summary>
+        <div class="faq-body" data-i18n="faq4_a">Our team will confirm your order and delivery details with you directly on Telegram.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="section tight">
+  <div class="container">
+    <div class="cta-band">
+      <div>
+        <h2 data-i18n="cta_title">Ready to start shopping?</h2>
+        <p data-i18n="cta_desc">Message us on Telegram to ask about products or start an order right away.</p>
+      </div>
+      <a href="#" id="cta-telegram-btn" class="btn btn-primary" data-i18n="cta_button">Chat on Telegram</a>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/icons.js"></script>
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/telegram.js"></script>
+<script src="js/app.js"></script>
+<script src="js/layout.js"></script>
+<script>
+function fillIcons(){
+  const map = {"why-icon-1":"sparkles","why-icon-2":"package","why-icon-3":"send","why-icon-4":"clock"};
+  Object.keys(map).forEach(id=>{
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = icon(map[id]);
+  });
+  ["faq-icon-1","faq-icon-2","faq-icon-3","faq-icon-4"].forEach(id=>{
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = icon("plusCircle");
+  });
+}
+function handleAddToCartClick(btn, productId){
+  addToCart(productId, 1);
+  const original = btn.innerHTML;
+  btn.innerHTML = icon("check") + `<span>${t("added_to_cart")}</span>`;
+  setTimeout(()=>{ btn.innerHTML = original; }, 1200);
+}
+function renderProductCard(p){
+  const wrap = document.createElement("div");
+  wrap.className = "product-card";
+  const badge = badgeLabel(p.badge);
+  const name = getLang()==="km" ? p.nameKm : p.name;
+  wrap.innerHTML = `
+    <a href="product-detail.html?id=${p.id}" class="thumb">
+      <img src="${p.img}" alt="${p.name}" loading="lazy">
+      ${badge ? `<span class="tag ${badge.cls==='sale'?'sale':''}">${badge.text}</span>` : ""}
+    </a>
+    <div class="body">
+      <span class="cat" data-i18n="cat_${p.category}"></span>
+      <a href="product-detail.html?id=${p.id}" class="title">${name}</a>
+      <div class="price-row">
+        <span class="price">${money(p.sale || p.price)}</span>
+        ${p.sale ? `<span class="price-old">${money(p.price)}</span>` : ""}
+      </div>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn btn-ghost add-cart-btn" data-i18n="add_to_cart"></button>
+      <a href="product-detail.html?id=${p.id}" class="btn btn-primary" data-i18n="view_details"></a>
+    </div>`;
+  wrap.querySelector(".add-cart-btn").addEventListener("click", function(){ handleAddToCartClick(this, p.id); });
+  return wrap;
+}
+function renderHome(){
+  fillIcons();
+  const heroImage = document.getElementById("hero-image");
+  heroImage.src = HERO_GROUP_IMAGE;
+
+  const catGrid = document.getElementById("cat-grid");
+  catGrid.innerHTML = "";
+  CATEGORIES.forEach(c=>{
+    const count = PRODUCTS.filter(p=>p.category===c.id).length;
+    const inCat = PRODUCTS.filter(p=>p.category===c.id);
+    const sample = inCat.find(p=>p.photo) || inCat[0];
+    const a = document.createElement("a");
+    a.href = "products.html?cat="+c.id;
+    a.className = "cat-card";
+    a.innerHTML = `<img class="ph" src="${sample.img}" alt=""><div class="overlay"><div><span class="name" data-i18n="${c.key}"></span><span class="count">${count} items</span></div></div>`;
+    catGrid.appendChild(a);
+  });
+
+  const featured = document.getElementById("featured-grid");
+  featured.innerHTML = "";
+  PRODUCTS.filter(p=>p.badge==="best").concat(PRODUCTS.filter(p=>p.badge!=="best")).slice(0,8).forEach(p=> featured.appendChild(renderProductCard(p)));
+
+  const storyImg = document.getElementById("story-img");
+  storyImg.innerHTML = `<img class="ph" src="${PRODUCTS[2].img}" alt="" style="width:100%;height:100%;object-fit:cover;">`;
+  document.getElementById("stat-products").textContent = PRODUCTS.length;
+  document.getElementById("stat-categories").textContent = CATEGORIES.length;
+
+  const tgLink = telegramDirectLink("Hi! I'd like to ask about your products.");
+  document.getElementById("cta-telegram-btn").href = tgLink;
+  document.getElementById("cta-telegram-btn").target = "_blank";
+  document.getElementById("cta-telegram-btn").rel = "noopener";
+
+  applyI18n();
+}
+document.addEventListener("DOMContentLoaded", renderHome);
+document.addEventListener("langchanged", renderHome);
+</script>
+</body>
+</html>

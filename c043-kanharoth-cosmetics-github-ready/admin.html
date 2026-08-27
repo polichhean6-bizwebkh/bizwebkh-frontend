@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Kanharoth Cosmetics Demo</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="lang-km">
+
+<div class="demo-banner"><b></b><span data-i18n="foot_demo_note">This website is a DEMO for client presentation purposes only</span></div>
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="brand">
+      <span class="mark">KC</span>
+      <span data-i18n="brand_name">Kanharoth Cosmetics</span>
+    </div>
+    <nav class="admin-nav">
+      <button type="button" data-section="dashboard" class="active"><span id="nav-icon-dash"></span><span data-i18n="admin_dashboard">Dashboard</span></button>
+      <button type="button" data-section="orders"><span id="nav-icon-orders"></span><span data-i18n="admin_orders">Orders</span></button>
+      <button type="button" data-section="products"><span id="nav-icon-prod"></span><span data-i18n="admin_products">Products</span></button>
+      <button type="button" data-section="categories"><span id="nav-icon-cat"></span><span data-i18n="admin_categories">Categories</span></button>
+      <button type="button" data-section="settings"><span id="nav-icon-settings"></span><span data-i18n="admin_settings">Settings</span></button>
+    </nav>
+    <div class="foot">
+      <a href="index.html" style="display:flex;align-items:center;gap:8px;color:#fff;font-weight:700;font-size:.82rem;" target="_blank" rel="noopener">
+        <span id="nav-icon-view"></span><span data-i18n="admin_view_site">View Website</span>
+      </a>
+      <div style="margin-top:8px;" data-i18n="admin_login_note">Demo mode - no password required</div>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button type="button" class="admin-sidebar-toggle icon-btn show-mobile">☰</button>
+        <h2 id="admin-page-title">Dashboard</h2>
+      </div>
+      <div class="lang-switch">
+        <button data-lang="km">ខ្មែរ</button>
+        <button data-lang="en">EN</button>
+      </div>
+    </div>
+
+    <div class="admin-content">
+
+      <section id="sec-dashboard" class="admin-section">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="label" data-i18n="kpi_orders_total">Total Orders</div>
+            <div class="value" id="kpi-orders-total-val">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="label" data-i18n="kpi_orders_new">New Orders</div>
+            <div class="value" id="kpi-orders-new-val">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="label" data-i18n="kpi_orders_confirmed">Confirmed Orders</div>
+            <div class="value" id="kpi-orders-confirmed-val">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="label" data-i18n="kpi_orders_preparing">Preparing Orders</div>
+            <div class="value" id="kpi-orders-preparing-val">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="label" data-i18n="kpi_products">Total Products</div>
+            <div class="value" id="kpi-products-val">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="label" data-i18n="kpi_low_stock">Low Stock Products</div>
+            <div class="value" id="kpi-low-stock-val">0</div>
+          </div>
+        </div>
+
+        <div class="admin-panel">
+          <div class="panel-head">
+            <h3 data-i18n="admin_orders">Recent Orders</h3>
+          </div>
+          <div class="panel-body table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th data-i18n="col_order_id">Order ID</th>
+                  <th data-i18n="col_customer">Customer</th>
+                  <th data-i18n="col_products">Products</th>
+                  <th data-i18n="col_total">Total</th>
+                  <th data-i18n="col_status">Status</th>
+                </tr>
+              </thead>
+              <tbody id="recent-orders-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-panel">
+          <div class="panel-head">
+            <h3 data-i18n="kpi_low_stock">Low Stock Products</h3>
+          </div>
+          <div class="panel-body table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th data-i18n="col_product">Product</th>
+                  <th data-i18n="col_category">Category</th>
+                  <th data-i18n="col_stock">Stock</th>
+                </tr>
+              </thead>
+              <tbody id="low-stock-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="sec-orders" class="admin-section admin-hidden">
+        <div class="admin-panel">
+          <div class="panel-head">
+            <h3 data-i18n="admin_orders">Orders</h3>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <div class="search-mini"><input type="text" id="order-search" data-i18n-ph="search_ph_admin" placeholder="Search..."></div>
+              <select class="select-mini" id="order-status-filter"></select>
+            </div>
+          </div>
+          <div class="panel-body table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th data-i18n="col_order_id">Order ID</th>
+                  <th data-i18n="col_customer">Customer</th>
+                  <th data-i18n="col_products">Products</th>
+                  <th data-i18n="col_total">Total</th>
+                  <th data-i18n="col_date">Date</th>
+                  <th data-i18n="col_status">Status</th>
+                </tr>
+              </thead>
+              <tbody id="orders-table-body"></tbody>
+            </table>
+          </div>
+          <div class="panel-body" style="padding-top:0;font-size:.76rem;color:var(--ink-faint);">
+            <span data-i18n="view_order">Click a row to view products &amp; note</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="sec-products" class="admin-section admin-hidden">
+        <div class="admin-panel">
+          <div class="panel-head">
+            <h3 data-i18n="admin_products">Products</h3>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <div class="search-mini"><input type="text" id="prod-search" data-i18n-ph="search_ph_admin" placeholder="Search..."></div>
+              <select class="select-mini" id="prod-cat-filter"></select>
+              <button type="button" class="btn btn-primary btn-sm" id="add-product-btn"><span id="nav-icon-add-prod"></span> <span data-i18n="add_product">Add Product</span></button>
+            </div>
+          </div>
+          <div class="panel-body table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th data-i18n="col_product">Product</th>
+                  <th data-i18n="col_category">Category</th>
+                  <th data-i18n="col_price">Price</th>
+                  <th data-i18n="col_status">Status</th>
+                  <th data-i18n="col_action">Action</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="sec-categories" class="admin-section admin-hidden">
+        <div class="admin-panel">
+          <div class="panel-head">
+            <h3 data-i18n="admin_categories">Categories</h3>
+            <button type="button" class="btn btn-primary btn-sm" id="add-category-btn"><span id="nav-icon-add-cat"></span> <span data-i18n="add_category">Add Category</span></button>
+          </div>
+          <div class="panel-body table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th data-i18n="col_category">Category</th>
+                  <th data-i18n="admin_products">Products</th>
+                  <th data-i18n="col_status">Status</th>
+                  <th data-i18n="col_action">Action</th>
+                </tr>
+              </thead>
+              <tbody id="categories-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="sec-settings" class="admin-section admin-hidden">
+        <div class="admin-panel" style="max-width:700px;">
+          <div class="panel-head"><h3 data-i18n="admin_settings">Settings</h3></div>
+          <div class="panel-body">
+            <p class="hint" data-i18n="admin_settings_hint">Store details are saved in this browser for the demo.</p>
+            <div class="form-row">
+              <div class="form-group">
+                <label data-i18n="settings_store_name">Store Name</label>
+                <input type="text" id="settings-store-name">
+              </div>
+              <div class="form-group">
+                <label data-i18n="settings_telegram">Telegram Username</label>
+                <input type="text" id="settings-telegram" placeholder="@kanharoth_cosmetics">
+              </div>
+            </div>
+            <div class="form-group full">
+              <label data-i18n="settings_group_link">Telegram Group Link</label>
+              <input type="url" id="settings-group-link" placeholder="https://t.me/...">
+            </div>
+            <div style="margin-top:20px;"><button type="button" class="btn btn-primary" id="settings-save" data-i18n="save">Save</button></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- Product modal -->
+<div class="modal-backdrop" id="product-modal-backdrop" style="display:none;">
+  <div class="modal-box">
+    <div class="m-head">
+      <h3 id="modal-title">Add Product</h3>
+      <button type="button" class="close-x" id="product-modal-close">&times;</button>
+    </div>
+    <div class="m-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label data-i18n="admin_prod_form_name">Product Name</label>
+          <input type="text" id="pf-name">
+        </div>
+        <div class="form-group">
+          <label>ឈ្មោះខ្មែរ / Khmer Name</label>
+          <input type="text" id="pf-name-km">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label data-i18n="admin_prod_form_cat">Category</label>
+          <select id="pf-cat"></select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="admin_prod_form_status">Status</label>
+          <select id="pf-status">
+            <option value="active" data-i18n="activate">Show</option>
+            <option value="inactive" data-i18n="deactivate">Hide</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label data-i18n="admin_prod_form_price">Price ($)</label>
+          <input type="number" step="0.01" id="pf-price">
+        </div>
+        <div class="form-group">
+          <label data-i18n="admin_prod_form_sale">Sale Price ($) (optional)</label>
+          <input type="number" step="0.01" id="pf-sale">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label data-i18n="admin_prod_form_stock">Stock Quantity</label>
+          <input type="number" step="1" min="0" id="pf-stock">
+        </div>
+      </div>
+      <div class="form-group full">
+        <label data-i18n="admin_prod_form_desc">Description</label>
+        <textarea id="pf-desc" rows="3"></textarea>
+      </div>
+    </div>
+    <div class="m-foot">
+      <button type="button" class="btn btn-ghost" id="pf-cancel" data-i18n="cancel">Cancel</button>
+      <button type="button" class="btn btn-primary" id="pf-save" data-i18n="save">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Category modal -->
+<div class="modal-backdrop" id="category-modal-backdrop" style="display:none;">
+  <div class="modal-box">
+    <div class="m-head">
+      <h3 id="cat-modal-title">Add Category</h3>
+      <button type="button" class="close-x" id="category-modal-close">&times;</button>
+    </div>
+    <div class="m-body">
+      <div class="form-group full" style="margin-bottom:14px;">
+        <label>Category Name (English)</label>
+        <input type="text" id="cf-name-en">
+      </div>
+      <div class="form-group full" style="margin-bottom:14px;">
+        <label>ឈ្មោះប្រភេទ (Khmer)</label>
+        <input type="text" id="cf-name-km">
+      </div>
+      <div class="form-group full">
+        <label data-i18n="admin_prod_form_status">Status</label>
+        <select id="cf-status">
+          <option value="active" data-i18n="activate">Show</option>
+          <option value="inactive" data-i18n="deactivate">Hide</option>
+        </select>
+      </div>
+    </div>
+    <div class="m-foot">
+      <button type="button" class="btn btn-ghost" id="cf-cancel" data-i18n="cancel">Cancel</button>
+      <button type="button" class="btn btn-primary" id="cf-save" data-i18n="save">Save</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/icons.js"></script>
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/telegram.js"></script>
+<script src="js/app.js"></script>
+<script src="js/admin.js"></script>
+<script>
+function fillAdminIcons(){
+  document.getElementById("nav-icon-dash").innerHTML = icon("package");
+  document.getElementById("nav-icon-orders").innerHTML = icon("clock");
+  document.getElementById("nav-icon-prod").innerHTML = icon("tag");
+  document.getElementById("nav-icon-cat").innerHTML = icon("sparkles");
+  document.getElementById("nav-icon-settings").innerHTML = icon("tag");
+  document.getElementById("nav-icon-view").innerHTML = icon("send");
+  document.getElementById("nav-icon-add-prod").innerHTML = icon("plus");
+  document.getElementById("nav-icon-add-cat").innerHTML = icon("plus");
+}
+document.addEventListener("DOMContentLoaded", ()=>{
+  fillAdminIcons();
+  applyI18n();
+});
+document.addEventListener("langchanged", fillAdminIcons);
+</script>
+</body>
+</html>

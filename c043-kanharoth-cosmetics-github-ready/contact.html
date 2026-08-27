@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Kanharoth Cosmetics Demo</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="site-header" data-active="contact"></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="index.html" data-i18n="nav_home">Home</a>
+    <span>/</span>
+    <span data-i18n="nav_contact">Contact</span>
+  </div>
+</div>
+
+<section class="hero" style="border-radius:0;">
+  <div class="container" style="grid-template-columns:1fr;text-align:center;padding:56px 24px;">
+    <div>
+      <span class="eyebrow" data-i18n="sec_story_eyebrow">Get in Touch</span>
+      <h1 style="font-size:2.3rem;" data-i18n="contact_hero_title">Get in Touch</h1>
+      <p class="lead" style="margin:0 auto;" data-i18n="contact_hero_desc">Have a question about our products or want to place an order? Message us on Telegram — our team is always happy to help.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="two-col" style="align-items:start;">
+      <div class="form-card" style="margin-top:0;">
+        <h3 data-i18n="contact_form_title">Send Us a Message</h3>
+        <p class="hint" data-i18n="contact_form_desc">Fill in the details below, then send this message to us on Telegram to reach our team directly</p>
+        <div class="form-group full" style="margin-bottom:14px;">
+          <label data-i18n="full_name">Full Name</label>
+          <input type="text" id="ct-name">
+        </div>
+        <div class="form-group full" style="margin-bottom:14px;">
+          <label data-i18n="phone_telegram">Phone / Telegram username</label>
+          <input type="text" id="ct-phone">
+        </div>
+        <div class="form-group full" style="margin-bottom:16px;">
+          <label data-i18n="contact_message">Message</label>
+          <textarea id="ct-message" rows="4"></textarea>
+        </div>
+        <a href="#" id="ct-send-btn" target="_blank" rel="noopener" class="btn btn-telegram btn-block" style="padding:15px;">
+          <span data-i18n="contact_send_btn">Send via Telegram</span>
+        </a>
+      </div>
+
+      <div>
+        <div class="summary-card" style="position:static;">
+          <h3 style="margin-bottom:18px;" data-i18n="contact_info_title">Contact Information</h3>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:16px;">
+            <li class="footer-contact-item" style="color:var(--ink-soft);font-size:.9rem;" id="ct-addr-item"></li>
+            <li class="footer-contact-item" style="color:var(--ink-soft);font-size:.9rem;" id="ct-phone-item"></li>
+            <li class="footer-contact-item" style="color:var(--ink-soft);font-size:.9rem;" id="ct-mail-item"></li>
+            <li class="footer-contact-item" style="color:var(--ink-soft);font-size:.9rem;" id="ct-tg-item"></li>
+            <li class="footer-contact-item" style="color:var(--ink-soft);font-size:.9rem;" id="ct-hours-item"></li>
+          </ul>
+          <div class="social-row" style="margin-top:20px;" id="ct-social"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+
+<script src="js/icons.js"></script>
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/telegram.js"></script>
+<script src="js/app.js"></script>
+<script src="js/layout.js"></script>
+<script>
+function updateContactSend(){
+  const name = document.getElementById("ct-name").value.trim();
+  const phone = document.getElementById("ct-phone").value.trim();
+  const message = document.getElementById("ct-message").value.trim();
+  const lines = [`✉️ Contact — Kanharoth Cosmetics`, ""];
+  if (name) lines.push(`Name: ${name}`);
+  if (phone) lines.push(`Phone / Telegram: ${phone}`);
+  lines.push("");
+  lines.push(message || "Hi! I have a question about your products.");
+  const btn = document.getElementById("ct-send-btn");
+  btn.href = telegramDirectLink(lines.join("\n"));
+}
+function renderContact(){
+  document.getElementById("ct-addr-item").innerHTML = `${icon('mapPin')} St. 271, Phnom Penh, Cambodia`;
+  document.getElementById("ct-phone-item").innerHTML = `${icon('phone')} 016 234 567`;
+  document.getElementById("ct-mail-item").innerHTML = `${icon('mail')} hello@kanharothcosmetics.demo`;
+  document.getElementById("ct-tg-item").innerHTML = `${icon('send')} Telegram: @${TELEGRAM_CONFIG.directUsername}`;
+  document.getElementById("ct-hours-item").innerHTML = `${icon('clock')} <span data-i18n="contact_hours_val">${t('contact_hours_val')}</span>`;
+  document.getElementById("ct-social").innerHTML = `
+    <a href="${telegramGroupLink()}" target="_blank" rel="noopener" title="Telegram" style="background:var(--accent-light);color:var(--primary);">${icon('send')}</a>
+    <a href="#" title="Facebook" style="background:var(--accent-light);color:var(--primary);">${icon('facebook')}</a>
+    <a href="#" title="Instagram" style="background:var(--accent-light);color:var(--primary);">${icon('instagram')}</a>`;
+  updateContactSend();
+  applyI18n();
+}
+document.addEventListener("input", e=>{
+  if (["ct-name","ct-phone","ct-message"].includes(e.target.id)) updateContactSend();
+});
+document.addEventListener("DOMContentLoaded", renderContact);
+document.addEventListener("langchanged", renderContact);
+</script>
+</body>
+</html>
