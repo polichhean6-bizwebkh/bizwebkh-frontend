@@ -897,6 +897,7 @@ table.compare td.dbg-col b, table.compare td.norea-col b{ font-weight:600; }
 .area-pair b{ font-family:'Fraunces',serif; color:var(--ink); font-size:1.05rem; font-weight:500; text-transform:none; letter-spacing:0; }
 .price-card-body p{ margin:17px 0 22px; color:var(--ink-soft); font-size:13px; }
 .price-card-body .btn{ margin-top:auto; padding:12px 15px; font-size:10.5px; }
+.norea-unit-price strong{ font-family:'Fraunces',Georgia,serif; font-size:1.5rem; font-weight:500; color:var(--gold-deep); }
 .price-filter-bar{ display:grid; grid-template-columns:1fr 1fr 1fr 1.4fr; gap:12px; padding:18px; background:var(--paper-alt); border:1px solid var(--line); margin-bottom:18px; }
 .price-filter-bar label{ display:flex; flex-direction:column; gap:6px; font-size:10.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-soft); }
 .price-filter-bar select,.price-filter-bar input{ width:100%; border:1px solid var(--line); border-radius:0; padding:11px 10px; background:#fff; color:var(--ink); font-size:13px; outline:none; }
