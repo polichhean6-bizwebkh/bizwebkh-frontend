@@ -1,0 +1,25 @@
+/* Account-only refinements. Reserve space for the existing bottom navigation. */
+#screen-profile > .screen-scroll { min-height:0; flex:1 1 0; overflow-y:auto; overscroll-behavior:contain; padding-bottom:calc(96px + env(safe-area-inset-bottom, 0px)); scroll-padding-bottom:100px; }
+#screen-profile .menu-list { flex-shrink:0; }
+#profile-signout { width:100%; text-align:left; background:white; color:#bc4347; font-family:inherit; }
+#profile-signout .m-label { color:#bc4347; }
+#profile-signout:focus-visible { outline:3px solid #54b7ee; outline-offset:-4px; }
+#screen-login .auth-card, #screen-signup .auth-card, #screen-forgot-password .auth-card { min-height:0; overflow-y:auto; padding-bottom:32px; }
+#screen-login .auth-hero, #screen-signup .auth-hero, #screen-forgot-password .auth-hero { flex-shrink:0; }
+#screen-login .btn-primary, #screen-signup .btn-primary, #screen-forgot-password .btn-primary { width:100%; }
+.phone-field { display:flex; align-items:center; background:#f8fafc; border:1px solid var(--border-soft); border-radius:12px; overflow:hidden; }
+.phone-field .phone-prefix { font-size:12px; font-weight:700; padding:0 12px; color:var(--deep-blue-1); white-space:nowrap; }
+.phone-field .field-input { min-width:0; border:0; border-left:1px solid var(--border-soft); border-radius:0; }
+.account-hint { font-size:10.5px; line-height:1.6; color:var(--text-muted); margin:8px 0 14px; }
+.account-error { color:#b42318; font-size:12px; line-height:1.5; margin:10px 0; }
+.account-dialog { width:calc(100% - 40px); max-width:340px; border:0; border-radius:20px; padding:24px; margin:auto; color:var(--text-dark); box-shadow:0 18px 70px #14213d44; }
+.account-dialog::backdrop { background:#14213d88; }
+.account-dialog h2 { font-size:19px; line-height:1.4; margin-bottom:22px; }
+.account-dialog .btn-row { gap:10px; }
+.account-dialog button { flex:1; font-size:13px; }
+.account-dialog .confirm-signout { background:#bc4347; color:white; border-radius:12px; padding:14px; }
+@media (max-width:760px) {
+  /* Fit account screens into short viewports so the reviewer index cannot overlap them. */
+  .phone-shell:has(#screen-profile.active, #screen-login.active, #screen-signup.active, #screen-forgot-password.active) { position:relative; top:0; height:min(812px, calc(100dvh - 80px)); }
+  #screen-login .auth-hero, #screen-signup .auth-hero, #screen-forgot-password .auth-hero { padding-top:20px !important; padding-bottom:30px; }
+}

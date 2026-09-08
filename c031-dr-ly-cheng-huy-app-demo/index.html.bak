@@ -6,7 +6,6 @@
 <title>Dr Ly Cheng Huy — App Demo | BizWeb KH</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ===================== BASE / RESET ===================== */
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,16 +32,6 @@ html, body {
   --radius-sm: 12px;
   --shadow-card: 0 6px 20px rgba(11, 61, 145, 0.10);
   --shadow-btn: 0 8px 18px rgba(21, 101, 192, 0.35);
-  --accent-green: #e7f7ef;
-  --accent-green-ic: #1e9e6a;
-  --accent-orange: #fff2e2;
-  --accent-orange-ic: #d97706;
-  --accent-purple: #f2edfe;
-  --accent-purple-ic: #7c3aed;
-  --accent-pink: #fdedf3;
-  --accent-pink-ic: #db2777;
-  --accent-teal: #e5f8fa;
-  --accent-teal-ic: #0891b2;
 }
 a { text-decoration: none; color: inherit; }
 button { font-family: inherit; cursor: pointer; border: none; }
@@ -167,10 +156,6 @@ p.muted { color: var(--text-muted); font-size: 13px; line-height: 1.5; }
   border-radius: var(--radius-sm);
   border: 1.5px solid var(--deep-blue-2);
 }
-.home-hero-cta-row { display: flex; gap: 10px; margin: 16px 20px 0; }
-.home-hero-btn { flex: 1; width: auto; padding: 12px 8px; font-size: 12.5px; font-weight: 700; border-radius: var(--radius-sm); box-shadow: none; }
-.home-hero-cta-row .btn-primary.home-hero-btn { background: #fff; color: var(--deep-blue-2); }
-.btn-secondary.on-dark { background: rgba(255,255,255,0.14); color: #fff; border-color: rgba(255,255,255,0.55); }
 .btn-ghost {
   display: block;
   width: 100%;
@@ -298,18 +283,17 @@ textarea.field-input { resize: none; min-height: 90px; }
 .ob-footer { padding: 0 24px 30px; }
 
 /* ===================== HOME / DASHBOARD ===================== */
-.home-header { padding: 14px 20px 18px; color: #fff; border-bottom-left-radius: 24px; border-bottom-right-radius: 24px; }
-.home-top-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.home-top-row-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-.home-greet-name { font-size: 15.5px; font-weight: 800; line-height: 1.3; }
-.home-greet-sub { font-size: 11.5px; opacity: .8; margin-top: 10px; }
+.home-header { padding: 20px 20px 26px; color: #fff; border-bottom-left-radius: 28px; border-bottom-right-radius: 28px; }
+.home-header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.home-greet-name { font-size: 20px; font-weight: 800; }
+.home-greet-sub { font-size: 12px; opacity: .8; }
 .home-icon-btn { width: 38px; height: 38px; border-radius: 12px; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 16px; position: relative; }
 .home-icon-btn .dot { position: absolute; top: 6px; right: 6px; width: 7px; height: 7px; border-radius: 50%; background: #ff5a5f; border: 1.5px solid var(--deep-blue-1); }
 .home-search { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.16); border-radius: 14px; padding: 12px 14px; font-size: 13px; color: rgba(255,255,255,0.85); }
 
-.quick-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; padding: 0 20px; }
-.qa-card { background: #fff; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); padding: 12px 8px; text-align: center; }
-.qa-card .qa-emoji { font-size: 20px; margin-bottom: 5px; }
+.quick-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: -20px; padding: 0 20px; }
+.qa-card { background: #fff; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); padding: 14px 8px; text-align: center; }
+.qa-card .qa-emoji { font-size: 22px; margin-bottom: 6px; }
 .qa-card .qa-label { font-size: 10.5px; font-weight: 700; color: var(--text-dark); }
 
 .hscroll { display: flex; gap: 14px; overflow-x: auto; padding: 4px 20px 10px; scrollbar-width: none; }
@@ -344,8 +328,6 @@ textarea.field-input { resize: none; min-height: 90px; }
 .top-bar { display: flex; align-items: center; gap: 12px; padding: 18px 20px 6px; }
 .back-btn { width: 36px; height: 36px; border-radius: 12px; background: #fff; box-shadow: var(--shadow-card); display: flex; align-items: center; justify-content: center; font-size: 16px; }
 .top-bar-title { font-size: 16px; font-weight: 800; }
-.top-bar-title-wrap { display: flex; flex-direction: column; }
-.top-bar-eyebrow { font-size: 10px; font-weight: 700; color: var(--deep-blue-2); text-transform: uppercase; letter-spacing: .03em; margin-bottom: 1px; }
 
 /* ===================== DOCTOR PROFILE ===================== */
 .doc-hero { text-align: center; padding: 10px 24px 20px; }
@@ -394,16 +376,6 @@ textarea.field-input { resize: none; min-height: 90px; }
 .type-card .tc-title { font-size: 13.5px; font-weight: 700; }
 .type-card .tc-sub { font-size: 11px; color: var(--text-muted); }
 .type-card.selected { border-color: var(--deep-blue-2); background: #f2f8ff; }
-.type-card.sub-option { cursor: pointer; }
-.service-card { background: #fff; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding: 18px; margin-bottom: 16px; text-align: left; }
-.service-card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 6px; }
-.service-card-icon { width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(135deg, var(--deep-blue-1), var(--deep-blue-3)); display: flex; align-items: center; justify-content: center; font-size: 21px; flex-shrink: 0; }
-.service-card-title { font-size: 16px; font-weight: 800; color: var(--text-dark); }
-.service-card-desc { font-size: 12.5px; color: var(--text-muted); margin: 0 0 14px; line-height: 1.5; }
-.service-sub-row { display: flex; flex-direction: column; gap: 8px; }
-.service-link-row { display: flex; align-items: center; gap: 10px; padding: 10px 4px; border-top: 1px dashed var(--border-soft); font-size: 12.5px; font-weight: 600; color: var(--text-dark); cursor: pointer; }
-.service-link-row .slr-ic { font-size: 15px; }
-.service-link-row .slr-arrow { margin-left: auto; color: var(--text-muted); }
 .summary-row { display: flex; justify-content: space-between; padding: 11px 0; border-bottom: 1px dashed var(--border-soft); font-size: 13px; }
 .summary-row:last-child { border-bottom: none; }
 .summary-row .s-label { color: var(--text-muted); }
@@ -518,16 +490,15 @@ textarea.field-input { resize: none; min-height: 90px; }
 .notif-item .n-dot { position: absolute; top: 14px; right: 14px; width: 8px; height: 8px; border-radius: 50%; background: var(--deep-blue-2); }
 
 /* ===================== PROFILE ===================== */
-.profile-header { text-align: center; padding: 36px 20px 30px; color: #fff; border-bottom-left-radius: 32px; border-bottom-right-radius: 32px; }
-.profile-header img { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,0.6); margin: 0 auto 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-.profile-header .p-name { font-size: 19px; font-weight: 800; }
-.profile-header .p-email { font-size: 12px; opacity: .85; margin-bottom: 14px; margin-top: 4px; }
-.profile-header .edit-btn { display: inline-block; padding: 9px 20px; background: rgba(255,255,255,0.18); border-radius: 20px; font-size: 11.5px; font-weight: 700; }
-.menu-list { margin: 20px 20px; background: #fff; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden; }
-.menu-item { display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-bottom: 1px solid var(--border-soft); transition: transform .15s ease; }
+.profile-header { text-align: center; padding: 30px 20px 24px; color: #fff; border-bottom-left-radius: 28px; border-bottom-right-radius: 28px; }
+.profile-header img { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255,255,255,0.6); margin: 0 auto 10px; }
+.profile-header .p-name { font-size: 18px; font-weight: 800; }
+.profile-header .p-email { font-size: 12px; opacity: .8; margin-bottom: 12px; }
+.profile-header .edit-btn { display: inline-block; padding: 8px 18px; background: rgba(255,255,255,0.18); border-radius: 20px; font-size: 11.5px; font-weight: 700; }
+.menu-list { margin: 18px 20px; background: #fff; border-radius: var(--radius-md); box-shadow: var(--shadow-card); overflow: hidden; }
+.menu-item { display: flex; align-items: center; gap: 12px; padding: 15px 16px; border-bottom: 1px solid var(--border-soft); }
 .menu-item:last-child { border-bottom: none; }
-.menu-item:active { transform: scale(0.98); }
-.menu-item .m-ic { width: 38px; height: 38px; border-radius: 12px; background: #eaf2fd; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+.menu-item .m-ic { width: 34px; height: 34px; border-radius: 10px; background: #eaf2fd; display: flex; align-items: center; justify-content: center; font-size: 15px; }
 .menu-item .m-label { font-size: 13.5px; font-weight: 600; flex: 1; }
 .menu-item .m-arrow { color: #b7c3d6; }
 .menu-item.danger .m-label { color: var(--danger); }
@@ -569,47 +540,6 @@ textarea.field-input { resize: none; min-height: 90px; }
   .page-wrap { flex-direction: column; align-items: center; }
   .jump-panel { position: relative; top: 0; width: 375px; order: 2; }
 }
-
-/* ===================== LANGUAGE SWITCH ===================== */
-body.lang-km, body.lang-km .field-input, body.lang-km textarea { font-family: 'Noto Sans Khmer', 'Inter', sans-serif; }
-body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
-.top-bar-title { flex: 1; }
-.top-bar-title-wrap { flex: 1; }
-.lang-switch { display: inline-flex; align-items: center; gap: 0; background: rgba(120,140,170,0.14); border-radius: 20px; padding: 3px; font-size: 10.5px; font-weight: 800; margin-left: auto; flex-shrink: 0; user-select: none; }
-.lang-switch.on-dark { background: rgba(255,255,255,0.2); }
-.lang-switch .lang-opt { padding: 5px 9px; border-radius: 16px; color: var(--text-muted); }
-.lang-switch.on-dark .lang-opt { color: rgba(255,255,255,0.75); }
-.lang-switch .lang-opt.lang-active { background: var(--deep-blue-2); color: #fff; }
-.lang-switch.on-dark .lang-opt.lang-active { background: #fff; color: var(--deep-blue-2); }
-.lang-switch-abs { position: absolute; top: 16px; right: 16px; z-index: 50; }
-
-/* ===================== FREE CONTENT / HOME SECTIONS ===================== */
-.tip-card { flex: 0 0 168px; background: #fff; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); padding: 14px; }
-.tip-card .tip-ic { font-size: 20px; margin-bottom: 8px; }
-.tip-card .tip-title { font-size: 12px; font-weight: 800; margin-bottom: 4px; }
-.tip-card .tip-sub { font-size: 10.5px; color: var(--text-muted); line-height: 1.4; }
-.topic-chip-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 20px; }
-.topic-chip { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: var(--radius-sm); box-shadow: var(--shadow-card); padding: 12px; font-size: 12px; font-weight: 700; }
-.topic-chip .tp-ic { font-size: 18px; }
-.home-cta-strip { margin: 14px 20px 0; }
-.home-inline-cta { display: flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #eef4ff, #f6faff); border: 1px solid var(--border-soft); border-radius: var(--radius-md); padding: 12px 14px; cursor: pointer; }
-.home-inline-cta .ic-emoji { font-size: 18px; flex-shrink: 0; }
-.home-inline-cta .ic-text { flex: 1; font-size: 12px; font-weight: 700; color: var(--text-dark); line-height: 1.3; }
-.home-inline-cta .ic-arrow { color: var(--deep-blue-2); font-size: 16px; flex-shrink: 0; }
-
-/* ===================== GUEST / METHOD / KHQR ===================== */
-.method-note { background: #f2f8ff; border-radius: var(--radius-sm); padding: 12px 14px; font-size: 11.5px; color: var(--text-dark); margin-bottom: 14px; line-height: 1.5; }
-.khqr-badge { display: inline-block; background: linear-gradient(135deg, var(--deep-blue-1), var(--deep-blue-3)); color: #fff; font-size: 12px; font-weight: 900; letter-spacing: 1px; padding: 6px 16px; border-radius: 8px; }
-.khqr-merchant { text-align: center; margin: 14px 0 6px; }
-.khqr-merchant .km-name { font-size: 16px; font-weight: 800; }
-.khqr-merchant .km-sub { font-size: 11px; color: var(--text-muted); }
-.khqr-qr-box { width: 190px; height: 190px; margin: 18px auto; border-radius: 16px; border: 2px dashed var(--deep-blue-2); background: repeating-linear-gradient(45deg, #eaf2fd 0 6px, #ffffff 6px 12px); display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-card); }
-.khqr-qr-box .qr-inner { width: 150px; height: 150px; background: #fff; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: inset 0 0 0 6px #0b3d9111; }
-.khqr-qr-box .qr-pattern { font-size: 46px; line-height: 1; }
-.khqr-qr-box .qr-label { font-size: 10px; font-weight: 800; color: var(--deep-blue-2); margin-top: 6px; letter-spacing: 1px; }
-.khqr-instruction { text-align: center; font-size: 11.5px; color: var(--text-muted); margin: 12px 0 20px; line-height: 1.5; }
-.khqr-demo-tag { text-align: center; font-size: 10px; color: var(--warn); font-weight: 800; background: #fff4e0; border-radius: 20px; padding: 6px 12px; display: block; margin: 0 auto 16px; width: fit-content; }
-
 
 /* ===================== ATTACHMENT STEP (BOOKING) ===================== */
 .attach-card { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: var(--radius-sm); background: #fff; box-shadow: var(--shadow-card); border: 1.5px solid transparent; margin-bottom: 10px; position: relative; }
@@ -714,79 +644,7 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
 .feedback-thanks.show { display: block; }
 .followup-row { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
 
-/* ===================== MODERN HOME / SERVICE (2026 REDESIGN) ===================== */
-.app-bar { display:flex; align-items:center; justify-content:space-between; padding:20px 20px 16px; gap:10px; }
-.app-bar-brand { display:flex; flex-direction:column; min-width:0; }
-.app-bar-title { font-size:17px; font-weight:800; color:var(--text-dark); line-height:1.25; }
-.app-bar-tagline { font-size:11px; color:var(--text-muted); margin-top:3px; }
-.app-bar-right { display:flex; align-items:center; gap:8px; flex-shrink:0; }
-.icon-chip { width:38px; height:38px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:16px; position:relative; background:#eaf2fd; color:var(--deep-blue-2); flex-shrink:0; }
-.icon-chip .dot { position:absolute; top:5px; right:5px; width:7px; height:7px; border-radius:50%; background:#ff5a5f; border:1.5px solid #fff; }
-
-/* subtle tap feedback across modernized interactive cards */
-.icon-chip, .modern-card, .service-card, .type-card, .qa-card, .feature-card, .topic-chip,
-.tip-card-modern, .article-card-modern, .story-card, .svc-hub-card, .option-card-modern,
-.cat-chip, .book-hcard .book-cover, .menu-item, .daily-card {
-  transition: transform .15s ease, box-shadow .15s ease;
-}
-.icon-chip:active, .modern-card:active, .service-card:active, .type-card:active, .qa-card:active,
-.feature-card:active, .topic-chip:active, .tip-card-modern:active, .article-card-modern:active,
-.story-card:active, .svc-hub-card:active, .option-card-modern:active, .cat-chip:active,
-.book-hcard:active .book-cover, .menu-item:active {
-  transform: scale(0.97);
-}
-
-.story-card { margin:4px 20px 8px; border-radius: var(--radius-lg); overflow:hidden; background:#fff; box-shadow: var(--shadow-card); cursor:pointer; }
-.story-card img { width:100%; height:150px; object-fit:cover; }
-.story-card .story-body { padding:14px 16px 16px; }
-.cat-tag-pill { display:inline-block; font-size:9.5px; font-weight:800; letter-spacing:.4px; text-transform:uppercase; padding:4px 10px; border-radius:20px; margin-bottom:8px; }
-.story-card .story-title { font-size:15.5px; font-weight:800; color:var(--text-dark); line-height:1.35; margin-bottom:6px; }
-.story-card .story-excerpt { font-size:12px; color:var(--text-muted); line-height:1.55; margin-bottom:10px; }
-.story-read-link { font-size:12px; font-weight:800; color: var(--deep-blue-2); display:inline-flex; align-items:center; gap:4px; }
-
-.tip-card-modern { flex: 0 0 150px; background:#fff; border-radius: var(--radius-md); box-shadow: var(--shadow-card); padding:16px 14px; }
-.tip-card-modern .tip-ic-chip { width:38px; height:38px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:18px; margin-bottom:12px; }
-.tip-card-modern .tip-title { font-size:12.5px; font-weight:800; color:var(--text-dark); margin-bottom:4px; }
-.tip-card-modern .tip-sub { font-size:10.5px; color:var(--text-muted); line-height:1.5; }
-
-.article-card-modern { display:flex; gap:12px; background:#fff; border-radius: var(--radius-md); box-shadow: var(--shadow-card); padding:12px; align-items:center; margin-bottom:12px; cursor:pointer; }
-.article-card-modern .acm-thumb { width:60px; height:60px; border-radius:14px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:22px; }
-.article-card-modern .acm-cat { font-size:9.5px; font-weight:800; text-transform:uppercase; letter-spacing:.3px; }
-.article-card-modern .acm-title { font-size:13px; font-weight:700; color:var(--text-dark); margin:4px 0 3px; line-height:1.3; }
-.article-card-modern .acm-meta { font-size:10.5px; color:var(--text-muted); }
-
-.daily-card { margin:6px 20px 0; background: linear-gradient(135deg, #eef4ff, #f6faff); border-radius: var(--radius-lg); padding:16px 18px; display:flex; gap:12px; align-items:flex-start; }
-.daily-card .dc-ic { font-size:22px; flex-shrink:0; }
-.daily-card .dc-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.4px; color: var(--deep-blue-2); margin-bottom:4px; }
-.daily-card .dc-text { font-size:12px; color:var(--text-dark); line-height:1.6; }
-
-.svc-hub-card { background:#fff; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding:22px 20px; margin-bottom:16px; display:flex; align-items:flex-start; gap:14px; cursor:pointer; }
-.svc-hub-icon { width:54px; height:54px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; background: linear-gradient(135deg, var(--deep-blue-1), var(--deep-blue-3)); color:#fff; }
-.svc-hub-body { flex:1; min-width:0; }
-.svc-hub-title { font-size:16.5px; font-weight:800; color:var(--text-dark); margin-bottom:4px; }
-.svc-hub-desc { font-size:12.5px; color:var(--text-muted); line-height:1.5; margin-bottom:10px; }
-.svc-hub-link { font-size:12.5px; font-weight:800; color: var(--deep-blue-2); display:inline-flex; align-items:center; gap:4px; }
-
-.option-card-modern { display:flex; align-items:center; gap:14px; background:#fff; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); padding:16px; margin-bottom:14px; cursor:pointer; }
-.option-card-modern .oc-ic { width:50px; height:50px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
-.option-card-modern .oc-body { flex:1; min-width:0; }
-.option-card-modern .oc-title { font-size:14.5px; font-weight:800; color:var(--text-dark); }
-.option-card-modern .oc-sub { font-size:11.5px; color:var(--text-muted); margin-top:2px; line-height:1.4; }
-.option-card-modern .oc-book-btn { flex-shrink:0; padding:9px 16px; border-radius:20px; background: var(--deep-blue-2); color:#fff; font-size:11.5px; font-weight:800; }
-
-.cat-chip-row { display:flex; gap:10px; overflow-x:auto; padding:2px 20px 4px; scrollbar-width:none; }
-.cat-chip-row::-webkit-scrollbar { display:none; }
-.cat-chip { flex:0 0 auto; padding:9px 16px; border-radius:20px; font-size:12px; font-weight:700; background:#fff; box-shadow: var(--shadow-card); color:var(--text-dark); cursor:pointer; }
-
-.book-hcard { flex:0 0 108px; cursor:pointer; }
-.book-hcard .book-cover { height:140px; border-radius: var(--radius-md); }
-.book-hcard .bh-title { font-size:11px; font-weight:700; margin-top:8px; line-height:1.3; color:var(--text-dark); }
-
-.svc-section-label { font-size:11px; font-weight:800; color:var(--text-muted); text-transform:uppercase; letter-spacing:.5px; margin:22px 20px 12px; }
-.svc-section-label:first-child { margin-top:4px; }
 </style>
-<link rel="stylesheet" href="assets/consultation.css">
-<link rel="stylesheet" href="assets/account.css">
 </head>
 <body>
 <div class="page-wrap">
@@ -810,7 +668,38 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
         <div class="splash-sub">Health Talk · Trusted Care</div>
         <div class="splash-loader"><span></span><span></span><span></span></div>
         <div style="margin-top:60px;">
-          <a class="btn-secondary" style="background:transparent;color:#fff;border-color:rgba(255,255,255,0.5);" onclick="showScreen('screen-home')">Enter App →</a>
+          <a class="btn-secondary" style="background:transparent;color:#fff;border-color:rgba(255,255,255,0.5);" onclick="showScreen('screen-onboarding')">Continue to Onboarding →</a>
+        </div>
+      </div>
+
+      <!-- ============================================================ -->
+      <!-- 2. ONBOARDING -->
+      <!-- ============================================================ -->
+      <div class="screen bg-gradient-blue" id="screen-onboarding">
+        <div class="status-bar"><span>9:41</span><span>●●●●  📶  🔋</span></div>
+        <div class="ob-skip"><a onclick="obSkip()">Skip</a></div>
+
+        <div class="ob-slide active" data-i="0">
+          <div class="ob-icon-circle">🩺</div>
+          <h2>Consult Dr Ly Cheng Huy Online</h2>
+          <p>Connect securely with Dr Ly Cheng Huy over video — no clinic visit required.</p>
+        </div>
+        <div class="ob-slide" data-i="1">
+          <div class="ob-icon-circle">📚</div>
+          <h2>Read Trusted Health Content</h2>
+          <p>Access articles, videos and e-books written by Dr Ly Cheng Huy, in both Khmer and English.</p>
+        </div>
+        <div class="ob-slide" data-i="2">
+          <div class="ob-icon-circle">📈</div>
+          <h2>Track Your Health Journey</h2>
+          <p>Keep your appointment history, reading progress and reminders all in one simple, secure place.</p>
+        </div>
+
+        <div class="ob-dots">
+          <span class="active"></span><span></span><span></span>
+        </div>
+        <div class="ob-footer">
+          <a class="btn-primary" id="ob-next-btn" onclick="obNext()">Next</a>
         </div>
       </div>
 
@@ -824,7 +713,30 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
           <h1>Welcome Back</h1>
           <p>Sign in to continue your health journey</p>
         </div>
-        <form id="login-form" class="auth-card screen-scroll" onsubmit="event.preventDefault();doLogin()"><div class="field-group"><label class="field-label" for="login-phone">Phone Number</label><div class="phone-field"><span class="phone-prefix">KH +855</span><input class="field-input" id="login-phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="12 345 678" required aria-describedby="login-phone-hint"></div><p class="account-hint" id="login-phone-hint">Cambodia · e.g. +855 12 345 678</p></div><div class="field-group"><label class="field-label" for="login-password">Password</label><input class="field-input" id="login-password" type="password" autocomplete="current-password" placeholder="Password" required minlength="8"></div><a class="forgot-link" onclick="showScreen('screen-forgot-password')">Forgot password?</a><p class="account-error" id="login-error" role="alert"></p><button class="btn-primary" type="submit">Log In</button><p class="account-hint">Demo sign-in · Use a sample phone and any password with at least 8 characters.</p><p class="link-center">Don't have an account? <b><a onclick="showScreen('screen-signup')">Sign Up</a></b></p></form>
+        <div class="auth-card">
+          <div class="field-group">
+            <label class="field-label">Email Address</label>
+            <div class="field-icon-wrap">
+              <span class="fi-icon">✉️</span>
+              <input class="field-input" type="email" placeholder="sokha@email.com" value="sokha@email.com">
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Password</label>
+            <div class="field-icon-wrap">
+              <span class="fi-icon">🔒</span>
+              <input class="field-input" type="password" placeholder="••••••••" value="••••••••">
+            </div>
+          </div>
+          <a class="forgot-link" onclick="showScreen('screen-forgot-password')">Forgot password?</a>
+          <a class="btn-primary" onclick="showScreen('screen-home')">Log In</a>
+          <div class="divider-row"><span class="line"></span><span>OR CONTINUE WITH</span><span class="line"></span></div>
+          <div class="social-row">
+            <a class="social-btn">🔵 Google</a>
+            <a class="social-btn">📘 Facebook</a>
+          </div>
+          <p class="link-center">Don't have an account? <b><a onclick="showScreen('screen-signup')">Sign up</a></b></p>
+        </div>
       </div>
 
       <!-- ============================================================ -->
@@ -837,7 +749,26 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
           <h1>Create Account</h1>
           <p>Join 188K+ people learning healthy habits</p>
         </div>
-        <form id="signup-form" class="auth-card screen-scroll" onsubmit="event.preventDefault();doSignup()"><div class="field-group"><label class="field-label" for="signup-name">Full Name</label><input class="field-input" type="text" id="signup-name" placeholder="Sokha Chan" autocomplete="name" required></div><div class="field-group"><label class="field-label" for="signup-phone">Phone Number</label><div class="phone-field"><span class="phone-prefix">KH +855</span><input class="field-input" id="signup-phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="12 345 678" required aria-describedby="signup-phone-hint"></div><p class="account-hint" id="signup-phone-hint">Cambodia · e.g. +855 12 345 678</p></div><div class="field-group"><label class="field-label" for="signup-password">Password</label><input class="field-input" id="signup-password" type="password" autocomplete="new-password" placeholder="Password" required minlength="8"></div><div class="field-group"><label class="field-label" for="signup-confirm">Confirm Password</label><input class="field-input" id="signup-confirm" type="password" autocomplete="new-password" placeholder="Confirm Password" required minlength="8"></div><p class="account-error" id="signup-error" role="alert"></p><button class="btn-primary" type="submit">Sign Up</button><p class="account-hint">Demo account only · No SMS verification or account is created on a server.</p><p class="link-center">Already have an account? <b><a onclick="showScreen('screen-login')">Log In</a></b></p></form>
+        <div class="auth-card screen-scroll">
+          <div class="field-group">
+            <label class="field-label">Full Name</label>
+            <input class="field-input" type="text" placeholder="Sokha Chan" value="Sokha Chan">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Email Address</label>
+            <input class="field-input" type="email" placeholder="sokha@email.com">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Phone Number</label>
+            <input class="field-input" type="tel" placeholder="+855 12 345 678">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Password</label>
+            <input class="field-input" type="password" placeholder="Create a password">
+          </div>
+          <a class="btn-primary" style="margin-top:6px;" onclick="showScreen('screen-home')">Sign Up</a>
+          <p class="link-center">Already have an account? <b><a onclick="showScreen('screen-login')">Log in</a></b></p>
+        </div>
       </div>
 
       <!-- ============================================================ -->
@@ -848,115 +779,92 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
         <div class="auth-hero">
           <div class="logo-badge">🔑</div>
           <h1>Forgot Password?</h1>
-          <p>Enter your phone number to request a reset code</p>
+          <p>Enter your email and we'll send you a reset link</p>
         </div>
-        <form id="reset-form" class="auth-card screen-scroll" onsubmit="event.preventDefault();demoPhoneReset()"><div class="field-group"><label class="field-label" for="reset-phone">Phone Number</label><div class="phone-field"><span class="phone-prefix">KH +855</span><input class="field-input" id="reset-phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="12 345 678" required aria-describedby="reset-phone-hint"></div><p class="account-hint" id="reset-phone-hint">Cambodia · e.g. +855 12 345 678</p></div><p class="account-error" id="reset-error" role="alert"></p><button class="btn-primary" type="submit">Request Reset Code</button><p class="account-hint" id="reset-result" role="status"></p><p class="link-center"><b><a onclick="showScreen('screen-login')">← Back to Login</a></b></p></form>
+        <div class="auth-card">
+          <div class="field-group">
+            <label class="field-label">Email Address</label>
+            <input class="field-input" type="email" placeholder="sokha@email.com">
+          </div>
+          <a class="btn-primary" onclick="showScreen('screen-login')">Send Reset Link</a>
+          <p class="link-center"><b><a onclick="showScreen('screen-login')">← Back to Login</a></b></p>
+        </div>
       </div>
 
       <!-- ============================================================ -->
       <!-- 6. HOME DASHBOARD -->
       <!-- ============================================================ -->
       <div class="screen" id="screen-home">
-        <div class="status-bar dark" style="position:absolute; z-index:200; width:100%;"><span>9:41</span><span>●●●●  📶  🔋</span></div>
+        <div class="status-bar dark" style="position:absolute; z-index:200; width:100%; color:#fff;"><span>9:41</span><span>●●●●  📶  🔋</span></div>
         <div class="screen-scroll">
-          <div style="height:32px;"></div>
-          <div class="app-bar">
-            <div class="app-bar-brand">
-              <div class="app-bar-title" data-en="Dr Ly Cheng Huy" data-km="វេជ្ជបណ្ឌិត លី ចេង ហួយ">Dr Ly Cheng Huy</div>
-              <div class="app-bar-tagline" data-en="Health tips &amp; stories for every Khmer family" data-km="គន្លឹះ និងរឿងរ៉ាវសុខភាព សម្រាប់គ្រួសារខ្មែរគ្រប់គ្នា">Health tips &amp; stories for every Khmer family</div>
+          <div class="home-header bg-gradient-blue">
+            <div style="height:26px;"></div>
+            <div class="home-header-top">
+              <div>
+                <div class="home-greet-name">Good morning, Sokha 👋</div>
+                <div class="home-greet-sub">Let's take care of your health today</div>
+              </div>
+              <div class="home-icon-btn" onclick="showScreen('screen-notifications')">🔔<span class="dot"></span></div>
             </div>
-            <div class="app-bar-right">
-              <div class="lang-switch"><span class="lang-opt lang-active" data-lang-btn="en" onclick="setAppLanguage('en')">EN</span><span class="lang-opt" data-lang-btn="km" onclick="setAppLanguage('km')">KH</span></div>
-              <div class="icon-chip" onclick="showScreen('screen-notifications')">🔔<span class="dot"></span></div>
-            </div>
+            <div class="home-search">🔍 Search articles, doctors, videos...</div>
           </div>
 
-          <div class="story-card" onclick="showScreen('screen-article-detail')">
-            <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=900&q=80" alt="Featured health story">
-            <div class="story-body">
-              <span class="cat-tag-pill" style="background:var(--accent-orange); color:var(--accent-orange-ic);" data-en="Featured Story" data-km="រឿងពិសេស">Featured Story</span>
-              <div class="story-title" data-en="5 Ways to Manage High Blood Pressure Naturally" data-km="វិធី ៥ យ៉ាងក្នុងការគ្រប់គ្រងសម្ពាធឈាមខ្ពស់ដោយធម្មជាតិ">5 Ways to Manage High Blood Pressure Naturally</div>
-              <p class="story-excerpt" data-en="Simple, everyday habits — from diet to movement — that can help keep your blood pressure in a healthy range." data-km="ទម្លាប់ធម្មតារាល់ថ្ងៃ — ចាប់ពីរបបអាហារ រហូតដល់ការធ្វើលំហាត់ប្រាណ — ដែលអាចជួយរក្សាសម្ពាធឈាមឱ្យស្ថិតក្នុងកម្រិតល្អ។">Simple, everyday habits — from diet to movement — that can help keep your blood pressure in a healthy range.</p>
-              <span class="story-read-link" data-en="Read Story →" data-km="អានរឿង →">Read Story →</span>
-            </div>
+          <div class="quick-actions">
+            <div class="qa-card" onclick="showScreen('screen-consultation-intro')"><div class="qa-emoji">🩺</div><div class="qa-label">Book<br>Consultation</div></div>
+            <div class="qa-card" onclick="showScreen('screen-articles')"><div class="qa-emoji">📰</div><div class="qa-label">Browse<br>Articles</div></div>
+            <div class="qa-card" onclick="showScreen('screen-ebooks')"><div class="qa-emoji">📖</div><div class="qa-label">E-Books</div></div>
           </div>
 
-          <h2 class="section-title" style="padding:0 20px;" data-en="Free Health Tips" data-km="គន្លឹះសុខភាពឥតគិតថ្លៃ">Free Health Tips</h2>
+          <h2 class="section-title" style="padding:0 20px;">Featured for You <a class="see-all" onclick="showScreen('screen-articles')">See all</a></h2>
           <div class="hscroll">
-            <div class="tip-card-modern"><div class="tip-ic-chip" style="background:var(--accent-teal); color:var(--accent-teal-ic);">💧</div><div class="tip-title" data-en="Stay Hydrated" data-km="ផឹកទឹកឱ្យបានគ្រប់គ្រាន់">Stay Hydrated</div><div class="tip-sub" data-en="Drink at least 8 glasses of water a day, more in hot weather." data-km="ផឹកទឹកយ៉ាងតិច ៨ កែវក្នុងមួយថ្ងៃ បន្ថែមទៀតនៅពេលអាកាសធាតុក្តៅ។">Drink at least 8 glasses of water a day, more in hot weather.</div></div>
-            <div class="tip-card-modern"><div class="tip-ic-chip" style="background:var(--accent-orange); color:var(--accent-orange-ic);">🧂</div><div class="tip-title" data-en="Cut Back on Salt" data-km="កាត់បន្ថយអំបិល">Cut Back on Salt</div><div class="tip-sub" data-en="Use fresh herbs like lemongrass and ginger instead of extra salt." data-km="ប្រើគ្រឿងទេសស្រស់ដូចជាស្លឹកគ្រៃ និងខ្ញី ជំនួសអំបិលបន្ថែម។">Use fresh herbs like lemongrass and ginger instead of extra salt.</div></div>
-            <div class="tip-card-modern"><div class="tip-ic-chip" style="background:var(--accent-green); color:var(--accent-green-ic);">🚶</div><div class="tip-title" data-en="Move Daily" data-km="ធ្វើចលនារាល់ថ្ងៃ">Move Daily</div><div class="tip-sub" data-en="Just 30 minutes of walking can lower blood pressure over time." data-km="ការដើរគ្រាន់តែ ៣០ នាទីអាចកាត់បន្ថយសម្ពាធឈាមតាមពេលវេលា។">Just 30 minutes of walking can lower blood pressure over time.</div></div>
-            <div class="tip-card-modern"><div class="tip-ic-chip" style="background:var(--accent-purple); color:var(--accent-purple-ic);">😴</div><div class="tip-title" data-en="Sleep 7-8 Hours" data-km="គេង ៧-៨ ម៉ោង">Sleep 7-8 Hours</div><div class="tip-sub" data-en="Good sleep supports healthy blood pressure and mental wellness." data-km="ការគេងលក់ស្រួលជួយគាំទ្រសម្ពាធឈាម និងសុខភាពផ្លូវចិត្តល្អ។">Good sleep supports healthy blood pressure and mental wellness.</div></div>
-          </div>
-
-          <h2 class="section-title" style="padding:0 20px;"><span data-en="Latest Articles" data-km="អត្ថបទថ្មីៗ">Latest Articles</span><a class="see-all" onclick="showScreen('screen-articles')" data-en="See all" data-km="មើលទាំងអស់">See all</a></h2>
-          <div class="screen-content" style="padding:0 20px;">
-            <div class="article-card-modern" onclick="showScreen('screen-article-detail')">
-              <div class="acm-thumb" style="background:var(--accent-pink);">❤️</div>
-              <div style="flex:1; min-width:0;">
-                <div class="acm-cat" style="color:var(--accent-pink-ic);" data-en="Cardiology" data-km="ជំងឺបេះដូង">Cardiology</div>
-                <div class="acm-title" data-en="5 Ways to Manage High Blood Pressure Naturally" data-km="វិធី ៥ យ៉ាងគ្រប់គ្រងសម្ពាធឈាមខ្ពស់">5 Ways to Manage High Blood Pressure Naturally</div>
-                <div class="acm-meta" data-en="4 min read" data-km="អាន ៤ នាទី">4 min read</div>
-              </div>
+            <div class="feature-card" onclick="showScreen('screen-article-detail')">
+              <img src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&q=80" alt="Blood pressure">
+              <div class="fc-body"><div class="fc-tag">Cardiology</div><div class="fc-title">5 Ways to Manage High Blood Pressure Naturally</div></div>
             </div>
-            <div class="article-card-modern" onclick="showScreen('screen-article-detail')">
-              <div class="acm-thumb" style="background:var(--accent-green);">🥗</div>
-              <div style="flex:1; min-width:0;">
-                <div class="acm-cat" style="color:var(--accent-green-ic);" data-en="Nutrition" data-km="អាហារូបត្ថម្ភ">Nutrition</div>
-                <div class="acm-title" data-en="Building a Balanced Khmer Family Diet" data-km="បង្កើតរបបអាហារគ្រួសារខ្មែរឱ្យមានតុល្យភាព">Building a Balanced Khmer Family Diet</div>
-                <div class="acm-meta" data-en="5 min read" data-km="អាន ៥ នាទី">5 min read</div>
-              </div>
+            <div class="feature-card" onclick="showScreen('screen-video-detail')">
+              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80" alt="Nutrition">
+              <div class="fc-body"><div class="fc-tag">Nutrition</div><div class="fc-title">Building a Balanced Khmer Family Diet</div></div>
             </div>
-            <div class="article-card-modern" onclick="showScreen('screen-article-detail')">
-              <div class="acm-thumb" style="background:var(--accent-purple);">🧠</div>
-              <div style="flex:1; min-width:0;">
-                <div class="acm-cat" style="color:var(--accent-purple-ic);" data-en="Mental Health" data-km="សុខភាពផ្លូវចិត្ត">Mental Health</div>
-                <div class="acm-title" data-en="Managing Stress in a Busy Work Life" data-km="គ្រប់គ្រងភាពតានតឹងក្នុងជីវិតការងារមមាញឹក">Managing Stress in a Busy Work Life</div>
-                <div class="acm-meta" data-en="3 min read" data-km="អាន ៣ នាទី">3 min read</div>
-              </div>
+            <div class="feature-card" onclick="showScreen('screen-article-detail')">
+              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80" alt="Mental health">
+              <div class="fc-body"><div class="fc-tag">Mental Health</div><div class="fc-title">Managing Stress in a Busy Work Life</div></div>
             </div>
           </div>
 
-          <h2 class="section-title" style="padding:0 20px;"><span data-en="Watch &amp; Learn" data-km="មើល និងសិក្សា">Watch &amp; Learn</span><a class="see-all" onclick="showScreen('screen-videos')" data-en="See all" data-km="មើលទាំងអស់">See all</a></h2>
+          <div class="doctor-spotlight">
+            <img src="assets/doctor-profile.jpg" alt="Dr Ly Cheng Huy">
+            <div style="flex:1;">
+              <div class="ds-name">Dr Ly Cheng Huy</div>
+              <div class="ds-role">Internal Medicine · 188K followers</div>
+              <a class="ds-btn" onclick="showScreen('screen-doctor-profile')">View Profile</a>
+            </div>
+          </div>
+
+          <h2 class="section-title" style="padding:0 20px;">Popular Videos <a class="see-all" onclick="showScreen('screen-videos')">See all</a></h2>
           <div class="hscroll">
-            <div class="feature-card watch-card" onclick="showScreen('screen-video-detail')">
+            <div class="feature-card" onclick="showScreen('screen-video-detail')">
               <div class="video-thumb" style="height:110px; background-image:url('https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&q=80');">
                 <div class="play-ov"><div class="p-btn">▶</div></div>
                 <div class="duration">04:12</div>
               </div>
-              <div class="fc-body"><div class="fc-tag" data-en="Preventive Care" data-km="ការថែទាំបង្ការ">Preventive Care</div><div class="fc-title" data-en="Annual Health Checkup: What to Expect" data-km="ការពិនិត្យសុខភាពប្រចាំឆ្នាំ៖ អ្វីខ្លះដែលត្រូវរំពឹង">Annual Health Checkup: What to Expect</div></div>
+              <div class="fc-body"><div class="fc-tag">Preventive Care</div><div class="fc-title">Annual Health Checkup: What to Expect</div></div>
             </div>
-            <div class="feature-card watch-card" onclick="showScreen('screen-video-detail')">
+            <div class="feature-card" onclick="showScreen('screen-video-detail')">
               <div class="video-thumb" style="height:110px; background-image:url('https://images.unsplash.com/photo-1550831107-1553da8c8464?w=800&q=80');">
                 <div class="play-ov"><div class="p-btn">▶</div></div>
                 <div class="duration">06:45</div>
               </div>
-              <div class="fc-body"><div class="fc-tag" data-en="Family Health" data-km="សុខភាពគ្រួសារ">Family Health</div><div class="fc-title" data-en="Vaccination Schedule for Children" data-km="កាលវិភាគចាក់វ៉ាក់សាំងសម្រាប់កុមារ">Vaccination Schedule for Children</div></div>
+              <div class="fc-body"><div class="fc-tag">Family Health</div><div class="fc-title">Vaccination Schedule for Children</div></div>
             </div>
           </div>
-
-          <h2 class="section-title" style="padding:0 20px;" data-en="Health Topics" data-km="ប្រធានបទសុខភាព">Health Topics</h2>
-          <div class="topic-chip-grid">
-            <div class="topic-chip" onclick="showScreen('screen-articles')"><span class="tp-ic">❤️</span><span data-en="Heart Health" data-km="សុខភាពបេះដូង">Heart Health</span></div>
-            <div class="topic-chip" onclick="showScreen('screen-articles')"><span class="tp-ic">🥗</span><span data-en="Nutrition" data-km="អាហារូបត្ថម្ភ">Nutrition</span></div>
-            <div class="topic-chip" onclick="showScreen('screen-articles')"><span class="tp-ic">🩸</span><span data-en="Diabetes" data-km="ជំងឺទឹកនោមផ្អែម">Diabetes</span></div>
-            <div class="topic-chip" onclick="showScreen('screen-articles')"><span class="tp-ic">🧠</span><span data-en="Mental Wellness" data-km="សុខភាពផ្លូវចិត្ត">Mental Wellness</span></div>
-          </div>
-
-          <div class="daily-card">
-            <div class="dc-ic">💡</div>
-            <div>
-              <div class="dc-label" data-en="Did You Know?" data-km="តើអ្នកដឹងទេ?">Did You Know?</div>
-              <div class="dc-text" data-en="Laughing for 15 minutes can burn about the same calories as a 10-minute walk — and it's great for your heart too!" data-km="សើចអស់រយៈពេល ១៥ នាទី អាចដុតកាឡូរីស្មើនឹងការដើររយៈពេល ១០ នាទី — ហើយវាល្អសម្រាប់បេះដូងផងដែរ!">Laughing for 15 minutes can burn about the same calories as a 10-minute walk — and it's great for your heart too!</div>
-            </div>
-          </div>
-
-          <div style="height:100px;"></div>
+          <div style="height:16px;"></div>
         </div>
         <div class="tab-bar">
-          <div class="tab-item tab-home tab-active" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span><span data-en="Home" data-km="ទំព័រដើម">Home</span></div>
-          <div class="tab-item tab-service" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span><span data-en="Service" data-km="សេវាកម្ម">Service</span></div>
-          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span><span data-en="Profile" data-km="ប្រវត្តិរូប">Profile</span></div>
+          <div class="tab-item tab-home tab-active" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span>Home</div>
+          <div class="tab-item tab-consult" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span>Consult</div>
+          <div class="tab-item tab-content" onclick="showScreen('screen-articles')"><span class="tab-ic">📰</span>Content</div>
+          <div class="tab-item tab-library" onclick="showScreen('screen-my-library')"><span class="tab-ic">📚</span>Library</div>
+          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span>Profile</div>
         </div>
       </div>
 
@@ -999,174 +907,294 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
       <!-- 8. CONSULTATION INTRO -->
       <!-- ============================================================ -->
       <div class="screen" id="screen-consultation-intro">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-home')">←</div><div class="top-bar-title">Online Consultation</div></div>
         <div class="screen-scroll">
-          <div class="screen-content" style="position:relative;">
-            <div class="lang-switch lang-switch-abs"><span class="lang-opt lang-active" data-lang-btn="en" onclick="setAppLanguage('en')">EN</span><span class="lang-opt" data-lang-btn="km" onclick="setAppLanguage('km')">KH</span></div>
-            <h1 class="scr-title" style="padding:0 0 4px;" data-en="Services" data-km="សេវាកម្ម">Services</h1>
-            <p class="muted" style="margin-bottom:20px;" data-en="No account needed — book a consultation or explore our health e-books." data-km="មិនចាំបាច់មានគណនីទេ — ណាត់ជួបពិគ្រោះជំងឺ ឬស្វែងរកសៀវភៅសុខភាព។">No account needed — book a consultation or explore our health e-books.</p>
+          <div class="screen-content no-tab-pad" style="text-align:center;">
+            <div class="intro-hero-icon">🩺</div>
+            <h1 class="scr-title" style="text-align:center;">Talk to a Doctor, Anywhere</h1>
+            <p class="muted" style="margin-bottom:22px;">Get medical advice directly from Dr Ly Cheng Huy without leaving home.</p>
 
-            <!-- SERVICE 1: ONLINE CONSULTING -->
-            <div class="svc-hub-card" onclick="showScreen('screen-online-consulting')">
-              <div class="svc-hub-icon">🩺</div>
-              <div class="svc-hub-body">
-                <div class="svc-hub-title" data-en="Online Consulting" data-km="ពិគ្រោះជំងឺអនឡាញ">Online Consulting</div>
-                <p class="svc-hub-desc" data-en="Consult inside the app or via Telegram, with optional video." data-km="ទទួលបានការពិគ្រោះជំងឺយ៉ាងឆាប់រហ័ស និងងាយស្រួល តាម Telegram ឬវីដេអូក្នុងកម្មវិធី។">Consult inside the app or via Telegram, with optional video.</p>
-                <span class="svc-hub-link" data-en="Explore →" data-km="ស្វែងរក →">Explore →</span>
-              </div>
+            <div class="benefit-item">
+              <div class="b-ic">⚡</div>
+              <div><div class="b-title">Fast Response</div><div class="b-sub">Connect with a doctor in under 15 minutes</div></div>
             </div>
-
-            <!-- SERVICE 2: E-BOOK -->
-            <div class="svc-hub-card" onclick="showScreen('screen-ebook-service')">
-              <div class="svc-hub-icon" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);">📚</div>
-              <div class="svc-hub-body">
-                <div class="svc-hub-title" data-en="E-Book" data-km="សៀវភៅអេឡិចត្រូនិក">E-Book</div>
-                <p class="svc-hub-desc" data-en="Browse and purchase health e-books for self-learning and family care." data-km="មើល និងទិញសៀវភៅសុខភាពសម្រាប់សិក្សាដោយខ្លួនឯង និងថែទាំគ្រួសារ។">Browse and purchase health e-books for self-learning and family care.</p>
-                <span class="svc-hub-link" data-en="Explore →" data-km="ស្វែងរក →">Explore →</span>
-              </div>
+            <div class="benefit-item">
+              <div class="b-ic">🔒</div>
+              <div><div class="b-title">100% Confidential</div><div class="b-sub">Your health data is encrypted and private</div></div>
             </div>
-
-            <a class="btn-ghost" onclick="showScreen('screen-my-appointments')" data-en="View My Appointments" data-km="មើលការណាត់ជួបរបស់ខ្ញុំ">View My Appointments</a>
+            <div class="benefit-item">
+              <div class="b-ic">💵</div>
+              <div><div class="b-title">Affordable Pricing</div><div class="b-sub">Consultations starting from $8 USD</div></div>
+            </div>
+            <div class="benefit-item">
+              <div class="b-ic">🎓</div>
+              <div><div class="b-title">Licensed &amp; Verified</div><div class="b-sub">Dr Ly Cheng Huy — verified medical credentials</div></div>
+            </div>
+            <div style="height:8px;"></div>
+            <a class="btn-primary" onclick="showScreen('screen-book-consultation')">Start Booking</a>
           </div>
-        </div>
-        <div class="tab-bar">
-          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span><span data-en="Home" data-km="ទំព័រដើម">Home</span></div>
-          <div class="tab-item tab-service tab-active" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span><span data-en="Service" data-km="សេវាកម្ម">Service</span></div>
-          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span><span data-en="Profile" data-km="ប្រវត្តិរូប">Profile</span></div>
-        </div>
-      </div>
-
-      <!-- ============================================================ -->
-      <!-- 8b. ONLINE CONSULTING DETAIL -->
-      <!-- ============================================================ -->
-<div class="screen consult-flow" id="screen-app-consulting-detail"><div class="top-bar"><button class="back-btn" aria-label="Back to Online Consulting" onclick="showScreen('screen-online-consulting')">←</button><div class="top-bar-title">On-App Consulting</div></div><div class="screen-scroll"><div class="screen-content no-tab-pad"></div></div></div>
-<div class="screen consult-flow" id="screen-telegram-consulting-detail"><div class="top-bar"><button class="back-btn" aria-label="Back to Online Consulting" onclick="showScreen('screen-online-consulting')">←</button><div class="top-bar-title">Telegram Consulting</div></div><div class="screen-scroll"><div class="screen-content no-tab-pad"></div></div></div>
-      <div class="screen consult-flow" id="screen-online-consulting"><div class="top-bar"><div class="back-btn" onclick="showScreen('screen-consultation-intro')">←</div>
-          <div class="top-bar-title-wrap">
-            <div class="top-bar-eyebrow" data-en="Service" data-km="សេវាកម្ម">Service</div>
-            <div class="top-bar-title" data-en="Online Consulting" data-km="ពិគ្រោះជំងឺអនឡាញ">Online Consulting</div>
-          </div>
-          <div class="lang-switch"><span class="lang-opt lang-active" data-lang-btn="en" onclick="setAppLanguage('en')">EN</span><span class="lang-opt" data-lang-btn="km" onclick="setAppLanguage('km')">KH</span></div>
-        </div><div class="screen-scroll"><div class="screen-content "></div></div>        <div class="tab-bar">
-          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span><span data-en="Home" data-km="ទំព័រដើម">Home</span></div>
-          <div class="tab-item tab-service tab-active" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span><span data-en="Service" data-km="សេវាកម្ម">Service</span></div>
-          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span><span data-en="Profile" data-km="ប្រវត្តិរូប">Profile</span></div>
-        </div></div>
-
-      <!-- ============================================================ -->
-      <!-- 8c. E-BOOK SERVICE HUB -->
-      <!-- ============================================================ -->
-      <div class="screen" id="screen-ebook-service">
-        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-consultation-intro')">←</div>
-          <div class="top-bar-title-wrap">
-            <div class="top-bar-eyebrow" data-en="Service" data-km="សេវាកម្ម">Service</div>
-            <div class="top-bar-title" data-en="E-Book" data-km="សៀវភៅអេឡិចត្រូនិក">E-Book</div>
-          </div>
-          <div class="lang-switch"><span class="lang-opt lang-active" data-lang-btn="en" onclick="setAppLanguage('en')">EN</span><span class="lang-opt" data-lang-btn="km" onclick="setAppLanguage('km')">KH</span></div>
-        </div>
-        <div class="screen-scroll">
-          <div class="screen-content" style="padding-top:6px;">
-
-            <div class="svc-hub-card" onclick="showScreen('screen-ebooks')">
-              <div class="svc-hub-icon" style="background:linear-gradient(135deg,#0b3d91,#1e88e5);">📖</div>
-              <div class="svc-hub-body">
-                <div class="svc-hub-title" data-en="Browse E-Book Library" data-km="មើលបណ្ណាល័យសៀវភៅ">Browse E-Book Library</div>
-                <p class="svc-hub-desc" data-en="Explore the full collection of health e-books by Dr Ly Cheng Huy." data-km="ស្វែងរកសៀវភៅសុខភាពទាំងអស់ដោយវេជ្ជបណ្ឌិត លី ចេង ហួយ។">Explore the full collection of health e-books by Dr Ly Cheng Huy.</p>
-                <span class="svc-hub-link" data-en="Explore →" data-km="ស្វែងរក →">Explore →</span>
-              </div>
-            </div>
-
-            <div class="svc-hub-card" onclick="showScreen('screen-my-library')">
-              <div class="svc-hub-icon" style="background:linear-gradient(135deg,#0f9b6c,#34d399);">💾</div>
-              <div class="svc-hub-body">
-                <div class="svc-hub-title" data-en="My Library" data-km="បណ្ណាល័យរបស់ខ្ញុំ">My Library</div>
-                <p class="svc-hub-desc" data-en="Continue reading books you've purchased or saved." data-km="បន្តអានសៀវភៅដែលអ្នកបានទិញ ឬរក្សាទុក។">Continue reading books you've purchased or saved.</p>
-                <span class="svc-hub-link" data-en="Open →" data-km="បើក →">Open →</span>
-              </div>
-            </div>
-
-            <h2 class="section-title" style="padding:0;" data-en="Categories" data-km="ប្រភេទ">Categories</h2>
-            <div class="cat-chip-row" style="padding:0 0 4px;">
-              <div class="cat-chip" onclick="showScreen('screen-ebooks')" data-en="❤️ Heart Health" data-km="❤️ សុខភាពបេះដូង">❤️ Heart Health</div>
-              <div class="cat-chip" onclick="showScreen('screen-ebooks')" data-en="🥗 Nutrition" data-km="🥗 អាហារូបត្ថម្ភ">🥗 Nutrition</div>
-              <div class="cat-chip" onclick="showScreen('screen-ebooks')" data-en="🧠 Mental Wellness" data-km="🧠 សុខភាពផ្លូវចិត្ត">🧠 Mental Wellness</div>
-              <div class="cat-chip" onclick="showScreen('screen-ebooks')" data-en="🩸 Diabetes" data-km="🩸 ជំងឺទឹកនោមផ្អែម">🩸 Diabetes</div>
-              <div class="cat-chip" onclick="showScreen('screen-ebooks')" data-en="👶 Family" data-km="👶 គ្រួសារ">👶 Family</div>
-            </div>
-
-            <h2 class="section-title" data-en="Featured &amp; Recent Books" data-km="សៀវភៅពិសេស និងថ្មីៗ">Featured &amp; Recent Books</h2>
-            <div class="hscroll" style="padding-left:0; padding-right:0;">
-              <div class="book-hcard" onclick="showScreen('screen-ebook-detail')">
-                <div class="book-cover" style="background:linear-gradient(160deg,#0b3d91,#1e88e5);"><div class="bc-emoji">❤️</div><div class="bc-title">Healthy Heart Handbook</div></div>
-                <div class="bh-title">Healthy Heart Handbook</div>
-              </div>
-              <div class="book-hcard" onclick="showScreen('screen-ebook-detail')">
-                <div class="book-cover" style="background:linear-gradient(160deg,#0f9b6c,#34d399);"><div class="bc-emoji">🥗</div><div class="bc-title">Khmer Nutrition Guide</div></div>
-                <div class="bh-title">Khmer Nutrition Guide</div>
-              </div>
-              <div class="book-hcard" onclick="showScreen('screen-ebook-detail')">
-                <div class="book-cover" style="background:linear-gradient(160deg,#7c3aed,#a78bfa);"><div class="bc-emoji">🧠</div><div class="bc-title">Mind &amp; Mental Wellness</div></div>
-                <div class="bh-title">Mind &amp; Mental Wellness</div>
-              </div>
-              <div class="book-hcard" onclick="showScreen('screen-ebook-detail')">
-                <div class="book-cover" style="background:linear-gradient(160deg,#e11d48,#fb7185);"><div class="bc-emoji">🩸</div><div class="bc-title">Managing Diabetes Daily</div></div>
-                <div class="bh-title">Managing Diabetes Daily</div>
-              </div>
-            </div>
-
-            <div style="height:6px;"></div>
-          </div>
-        </div>
-        <div class="tab-bar">
-          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span><span data-en="Home" data-km="ទំព័រដើម">Home</span></div>
-          <div class="tab-item tab-service tab-active" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span><span data-en="Service" data-km="សេវាកម្ម">Service</span></div>
-          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span><span data-en="Profile" data-km="ប្រវត្តិរូប">Profile</span></div>
         </div>
       </div>
 
       <!-- ============================================================ -->
       <!-- 9. BOOK CONSULTATION (WIZARD) -->
       <!-- ============================================================ -->
-      <div class="screen consult-flow" id="screen-book-consultation"><div class="top-bar"><div class="back-btn" onclick="bookBack()">←</div>
-          <div class="top-bar-title-wrap">
-            <div class="top-bar-eyebrow" data-en="Service" data-km="សេវាកម្ម">Service</div>
-            <div class="top-bar-title" data-en="Book Consultation" data-km="ណាត់ជួបពិគ្រោះជំងឺ">Book Consultation</div>
+      <div class="screen" id="screen-book-consultation">
+        <div class="top-bar"><div class="back-btn" onclick="bookBack()">←</div><div class="top-bar-title">Book Consultation</div></div>
+        <div class="step-indicator" id="booking-steps">
+          <div class="step-dot current">1</div><div class="step-line"></div>
+          <div class="step-dot">2</div><div class="step-line"></div>
+          <div class="step-dot">3</div><div class="step-line"></div>
+          <div class="step-dot">4</div><div class="step-line"></div>
+          <div class="step-dot">5</div>
+        </div>
+        <div class="screen-scroll">
+          <div class="screen-content no-tab-pad" style="padding-top:6px;">
+
+            <!-- STEP 1: CONSULTATION SERVICE (Video Consultation only) -->
+            <div class="wizard-step active" data-step="1">
+              <h2 class="section-title" style="padding:0;">Consultation Service</h2>
+              <p class="muted" style="margin-bottom:14px;">You're booking a secure one-to-one video consultation with Dr Ly Cheng Huy.</p>
+              <div class="type-card-row">
+                <div class="type-card selected" data-type="Video Consultation">
+                  <div class="tc-ic">🎥</div>
+                  <div style="flex:1;"><div class="tc-title">Video Consultation</div><div class="tc-sub">Secure one-to-one video call</div></div>
+                  <div style="font-weight:800; color:var(--deep-blue-2);">$15</div>
+                </div>
+              </div>
+              <div style="height:26px;"></div>
+              <a class="btn-primary" onclick="bookNext()">Continue</a>
+            </div>
+
+            <!-- STEP 2: DATE -->
+            <div class="wizard-step" data-step="2">
+              <h2 class="section-title" style="padding:0;">Choose a Date</h2>
+              <p class="muted" style="margin-bottom:14px;">July 2026</p>
+              <div class="day-picker">
+                <div class="day-chip" onclick="selectDay(this)"><span class="dow">MON</span><span class="dnum">27</span></div>
+                <div class="day-chip" onclick="selectDay(this)"><span class="dow">TUE</span><span class="dnum">28</span></div>
+                <div class="day-chip" onclick="selectDay(this)"><span class="dow">WED</span><span class="dnum">29</span></div>
+                <div class="day-chip selected" onclick="selectDay(this)"><span class="dow">THU</span><span class="dnum">30</span></div>
+                <div class="day-chip" onclick="selectDay(this)"><span class="dow">FRI</span><span class="dnum">31</span></div>
+                <div class="day-chip" onclick="selectDay(this)"><span class="dow">SAT</span><span class="dnum">1</span></div>
+              </div>
+              <div style="height:26px;"></div>
+              <a class="btn-primary" onclick="bookNext()">Continue</a>
+            </div>
+
+            <!-- STEP 3: TIME -->
+            <div class="wizard-step" data-step="3">
+              <h2 class="section-title" style="padding:0;">Choose a Time Slot</h2>
+              <p class="muted" style="margin-bottom:14px;">Thu, Jul 30 · Available times</p>
+              <div class="time-grid">
+                <div class="time-chip" data-time="9:00 AM" onclick="selectTime(this)">9:00 AM</div>
+                <div class="time-chip" data-time="9:30 AM" onclick="selectTime(this)">9:30 AM</div>
+                <div class="time-chip disabled">10:00 AM</div>
+                <div class="time-chip selected" data-time="10:30 AM" onclick="selectTime(this)">10:30 AM</div>
+                <div class="time-chip" data-time="1:00 PM" onclick="selectTime(this)">1:00 PM</div>
+                <div class="time-chip" data-time="1:30 PM" onclick="selectTime(this)">1:30 PM</div>
+                <div class="time-chip disabled">2:00 PM</div>
+                <div class="time-chip" data-time="3:30 PM" onclick="selectTime(this)">3:30 PM</div>
+                <div class="time-chip" data-time="4:00 PM" onclick="selectTime(this)">4:00 PM</div>
+              </div>
+              <div style="height:26px;"></div>
+              <a class="btn-primary" onclick="bookNext()">Continue</a>
+            </div>
+
+            <!-- STEP 4: SYMPTOMS -->
+            <div class="wizard-step" data-step="4">
+              <h2 class="section-title" style="padding:0;">Describe Your Symptoms</h2>
+              <p class="muted" style="margin-bottom:14px;">This helps Dr Ly Cheng Huy prepare for your consultation.</p>
+              <div class="field-group">
+                <label class="field-label">Symptom Notes</label>
+                <textarea class="field-input" id="symptom-note" placeholder="e.g. I've had mild headaches and dizziness for 3 days, especially in the morning...">I've had mild headaches and occasional dizziness for the past 3 days, mostly in the mornings. No fever.</textarea>
+              </div>
+              <div style="height:10px;"></div>
+              <a class="btn-primary" onclick="bookNext()">Continue</a>
+            </div>
+
+            <!-- STEP 5: SUMMARY -->
+            <div class="wizard-step" data-step="5">
+              <h2 class="section-title" style="padding:0;">Booking Summary</h2>
+              <div class="card">
+                <div style="display:flex; gap:12px; align-items:center; margin-bottom:14px;">
+                  <img src="assets/doctor-profile.jpg" style="width:48px;height:48px;border-radius:12px;object-fit:cover;">
+                  <div><div style="font-weight:700; font-size:13.5px;">Dr Ly Cheng Huy</div><div style="font-size:11.5px; color:var(--text-muted);">Internal Medicine</div></div>
+                </div>
+                <div class="summary-row"><span class="s-label">Consultation Type</span><span class="s-val" id="sum-type">Video Consultation</span></div>
+                <div class="summary-row"><span class="s-label">Date</span><span class="s-val" id="sum-day">Thu, Jul 30, 2026</span></div>
+                <div class="summary-row"><span class="s-label">Time</span><span class="s-val" id="sum-time">10:30 AM</span></div>
+                <div class="summary-row"><span class="s-label">Duration</span><span class="s-val">30 minutes</span></div>
+                <div class="summary-row"><span class="s-label">Consultation Fee</span><span class="s-val" id="sum-fee">$15.00</span></div>
+              </div>
+              <h2 class="section-title" style="padding:0;">Health Note</h2>
+              <p class="muted" id="sum-note" style="margin-bottom:6px;">I've had mild headaches and occasional dizziness for the past 3 days, mostly in the mornings. No fever.</p>
+              <div style="height:14px;"></div>
+              <a class="btn-primary" onclick="showScreen('screen-payment')">Continue to Payment</a>
+            </div>
+
           </div>
-          <div class="lang-switch"><span class="lang-opt lang-active" data-lang-btn="en" onclick="setAppLanguage('en')">EN</span><span class="lang-opt" data-lang-btn="km" onclick="setAppLanguage('km')">KH</span></div>
-        </div><div class="screen-scroll"><div class="screen-content no-tab-pad"></div></div></div>
+        </div>
+      </div>
 
       <!-- ============================================================ -->
       <!-- 10. PAYMENT -->
       <!-- ============================================================ -->
-      <div class="screen consult-flow" id="screen-payment"><div class="top-bar"><div class="back-btn" onclick="showScreen('screen-book-consultation')">←</div><div class="top-bar-title" data-en="Payment" data-km="ការទូទាត់">Payment</div>
-          <div class="lang-switch"><span class="lang-opt lang-active" data-lang-btn="en" onclick="setAppLanguage('en')">EN</span><span class="lang-opt" data-lang-btn="km" onclick="setAppLanguage('km')">KH</span></div>
-        </div><div class="screen-scroll"><div class="screen-content no-tab-pad"></div></div></div>
-
-      <!-- ============================================================ -->
-      <!-- 10b. KHQR PAYMENT -->
-      <!-- ============================================================ -->
-      <div class="screen consult-flow" id="screen-khqr"><div class="top-bar"><div class="back-btn" onclick="showScreen('screen-book-consultation')">←</div><div class="top-bar-title" data-en="KHQR Payment" data-km="ការទូទាត់ KHQR">KHQR Payment</div>
-          <div class="lang-switch"><span class="lang-opt lang-active" data-lang-btn="en" onclick="setAppLanguage('en')">EN</span><span class="lang-opt" data-lang-btn="km" onclick="setAppLanguage('km')">KH</span></div>
-        </div><div class="screen-scroll"><div class="screen-content no-tab-pad"></div></div></div>
+      <div class="screen" id="screen-payment">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-book-consultation')">←</div><div class="top-bar-title">Payment</div></div>
+        <div class="screen-scroll">
+          <div class="screen-content no-tab-pad">
+            <h2 class="section-title" style="padding:0;">Order Summary</h2>
+            <div class="card">
+              <div class="summary-row"><span class="s-label">Consultation Fee</span><span class="s-val">$15.00</span></div>
+              <div class="summary-row"><span class="s-label">Service Fee</span><span class="s-val">$1.50</span></div>
+              <div class="summary-row"><span class="s-label" style="font-weight:800; color:var(--text-dark);">Total</span><span class="s-val" style="color:var(--deep-blue-1); font-size:15px;">$16.50</span></div>
+            </div>
+            <h2 class="section-title" style="padding:0;">Payment Method</h2>
+            <div id="pay-methods-consult">
+              <div class="pay-method-card selected" onclick="selectPayMethod(this,'pay-methods-consult')">
+                <div class="pm-ic">💳</div><div class="pm-name">Credit / Debit Card</div><div class="pm-radio"></div>
+              </div>
+              <div class="pay-method-card" onclick="selectPayMethod(this,'pay-methods-consult')">
+                <div class="pm-ic">🅰️</div><div class="pm-name">ABA Pay</div><div class="pm-radio"></div>
+              </div>
+              <div class="pay-method-card" onclick="selectPayMethod(this,'pay-methods-consult')">
+                <div class="pm-ic">🅆</div><div class="pm-name">Wing</div><div class="pm-radio"></div>
+              </div>
+            </div>
+            <div style="height:16px;"></div>
+            <a class="btn-primary" onclick="showScreen('screen-booking-success')">Pay Now — $16.50</a>
+          </div>
+        </div>
+      </div>
 
       <!-- ============================================================ -->
       <!-- 11. BOOKING SUCCESS -->
       <!-- ============================================================ -->
-      <div class="screen consult-flow" id="screen-booking-success"><div class="lang-switch lang-switch-abs"><span class="lang-opt lang-active" data-lang-btn="en" onclick="setAppLanguage('en')">EN</span><span class="lang-opt" data-lang-btn="km" onclick="setAppLanguage('km')">KH</span></div><div class="top-bar"><button class="back-btn" onclick="showScreen('screen-my-appointments')">←</button><div class="top-bar-title">Consultation</div></div><div class="screen-scroll"><div class="screen-content no-tab-pad"></div></div></div>
+      <div class="screen" id="screen-booking-success">
+        <div class="success-wrap">
+          <div class="check-circle"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h1>Booking Confirmed!</h1>
+          <p>Your video consultation has been scheduled. A reminder will be sent 30 minutes before your session.</p>
+          <div class="recap-card">
+            <div style="display:flex; gap:12px; align-items:center; margin-bottom:12px;">
+              <img src="assets/doctor-profile.jpg" style="width:44px;height:44px;border-radius:12px;object-fit:cover;">
+              <div><div style="font-weight:700; font-size:13px;">Dr Ly Cheng Huy</div><div style="font-size:11px; color:var(--text-muted);">Internal Medicine</div></div>
+            </div>
+            <div class="summary-row"><span class="s-label">Date</span><span class="s-val">Thu, Jul 30, 2026</span></div>
+            <div class="summary-row"><span class="s-label">Time</span><span class="s-val">10:30 AM</span></div>
+            <div class="summary-row"><span class="s-label">Type</span><span class="s-val">Video Consultation</span></div>
+            <div class="summary-row"><span class="s-label">Booking Reference</span><span class="s-val">DLC-VC-20260730-001</span></div>
+          </div>
+          <div class="btn-row" style="width:100%; margin-bottom:10px;">
+            <a class="btn-secondary">Add to Calendar</a>
+            <a class="btn-primary" onclick="showScreen('screen-my-appointments')">My Appointments</a>
+          </div>
+          <a class="btn-ghost" onclick="showScreen('screen-home')">Back to Home</a>
+        </div>
+      </div>
 
       <!-- ============================================================ -->
       <!-- 12. MY APPOINTMENTS -->
       <!-- ============================================================ -->
-      <div class="screen consult-flow" id="screen-my-appointments"><div class="top-bar"><div class="back-btn" onclick="showScreen('screen-home')">←</div><div class="top-bar-title">My Appointments</div></div><div class="seg-tabs" id="appt-tabs"><button class="seg-item active" onclick="apptTab('upcoming')">Upcoming</button><button class="seg-item" onclick="apptTab('past')">Past</button></div><div class="screen-scroll"><div class="screen-content "></div></div>        <div class="tab-bar">
-          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span><span data-en="Home" data-km="ទំព័រដើម">Home</span></div>
-          <div class="tab-item tab-service tab-active" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span><span data-en="Service" data-km="សេវាកម្ម">Service</span></div>
-          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span><span data-en="Profile" data-km="ប្រវត្តិរូប">Profile</span></div>
-        </div></div>
+      <div class="screen" id="screen-my-appointments">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-home')">←</div><div class="top-bar-title">My Appointments</div></div>
+        <div class="seg-tabs" id="appt-tabs">
+          <div class="seg-item active" onclick="apptTab('upcoming', this)">Upcoming</div>
+          <div class="seg-item" onclick="apptTab('past', this)">Past</div>
+        </div>
+        <div class="screen-scroll">
+          <div class="screen-content" style="padding-top:0;">
+            <div class="appt-panel" id="appt-panel-upcoming">
+              <div class="appt-card" onclick="showScreen('screen-appointment-detail')">
+                <img src="assets/doctor-profile.jpg">
+                <div style="flex:1;"><div class="ac-doc">Dr Ly Cheng Huy</div><div class="ac-meta">Thu, Jul 30 · 10:30 AM · Video Consultation</div></div>
+                <span class="status-badge upcoming">Confirmed</span>
+              </div>
+              <div class="appt-card" onclick="showScreen('screen-appointment-detail')">
+                <img src="assets/doctor-profile.jpg">
+                <div style="flex:1;"><div class="ac-doc">Dr Ly Cheng Huy</div><div class="ac-meta">Fri, Jul 31 · 3:00 PM · Video Consultation</div></div>
+                <span class="status-badge pending">Pending</span>
+              </div>
+            </div>
+            <div class="appt-panel" id="appt-panel-past" style="display:none;">
+              <div class="appt-card" onclick="showScreen('screen-call-ended')">
+                <img src="assets/doctor-profile.jpg">
+                <div style="flex:1;"><div class="ac-doc">Dr Ly Cheng Huy</div><div class="ac-meta">Video Consultation · 30 min · Payment: Paid</div></div>
+                <span class="status-badge completed" style="cursor:pointer;">View Summary</span>
+              </div>
+              <div class="appt-card" onclick="showScreen('screen-appointment-detail')">
+                <img src="assets/doctor-profile.jpg">
+                <div style="flex:1;"><div class="ac-doc">Dr Ly Cheng Huy</div><div class="ac-meta">Jun 14 · 9:00 AM · Video Consultation</div></div>
+                <span class="status-badge completed">Completed</span>
+              </div>
+              <div class="appt-card" onclick="showScreen('screen-appointment-detail')">
+                <img src="assets/doctor-profile.jpg">
+                <div style="flex:1;"><div class="ac-doc">Dr Ly Cheng Huy</div><div class="ac-meta">May 30 · 11:00 AM · Video Consultation</div></div>
+                <span class="status-badge completed">Completed</span>
+              </div>
+              <div class="appt-card" onclick="showScreen('screen-appointment-detail')">
+                <img src="assets/doctor-profile.jpg">
+                <div style="flex:1;"><div class="ac-doc">Dr Ly Cheng Huy</div><div class="ac-meta">May 2 · 2:30 PM · Video Consultation</div></div>
+                <span class="status-badge cancelled">Cancelled</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-bar">
+          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span>Home</div>
+          <div class="tab-item tab-consult tab-active" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span>Consult</div>
+          <div class="tab-item tab-content" onclick="showScreen('screen-articles')"><span class="tab-ic">📰</span>Content</div>
+          <div class="tab-item tab-library" onclick="showScreen('screen-my-library')"><span class="tab-ic">📚</span>Library</div>
+          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span>Profile</div>
+        </div>
+      </div>
 
       <!-- ============================================================ -->
       <!-- 13. APPOINTMENT DETAIL -->
       <!-- ============================================================ -->
-<div class="screen consult-flow" id="screen-consultation-room"><div class="top-bar"><button class="back-btn" onclick="showScreen('screen-appointment-detail')">←</button><div class="top-bar-title">Consultation Demo</div></div><div class="screen-scroll"><div class="screen-content no-tab-pad"></div></div></div>
-      <div class="screen consult-flow" id="screen-appointment-detail"><div class="top-bar"><div class="back-btn" onclick="showScreen('screen-my-appointments')">←</div><div class="top-bar-title">Appointment Detail</div></div><div class="screen-scroll"><div class="screen-content no-tab-pad"></div></div></div>
+      <div class="screen" id="screen-appointment-detail">
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-my-appointments')">←</div><div class="top-bar-title">Appointment Detail</div></div>
+        <div class="screen-scroll">
+          <div class="screen-content no-tab-pad">
+            <div class="card" style="text-align:center; margin-bottom:18px;">
+              <img src="assets/doctor-profile.jpg" style="width:76px;height:76px;border-radius:20px;object-fit:cover; margin:0 auto 10px;">
+              <div style="font-weight:800; font-size:15px;">Dr Ly Cheng Huy</div>
+              <div style="font-size:12px; color:var(--text-muted); margin-bottom:8px;">Internal Medicine · Video Consultation</div>
+              <span class="status-badge upcoming">Confirmed</span>
+            </div>
+
+            <div class="countdown-box">
+              <div class="cb-label">Consultation Starts In</div>
+              <div class="cb-value" id="ad-countdown">Starts in 2 hours 15 minutes</div>
+            </div>
+
+            <div class="card">
+              <div class="summary-row"><span class="s-label">Patient</span><span class="s-val">Sokha Dara</span></div>
+              <div class="summary-row"><span class="s-label">Date</span><span class="s-val">Thursday, Jul 30, 2026</span></div>
+              <div class="summary-row"><span class="s-label">Time</span><span class="s-val">10:30 AM – 11:00 AM</span></div>
+              <div class="summary-row"><span class="s-label">Type</span><span class="s-val">Video Consultation</span></div>
+              <div class="summary-row"><span class="s-label">Duration</span><span class="s-val">30 minutes</span></div>
+              <div class="summary-row"><span class="s-label">Payment Status</span><span class="s-val" style="color:var(--success);">Paid</span></div>
+              <div class="summary-row"><span class="s-label">Booking Status</span><span class="s-val" style="color:var(--success);">Confirmed</span></div>
+              <div class="summary-row"><span class="s-label">Booking Reference</span><span class="s-val">DLC-VC-20260730-001</span></div>
+            </div>
+            <h2 class="section-title" style="padding:0;">Health Note</h2>
+            <p class="muted">I've had mild headaches and occasional dizziness for the past 3 days, mostly in the mornings. No fever.</p>
+            <div style="height:16px;"></div>
+
+            <a class="btn-primary is-disabled" id="join-call-btn" disabled>🎥 Join Call</a>
+            <div class="helper-note">Your consultation room will open 10 minutes before the scheduled time.</div>
+            <a class="demo-open-btn" onclick="showScreen('screen-waiting-room')">🚀 Open Demo Call Now (Reviewer Preview)</a>
+
+            <div style="height:20px;"></div>
+            <div class="btn-row">
+              <a class="btn-secondary">Reschedule</a>
+              <a class="btn-danger-outline">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- ============================================================ -->
       <!-- 14. ARTICLES LIST -->
@@ -1206,9 +1234,11 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
           </div>
         </div>
         <div class="tab-bar">
-          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span><span data-en="Home" data-km="ទំព័រដើម">Home</span></div>
-          <div class="tab-item tab-service" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span><span data-en="Service" data-km="សេវាកម្ម">Service</span></div>
-          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span><span data-en="Profile" data-km="ប្រវត្តិរូប">Profile</span></div>
+          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span>Home</div>
+          <div class="tab-item tab-consult" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span>Consult</div>
+          <div class="tab-item tab-content tab-active" onclick="showScreen('screen-articles')"><span class="tab-ic">📰</span>Content</div>
+          <div class="tab-item tab-library" onclick="showScreen('screen-my-library')"><span class="tab-ic">📚</span>Library</div>
+          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span>Profile</div>
         </div>
       </div>
 
@@ -1287,9 +1317,11 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
           </div>
         </div>
         <div class="tab-bar">
-          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span><span data-en="Home" data-km="ទំព័រដើម">Home</span></div>
-          <div class="tab-item tab-service" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span><span data-en="Service" data-km="សេវាកម្ម">Service</span></div>
-          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span><span data-en="Profile" data-km="ប្រវត្តិរូប">Profile</span></div>
+          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span>Home</div>
+          <div class="tab-item tab-consult" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span>Consult</div>
+          <div class="tab-item tab-content tab-active" onclick="showScreen('screen-articles')"><span class="tab-ic">📰</span>Content</div>
+          <div class="tab-item tab-library" onclick="showScreen('screen-my-library')"><span class="tab-ic">📚</span>Library</div>
+          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span>Profile</div>
         </div>
       </div>
 
@@ -1329,12 +1361,7 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
       <!-- 18. E-BOOKS LIBRARY -->
       <!-- ============================================================ -->
       <div class="screen" id="screen-ebooks">
-        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-ebook-service')">←</div>
-          <div class="top-bar-title-wrap">
-            <div class="top-bar-eyebrow" data-en="E-Book" data-km="សៀវភៅអេឡិចត្រូនិក">E-Book</div>
-            <div class="top-bar-title" data-en="E-Book Library" data-km="បណ្ណាល័យសៀវភៅ">E-Book Library</div>
-          </div>
-        </div>
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-home')">←</div><div class="top-bar-title">E-Book Library</div></div>
         <div class="screen-scroll">
           <div class="screen-content">
             <div class="ebook-grid">
@@ -1366,9 +1393,11 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
           </div>
         </div>
         <div class="tab-bar">
-          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span><span data-en="Home" data-km="ទំព័រដើម">Home</span></div>
-          <div class="tab-item tab-service" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span><span data-en="Service" data-km="សេវាកម្ម">Service</span></div>
-          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span><span data-en="Profile" data-km="ប្រវត្តិរូប">Profile</span></div>
+          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span>Home</div>
+          <div class="tab-item tab-consult" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span>Consult</div>
+          <div class="tab-item tab-content tab-active" onclick="showScreen('screen-articles')"><span class="tab-ic">📰</span>Content</div>
+          <div class="tab-item tab-library" onclick="showScreen('screen-my-library')"><span class="tab-ic">📚</span>Library</div>
+          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span>Profile</div>
         </div>
       </div>
 
@@ -1529,9 +1558,11 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
           </div>
         </div>
         <div class="tab-bar">
-          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span><span data-en="Home" data-km="ទំព័រដើម">Home</span></div>
-          <div class="tab-item tab-service" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span><span data-en="Service" data-km="សេវាកម្ម">Service</span></div>
-          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span><span data-en="Profile" data-km="ប្រវត្តិរូប">Profile</span></div>
+          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span>Home</div>
+          <div class="tab-item tab-consult" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span>Consult</div>
+          <div class="tab-item tab-content" onclick="showScreen('screen-articles')"><span class="tab-ic">📰</span>Content</div>
+          <div class="tab-item tab-library tab-active" onclick="showScreen('screen-my-library')"><span class="tab-ic">📚</span>Library</div>
+          <div class="tab-item tab-profile" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span>Profile</div>
         </div>
       </div>
 
@@ -1605,55 +1636,29 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
       <!-- ============================================================ -->
       <div class="screen" id="screen-profile">
         <div class="screen-scroll">
-
-          <!-- GUEST STATE (default) -->
-          <div id="profile-guest-view">
-            <div class="profile-header bg-gradient-blue" style="position:relative;">
-              <div class="lang-switch lang-switch-abs on-dark"><span class="lang-opt lang-active" data-lang-btn="en" onclick="setAppLanguage('en')">EN</span><span class="lang-opt" data-lang-btn="km" onclick="setAppLanguage('km')">KH</span></div>
-              <div style="height:20px;"></div>
-              <div class="logo-badge" style="margin:0 auto 10px;">🩺</div>
-              <div class="p-name" data-en="Guest" data-km="ភ្ញៀវ">Guest</div>
-              <div class="p-email" data-en="Sign in to view booking history and purchased content." data-km="ចូលគណនីដើម្បីមើលប្រវត្តិណាត់ជួប និងមាតិកាដែលបានទិញ។">Sign in to view booking history and purchased content.</div>
-            </div>
-            <div class="menu-list" style="padding:16px 20px;">
-              <a class="btn-primary" style="margin-bottom:10px;" onclick="showScreen('screen-login')" data-en="Sign In" data-km="ចូលគណនី">Sign In</a>
-              <a class="btn-secondary" onclick="showScreen('screen-signup')" data-en="Create Account" data-km="បង្កើតគណនី">Create Account</a>
-            </div>
-            <div class="menu-list">
-              <div class="menu-item" onclick="showScreen('screen-consultation-intro')"><div class="m-ic">🩺</div><div class="m-label" data-en="Book a Consultation (no account needed)" data-km="ណាត់ជួបពិគ្រោះជំងឺ (មិនចាំបាច់មានគណនី)">Book a Consultation (no account needed)</div><div class="m-arrow">›</div></div>
-              <div class="menu-item" onclick="showScreen('screen-articles')"><div class="m-ic">📰</div><div class="m-label">Browse Free Articles</div><div class="m-arrow">›</div></div>
-              <div class="menu-item" onclick="showScreen('screen-settings')"><div class="m-ic">🌐</div><div class="m-label" data-en="Language" data-km="ភាសា">Language</div><div class="m-arrow">›</div></div>
-            </div>
-            <div style="height:16px;"></div>
+          <div class="profile-header bg-gradient-blue">
+            <div style="height:20px;"></div>
+            <img src="assets/doctor-profile.jpg" style="border-radius:50%;" onerror="this.style.display='none'">
+            <div class="p-name">Sokha Chan</div>
+            <div class="p-email">sokha@email.com</div>
+            <a class="edit-btn">Edit Profile</a>
           </div>
-
-          <!-- LOGGED-IN STATE -->
-          <div id="profile-loggedin-view" style="display:none;">
-            <div class="profile-header bg-gradient-blue" style="position:relative;">
-              <div class="lang-switch lang-switch-abs on-dark"><span class="lang-opt lang-active" data-lang-btn="en" onclick="setAppLanguage('en')">EN</span><span class="lang-opt" data-lang-btn="km" onclick="setAppLanguage('km')">KH</span></div>
-              <div style="height:20px;"></div>
-              <img src="assets/doctor-profile.jpg" style="border-radius:50%;" onerror="this.style.display='none'">
-              <div class="p-name" id="account-profile-name">Sokha Chan</div>
-              <div class="p-email" id="account-profile-phone">+855 12 345 678</div>
-              <a class="edit-btn">Edit Profile</a>
-            </div>
-            <div class="menu-list">
-              <div class="menu-item" onclick="showScreen('screen-settings')"><div class="m-ic">👤</div><div class="m-label">Personal Information</div><div class="m-arrow">›</div></div>
-              <div class="menu-item" onclick="showScreen('screen-my-appointments')"><div class="m-ic">🩺</div><div class="m-label">Consultation History</div><div class="m-arrow">›</div></div>
-              <div class="menu-item" onclick="showScreen('screen-my-library')"><div class="m-ic">📚</div><div class="m-label">E-Book Library</div><div class="m-arrow">›</div></div>
-              <div class="menu-item" onclick="showScreen('screen-subscription')"><div class="m-ic">⭐</div><div class="m-label">Subscription</div><div class="m-arrow">›</div></div>
-              <div class="menu-item" onclick="showScreen('screen-notifications')"><div class="m-ic">🔔</div><div class="m-label">Notifications</div><div class="m-arrow">›</div></div>
-              <div class="menu-item" onclick="showScreen('screen-settings')"><div class="m-ic">⚙️</div><div class="m-label">Settings</div><div class="m-arrow">›</div></div>
-              <div class="menu-item" onclick="showScreen('screen-settings')"><div class="m-ic">🌐</div><div class="m-label" data-en="Language" data-km="ភាសា">Language</div><div class="m-arrow">›</div></div>
-              <button type="button" class="menu-item danger" id="profile-signout" onclick="doLogout()"><span class="m-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 4H4v16h5M14 8l4 4-4 4M8 12h13"/></svg></span><span class="m-label">Sign Out</span><span class="m-arrow">›</span></button>
-            </div>
-            <div style="height:16px;"></div>
+          <div class="menu-list">
+            <div class="menu-item" onclick="showScreen('screen-my-appointments')"><div class="m-ic">🩺</div><div class="m-label">My Appointments</div><div class="m-arrow">›</div></div>
+            <div class="menu-item" onclick="showScreen('screen-my-library')"><div class="m-ic">📚</div><div class="m-label">My Library</div><div class="m-arrow">›</div></div>
+            <div class="menu-item" onclick="showScreen('screen-notifications')"><div class="m-ic">🔔</div><div class="m-label">Notifications</div><div class="m-arrow">›</div></div>
+            <div class="menu-item" onclick="showScreen('screen-settings')"><div class="m-ic">⚙️</div><div class="m-label">Settings</div><div class="m-arrow">›</div></div>
+            <div class="menu-item"><div class="m-ic">❓</div><div class="m-label">Help &amp; Support</div><div class="m-arrow">›</div></div>
+            <div class="menu-item danger" onclick="showScreen('screen-login')"><div class="m-ic">🚪</div><div class="m-label">Logout</div><div class="m-arrow">›</div></div>
           </div>
+          <div style="height:16px;"></div>
         </div>
         <div class="tab-bar">
-          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span><span data-en="Home" data-km="ទំព័រដើម">Home</span></div>
-          <div class="tab-item tab-service" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span><span data-en="Service" data-km="សេវាកម្ម">Service</span></div>
-          <div class="tab-item tab-profile tab-active" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span><span data-en="Profile" data-km="ប្រវត្តិរូប">Profile</span></div>
+          <div class="tab-item tab-home" onclick="showScreen('screen-home')"><span class="tab-ic">🏠</span>Home</div>
+          <div class="tab-item tab-consult" onclick="showScreen('screen-consultation-intro')"><span class="tab-ic">🩺</span>Consult</div>
+          <div class="tab-item tab-content" onclick="showScreen('screen-articles')"><span class="tab-ic">📰</span>Content</div>
+          <div class="tab-item tab-library" onclick="showScreen('screen-my-library')"><span class="tab-ic">📚</span>Library</div>
+          <div class="tab-item tab-profile tab-active" onclick="showScreen('screen-profile')"><span class="tab-ic">👤</span>Profile</div>
         </div>
       </div>
 
@@ -1661,9 +1666,7 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
       <!-- 25. SETTINGS -->
       <!-- ============================================================ -->
       <div class="screen" id="screen-settings">
-        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-profile')">←</div><div class="top-bar-title">Settings</div>
-          <div class="lang-switch"><span class="lang-opt lang-active" data-lang-btn="en" onclick="setAppLanguage('en')">EN</span><span class="lang-opt" data-lang-btn="km" onclick="setAppLanguage('km')">KH</span></div>
-        </div>
+        <div class="top-bar"><div class="back-btn" onclick="showScreen('screen-profile')">←</div><div class="top-bar-title">Settings</div></div>
         <div class="screen-scroll">
           <div class="screen-content no-tab-pad" style="padding-left:0; padding-right:0;">
 
@@ -1684,8 +1687,8 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
             <div class="settings-section">
               <div class="ss-label">Language</div>
               <div class="lang-choice" id="lang-choice-settings">
-                <div class="lang-pill selected" data-lang-btn="en" onclick="selectLang(this,'lang-choice-settings')">English</div>
-                <div class="lang-pill" data-lang-btn="km" onclick="selectLang(this,'lang-choice-settings')">ខ្មែរ Khmer</div>
+                <div class="lang-pill selected" onclick="selectLang(this,'lang-choice-settings')">English</div>
+                <div class="lang-pill" onclick="selectLang(this,'lang-choice-settings')">ខ្មែរ Khmer</div>
               </div>
             </div>
 
@@ -1697,7 +1700,7 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
             </div>
 
             <div class="settings-section">
-              <a class="btn-danger-outline" style="display:block; text-align:center;" onclick="doLogout()">Log Out</a>
+              <a class="btn-danger-outline" style="display:block; text-align:center;" onclick="showScreen('screen-login')">Log Out</a>
             </div>
           </div>
         </div>
@@ -1776,10 +1779,12 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
           <div class="vc-demo-strip"><span class="demo-label-strip">Video consultation demo — live provider integration will be completed during production development.</span></div>
 
           <div class="vc-panel-note" id="vc-note-panel" style="display:none;">📝 <b>Shared Medical Note (demo):</b> Mild headaches and occasional dizziness for 3 days, mostly mornings. No fever.</div>
+          <div class="vc-panel-note" id="vc-doc-panel" style="display:none;">📎 <b>Uploaded Document (demo):</b> report.pdf, symptom-photo.jpg, lab-result.pdf</div>
 
           <div class="vc-bottom-overlay">
             <div class="vc-secondary-row">
               <div class="vc-secondary-btn" id="vc-note-btn" onclick="vcTogglePanel('vc-note-panel','vc-note-btn')">Shared Note</div>
+              <div class="vc-secondary-btn" id="vc-doc-btn" onclick="vcTogglePanel('vc-doc-panel','vc-doc-btn')">Document</div>
               <div class="vc-secondary-btn" id="vc-min-btn" onclick="vcMinimizeSelf()">Minimize Self-View</div>
             </div>
             <div class="vc-controls-row">
@@ -1908,27 +1913,25 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
   <!-- ============================================================ -->
   <div class="jump-panel">
     <h3>📱 Screen Index</h3>
-    <div class="jp-sub">BizWeb KH · Dr Ly Cheng Huy App Demo — app opens directly to Home (no forced onboarding/login)</div>
+    <div class="jp-sub">BizWeb KH · Dr Ly Cheng Huy App Demo — jump to any of the 29 screens</div>
     <div class="jp-sub" style="margin-top:-8px;">All content, pricing and schedules shown are sample data for demonstration purposes.</div>
 
-    <div class="jp-group-label">Splash &amp; Auth (optional)</div>
+    <div class="jp-group-label">Onboarding &amp; Auth</div>
     <a class="jump-btn" onclick="showScreen('screen-splash')"><span class="jn">01</span>Splash</a>
-    <a class="jump-btn" onclick="showScreen('screen-login')"><span class="jn">02</span>Login</a>
-    <a class="jump-btn" onclick="showScreen('screen-signup')"><span class="jn">03</span>Sign Up</a>
-    <a class="jump-btn" onclick="showScreen('screen-forgot-password')"><span class="jn">04</span>Forgot Password</a>
+    <a class="jump-btn" onclick="showScreen('screen-onboarding')"><span class="jn">02</span>Onboarding</a>
+    <a class="jump-btn" onclick="showScreen('screen-login')"><span class="jn">03</span>Login</a>
+    <a class="jump-btn" onclick="showScreen('screen-signup')"><span class="jn">04</span>Sign Up</a>
+    <a class="jump-btn" onclick="showScreen('screen-forgot-password')"><span class="jn">05</span>Forgot Password</a>
 
     <div class="jp-group-label">Home &amp; Doctor</div>
-    <a class="jump-btn" onclick="showScreen('screen-home')"><span class="jn">05</span>Home Dashboard</a>
-    <a class="jump-btn" onclick="showScreen('screen-doctor-profile')"><span class="jn">06</span>Doctor Profile</a>
+    <a class="jump-btn" onclick="showScreen('screen-home')"><span class="jn">06</span>Home Dashboard</a>
+    <a class="jump-btn" onclick="showScreen('screen-doctor-profile')"><span class="jn">07</span>Doctor Profile</a>
 
-    <div class="jp-group-label">Service &amp; Guest Booking</div>
-    <a class="jump-btn" onclick="showScreen('screen-consultation-intro')"><span class="jn">07</span>Service / Consultation Intro</a>
-    <a class="jump-btn" onclick="showScreen('screen-online-consulting')"><span class="jn">07b</span>Online Consulting Detail</a>
-    <a class="jump-btn" onclick="showScreen('screen-ebook-service')"><span class="jn">07c</span>E-Book Service Hub</a>
-    <a class="jump-btn" onclick="showScreen('screen-book-consultation')"><span class="jn">08</span>Book Consultation (Guest)</a>
-    <a class="jump-btn" onclick="showScreen('screen-payment')"><span class="jn">09</span>Payment (KHQR)</a>
-    <a class="jump-btn" onclick="showScreen('screen-khqr')"><span class="jn">10</span>KHQR Payment</a>
-    <a class="jump-btn" onclick="showScreen('screen-booking-success')"><span class="jn">11</span>Booking / Request Result</a>
+    <div class="jp-group-label">Consultation Booking</div>
+    <a class="jump-btn" onclick="showScreen('screen-consultation-intro')"><span class="jn">08</span>Consultation Intro</a>
+    <a class="jump-btn" onclick="showScreen('screen-book-consultation')"><span class="jn">09</span>Book Consultation</a>
+    <a class="jump-btn" onclick="showScreen('screen-payment')"><span class="jn">10</span>Payment</a>
+    <a class="jump-btn" onclick="showScreen('screen-booking-success')"><span class="jn">11</span>Booking Success</a>
     <a class="jump-btn" onclick="showScreen('screen-my-appointments')"><span class="jn">12</span>My Appointments</a>
     <a class="jump-btn" onclick="showScreen('screen-appointment-detail')"><span class="jn">13</span>Appointment Detail</a>
 
@@ -1947,10 +1950,10 @@ body.lang-km { line-height: 1.7; letter-spacing: 0.2px; }
 
     <div class="jp-group-label">Account</div>
     <a class="jump-btn" onclick="showScreen('screen-notifications')"><span class="jn">23</span>Notifications</a>
-    <a class="jump-btn" onclick="showScreen('screen-profile')"><span class="jn">24</span>Profile (Guest / Logged-in)</a>
+    <a class="jump-btn" onclick="showScreen('screen-profile')"><span class="jn">24</span>Profile</a>
     <a class="jump-btn" onclick="showScreen('screen-settings')"><span class="jn">25</span>Settings</a>
 
-    <div class="jp-group-label">App Video Consultation Demo</div>
+    <div class="jp-group-label">Video Consultation Demo</div>
     <a class="jump-btn" onclick="showScreen('screen-waiting-room')"><span class="jn">26</span>Waiting Room</a>
     <a class="jump-btn" onclick="showScreen('screen-video-call')"><span class="jn">27</span>Active Video Call</a>
     <a class="jump-btn" onclick="showScreen('screen-call-ended')"><span class="jn">28</span>Consultation Completed</a>
@@ -1978,13 +1981,6 @@ function showScreen(id) {
   syncTabBar(id);
   window.scrollTo({ top: window.scrollY }); // no-op, keeps page position stable
 
-  if (id === 'screen-profile' && typeof renderProfile === 'function') {
-    renderProfile();
-  }
-  if (typeof currentLang !== 'undefined' && currentLang === 'km') {
-    setAppLanguage('km');
-  }
-
   // Start/stop the active-call timer depending on which screen is shown
   if (id === 'screen-video-call') {
     startCallTimer();
@@ -1997,15 +1993,14 @@ function showScreen(id) {
 function syncTabBar(activeId) {
   var tabMap = {
     'screen-home': 'tab-home',
-    'screen-consultation-intro': 'tab-service',
-    'screen-online-consulting': 'tab-service',
-    'screen-ebook-service': 'tab-service',
-    'screen-book-consultation': 'tab-service',
-    'screen-my-appointments': 'tab-service',
-    'screen-payment': 'tab-service',
-    'screen-khqr': 'tab-service',
-    'screen-profile': 'tab-profile',
-    'screen-settings': 'tab-profile'
+    'screen-consultation-intro': 'tab-consult',
+    'screen-book-consultation': 'tab-consult',
+    'screen-my-appointments': 'tab-consult',
+    'screen-articles': 'tab-content',
+    'screen-videos': 'tab-content',
+    'screen-ebooks': 'tab-content',
+    'screen-my-library': 'tab-library',
+    'screen-profile': 'tab-profile'
   };
   document.querySelectorAll('.tab-item').forEach(function (t) {
     t.classList.remove('tab-active');
@@ -2018,11 +2013,99 @@ function syncTabBar(activeId) {
   }
 }
 
+/* ---------------- Onboarding carousel ---------------- */
+var obIndex = 0;
+var obTotal = 3;
+function obGoTo(i) {
+  obIndex = Math.max(0, Math.min(obTotal - 1, i));
+  document.querySelectorAll('.ob-slide').forEach(function (el, idx) {
+    el.classList.toggle('active', idx === obIndex);
+  });
+  document.querySelectorAll('.ob-dots span').forEach(function (el, idx) {
+    el.classList.toggle('active', idx === obIndex);
+  });
+  var nextBtn = document.getElementById('ob-next-btn');
+  if (nextBtn) nextBtn.textContent = (obIndex === obTotal - 1) ? 'Get Started' : 'Next';
+}
+function obNext() {
+  if (obIndex === obTotal - 1) {
+    showScreen('screen-login');
+    obIndex = 0;
+    obGoTo(0);
+  } else {
+    obGoTo(obIndex + 1);
+  }
+}
+function obSkip() {
+  obIndex = 0;
+  obGoTo(0);
+  showScreen('screen-login');
+}
+
+/* ---------------- Booking wizard ---------------- */
+var bookStep = 1;
+var bookTotal = 5;
+var bookChoice = { day: '30', time: '10:30 AM', type: 'Video Consultation', fee: '$15.00' };
+var feeMap = { 'Video Consultation': '$15.00' };
+
+function bookGoStep(step) {
+  bookStep = step;
+  document.querySelectorAll('.wizard-step').forEach(function (el) {
+    el.classList.toggle('active', parseInt(el.dataset.step, 10) === step);
+  });
+  document.querySelectorAll('#booking-steps .step-dot').forEach(function (el, idx) {
+    var n = idx + 1;
+    el.classList.remove('done', 'current');
+    if (n < step) el.classList.add('done');
+    else if (n === step) el.classList.add('current');
+    el.textContent = n < step ? '✓' : n;
+  });
+  document.querySelectorAll('#booking-steps .step-line').forEach(function (el, idx) {
+    el.classList.toggle('done', (idx + 1) < step);
+  });
+  if (step === 5) {
+    document.getElementById('sum-day').textContent = 'Thu, Jul 30, 2026';
+    document.getElementById('sum-time').textContent = bookChoice.time;
+    document.getElementById('sum-type').textContent = bookChoice.type;
+    document.getElementById('sum-fee').textContent = feeMap[bookChoice.type] || bookChoice.fee;
+    var noteEl = document.getElementById('symptom-note');
+    var sumNote = document.getElementById('sum-note');
+    if (noteEl && sumNote) sumNote.textContent = noteEl.value;
+  }
+}
+function bookNext() { if (bookStep < bookTotal) bookGoStep(bookStep + 1); }
+function bookBack() { if (bookStep > 1) bookGoStep(bookStep - 1); else showScreen('screen-consultation-intro'); }
+
+function selectDay(el) {
+  document.querySelectorAll('.day-chip').forEach(function (c) { c.classList.remove('selected'); });
+  el.classList.add('selected');
+}
+function selectTime(el) {
+  if (el.classList.contains('disabled')) return;
+  document.querySelectorAll('.time-chip').forEach(function (c) { c.classList.remove('selected'); });
+  el.classList.add('selected');
+  bookChoice.time = el.dataset.time;
+}
+function selectType(el) {
+  document.querySelectorAll('.type-card').forEach(function (c) { c.classList.remove('selected'); });
+  el.classList.add('selected');
+  bookChoice.type = el.dataset.type;
+  bookChoice.fee = feeMap[el.dataset.type] || bookChoice.fee;
+}
+
 /* ---------------- Payment method select ---------------- */
 function selectPayMethod(el, scope) {
   var group = document.querySelectorAll('#' + scope + ' .pay-method-card');
   group.forEach(function (c) { c.classList.remove('selected'); });
   el.classList.add('selected');
+}
+
+/* ---------------- Appointments tabs ---------------- */
+function apptTab(which, el) {
+  document.querySelectorAll('#appt-tabs .seg-item').forEach(function (t) { t.classList.remove('active'); });
+  el.classList.add('active');
+  document.querySelectorAll('.appt-panel').forEach(function (p) { p.style.display = 'none'; });
+  document.getElementById('appt-panel-' + which).style.display = 'block';
 }
 
 /* ---------------- Settings toggles ---------------- */
@@ -2032,37 +2115,7 @@ function toggleSwitch(el) {
 function selectLang(el, scope) {
   document.querySelectorAll('#' + scope + ' .lang-pill').forEach(function (p) { p.classList.remove('selected'); });
   el.classList.add('selected');
-  var lang = el.getAttribute('data-lang-btn') || 'en';
-  setAppLanguage(lang);
 }
-
-/* ---------------- Language switch (EN | KH) ---------------- */
-var currentLang = 'en';
-function setAppLanguage(lang) {
-  currentLang = lang;
-  document.body.classList.toggle('lang-km', lang === 'km');
-  document.querySelectorAll('[data-en]').forEach(function (el) {
-    var text = lang === 'km' ? (el.getAttribute('data-km') || el.getAttribute('data-en')) : el.getAttribute('data-en');
-    el.innerHTML = text;
-  });
-  document.querySelectorAll('.lang-switch .lang-opt').forEach(function (opt) {
-    opt.classList.toggle('lang-active', opt.getAttribute('data-lang-btn') === lang);
-  });
-  document.querySelectorAll('#lang-choice-settings .lang-pill').forEach(function (p) {
-    p.classList.toggle('selected', p.getAttribute('data-lang-btn') === lang);
-  });
-}
-
-/* ---------------- Guest / logged-in profile state ---------------- */
-var isLoggedIn = false;
-function renderProfile() {
-  var guestView = document.getElementById('profile-guest-view');
-  var loggedView = document.getElementById('profile-loggedin-view');
-  if (!guestView || !loggedView) return;
-  guestView.style.display = isLoggedIn ? 'none' : 'block';
-  loggedView.style.display = isLoggedIn ? 'block' : 'none';
-}
-
 
 /* =========================================================
    VIDEO CONSULTATION DEMO (front-end simulation only)
@@ -2208,18 +2261,17 @@ function submitFeedback() {
 
 /* ---------------- Init ---------------- */
 document.addEventListener('DOMContentLoaded', function () {
+  obGoTo(0);
   bookGoStep(1);
   showScreen('screen-splash');
   updateCountdown();
   setTimeout(function () {
     if (document.getElementById('screen-splash').classList.contains('active')) {
-      showScreen('screen-home');
+      showScreen('screen-onboarding');
     }
-  }, 1800);
+  }, 2200);
 });
 
 </script>
-<script src="assets/consultation.js"></script>
-<script src="assets/account.js"></script>
 </body>
 </html>

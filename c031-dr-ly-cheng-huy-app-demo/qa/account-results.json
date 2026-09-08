@@ -1,0 +1,16 @@
+{
+  "result": "PASS",
+  "checks": [
+    "Phone/password login to Profile",
+    "Cambodian phone normalization",
+    "all eight Profile rows reachable",
+    "Sign Out above nav at 1100x1000, 390x844 and 375x667",
+    "Cancel preserves session",
+    "Sign Out returns Guest",
+    "phone signup without email",
+    "password mismatch rejected",
+    "invalid phone rejected",
+    "phone password-reset demo"
+  ],
+  "browserErrors": []
+}

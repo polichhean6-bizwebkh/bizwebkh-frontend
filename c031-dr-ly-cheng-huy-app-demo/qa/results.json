@@ -1,0 +1,48 @@
+{
+  "results": [
+    {
+      "method": "app",
+      "video": false,
+      "payment": "Paid",
+      "status": "Confirmed",
+      "reference": "DLC-APP-20260912-001",
+      "result": "PASS"
+    },
+    {
+      "method": "app",
+      "video": true,
+      "payment": "Paid",
+      "status": "Confirmed",
+      "reference": "DLC-APP-20260912-002",
+      "result": "PASS"
+    },
+    {
+      "method": "telegram",
+      "video": false,
+      "payment": "Awaiting Payment",
+      "status": "Requested",
+      "reference": "DLC-TG-20260912-003",
+      "result": "PASS"
+    },
+    {
+      "method": "telegram",
+      "video": true,
+      "payment": "Awaiting Payment",
+      "status": "Requested",
+      "reference": "DLC-TG-20260912-004",
+      "result": "PASS"
+    }
+  ],
+  "checks": [
+    "unique references",
+    "no booking before payment",
+    "back from KHQR preserves review",
+    "guest validation",
+    "input escaped",
+    "Telegram status progression",
+    "completed appointments in Past",
+    "direct KHQR jump guarded",
+    "390px layout without horizontal overflow"
+  ],
+  "browserErrors": []
+}

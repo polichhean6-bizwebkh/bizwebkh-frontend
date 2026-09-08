@@ -1,0 +1,67 @@
+/* Consultation-only refinements; shared screens and navigation retain their styles. */
+.consult-flow { --flow-teal:#087f8c; }
+.consult-flow button { font-size:13px; }
+.consult-flow button:focus-visible, .consult-flow input:focus-visible, .consult-flow textarea:focus-visible { outline:3px solid #54b7ee; outline-offset:3px; }
+.consult-flow .flow-heading { font-size:22px; line-height:1.25; margin:4px 0 10px; letter-spacing:-.6px; }
+.consult-flow .flow-lead { font-size:12px; color:var(--text-muted); line-height:1.65; margin-bottom:18px; }
+.consult-flow .method-card { background:white; border:1px solid var(--border-soft); border-radius:20px; padding:18px; margin-bottom:16px; box-shadow:var(--shadow-card); }
+.consult-flow .method-head { display:flex; gap:12px; align-items:center; margin-bottom:12px; }
+.consult-flow .method-head h2 { font-size:16px; margin:0 0 4px; }
+.consult-flow .method-head p { font-size:11px; color:var(--text-muted); line-height:1.5; }
+.consult-flow .flow-icon { width:40px; height:40px; border-radius:13px; background:#eaf2ff; color:var(--deep-blue-2); display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; }
+.consult-flow .flow-icon.telegram { background:#e4f6f7; color:var(--flow-teal); }
+.consult-flow svg { width:23px; height:23px; flex-shrink:0; }
+.consult-flow .payment-note { border-radius:12px; background:#edf4fc; padding:12px; font-size:11px; line-height:1.65; margin:12px 0; color:#234a75; }
+.consult-flow .payment-note.telegram { background:#eaf7f6; color:#17636a; }
+.consult-flow .video-row { width:100%; display:flex; align-items:center; gap:10px; text-align:left; background:#f5f8fc; border:1px solid #e1e9f3; border-radius:12px; padding:13px 10px; margin:12px 0; color:var(--text-dark); min-height:66px; }
+.consult-flow .video-copy { flex:1; }
+.consult-flow .video-copy strong { display:block; font-size:12px; }
+.consult-flow .video-copy small { display:block; font-size:10px; color:var(--text-muted); line-height:1.5; margin-top:3px; }
+.consult-flow .switch-track { background:#748195; width:44px; height:26px; border-radius:20px; padding:3px; transition:background .2s; flex-shrink:0; }
+.consult-flow .switch-track::after { content:''; display:block; width:20px; height:20px; background:white; border-radius:50%; transition:transform .2s; }
+.consult-flow [aria-checked=true] .switch-track { background:var(--deep-blue-2); }
+.consult-flow [aria-checked=true] .switch-track::after { transform:translateX(18px); }
+.consult-flow .switch-word { font-size:9px; font-weight:800; width:22px; }
+.consult-flow .btn-primary, .consult-flow .btn-secondary, .consult-flow .btn-ghost { width:100%; margin-top:10px; }
+.consult-flow .summary-row { gap:14px; align-items:flex-start; }
+.consult-flow .s-label { flex-shrink:0; max-width:45%; }
+.consult-flow .s-val { text-align:right; overflow-wrap:anywhere; }
+.consult-flow .flow-step { font-size:10px; color:var(--deep-blue-2); font-weight:800; letter-spacing:1px; margin:3px 0 14px; text-transform:uppercase; }
+.consult-flow .flow-error { color:#b42318; font-size:12px; line-height:1.5; margin:12px 0; }
+.consult-flow .flow-badges { display:flex; flex-wrap:wrap; gap:6px; margin:12px 0; }
+.consult-flow .flow-badge { font-size:10px; font-weight:700; color:#186547; background:#e6f5ed; border-radius:8px; padding:6px 8px; }
+.consult-flow .flow-badge.pending { color:#915d12; background:#fff2da; }
+.consult-flow .flow-appt { display:block; width:100%; text-align:left; background:#fff; color:var(--text-dark); border:1px solid var(--border-soft); border-radius:16px; padding:16px; margin-bottom:12px; box-shadow:var(--shadow-card); }
+.consult-flow .flow-appt strong { display:block; font-size:14px; margin-bottom:8px; }
+.consult-flow .flow-appt p { font-size:12px; color:var(--text-muted); line-height:1.7; }
+.consult-flow .flow-timeline { border-left:2px solid #e3eaf1; margin:16px 0 20px 7px; padding-left:19px; }
+.consult-flow .flow-timeline li { position:relative; padding:0 0 16px; font-size:11px; color:#75849a; }
+.consult-flow .flow-timeline li::before { content:''; width:10px; height:10px; background:#d8e1eb; position:absolute; left:-25px; top:1px; border-radius:50%; border:2px solid white; }
+.consult-flow .flow-timeline li.reached { color:#176547; font-weight:700; }
+.consult-flow .flow-timeline li.reached::before { background:#229e6c; }
+.consult-flow .flow-timeline li.current { color:var(--deep-blue-1); }
+.consult-flow .flow-timeline li.current::before { background:var(--deep-blue-2); box-shadow:0 0 0 3px #e1edfc; }
+.consult-flow .qr-card { background:white; border:1px solid #e2e6ed; border-radius:18px; overflow:hidden; margin:18px 0; box-shadow:var(--shadow-card); }
+.consult-flow .qr-banner { background:#e32736; color:white; font-weight:900; letter-spacing:2px; padding:13px 18px; }
+.consult-flow .qr-body { padding:16px; text-align:center; }
+.consult-flow .qr-body svg { width:150px; height:150px; margin:12px auto; display:block; }
+.consult-flow .qr-body p { font-size:11px; color:var(--text-muted); line-height:1.6; }
+.consult-flow .qr-body strong { font-size:22px; display:block; margin-top:8px; }
+.consult-flow .flow-success { text-align:center; margin-bottom:20px; }
+.consult-flow .flow-success .flow-icon { width:58px; height:58px; border-radius:50%; background:#e5f6ed; color:#208a5d; margin:8px 0 16px; }
+.consult-flow .flow-success h1 { font-size:22px; margin-bottom:8px; }
+.consult-flow .flow-success p { font-size:12px; line-height:1.6; color:var(--text-muted); }
+.consult-flow .flow-demo { font-size:10px; color:#6b778b; line-height:1.65; margin:12px 0; }
+.consult-flow .field-label { display:block; }
+.consult-flow details { font-size:12px; color:var(--text-muted); margin:18px 0; }
+.consult-flow summary { cursor:pointer; }
+.consult-flow .channel-card { padding:20px; }
+.consult-flow .channel-card h2 { font-size:17px; margin:14px 0 8px; }
+.consult-flow .channel-card p { font-size:12px; line-height:1.6; color:var(--text-muted); margin-bottom:14px; }
+.consult-flow .channel-card .btn-secondary { display:flex; justify-content:space-between; align-items:center; margin:0; }
+.consult-flow .detail-options h2, .consult-flow .detail-payment h2 { font-size:13px; margin-bottom:8px; }
+.consult-flow .detail-payment h3 { font-size:12px; margin:16px 0 6px; }
+.consult-flow .detail-payment p { font-size:12px; color:var(--text-muted); line-height:1.6; }
+.consult-flow .detail-options .flow-demo { margin-bottom:0; }
+.consult-flow .detail-fee { border-top:1px solid var(--border-soft); margin-top:16px; padding-top:14px; display:flex; justify-content:space-between; align-items:center; font-size:12px; }
+.consult-flow .detail-fee strong { font-size:20px; color:var(--deep-blue-1); }
