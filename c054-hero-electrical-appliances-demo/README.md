@@ -1,39 +1,35 @@
-# HERO Electrical Appliances — Starter demo
+# HERO Electrical Appliances — engine oil & batteries demo
 
-Static, one-page client presentation for C054 / BizWeb KH. No build step, framework, backend, database, login, cart, payments or deployment.
+C054 / BizWeb KH Starter Website ($99). A local static presentation for a Cambodian SME, focused on motorcycle engine oil, car engine oil, motorcycle batteries and car batteries.
 
-## Open locally
+## Open
 
-Double-click `index.html` in a modern browser. All images, styles and scripts are local and all paths are relative. No installation or network connection is needed.
+Open `index.html` directly in a browser. No build step, dependencies or internet connection required. The same files work at `/c054-hero-electrical-appliances-demo/` with relative asset paths.
 
-## Files
+## Structure
 
-- `index.html` — semantic page structure and inquiry form.
-- `css/style.css` — responsive styling and reduced-motion support.
-- `js/main.js` — product/category cards, vector icons, mobile menu and demo interactions.
-- `assets/` — eight optimized photographs, favicon and source credits.
+- `index.html`: hero, About, categories, featured products, Why HERO, quality guidance, contact and footer.
+- `css/style.css`: existing responsive foundation.
+- `css/automotive.css`: automotive palette, revised layouts and responsive presentation.
+- `js/main.js`: four product/category cards, inline vector icons, mobile menu and demo inquiry behavior.
+- `assets/`: local optimized photography, favicon and source credits.
 
-## Sections
+The business name stays HERO Electrical Appliances. Household appliance content has been replaced with oil and battery products. The four sample featured products correspond to the four main categories. Product images illustrate the range and do not confirm actual stock or authorized brand relationships.
 
-Header/navigation, kitchen hero, service strip, seven product categories, six featured products, Why HERO, quality/warranty guidance, home-upgrade banner, store details, inquiry form and footer.
+## Interactions
 
-Category and product inquiry actions select a matching product in the form. Required fields use browser validation. Submitting displays a demo notice; nothing is sent or stored. Call and Telegram actions explain that contact information is not yet confirmed. Visit Store links to the business-information block.
+Product and category actions preselect the matching inquiry option. The form validates required fields and displays a clear demo-only message; it does not send or store personal data. Phone, Telegram and WhatsApp display contact placeholders. Visit Store links to the business-information section. Navigation supports small screens, keyboard focus and reduced motion.
 
-## Client information still needed
+## Scope
 
-- Approved logo and final brand assets.
-- Exact product lines, models, specifications, availability and pricing.
-- Phone, Telegram, address and opening hours.
-- Confirmed warranty terms, after-sales services and quality claims.
-- Authorized product photography. See `assets/SOURCES.md`; retailer/manufacturer pictures are illustrative and have no established reuse license.
-- Final contact destination and consent/privacy wording if the form is connected later.
+Static information only. No CMS, backend, login, admin, database, cart, checkout or payment. No deployment performed.
 
-The kitchen photo is licensed under the Unsplash License. Product photography is real and no AI images were used. The refrigerator is labeled multi-door to match its illustrative image. This demo does not claim brand authorization or specific warranty coverage.
+## Client details to confirm
 
-## Validation
+Logo, phone, Telegram, WhatsApp, address, hours, actual brands, stock, oil grades, product specifications, battery sizes, pricing, warranty/service terms and permission to use supplier product photography. See `assets/SOURCES.md` for image origins and reuse notes. No exact prices or unsupported fitment promises are included.
 
-Tested in headless Microsoft Edge at 390, 430, 768 and 1366 CSS pixels. No horizontal overflow, missing product images, invalid section anchors or JavaScript exceptions. Confirmed mobile navigation, product preselection, required-field validation, contact placeholder feedback, demo submission notice and direct `file://` opening. Also tested at `/c054-hero-electrical-appliances-demo/` using a local HTTP server.
+## QA
 
-## GitHub readiness
+Browser validation targets 390, 430, 768 and 1366 CSS pixels. Checks cover overflow, image loading, section anchors, product/category inquiry selections, mobile menu, required form fields, demo submission and direct file opening. QA scripts and screenshots remain outside the deliverable folder in the parent `qa` directory.
 
-Upload this folder's contents as a static repository; no dependencies, secrets or build artifacts are needed. Relative assets support a repository subpath. Technically ready for GitHub upload. Keep the presentation private until product-image permission and business content are approved. Nothing has been deployed.
+The folder is technically ready for GitHub upload. Public commercial use requires final client content and image permissions.
