@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dandelion School System — Dashboard</title>
+<link rel="icon" href="assets/images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Khmer:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-shell" id="appShell">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <img src="assets/images/logo.jpg" alt="Dandelion logo">
+      <div class="sidebar-brand-text">
+        <strong>Dandelion Academy</strong>
+        <span>School System</span>
+      </div>
+    </div>
+    <nav class="sidebar-nav" id="sidebarNav"></nav>
+    <div class="sidebar-footer">
+      <button class="sidebar-collapse-btn" id="collapseBtn">${''}</button>
+    </div>
+  </aside>
+
+  <div class="main-col">
+    <header class="topbar">
+      <button class="topbar-toggle" id="mobileToggle">MENU</button>
+
+      <div class="search-box">
+        <span id="searchIcon"></span>
+        <input type="text" id="globalSearch" placeholder="Search students, staff, receipts...">
+        <div class="search-results" id="searchResults"></div>
+      </div>
+
+      <div class="topbar-right">
+        <div class="lang-switch" id="topLangSwitch">
+          <button data-lang="en" class="active">EN</button>
+          <button data-lang="kh">KH</button>
+        </div>
+
+        <div style="position:relative;">
+          <button class="icon-btn" id="notifBtn"><span id="bellIcon"></span><span class="dot" id="notifDot"></span></button>
+          <div class="notif-panel" id="notifPanel"></div>
+        </div>
+
+        <div style="position:relative;">
+          <button class="profile-chip" id="profileBtn">
+            <div class="avatar" id="profileAvatar">DC</div>
+            <div class="who">
+              <strong id="profileName">Dara Chan</strong>
+              <small id="profileRole">School Director</small>
+            </div>
+            <span id="chevIcon"></span>
+          </button>
+          <div class="profile-panel" id="profilePanel"></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="content" id="contentRoot"></main>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" id="modalBox"></div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="assets/js/icons.js"></script>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
