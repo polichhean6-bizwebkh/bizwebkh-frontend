@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>News &amp; Updates | MEP Technical and Skills Academy</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/polish.js" defer></script>
+</head>
+<body>
+<header class="site-header" id="site-header"></header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / News</div>
+    <h1>News &amp; Updates</h1>
+    <p>Announcements, workshops and student activities from the academy.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="news-grid" id="news-grid"></div>
+  </div>
+</section>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  window.PAGE_INIT = function (data) {
+    var s = SITE;
+    var wrap = document.getElementById("news-grid");
+    data.news.filter(function(n){ return n.status === "Published"; })
+      .sort(function(a,b){ return new Date(b.publishDate) - new Date(a.publishDate); })
+      .forEach(function (n) {
+        wrap.insertAdjacentHTML("beforeend",
+          '<div class="card">' +
+          '<div class="card-img"><img src="' + s.esc(MEP.imageURL(n.image)) + '" alt="' + s.esc(n.title) + '" loading="lazy"></div>' +
+          '<div class="card-body">' +
+          '<span class="badge">' + s.esc(n.category) + '</span>' +
+          '<span class="news-date">' + s.fmtDate(n.publishDate) + '</span>' +
+          '<h3 class="card-title">' + s.esc(n.title) + '</h3>' +
+          '<p class="card-desc">' + s.esc(n.excerpt) + '</p>' + '<details class="news-detail"><summary>Read update</summary><p>' + s.esc(n.content) + '</p></details>' +
+          '</div></div>');
+      });
+  };
+</script>
+</body>
+</html>

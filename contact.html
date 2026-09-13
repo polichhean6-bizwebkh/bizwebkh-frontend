@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Us | MEP Technical and Skills Academy</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/polish.js" defer></script>
+</head>
+<body>
+<header class="site-header" id="site-header"></header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Contact</div>
+    <h1 id="contact-hero-title">Get in Touch</h1>
+    <p id="contact-hero-subtitle">Talk to our team about courses, schedules and registration.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container contact-grid">
+    <div>
+      <h2>Contact Information</h2>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div><h4>Phone / Telegram</h4><p data-site-phone></p></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <div><h4>Email</h4><p data-site-email></p></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div><h4>Address</h4><p data-site-address></p></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">💬</div>
+        <div><h4>Facebook</h4><p id="fb-placeholder" data-site-facebook>To be confirmed</p></div>
+      </div>
+      <div style="display:flex;gap:12px;margin-top:24px">
+        <a class="btn btn-navy" data-site-telegram-href href="contact.html">Message on Telegram</a>
+        <a class="btn btn-ghost" data-site-phone-href href="contact.html">Call Us</a>
+      </div>
+    </div>
+    <div class="form-card contact-help"><span class="eyebrow">Admissions support</span><h2>Let’s Find Your Training Program</h2><p>Ask about course content, entry requirements, the next available intake or the training location.</p><ul class="mission-list"><li>Choose a program that matches your experience</li><li>Discuss evening and weekend schedules</li><li>Confirm the venue before travelling</li></ul><a class="btn btn-primary btn-block" data-site-phone-href href="tel:+85577929360">Call 077 929 360</a><p class="text-muted" style="margin-top:18px">Already know your course? <a href="register.html">Start your registration →</a></p></div>
+  </div>
+</section>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  window.PAGE_INIT = function (data) {
+    if (data.pages && data.pages.contact) {
+      document.getElementById("contact-hero-title").textContent = data.pages.contact.heroTitle;
+      document.getElementById("contact-hero-subtitle").textContent = data.pages.contact.subtitle;
+    }
+
+  };
+</script>
+</body>
+</html>

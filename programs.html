@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Training Programs | MEP Technical and Skills Academy</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/polish.js" defer></script>
+</head>
+<body>
+<header class="site-header" id="site-header"></header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Training Programs</div>
+    <h1>Training Programs</h1>
+    <p>Explore our full range of practical technical training programs.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="gallery-filters" id="category-filters"></div>
+    <div class="grid grid-4" id="programs-grid"></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Not Sure Which Program Fits You?</h2>
+    <p>Contact our team on Telegram or by phone and we'll help you choose the right course.</p>
+    <a href="contact.html" class="btn btn-primary">Contact Us</a>
+  </div>
+</section>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  window.PAGE_INIT = function (data) {
+    var s = SITE;
+    var published = data.courses.filter(function(c){return c.status==="Published";});
+    var categories = ["All"].concat(Array.from(new Set(published.map(function(c){return c.category;}))));
+    var filterWrap = document.getElementById("category-filters");
+    var gridWrap = document.getElementById("programs-grid");
+
+    function render(cat) {
+      gridWrap.innerHTML = "";
+      published.filter(function(c){ return cat === "All" || c.category === cat; }).forEach(function (c) {
+        gridWrap.insertAdjacentHTML("beforeend",
+          '<div class="card">' +
+          '<div class="card-img"><img src="' + s.esc(MEP.imageURL(c.image)) + '" alt="' + s.esc(c.name) + '" loading="lazy"></div>' +
+          '<div class="card-body">' +
+          '<span class="badge">' + s.esc(c.category) + '</span>' +
+          '<h3 class="card-title">' + s.esc(c.name) + '</h3>' +
+          '<p class="card-desc">' + s.esc(c.shortDescription) + '</p>' +
+          '<div class="card-meta"><span>📘 ' + s.esc(c.level) + '</span><span>⏱ ' + s.esc(c.duration) + '</span></div>' +
+          '<div class="card-actions">' +
+          '<a class="btn btn-ghost btn-sm" href="course.html?id=' + c.id + '">View Course</a>' +
+          '<a class="btn btn-navy btn-sm" href="register.html?course=' + c.id + '">Register</a>' +
+          '</div></div></div>');
+      });
+    }
+
+    categories.forEach(function (cat, idx) {
+      filterWrap.insertAdjacentHTML("beforeend",
+        '<button class="filter-chip' + (idx===0 ? " active" : "") + '" data-cat="' + s.esc(cat) + '">' + s.esc(cat) + '</button>');
+    });
+    s.qsa(".filter-chip", filterWrap).forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        s.qsa(".filter-chip", filterWrap).forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        render(btn.getAttribute("data-cat"));
+      });
+    });
+    render("All");
+  };
+</script>
+</body>
+</html>

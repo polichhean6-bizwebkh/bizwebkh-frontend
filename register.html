@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Register for Training | MEP Technical and Skills Academy</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/polish.js" defer></script>
+</head>
+<body>
+<header class="site-header" id="site-header"></header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Register</div>
+    <h1>Register / Book Training</h1>
+    <p>Fill out the form below to request your place. Our team will contact you to confirm your schedule.</p>
+  </div>
+</section>
+
+<section class="section" id="form-section">
+  <div class="container">
+    <div class="form-card" style="max-width:820px;margin:0 auto">
+      <ol class="registration-steps"><li>Choose course</li><li>Select intake</li><li>Your details</li></ol><div id="selection-summary" class="selection-summary" aria-live="polite">Choose your program and intake to see your training summary.</div><form id="reg-form" novalidate>
+        <div class="form-grid">
+          <div class="field full">
+            <label>Full Name <span class="req">*</span></label>
+            <input type="text" name="name" required>
+            <span class="form-error">Please enter the student's full name.</span>
+          </div>
+
+          <div class="field">
+            <label>Gender</label>
+            <select name="gender">
+              <option value="">Select</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Prefer not to say</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Date of Birth</label>
+            <input type="date" name="dob">
+          </div>
+
+          <div class="field">
+            <label>Phone Number <span class="req">*</span></label>
+            <input type="tel" name="phone" required placeholder="e.g. 012 345 678">
+            <span class="form-error">Please enter a valid phone number.</span>
+          </div>
+          <div class="field">
+            <label>Telegram Number</label>
+            <input type="tel" name="telegram" placeholder="Optional">
+          </div>
+
+          <div class="field full">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Optional">
+          </div>
+
+          <div class="field">
+            <label>Current Occupation</label>
+            <select name="occupation">
+              <option>Student</option>
+              <option>Technician</option>
+              <option>Employee</option>
+              <option>Business Owner</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field"></div>
+
+          <div class="field">
+            <label>Course / Training Program <span class="req">*</span></label>
+            <select name="course" id="course-select" required>
+              <option value="">Select a course</option>
+            </select>
+            <span class="form-error">Please select a training program.</span>
+          </div>
+          <div class="field">
+            <label>Preferred Intake <span class="req">*</span></label>
+            <select name="intake" id="intake-select" required>
+              <option value="">Select a course first</option>
+            </select>
+            <span class="form-error">Please select an intake.</span>
+          </div>
+
+          <div class="field full">
+            <label>Education / Experience</label>
+            <textarea name="notes" placeholder="Optional notes about your background or experience"></textarea>
+          </div>
+
+          <div class="checkbox-field">
+            <input type="checkbox" id="confirm-check" name="confirm" required>
+            <label for="confirm-check">I confirm the information provided is correct. <span class="req">*</span></label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:22px">Submit Registration</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="confirm-section" style="display:none">
+  <div class="container">
+    <div class="confirm-wrap">
+      <div class="confirm-icon">✓</div>
+      <h1>Registration Submitted Successfully</h1>
+      <p class="text-muted">Your registration has been saved in this browser preview.</p>
+      <div class="confirm-card">
+        <div class="confirm-row"><span>Reference</span><span class="confirm-ref" id="c-ref"></span></div>
+        <div class="confirm-row"><span>Course</span><span id="c-course"></span></div>
+        <div class="confirm-row"><span>Selected Intake</span><span id="c-intake"></span></div>
+        <div class="confirm-row"><span>Student Name</span><span id="c-name"></span></div>
+        <div class="confirm-row"><span>Phone</span><span id="c-phone"></span></div>
+      </div>
+      <p>Keep your reference number. For a confirmed place, call the academy or contact the team on Telegram.</p>
+      <div class="hero-ctas center" style="justify-content:center">
+        <a href="index.html" class="btn btn-ghost">Back to Website</a>
+        <a href="contact.html" id="c-telegram" class="btn btn-navy">Contact via Telegram</a>
+        <a href="contact.html" id="c-phone-link" class="btn btn-outline" style="border-color:var(--border);color:var(--navy)">Call Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  window.PAGE_INIT = function (data) {
+    var s = SITE;
+    var courseSelect = document.getElementById("course-select");
+    var intakeSelect = document.getElementById("intake-select");
+    var form = document.getElementById("reg-form");
+    var published = data.courses.filter(function(c){ return c.status === "Published"; });
+
+    published.forEach(function (c) {
+      courseSelect.insertAdjacentHTML("beforeend", '<option value="' + c.id + '">' + s.esc(c.name) + '</option>');
+    });
+
+    function populateIntakes(courseId, preselectIntake) {
+      intakeSelect.innerHTML = "";
+      var options = data.intakes.filter(function (i) { return i.courseId === courseId; });
+      if (!options.length) {
+        intakeSelect.insertAdjacentHTML("beforeend", '<option value="">No intakes currently scheduled</option>');
+        return;
+      }
+      intakeSelect.insertAdjacentHTML("beforeend", '<option value="">Select an intake</option>');
+      options.forEach(function (i) {
+        var seats = Math.max(i.maxStudents - i.enrolled, 0);
+        var label = i.name + " — " + s.fmtDate(i.startDate) + " (" + i.status + ", " + seats + " seats left)";
+        var disabled = (i.status === "Closed" || !seats) ? " disabled" : "";
+        intakeSelect.insertAdjacentHTML("beforeend", '<option value="' + i.id + '"' + disabled + '>' + s.esc(label) + '</option>');
+      });
+      if (preselectIntake && Array.from(intakeSelect.options).some(function(o){return o.value===preselectIntake && !o.disabled;})) intakeSelect.value = preselectIntake;
+    }
+
+    var qCourse = s.qparam("course");
+    var qIntake = s.qparam("intake");
+    if (qCourse && published.some(function(c){return c.id === qCourse;})) {
+      courseSelect.value = qCourse;
+      populateIntakes(qCourse, qIntake);
+    } else {
+      intakeSelect.innerHTML = '<option value="">Select a course first</option>';
+    }
+
+    courseSelect.addEventListener("change", function () {
+      populateIntakes(courseSelect.value);
+      updateSummary();
+    });
+
+    var grid=form.querySelector('.form-grid');
+    var courseField=courseSelect.closest('.field'), intakeField=intakeSelect.closest('.field');
+    grid.prepend(intakeField); grid.prepend(courseField);
+    var heading=document.createElement('h3'); heading.className='field full form-section-title'; heading.textContent='Student information'; intakeField.after(heading);
+    function updateSummary(){
+      var c=data.courses.find(function(x){return x.id===courseSelect.value;});
+      var i=data.intakes.find(function(x){return x.id===intakeSelect.value;});
+      document.getElementById('selection-summary').innerHTML=c ? '<strong>'+s.esc(c.name)+'</strong><span>'+s.esc(c.duration)+' · '+s.esc(c.level)+'</span><p>'+(i?s.esc(i.name)+' · '+s.fmtDate(i.startDate)+'<br>'+s.esc(i.days)+' · '+s.esc(i.startTime)+'–'+s.esc(i.endTime)+' · '+Math.max(0,i.maxStudents-i.enrolled)+' seats available':'Select an available intake below.')+'</p>' : 'Choose your program and intake to see your training summary.';
+    }
+    intakeSelect.addEventListener('change',updateSummary); updateSummary();
+    function setError(field, hasError) {
+      field.setAttribute('aria-invalid',hasError);
+      field.closest(".field").classList.toggle("invalid", hasError);
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = form.elements.namedItem("name").value.trim();
+      var phone = form.elements.namedItem("phone").value.trim();
+      var course = form.elements.namedItem("course").value;
+      var intake = form.elements.namedItem("intake").value;
+      var confirmChecked = form.elements.namedItem("confirm").checked;
+
+      var valid = true;
+      setError(form.elements.namedItem("name"), !name); if (!name) valid = false;
+      setError(form.elements.namedItem("phone"), !/^\+?[\d\s()-]{8,18}$/.test(phone)); if (!/^\+?[\d\s()-]{8,18}$/.test(phone)) valid = false;
+      setError(form.elements.namedItem("course"), !course); if (!course) valid = false;
+      setError(form.elements.namedItem("intake"), !intake); if (!intake) valid = false;
+
+      if (!confirmChecked) {
+        valid = false;
+        SITE.toast("Please confirm the information is correct before submitting.");
+      }
+      if (!valid) { var invalid=form.querySelector(".invalid input,.invalid select"); if(invalid) invalid.focus(); return; }
+
+      if (!form.elements.namedItem('email').checkValidity()) { SITE.toast('Please enter a valid email address.'); form.elements.namedItem('email').focus(); return; }
+      var fresh = MEP.load();
+      var selected = fresh.intakes.find(function(i){return i.id===intake && i.courseId===course;});
+      if(!selected || selected.status==='Closed' || selected.enrolled>=selected.maxStudents || !fresh.courses.some(function(c){return c.id===course && c.status==='Published';})) { SITE.toast('This intake is no longer available. Please select another intake.'); return; }
+      if(form.dataset.submitted) return;
+      var regNum = fresh.nextRegNumber || 1000;
+      var refId = "REG-" + new Date().getFullYear() + "-" + regNum;
+      var record = {
+        id: refId,
+        name: name,
+        gender: form.elements.namedItem("gender").value,
+        dob: form.elements.namedItem("dob").value,
+        phone: phone,
+        telegram: form.elements.namedItem("telegram").value.trim(),
+        email: form.elements.namedItem("email").value.trim(),
+        occupation: form.elements.namedItem("occupation").value,
+        courseId: course,
+        intakeId: intake,
+        notes: form.elements.namedItem("notes").value.trim(),
+        status: "New",
+        submittedAt: new Date().toISOString()
+      };
+      fresh.registrations.unshift(record);
+      fresh.nextRegNumber = regNum + 1;
+      var intakeObj = fresh.intakes.filter(function (i) { return i.id === intake; })[0];
+      if (intakeObj) {
+        intakeObj.enrolled = Math.min(intakeObj.enrolled + 1, intakeObj.maxStudents);
+        if (intakeObj.enrolled >= intakeObj.maxStudents) intakeObj.status = "Closed";
+        else if (intakeObj.enrolled >= intakeObj.maxStudents - 2) intakeObj.status = "Almost Full";
+      }
+      try { MEP.save(fresh); } catch(error) { SITE.toast(error.message); return; }
+      form.dataset.submitted="true";
+
+      var courseObj = fresh.courses.filter(function (c) { return c.id === course; })[0] || {};
+      var intakeName = intakeObj ? intakeObj.name : "";
+
+      document.getElementById("c-ref").textContent = refId;
+      document.getElementById("c-course").textContent = courseObj.name || "";
+      document.getElementById("c-intake").textContent = intakeName;
+      document.getElementById("c-name").textContent = name;
+      document.getElementById("c-phone").textContent = phone;
+      document.getElementById("c-telegram").href = MEP.telegramURL(fresh.settings.telegram);
+      document.getElementById("c-phone-link").href = "tel:" + fresh.settings.phone.replace(/\s+/g, "");
+
+      document.getElementById("form-section").style.display = "none";
+      document.getElementById("confirm-section").style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  };
+</script>
+</body>
+</html>

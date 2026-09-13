@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Us | MEP Technical and Skills Academy</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/polish.js" defer></script>
+</head>
+<body>
+<header class="site-header" id="site-header"></header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / About</div>
+    <h1 id="about-hero-title">About MEP Technical and Skills Academy</h1>
+    <p id="about-hero-subtitle">Practical training built around real, applicable technical skills.</p>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container about-grid">
+    <div class="about-media">
+      <img src="assets/images/about.jpg" alt="MEP building systems overview">
+    </div>
+    <div>
+      <span class="eyebrow">Our Mission</span>
+      <h2>Developing Practical Technical Skills for the Workforce</h2>
+      <p id="about-content">MEP Technical and Skills Academy focuses on practical, hands-on training for students, technicians and working professionals across core technical trades. Our approach centers on workshop-based learning, giving students the opportunity to build real, applicable skills alongside classroom instruction.</p>
+      <ul class="mission-list">
+        <li>Practical, workshop-based training approach</li>
+        <li>Courses designed around real technical trade skills</li>
+        <li>Guided instruction for students at every level</li>
+        <li>Flexible intakes to suit different schedules</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Training Approach</span>
+      <h2>How We Teach</h2>
+      <p>Every program blends classroom instruction with hands-on workshop practice.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card"><div class="card-body">
+        <div class="value-icon">📖</div>
+        <h3 class="card-title">Classroom Foundations</h3>
+        <p class="card-desc">Core theory and safety knowledge taught before hands-on practice begins.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="value-icon">🔧</div>
+        <h3 class="card-title">Hands-On Workshops</h3>
+        <p class="card-desc">Guided practice using real tools, equipment and technical scenarios.</p>
+      </div></div>
+      <div class="card"><div class="card-body">
+        <div class="value-icon">🎯</div>
+        <h3 class="card-title">Practical Assessment</h3>
+        <p class="card-desc">Skills reinforced through applied exercises and instructor feedback.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow">Who We Serve</span>
+      <h2>Skills for the Next Step in Your Working Life</h2>
+      <p>For school leavers exploring a trade, technicians building confidence and working teams developing maintenance skills.</p>
+    </div>
+    <div class="value-grid">
+      <div class="value-item"><div class="value-icon">🛠</div><h4>Practical Skills Focus</h4><p>Training built around real, applicable technical tasks.</p></div>
+      <div class="value-item"><div class="value-icon">👷</div><h4>Hands-on Training Approach</h4><p>Workshop-based learning alongside classroom instruction.</p></div>
+      <div class="value-item"><div class="value-icon">📐</div><h4>Industry-Relevant Learning</h4><p>Course content shaped around real technical trades.</p></div>
+      <div class="value-item"><div class="value-icon">🗓</div><h4>Flexible Training Programs</h4><p>Multiple intakes and schedules to fit different needs.</p></div>
+      <div class="value-item"><div class="value-icon">🤝</div><h4>Supportive Learning Environment</h4><p>Guided instruction for students at every level.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section"><div class="container about-grid"><div><span class="eyebrow">Why Technical Skills Matter</span><h2>Better Building Services Start with Skilled People</h2></div><p>From reliable power and water supply to comfortable indoor spaces, technical trades support daily life in Cambodia. Learning to read plans, choose tools, inspect equipment and communicate clearly helps learners approach practical tasks with care.</p></div></section>
+<section class="cta-band">
+  <div class="container">
+    <h2>Ready to Get Started?</h2>
+    <p>Explore our training programs or register for an upcoming intake today.</p>
+    <a href="programs.html" class="btn btn-primary">Explore Programs</a>
+  </div>
+</section>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  window.PAGE_INIT = function (data) {
+    if (data.pages && data.pages.about) {
+      document.getElementById("about-content").textContent = data.pages.about.content;
+      document.getElementById("about-hero-title").textContent = data.pages.about.heroTitle;
+      document.getElementById("about-hero-subtitle").textContent = data.pages.about.subtitle;
+    }
+  };
+</script>
+</body>
+</html>

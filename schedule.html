@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schedule | MEP Technical and Skills Academy</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/polish.js" defer></script>
+</head>
+<body>
+<header class="site-header" id="site-header"></header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Schedule</div>
+    <h1>Upcoming Training / Intakes</h1>
+    <p>Browse upcoming class intakes across all training programs.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="gallery-filters" id="schedule-filters" aria-label="Filter by trade"></div>
+    <div class="table-wrap">
+      <table class="schedule">
+        <thead><tr><th>Course</th><th>Intake Date</th><th>Days</th><th>Time</th><th>Available Seats</th><th>Status</th><th></th></tr></thead>
+        <tbody id="schedule-body"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="container">
+    <h2>Found a Class That Fits?</h2>
+    <p>Register now to secure your seat in an upcoming intake.</p>
+    <a href="register.html" class="btn btn-primary">Register Now</a>
+  </div>
+</section>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  window.PAGE_INIT = function (data) {
+    var s = SITE;
+    var body = document.getElementById("schedule-body");
+    var selectedCategory = 'All';
+    ['All','Electrical','Plumbing','HVAC','Mechanical'].forEach(function(cat){
+      var button = document.createElement('button'); button.className='filter-chip'; button.textContent=cat;
+      button.addEventListener('click',function(){selectedCategory=cat;render();});
+      document.getElementById('schedule-filters').appendChild(button);
+    });
+    function render(){
+    body.innerHTML='';
+    document.querySelectorAll('#schedule-filters button').forEach(function(b){b.classList.toggle('active',b.textContent===selectedCategory);b.setAttribute('aria-pressed',b.textContent===selectedCategory);});
+    data.intakes
+      .filter(function(i){return data.courses.some(function(c){return c.id===i.courseId && c.status==='Published' && (selectedCategory==='All' || c.category===selectedCategory);});})
+      .sort(function (a, b) { return new Date(a.startDate) - new Date(b.startDate); })
+      .forEach(function (i) {
+        var course = data.courses.filter(function(c){ return c.id === i.courseId; })[0] || {};
+        var seats = Math.max(i.maxStudents - i.enrolled, 0);
+        body.insertAdjacentHTML("beforeend",
+          '<tr><td data-label="Course"><strong>' + s.esc(course.name || "") + '</strong><div class="text-muted" style="font-size:.8rem">' + s.esc(i.name) + '</div></td>' +
+          '<td data-label="Intake Date">' + s.fmtDate(i.startDate) + ' – ' + s.fmtDate(i.endDate) + '</td>' +
+          '<td data-label="Days">' + s.esc(i.days) + '</td><td data-label="Time">' + s.esc(i.startTime) + ' – ' + s.esc(i.endTime) + '</td>' +
+          '<td data-label="Seats">' + seats + ' / ' + i.maxStudents + '</td>' +
+          '<td data-label="Status"><span class="status-pill ' + s.statusClass(i.status) + '">' + s.esc(i.status) + '</span></td>' +
+          '<td data-label="" class="flex gap-10">' +
+          '<a class="btn btn-ghost btn-sm" href="course.html?id=' + i.courseId + '">View</a>' +
+          (i.status !== "Closed" ? '<a class="btn btn-navy btn-sm" href="register.html?course=' + i.courseId + '&intake=' + i.id + '">Register</a>' : '') +
+          '</td></tr>');
+      });
+    if(!body.children.length) body.innerHTML='<tr><td colspan="7">No intakes in this category. Please contact the academy for the next schedule.</td></tr>';
+    }
+    render();
+  };
+</script>
+</body>
+</html>

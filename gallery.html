@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallery | MEP Technical and Skills Academy</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/polish.js" defer></script>
+</head>
+<body>
+<header class="site-header" id="site-header"></header>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Gallery</div>
+    <h1>Training Gallery</h1>
+    <p>Explore the tools, technical settings and collaborative activities behind practical learning.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="gallery-filters" id="gallery-filters"></div>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </div>
+</section>
+
+<footer class="site-footer" id="site-footer"></footer>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script>
+  window.PAGE_INIT = function (data) {
+    var s = SITE;
+    var items = data.gallery.filter(function(g){ return g.published; }).sort(function(a,b){ return a.order - b.order; });
+    var categories = ["All"].concat(Array.from(new Set(items.map(function(g){return g.category;}))));
+    var filterWrap = document.getElementById("gallery-filters");
+    var gridWrap = document.getElementById("gallery-grid");
+
+    function render(cat) {
+      gridWrap.innerHTML = "";
+      items.filter(function(g){ return cat === "All" || g.category === cat; }).forEach(function (g) {
+        gridWrap.insertAdjacentHTML("beforeend",
+          '<button class="gallery-item" type="button"><img src="' + s.esc(MEP.imageURL(g.image)) + '" alt="' + s.esc(g.title) + '" loading="lazy">' +
+          '<div class="gallery-caption">' + s.esc(g.title) + '</div></button>');
+      });
+    }
+    categories.forEach(function (cat, idx) {
+      filterWrap.insertAdjacentHTML("beforeend",
+        '<button class="filter-chip' + (idx===0 ? " active" : "") + '" data-cat="' + s.esc(cat) + '">' + s.esc(cat) + '</button>');
+    });
+    s.qsa(".filter-chip", filterWrap).forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        s.qsa(".filter-chip", filterWrap).forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        render(btn.getAttribute("data-cat"));
+      });
+    });
+    render("All");
+  };
+</script>
+</body>
+</html>
