@@ -27,6 +27,17 @@ function applyLanguage(lang) {
     const value = lang === 'en' ? node.getAttribute('data-i18n-aria-en') : node.getAttribute('data-i18n-aria-km');
     if (value != null) node.setAttribute('aria-label', value);
   });
+  document.querySelectorAll('[data-alt-km]').forEach(node => {
+    node.alt = lang === 'en' ? node.dataset.altEn : node.dataset.altKm;
+  });
+  document.querySelectorAll('.subject-secondary').forEach(node => {
+    node.textContent = lang === 'en' ? node.dataset.secondaryKm : node.dataset.secondaryEn;
+    node.lang = lang === 'en' ? 'km' : 'en';
+  });
+  document.title = lang === 'en' ? 'Educational Science | PSBU' : 'វិទ្យាសាស្ត្រអប់រំ | PSBU';
+  document.querySelector('meta[name="description"]').content = lang === 'en'
+    ? 'Explore Educational Science at Preah Sihamoniraja Buddhist University: study subjects, student activities, and admission inquiries through Telegram.'
+    : 'ផ្នែកវិទ្យាសាស្ត្រអប់រំ នៃពុទ្ធិកសាកលវិទ្យាល័យព្រះសីហមុនីរាជា។ ស្វែងយល់ពីមុខវិជ្ជាសិក្សា សកម្មភាព និងការចុះឈ្មោះតាម Telegram។';
   root.setAttribute('lang', lang);
   root.setAttribute('data-lang', lang);
   langButtons.forEach(button => {
@@ -73,3 +84,24 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { rootMargin: '-15% 0px -60% 0px' });
 document.querySelectorAll('main section[id]').forEach(section => observer.observe(section));
+
+const header = document.querySelector('header');
+function updateHeader() { header.classList.toggle('scrolled', window.scrollY > 20); }
+window.addEventListener('scroll', updateHeader, { passive: true });
+updateHeader();
+window.matchMedia('(min-width: 1001px)').addEventListener('change', event => { if (event.matches) closeMenu(); });
+
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const reveal = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        reveal.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.about-photo, .about-copy, .program-layout, .value-grid article, .highlights-grid article, .admission-inner, .contact-details').forEach(node => {
+    node.classList.add('reveal-ready');
+    reveal.observe(node);
+  });
+}
