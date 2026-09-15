@@ -58,7 +58,7 @@ applyLanguage(savedLang === 'en' ? 'en' : 'km');
 
 /* ---------- Gallery lightbox ---------- */
 const lightbox = document.querySelector('#lightbox');
-document.querySelectorAll('.gallery-item').forEach(button => {
+document.querySelectorAll('.activity-image').forEach(button => {
   button.addEventListener('click', () => {
     const source = button.querySelector('img');
     const lang = root.getAttribute('data-lang') === 'en' ? 'en' : 'km';
