@@ -1,35 +1,33 @@
-# HERO Electrical Appliances — engine oil & batteries demo
+# HERO Engine Oil & Batteries — current client-review demo
 
-C054 / BizWeb KH Starter Website ($99). A local static presentation for a Cambodian SME, focused on motorcycle engine oil, car engine oil, motorcycle batteries and car batteries.
+Updated 15 September 2026 from the existing C054 static site. The design, logo, colors, hero, contact details and one-page structure are preserved.
 
 ## Open
+Open `index.html` directly. All assets and Noto Sans Khmer are local; no build step or installation is needed. Relative paths also support `/c054-hero-electrical-appliances-demo/`.
 
-Open `index.html` directly in a browser. No build step, dependencies or internet connection required. The same files work at `/c054-hero-electrical-appliances-demo/` with relative asset paths.
+## Included products
+| Category | Brands |
+| --- | --- |
+| Car Battery | BUSSAN, SUBUTA, SUSHI |
+| Motorcycle Oil | SOSI |
 
-## Structure
+Only two categories and four product cards are displayed. All five product images supplied in `../Images from Client/` are used: the SOSI trio appears on the category card, the single can appears on the SOSI product card, and each battery has its matching photo. No new product visuals were generated. Original client files are preserved.
 
-- `index.html`: hero, About, categories, featured products, Why HERO, quality guidance, contact and footer.
-- `css/style.css`: existing responsive foundation.
-- `css/automotive.css`: automotive palette, revised layouts and responsive presentation.
-- `js/main.js`: four product/category cards, inline vector icons, mobile menu and demo inquiry behavior.
-- `assets/`: local optimized photography, favicon and source credits.
+The website displays no unavailable brands, motorcycle-battery category, generic product illustrations or placeholder products. Prior unused assets may remain on disk as historical files but are not referenced or included in the current upload ZIP.
 
-The business name stays HERO Electrical Appliances. Household appliance content has been replaced with oil and battery products. The four sample featured products correspond to the four main categories. Product images illustrate the range and do not confirm actual stock or authorized brand relationships.
+## Contact
+Address: Dongkor, Phnom Penh, Cambodia. Hours: 8:00 AM – 5:00 PM.
 
-## Interactions
+- Telegram: https://t.me/HERO_BATTERY
+- WhatsApp: https://wa.me/message/BPZNOTL7IDFHB1
+- Facebook Page: HERO Engine Oil & Batteries — official URL pending.
 
-Product and category actions preselect the matching inquiry option. The form validates required fields and displays a clear demo-only message; it does not send or store personal data. Phone, Telegram and WhatsApp display contact placeholders. Visit Store links to the business-information section. Navigation supports small screens, keyboard focus and reduced motion.
+Ask for Details scrolls to Contact and displays the selected product/category. Messages are not sent automatically.
 
-## Scope
+## Scope and language
+USD 99 Starter static one-page website, with English content and Khmer category labels in locally bundled Noto Sans Khmer. No backend, CMS, login, shopping cart, payment or inventory system. Not deployed.
 
-Static information only. No CMS, backend, login, admin, database, cart, checkout or payment. No deployment performed.
+## QA and handoff
+Passed 390, 430, 768 and 1366px checks for overflow, images, logo proportions, Khmer labels, navigation, the four product selections and contact-link destinations. All five supplied product photos are used and no excluded product names remain in the rendered page. Direct file opening passes; no JavaScript exceptions.
 
-## Client details to confirm
-
-Logo, phone, Telegram, WhatsApp, address, hours, actual brands, stock, oil grades, product specifications, battery sizes, pricing, warranty/service terms and permission to use supplier product photography. See `assets/SOURCES.md` for image origins and reuse notes. No exact prices or unsupported fitment promises are included.
-
-## QA
-
-Browser validation targets 390, 430, 768 and 1366 CSS pixels. Checks cover overflow, image loading, section anchors, product/category inquiry selections, mobile menu, required form fields, demo submission and direct file opening. QA scripts and screenshots remain outside the deliverable folder in the parent `qa` directory.
-
-The folder is technically ready for GitHub upload. Public commercial use requires final client content and image permissions.
+See `FINAL-HANDOFF.md` and `assets/SOURCES.md`. The current upload ZIP is `../C054-HERO-current-products-2026-09-15.zip`; older ZIPs are historical versions.

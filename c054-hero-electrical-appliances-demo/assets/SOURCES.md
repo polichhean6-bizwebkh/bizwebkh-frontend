@@ -1,22 +1,27 @@
-# Automotive demo asset sources
+# Current website asset sources
 
-Retrieved 2026-09-10. Real manufacturer product imagery and a real workshop photograph; no AI-generated imagery.
+## Product catalog images — background cleanup (15 September 2026, revision 2)
+`bussan-car-battery.jpg`, `subuta-car-battery.jpg`, `sushi-car-battery.jpg`, `sosi-oil-single.jpg` and `sosi-oil-trio.jpg` are the same client-supplied product photography listed below, reprocessed for a consistent catalog look: the background was removed with an automated foreground-detection tool (no manual retouching of the product itself), the product was recentered on a pure-white canvas at a consistent scale, and a soft, uniform drop shadow was added beneath it. No label text, branding, colors or product geometry were altered. The pre-cleanup versions are preserved unchanged as `bussan-car-battery-original.jpg`, `subuta-car-battery-original.jpg`, `sushi-car-battery-original.jpg`, `sosi-oil-single-original.jpg` and `sosi-oil-trio-original.jpg`.
 
-| Local file | Subject / dimensions | Source page | Original asset |
-|---|---|---|---|
-| motul-5100-10w40.png | Motul 5100 10W-40 4T, 1 L; 600 × 995 | https://www.motul.com/en-US/products/15200?product=MOTUL+5100+10W-40+4T | https://azupim01.motul.com/media/motulData/IM/bigweb/Motul_104066_5100%2010W40%204T%2012X1L_png.png |
-| castrol-gtx-5w30.png | Castrol GTX 5W-30, 5 L; 2000 × 2000 | https://www.castrol.com/en_za/south-africa/home/products/our-brands/automotive/castrol-gtx.html | https://www.castrol.com/content/dam/castrol/country-sites-new/en_za/south_africa/home/images/products/our-brands/gtx/castrol-gtx-5w30.png |
-| castrol-gtx-10w40.png | Castrol GTX 10W-40 variant; 2000 × 2000 | https://www.castrol.com/en_za/south-africa/home/products/our-brands/automotive/castrol-gtx.html | https://www.castrol.com/content/dam/castrol/country-sites-new/en_za/south_africa/home/images/products/our-brands/gtx/castrol-gtx-10w40.png |
-| yuasa-ytx7l-bs.jpg | Yuasa YTX7L-BS motorcycle battery; 4000 × 4000 | https://www.yuasa.com/uk/ytx7l-bs | https://www.yuasa.com/media/catalog/product/Y/T/YTX7L_BS_RGB_6c30.jpg |
-| varta-d24.png | Varta D24 Blue Dynamic car battery; 500 × 500 | https://www.varta-automotive.com/apac/products/product/5604080543132 | https://storage.data-varta-automotive.com/resources/images/v20200101/batteries/5604080543132.png |
-| workshop-hero.jpg | Mechanic changing oil; 1800 × 2700 | https://unsplash.com/photos/a-man-working-on-a-car-in-a-garage-jL9zfzTVSwY | https://images.unsplash.com/photo-1643700973089-baa86a1ab9ee?auto=format&fit=crop&fm=jpg&q=85&w=1800 |
+## Supplied product images
+All five files were supplied by the user in `../../Images from Client/`. They were inspected, resized proportionally to a maximum 1000px edge and saved as JPEGs for the website. No image contents, labels or branding were regenerated or retouched. Original PNG files are unchanged.
 
-## Credits and reuse
+| Website asset | Original client filename | Placement |
+| --- | --- | --- |
+| sosi-oil-single.jpg | ChatGPT Image Sep 15, 2026, 08_28_46 PM (1).png | SOSI Motorcycle Oil product card |
+| sosi-oil-trio.jpg | ChatGPT Image Sep 15, 2026, 08_28_47 PM (2).png | Motorcycle Oil category |
+| bussan-car-battery.jpg | ChatGPT Image Sep 15, 2026, 08_28_48 PM (3).png | Car Battery category and BUSSAN product card |
+| subuta-car-battery.jpg | ChatGPT Image Sep 15, 2026, 08_28_49 PM (4).png | SUBUTA Car Battery product card |
+| sushi-car-battery.jpg | ChatGPT Image Sep 15, 2026, 08_28_50 PM (5).png | SUSHI Car Battery product card |
 
-Workshop photograph by Jimmy Nilsson Masth on Unsplash. Source page explicitly identifies it as free under the Unsplash License: https://unsplash.com/license . Photograph depicts a workshop in Falun, Sweden; use as illustrative stock, not as a photograph of the demo shop. Portrait composition works well in a right-hand hero image panel; preserve the mechanic in the lower center when cropping.
+The website copy does not infer technical specifications or guarantees from the images. No newly generated or generic product images are used in the current catalog.
 
-Product imagery is from official Motul, Castrol, Yuasa and Varta manufacturer websites. It is supplier-owned imagery, not confirmed openly licensed. Retained for demo/reference; confirm supplier/dealer permission or replace with client-owned product photography before public commercial use. Product brand marks remain with their respective owners. Images do not establish local stock, retailer authorization, compatibility, or current local specifications. The Varta source identifies this product as in sell-out phase.
+## Hero image (updated 15 September 2026, revision 2)
+`automotive-hero.jpg` is now "A smiling mechanic in blue overalls stands in a garage" by Jesse Plum on Unsplash. Source: https://unsplash.com/photos/a-smiling-mechanic-in-blue-overalls-stands-in-a-garage-T_G3K6lDmtA . License: https://unsplash.com/license (free to use, no attribution required, though credited here for the record). Real, unedited photograph (only exposure/contrast were adjusted); not AI-generated. Depicts a real workshop in Japan, illustrative stock — not HERO's own store. Chosen for the Japan-technology positioning behind the BUSSAN/SUBUTA/SUSHI/SOSI brands' "Japan Technology" labeling. The previous hero photo is preserved unchanged as `automotive-hero-workshop-original.jpg`.
 
-Visual QA: inspected the four primary products and workshop photo. Products have white or transparent backgrounds and match their stated names. Original resolution was used in place of small webpage thumbnails.
+## Preserved assets
+- `Logo.jpg`: unchanged copy of the client-provided logo.
+- `automotive-hero-workshop-original.jpg`: the hero image used before 15 September 2026 revision 2 — workshop stock image by Jimmy Nilsson Masth on Unsplash. Source: https://unsplash.com/photos/a-man-working-on-a-car-in-a-garage-jL9zfzTVSwY . License: https://unsplash.com/license . Illustrative context, not HERO's store. No longer referenced by the site.
+- `NotoSansKhmer-Regular.ttf`: Google Fonts, SIL Open Font License; see `NotoSansKhmer-LICENSE.txt`.
 
-Site mapping: motul-5100-10w40.png -> motorcycle-oil.jpg; castrol-gtx-5w30.png -> car-oil.jpg; yuasa-ytx7l-bs.jpg -> motorcycle-battery.jpg; varta-d24.png -> car-battery.jpg; workshop-hero.jpg -> automotive-hero.jpg. Resized JPEGs on white backgrounds. Additional Castrol variant is not used.
+Old generic category assets and their generation notes are historical unused files. They are not displayed or included in the current-products upload ZIP. No reference-site content or images were added.
