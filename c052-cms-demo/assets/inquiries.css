@@ -1,0 +1,24 @@
+/* Reuse the existing CMS components; only inquiry-specific layout is added. */
+.stats-with-inquiries{grid-template-columns:repeat(3,minmax(0,1fr))}
+.s5{background:#eaf1ff;color:#3676e6}
+.inquiries-panel .search{flex:1;max-width:490px;min-width:0}
+.inquiries-panel .search input{width:100%}
+.inquiries-panel .table-toolbar{flex-wrap:wrap}
+.inquiry-table{min-width:1010px;font-size:13px;table-layout:fixed}
+.inquiry-table th{font-size:12px;line-height:1.6;white-space:normal}
+.inquiry-table td,.inquiry-table th{padding:17px 12px;vertical-align:top}
+.inquiry-table th:nth-child(1){width:13%}.inquiry-table th:nth-child(2){width:19%}.inquiry-table th:nth-child(3){width:18%}.inquiry-table th:nth-child(4){width:16%}.inquiry-table th:nth-child(5){width:12%}.inquiry-table th:nth-child(6){width:9%}.inquiry-table th:nth-child(7){width:13%}
+.inquiry-table td strong{min-width:0}.inquiry-table td{overflow-wrap:anywhere}
+.inquiry-secondary{display:block;font-size:12px;color:#7b889b;margin-top:7px}
+.inquiry-excerpt{margin:0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.6}
+.inquiry-table time{font-size:12px;line-height:1.7}
+.inquiry-actions{min-width:0;gap:6px;flex-wrap:nowrap}.inquiry-actions button{padding:4px 7px}
+.inquiry-status-select{width:100%;padding:6px;border:1px solid #dce3ed;border-radius:5px;background:white;color:#54637a;font-size:12px;margin-top:10px}
+.inquiry-new{background:#eaf1ff;color:#285cb1}.inquiry-contacted{background:#fff4df;color:#946a22}.inquiry-closed{background:#edf5ef;color:#437657}
+.inquiry-detail h3{font-size:15px;font-weight:600;margin:0 0 14px;color:#30415c}
+.inquiry-detail dl{display:grid;grid-template-columns:1fr 1fr;gap:17px 25px;margin:0 0 26px}
+.inquiry-detail dl>.wide{grid-column:1/-1}.inquiry-detail dt{font-size:12px;color:#7b889b;margin-bottom:5px}
+.inquiry-detail dd{margin:0;font-size:14px;overflow-wrap:anywhere}.inquiry-message dd{white-space:pre-wrap;line-height:1.7}
+.inquiry-detail>label{max-width:250px}
+@media(min-width:1700px){.stats-with-inquiries{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media(max-width:600px){.stats-with-inquiries{grid-template-columns:repeat(2,minmax(0,1fr))}.stats-with-inquiries .stat:last-child{grid-column:auto;display:flex;align-items:stretch}.stats-with-inquiries .stat:last-child>span:not(.stat-icon){margin-top:13px}.inquiries-panel .search{flex-basis:100%;max-width:none}.inquiry-detail dl{grid-template-columns:1fr}.inquiry-detail dl>.wide{grid-column:auto}.inquiry-detail>label{max-width:none}}
