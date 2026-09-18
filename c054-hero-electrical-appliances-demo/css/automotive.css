@@ -63,3 +63,25 @@ footer{background:#101214}.footer-main{gap:26px;padding-block:28px}.footer-main 
 .lang-btn:focus-visible{outline:2px solid #ffbb39;outline-offset:1px}
 @media(max-width:1100px){.lang-switch{gap:1px;padding:2px}.lang-btn{font-size:11px;padding:5px 10px}}
 @media(max-width:700px){.header nav .lang-switch{align-self:flex-start;margin:10px 8px 4px}}
+/* Product code line on catalogue cards */
+.product-code{font-size:11px;font-weight:700;letter-spacing:.3px;color:#3a3c40;margin-top:3px}
+/* "Also from HERO" supporting gallery: same card component as The HERO Range,
+   on a plain white section so the two blocks read as distinct groups.
+   Full section padding is kept (not collapsed to 0) so HERO Range / More Oil
+   Options / Why Choose HERO each get proper breathing room instead of feeling
+   stacked together; a hairline divider marks the boundary instead. */
+#more-products{border-top:1px solid var(--line)}
+#more-products .section-heading{margin-bottom:26px}
+#why-us{border-top:1px solid var(--line)}
+
+/* About HERO: text-left / client-photo-right layout */
+.about-photo{position:relative}
+.about-photo img{width:100%;max-width:420px;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius);display:block;margin-left:auto;box-shadow:0 18px 40px #1717171a}
+@media(max-width:850px){.about-photo img{max-width:340px;margin:0 auto}}
+@media(max-width:700px){.about-grid{align-items:center}.about-photo{order:-1}.about-photo img{max-width:280px;margin:0 auto}}
+
+/* Contact / Store: brand photo stacked above the contact panel */
+.contact-grid{align-items:center}
+.contact-photo img{width:100%;max-width:420px;height:auto;object-fit:contain;border-radius:var(--radius);display:block;margin-left:auto;box-shadow:0 18px 40px #1717171f}
+@media(max-width:850px){.contact-photo img{max-width:340px}}
+@media(max-width:700px){.contact-grid{align-items:stretch}.contact-photo img{max-width:320px;margin:0 auto}}
