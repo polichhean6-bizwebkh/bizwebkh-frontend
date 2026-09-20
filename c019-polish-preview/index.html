@@ -59,7 +59,7 @@
 
   <div class="story">
     <a class="zoom-wrap" data-nav="about" tabindex="-1" data-animate="fade-up">
-      <img src="assets/images/who-we-are.webp" alt="Inside the LLFitness studio" loading="lazy">
+      <img class="who-we-are-photo" src="assets/images/who-we-are.webp" alt="Inside the LLFitness studio" loading="lazy">
     </a>
     <div data-animate="fade-up">
       <div class="bar"></div>
@@ -123,7 +123,7 @@
     <div class="story-grid" data-animate="fade-up">
       <div class="story-card">
         <a class="story-card-media" href="https://www.instagram.com/p/DFZctwbJIAO/" target="_blank" rel="noopener" aria-label="Watch Diana's client story on Instagram">
-          <img src="assets/images/svc-physiotherapy.webp" alt="LLFitness client during a guided rehab and strength training session" loading="lazy">
+          <img src="assets/images/story-diana.webp" alt="Diana celebrating in front of the Santiago de Compostela cathedral at the end of her El Camino walk" loading="lazy">
           <span class="story-play" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#ffffff" stroke-width="1.4"/><path d="M10 8.5v7l6-3.5-6-3.5z" fill="#ffffff"/></svg>
           </span>
@@ -137,7 +137,7 @@
       </div>
       <div class="story-card">
         <a class="story-card-media" href="https://www.instagram.com/p/DC5xYF8Jz2Z/" target="_blank" rel="noopener" aria-label="Watch Torsten's client story on Instagram">
-          <img src="assets/images/svc-personal-training.webp" alt="LLFitness client during a personal training session" loading="lazy">
+          <img src="assets/images/story-torsten.webp" alt="Torsten on the golf course after his training and nutrition progress" loading="lazy">
           <span class="story-play" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#ffffff" stroke-width="1.4"/><path d="M10 8.5v7l6-3.5-6-3.5z" fill="#ffffff"/></svg>
           </span>
@@ -151,7 +151,7 @@
       </div>
       <div class="story-card">
         <a class="story-card-media" href="https://www.instagram.com/p/DI0UCtTsUlT/" target="_blank" rel="noopener" aria-label="Watch Pierre's client story on Instagram">
-          <img src="assets/images/svc-sports-massage.webp" alt="LLFitness client receiving sports massage and mobility work" loading="lazy">
+          <img src="assets/images/story-pierre.webp" alt="Pierre road cycling in the mountains at Alpe d'Huez" loading="lazy">
           <span class="story-play" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#ffffff" stroke-width="1.4"/><path d="M10 8.5v7l6-3.5-6-3.5z" fill="#ffffff"/></svg>
           </span>
@@ -202,7 +202,7 @@
       </a>
     </div>
     <div class="instagram-cta">
-      <a class="read-more-btn" href="https://www.instagram.com/llfitness.kh" target="_blank" rel="noopener">View on Instagram <span class="arrow">→</span></a>
+      <a class="btn btn-outline-black instagram-watch" href="https://www.instagram.com/llfitness.kh" target="_blank" rel="noopener">View on Instagram <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -365,6 +365,49 @@
     </div>
   </div>
 
+  <!-- ALTERNATING EDITORIAL SERVICES (Physiotherapy / Sports Massage / Nutrition / Visbody) -->
+  <div class="svc-editorial-wrap">
+    <div class="svc-editorial svc-editorial--portrait" data-animate="fade-up">
+      <a class="zoom-wrap svc-editorial-img" data-nav="services" tabindex="-1">
+        <img src="assets/images/svc-physiotherapy.webp" alt="Physiotherapy session at LLFitness" loading="lazy">
+      </a>
+      <div class="svc-editorial-text">
+        <h2>Physiotherapy</h2>
+        <p>Physiotherapy is designed to help manage pain, restore movement and improve physical function. Following an assessment, treatment may include hands-on therapy, mobility work and targeted rehabilitation exercises based on your individual needs. Whether you are recovering from an injury, managing ongoing discomfort or returning to training, the focus is on helping you move better and reduce the risk of recurring problems.</p>
+      </div>
+    </div>
+
+    <div class="svc-editorial reverse svc-editorial--portrait" data-animate="fade-up">
+      <a class="zoom-wrap svc-editorial-img" data-nav="services" tabindex="-1">
+        <img src="assets/images/svc-sports-massage.webp" alt="Sports massage recovery treatment at LLFitness" loading="lazy">
+      </a>
+      <div class="svc-editorial-text">
+        <h2>Sports Massage Therapy</h2>
+        <p>Sports massage is a targeted treatment for muscle tension, stiffness and physical fatigue. Sessions are tailored to the areas that need attention and can support recovery, improve mobility and help maintain healthy movement. It is suitable not only for athletes, but also for anyone experiencing muscular tightness from training, work or everyday activity.</p>
+      </div>
+    </div>
+
+    <div class="svc-editorial" data-animate="fade-up">
+      <a class="zoom-wrap svc-editorial-img" data-nav="services" tabindex="-1">
+        <img src="assets/images/svc-nutrition-consult.webp" alt="LLFitness nutrition coach consulting with a client using a tablet" loading="lazy">
+      </a>
+      <div class="svc-editorial-text">
+        <h2>Nutrition Consultation and Tailored Nutrition Plan</h2>
+        <p>Our nutrition service provides practical guidance based on your goals, lifestyle and current eating habits. Whether your focus is fat loss, muscle gain, performance or improving overall health, we help you develop a realistic approach to nutrition that can be maintained long term. Tailored nutrition plans can also be adjusted over time as your needs and progress change.</p>
+      </div>
+    </div>
+
+    <div class="svc-editorial reverse" data-animate="fade-up">
+      <a class="zoom-wrap svc-editorial-img" data-nav="services" tabindex="-1">
+        <img src="assets/images/svc-visbody-scan.webp" alt="Client using the Visbody 3D body composition scanner at LLFitness" loading="lazy">
+      </a>
+      <div class="svc-editorial-text">
+        <h2>Visbody 3D Body Composition Scan</h2>
+        <p>The Visbody 3D Body Scan provides a detailed overview of your body composition and physical measurements in just a few minutes. It tracks key data such as body fat, muscle mass, body measurements and posture-related information, giving you a clearer picture of your starting point and progress over time. The scan can be used independently or alongside your training and nutrition programme to support more informed goal setting and progress tracking.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- STRUCTURED GROUP TRAINING -->
   <div class="svc-block on-off" data-animate="fade-up">
     <div class="svc-block-inner">
@@ -416,56 +459,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- III–VI. ALTERNATING EDITORIAL SERVICES -->
-  <div class="svc-editorial-wrap">
-    <div class="svc-editorial svc-editorial--portrait" data-animate="fade-up">
-      <a class="zoom-wrap svc-editorial-img" data-nav="services" tabindex="-1">
-        <img src="assets/images/svc-physiotherapy.webp" alt="Physiotherapy session at LLFitness" loading="lazy">
-      </a>
-      <div class="svc-editorial-text">
-        <h2>Physiotherapy</h2>
-        <p>Physiotherapy is designed to help manage pain, restore movement and improve physical function. Following an assessment, treatment may include hands-on therapy, mobility work and targeted rehabilitation exercises based on your individual needs. Whether you are recovering from an injury, managing ongoing discomfort or returning to training, the focus is on helping you move better and reduce the risk of recurring problems.</p>
-      </div>
-    </div>
-
-    <div class="svc-editorial reverse svc-editorial--portrait" data-animate="fade-up">
-      <a class="zoom-wrap svc-editorial-img" data-nav="services" tabindex="-1">
-        <img src="assets/images/svc-sports-massage.webp" alt="Sports massage recovery treatment at LLFitness" loading="lazy">
-      </a>
-      <div class="svc-editorial-text">
-        <h2>Sports Massage Therapy</h2>
-        <p>Sports massage is a targeted treatment for muscle tension, stiffness and physical fatigue. Sessions are tailored to the areas that need attention and can support recovery, improve mobility and help maintain healthy movement. It is suitable not only for athletes, but also for anyone experiencing muscular tightness from training, work or everyday activity.</p>
-      </div>
-    </div>
-
-    <div class="svc-editorial" data-animate="fade-up">
-      <a class="zoom-wrap svc-editorial-img" data-nav="services" tabindex="-1">
-        <img src="assets/images/svc-nutrition-consult.webp" alt="LLFitness nutrition coach consulting with a client using a tablet" loading="lazy">
-      </a>
-      <div class="svc-editorial-text">
-        <h2>Nutrition Consultation and Tailored Nutrition Plan</h2>
-        <p>Our nutrition service provides practical guidance based on your goals, lifestyle and current eating habits. Whether your focus is fat loss, muscle gain, performance or improving overall health, we help you develop a realistic approach to nutrition that can be maintained long term. Tailored nutrition plans can also be adjusted over time as your needs and progress change.</p>
-      </div>
-    </div>
-
-    <div class="svc-editorial reverse" data-animate="fade-up">
-      <a class="zoom-wrap svc-editorial-img" data-nav="services" tabindex="-1">
-        <img src="assets/images/svc-visbody-scan.webp" alt="Client using the Visbody 3D body composition scanner at LLFitness" loading="lazy">
-      </a>
-      <div class="svc-editorial-text">
-        <h2>Visbody 3D Body Composition Scan</h2>
-        <p>The Visbody 3D Body Scan provides a detailed overview of your body composition and physical measurements in just a few minutes. It tracks key data such as body fat, muscle mass, body measurements and posture-related information, giving you a clearer picture of your starting point and progress over time. The scan can be used independently or alongside your training and nutrition programme to support more informed goal setting and progress tracking.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="svc-final-cta" data-animate="fade-up">
-    <div class="svc-final-cta-inner">
-      <div class="bar bar-center"></div>
-      <button class="btn btn-brown" data-nav="contact">LEARN MORE <span class="arrow">→</span></button>
     </div>
   </div>
 </section>

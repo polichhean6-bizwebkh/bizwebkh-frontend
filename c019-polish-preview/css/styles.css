@@ -401,6 +401,14 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 500; margin: 0; }
 
 .story img { width: 100%; height: 420px; object-fit: cover; }
 
+/* Who We Are photo: shows the full original frame (near-zero crop) instead
+   of being forced into the fixed 420px editorial slot above. */
+.story img.who-we-are-photo {
+  height: auto;
+  aspect-ratio: 1600 / 1068;
+  object-fit: cover;
+}
+
 .story h2 {
   font-family: var(--font-heading);
   font-weight: 500;
@@ -1163,11 +1171,13 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 500; margin: 0; }
 }
 
 .story-client {
+  display: block;
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.6px;
   text-transform: uppercase;
+  text-align: center;
   color: var(--grey);
   margin-bottom: 12px;
 }
@@ -1190,7 +1200,8 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 500; margin: 0; }
   max-width: 420px;
 }
 
-.story-watch { padding: 13px 26px; font-size: 11px; }
+.story-watch,
+.instagram-watch { padding: 13px 26px; font-size: 11px; }
 
 /* ---------- Client story cards (3-column) ---------- */
 .story-grid {
@@ -1531,7 +1542,7 @@ body.anim-ready [data-animate].in-view {
 .sub-service-item p:last-child { margin-bottom: 0; }
 
 /* ---- Services: alternating editorial rows ---- */
-.svc-editorial-wrap { max-width: 1100px; margin: 0 auto; }
+.svc-editorial-wrap { max-width: 1100px; margin: 0 auto; padding-bottom: 32px; }
 
 .svc-editorial {
   display: flex;
@@ -1679,6 +1690,7 @@ body.anim-ready [data-animate].in-view {
   .about-intro { grid-template-columns: 1fr; }
   .story img,
   .about-intro img { height: 340px; }
+  .story img.who-we-are-photo { height: auto; }
 
   .svc-block-inner { max-width: 100%; }
   .cycle-grid { grid-template-columns: 1fr; }
