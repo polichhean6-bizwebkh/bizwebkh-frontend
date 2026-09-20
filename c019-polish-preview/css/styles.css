@@ -270,7 +270,7 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 500; margin: 0; }
 /* ---------- Page hero banners (About/Services/Contact/Rewards) ---------- */
 .page-hero {
   position: relative;
-  height: 420px;
+  height: 480px;
   background-size: cover;
   background-position: center;
 }
