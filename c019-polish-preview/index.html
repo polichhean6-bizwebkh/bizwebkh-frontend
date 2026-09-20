@@ -38,21 +38,17 @@
 
 <!-- ================= HOME ================= -->
 <section id="view-home">
-  <div class="home-hero" style="background-image:url('https://images.pexels.com/photos/6551189/pexels-photo-6551189.jpeg?auto=compress&cs=tinysrgb&w=1600');">
+  <div class="home-hero" style="background-image:url('assets/images/home-hero-poster.webp');">
     <!--
-      VIDEO-READY HERO:
-      Once a final hero video asset is approved, uncomment the block
-      below and set the real file path(s). The existing background-image
-      on .home-hero (set inline, above) remains as the automatic
-      fallback for browsers that block autoplay or if the video fails
-      to load, so nothing breaks either way.
-
-      <video class="home-hero-video" autoplay muted loop playsinline
-             preload="none"
-             poster="https://images.pexels.com/photos/6551189/pexels-photo-6551189.jpeg?auto=compress&cs=tinysrgb&w=1600">
-        <source src="assets/video/home-hero.mp4" type="video/mp4">
-      </video>
+      Background-image above (home-hero-poster.webp) is the automatic fallback
+      for browsers that block autoplay, save-data mode, or if the video fails
+      to load — the video sits on top of it once it can play, so nothing breaks.
     -->
+    <video class="home-hero-video" autoplay muted loop playsinline
+           preload="none"
+           poster="assets/images/home-hero-poster.webp">
+      <source src="assets/video/home-hero.mp4" type="video/mp4">
+    </video>
     <div class="home-hero-inner" data-animate="fade-up">
       <div class="bar"></div>
       <h1>BEYOND FITNESS</h1>
@@ -63,7 +59,7 @@
 
   <div class="story">
     <a class="zoom-wrap" data-nav="about" tabindex="-1" data-animate="fade-up">
-      <img src="assets/images/about-us-story.webp" alt="Lorenzo Lanzafame at the LLFitness studio" loading="lazy">
+      <img src="assets/images/who-we-are.webp" alt="Inside the LLFitness studio" loading="lazy">
     </a>
     <div data-animate="fade-up">
       <div class="bar"></div>
@@ -101,7 +97,7 @@
         <div class="body"><div class="rule"></div><div class="title">Nutrition Consultation and Tailored Nutrition Plan</div><div class="text">Practical nutrition guidance tailored to your lifestyle and goals, helping you build sustainable eating habits that can evolve as your needs change.</div></div>
       </div>
       <div class="service-card" data-animate="fade-up">
-        <div class="img-wrap"><img src="assets/images/svc-visbody-scan-core.webp" alt="Client using the Visbody 3D body composition scanner at LLFitness" loading="lazy"></div>
+        <div class="img-wrap"><img class="crop-visbody-core" src="assets/images/svc-visbody-scan-core.webp" alt="Client using the Visbody 3D body composition scanner at LLFitness" loading="lazy"></div>
         <div class="body"><div class="rule"></div><div class="title">Visbody 3D Body Composition Scan</div><div class="text">A clearer picture of your body in just a few minutes — detailed composition and physical measurements to help establish your starting point and track progress.</div></div>
       </div>
     </div>
@@ -117,28 +113,55 @@
       <p class="testimonials-sub">Real experiences from LLFitness clients sharing their training journey, progress and experience.</p>
     </div>
     <!--
-      FEATURED STORY STRUCTURE (future-ready):
-      .story-feature pairs a vertical media preview (matching the native Instagram
-      Reel / YouTube Short ratio) with a text column, similar to the editorial
-      image+text rows used elsewhere on the site. To add another story once more
-      are available, duplicate the whole .story-feature block and stack it below
-      this one (they will read top to bottom as a simple list of featured stories).
-      No embed is used — this keeps the section lightweight and avoids third-party
-      layout/performance issues. A future YouTube story can keep this same
-      "media + Watch Story" pattern, or be wired to open a non-autoplaying modal
-      video embed instead of a new tab — either works with this markup.
+      CLIENT STORY CARDS: three independent cards, each pairing a real studio
+      photo (poster/thumbnail) with the client's story text and a "Watch Story"
+      CTA linking out to the actual Instagram post in a new tab. No Instagram
+      embed is used (embeds were producing black/blank thumbnails), so each
+      card always shows a clean, visible image regardless of Instagram's embed
+      availability. To add another story, duplicate one .story-card block.
     -->
-    <div class="story-feature" data-animate="fade-up">
-      <a class="story-feature-media" href="https://www.instagram.com/reel/DI0UCtTsUlT/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener" aria-label="Watch client success story on Instagram">
-        <span class="story-play" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#ffffff" stroke-width="1.4"/><path d="M10 8.5v7l6-3.5-6-3.5z" fill="#ffffff"/></svg>
-        </span>
-      </a>
-      <div class="story-feature-body">
-        <span class="story-client">LLFitness Client</span>
-        <h3>Building Strength and Confidence</h3>
-        <p>A short glimpse into one LLFitness client's training journey, in their own words.</p>
-        <a class="btn btn-outline-black story-watch" href="https://www.instagram.com/reel/DI0UCtTsUlT/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener">Watch Story <span class="arrow">→</span></a>
+    <div class="story-grid" data-animate="fade-up">
+      <div class="story-card">
+        <a class="story-card-media" href="https://www.instagram.com/p/DFZctwbJIAO/" target="_blank" rel="noopener" aria-label="Watch Diana's client story on Instagram">
+          <img src="assets/images/svc-physiotherapy.webp" alt="LLFitness client during a guided rehab and strength training session" loading="lazy">
+          <span class="story-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#ffffff" stroke-width="1.4"/><path d="M10 8.5v7l6-3.5-6-3.5z" fill="#ffffff"/></svg>
+          </span>
+        </a>
+        <div class="story-card-body">
+          <span class="story-client">Client Spotlight: Diana</span>
+          <h3>From Recovery to Resilience</h3>
+          <p>After a sciatic injury, Diana rebuilt her strength and confidence through focused, personalised training — ultimately preparing her to walk the El Camino solo from Portugal to Spain.</p>
+          <a class="btn btn-outline-black story-watch" href="https://www.instagram.com/p/DFZctwbJIAO/" target="_blank" rel="noopener">Watch Story <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="story-card">
+        <a class="story-card-media" href="https://www.instagram.com/p/DC5xYF8Jz2Z/" target="_blank" rel="noopener" aria-label="Watch Torsten's client story on Instagram">
+          <img src="assets/images/svc-personal-training.webp" alt="LLFitness client during a personal training session" loading="lazy">
+          <span class="story-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#ffffff" stroke-width="1.4"/><path d="M10 8.5v7l6-3.5-6-3.5z" fill="#ffffff"/></svg>
+          </span>
+        </a>
+        <div class="story-card-body">
+          <span class="story-client">Client Spotlight: Torsten</span>
+          <h3>Stronger Habits, Lasting Results</h3>
+          <p>Through consistent training and better nutrition, Torsten improved his weight, stamina, sleep and posture — helping him feel and perform better both in daily life and on the golf course.</p>
+          <a class="btn btn-outline-black story-watch" href="https://www.instagram.com/p/DC5xYF8Jz2Z/" target="_blank" rel="noopener">Watch Story <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="story-card">
+        <a class="story-card-media" href="https://www.instagram.com/p/DI0UCtTsUlT/" target="_blank" rel="noopener" aria-label="Watch Pierre's client story on Instagram">
+          <img src="assets/images/svc-sports-massage.webp" alt="LLFitness client receiving sports massage and mobility work" loading="lazy">
+          <span class="story-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="#ffffff" stroke-width="1.4"/><path d="M10 8.5v7l6-3.5-6-3.5z" fill="#ffffff"/></svg>
+          </span>
+        </a>
+        <div class="story-card-body">
+          <span class="story-client">Client Spotlight: Pierre</span>
+          <h3>Performance Without Pain</h3>
+          <p>As a competitive cyclist, Pierre trains to improve mobility, posture and overall balance while building the resilience needed to keep riding, racing and performing at the highest level.</p>
+          <a class="btn btn-outline-black story-watch" href="https://www.instagram.com/p/DI0UCtTsUlT/" target="_blank" rel="noopener">Watch Story <span class="arrow">→</span></a>
+        </div>
       </div>
     </div>
   </div>
@@ -160,22 +183,22 @@
     -->
     <div class="instagram-grid" data-animate="fade-up">
       <a class="instagram-item" href="https://www.instagram.com/llfitness.kh" target="_blank" rel="noopener">
-        <img src="assets/images/svc-personal-training.webp" alt="LLFitness on Instagram" loading="lazy">
+        <img src="assets/images/social-thumb-1.webp" alt="LLFitness on Instagram" loading="lazy">
       </a>
       <a class="instagram-item" href="https://www.instagram.com/llfitness.kh" target="_blank" rel="noopener">
-        <img src="assets/images/svc-group-training.webp" alt="LLFitness on Instagram" loading="lazy">
+        <img src="assets/images/social-thumb-2.webp" alt="LLFitness on Instagram" loading="lazy">
       </a>
       <a class="instagram-item" href="https://www.instagram.com/llfitness.kh" target="_blank" rel="noopener">
-        <img src="assets/images/team-physiotherapist.webp" alt="LLFitness on Instagram" loading="lazy">
+        <img src="assets/images/social-thumb-3.webp" alt="LLFitness on Instagram" loading="lazy">
       </a>
       <a class="instagram-item" href="https://www.instagram.com/llfitness.kh" target="_blank" rel="noopener">
-        <img src="assets/images/svc-sports-massage.webp" alt="LLFitness on Instagram" loading="lazy">
+        <img src="assets/images/social-thumb-4.webp" alt="LLFitness on Instagram" loading="lazy">
       </a>
       <a class="instagram-item" href="https://www.instagram.com/llfitness.kh" target="_blank" rel="noopener">
-        <img src="assets/images/svc-visbody-scan.webp" alt="LLFitness on Instagram" loading="lazy">
+        <img src="assets/images/social-thumb-5.webp" alt="LLFitness on Instagram" loading="lazy">
       </a>
       <a class="instagram-item" href="https://www.instagram.com/llfitness.kh" target="_blank" rel="noopener">
-        <img src="assets/images/svc-nutrition-consult-core.webp" alt="LLFitness on Instagram" loading="lazy">
+        <img src="assets/images/social-thumb-6.webp" alt="LLFitness on Instagram" loading="lazy">
       </a>
     </div>
     <div class="instagram-cta">
@@ -216,6 +239,17 @@
       <h2>Meet Our Team Of Professionals</h2>
     </div>
     <div class="team-grid">
+      <div class="team-card" data-animate="fade-up">
+        <div class="avatar-fallback"><img src="assets/images/team-founder.webp" alt="Lorenzo Lanzafame, Founder and Personal Trainer at LLFitness" loading="lazy"></div>
+        <div class="body">
+          <div class="name">Lorenzo Lanzafame</div>
+          <div class="role">Founder &amp; Personal Trainer</div>
+          <div class="qual">YMCA Certified Personal Trainer L3</div>
+          <p class="bio-preview">Lorenzo founded LLFitness on a simple belief: training should be personalised, not generic — built around each client's body, goals and lifestyle.</p>
+          <p class="bio-full">He began working independently as a personal trainer in 2015, and in 2020 opened the first LLFitness studio to create a dedicated space for personalised training and professional support. Lorenzo leads with a hands-on, detail-focused coaching style, combining strength training and structured programming to help clients move better, get stronger, and build habits that last. He continues to train clients directly while overseeing the studio's team and standards, making sure every client gets the same level of care and attention that LLFitness was built on.</p>
+          <button class="read-more-btn" type="button">Read More <span class="arrow">→</span></button>
+        </div>
+      </div>
       <div class="team-card" data-animate="fade-up">
         <div class="avatar-fallback"><img src="assets/images/team-nutrition-coach.webp" alt="Renay Paulse, Personal Trainer and Nutrition Coach at LLFitness" loading="lazy"></div>
         <div class="body">
@@ -417,7 +451,7 @@
       </div>
     </div>
 
-    <div class="svc-editorial reverse svc-editorial--portrait" data-animate="fade-up">
+    <div class="svc-editorial reverse" data-animate="fade-up">
       <a class="zoom-wrap svc-editorial-img" data-nav="services" tabindex="-1">
         <img src="assets/images/svc-visbody-scan.webp" alt="Client using the Visbody 3D body composition scanner at LLFitness" loading="lazy">
       </a>
@@ -582,7 +616,6 @@
 <footer class="site-footer">
   <div class="footer-inner">
     <img class="footer-mark" src="assets/images/logo-full-white.png" alt="LLFitness — Lorenzo Lanzafame">
-    <div class="footer-tagline">LORENZO LANZAFAME</div>
     <nav class="footer-nav">
       <button class="nav-link" data-nav="home">HOME</button>
       <button class="nav-link" data-nav="about">ABOUT US</button>
