@@ -7,8 +7,8 @@
   <meta name="description" content="Discover Phearun Dental, our approach to comfortable dental care, and services for individuals and families. Contact the clinic to arrange your visit.">
   <!-- DEMO: remove noindex only after the clinic approves all content and contact details. Add canonical URL after hosting is confirmed. -->
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#087c83">
-  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#753d82">
+  <link rel="icon" href="assets/images/client-logo.jpg" type="image/jpeg">
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="assets/js/main.js" defer></script>
 </head>
@@ -26,7 +26,7 @@
 <div class="demo-note">CLIENT PREVIEW <span>•</span> Sample content & stock imagery</div>
 <header class="site-header">
   <div class="container nav-wrap">
-    <a class="brand" href="#home" aria-label="Phearun Dental home"><span class="brand-mark"><svg><use href="#tooth"/></svg></span><span>Phearun Dental<small>CARE FOR YOUR SMILE</small></span></a>
+    <a class="brand" href="#home" aria-label="Phearun Dental home"><img class="brand-logo" src="assets/images/client-logo.jpg" alt="Client logo: purple tooth emblem with HSVL lettering" width="640" height="640"><span>Phearun Dental<small>CARE FOR YOUR SMILE</small></span></a>
     <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
     <nav id="main-nav" aria-label="Main navigation"><a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#why-us">Why Us</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a></nav>
     <a class="button header-cta" href="#contact">Contact Us <svg><use href="#arrow"/></svg></a>
@@ -68,18 +68,39 @@
   <section id="gallery" class="section"><div class="container"><div class="section-heading"><div><p class="eyebrow">THE CLINIC EXPERIENCE</p><h2>A space to feel at ease.</h2></div><p>A look at the atmosphere we envision.<br>Stock images for design preview.</p></div>
     <div class="gallery-grid"><figure><img src="assets/images/treatment-room.jpg" alt="Dental treatment room with a violet chair and examination light" width="1400" height="933" loading="lazy"><figcaption><span>Treatment room</span><small>STOCK IMAGE</small></figcaption></figure><figure><img src="assets/images/dental-chair.jpg" alt="Dental chair in a bright, airy clinical environment" width="1400" height="933" loading="lazy"><figcaption><span>Comfortable surroundings</span><small>STOCK IMAGE</small></figcaption></figure><figure><img src="assets/images/dental-equipment.jpg" alt="Gloved clinician reviewing a digital dental scan" width="1400" height="933" loading="lazy"><figcaption><span>Dental technology</span><small>STOCK IMAGE</small></figcaption></figure><figure><img src="assets/images/clinic-interior.jpg" alt="Dental instruments arranged on a blue tray" width="1400" height="933" loading="lazy"><figcaption><span>Care in the details</span><small>STOCK IMAGE</small></figcaption></figure></div>
   </div></section>
-  <section id="contact" class="contact-section"><div class="container contact-grid"><div><p class="eyebrow">LET’S START WITH A CONVERSATION</p><h2>Ready to Take Care<br>of Your Smile?</h2><p>Contact Phearun Dental today for more information or to arrange your visit.</p><div class="contact-note"><svg><use href="#heart"/></svg><span>A friendly conversation is the first step.</span></div></div><div class="contact-details"><h3>Get in touch</h3><p class="contact-intro">Clinic contact details are coming soon.</p>
-    <!-- CLIENT_PLACEHOLDER PHONE: replace text with confirmed number and wrap in <a href="tel:+855...">. Never use a dummy number. -->
-    <div class="contact-row"><span class="contact-symbol">↗</span><div><h4>Phone</h4><p>Number to be confirmed</p></div></div>
-    <!-- CLIENT_PLACEHOLDER TELEGRAM: replace text with confirmed handle and <a href="https://t.me/CONFIRMED_HANDLE">. -->
-    <div class="contact-row"><span class="contact-symbol">↗</span><div><h4>Telegram</h4><p>Contact link to be confirmed</p></div></div>
-    <!-- CLIENT_PLACEHOLDER FACEBOOK: add confirmed page URL as an external anchor. -->
-    <div class="contact-row"><span class="contact-symbol">↗</span><div><h4>Facebook</h4><p>Clinic page to be confirmed</p></div></div>
-    <!-- CLIENT_PLACEHOLDER LOCATION / HOURS: insert confirmed address, map URL and opening hours. -->
-    <div class="contact-row"><span class="contact-symbol">⌖</span><div><h4>Visit the clinic</h4><p>Address & opening hours to be confirmed</p></div></div>
-    <p class="placeholder-note">Contact information will be added after clinic confirmation.</p>
+  <section id="contact" class="contact-section"><div class="container contact-grid"><div><p class="eyebrow">LET’S START WITH A CONVERSATION</p><h2>Ready to Take Care<br>of Your Smile?</h2><p>Contact Phearun Dental today for more information or to arrange your visit.</p><div class="contact-note"><svg><use href="#heart"/></svg><span>A friendly conversation is the first step.</span></div></div><div class="contact-details inquiry-card"><h3 id="inquiry-title">Send an Inquiry</h3><p class="contact-intro">Leave your details and our team will get back to you.</p>
+    <p id="inquiry-demo-note" class="form-demo-note"><strong>Demo form</strong> — preview only. Nothing is sent to the clinic.</p>
+    <!-- DEMO_ONLY: no submission endpoint, storage or delivery. Connect an approved form service before enabling real inquiries. -->
+    <form id="inquiry-form" aria-labelledby="inquiry-title" aria-describedby="inquiry-demo-note">
+      <fieldset id="inquiry-fields" disabled><legend class="sr-only">Your inquiry details</legend>
+        <div class="inquiry-fields">
+          <div class="form-field"><label for="inquiry-name">Full Name <span>(required)</span></label><input id="inquiry-name" type="text" autocomplete="name" maxlength="100" required placeholder="Your full name"></div>
+          <div class="form-field"><label for="inquiry-phone">Phone Number <span>(required)</span></label><input id="inquiry-phone" type="tel" autocomplete="tel" maxlength="30" required placeholder="Your phone number"></div>
+          <div class="form-field field-wide"><label for="inquiry-email">Email <span>(optional)</span></label><input id="inquiry-email" type="email" autocomplete="email" maxlength="254" placeholder="Your email address"></div>
+          <div class="form-field field-wide"><label for="inquiry-service">Service Interested In</label><select id="inquiry-service"><option value="">Please select a service</option>Check-up &amp; Cleaning</option><option>Teeth Whitening</option><option>Dental Implant</option><option>Orthodontics / Braces</option><option>Tooth Filling</option><option>General Dental Care</option><option>Not sure yet</option></select></div>
+          <div class="form-field field-wide"><label for="inquiry-message">Message <span>(optional)</span></label><textarea id="inquiry-message" rows="3" maxlength="2000" placeholder="How can we help?"></textarea></div>
+        </div>
+        <button type="submit" class="button inquiry-submit">Send Inquiry <svg aria-hidden="true"><use href="#arrow"/></svg></button>
+      </fieldset>
+      <noscript><p class="form-demo-note">Enable JavaScript to try this demo form. No inquiry will be sent.</p></noscript>
+      <p id="inquiry-status" class="form-status" role="status" tabindex="-1" hidden></p>
+    </form>
   </div></div></section>
 </main>
-<footer><div class="container footer-grid"><div class="footer-brand"><a class="brand" href="#home"><span class="brand-mark"><svg><use href="#tooth"/></svg></span><span>Phearun Dental<small>CARE FOR YOUR SMILE</small></span></a><p>Thoughtful dental care.<br>More reasons to smile.</p></div><div><h3>Explore</h3><a href="#home">Home</a><a href="#about">About us</a><a href="#why-us">Why choose us</a><a href="#gallery">Gallery</a></div><div><h3>Dental services</h3><a href="#services">Check-up & Cleaning</a><a href="#services">Teeth Whitening</a><a href="#services">Dental Implant</a><a href="#services">Orthodontics / Braces</a><a href="#services">Tooth Filling</a><a href="#services">General Dental Care</a></div><div><h3>Stay connected</h3><p>Phone & social links:<br>Awaiting clinic confirmation</p><p>Address & opening hours:<br>Awaiting clinic confirmation</p><a class="footer-contact" href="#contact">Contact information ↗</a></div></div><div class="container footer-bottom"><span>© 2026 Phearun Dental. All rights reserved.</span><span>Design preview · Sample content & stock imagery</span></div></footer>
+<footer><div class="container footer-grid"><div class="footer-brand"><a class="brand" href="#home"><img class="brand-logo" src="assets/images/client-logo.jpg" alt="Client logo: purple tooth emblem with HSVL lettering" width="640" height="640"><span>Phearun Dental<small>CARE FOR YOUR SMILE</small></span></a><p>Thoughtful dental care.<br>More reasons to smile.</p></div><div><h3>Explore</h3><a href="#home">Home</a><a href="#about">About us</a><a href="#why-us">Why choose us</a><a href="#gallery">Gallery</a></div><div><h3>Dental services</h3><a href="#services">Check-up & Cleaning</a><a href="#services">Teeth Whitening</a><a href="#services">Dental Implant</a><a href="#services">Orthodontics / Braces</a><a href="#services">Tooth Filling</a><a href="#services">General Dental Care</a></div><div class="footer-connect"><h3>Connect With Us</h3>
+  <!-- CLIENT_PLACEHOLDERS: once confirmed, replace each href with the real destination and remove data-contact-placeholder, aria-describedby and placeholder wording from aria-label/title.
+       Phone: tel: followed by confirmed international number.
+       Telegram: confirmed https://t.me/ link. Facebook: official page URL.
+       Location: confirmed Google Maps clinic URL. Do not insert dummy contacts. -->
+  <div class="contact-icons" aria-label="Clinic contact channels">
+    <a href="#footer-contact-status" data-contact-placeholder="Phone" aria-label="Phone — details coming soon" aria-describedby="footer-contact-status" title="Phone — details coming soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 3 3 5-2 2a15 15 0 0 0 6 6l2-2 5 3-1 4C10 23 1 14 3 4Z"/></svg></a>
+    <a href="#footer-contact-status" data-contact-placeholder="Telegram" aria-label="Telegram — link coming soon" aria-describedby="footer-contact-status" title="Telegram — link coming soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 18-7-4 18-6-5-4 3 1-7Z"/><path d="m8 12 9-5-6 9"/></svg></a>
+    <a href="#footer-contact-status" data-contact-placeholder="Facebook" aria-label="Facebook — page coming soon" aria-describedby="footer-contact-status" title="Facebook — page coming soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 21v-8h3l.5-4H14V7c0-1 .5-2 2-2h2V2h-3c-4 0-5 2-5 5v2H7v4h3v8Z"/></svg></a>
+    <a href="#footer-contact-status" data-contact-placeholder="Location" aria-label="Google Maps location — address coming soon" aria-describedby="footer-contact-status" title="Clinic location — coming soon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></a>
+  </div>
+  <p id="footer-contact-status" class="footer-contact-status" role="status">Contact links are awaiting clinic confirmation.</p>
+  <!-- CLIENT_PLACEHOLDER: confirmed address and opening hours. -->
+  <p>Address &amp; opening hours:<br>Awaiting clinic confirmation</p>
+</div></div><div class="container footer-bottom"><span>© 2026 Phearun Dental. All rights reserved.</span><span>Design preview · Sample content & stock imagery</span></div></footer>
 </body>
 </html>

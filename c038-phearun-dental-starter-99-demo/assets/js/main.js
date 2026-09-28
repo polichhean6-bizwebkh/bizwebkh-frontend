@@ -1,5 +1,23 @@
-/* Static navigation only. Content and contact details are edited in index.html. */
+/* Static navigation and inquiry preview only. No data is sent or stored. */
 document.documentElement.classList.add('js-enabled');
+const inquiryForm = document.querySelector('#inquiry-form');
+const inquiryStatus = document.querySelector('#inquiry-status');
+inquiryForm.addEventListener('submit', event => {
+  event.preventDefault();
+  inquiryStatus.textContent = 'Demo complete — nothing was sent. This form is a preview and is not connected to the clinic yet.';
+  inquiryStatus.hidden = false;
+  inquiryStatus.focus();
+});
+// Enable only after the no-send submit handler is attached. Without JS, the form stays disabled.
+document.querySelector('#inquiry-fields').disabled = false;
+inquiryForm.addEventListener('input', () => { inquiryStatus.hidden = true; });
+document.querySelectorAll('[data-contact-placeholder]').forEach(link => {
+  link.addEventListener('click', event => {
+    event.preventDefault();
+    document.querySelector('#footer-contact-status').textContent =
+      link.dataset.contactPlaceholder + ' details are awaiting clinic confirmation. This demo link is not connected yet.';
+  });
+});
 const toggle = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#main-nav');
 function closeMenu(returnFocus = false) {

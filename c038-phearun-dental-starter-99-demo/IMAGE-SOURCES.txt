@@ -23,4 +23,9 @@ clinic-interior.jpg
 https://images.unsplash.com/photo-1643660527069-9dd0987da041
 Dental instruments on blue tray. Gallery. Filename retained from initial asset selection.
 
-favicon.svg and inline service icons are original simple vector artwork.
+Inline service icons are original simple vector artwork.
+
+client-logo.jpg
+Source: client-supplied Logo.jpg in the parent project folder.
+Copied byte-for-byte, 640 x 640 pixels. Used in header, footer and favicon.
+Original artwork, colors and HSVL lettering retained.

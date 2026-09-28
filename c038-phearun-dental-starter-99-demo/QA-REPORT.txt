@@ -30,3 +30,41 @@ Actual phone/social/map actions await real client contact details; placeholder
 rows are intentionally noninteractive and are not presented as working links.
 No Safari/iOS device testing or hosted-domain testing was performed.
 No deployment, GitHub, DNS or changes to either prior demo were performed.
+
+
+BRANDING UPDATE QA - 2026-09-28
+Rendered the updated markup, CSS, JavaScript and embedded image data in a
+headless Chromium test harness, with no local-file navigation or external
+network requests. Relative asset references were checked on disk before render.
+Widths tested: 1440, 1024, 768, 390, 320 pixels.
+PASS: No horizontal overflow; all images load; no missing anchor targets.
+PASS: Logo retains square proportions and object-fit:contain at every width.
+Header logo: 60px desktop, 54px tablet, 52px mobile. Footer: 66px / 60px.
+640px source provides sufficient resolution for these display sizes.
+PASS: Mobile menu closes after link selection and with Escape.
+PASS: No JavaScript runtime errors; still six main sections and no forms.
+Desktop, tablet and mobile screenshots reviewed for branding and layout.
+Only starter-demo files changed; all outside files verified against SHA-256
+baseline, including both original demo folders and the supplied Logo.jpg.
+Original JPEG reused as the site icon; actual browser-tab icon display was not
+separately verified. The full emblem may appear detailed at tiny favicon sizes.
+No deployment or external repository changes.
+
+
+CONTACT UPDATE QA - 2026-09-28 (supersedes earlier no-form findings)
+Changed contact card to five-field inquiry preview; retained left content.
+Added four footer SVG contact icons with explicit placeholder feedback.
+Tested in-memory markup/assets in Chromium at 1440, 1024, 768, 390 and 320px.
+PASS: No horizontal overflow; all images load; no missing anchor destinations.
+PASS: Required empty fields and malformed email rejected by native validation.
+PASS: Valid demo submission displays explicit "nothing was sent" feedback.
+PASS: No network request is made by form submission; no storage APIs are used.
+PASS: Form inputs disabled without JavaScript, preventing unintended submission.
+PASS: Each footer placeholder icon displays its corresponding unavailable status.
+PASS: Mobile navigation still works; no JavaScript errors.
+PASS: Purple branding and proportional client logos retained at all widths.
+Contact and footer screenshots reviewed at desktop, tablet and mobile widths.
+Real phone, Telegram, Facebook and Google Maps URLs remain unconfirmed.
+Real inquiry delivery is not connected; this remains a static demo.
+Outside-starter files verified unchanged against a new SHA-256 baseline.
+No deployment, publishing, GitHub changes or backend work.
