@@ -1,0 +1,26 @@
+Stock photographs sourced from image URLs referenced in the existing C038 demo.
+Downloaded locally for this design preview; not photographs of Phearun Dental.
+Each image was visually inspected. Display uses object-fit: cover.
+Download parameters: auto=format&fit=crop&w=1400&q=80&fm=jpg
+
+dental-chair.jpg
+https://images.unsplash.com/photo-1643660526741-094639fbe53a
+Blue dental chair / bright treatment environment. Hero and gallery.
+
+clinic-hero.jpg
+https://images.unsplash.com/photo-1704455306251-b4634215d98f
+White dental chair and treatment room. About section.
+
+treatment-room.jpg
+https://images.unsplash.com/photo-1643660527190-4f401370f788
+Violet dental chair / treatment room. Gallery.
+
+dental-equipment.jpg
+https://images.unsplash.com/photo-1600170311833-c2cf5280ce49
+Digital dental imaging being reviewed. Gallery.
+
+clinic-interior.jpg
+https://images.unsplash.com/photo-1643660527069-9dd0987da041
+Dental instruments on blue tray. Gallery. Filename retained from initial asset selection.
+
+favicon.svg and inline service icons are original simple vector artwork.

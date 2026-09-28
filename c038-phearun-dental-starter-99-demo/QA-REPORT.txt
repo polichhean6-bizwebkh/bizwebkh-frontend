@@ -1,0 +1,32 @@
+C038 $99 STARTER DEMO - QA - 2026-09-28
+
+Opened index.html using a local file URL in headless Google Chrome.
+Tested viewport widths: 1440, 1024, 768, 390 and 320 pixels.
+
+PASS: No page-level or element-level horizontal overflow at all five widths.
+PASS: All six displayed images loaded with nonzero natural dimensions.
+PASS: All anchor destinations exist; no broken or empty link targets.
+PASS: Visible navigation, hero CTAs, text links and footer links navigate to
+      their intended fragment at each width.
+PASS: Mobile navigation opens, closes after Gallery selection and closes
+      with Escape at tablet/mobile widths.
+PASS: No JavaScript runtime errors at any tested width.
+PASS: No forms or input fields; no simulated appointment submission.
+PASS: Mobile navigation and page content remain visible with JavaScript disabled.
+PASS: Full-page desktop, tablet and mobile screenshots visually reviewed.
+FIXED: A hidden mobile line break joined two words in the About heading.
+       Added a literal space before the break in the final HTML.
+PASS: Stock photographs inspected; correct cropping, no image stretching.
+PASS: Relative asset paths and system fonts; no external runtime dependencies.
+PASS: No advanced package functions or links to older dashboards.
+PASS: SHA-256 verification of pre-existing project files found no changes.
+
+LIMITATIONS / HANDOFF
+In-app browser local-file preview was blocked by its URL policy. No bypass was
+attempted. The independent Chrome audit above completed before that rejection.
+Browser screenshots and automated audit output were stored in the temporary
+directory, not bundled into the portable website.
+Actual phone/social/map actions await real client contact details; placeholder
+rows are intentionally noninteractive and are not presented as working links.
+No Safari/iOS device testing or hosted-domain testing was performed.
+No deployment, GitHub, DNS or changes to either prior demo were performed.
