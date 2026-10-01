@@ -1,0 +1,35 @@
+/* Readability refinement for the existing full-function sidebar. */
+.full-sidebar { width: 256px; }
+.full-main { margin-left: 256px; }
+
+.full-brand { padding: 24px 22px 20px; }
+.branch-box { margin: 0 16px 15px; padding: 10px 11px; font-size: 12px; }
+.branch-box select { font-size: 12px; }
+
+.full-nav { padding: 4px 12px 18px; }
+.nav-cap { font-size: 10.5px; padding: 18px 11px 8px; }
+.full-nav button {
+  gap: 12px;
+  padding: 11px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+.full-nav button > span:first-child {
+  width: 18px;
+  flex: 0 0 18px;
+  font-size: 15px;
+  line-height: 1;
+  text-align: center;
+}
+.full-nav button.active { font-weight: 650; }
+.full-nav .count { font-size: 10px; }
+
+@media (max-width: 820px) {
+  .full-sidebar { width: 256px; }
+  .full-main { margin-left: 0; }
+  .role-pick { padding-left: 8px; gap: 5px; }
+  .role-pick .userdot { display: none; }
+  .role-pick select { max-width: 105px; }
+}
