@@ -27,30 +27,31 @@ const form=document.querySelector('#inquiry-form');
 const dateInput=document.querySelector('#date');
 const today=new Date();
 dateInput.min=`${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
-form.addEventListener('submit', event => {
+const formStatus = document.querySelector('#form-status');
+const submitButton = form.querySelector('.submit-button');
+const failureMessage = 'Sorry, we could not send your inquiry. Please contact us directly by <a href="mailto:rabbittravelcambodia@gmail.com">Email: rabbittravelcambodia@gmail.com</a>, <a href="tel:+85517818555">Telegram: 017 818 555</a>, or <a href="https://wa.me/85517818555" target="_blank" rel="noopener">WhatsApp: +855 17 818 555</a>.';
+form.addEventListener('submit', async event => {
   event.preventDefault();
   if (!form.reportValidity()) return;
-  const fields = new FormData(form);
-  const contactChannels = {Email: 'rabbittravelcambodia@gmail.com', Telegram: '017 818 555', WhatsApp: '+855 17 818 555'};
-  const preferredContact = fields.get('contactMethod');
-  const content = [
-    'Rabbit Travel Cambodia — Trip Inquiry',
-    ...[['Name','name'],['Phone / WhatsApp','phone'],['Email','email'],['Preferred Contact Method','contactMethod'],['Tour','tour'],['Number of people','people'],['Preferred date','date'],['Message','message']]
-      .map(([label,key]) => `${label}: ${fields.get(key) || 'Not specified'}`),
-    ...(fields.get('tour') === 'Killing Field Tour' ? ['', 'Killing Field Tour: $20/person; approximately 4 hours.', 'Morning: 8:00 AM – 12:00 PM. Afternoon: 1:20 PM – 5:30 PM.', 'Visits: Tuol Sleng Genocide Museum (S-21) and Choeung Ek Killing Fields.', 'Entrance fees and audio-guide fees are NOT included in the tour price.'] : []),
-    '', `Rabbit Travel contact via ${preferredContact}: ${contactChannels[preferredContact]}`, 'Please confirm availability, pricing, and arrangements with your guide. This inquiry is not a booking confirmation.'
-  ].join('\n');
-  const url = URL.createObjectURL(new Blob([content], {type:'text/plain;charset=utf-8'}));
-  const download = document.createElement('a');
-  download.href = url;
-  download.download = 'rabbit-travel-trip-inquiry.txt';
-  document.body.append(download);
-  download.click();
-  download.remove();
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-  document.querySelector('#form-status').textContent = 'Your inquiry file is ready to save and share with your guide. No message has been sent and no booking has been made.';
+  formStatus.classList.remove('error');
+  formStatus.textContent = 'Sending your inquiry…';
+  submitButton.disabled = true;
+  submitButton.setAttribute('aria-busy', 'true');
+  try {
+    const response = await fetch(form.action, {method: form.method, body: new FormData(form), headers: {Accept: 'application/json'}});
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.success === false) throw new Error('Form submission failed');
+    form.reset();
+    formStatus.textContent = 'Thank you! Your inquiry has been sent successfully. Rabbit Travel Cambodia will contact you soon.';
+  } catch (error) {
+    formStatus.classList.add('error');
+    formStatus.innerHTML = failureMessage;
+  } finally {
+    submitButton.disabled = false;
+    submitButton.removeAttribute('aria-busy');
+  }
 });
-form.addEventListener('input',()=>{document.querySelector('#form-status').textContent='';});
+form.addEventListener('input',()=>{formStatus.textContent='';formStatus.classList.remove('error');});
 const gallery=document.querySelector('#gallery-dialog');
 document.querySelectorAll('[data-gallery]').forEach(button=>button.addEventListener('click',()=>{document.querySelector('#gallery-image').width=Number(button.dataset.width);document.querySelector('#gallery-image').height=Number(button.dataset.height);document.querySelector('#gallery-image').src=button.dataset.gallery;document.querySelector('#gallery-image').alt=button.dataset.caption;document.querySelector('#gallery-caption').textContent=button.dataset.caption;gallery.showModal();}));
 gallery.querySelector('.dialog-close').addEventListener('click',()=>gallery.close());

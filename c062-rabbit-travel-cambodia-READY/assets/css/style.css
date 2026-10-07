@@ -10,3 +10,6 @@
 /* Discreet studio credit, following the existing footer typography. */
 .footer-bottom{flex-wrap:wrap}.site-credit{font:inherit;color:inherit}
 .about-photo>img{object-position:72% center}
+
+/* Inquiry delivery feedback uses the existing compact form style. */
+.submit-button:disabled{cursor:wait;opacity:.72;transform:none}.form-status.error{color:#8d3c25}.form-status a{text-decoration:underline;text-underline-offset:3px}
