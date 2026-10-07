@@ -31,12 +31,14 @@ form.addEventListener('submit', event => {
   event.preventDefault();
   if (!form.reportValidity()) return;
   const fields = new FormData(form);
+  const contactChannels = {Email: 'rabbittravelcambodia@gmail.com', Telegram: '017 818 555', WhatsApp: '+855 17 818 555'};
+  const preferredContact = fields.get('contactMethod');
   const content = [
     'Rabbit Travel Cambodia — Trip Inquiry',
-    ...[['Name','name'],['Phone / WhatsApp','phone'],['Email','email'],['Tour','tour'],['Number of people','people'],['Preferred date','date'],['Message','message']]
+    ...[['Name','name'],['Phone / WhatsApp','phone'],['Email','email'],['Preferred Contact Method','contactMethod'],['Tour','tour'],['Number of people','people'],['Preferred date','date'],['Message','message']]
       .map(([label,key]) => `${label}: ${fields.get(key) || 'Not specified'}`),
     ...(fields.get('tour') === 'Killing Field Tour' ? ['', 'Killing Field Tour: $20/person; approximately 4 hours.', 'Morning: 8:00 AM – 12:00 PM. Afternoon: 1:20 PM – 5:30 PM.', 'Visits: Tuol Sleng Genocide Museum (S-21) and Choeung Ek Killing Fields.', 'Entrance fees and audio-guide fees are NOT included in the tour price.'] : []),
-    '', 'Please confirm availability, pricing, and arrangements with your guide. This inquiry is not a booking confirmation.'
+    '', `Rabbit Travel contact via ${preferredContact}: ${contactChannels[preferredContact]}`, 'Please confirm availability, pricing, and arrangements with your guide. This inquiry is not a booking confirmation.'
   ].join('\n');
   const url = URL.createObjectURL(new Blob([content], {type:'text/plain;charset=utf-8'}));
   const download = document.createElement('a');

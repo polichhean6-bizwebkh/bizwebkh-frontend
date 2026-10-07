@@ -11,7 +11,7 @@ Open index.html in a modern browser. All website assets are local; no installati
 - image-credits.html: photographer credits and licenses.
 
 ## Inquiry behavior
-Request Tour Info validates the form and downloads a text file containing the entered trip details. The traveler can save and share this file with the guide. No message is transmitted, no booking is confirmed, and no personal information is persisted by the site. Actual email, phone, WhatsApp, and Telegram details have not been supplied; none are fabricated or displayed.
+Request Tour Info validates the form and downloads a text file containing the entered trip details and preferred contact method. The traveler can save and share this file with the guide. No message is transmitted, no booking is confirmed, and no personal information is persisted by the site. The site displays Rabbit Travel Cambodia contact details: rabbittravelcambodia@gmail.com, Tel / Telegram 017 818 555, and WhatsApp +855 17 818 555.
 
 ## Confirmed services
 - Killing Field Tour: $20/person; approximately four hours; 8:00 AM–12:00 PM or 1:20 PM–5:30 PM. Entrance fees and audio-guide fees are NOT included in the $20/person tour price.
