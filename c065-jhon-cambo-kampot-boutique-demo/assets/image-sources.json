@@ -1,0 +1,104 @@
+[
+  {
+    "name": "bedroom-suite",
+    "source": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1600&q=85&fit=max",
+    "license": "Unsplash License",
+    "author": "See source"
+  },
+  {
+    "name": "bedroom-double",
+    "source": "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1600&q=85&fit=max",
+    "license": "Unsplash License",
+    "author": "See source"
+  },
+  {
+    "name": "bedroom-warm",
+    "source": "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1600&q=85&fit=max",
+    "license": "Unsplash License",
+    "author": "See source"
+  },
+  {
+    "name": "bedroom-twin",
+    "source": "https://unsplash.com/photos/GQMxPhlaFSw",
+    "license": "https://unsplash.com/license",
+    "author": "Febrian Zakaria"
+  },
+  {
+    "name": "bedroom-light",
+    "source": "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1600&q=85&fit=max",
+    "license": "Unsplash License",
+    "author": "See source"
+  },
+  {
+    "name": "bathroom",
+    "source": "https://images.unsplash.com/photo-1620626011761-996317b8d101?w=1600&q=85&fit=max",
+    "license": "Unsplash License",
+    "author": "See source"
+  },
+  {
+    "name": "bedroom-family",
+    "source": "https://unsplash.com/photos/D-aY4aGgduE",
+    "license": "https://unsplash.com/license",
+    "author": "ƠI HOME"
+  },
+  {
+    "name": "lounge",
+    "source": "https://visitcambodia.co/cambodia/photos",
+    "license": "Free to use with credit link",
+    "author": "Marcus Cent / VisitCambodia.co"
+  },
+  {
+    "name": "breakfast",
+    "source": "https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=1600&q=85&fit=max",
+    "license": "Unsplash License",
+    "author": "See source"
+  },
+  {
+    "name": "bathroom-stone",
+    "source": "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1600&q=85&fit=max",
+    "license": "Unsplash License",
+    "author": "See source"
+  },
+  {
+    "name": "courtyard",
+    "source": "https://visitcambodia.co/cambodia/photos",
+    "license": "Free to use with credit link",
+    "author": "Marcus Cent / VisitCambodia.co"
+  },
+  {
+    "name": "terrace",
+    "source": "https://unsplash.com/photos/fEcFc-JodN8",
+    "license": "https://unsplash.com/license",
+    "author": "sam onn chan"
+  },
+  {
+    "name": "kampot-river",
+    "source": "https://commons.wikimedia.org/wiki/File:2016_Kampot,_Zach%C3%B3d_s%C5%82o%C5%84ca_nad_rzek%C4%85_Praek_Tuek_Chhu_(08).jpg",
+    "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "author": "Marcin Konsek / Wikimedia Commons"
+  },
+  {
+    "name": "kampot-town",
+    "source": "https://commons.wikimedia.org/wiki/File:Riverside_Road_Kampot.jpg",
+    "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "author": "Christophe95 / Wikimedia Commons"
+  },
+  {
+    "name": "kampot-salt",
+    "source": "https://commons.wikimedia.org/wiki/File:03-Salt_Production,_Kampot-nX-1.jpg",
+    "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "author": "PsamatheM (psamathe.net) / Wikimedia Commons"
+  },
+  {
+    "name": "kampot-pepper",
+    "source": "https://commons.wikimedia.org/wiki/File:02-Pepper_Farm,_Kampot-nX-9.jpg",
+    "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "author": "PsamatheM (psamathe.net) / Wikimedia Commons"
+  },
+  {
+    "name": "kampot-bokor",
+    "source": "https://commons.wikimedia.org/wiki/File:Scenic_View_from_Bokor_Hill_Station_-_Near_Kampot_-_Cambodia_-_01_(48529019777).jpg",
+    "license": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "author": "Adam Jones / Wikimedia Commons"
+  }
+]

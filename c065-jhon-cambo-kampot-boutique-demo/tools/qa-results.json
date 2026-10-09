@@ -1,0 +1,62 @@
+{
+  "results": [
+    {
+      "width": 1440,
+      "lang": "en",
+      "overflow": false,
+      "broken": [],
+      "forbidden": false
+    },
+    {
+      "width": 1440,
+      "lang": "km",
+      "overflow": false,
+      "broken": [],
+      "forbidden": false
+    },
+    {
+      "width": 1280,
+      "lang": "en",
+      "overflow": false,
+      "broken": [],
+      "forbidden": false
+    },
+    {
+      "width": 1280,
+      "lang": "km",
+      "overflow": false,
+      "broken": [],
+      "forbidden": false
+    },
+    {
+      "width": 768,
+      "lang": "en",
+      "overflow": false,
+      "broken": [],
+      "forbidden": false
+    },
+    {
+      "width": 768,
+      "lang": "km",
+      "overflow": false,
+      "broken": [],
+      "forbidden": false
+    },
+    {
+      "width": 390,
+      "lang": "en",
+      "overflow": false,
+      "broken": [],
+      "forbidden": false
+    },
+    {
+      "width": 390,
+      "lang": "km",
+      "overflow": false,
+      "broken": [],
+      "forbidden": false
+    }
+  ],
+  "interactionChecks": "All passed",
+  "errors": []
+}
