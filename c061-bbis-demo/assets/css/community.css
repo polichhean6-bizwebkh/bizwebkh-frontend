@@ -1,0 +1,72 @@
+/* A practical, parent-friendly refinement of the existing BBIS layout. */
+@media(max-width:400px){html[lang="km"] body h1{font-size:25px}}
+:root{--cream:#f7f7f2;--muted:#526477;--radius:10px}
+.header-inner{min-height:82px}
+.hero-grid{gap:38px;padding-block:40px}
+.hero-visual{padding:0;min-width:0}
+.photo-frame{height:auto;aspect-ratio:4/3;border-radius:10px}
+.photo-frame img{object-position:center;height:100%}
+.hero-caption{position:static;max-width:none!important;padding:13px 0;gap:10px;background:transparent;box-shadow:none;border-radius:0;font-size:14px}
+.hero-caption .spark{font-size:22px}
+.hero-description{margin-block:18px 24px}
+.term-note{margin-top:24px}
+.values-strip{padding-block:17px}
+.section{padding-block:62px}
+.section-intro,.section-heading{gap:38px}
+.section-heading{margin-bottom:26px}
+.eyebrow{letter-spacing:.1em;margin-bottom:14px}
+h1{font-size:clamp(38px,3.7vw,53px);letter-spacing:-.025em;font-weight:700}
+h2{font-size:clamp(29px,2.8vw,38px);letter-spacing:-.025em;font-weight:700}
+h1 em{color:var(--blue)}
+.button{padding:13px 20px;gap:16px;border-radius:6px}
+.button:hover{transform:none}
+.about-highlights{margin-top:28px;padding-block:20px}
+.section-photo{margin:22px 0 0;position:relative;overflow:hidden;border-radius:8px}
+.section-photo img{width:100%;height:240px;object-fit:cover}
+.section-photo .image-label,.experience-photo .image-label{left:12px;bottom:12px}
+.program-section{padding-top:0;padding-bottom:0}
+.program-card{background:#f0f4f8;color:var(--navy);border:1px solid #dce4ed;border-radius:10px;grid-template-columns:1.15fr 1fr}
+.program-copy{padding:34px}
+.program-copy .eyebrow{color:var(--blue)}
+.program-copy>p:not(.eyebrow),.check-list{color:var(--muted)}
+.program-copy h2{font-size:34px}
+.check-list{font-size:14px;gap:10px;margin-block:22px}
+.check-list li:before{color:var(--blue)}
+.program-offer{margin:20px 20px 20px 0;padding:0 0 22px;background:#fff;border:1px solid #dde4eb;border-radius:8px;overflow:hidden}
+.program-offer .section-photo{margin:0 0 20px;border-radius:0;width:100%}
+.program-offer .section-photo img{height:215px;object-position:center}
+.offer-eyebrow{color:var(--blue);padding-inline:16px;letter-spacing:.05em}
+.discount{color:var(--blue);font-size:84px;line-height:1.1;margin:12px 0}
+.discount>span:not([data-i18n]){font-size:36px}
+.program-offer h3{font-size:17px;padding-inline:18px}
+.program-offer p,.offer-bottom{color:var(--muted)}
+.offer-bottom{border-color:var(--line);font-size:12px;margin-top:18px;padding:16px 20px 0}
+.benefit-grid{gap:0 22px}
+.benefit-grid article,.benefit-grid article:nth-child(n+4){padding:24px 0}
+.icon{border-radius:6px;background:#edf2f7}
+.why .section-heading{display:grid;grid-template-columns:1fr 360px;align-items:center}
+.why .section-heading>p{grid-column:1;margin-top:-5px}
+.why .section-heading .section-photo{grid-column:2;grid-row:1/span 2;margin:0}
+.why .section-heading .section-photo img{height:230px}
+.experience{padding-block:48px}
+.experience-grid{gap:40px}
+.experience-photo{height:auto;aspect-ratio:4/3;border-radius:8px}
+.experience-photo img{object-position:center}
+.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.gallery-photo{grid-column:auto;grid-row:auto;min-height:0;aspect-ratio:4/3;border:1px solid #dce3e9;border-radius:8px;box-shadow:none}
+.gallery-photo>span{font-size:16px;line-height:1.8;padding:38px 18px 16px}
+.gallery-photo:hover img{transform:scale(1.02)}
+.demo-note{margin-top:0;font-size:13px}
+.enrollment{padding-block:46px}
+.enrollment h2{font-size:36px}
+.contact-grid{gap:48px}
+.contact-card{padding:15px 18px;border-radius:6px}
+.contact-symbol{border-radius:6px}
+html[lang="km"] h1{font-size:clamp(30px,3vw,41px);font-weight:700;line-height:1.65}
+html[lang="km"] h2{font-size:clamp(27px,2.5vw,34px);font-weight:700;line-height:1.7}
+html[lang="km"] .hero-caption{line-height:1.9}
+html[lang="km"] .program-copy h2{font-size:30px}
+html[lang="km"] .discount small{font-size:16px}
+html[lang="km"] .intro-copy p,html[lang="km"] .hero-description,html[lang="km"] .experience-copy p:not(.eyebrow),html[lang="km"] .program-copy>p:not(.eyebrow){font-size:15px}
+@media(max-width:1000px){.hero-grid{gap:28px}.why .section-heading{grid-template-columns:1fr 290px}.program-copy{padding:28px}.section{padding-block:50px}.program-section{padding-top:0;padding-bottom:0}}
+@media(max-width:700px){.hero-grid,.experience-grid{grid-template-columns:1fr}.hero-grid{padding-block:30px;gap:24px}.header-inner{min-height:74px}.hero .button-row{flex-direction:row}.photo-frame{height:auto;aspect-ratio:4/3}.hero-caption{padding-bottom:0}.section{padding-block:42px}.program-section{padding-top:0;padding-bottom:0}.section-intro,.section-heading{gap:20px}.program-card{grid-template-columns:1fr}.program-copy{padding:26px 23px}.program-offer{margin:0 20px 20px}.section-photo img{height:210px}.why .section-heading{display:flex;flex-direction:column;align-items:stretch}.why .section-heading .section-photo{width:100%;margin-top:0}.why .section-heading .section-photo img{height:auto;aspect-ratio:16/10}.experience{padding-block:38px}.experience-grid{gap:24px}.gallery-grid{gap:14px}.gallery-photo{aspect-ratio:4/5}.gallery-photo>span{padding:28px 12px 12px;font-size:14px}.enrollment{padding-block:38px}.contact-grid{gap:28px}html[lang="km"] h1{font-size:29px}html[lang="km"] h2{font-size:27px}html[lang="km"] .program-copy h2{font-size:27px}html[lang="km"] .gallery-photo>span{font-size:13px}}

@@ -1,0 +1,20 @@
+#contact .contact-grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:start}
+#contact .inquiry-form{min-width:0;border:1px solid var(--line);border-radius:8px;padding:26px;background:var(--white)}
+#contact .inquiry-form h3{font-size:20px;line-height:1.7;margin-bottom:12px}
+#contact .inquiry-form .inquiry-note{padding:12px 14px;background:var(--cream);border-left:3px solid var(--gold);font-size:13px;line-height:1.9;margin-bottom:22px}
+#contact .inquiry-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 18px;border:0;padding:0;margin:0;min-width:0}
+#contact .inquiry-field{min-width:0}
+#contact .inquiry-wide{grid-column:1/-1}
+#contact .inquiry-field label{display:block;font-size:14px;font-weight:600;line-height:1.9;margin-bottom:7px}
+#contact .inquiry-field input,#contact .inquiry-field textarea{display:block;width:100%;min-width:0;border:1px solid #acbac8;border-radius:6px;background:#fff;color:var(--ink);font:inherit;font-size:16px;line-height:1.8;padding:10px 12px}
+#contact .inquiry-field textarea{min-height:115px;resize:vertical}
+#contact .inquiry-field input:focus-visible,#contact .inquiry-field textarea:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+#contact .inquiry-field [aria-invalid="true"]{border-color:#a12e27}
+#contact .inquiry-field .inquiry-error{font-size:13px;color:#a12e27;line-height:1.8;margin-top:5px}
+#contact .inquiry-field .inquiry-hint{font-size:12px;line-height:1.8;margin-top:5px}
+#contact .inquiry-submit{margin-top:22px}
+#contact .inquiry-status{font-size:14px;line-height:1.9;margin-top:18px;padding:12px 14px;background:#eef4f8;border-radius:6px;color:var(--navy)}
+#contact .inquiry-status:empty{display:none}
+#contact .inquiry-form [hidden]{display:none}
+@media(max-width:1000px){#contact .contact-grid{grid-template-columns:1fr}#contact .inquiry-form{max-width:100%}}
+@media(max-width:600px){#contact .inquiry-form{padding:20px 16px}#contact .inquiry-fields{grid-template-columns:1fr;gap:18px}#contact .inquiry-form h3{font-size:18px}#contact .inquiry-submit{width:100%}}
