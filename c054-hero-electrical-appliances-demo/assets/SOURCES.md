@@ -1,5 +1,21 @@
 # Current website asset sources
 
+## Client promotional photos (19 October 2026, revision 6)
+
+All seven files supplied in `../../Images from Client/New Images from Client/` were reviewed at their supplied size and used locally without regeneration or content edits. They are proportionally displayed with `object-fit: contain` in the promotional cards so their printed text is not distorted or aggressively cropped.
+
+| Website asset | Original client filename | Placement |
+| --- | --- | --- |
+| susi-shopfront.jpg | photo_2026-10-19_10-05-40.jpg | About HERO, used once as the shopfront image |
+| susi-honda-dream-promo.jpg | photo_2026-10-19_19-32-07.jpg | Motorcycle Oil promotional feature |
+| susi-store-interior.jpg | photo_2026-10-19_19-32-20.jpg | Store Information, used once |
+| sosi-oil-poster.jpg | photo_2026-10-19_19-32-29.jpg | Motorcycle Oil promotional feature |
+| fsd-battery-promo.jpg | photo_2026-10-19_19-32-33.jpg | Car Battery promotional row |
+| bussan-battery-promo.jpg | photo_2026-10-19_19-32-37.jpg | Car Battery promotional row |
+| sushi-battery-promo.jpg | photo_2026-10-19_19-32-40.jpg | Car Battery promotional row |
+
+The original product-card names, inquiry actions, hero, navigation, bilingual functionality and contact links remain unchanged. FSD appears only as a client-supplied brand promotion; no availability, specifications, prices, or unverified claims were added by the website.
+
 ## Lifestyle/store photos added + copy and layout polish (18 September 2026, revision 5)
 Per the client's explicit follow-up instruction, two of the three previously-unused client lifestyle photos are now placed on the site:
 

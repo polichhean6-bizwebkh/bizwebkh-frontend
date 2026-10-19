@@ -1,6 +1,6 @@
 # HERO Engine Oil & Batteries — current client-review demo
 
-Updated 15 September 2026 from the existing C054 static site. The design, logo, colors, hero, contact details and one-page structure are preserved.
+Updated 19 October 2026 from the existing C054 static site. The design, logo, colors, hero, contact details and one-page structure are preserved.
 
 ## Open
 Open `index.html` directly. All assets and Noto Sans Khmer are local; no build step or installation is needed. Relative paths also support `/c054-hero-electrical-appliances-demo/`.
@@ -11,7 +11,13 @@ Open `index.html` directly. All assets and Noto Sans Khmer are local; no build s
 | Car Battery | BUSSAN, SUBUTA, SUSHI |
 | Motorcycle Oil | SOSI |
 
-Only two categories and four product cards are displayed. All five product images supplied in `../Images from Client/` are used: the SOSI trio appears on the category card, the single can appears on the SOSI product card, and each battery has its matching photo. No new product visuals were generated. Original client files are preserved.
+The original category cards, product cards and inquiry links are retained. The supporting oil gallery also includes SOSI and SUSI options already present in the approved project.
+
+## Client promotional photography
+
+Seven client photos from `../Images from Client/New Images from Client/` are now local website assets. The SUSI shopfront is used once in About HERO; the in-store display is used once in Store Information. The compact Brand Promotions section uses FSD, BUSSAN and SUSHI battery visuals, plus a HONDA Dream/SUSI feature and a SOSI oil poster. The mobile battery row scrolls horizontally so poster text stays readable without making the page unnecessarily long.
+
+FSD is presented only through the client-provided promotional image. The site does not add prices, availability, specifications or claims from that poster.
 
 The website displays no unavailable brands, motorcycle-battery category, generic product illustrations or placeholder products. Prior unused assets may remain on disk as historical files but are not referenced or included in the current upload ZIP.
 
@@ -28,6 +34,6 @@ Ask for Details scrolls to Contact and displays the selected product/category. M
 USD 99 Starter static one-page website, with English content and Khmer category labels in locally bundled Noto Sans Khmer. No backend, CMS, login, shopping cart, payment or inventory system. Not deployed.
 
 ## QA and handoff
-Passed 390, 430, 768 and 1366px checks for overflow, images, logo proportions, Khmer labels, navigation, the four product selections and contact-link destinations. All five supplied product photos are used and no excluded product names remain in the rendered page. Direct file opening passes; no JavaScript exceptions.
+Browser validation passed at 1440px and 390px: all 18 page images loaded locally, the promotional rail remained touch-scrollable on mobile, the Khmer/English switch worked, product inquiry feedback appeared, and the navigation target was present. No deployment has been performed.
 
 See `FINAL-HANDOFF.md` and `assets/SOURCES.md`. The current upload ZIP is `../C054-HERO-current-products-2026-09-15.zip`; older ZIPs are historical versions.

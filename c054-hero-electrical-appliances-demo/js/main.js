@@ -11,7 +11,7 @@ const icon=name=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 const dict = {
   en: {
     skip: 'Skip to content',
-    topbar: { tagline: 'ENGINE OIL & BATTERIES · PHNOM PENH', hours: '8:00 AM – 5:00 PM' },
+    topbar: { tagline: 'ENGINE OIL & BATTERIES · PHNOM PENH', hours: '8:00 AM – 5:00 PM · To be confirmed' },
     header: { logoAria: 'HERO Engine Oil & Batteries home', brandTagline: 'ENGINE OIL & BATTERIES' },
     nav: { home: 'Home', about: 'About', products: 'Products', whyHero: 'Why HERO', contact: 'Contact', contactCta: 'Contact Us', openMenu: 'Open navigation', closeMenu: 'Close navigation' },
     hero: {
@@ -21,7 +21,7 @@ const dict = {
       description: 'Motorcycle oil and car batteries for everyday drivers and riders in Phnom Penh.',
       exploreProducts: 'Explore Products',
       contactUs: 'Contact Us',
-      note: 'Dongkor, Phnom Penh, Cambodia',
+      note: 'Dong Kor, Phnom Penh, Cambodia',
       captionLabel: 'YOUR VEHICLE. YOUR EVERYDAY.',
       captionText: 'Talk to HERO. Find your next essential.'
     },
@@ -32,7 +32,8 @@ const dict = {
       p1: 'HERO Engine Oil & Batteries offers car batteries and motorcycle engine oil selected for everyday driving and riding needs.',
       p2: 'Explore our current range of BUSSAN, SUBUTA and SUSHI car batteries, together with SOSI and SUSI motorcycle oil.',
       p3: 'Contact HERO for product availability, specifications and assistance choosing the right product for your vehicle.',
-      link: 'Connect with HERO'
+      link: 'Connect with HERO',
+      photoAlt: 'SUSI motorcycle oil shopfront'
     },
     categories: { eyebrow: 'OUR PRODUCT CATEGORIES', heading: 'Engine oil. Car batteries.<br>One place to start.', exploreBrands: 'Explore our brands', exploreProducts: 'Explore Products' },
     categoryNames: { carBattery: 'Car Battery', motorcycleOil: 'Motorcycle Oil' },
@@ -46,6 +47,30 @@ const dict = {
       askForDetailsAria: (brand, category) => `Ask for details about ${brand} ${category}`,
       demoNote: 'Contact HERO to confirm individual models, product details and availability.'
     },
+    promotions: {
+      eyebrow: 'BRAND HIGHLIGHTS',
+      japanese: 'Japanese Technology', korean: 'Korean Technology',
+      fsdName: 'FSD Battery', fsdSpec: 'Power Range: 5Ah–200Ah',
+      bussanName: 'BUSSAN Battery', bussanSpec: 'Power Range: 40Ah–150Ah',
+      sushiName: 'SUSHI Battery', sushiSpec: 'Power Range: 40Ah–150Ah',
+      susiName: 'SUSI Motorcycle Oil', susiSpec: 'Available Sizes: 800ml, 1000ml',
+      sosiName: 'SOSI Motorcycle Oil', sosiSpec: 'Available Sizes: 800ml, 1000ml',
+      heading: 'Brand Highlights',
+      sub: 'Explore highlights from our battery and motorcycle oil brands.',
+      batteryEyebrow: 'CAR BATTERY',
+      batteryHeading: 'Battery Brand Highlights',
+      oilEyebrow: 'MOTORCYCLE OIL',
+      oilHeading: 'Motorcycle Oil Brand Highlights',
+      brandVisual: 'Brand highlight',
+      viewImage: 'View larger image', closeImage: 'Close image',
+      hondaCaption: 'Honda Dream highlight',
+      posterCaption: 'Motorcycle oil range',
+      fsdAlt: 'FSD car battery brand visual',
+      bussanAlt: 'BUSSAN car battery brand visual',
+      sushiAlt: 'SUSHI car battery brand visual',
+      hondaAlt: 'SUSI oil brand visual with a Honda Dream motorcycle',
+      posterAlt: 'SOSI motorcycle oil product poster'
+    },
     gallery: {
       eyebrow: 'ALSO FROM HERO',
       heading: 'More oil options.<br>Find the right oil for your bike.',
@@ -56,7 +81,7 @@ const dict = {
       heading: 'Easy to explore.<br>Easy to get in touch.',
       item1Title: 'Everyday Vehicle Essentials', item1Desc: 'Car batteries and motorcycle engine oil for your everyday vehicle needs.',
       item2Title: 'Convenient Contact', item2Desc: 'Contact HERO directly through Telegram or WhatsApp for product information.',
-      item3Title: 'Local Service', item3Desc: 'Serving customers in Dongkor, Phnom Penh.',
+      item3Title: 'Local Service', item3Desc: 'Serving customers in Dong Kor, Phnom Penh.',
       item4Title: 'Customer Support', item4Desc: 'Ask HERO about specifications, availability and product suitability.'
     },
     quality: {
@@ -70,21 +95,23 @@ const dict = {
       step3Title: 'Confirm before purchase', step3Desc: 'Confirm the exact model, specification and availability before purchase.'
     },
     contact: {
-      eyebrow: 'STORE INFORMATION',
-      heading: 'Visit us in<br>Dongkor, Phnom Penh.',
+      eyebrow: 'OFFICE & FACTORY',
+      office: 'Cambodia Office', factory: 'Vietnam Factory', telephone: 'Telephone', representative: 'Cambodia Representative', factoryAddress: 'My Hanh Commune, Tay Ninh Province, Vietnam', hoursPending: '8:00 AM – 5:00 PM',
+      heading: 'Our Office & Factory',
       addressLabel: 'Address', hoursLabel: 'Opening Hours', facebookPageLabel: 'Facebook Page',
       panelEyebrow: 'LET’S TALK', panelHeading: 'Contact HERO directly.', panelP: 'Reach HERO through Telegram or WhatsApp for product enquiries and availability.',
       linkPending: 'Link pending',
       facebookNote: 'Facebook: HERO Engine Oil & Batteries.<br>Page link to be added when confirmed.',
-      inquiryPrefix: 'Ask HERO about:'
+      inquiryPrefix: 'Ask HERO about:',
+      photoAlt: 'SUSI motorcycle oil display inside the store'
     },
     bottomCta: { eyebrow: 'YOUR NEXT STEP', heading: 'Need engine oil or a battery?', p: 'Contact HERO for current product availability and more information.', facebookPending: 'Facebook · Link pending' },
     footer: { backTop: 'Back to top', websiteBy: 'Website by BizWeb KH' },
-    meta: { title: 'HERO Engine Oil & Batteries | Dongkor, Phnom Penh' }
+    meta: { title: 'HERO Engine Oil & Batteries | Dong Kor, Phnom Penh' }
   },
   km: {
     skip: 'រំលងទៅមាតិកា',
-    topbar: { tagline: 'ប្រេងម៉ាស៊ីន និងអាគុយ · PHNOM PENH', hours: '8:00 AM – 5:00 PM' },
+    topbar: { tagline: 'ប្រេងម៉ាស៊ីន និងអាគុយ · PHNOM PENH', hours: '8:00 AM – 5:00 PM · រង់ចាំការបញ្ជាក់' },
     header: { logoAria: 'ទំព័រដើម HERO ប្រេងម៉ាស៊ីន និងអាគុយ', brandTagline: 'ប្រេងម៉ាស៊ីន និងអាគុយ' },
     nav: { home: 'ទំព័រដើម', about: 'អំពីយើង', products: 'ផលិតផល', whyHero: 'ហេតុអ្វីជ្រើសរើស HERO', contact: 'ទំនាក់ទំនង', contactCta: 'ទាក់ទងមកយើង', openMenu: 'បើកម៉ឺនុយ', closeMenu: 'បិទម៉ឺនុយ' },
     hero: {
@@ -94,7 +121,7 @@ const dict = {
       description: 'ប្រេងម៉ាស៊ីនម៉ូតូ និងអាគុយរថយន្ត សម្រាប់ការប្រើប្រាស់ប្រចាំថ្ងៃនៅភ្នំពេញ។',
       exploreProducts: 'មើលផលិតផល',
       contactUs: 'ទាក់ទងយើង',
-      note: 'Dongkor, Phnom Penh, Cambodia',
+      note: 'Dong Kor, Phnom Penh, Cambodia',
       captionLabel: 'យានយន្តរបស់អ្នក។ រាល់ថ្ងៃរបស់អ្នក។',
       captionText: 'និយាយជាមួយ HERO។ ស្វែងរកផលិតផលដែលអ្នកត្រូវការបន្ទាប់។'
     },
@@ -105,7 +132,8 @@ const dict = {
       p1: 'HERO Engine Oil & Batteries ផ្តល់ជូនអាគុយរថយន្ត និងប្រេងម៉ាស៊ីនម៉ូតូ សម្រាប់ការប្រើប្រាស់ប្រចាំថ្ងៃ។',
       p2: 'ស្វែងរកជម្រើសអាគុយ BUSSAN, SUBUTA និង SUSHI រួមជាមួយប្រេងម៉ាស៊ីនម៉ូតូ SOSI និង SUSI។',
       p3: 'សូមទាក់ទង HERO ដើម្បីសួរអំពីស្តុកផលិតផល លក្ខណៈបច្ចេកទេស និងការជ្រើសរើសផលិតផលដែលសមស្របសម្រាប់យានយន្តរបស់អ្នក។',
-      link: 'ទាក់ទង HERO'
+      link: 'ទាក់ទង HERO',
+      photoAlt: 'ផ្នែកខាងមុខហាងប្រេងម៉ាស៊ីនម៉ូតូ SUSI'
     },
     categories: { eyebrow: 'ប្រភេទផលិតផល', heading: 'ប្រេងម៉ាស៊ីន និងអាគុយរថយន្ត<br>ងាយស្រួលស្វែងរកក្នុងកន្លែងតែមួយ', exploreBrands: 'មើលម៉ាកទាំងអស់', exploreProducts: 'មើលផលិតផល' },
     categoryNames: { carBattery: 'អាគុយរថយន្ត', motorcycleOil: 'ប្រេងម៉ាស៊ីនម៉ូតូ' },
@@ -118,6 +146,30 @@ const dict = {
       askForDetails: 'សាកសួរព័ត៌មានលម្អិត',
       askForDetailsAria: (brand, category) => `សាកសួរព័ត៌មានលម្អិតអំពី ${brand} ${category}`,
       demoNote: 'ទាក់ទង HERO ដើម្បីបញ្ជាក់ម៉ូដែល ព័ត៌មានលម្អិត និងស្តុកដែលមាន។'
+    },
+    promotions: {
+      eyebrow: 'ម៉ាកផលិតផលលេចធ្លោ',
+      japanese: 'បច្ចេកវិទ្យាជប៉ុន', korean: 'បច្ចេកវិទ្យាកូរ៉េ',
+      fsdName: 'អាគុយ FSD', fsdSpec: 'ចំណុះអាគុយ: 5Ah–200Ah',
+      bussanName: 'អាគុយ BUSSAN', bussanSpec: 'ចំណុះអាគុយ: 40Ah–150Ah',
+      sushiName: 'អាគុយ SUSHI', sushiSpec: 'ចំណុះអាគុយ: 40Ah–150Ah',
+      susiName: 'ប្រេងម៉ាស៊ីនម៉ូតូ SUSI', susiSpec: 'ទំហំដែលមាន: 800ml, 1000ml',
+      sosiName: 'ប្រេងម៉ាស៊ីនម៉ូតូ SOSI', sosiSpec: 'ទំហំដែលមាន: 800ml, 1000ml',
+      viewImage: 'មើលរូបភាពធំ', closeImage: 'បិទរូបភាព',
+      heading: 'ម៉ាកផលិតផលលេចធ្លោ',
+      sub: 'ស្វែងយល់ពីម៉ាកអាគុយ និងប្រេងម៉ាស៊ីនម៉ូតូរបស់យើង។',
+      batteryEyebrow: 'អាគុយរថយន្ត',
+      batteryHeading: 'ម៉ាកអាគុយរថយន្តលេចធ្លោ',
+      oilEyebrow: 'ប្រេងម៉ាស៊ីនម៉ូតូ',
+      oilHeading: 'ម៉ាកប្រេងម៉ាស៊ីនម៉ូតូលេចធ្លោ',
+      brandVisual: 'ម៉ាកផលិតផលលេចធ្លោ',
+      hondaCaption: 'រូបភាព Honda Dream',
+      posterCaption: 'ជម្រើសប្រេងម៉ាស៊ីនម៉ូតូ',
+      fsdAlt: 'រូបភាពផ្សព្វផ្សាយអាគុយរថយន្ត FSD',
+      bussanAlt: 'រូបភាពផ្សព្វផ្សាយអាគុយរថយន្ត BUSSAN',
+      sushiAlt: 'រូបភាពផ្សព្វផ្សាយអាគុយរថយន្ត SUSHI',
+      hondaAlt: 'រូបភាពផ្សព្វផ្សាយប្រេង SUSI សម្រាប់ម៉ូតូ Honda Dream',
+      posterAlt: 'ផ្ទាំងរូបភាពផលិតផលប្រេងម៉ាស៊ីនម៉ូតូ SOSI'
     },
     gallery: {
       eyebrow: 'ផលិតផលបន្ថែមពី HERO',
@@ -143,17 +195,19 @@ const dict = {
       step3Title: 'បញ្ជាក់មុនពេលទិញ', step3Desc: 'បញ្ជាក់ម៉ូដែល លក្ខណៈបច្ចេកទេស និងស្តុកឲ្យបានច្បាស់មុននឹងទិញ។'
     },
     contact: {
-      eyebrow: 'ព័ត៌មានហាង',
-      heading: 'មកជួបយើងនៅដង្កោ<br>រាជធានីភ្នំពេញ',
+      eyebrow: 'ការិយាល័យ និងរោងចក្រ',
+      office: 'ការិយាល័យកម្ពុជា', factory: 'រោងចក្រនៅវៀតណាម', telephone: 'ទូរស័ព្ទ', representative: 'តំណាងប្រចាំកម្ពុជា', factoryAddress: 'ឃុំ My Hanh ខេត្ត Tay Ninh ប្រទេសវៀតណាម', hoursPending: '8:00 AM – 5:00 PM',
+      heading: 'ការិយាល័យ និងរោងចក្ររបស់យើង',
       addressLabel: 'អាសយដ្ឋាន', hoursLabel: 'ម៉ោងបើកបម្រើ', facebookPageLabel: 'ទំព័រ Facebook',
       panelEyebrow: 'តោះនិយាយគ្នា', panelHeading: 'ទាក់ទង HERO ដោយផ្ទាល់', panelP: 'ទាក់ទងតាម Telegram ឬ WhatsApp ដើម្បីសួរអំពីផលិតផល និងស្តុកបច្ចុប្បន្ន។',
       linkPending: 'តំណភ្ជាប់មិនទាន់មាន',
       facebookNote: 'Facebook៖ HERO Engine Oil & Batteries។<br>តំណភ្ជាប់ទំព័រនឹងបន្ថែមនៅពេលបញ្ជាក់។',
-      inquiryPrefix: 'សួរ HERO អំពី៖'
+      inquiryPrefix: 'សួរ HERO អំពី៖',
+      photoAlt: 'ការតាំងបង្ហាញប្រេងម៉ាស៊ីនម៉ូតូ SUSI នៅក្នុងហាង'
     },
     bottomCta: { eyebrow: 'ជំហានបន្ទាប់របស់អ្នក', heading: 'ត្រូវការប្រេងម៉ាស៊ីន ឬអាគុយ?', p: 'ទាក់ទង HERO ដើម្បីសួរព័ត៌មាន និងស្តុកផលិតផលបច្ចុប្បន្ន។', facebookPending: 'Facebook · តំណភ្ជាប់មិនទាន់មាន' },
     footer: { backTop: 'ត្រឡប់ទៅលើ', websiteBy: 'Website by BizWeb KH' },
-    meta: { title: 'HERO ប្រេងម៉ាស៊ីន និងអាគុយ | Dongkor, Phnom Penh' }
+    meta: { title: 'HERO ប្រេងម៉ាស៊ីន និងអាគុយ | Dong Kor, Phnom Penh' }
   }
 };
 
@@ -288,6 +342,44 @@ document.addEventListener('keydown', e => {
 });
 document.addEventListener('click', e => { if (!e.target.closest('.nav-wrap')) closeMenu(); });
 document.querySelector('#year').textContent = new Date().getFullYear();
+
+// Native dialog provides focus trapping, Escape dismissal and focus restoration.
+const brandViewer = document.createElement('dialog');
+brandViewer.className = 'brand-lightbox';
+brandViewer.setAttribute('aria-label', t(currentLang, 'promotions.viewImage'));
+brandViewer.innerHTML = '<button type="button" class="brand-lightbox-close" data-i18n="promotions.closeImage"></button><img alt="">';
+document.body.append(brandViewer);
+const viewerImage = brandViewer.querySelector('img');
+const viewerClose = brandViewer.querySelector('button');
+viewerClose.textContent = t(currentLang, 'promotions.closeImage');
+viewerClose.addEventListener('click', () => brandViewer.close());
+brandViewer.addEventListener('click', event => {
+  if (event.target === brandViewer) brandViewer.close();
+});
+brandViewer.addEventListener('close', () => {
+  document.documentElement.classList.remove('brand-view-open');
+  viewerImage.removeAttribute('src');
+});
+document.querySelectorAll('.promo-card > img').forEach(img => {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'brand-image-button';
+  button.setAttribute('aria-haspopup', 'dialog');
+  img.replaceWith(button);
+  button.append(img);
+  const hint = document.createElement('span');
+  hint.className = 'brand-image-hint';
+  hint.dataset.i18n = 'promotions.viewImage';
+  hint.textContent = t(currentLang, 'promotions.viewImage');
+  button.append(hint);
+  button.addEventListener('click', () => {
+    viewerImage.src = img.src;
+    viewerImage.alt = img.alt;
+    brandViewer.setAttribute('aria-label', img.alt);
+    document.documentElement.classList.add('brand-view-open');
+    brandViewer.showModal();
+  });
+});
 if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const observer = new IntersectionObserver(entries => entries.forEach(entry => {
     if (entry.isIntersecting) { entry.target.classList.add('reveal'); observer.unobserve(entry.target); }
