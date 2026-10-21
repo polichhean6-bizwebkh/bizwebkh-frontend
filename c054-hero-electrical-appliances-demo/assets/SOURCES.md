@@ -1,5 +1,15 @@
 # Current website asset sources
 
+## Hero carousel — 21 October 2026
+All seven October client images now appear in the hero carousel, using the existing
+local copies listed below. Byte-for-byte checks confirm these match the source files.
+Landscape artwork uses a full uncropped visual over a darkened background fill;
+the two tall images use contained portrait frames. Mobile places the artwork below
+the hero copy. Navigation is manual with arrows, dots, keyboard controls and swipe.
+The separate Brand Highlights section and its lightbox were removed. Existing
+About and office/factory imagery, product cards and contact destinations are retained.
+No deployment or GitHub push was performed.
+
 ## Client promotional photos (19 October 2026, revision 6)
 
 All seven files supplied in `../../Images from Client/New Images from Client/` were reviewed at their supplied size and used locally without regeneration or content edits. They are proportionally displayed with `object-fit: contain` in the promotional cards so their printed text is not distorted or aggressively cropped.

@@ -343,43 +343,6 @@ document.addEventListener('keydown', e => {
 document.addEventListener('click', e => { if (!e.target.closest('.nav-wrap')) closeMenu(); });
 document.querySelector('#year').textContent = new Date().getFullYear();
 
-// Native dialog provides focus trapping, Escape dismissal and focus restoration.
-const brandViewer = document.createElement('dialog');
-brandViewer.className = 'brand-lightbox';
-brandViewer.setAttribute('aria-label', t(currentLang, 'promotions.viewImage'));
-brandViewer.innerHTML = '<button type="button" class="brand-lightbox-close" data-i18n="promotions.closeImage"></button><img alt="">';
-document.body.append(brandViewer);
-const viewerImage = brandViewer.querySelector('img');
-const viewerClose = brandViewer.querySelector('button');
-viewerClose.textContent = t(currentLang, 'promotions.closeImage');
-viewerClose.addEventListener('click', () => brandViewer.close());
-brandViewer.addEventListener('click', event => {
-  if (event.target === brandViewer) brandViewer.close();
-});
-brandViewer.addEventListener('close', () => {
-  document.documentElement.classList.remove('brand-view-open');
-  viewerImage.removeAttribute('src');
-});
-document.querySelectorAll('.promo-card > img').forEach(img => {
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.className = 'brand-image-button';
-  button.setAttribute('aria-haspopup', 'dialog');
-  img.replaceWith(button);
-  button.append(img);
-  const hint = document.createElement('span');
-  hint.className = 'brand-image-hint';
-  hint.dataset.i18n = 'promotions.viewImage';
-  hint.textContent = t(currentLang, 'promotions.viewImage');
-  button.append(hint);
-  button.addEventListener('click', () => {
-    viewerImage.src = img.src;
-    viewerImage.alt = img.alt;
-    brandViewer.setAttribute('aria-label', img.alt);
-    document.documentElement.classList.add('brand-view-open');
-    brandViewer.showModal();
-  });
-});
 if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const observer = new IntersectionObserver(entries => entries.forEach(entry => {
     if (entry.isIntersecting) { entry.target.classList.add('reveal'); observer.unobserve(entry.target); }

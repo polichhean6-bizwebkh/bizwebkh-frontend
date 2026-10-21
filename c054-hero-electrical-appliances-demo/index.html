@@ -9,7 +9,9 @@
   <link rel="icon" href="assets/Logo.jpg" type="image/jpeg">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/automotive.css">
+  <link rel="stylesheet" href="css/hero-carousel.css">
   <script src="js/main.js" defer></script>
+  <script src="js/hero-carousel.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
@@ -32,8 +34,36 @@
   </div>
 </header>
 <main id="main">
-  <section class="hero" id="home">
-    <div class="hero-photo" role="img" data-i18n-attr="aria-label:hero.photoAria" aria-label="Illustrative stock photograph of automotive service work"></div>
+  <section class="hero hero-carousel" id="home" aria-roledescription="carousel" aria-label="HERO brands">
+    <div class="hero-slides">      <div class="hero-slide is-landscape is-current" data-slide="0" role="group" aria-roledescription="slide" aria-label="1 / 7 — SUSI · Shopfront">
+        <div class="hero-scene" style="background-image:url('assets/susi-shopfront.jpg')" aria-hidden="true"></div>
+        <div class="hero-frame"><img src="assets/susi-shopfront.jpg" alt="SUSI · Shopfront" width="1280" height="853" fetchpriority="high" decoding="async"></div>
+      </div>
+      <div class="hero-slide is-landscape" data-slide="1" role="group" aria-roledescription="slide" aria-label="2 / 7 — SUSI · Honda Dream" hidden>
+        <div class="hero-scene" style="background-image:url('assets/susi-honda-dream-promo.jpg')" aria-hidden="true"></div>
+        <div class="hero-frame"><img src="assets/susi-honda-dream-promo.jpg" alt="SUSI · Honda Dream" width="1280" height="853" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="hero-slide is-portrait" data-slide="2" role="group" aria-roledescription="slide" aria-label="3 / 7 — SUSI · Brand display" hidden>
+        <div class="hero-scene" style="background-image:url('assets/susi-store-interior.jpg')" aria-hidden="true"></div>
+        <div class="hero-frame"><img src="assets/susi-store-interior.jpg" alt="SUSI · Brand display" width="720" height="1280" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="hero-slide is-portrait" data-slide="3" role="group" aria-roledescription="slide" aria-label="4 / 7 — SOSI · Motorcycle oil" hidden>
+        <div class="hero-scene" style="background-image:url('assets/sosi-oil-poster.jpg')" aria-hidden="true"></div>
+        <div class="hero-frame"><img src="assets/sosi-oil-poster.jpg" alt="SOSI · Motorcycle oil" width="853" height="1280" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="hero-slide is-landscape" data-slide="4" role="group" aria-roledescription="slide" aria-label="5 / 7 — FSD · Battery" hidden>
+        <div class="hero-scene" style="background-image:url('assets/fsd-battery-promo.jpg')" aria-hidden="true"></div>
+        <div class="hero-frame"><img src="assets/fsd-battery-promo.jpg" alt="FSD · Battery" width="1280" height="960" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="hero-slide is-landscape" data-slide="5" role="group" aria-roledescription="slide" aria-label="6 / 7 — BUSSAN · Battery" hidden>
+        <div class="hero-scene" style="background-image:url('assets/bussan-battery-promo.jpg')" aria-hidden="true"></div>
+        <div class="hero-frame"><img src="assets/bussan-battery-promo.jpg" alt="BUSSAN · Battery" width="1280" height="853" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="hero-slide is-landscape" data-slide="6" role="group" aria-roledescription="slide" aria-label="7 / 7 — SUSHI / PassApp · Battery" hidden>
+        <div class="hero-scene" style="background-image:url('assets/sushi-battery-promo.jpg')" aria-hidden="true"></div>
+        <div class="hero-frame"><img src="assets/sushi-battery-promo.jpg" alt="SUSHI / PassApp · Battery" width="1280" height="853" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
     <div class="container hero-inner"><div class="hero-copy">
       <p class="eyebrow"><span></span> <span class="eyebrow-text" data-i18n="hero.eyebrow">HERO ENGINE OIL & BATTERIES</span></p>
       <h1 data-i18n-html="hero.headline">Engine care.<br>Battery power.<br><em>Ready for the road.</em></h1>
@@ -41,7 +71,11 @@
       <div class="button-row"><a class="button" href="#products"><span data-i18n="hero.exploreProducts">Explore Products</span> <i data-icon="arrow"></i></a><a class="button button-white" href="#contact"><span data-i18n="hero.contactUs">Contact Us</span> <i data-icon="chat"></i></a></div>
       <div class="hero-note"><i data-icon="pin"></i> <span data-i18n="hero.note">Dong Kor, Phnom Penh, Cambodia</span></div>
     </div></div>
-    <div class="hero-caption"><span data-i18n="hero.captionLabel">YOUR VEHICLE. YOUR EVERYDAY.</span><strong data-i18n="hero.captionText">Talk to HERO. Find your next essential.</strong></div>
+    <div class="container hero-controls">
+      <span class="hero-slide-count" aria-live="polite" aria-atomic="true">01 / 07</span>
+      <div class="hero-dots" role="group" aria-label="Select banner"><button type="button" class="hero-dot" data-slide-to="0" aria-label="SUSI · Shopfront" aria-pressed="true"><span></span></button><button type="button" class="hero-dot" data-slide-to="1" aria-label="SUSI · Honda Dream" aria-pressed="false"><span></span></button><button type="button" class="hero-dot" data-slide-to="2" aria-label="SUSI · Brand display" aria-pressed="false"><span></span></button><button type="button" class="hero-dot" data-slide-to="3" aria-label="SOSI · Motorcycle oil" aria-pressed="false"><span></span></button><button type="button" class="hero-dot" data-slide-to="4" aria-label="FSD · Battery" aria-pressed="false"><span></span></button><button type="button" class="hero-dot" data-slide-to="5" aria-label="BUSSAN · Battery" aria-pressed="false"><span></span></button><button type="button" class="hero-dot" data-slide-to="6" aria-label="SUSHI / PassApp · Battery" aria-pressed="false"><span></span></button></div>
+      <div class="hero-arrows"><button type="button" class="hero-prev" aria-label="Previous banner">←</button><button type="button" class="hero-next" aria-label="Next banner">→</button></div>
+    </div>
   </section>
   <div class="benefit-strip"><div class="container">
     <a href="#categories"><i data-icon="vehicle"></i> <span data-i18n="benefit.carBatteries">Car batteries</span></a>
@@ -77,26 +111,6 @@
     <div class="container">
       <div class="section-heading"><div><p class="eyebrow" data-i18n="gallery.eyebrow">ALSO FROM HERO</p><h2 data-i18n-html="gallery.heading">More oil options.<br>Ask HERO what fits your bike.</h2><p data-i18n="gallery.sub">Additional motorcycle oil variants available from HERO on request.</p></div></div>
       <div class="product-grid" id="gallery-grid"></div>
-    </div>
-  </section>
-  <section class="section promotions" id="promotions">
-    <div class="container">
-      <div class="section-heading"><div><h2 data-i18n="promotions.heading">Brand Highlights</h2><p data-i18n="promotions.sub">Explore highlights from our battery and motorcycle oil brands.</p></div></div>
-      <div class="promo-block">
-        <div class="promo-block-heading"><h3 data-i18n="promotions.batteryHeading">Battery Brand Highlights</h3></div>
-        <div class="battery-promo-grid">
-          <article class="promo-card"><img src="assets/fsd-battery-promo.jpg" data-i18n-attr="alt:promotions.fsdAlt" alt="FSD car battery brand visual" width="1280" height="960" loading="lazy"><div class="promo-caption"><strong data-i18n="promotions.fsdName">FSD Battery</strong><p data-i18n="promotions.japanese">Japanese Technology</p><p data-i18n="promotions.fsdSpec">Power Range: 5Ah–200Ah</p></div></article>
-          <article class="promo-card"><img src="assets/bussan-battery-promo.jpg" data-i18n-attr="alt:promotions.bussanAlt" alt="BUSSAN car battery brand visual" width="1280" height="853" loading="lazy"><div class="promo-caption"><strong data-i18n="promotions.bussanName">BUSSAN Battery</strong><p data-i18n="promotions.korean">Korean Technology</p><p data-i18n="promotions.bussanSpec">Power Range: 40Ah–150Ah</p></div></article>
-          <article class="promo-card"><img src="assets/sushi-battery-promo.jpg" data-i18n-attr="alt:promotions.sushiAlt" alt="SUSHI car battery brand visual" width="1280" height="853" loading="lazy"><div class="promo-caption"><strong data-i18n="promotions.sushiName">SUSHI Battery</strong><p data-i18n="promotions.japanese">Japanese Technology</p><p data-i18n="promotions.sushiSpec">Power Range: 40Ah–150Ah</p></div></article>
-        </div>
-      </div>
-      <div class="promo-block oil-promo-block">
-        <div class="promo-block-heading"><h3 data-i18n="promotions.oilHeading">Motorcycle Oil Brand Highlights</h3></div>
-        <div class="oil-promo-grid">
-          <article class="promo-card promo-card-wide"><img src="assets/susi-honda-dream-promo.jpg" data-i18n-attr="alt:promotions.hondaAlt" alt="SUSI oil brand visual with a Honda Dream motorcycle" width="1280" height="853" loading="lazy"><div class="promo-caption"><strong data-i18n="promotions.susiName">SUSI Motorcycle Oil</strong><p data-i18n="promotions.japanese">Japanese Technology</p><p data-i18n="promotions.susiSpec">Available Sizes: 800ml, 1000ml</p></div></article>
-          <article class="promo-card promo-card-poster"><img src="assets/sosi-oil-poster.jpg" data-i18n-attr="alt:promotions.posterAlt" alt="SOSI motorcycle oil product poster" width="853" height="1280" loading="lazy"><div class="promo-caption"><strong data-i18n="promotions.sosiName">SOSI Motorcycle Oil</strong><p data-i18n="promotions.japanese">Japanese Technology</p><p data-i18n="promotions.sosiSpec">Available Sizes: 800ml, 1000ml</p></div></article>
-        </div>
-      </div>
     </div>
   </section>
   <section class="section why" id="why-us">
