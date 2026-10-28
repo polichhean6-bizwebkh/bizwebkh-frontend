@@ -40,7 +40,7 @@
 
       contact_eyebrow: "ទំនាក់ទំនង", contact_title: "ទាក់ទងយើង", contact_sub: "យើងរីករាយនឹងទទួលបានដំណឹងពីអ្នក។ សូមទាក់ទងតាមព័ត៌មានលម្អិតដែលបានផ្តល់។",
 
-      form_name: "ឈ្មោះពេញ", form_email: "អ៊ីមែល", form_phone: "លេខទូរស័ព្ទ", form_subject: "ប្រធានបទ", form_message: "សារ", form_submit: "ផ្ញើ", form_success: "សូមអរគុណ។ សាររបស់អ្នកត្រូវបានទទួលក្នុងការសាកល្បងនេះ។", form_demo_note: "នេះគ្រាន់តែជាការសាកល្បងផ្នែកខាងមុខប៉ុណ្ណោះ។ គ្មានសារត្រូវបានផ្ញើ ឬរក្សាទុកឡើយ។",
+      form_name: "ឈ្មោះពេញ", form_email: "អ៊ីមែល", form_phone: "លេខទូរស័ព្ទ", form_subject: "ប្រធានបទ", form_message: "សារ", form_submit: "ផ្ញើ",
 
       info_address_title: "អាសយដ្ឋាន", info_phone_title: "ទូរស័ព្ទ", info_email_title: "អ៊ីមែល", info_web_title: "គេហទំព័រ",
 
@@ -221,17 +221,11 @@
   --------------------------------------------------------- */
   function initContactForm() {
     var form = document.getElementById("contactForm");
-    var successMsg = document.getElementById("formSuccess");
-
+    // No submission service is configured. Block all submission paths and
+    // preserve entered values until an approved integration is available.
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
-      successMsg.hidden = false;
-      form.reset();
-      successMsg.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (!form.checkValidity()) form.reportValidity();
     });
   }
 
