@@ -1026,16 +1026,6 @@ h3 { font-size: 1.15rem; font-weight: 700; color: var(--green-dark); }
 }
 #contact .required-mark { color: var(--green); }
 #contact .form-row label { display: inline-block; }
-.inquiry-availability {
-  margin-top: 18px;
-  padding: 14px 16px;
-  border-left: 3px solid var(--gold);
-  border-radius: var(--radius-sm);
-  background: var(--gray-bg);
-  color: var(--text-soft);
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
 #contact button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
