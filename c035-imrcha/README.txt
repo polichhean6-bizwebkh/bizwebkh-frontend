@@ -2,7 +2,7 @@ C035 IMR-CHA — Bilingual client-testing candidate, 31 October 2026
 
 Actual source: this c035-imrcha folder. Read CLIENT-TESTING-RELEASE.md.
 Khmer page content, navigation, forms, dialogs and accessibility text translated; English retained.
-FlagCounter NzVZ is OFF by default; explicit per-page opt-in required. Bilingual footer privacy notice implemented. Owner legal/wording approval remains required before public launch.
+FlagCounter NzVZ loads automatically beneath the Contact-column social icons with its genuine statistics and attribution. The owner acknowledged the associated US data transmission. The bilingual privacy notice opens from the copyright footer; legal/privacy-adviser review remains before public deployment.
 Inquiry uses FormSubmit HTML POST to imrcha.org@gmail.com. No simulated success. Client activation and actual receipt remain to be confirmed.
 Publish only index.html, assets/, robots.txt and sitemap.xml after explicit approval.
 Intended URL: https://www.bizwebkh.com/c035-imrcha/

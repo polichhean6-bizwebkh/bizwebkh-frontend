@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="assets/css/style.css?v=20261031-bilingual">
+<link rel="stylesheet" href="assets/css/style.css?v=20261031-counter-auto">
 </head>
 <body>
 
@@ -603,7 +603,7 @@
         <li><a href="#governance">Governance</a></li>
         <li><a href="#gallery" data-i18n="nav_gallery">Gallery</a></li>
         <li><a href="#involved" data-i18n="nav_involved">Partner With Us</a></li>
-        <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+        <li><a href="#contact" data-i18n="nav_inquiry">Inquiry</a></li>
       </ul>
     </div>
 
@@ -620,39 +620,36 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.8"/></svg>
         </a>
       </div>
+      <!-- Existing genuine FlagCounter NzVZ; preserve ID, statistics, and provider attribution. -->
+      <div class="footer-inline-counter" aria-labelledby="visitor-country-title">
+        <h3 id="visitor-country-title">Visitors by Country</h3>
+        <a href="https://info.flagcounter.com/NzVZ" target="_blank" rel="noopener noreferrer">
+          <img src="https://s05.flagcounter.com/countxl/NzVZ/bg_0A4530/txt_FFFFFF/border_0A4530/columns_2/maxflags_10/viewers_3/labels_1/pageviews_0/flags_0/percent_0/" alt="Flag Counter: recorded visitors by country">
+        </a>
+      </div>
     </div>
   </div>
-  <!-- Existing counter NzVZ; retain ID and attribution. Counter image is created only after per-page opt-in. -->
-  <section class="container footer-country-counter" aria-labelledby="visitor-country-title">
-    <div class="footer-country-panel">
-      <h3 id="visitor-country-title">Visitors by Country</h3>
-      <p class="counter-choice-copy">The optional visitor counter stays off until you allow it. Loading it sends your IP address and browser information to FlagCounter in the United States to estimate and publicly display visits by country. You can withdraw below at any time.</p>
-      <div class="counter-actions" id="counterChoices">
-        <button type="button" class="btn btn-outline" id="counterAllow">Allow visitor counter</button>
-        <button type="button" class="btn btn-outline" id="counterDecline">Keep disabled</button>
-      </div>
-      <div id="counterMount"></div>
-      <button type="button" class="btn btn-outline" id="counterWithdraw" hidden>Withdraw counter permission</button>
-      <p id="counterStatus" class="counter-status" role="status" aria-live="polite">Counter disabled. Your choice does not affect access to this website or the inquiry form.</p>
-      <noscript><p>The visitor counter remains disabled because JavaScript is unavailable.</p></noscript>
-      <details id="visitorPrivacy" class="visitor-privacy">
-        <summary>Visitor privacy notice</summary>
-        <p>IMR-CHA uses the optional FlagCounter service, provided by Boardhost.com, Inc., to show approximate visitor totals by country. The counter is disabled by default and is loaded only when you choose Allow visitor counter.</p>
-        <p>When enabled, your browser sends your IP address, browser and operating-system information, and potentially the referring page URL to the provider's servers in the United States, outside Cambodia. The provider uses IP-based geolocation to estimate the country or region; it does not use GPS or precise location.</p>
-        <p>The provider states that the counter image uses no cookies and does not log raw visitor IP addresses. It uses an IP-and-counter-derived hash for up to seven days to reduce repeat counting. Country-level totals are public. Counts are approximate and may include local testing visits.</p>
-        <p>The linked statistics pages are operated by the provider and may contain advertising and cookies. Opening those pages or the provider's privacy policy is a separate visit to a third-party website.</p>
-        <p>Permission applies only to this page visit and is not saved. Reloading the page disables the counter. Withdraw counter permission stops further counter-image requests on this page; it cannot undo data already sent or remove a visit from public aggregate totals. Declining has no effect on other website features.</p>
-        <p>For questions, contact IMR-CHA at <a href="mailto:imrcha.org@gmail.com">imrcha.org@gmail.com</a>.</p>
-        <p><a href="https://flagcounter.com/privacy.html" target="_blank" rel="noopener noreferrer">FlagCounter privacy policy (opens in a new tab)</a></p>
-        <p>Notice updated: 31 October 2026.</p>
-      </details>
-    </div>
-  </section>
   <div class="footer-bottom">
     <p>&copy; 2026 Islamic Medical Relief for Cambodia Humanity Association. All rights reserved.</p>
     <p class="footer-credit">Website by BizWeb KH</p>
     <a href="#visitorPrivacy" id="privacyLink">Visitor privacy</a>
   </div>
+  <dialog id="visitorPrivacy" class="visitor-privacy" aria-labelledby="visitorPrivacyTitle">
+    <div class="visitor-privacy-inner">
+      <div class="visitor-privacy-header">
+        <h2 id="visitorPrivacyTitle">Visitor privacy notice</h2>
+        <button type="button" class="privacy-close" id="privacyClose" aria-label="Close privacy notice">&times;</button>
+      </div>
+      <p>IMR-CHA uses FlagCounter, provided by Boardhost.com, Inc., to show approximate visitor totals by country. The counter loads automatically when the website opens.</p>
+      <p>When enabled, your browser sends your IP address, browser and operating-system information, and potentially the referring page URL to the provider's servers in the United States, outside Cambodia. The provider uses IP-based geolocation to estimate the country or region; it does not use GPS or precise location.</p>
+      <p>The provider states that the counter image uses no cookies and does not log raw visitor IP addresses. It uses an IP-and-counter-derived hash for up to seven days to reduce repeat counting. Country-level totals are public. Counts are approximate and may include local testing visits.</p>
+      <p>The linked statistics pages are operated by the provider and may contain advertising and cookies. Opening those pages or the provider's privacy policy is a separate visit to a third-party website.</p>
+      <p>The counter loads on each website visit. The Visitor privacy link keeps this information available without adding a large notice to the normal footer. Data already sent cannot be recalled or removed from public aggregate totals.</p>
+      <p>For questions, contact IMR-CHA at <a href="mailto:imrcha.org@gmail.com">imrcha.org@gmail.com</a>.</p>
+      <p><a href="https://flagcounter.com/privacy.html" target="_blank" rel="noopener noreferrer">FlagCounter privacy policy (opens in a new tab)</a></p>
+      <p>Notice updated: 31 October 2026.</p>
+    </div>
+  </dialog>
 </footer>
 
 <!-- ============ LEARN MORE MODAL ============ -->
@@ -674,7 +671,7 @@
   <button type="button" class="lightbox-nav next" id="lightboxNext" aria-label="Next image">&#8250;</button>
 </div>
 
-<script src="assets/js/khmer.js?v=20261031-bilingual"></script>
-<script src="assets/js/script.js?v=20261031-bilingual"></script>
+<script src="assets/js/khmer.js?v=20261031-counter-auto"></script>
+<script src="assets/js/script.js?v=20261031-counter-auto"></script>
 </body>
 </html>

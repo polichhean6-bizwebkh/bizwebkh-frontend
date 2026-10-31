@@ -247,54 +247,13 @@
   }
 
   function initCounterPrivacy() {
-    var mount = document.getElementById("counterMount");
-    var choices = document.getElementById("counterChoices");
-    var withdraw = document.getElementById("counterWithdraw");
-    var status = document.getElementById("counterStatus");
-    var base = "https://s05.flagcounter.com/countxl/NzVZ/bg_0A4530/txt_FFFFFF/border_0A4530/columns_";
-    var suffix = "/maxflags_10/viewers_3/labels_1/pageviews_0/flags_0/percent_0/";
-    var activeImage = null;
-    function disable() {
-      if (activeImage) { activeImage.onload = null; activeImage.onerror = null; dynamicCopy.delete(activeImage); }
-      mount.replaceChildren();
-      activeImage = null;
-      choices.hidden = false;
-      withdraw.hidden = true;
-      setCopy(status, "Counter disabled. Your choice does not affect access to this website or the inquiry form.");
-    }
-    document.getElementById("counterAllow").addEventListener("click", function () {
-      if (activeImage) return;
-      var link = document.createElement("a");
-      link.href = "https://info.flagcounter.com/NzVZ";
-      var picture = document.createElement("picture");
-      var source = document.createElement("source");
-      source.media = "(max-width: 640px)";
-      source.srcset = base + "2" + suffix;
-      var img = document.createElement("img");
-      img.alt = translated("Flag Counter: recorded visitors by country");
-      img.onerror = function () { setCopy(status, "The counter could not load. You can withdraw permission or try again later."); };
-      picture.append(source, img);
-      img.src = base + "3" + suffix;
-      link.append(picture);
-      activeImage = img;
-      mount.append(link);
-      choices.hidden = true;
-      withdraw.hidden = false;
-      setCopy(status, "Counter enabled for this page visit. You can withdraw permission below.");
-      withdraw.focus();
+    var privacy = document.getElementById("visitorPrivacy");
+    document.getElementById("privacyLink").addEventListener("click", function (event) {
+      event.preventDefault();
+      if (typeof privacy.showModal === "function") privacy.showModal();
+      else privacy.setAttribute("open", "");
     });
-    document.getElementById("counterDecline").addEventListener("click", disable);
-    withdraw.addEventListener("click", function () { disable(); document.getElementById("counterAllow").focus(); });
-    document.addEventListener("imrcha:language", function () {
-      if (activeImage) activeImage.alt = translated("Flag Counter: recorded visitors by country");
-    });
-    document.getElementById("privacyLink").addEventListener("click", function () {
-      var notice = document.getElementById("visitorPrivacy");
-      notice.open = true;
-      notice.querySelector("summary").focus();
-    });
-    // Returning via browser history also defaults to no tracking; no persistent consent is inferred.
-    window.addEventListener("pagehide", disable);
+    document.getElementById("privacyClose").addEventListener("click", function () { privacy.close(); });
   }
 
   /* ---------------------------------------------------------
