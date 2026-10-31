@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=20261031-bilingual">
 </head>
 <body>
 
@@ -138,14 +138,14 @@
             <svg viewBox="0 0 48 48"><path d="M4 24s8-13 20-13 20 13 20 13-8 13-20 13S4 24 4 24z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><circle cx="24" cy="24" r="6" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
           </div>
           <h3>Our Vision</h3>
-          <p>To be an Islamic medical humanitarian institution in Cambodia, contributing to an equitable, healthy, and resilient society through the delivery of high-quality, professional, and sustainable healthcare services rooted in Islamic virtues, humanitarian principles, and national solidarity &mdash; for the Muslim community and all Cambodian people, especially the most vulnerable.</p>
+          <p>To build a healthy, equitable, and resilient society through quality care rooted in Islamic values and national solidarity.</p>
         </article>
         <article class="vm-card">
           <div class="focus-icon" aria-hidden="true">
             <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="24" cy="24" r="8" fill="none" stroke="currentColor" stroke-width="2.4"/><circle cx="24" cy="24" r="2" fill="currentColor"/></svg>
           </div>
           <h3>Our Mission</h3>
-          <p>To deliver equitable and free humanitarian medical care and rapid emergency response to the impoverished and vulnerable; to promote public health awareness; to build healthcare human resources through youth training and the mobilization of Islamic medical professionals; and to forge national and international partnerships that secure sustainable resources for humanitarian healthcare delivered with quality, equity, and compassion.</p>
+          <p>To provide accessible and compassionate medical care to the vulnerable, promote public health awareness, train youth and mobilize Muslim medical professionals, and build national and international partnerships that sustain our work.</p>
         </article>
       </div>
     </div>
@@ -552,10 +552,10 @@
       </div>
 
       <div class="contact-grid" data-animate="fade-up">
-        <form class="contact-form" id="contactForm">
+        <form class="contact-form" id="contactForm" action="https://formsubmit.co/imrcha.org@gmail.com" method="POST" target="_blank" rel="noopener noreferrer">
           <div class="form-row">
             <label for="fullName" data-i18n="form_name">Full Name</label> <span class="required-mark" aria-hidden="true">*</span>
-            <input type="text" id="fullName" name="fullName" required>
+            <input type="text" id="fullName" name="name" required>
           </div>
           <div class="form-row two-col">
             <div>
@@ -571,7 +571,11 @@
             <label for="message" data-i18n="form_message">Message</label> <span class="required-mark" aria-hidden="true">*</span>
             <textarea id="message" name="message" rows="5" required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary" data-i18n="inquiry_submit" disabled>Send Inquiry</button>
+          <button type="submit" class="btn btn-primary" data-i18n="inquiry_submit">Send Inquiry</button>
+          <input type="hidden" name="_subject" value="[IMR-CHA Website] New Inquiry">
+          <input type="hidden" name="_replyto" id="inquiryReplyTo">
+          <input type="hidden" name="submitted_at" id="inquirySubmittedAt">
+          <p class="inquiry-status" id="inquiryStatus" role="status" aria-live="polite" hidden></p>
         </form>
       </div>
     </div>
@@ -608,11 +612,46 @@
       <p>No 116D, Russian Blvd, Phum 3, Srah Chork, Daun Penh, Phnom Penh</p>
       <p><a href="tel:+85512599289">+855 12 599 289</a></p>
       <p><a href="mailto:imrcha.org@gmail.com">imrcha.org@gmail.com</a></p>
+      <div class="social-icons" aria-label="Official social and location links">
+        <a class="social-ic" href="https://www.facebook.com/profile.php?id=61593967689308" target="_blank" rel="noopener noreferrer" aria-label="IMR-CHA on Facebook (opens in a new tab)">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 22v-9h3l.5-3.5h-3.5V7.3c0-1 .3-1.8 1.8-1.8H17V2.4c-.8-.1-1.6-.2-2.5-.2-2.5 0-4.2 1.5-4.2 4.3v3H7.5V13h2.8v9z"/></svg>
+        </a>
+        <a class="social-ic" href="https://maps.app.goo.gl/jbU9ERJQnJbVrmw36?g_st=atm" target="_blank" rel="noopener noreferrer" aria-label="Find IMR-CHA on Google Maps (opens in a new tab)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.8"/></svg>
+        </a>
+      </div>
     </div>
   </div>
+  <!-- Existing counter NzVZ; retain ID and attribution. Counter image is created only after per-page opt-in. -->
+  <section class="container footer-country-counter" aria-labelledby="visitor-country-title">
+    <div class="footer-country-panel">
+      <h3 id="visitor-country-title">Visitors by Country</h3>
+      <p class="counter-choice-copy">The optional visitor counter stays off until you allow it. Loading it sends your IP address and browser information to FlagCounter in the United States to estimate and publicly display visits by country. You can withdraw below at any time.</p>
+      <div class="counter-actions" id="counterChoices">
+        <button type="button" class="btn btn-outline" id="counterAllow">Allow visitor counter</button>
+        <button type="button" class="btn btn-outline" id="counterDecline">Keep disabled</button>
+      </div>
+      <div id="counterMount"></div>
+      <button type="button" class="btn btn-outline" id="counterWithdraw" hidden>Withdraw counter permission</button>
+      <p id="counterStatus" class="counter-status" role="status" aria-live="polite">Counter disabled. Your choice does not affect access to this website or the inquiry form.</p>
+      <noscript><p>The visitor counter remains disabled because JavaScript is unavailable.</p></noscript>
+      <details id="visitorPrivacy" class="visitor-privacy">
+        <summary>Visitor privacy notice</summary>
+        <p>IMR-CHA uses the optional FlagCounter service, provided by Boardhost.com, Inc., to show approximate visitor totals by country. The counter is disabled by default and is loaded only when you choose Allow visitor counter.</p>
+        <p>When enabled, your browser sends your IP address, browser and operating-system information, and potentially the referring page URL to the provider's servers in the United States, outside Cambodia. The provider uses IP-based geolocation to estimate the country or region; it does not use GPS or precise location.</p>
+        <p>The provider states that the counter image uses no cookies and does not log raw visitor IP addresses. It uses an IP-and-counter-derived hash for up to seven days to reduce repeat counting. Country-level totals are public. Counts are approximate and may include local testing visits.</p>
+        <p>The linked statistics pages are operated by the provider and may contain advertising and cookies. Opening those pages or the provider's privacy policy is a separate visit to a third-party website.</p>
+        <p>Permission applies only to this page visit and is not saved. Reloading the page disables the counter. Withdraw counter permission stops further counter-image requests on this page; it cannot undo data already sent or remove a visit from public aggregate totals. Declining has no effect on other website features.</p>
+        <p>For questions, contact IMR-CHA at <a href="mailto:imrcha.org@gmail.com">imrcha.org@gmail.com</a>.</p>
+        <p><a href="https://flagcounter.com/privacy.html" target="_blank" rel="noopener noreferrer">FlagCounter privacy policy (opens in a new tab)</a></p>
+        <p>Notice updated: 31 October 2026.</p>
+      </details>
+    </div>
+  </section>
   <div class="footer-bottom">
     <p>&copy; 2026 Islamic Medical Relief for Cambodia Humanity Association. All rights reserved.</p>
     <p class="footer-credit">Website by BizWeb KH</p>
+    <a href="#visitorPrivacy" id="privacyLink">Visitor privacy</a>
   </div>
 </footer>
 
@@ -635,6 +674,7 @@
   <button type="button" class="lightbox-nav next" id="lightboxNext" aria-label="Next image">&#8250;</button>
 </div>
 
-<script src="assets/js/script.js"></script>
+<script src="assets/js/khmer.js?v=20261031-bilingual"></script>
+<script src="assets/js/script.js?v=20261031-bilingual"></script>
 </body>
 </html>

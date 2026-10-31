@@ -9,82 +9,56 @@
   /* ---------------------------------------------------------
      Translations
   --------------------------------------------------------- */
-  var translations = {
-    /* English is the source text written directly in index.html.
-       It is captured automatically on load (see captureEnglish) so the
-       page copy and the EN/KM switch can never drift apart. */
-    en: {},
-
-    /* Khmer: only strings with an approved Khmer translation are listed.
-       Any element whose key is missing here stays in English when the
-       Khmer language is selected. Add Khmer text here (and a matching
-       data-i18n attribute in index.html) once official translations exist. */
-    km: {
-      nav_home: "ទំព័រដើម", nav_about: "អំពីយើង", nav_work: "កម្មវិធី", nav_serve: "អ្នកដែលយើងបម្រើ", nav_gallery: "វិចិត្រសាល", nav_involved: "ធ្វើជាដៃគូ", nav_contact: "ទំនាក់ទំនង",
-
-      hero_btn_discover: "ស្វែងយល់អំពីកិច្ចការរបស់យើង",
-
-      about_eyebrow: "អំពីយើង", about_title: "យើងជានរណា",
-
-      focus_eyebrow: "កិច្ចការរបស់យើង",
-
-      featured_title: "នាំសេវាសុខភាពចូលទៅជិតសហគមន៍", featured_btn: "ស្វែងយល់បន្ថែម",
-
-      how_title: "របៀបដែលយើងធ្វើការ",
-
-      gallery_eyebrow: "វិចិត្រសាល",
-
-      gcap1: "សកម្មភាពពេទ្យចល័តតាមសហគមន៍", gcap2: "ការពិនិត្យសុខភាពកុមារ", gcap3: "ការពិគ្រោះសុខភាពជូនសហគមន៍", gcap4: "កម្មវិធីអប់រំសុខភាព", gcap5: "ការចែកជំនួយផ្នែកវេជ្ជសាស្ត្រ", gcap6: "ការផ្តល់ថ្នាំ និងសម្ភារៈសុខាភិបាល", gcap7: "ការចុះជួយសហគមន៍", gcap8: "អ្នកស្ម័គ្រចិត្តជួយគ្រួសារ",
-
-      involved_eyebrow: "ចូលរួម", inv_btn: "ទាក់ទងយើង",
-
-      contact_eyebrow: "ទំនាក់ទំនង", contact_title: "ទាក់ទងយើង", contact_sub: "យើងរីករាយនឹងទទួលបានដំណឹងពីអ្នក។ សូមទាក់ទងតាមព័ត៌មានលម្អិតដែលបានផ្តល់។",
-
-      form_name: "ឈ្មោះពេញ", form_email: "អ៊ីមែល", form_phone: "លេខទូរស័ព្ទ", form_subject: "ប្រធានបទ", form_message: "សារ", form_submit: "ផ្ញើ",
-
-      info_address_title: "អាសយដ្ឋាន", info_phone_title: "ទូរស័ព្ទ", info_email_title: "អ៊ីមែល", info_web_title: "គេហទំព័រ",
-
-      footer_links_title: "តំណភ្ជាប់រហ័ស", footer_contact_title: "ទំនាក់ទំនង"
-    }
-  };
-
+  var translations = { en: {}, km: {} };
   var STORAGE_KEY = "imrcha_lang";
-
-  /* ---------------------------------------------------------
-     Language switching
-  --------------------------------------------------------- */
+  var languageRecords = [];
+  var dynamicCopy = new Map();
+  function translated(text) {
+    return document.documentElement.lang === "km" ? (window.IMRCHA_KM[text] || text) : text;
+  }
+  function setCopy(element, english) {
+    dynamicCopy.set(element, english);
+    element.textContent = translated(english);
+  }
   function applyLanguage(lang) {
-    if (lang !== "en" && lang !== "km") lang = "en";
-    document.documentElement.setAttribute("lang", lang === "km" ? "km" : "en");
-
-    var dict = translations[lang];
-    var nodes = document.querySelectorAll("[data-i18n]");
-    nodes.forEach(function (el) {
-      var key = el.getAttribute("data-i18n");
-      if (dict[key]) {
-        el.textContent = dict[key];
-      }
+    lang = lang === "km" ? "km" : "en";
+    document.documentElement.lang = lang;
+    languageRecords.forEach(function (record) {
+      if (record.node.parentElement && dynamicCopy.has(record.node.parentElement)) return;
+      var value = lang === "km" ? (window.IMRCHA_KM[record.original.trim()] || record.original.trim()) : record.original.trim();
+      value = record.original.replace(record.original.trim(), value);
+      if (record.attribute) record.node.setAttribute(record.attribute, value);
+      else record.node.nodeValue = value;
     });
-
+    dynamicCopy.forEach(function (english, element) { element.textContent = translated(english); });
     document.getElementById("langEn").classList.toggle("active", lang === "en");
     document.getElementById("langKm").classList.toggle("active", lang === "km");
-
-    try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* ignore */ }
+    document.getElementById("langEn").setAttribute("aria-pressed", String(lang === "en"));
+    document.getElementById("langKm").setAttribute("aria-pressed", String(lang === "km"));
+    document.dispatchEvent(new Event("imrcha:language"));
+    try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* language storage is optional */ }
   }
-
-  function captureEnglish() {
-    document.querySelectorAll("[data-i18n]").forEach(function (el) {
-      var key = el.getAttribute("data-i18n");
-      if (!(key in translations.en)) translations.en[key] = el.textContent;
-    });
-  }
-
   function initLanguage() {
-    captureEnglish();
+    // Cache original text nodes, not HTML: preserves links, emphasis, facts and exact English.
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    var node;
+    while ((node = walker.nextNode())) {
+      if (node.parentElement.closest("script,style,noscript") || !node.nodeValue.trim()) continue;
+      languageRecords.push({ node: node, original: node.nodeValue });
+    }
+    document.querySelectorAll("[alt],[aria-label],[title]").forEach(function (element) {
+      ["alt", "aria-label", "title"].forEach(function (attribute) {
+        if (element.hasAttribute(attribute)) languageRecords.push({ node: element, attribute: attribute, original: element.getAttribute(attribute) });
+      });
+    });
+    document.querySelectorAll("[data-i18n]").forEach(function (element) {
+      var key = element.getAttribute("data-i18n");
+      translations.en[key] = element.textContent;
+      translations.km[key] = window.IMRCHA_KM[element.textContent.trim()] || element.textContent;
+    });
     var saved = "en";
-    try { saved = localStorage.getItem(STORAGE_KEY) || "en"; } catch (e) { /* ignore */ }
+    try { saved = localStorage.getItem(STORAGE_KEY) || "en"; } catch (e) {}
     applyLanguage(saved);
-
     document.getElementById("langEn").addEventListener("click", function () { applyLanguage("en"); });
     document.getElementById("langKm").addEventListener("click", function () { applyLanguage("km"); });
   }
@@ -217,16 +191,110 @@
   }
 
   /* ---------------------------------------------------------
-     Contact form (frontend demo only)
+     Inquiry form (FormSubmit HTML POST with hosted spam verification)
   --------------------------------------------------------- */
   function initContactForm() {
     var form = document.getElementById("contactForm");
-    // No submission service is configured. Block all submission paths and
-    // preserve entered values until an approved integration is available.
+    var button = form.querySelector('button[type="submit"]');
+    var status = document.getElementById("inquiryStatus");
+    var pending = false;
+    var label = "Send Inquiry";
+    var timer;
+
+    function unlock() {
+      pending = false;
+      button.disabled = false;
+      setCopy(button, "Send Inquiry");
+      form.removeAttribute("aria-busy");
+    }
+
+    function validateFields() {
+      form.querySelectorAll("input:not([type=hidden]),textarea").forEach(function (field) {
+        field.setCustomValidity("");
+        if (field.validity.valueMissing) field.setCustomValidity(translated("Please complete this required field."));
+        else if (field.validity.typeMismatch) field.setCustomValidity(translated("Please enter a valid email address."));
+      });
+    }
+    form.addEventListener("input", validateFields);
+    form.addEventListener("invalid", validateFields, true);
+    document.addEventListener("imrcha:language", validateFields);
+    validateFields();
+
     form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (!form.checkValidity()) form.reportValidity();
+      if (pending) { e.preventDefault(); return; }
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        form.reportValidity();
+        return;
+      }
+      document.getElementById("inquiryReplyTo").value = form.elements.email.value.trim();
+      document.getElementById("inquirySubmittedAt").value = new Date().toISOString();
+      label = "Send Inquiry";
+      pending = true;
+      button.disabled = true;
+      setCopy(button, "Opening…");
+      form.setAttribute("aria-busy", "true");
+      setCopy(status, "Complete verification and check the result in the FormSubmit tab. If it reports an error or does not open, your entries remain here. Check that result before trying again.");
+      status.removeAttribute("data-state");
+      status.hidden = false;
+      // Allow the browser's native POST. FormSubmit handles CAPTCHA and
+      // displays its actual result; cross-origin responses cannot be read here.
+      // Never reset the form or claim delivery from a navigation event.
+      clearTimeout(timer);
+      timer = setTimeout(unlock, 10000);
     });
+    window.addEventListener("pageshow", unlock);
+  }
+
+  function initCounterPrivacy() {
+    var mount = document.getElementById("counterMount");
+    var choices = document.getElementById("counterChoices");
+    var withdraw = document.getElementById("counterWithdraw");
+    var status = document.getElementById("counterStatus");
+    var base = "https://s05.flagcounter.com/countxl/NzVZ/bg_0A4530/txt_FFFFFF/border_0A4530/columns_";
+    var suffix = "/maxflags_10/viewers_3/labels_1/pageviews_0/flags_0/percent_0/";
+    var activeImage = null;
+    function disable() {
+      if (activeImage) { activeImage.onload = null; activeImage.onerror = null; dynamicCopy.delete(activeImage); }
+      mount.replaceChildren();
+      activeImage = null;
+      choices.hidden = false;
+      withdraw.hidden = true;
+      setCopy(status, "Counter disabled. Your choice does not affect access to this website or the inquiry form.");
+    }
+    document.getElementById("counterAllow").addEventListener("click", function () {
+      if (activeImage) return;
+      var link = document.createElement("a");
+      link.href = "https://info.flagcounter.com/NzVZ";
+      var picture = document.createElement("picture");
+      var source = document.createElement("source");
+      source.media = "(max-width: 640px)";
+      source.srcset = base + "2" + suffix;
+      var img = document.createElement("img");
+      img.alt = translated("Flag Counter: recorded visitors by country");
+      img.onerror = function () { setCopy(status, "The counter could not load. You can withdraw permission or try again later."); };
+      picture.append(source, img);
+      img.src = base + "3" + suffix;
+      link.append(picture);
+      activeImage = img;
+      mount.append(link);
+      choices.hidden = true;
+      withdraw.hidden = false;
+      setCopy(status, "Counter enabled for this page visit. You can withdraw permission below.");
+      withdraw.focus();
+    });
+    document.getElementById("counterDecline").addEventListener("click", disable);
+    withdraw.addEventListener("click", function () { disable(); document.getElementById("counterAllow").focus(); });
+    document.addEventListener("imrcha:language", function () {
+      if (activeImage) activeImage.alt = translated("Flag Counter: recorded visitors by country");
+    });
+    document.getElementById("privacyLink").addEventListener("click", function () {
+      var notice = document.getElementById("visitorPrivacy");
+      notice.open = true;
+      notice.querySelector("summary").focus();
+    });
+    // Returning via browser history also defaults to no tracking; no persistent consent is inferred.
+    window.addEventListener("pagehide", disable);
   }
 
   /* ---------------------------------------------------------
@@ -260,6 +328,7 @@
     initModal();
     initLightbox();
     initContactForm();
+    initCounterPrivacy();
     initScrollAnimations();
   });
 })();
